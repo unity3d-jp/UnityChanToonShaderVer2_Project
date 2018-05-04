@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Plane
+  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
+  m_ShaderKeywords: _ISSYSTEMSHADOWSTOHIGH_ON _IS_BLENDADDTOHICOLOR_ON _IS_BLENDADD_ON
+    _IS_LIGHTCOLOR_ON _IS_RECEIVESHADOWS_ON _IS_SHADOWCASTER_ON _IS_SHADOW_ON _IS_SPECULARTOHIGHCOLOR_ON
+    _IS_SYSTEMSHADOWSTONORMALCOLOR_ON _IS_SYSTEMSHADOWSTOSHADECOLOR_ON _IS_SYSTEMSHADOWSTOSHADE_ON
+    _IS_SYSTEMSHADOWS_ON _RIMLIGHT_ON _SET_SYSTEMSHADOWSTOBASE_ON
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _1st_ShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _2nd_ShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap_Sampler:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMapForMatCap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Outline_Sampler:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Set_1st_ShadePosition:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Set_2nd_ShadePosition:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Set_HighColorPosition:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_8459:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _1st2nd_Shades_Feather: 0.0001
+    - _BaseColor_Step: 0.6
+    - _BaseShade_Feather: 0.0001
+    - _Boke: 0.5
+    - _Boke_Feather: 0.09743595
+    - _Boke_Power: 0.5
+    - _CullMode: 0
+    - _Farthest_Distance: 10
+    - _Feather: 0.38
+    - _Hi_Step: 2
+    - _HighColor_Power: 0.1
+    - _HighColor_Step: 0
+    - _High_Step: 0
+    - _IsSystemShadowsToHigh: 1
+    - _Is_AddBlend: 0.8088235
+    - _Is_AmbientLight: 0
+    - _Is_BlendAdd: 1
+    - _Is_BlendAddHiColor: 0
+    - _Is_BlendAddToHiColor: 1
+    - _Is_BlendAddToMatCap: 0
+    - _Is_BlendBaseColor: 0
+    - _Is_BokeHigh: 1
+    - _Is_BokeToHighColor: 0
+    - _Is_LightColor: 1
+    - _Is_NormalMapForMatCap: 0
+    - _Is_NormalMapToBase: 0
+    - _Is_NormalMapToHighColor: 0
+    - _Is_NormalMapToRimLight: 0
+    - _Is_ReceiveShadows: 1
+    - _Is_Shadow: 1
+    - _Is_ShadowCaster: 1
+    - _Is_Specular: 0.8088235
+    - _Is_SpecularToHighColor: 1
+    - _Is_SystemShadows: 1
+    - _Is_SystemShadowsToHighColor: 0
+    - _Is_SystemShadowsToNormalColor: 1
+    - _Is_SystemShadowsToShade: 1
+    - _Is_SystemShadowsToShadeColor: 1
+    - _Is_UseTweakMatCapOnShadow: 0
+    - _MatCap: 0
+    - _Nearest_Distance: 0.5
+    - _NormalColor_Step: 0.55
+    - _Outline_Width: 1
+    - _RimLight: 1
+    - _RimLight_Power: 0.1
+    - _Rotate_MatCapUV: 0
+    - _Rotate_NormalMapForMatCapUV: 0
+    - _Set_SystemShadowsToBase: 1
+    - _Set_SystemShadowsToHighColor: 0
+    - _ShadeColor_Step: 0.19
+    - _Step: 0.712
+    - _StepLevel_Shade: 0.6
+    - _Step_Shade: 0.6
+    - _Test: 10
+    - _TweakMatCapOnShadow: 0
+    - _Tweak_MatCapUV: 0
+    - _node_9822: 0.5
+    m_Colors:
+    - _1st_ShadeColor: {r: 0.07785467, g: 0.44117647, b: 0.12524445, a: 1}
+    - _2nd_ShadeColor: {r: 0.035683393, g: 0.24264705, b: 0.062388405, a: 1}
+    - _Base: {r: 0.30295417, g: 0.6544118, b: 0.25502813, a: 1}
+    - _BaseColor: {r: 0.16863142, g: 0.61764705, b: 0.10899653, a: 1}
+    - _HighColor: {r: 0.60294116, g: 1, b: 0.63853955, a: 1}
+    - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
+    - _NormalColor: {r: 0, g: 0.7205882, b: 0.094422, a: 1}
+    - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Shade: {r: 0.20000002, g: 0.28627452, b: 0.18823531, a: 1}
+    - _ShadeColor: {r: 0.027573526, g: 0.25, b: 0.05658567, a: 1}

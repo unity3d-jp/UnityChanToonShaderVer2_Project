@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ShadingGradeMap
+  m_Shader: {fileID: 4800000, guid: ca035891872022e4f80c952b3916e450, type: 3}
+  m_ShaderKeywords: _IS_BLENDADDTOHICOLOR_ON _IS_BLENDADDTOMATCAP_ON _IS_BRENDBASECOLOR_ON
+    _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON _IS_LIGHTCOLOR_BASE_ON
+    _IS_LIGHTCOLOR_HIGHCOLOR_ON _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON
+    _IS_NORMALMAPFORMATCAP_ON _IS_USETWEAKHIGHCOLORONSHADOW_ON _IS_USETWEAKMATCAPONSHADOW_ON
+    _MATCAP_ON _RIMLIGHT_ON
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _1stShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _1st_ShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _2nd_ShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseShadeStepMap:
+        m_Texture: {fileID: 2800000, guid: 3f4ab8380efb0cc47a99409594e52311, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightingGradeMap:
+        m_Texture: {fileID: 2800000, guid: 3f4ab8380efb0cc47a99409594e52311, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap_Sampler:
+        m_Texture: {fileID: 2800000, guid: 2a97ca8db51c5d347968b667f0fbfde0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMapForMatCap:
+        m_Texture: {fileID: 2800000, guid: 90768376d14785e4dad7ac5ea2da2159, type: 3}
+        m_Scale: {x: 50, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Outline_Sampler:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Set_HighColorPosition:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadingGradeMap:
+        m_Texture: {fileID: 2800000, guid: 3f4ab8380efb0cc47a99409594e52311, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StepMap:
+        m_Texture: {fileID: 2800000, guid: 3f4ab8380efb0cc47a99409594e52311, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _1st2nd_Shade_Feather: 0.0001
+    - _1stShadeThreshold: 0.325
+    - _1st_ShadeColor_Feather: 0.0001
+    - _1st_ShadeColor_Step: 0.293
+    - _1st_ShadeColor_Threshold: 0.42
+    - _1st_ShadeThreshold: 0.02
+    - _2ndShadeThreshold: 0.201
+    - _2nd_ShadeColor_Feather: 0.0001
+    - _2nd_ShadeColor_Step: 0.185
+    - _2nd_ShadeColor_Threshold: 0.1
+    - _2nd_ShadeThreshold: 0
+    - _BaseColor_Threshold: 0.02
+    - _BaseShade_Feather: 0.0001
+    - _ColorThreshold: 0.327
+    - _CullMode: 0
+    - _Farthest_Distance: 10
+    - _GI_Intensity: 0
+    - _HighColor_Power: 0.014
+    - _Is_1st_ShadeColorOnly: 0
+    - _Is_1st_ShadeOnly: 0
+    - _Is_BlendAddToHiColor: 1
+    - _Is_BlendAddToMatCap: 1
+    - _Is_BrendBaseColor: 1
+    - _Is_LightColor_1st_Shade: 1
+    - _Is_LightColor_2nd_Shade: 1
+    - _Is_LightColor_Base: 1
+    - _Is_LightColor_HighColor: 1
+    - _Is_LightColor_MatCap: 1
+    - _Is_LightColor_RimLight: 1
+    - _Is_NormalMap: 0
+    - _Is_NormalMapForMatCap: 1
+    - _Is_NormalMapToHighColor: 0
+    - _Is_NormalMapToRimLight: 0
+    - _Is_SpecularToHighColor: 0
+    - _Is_UseTweakHighColorOnShadow: 1
+    - _Is_UseTweakMatCapOnShadow: 1
+    - _LightPosterizeStep: 10
+    - _LightPower: 0
+    - _LightStep: 1000
+    - _MatCap: 1
+    - _Nearest_Distance: 0.5
+    - _Offset_Z: 0
+    - _Outline_Width: 5
+    - _PosterizeStep: 20
+    - _RimLight: 1
+    - _RimLight_FeatherOff: 0
+    - _RimLight_InsideMask: 0.0001
+    - _RimLight_Power: 0.043
+    - _Rotate_MatCapUV: 0
+    - _Rotate_NormalMapForMatCapUV: 0
+    - _Set_SystemShadowsToBase: 0
+    - _ShadeColor_Threshold: 0.074
+    - _ShadeThreshold: 0.262
+    - _StencilNo: 1
+    - _Step: 3
+    - _TweakHighColorOnShadow: 0
+    - _TweakMatCapOnShadow: 0
+    - _Tweak_MatCapUV: 0
+    - _Tweak_SystemShadowsLevel: 0
+    - _node_2316: 0.355
+    - _node_3019: 0.02
+    - _node_5770: 0
+    - _node_766: 3
+    m_Colors:
+    - _1stShadeColor: {r: 0, g: 0.28336725, b: 0.32352942, a: 1}
+    - _1st_ShadeColor: {r: 0, g: 0.3577586, b: 0.6102941, a: 1}
+    - _2ndShadeColor: {r: 0.060509596, g: 0.03952206, b: 0.31617647, a: 1}
+    - _2nd_ShadeColor: {r: 0, g: 0.08696758, b: 0.25735295, a: 1}
+    - _BaseColor: {r: 0, g: 0.8758621, b: 1, a: 1}
+    - _HighColor: {r: 0.7647059, g: 0.93184584, b: 1, a: 1}
+    - _MatCapColor: {r: 0, g: 0.8035495, b: 0.83823526, a: 1}
+    - _Outline_Color: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 1}
+    - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadeColor: {r: 0.034482956, g: 0, b: 1, a: 1}
+    - _ShadrColor: {r: 0.12841554, g: 0.048659183, b: 0.5514706, a: 1}
