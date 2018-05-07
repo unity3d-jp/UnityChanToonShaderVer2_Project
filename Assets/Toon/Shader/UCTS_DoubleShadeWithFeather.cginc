@@ -81,7 +81,7 @@
 //DoubleShadeWithFeather
 #endif
 
-	    fixed3 DecodeLightProbe( fixed3 N ){
+            fixed3 DecodeLightProbe( fixed3 N ){
 	    return ShadeSH9(float4(N,1));
 	    }
 	    fixed3 DecodeLightProbe_Cubed( fixed3 N ){
