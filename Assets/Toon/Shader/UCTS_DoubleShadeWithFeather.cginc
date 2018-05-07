@@ -149,7 +149,7 @@
 
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
-                float3 defaultLightDirection = float3(0.0,0.1,0.1);
+		float3 defaultLightDirection = float3(0.0,0.1,0.1);
 		float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz + float3(0.0, 0.0000001, 0.0));
 		float3 lightColor = _LightColor0.rgb*0.5;
 		lightColor += DecodeLightProbe_Cubed(i.normalDir)*0.5;
