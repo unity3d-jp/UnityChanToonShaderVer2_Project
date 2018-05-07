@@ -84,7 +84,7 @@
             fixed3 DecodeLightProbe( fixed3 N ){
             return ShadeSH9(float4(N,1));
             }
-			fixed3 DecodeLightProbe_Cubed( fixed3 N ){
+	    fixed3 DecodeLightProbe_Cubed( fixed3 N ){
             return ShadeSH9(float4(0, 1, 0, 1));
             }
             
@@ -150,9 +150,9 @@
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
                 float3 defaultLightDirection = float3(0.0,0.1,0.1);
-				float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz + float3(0.0, 0.0000001, 0.0));
-				float3 lightColor = _LightColor0.rgb*0.5;	
-				lightColor += DecodeLightProbe_Cubed(i.normalDir)*0.5;
+		float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz + float3(0.0, 0.0000001, 0.0));
+		float3 lightColor = _LightColor0.rgb*0.5;	
+		lightColor += DecodeLightProbe_Cubed(i.normalDir)*0.5;
 #elif _IS_PASS_FWDDELTA
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 float3 lightColor = _LightColor0.rgb*0.5;
