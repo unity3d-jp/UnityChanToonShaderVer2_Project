@@ -85,8 +85,8 @@
             return ShadeSH9(float4(N,1));
             }
 	    fixed3 DecodeLightProbe_Cubed( fixed3 N ){
-            return ShadeSH9(float4(0, 1, 0, 1));
-            }
+	    return ShadeSH9(float4(0, 1, 0, 1));
+	    }
             
             uniform float _GI_Intensity;
 
