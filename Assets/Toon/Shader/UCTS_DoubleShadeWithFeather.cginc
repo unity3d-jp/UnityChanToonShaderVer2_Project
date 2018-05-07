@@ -154,7 +154,7 @@
 		float3 lightColor = _LightColor0.rgb*0.5;
 		lightColor += DecodeLightProbe_Cubed(i.normalDir)*0.5;
 #elif _IS_PASS_FWDDELTA
-                float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
+		float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
 		float3 lightColor = _LightColor0.rgb*0.5;
 #endif
                 float3 halfDirection = normalize(viewDirection+lightDirection);
