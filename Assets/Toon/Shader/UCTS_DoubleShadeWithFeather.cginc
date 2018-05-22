@@ -84,7 +84,7 @@
             fixed3 DecodeLightProbe( fixed3 N ){
             return ShadeSH9(float4(N,1));
             }
-            fixed3 DecodeLightProbe_Cubed( fixed3 N ){
+			fixed3 DecodeLightProbe_Cubed( fixed3 N ){
             return ShadeSH9(float4(0, 1, 0, 1));
             }
             
@@ -149,10 +149,10 @@
 
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
-                float3 defaultLightDirection = float3(0.0,0.1,0.1);
-                float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz + float3(0.0, 0.0000001, 0.0));
-                float3 lightColor = _LightColor0.rgb*0.5;
-                lightColor += DecodeLightProbe_Cubed(i.normalDir)*0.5;
+                float3 defaultLightDirection = float3(0.0,0.0001,0.00001);
+				float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz + defaultLightDirection);
+				float3 lightColor = _LightColor0.rgb*0.5;	
+				lightColor += DecodeLightProbe_Cubed(i.normalDir)*0.5;
 #elif _IS_PASS_FWDDELTA
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 float3 lightColor = _LightColor0.rgb*0.5;
@@ -205,6 +205,9 @@
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowSample)+(Set_FinalShadowSample*_TweakMatCapOnShadow))), _Is_UseTweakMatCapOnShadow );
                 float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
                 float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _RimLight_var, lerp( (_RimLight_var*Set_MatCap), (_RimLight_var+Set_MatCap), _Is_BlendAddToMatCap ), _MatCap ))+(_Emissive_Tex_var.rgb*_Emissive_Color.rgb)))*(1.0-(DecodeLightProbe( normalDirection )*_GI_Intensity))));
+#ifdef _IS_PASS_FWDDELTA
+                finalColor *= attenuation;
+#endif
 
 //v.2.0.4
 #ifdef _IS_CLIPPING_OFF
