@@ -1,8 +1,11 @@
 README.md
 
-Tweaks by ACIIL. This is a modified UTC to Support typical lighting environments in vrchat. Futher support and setting configurations will slowly progressive. Use the dev branch and copy over only the asset folder.
 
-Current bugs: Outlines currently do not reflect the light enviroment when scene is illumiated with baked lights.
+Tweaks by ACIIL.
+This is a modified UTC to Support typical lighting environments in vrchat. Futher support and setting configurations will slowly progressive. Use the dev branch and copy over only the asset folder.
+
+Current bugs:
+Outlines currently do not reflect the light enviroment when scene is illumiated with baked lights.
 
 Support credits to: Noe, TCL, June, Cubed, Silent
 
