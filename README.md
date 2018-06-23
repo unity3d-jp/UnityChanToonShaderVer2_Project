@@ -103,7 +103,9 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 エミッシブカラー側でHDR値が設定できるので、PostProcessingStackのブルームエフェクトと組み合わせることで、エミッシブ部分を光らせることができるようになった。  
 ※今回搭載された新規テクスチャに関しても、今まで通り、必要なければ使わなくても問題ないようになっています。  
 
-### ●VR Chatに対応  
+### ●VR Chatに対応
+シーン内に有効なライトが存在しない場合（シーン内にライトオブジェクトがない場合と、ライトのインテンシティが0.001以下の場合を含みます）、デフォルトの明るさ（インテンシティで約0.5程度）で照らされます。
+なおVR Chat向けには、システムへの負荷を考慮してMobileフォルダ内のシェーダーを使うことをお勧めします。その場合、ライトは1灯のみの対応となります。
 
 
 ### 【Version】
@@ -135,7 +137,8 @@ HDR values can be set on the Emissive Color side, allowing the Emissive portion 
 ※As always, using these new textures is not required.   
 
 ### ●VR Chat ready!
-
+If there is no valid light in the scene (including the case where there is no light object in the scene and the intensity of the light is less than 0.001), objects will be illuminated with the default brightness (nearly intensity = 0.5).
+For VR Chat, we recommend using shaders in the Mobile folder in consideration of the load on the system. In that case, the light will correspond to only one light.
 
 -----
 ## 【過去の修正履歴】
