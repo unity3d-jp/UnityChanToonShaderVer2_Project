@@ -1,13 +1,19 @@
 README.md
 
-
 Tweaks by ACIIL.
-This is a modified UTC to Support typical lighting environments in vrchat. Futher support and setting configurations will slowly progressive. Use the dev branch and copy over only the asset folder.
+
+Intro:
+This is a modified UTC to Support typical lighting environments in vrchat. Further support and setting configurations will slowly progress. 
+The dev branch will be up to date and error prone.
+
+Install: 
+Copy over the Toon\ folder in assets into you unity install and verify the UnityChanToonShader\ shaders can be used as materials.
+
 
 Current bugs:
-Outlines currently do not reflect the light enviroment when scene is illumiated with baked lights.
+Any UTC shader that uses the ShadingGradMap variant has been adapted. Outlines currently do not reflect the light environment edits and should not be used.
 
-Support credits to: Noe, TCL, June, Cubed, Silent
+Support credits to: Noe, TCL, June, Cubed, Silent, RetroGeo, Xiexe
 
 
 
