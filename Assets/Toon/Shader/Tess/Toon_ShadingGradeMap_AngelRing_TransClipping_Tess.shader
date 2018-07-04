@@ -96,6 +96,8 @@
         //Offset parameter
         _Offset_Z ("Offset_Camera_Z", Float) = 0
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
+        //For VR Chat under No effective light objects
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 1)) = 0.5
         //Tessellation
         _TessEdgeLength( "Tess Edge length", Range( 2,50 ) ) = 5
         _TessPhongStrength( "Tess Phong Strengh", Range( 0,1 ) ) = 0.5

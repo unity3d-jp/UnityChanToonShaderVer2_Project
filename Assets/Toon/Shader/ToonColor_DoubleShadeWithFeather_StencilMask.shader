@@ -70,6 +70,8 @@
         [HDR]_Emissive_Color ("Emissive_Color", Color) = (0,0,0,1)
 //GI
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
+        //For VR Chat under No effective light objects
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 1)) = 0.5
     }
     SubShader {
         Tags {

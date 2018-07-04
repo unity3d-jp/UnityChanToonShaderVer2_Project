@@ -12,7 +12,7 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 【Target Environment】
 
 Requires Unity 5.6.x or later.
-This pack was created in Unity 5.6.5p1.
+This pack was created in Unity 5.6.3p1.
 
 【Use with iOS/OSX METAL】
 
@@ -41,6 +41,12 @@ We recommend first erasing the previous shader then installing the new shader, t
 Please contact us if you have any issues. 
 
 【Version】
+2018/07/04
+Add Unlit_Intensity property
+If there is no valid light in the scene, UTS2 switches to default lighting, and now you can adjust its brightness.
+This property is assuming for using in special scenes mainly in VR Chat.
+If there is a valid directional light in the scene, this property will not be affected.
+
 2018/03/26
 UTS_EdgeDetection.unitypackage
 This is an edge extraction filter of post effect type.

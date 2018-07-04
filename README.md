@@ -16,11 +16,11 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 -----
 ## 【ターゲット環境】
 Unity5.6.x もしくはそれ以降が必要です。Unity 2018.1.0f2で使用できます。  
-本パッケージは、Unity5.6.5p2で作成されています。
+本パッケージは、Unity5.6.3p1で作成されています。
 
 ### 【Target Environment】
 Requires Unity 5.6.x or later. Available on Unity 2018.1.0f2.  
-This pack was created in Unity 5.6.5p2.
+This pack was created in Unity 5.6.3p1.
 
 
 -----
@@ -76,6 +76,11 @@ Please contact us if you have any issues.
 
 -----
 ## 【新規】
+### 2018/07/04：Unlit_Intensityプロパティを追加  
+シーン内に有効なライトがない場合に、UTS2がデフォルトのライティングに切り替えますが、その明るさを調整できるようにしました。  
+主にVR Chatでの特殊なシーン向けでの設定を想定しています。  
+シーン内に有効なディレクショナルライトがある場合には、本プロパティは影響はしません。
+
 ### 2018/05/04：2.0.4 Release：ターゲット環境を正式にUnity5.6.x以降としました。Unity2018.1.0f2にも対応しています。  
 コードの全面的な改修およびバグ修正の他、以下の仕様を新規に追加しました。
 
@@ -108,7 +113,12 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 なおVR Chat向けには、システムへの負荷を考慮してMobileフォルダ内のシェーダーを使うことをお勧めします。その場合、ライトは1灯のみの対応となります。
 
 
-### 【Version】
+## 【Version】
+### 2018/07/04: Add Unlit_Intensity property.  
+If there is no valid light in the scene, UTS2 switches to default lighting, and now you can adjust its brightness.  
+This property is assuming for using in special scenes mainly in VR Chat.  
+If there is a valid directional light in the scene, this property will not be affected.
+
 ### 2018/05/04: 2.0.4 Release: Officially set Unity5.6.x and later versions as the target environment. Unity2018.1.0f2 is also supported.  
 In addition to overall code revisions and bug fixes, the following has been added to this new version. 
 
@@ -161,11 +171,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.4  
-最終リリース日：2018/05/04  
+最終リリース日：2018/07/03  
 カテゴリー：3D  
 形式：zip  
 
 Latest Version: 2.0.4  
-Update: 2018/05/04  
+Update: 2018/07/03  
 Category: 3D  
 File format: zip  

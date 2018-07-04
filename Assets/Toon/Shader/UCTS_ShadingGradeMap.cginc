@@ -65,6 +65,7 @@
             uniform float _TweakMatCapOnShadow;
             uniform sampler2D _Emissive_Tex; uniform float4 _Emissive_Tex_ST;
             uniform float4 _Emissive_Color;
+            uniform float _Unlit_Intensity;
 //v.2.0.4
 #ifdef _IS_TRANSCLIPPING_OFF
 //
@@ -170,7 +171,7 @@
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
                 float3 defaultLightDirection = float3(0.0,0.1,0.1);
-                float3 defaultLightColor = float3(0.5,0.5,0.5);
+                float3 defaultLightColor = float3(_Unlit_Intensity,_Unlit_Intensity,_Unlit_Intensity);
                 float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
                 float3 lightColor = lerp(defaultLightColor,_LightColor0.rgb,any(_LightColor0.rgb));                
 #elif _IS_PASS_FWDDELTA
