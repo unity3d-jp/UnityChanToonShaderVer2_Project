@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 327574812}
   - component: {fileID: 327574811}
   - component: {fileID: 327574810}
+  - component: {fileID: 327574816}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -213,6 +214,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 36.771, y: 0, z: 0}
+--- !u!114 &327574816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 327574809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6f0b0773f6fbe4ebaaa0eff2d31199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 3
+  sensitivityDepth: 1
+  sensitivityNormals: 1
+  edgeExp: 1
+  sampleDist: 1
+  edgesColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  filterPower: 0.128
+  threshold: 0.414
+  edgesOnly: 0
+  edgeDetectShader: {fileID: 4800000, guid: 25f3ae0d0271490419a188afd866a647, type: 3}
 --- !u!1001 &919203902
 Prefab:
   m_ObjectHideFlags: 0
@@ -386,17 +408,17 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 67c26869a5223ff42b38bfa5a449c4a1, type: 2}
+      objectReference: {fileID: 2100000, guid: 73a0188e6bfa8e043807c96f5ae48aec, type: 2}
     - target: {fileID: 23043426039841604, guid: 715f38b3d8fbf1e44b58ad8528f04944,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 67c26869a5223ff42b38bfa5a449c4a1, type: 2}
+      objectReference: {fileID: 2100000, guid: 73a0188e6bfa8e043807c96f5ae48aec, type: 2}
     - target: {fileID: 23424531182768784, guid: 715f38b3d8fbf1e44b58ad8528f04944,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 67c26869a5223ff42b38bfa5a449c4a1, type: 2}
+      objectReference: {fileID: 2100000, guid: 73a0188e6bfa8e043807c96f5ae48aec, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 715f38b3d8fbf1e44b58ad8528f04944, type: 2}
   m_IsPrefabParent: 0
@@ -445,11 +467,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: e11f662626928b14e8f57acb029360b9, type: 2}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.9264706
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: e11f662626928b14e8f57acb029360b9, type: 2}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.9300203
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: e11f662626928b14e8f57acb029360b9, type: 2}
       propertyPath: m_Color.b
