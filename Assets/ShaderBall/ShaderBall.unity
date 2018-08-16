@@ -230,9 +230,9 @@ MonoBehaviour:
   sensitivityNormals: 1
   edgeExp: 1
   sampleDist: 1
-  edgesColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  filterPower: 0.128
-  threshold: 0.414
+  edgesColor: {r: 0.5735294, g: 0.5735294, b: 0.5735294, a: 1}
+  filterPower: 0.3
+  threshold: 0.4
   edgesOnly: 0
   edgeDetectShader: {fileID: 4800000, guid: 25f3ae0d0271490419a188afd866a647, type: 3}
 --- !u!1001 &919203902
