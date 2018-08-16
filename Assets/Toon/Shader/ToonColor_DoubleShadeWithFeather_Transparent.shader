@@ -1,4 +1,6 @@
-﻿Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Transparent" {
+﻿//Unitychan Toon Shader ver.2.0
+//v.2.0.4.2
+Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Transparent" {
     Properties {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _ClippingMask ("ClippingMask", 2D) = "white" {}
@@ -69,6 +71,10 @@
         _Rotate_NormalMapForMatCapUV ("Rotate_NormalMapForMatCapUV", Range(-1, 1)) = 0
         [HideInInspector] _Is_UseTweakMatCapOnShadow ("Is_UseTweakMatCapOnShadow", Float ) = 0
         [HideInInspector] _TweakMatCapOnShadow ("TweakMatCapOnShadow", Range(0, 1)) = 0
+//MatcapMask
+        _Set_MatcapMask ("Set_MatcapMask", 2D) = "white" {}
+        _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
+//
 //v.2.0.4 Emissive
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}
         [HDR]_Emissive_Color ("Emissive_Color", Color) = (0,0,0,1)

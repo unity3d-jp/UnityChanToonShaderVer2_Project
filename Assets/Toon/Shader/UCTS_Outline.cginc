@@ -2,7 +2,7 @@
 // 2017/03/08 N.Kobayashi (Unity Technologies Japan)
 // カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版）
 // 2017/06/05 PS4対応版
-// Ver.2.0.4
+// Ver.2.0.4.2
 // 2018/02/05 Outline Tex対応版
 // #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
 // _IS_OUTLINE_CLIPPING_YESは、Clippigマスクを使用するシェーダーでのみ使用できる. OutlineのブレンドモードにBlend SrcAlpha OneMinusSrcAlphaを追加すること.

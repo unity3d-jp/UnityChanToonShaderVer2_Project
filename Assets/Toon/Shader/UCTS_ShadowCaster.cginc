@@ -1,5 +1,5 @@
 ﻿//UCTS_ShadowCaster.cginc
-//v.2.0.4
+//v.2.0.4.2
 //#pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE  _IS_CLIPPING_TRANSMODE
 //
 #ifdef _IS_CLIPPING_MODE

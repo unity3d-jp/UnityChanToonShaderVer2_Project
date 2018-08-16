@@ -85,26 +85,26 @@ MonoBehaviour:
   eyeAdaptation:
     m_Enabled: 1
     m_Settings:
-      lowPercent: 29.693419
-      highPercent: 60.81311
-      minLuminance: -4.58
-      maxLuminance: -3.68
+      lowPercent: 33.357224
+      highPercent: 51.239323
+      minLuminance: -7
+      maxLuminance: -4
       keyValue: 0.25
       dynamicKeyValue: 1
       adaptationType: 0
-      speedUp: 5.55
+      speedUp: 2
       speedDown: 1
-      logMin: -5
-      logMax: 11
+      logMin: -8
+      logMax: 4
   bloom:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 2.27
-        threshold: 1.31
-        softKnee: 0.569
+        intensity: 4.51
+        threshold: 2.22
+        softKnee: 0.574
         radius: 7
-        antiFlicker: 0
+        antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
         intensity: 3
@@ -120,7 +120,7 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.06
+        postExposure: -1.5
         temperature: 0
         tint: 0
         hueShift: 0
@@ -134,9 +134,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
-          offset: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.558482, g: 0.69656014, b: 1, a: 0}
+          power: {r: 1, g: 0.9642739, b: 0.7905883, a: 0}
+          offset: {r: 1, g: 0.6047473, b: 0.9288898, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}

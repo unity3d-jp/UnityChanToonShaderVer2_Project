@@ -47,7 +47,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.4_Release.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.2_Release.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます  
 上書きインストール時には、コードが全面的に改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -60,7 +60,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.4_Release.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.2_Release.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.
 
 When over-writing a previous version, the code will be completely revised, so please take the following precautions:  
@@ -76,6 +76,10 @@ Please contact us if you have any issues.
 
 -----
 ## 【新規】
+### 2018/08/16：MatcapMaskを追加  
+MatCapに、メッシュのUVベースで効果のかかり具合を調整できるMatcapMaskを追加。Matcapマスクは「白」ほど効果が出やすくなります。  
+Tweak_MatcapMaskLevelプロパティで強度が調整できます。  
+
 ### 2018/07/04：Unlit_Intensityプロパティを追加  
 シーン内に有効なライトがない場合に、UTS2がデフォルトのライティングに切り替えますが、その明るさを調整できるようにしました。  
 主にVR Chatでの特殊なシーン向けでの設定を想定しています。  
@@ -114,6 +118,10 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 
 ## 【Version】
+### 2018/08/16: Add MatcapMask.  
+Added MatcapMask that can adjust the power of MatCap effect applied on the UV base of the mesh. MatcapMask is a grayscale map, "white" becomes to MatCap full effect.  
+You can adjust the power of the mask with Tweak_MatcapMaskLevel property.  
+
 ### 2018/07/04: Add Unlit_Intensity property.  
 If there is no valid light in the scene, UTS2 switches to default lighting, and now you can adjust its brightness.  
 This property is assuming for using in special scenes mainly in VR Chat.  
@@ -170,12 +178,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.4  
-最終リリース日：2018/07/03  
+最新バージョン：2.0.4.2  
+最終リリース日：2018/08/16  
 カテゴリー：3D  
 形式：zip  
 
-Latest Version: 2.0.4  
-Update: 2018/07/03  
+Latest Version: 2.0.4,2  
+Update: 2018/08/16  
 Category: 3D  
 File format: zip  

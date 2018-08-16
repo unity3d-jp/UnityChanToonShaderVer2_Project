@@ -106,6 +106,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Set_MatcapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -192,9 +196,11 @@ Material:
     - _Tweak_HighColorMaskLevel: 0
     - _Tweak_LightDirection_MaskLevel: 0
     - _Tweak_MatCapUV: -0.033
+    - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: 0
     - _Tweak_UV: 0
+    - _Unlit_Intensity: 0.5
     - _isKage_Normal: 1
     - _isMatcap_Normal: 1
     - _isRim_Normal: 1

@@ -1,4 +1,6 @@
-﻿Shader "UnityChanToonShader/Tessellation/NoOutline/AngelRing/ToonColor_ShadingGradeMap_TransClipping" {
+﻿//Unitychan Toon Shader ver.2.0
+//v.2.0.4.2
+Shader "UnityChanToonShader/Tessellation/NoOutline/AngelRing/ToonColor_ShadingGradeMap_TransClipping" {
     Properties {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _ClippingMask ("ClippingMask", 2D) = "white" {}
@@ -69,6 +71,10 @@
         _Rotate_NormalMapForMatCapUV ("Rotate_NormalMapForMatCapUV", Range(-1, 1)) = 0
         [MaterialToggle] _Is_UseTweakMatCapOnShadow ("Is_UseTweakMatCapOnShadow", Float ) = 0
         _TweakMatCapOnShadow ("TweakMatCapOnShadow", Range(0, 1)) = 0
+//MatcapMask
+        _Set_MatcapMask ("Set_MatcapMask", 2D) = "white" {}
+        _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
+//
 //天使の輪追加プロパティ.
         [MaterialToggle] _AngelRing ("AngelRing", Float ) = 0
         _AngelRing_Sampler ("AngelRing_Sampler", 2D) = "black" {}

@@ -1,5 +1,5 @@
 ﻿//UCTS_ShadingGradeMap_Tess.cginc
-//v.2.0.4
+//v.2.0.4.2
 //#pragma multi_compile _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
 //#pragma multi_compile _IS_ANGELRING_OFF _IS_ANGELRING_ON
 //#pragma multi_compile _IS_PASS_FWDBASE _IS_PASS_FWDDELTA
@@ -66,6 +66,10 @@
             uniform float _Rotate_NormalMapForMatCapUV;
             uniform fixed _Is_UseTweakMatCapOnShadow;
             uniform float _TweakMatCapOnShadow;
+            //MatcapMask
+            uniform sampler2D _Set_MatcapMask; uniform float4 _Set_MatcapMask_ST;
+            uniform float _Tweak_MatcapMaskLevel;
+            //
             uniform sampler2D _Emissive_Tex; uniform float4 _Emissive_Tex_ST;
             uniform float4 _Emissive_Color;
             uniform float _Unlit_Intensity;
@@ -245,7 +249,11 @@
                 float3 _NormalMapForMatCap_var = UnpackNormal(tex2D(_NormalMapForMatCap,TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)));
                 float2 _Rot_MatCapUV_var = (mul((0.0 + ( ((mul( UNITY_MATRIX_V, float4(lerp( i.normalDir, mul( _NormalMapForMatCap_var.rgb, tangentTransform ).xyz.rgb, _Is_NormalMapForMatCap ),0) ).xyz.rgb.rg*0.5+0.5) - (0.0+_Tweak_MatCapUV)) * (1.0 - 0.0) ) / ((1.0-_Tweak_MatCapUV) - (0.0+_Tweak_MatCapUV)))-_Rot_MatCapUV_var_piv,float2x2( _Rot_MatCapUV_var_cos, -_Rot_MatCapUV_var_sin, _Rot_MatCapUV_var_sin, _Rot_MatCapUV_var_cos))+_Rot_MatCapUV_var_piv);
                 float4 _MatCap_Sampler_var = tex2D(_MatCap_Sampler,TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler));
-                float3 _Is_LightColor_MatCap_var = lerp( (_MatCap_Sampler_var.rgb*_MatCapColor.rgb), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb)*Set_LightColor), _Is_LightColor_MatCap );
+                //MatcapMask
+                float4 _Set_MatcapMask_var = tex2D(_Set_MatcapMask,TRANSFORM_TEX(Set_UV0, _Set_MatcapMask));
+                float _Tweak_MatcapMaskLevel_var = saturate(_Set_MatcapMask_var.g + _Tweak_MatcapMaskLevel);
+                float3 _Is_LightColor_MatCap_var = lerp( (_MatCap_Sampler_var.rgb*_MatCapColor.rgb*_Tweak_MatcapMaskLevel_var), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb*_Tweak_MatcapMaskLevel_var)*Set_LightColor), _Is_LightColor_MatCap );
+                //
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakMatCapOnShadow))), _Is_UseTweakMatCapOnShadow );
                 float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
 //v.2.0.4

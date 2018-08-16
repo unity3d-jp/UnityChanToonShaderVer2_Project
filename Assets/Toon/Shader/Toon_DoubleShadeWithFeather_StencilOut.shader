@@ -1,4 +1,6 @@
-﻿Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_StencilOut" {
+﻿//Unitychan Toon Shader ver.2.0
+//v.2.0.4.2
+Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_StencilOut" {
     Properties {
         _StencilNo ("Stencil No", int) =1
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
@@ -54,9 +56,9 @@
         [MaterialToggle] _Ap_RimLight_FeatherOff ("Ap_RimLight_FeatherOff", Float ) = 0
 //ここまで.
         [MaterialToggle] _MatCap ("MatCap", Float ) = 0
-        [MaterialToggle] _Is_LightColor_MatCap ("Is_LightColor_MatCap", Float ) = 1
         _MatCap_Sampler ("MatCap_Sampler", 2D) = "black" {}
         _MatCapColor ("MatCapColor", Color) = (1,1,1,1)
+        [MaterialToggle] _Is_LightColor_MatCap ("Is_LightColor_MatCap", Float ) = 1
         [MaterialToggle] _Is_BlendAddToMatCap ("Is_BlendAddToMatCap", Float ) = 1
         _Tweak_MatCapUV ("Tweak_MatCapUV", Range(-0.5, 0.5)) = 0
         _Rotate_MatCapUV ("Rotate_MatCapUV", Range(-1, 1)) = 0
@@ -65,6 +67,10 @@
         _Rotate_NormalMapForMatCapUV ("Rotate_NormalMapForMatCapUV", Range(-1, 1)) = 0
         [MaterialToggle] _Is_UseTweakMatCapOnShadow ("Is_UseTweakMatCapOnShadow", Float ) = 0
         _TweakMatCapOnShadow ("TweakMatCapOnShadow", Range(0, 1)) = 0
+//MatcapMask
+        _Set_MatcapMask ("Set_MatcapMask", 2D) = "white" {}
+        _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
+//
 //v.2.0.4 Emissive
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}
         [HDR]_Emissive_Color ("Emissive_Color", Color) = (0,0,0,1)

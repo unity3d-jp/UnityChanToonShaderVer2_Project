@@ -22,7 +22,7 @@ http://unity-chan.com/contents/guideline/
 
 
 【インストールの注意】
-UTS2_ShaderOnly_v2.0.4.unitypackage
+UTS2_ShaderOnly_v2.0.4.2.unitypackage
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます
 上書きインストール時には、コードが全面的に改修されていますので、注意が必要です。
 １．元のプロジェクトのバックアップをとっておく
@@ -36,6 +36,11 @@ UTS2_ShaderOnly_v2.0.4.unitypackage
 
 
 【新規】
+2018/08/16
+MatcapMaskを追加
+MatCapに、メッシュのUVベースで効果のかかり具合を調整できるMatcapMaskを追加。Matcapマスクは「白」ほど効果が出やすくなります。
+Tweak_MatcapMaskLevelプロパティで強度が調整できます。
+
 2018/07/04
 Unlit_Intensityプロパティを追加
 シーン内に有効なライトがない場合に、UTS2がデフォルトのライティングに切り替えますが、その明るさを調整できるようにしました。
@@ -78,7 +83,7 @@ Sobel Color Filterを使うことで、効果的にトゥーンラインエッ�
 2017/05/07：2.0.0：最初のバージョン
 
 
-最新バージョン：2.0.4
-最終リリース日：2018.02.09
+最新バージョン：2.0.4.2
+最終リリース日：2018.08.16
 カテゴリー：3D
 形式：zip

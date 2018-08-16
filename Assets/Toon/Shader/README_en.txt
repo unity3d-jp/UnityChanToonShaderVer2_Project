@@ -27,7 +27,7 @@ Please refer to the following link for information regarding the Unity-Chan Lice
 http://unity-chan.com/contents/guideline_en/
 
 【Installation】
-
+UTS2_ShaderOnly_v2.0.4.2.unitypackage
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.
 
 When over-writing a previous version, the code will be completely revised, so please take the following precautions:
@@ -41,6 +41,11 @@ We recommend first erasing the previous shader then installing the new shader, t
 Please contact us if you have any issues. 
 
 【Version】
+2018/08/16
+Add MatcapMask
+Added MatcapMask that can adjust the power of MatCap effect applied on the UV base of the mesh. MatcapMask is a grayscale map, "white" becomes to MatCap full effect.
+You can adjust the power of the mask with Tweak_MatcapMaskLevel property.
+
 2018/07/04
 Add Unlit_Intensity property
 If there is no valid light in the scene, UTS2 switches to default lighting, and now you can adjust its brightness.
@@ -84,7 +89,7 @@ HDR values can be set on the Emissive Color side, allowing the Emissive portion 
 In addition to the above modifications, added 2 transparent shaders (ToonColor_DoubleShadeWithFeather_Transparent, ToonColor_ShadingGradeMap_Transparent)
 2017/05/07: 2.0.0: Initial version 
 
-Latest Version: 2.0.4
-Update: 2018.02.09
+Latest Version: 2.0.4.2
+Update: 2018.08.16
 Category: 3D
 File format: zip
