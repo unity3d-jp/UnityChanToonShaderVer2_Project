@@ -1,30 +1,32 @@
 ﻿//Unitychan Toon Shader ver.2.0
 //v.2.0.4.2
-Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Clipping_OnlyColor" {
+Shader "UnityChanToonShader/Mobile/Toon_ShadingGradeMap_TransClipping" {
     Properties {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _ClippingMask ("ClippingMask", 2D) = "white" {}
-        _Clipping_Level ("Clipping_Level", Range(0, 1)) = 0
+        [MaterialToggle] _IsBaseMapAlphaAsClippingMask ("IsBaseMapAlphaAsClippingMask", Float ) = 0
         [MaterialToggle] _Inverse_Clipping ("Inverse_Clipping", Float ) = 0
-        [HideInInspector]_BaseMap ("BaseMap", 2D) = "white" {}
+        _Clipping_Level ("Clipping_Level", Range(0, 1)) = 0
+        _Tweak_transparency ("Tweak_transparency", Range(-1, 1)) = 0
+        _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
-        [HideInInspector]_1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}
+        _1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}
         _1st_ShadeColor ("1st_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_1st_Shade ("Is_LightColor_1st_Shade", Float ) = 1
-        [HideInInspector]_2nd_ShadeMap ("2nd_ShadeMap", 2D) = "white" {}
+        _2nd_ShadeMap ("2nd_ShadeMap", 2D) = "white" {}
         _2nd_ShadeColor ("2nd_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
-        [MaterialToggle] _Is_NormalMapToBase ("Is_NormalMapToBase", Float ) = 0
+        [MaterialToggle] _Is_NormalMap ("Is_NormalMap", Float ) = 0
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
-        _BaseColor_Step ("BaseColor_Step", Range(0, 1)) = 0.6
-        _BaseShade_Feather ("Base/Shade_Feather", Range(0.0001, 1)) = 0.0001
-        _Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" {}
-        _ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0.4
-        _1st2nd_Shades_Feather ("1st/2nd_Shades_Feather", Range(0.0001, 1)) = 0.0001
-        _Set_2nd_ShadePosition ("Set_2nd_ShadePosition", 2D) = "white" {}
+        _ShadingGradeMap ("ShadingGradeMap", 2D) = "white" {}
+        [MaterialToggle] _Is_1st_ShadeColorOnly ("Is_1st_ShadeColorOnly", Float ) = 0
+        _1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
+        _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
+        _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0.003
+        _2nd_ShadeColor_Feather ("2nd_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
         _HighColor ("HighColor", Color) = (0,0,0,1)
 //v.2.0.4 HighColor_Tex
         _HighColor_Tex ("HighColor_Tex", 2D) = "white" {}
@@ -69,7 +71,6 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Clipping_
         _Rotate_NormalMapForMatCapUV ("Rotate_NormalMapForMatCapUV", Range(-1, 1)) = 0
         [MaterialToggle] _Is_UseTweakMatCapOnShadow ("Is_UseTweakMatCapOnShadow", Float ) = 0
         _TweakMatCapOnShadow ("TweakMatCapOnShadow", Range(0, 1)) = 0
-        [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
 //MatcapMask
         _Set_MatcapMask ("Set_MatcapMask", 2D) = "white" {}
         _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
@@ -77,7 +78,20 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Clipping_
 //v.2.0.4 Emissive
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}
         [HDR]_Emissive_Color ("Emissive_Color", Color) = (0,0,0,1)
-//GI
+//Outline
+        [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
+        _Outline_Width ("Outline_Width", Float ) = 1
+        _Farthest_Distance ("Farthest_Distance", Float ) = 10
+        _Nearest_Distance ("Nearest_Distance", Float ) = 0.5
+        _Outline_Sampler ("Outline_Sampler", 2D) = "white" {}
+        _Outline_Color ("Outline_Color", Color) = (0.5,0.5,0.5,1)
+        [MaterialToggle] _Is_BlendBaseColor ("Is_BlendBaseColor", Float ) = 0
+        [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+        //v.2.0.4
+        [MaterialToggle] _Is_OutlineTex ("Is_OutlineTex", Float ) = 0
+        _OutlineTex ("OutlineTex", 2D) = "white" {}
+        //Offset parameter
+        _Offset_Z ("Offset_Camera_Z", Float) = 0
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
         _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 1)) = 0.5
@@ -87,10 +101,10 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Clipping_
             "Queue"="AlphaTest"
             "RenderType"="TransparentCutout"
         }
-        //UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/OUTLINE"
-        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/FORWARD"
-        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/FORWARD_DELTA"
-        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/SHADOWCASTER"
+
+        UsePass "UnityChanToonShader/Toon_ShadingGradeMap_TransClipping/OUTLINE"
+        UsePass "UnityChanToonShader/Toon_ShadingGradeMap_TransClipping/FORWARD"
+        UsePass "UnityChanToonShader/Toon_ShadingGradeMap_TransClipping/SHADOWCASTER"
     }
     FallBack "Legacy Shaders/VertexLit"
 }

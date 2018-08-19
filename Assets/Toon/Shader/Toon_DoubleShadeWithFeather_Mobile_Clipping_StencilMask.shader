@@ -1,7 +1,8 @@
 ﻿//Unitychan Toon Shader ver.2.0
 //v.2.0.4.2
-Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_OnlyColor" {
+Shader "UnityChanToonShader/Mobile/Toon_DoubleShadeWithFeather_Clipping_StencilMask" {
     Properties {
+        _StencilNo ("Stencil No", int) =1
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _ClippingMask ("ClippingMask", 2D) = "white" {}
         //v.2.0.4
@@ -9,13 +10,13 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_OnlyColor" {
         //
         _Clipping_Level ("Clipping_Level", Range(0, 1)) = 0
         [MaterialToggle] _Inverse_Clipping ("Inverse_Clipping", Float ) = 0
-        [HideInInspector]_BaseMap ("BaseMap", 2D) = "white" {}
+        _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
-        [HideInInspector]_1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}
+        _1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}
         _1st_ShadeColor ("1st_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_1st_Shade ("Is_LightColor_1st_Shade", Float ) = 1
-        [HideInInspector]_2nd_ShadeMap ("2nd_ShadeMap", 2D) = "white" {}
+        _2nd_ShadeMap ("2nd_ShadeMap", 2D) = "white" {}
         _2nd_ShadeColor ("2nd_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
@@ -99,13 +100,13 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_OnlyColor" {
     }
     SubShader {
         Tags {
-            "Queue"="AlphaTest"
+            "Queue"="AlphaTest-1"   //StencilMask Opaque and _Clipping
             "RenderType"="TransparentCutout"
         }
-        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/OUTLINE"
-        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/FORWARD"
-        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/FORWARD_DELTA"
-        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/SHADOWCASTER"
+
+        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilMask/OUTLINE"
+        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilMask/FORWARD"
+        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilMask/SHADOWCASTER"
     }
     FallBack "Legacy Shaders/VertexLit"
 }
