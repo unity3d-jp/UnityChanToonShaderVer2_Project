@@ -130,7 +130,7 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping" {
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_YES 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理は以下のUCTS_Outline2.cgincへ.
+            //アウトライン処理は以下のUCTS_Outline.cgincへ.
             #include "UCTS_Outline.cginc"
             ENDCG
         }
