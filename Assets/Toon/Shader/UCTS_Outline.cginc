@@ -45,7 +45,9 @@
                 float2 Set_UV0 = o.uv0;
                 float4 _Outline_Sampler_var = tex2Dlod(_Outline_Sampler,float4(TRANSFORM_TEX(Set_UV0, _Outline_Sampler),0.0,0));
                 float Set_Outline_Width = (_Outline_Width*0.001*smoothstep( _Farthest_Distance, _Nearest_Distance, distance(objPos.rgb,_WorldSpaceCameraPos) )*_Outline_Sampler_var.rgb).r;
-                float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - o.pos.xyz);
+                //for VRChat mirror object
+                //float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - o.pos.xyz);
+                float3 viewDirection = _WorldSpaceCameraPos.xyz - o.pos.xyz;
                 float4 viewDirectionVP = mul(UNITY_MATRIX_VP, float4(viewDirection.xyz, 1));
 //v2.0.4
 #if defined(UNITY_REVERSED_Z)
