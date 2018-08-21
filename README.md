@@ -76,11 +76,15 @@ Please contact us if you have any issues.
 
 -----
 ## 【新規】
-### 2018/08/16：MatcapMaskを追加  
+### 2018/08/21：2.0.4.2 Release：以下の修正と追加をしました。  
+VRChat内の鏡オブジェクトに表示した時、Offset_Camera_Zに不具合が発生するのを修正。  
+VRChat向けにMobile用クリッピングシェーダーのバリエーションを6つ追加。  
+
+### 2018/08/16：2.0.4.2 Release：MatcapMaskを追加  
 MatCapに、メッシュのUVベースで効果のかかり具合を調整できるMatcapMaskを追加。Matcapマスクは「白」ほど効果が出やすくなります。  
 Tweak_MatcapMaskLevelプロパティで強度が調整できます。  
 
-### 2018/07/04：Unlit_Intensityプロパティを追加  
+### 2018/07/04：2.0.4.1 Release：Unlit_Intensityプロパティを追加  
 シーン内に有効なライトがない場合に、UTS2がデフォルトのライティングに切り替えますが、その明るさを調整できるようにしました。  
 主にVR Chatでの特殊なシーン向けでの設定を想定しています。  
 シーン内に有効なディレクショナルライトがある場合には、本プロパティは影響はしません。
@@ -118,11 +122,15 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 
 ## 【Version】
-### 2018/08/16: Add MatcapMask.  
+### 2018/08/21: 2.0.4.2 Release：Fixed bug and added shader variations.  
+Fixed Offset_Camera_Z bug with mirror objects in VRChat.  
+Added 6 shader variations to Mobile/_Clipping series for VRChat.  
+
+### 2018/08/16: 2.0.4.2 Release:Add MatcapMask.  
 Added MatcapMask that can adjust the power of MatCap effect applied on the UV base of the mesh. MatcapMask is a grayscale map, "white" becomes to MatCap full effect.  
 You can adjust the power of the mask with Tweak_MatcapMaskLevel property.  
 
-### 2018/07/04: Add Unlit_Intensity property.  
+### 2018/07/04: 2.0.4.1 Release:Add Unlit_Intensity property.  
 If there is no valid light in the scene, UTS2 switches to default lighting, and now you can adjust its brightness.  
 This property is assuming for using in special scenes mainly in VR Chat.  
 If there is a valid directional light in the scene, this property will not be affected.
@@ -179,11 +187,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.4.2  
-最終リリース日：2018/08/16  
+最終リリース日：2018/08/21  
 カテゴリー：3D  
 形式：zip  
 
 Latest Version: 2.0.4,2  
-Update: 2018/08/16  
+Update: 2018/08/21  
 Category: 3D  
 File format: zip  

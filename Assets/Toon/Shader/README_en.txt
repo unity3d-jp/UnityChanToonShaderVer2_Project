@@ -1,6 +1,6 @@
 README_en
 
-Unity-Chan Toon Shader Ver.2.0.4
+Unity-Chan Toon Shader Ver.2.0.4.2
 
 Unity-Chan Toon Shader is a toon shader for video and images that is designed to meet your needs when creating cel-shaded 3DCG animations.
 
@@ -41,6 +41,10 @@ We recommend first erasing the previous shader then installing the new shader, t
 Please contact us if you have any issues. 
 
 【Version】
+2018/08/21
+Fixed Offset_Camera_Z bug with mirror objects in VRChat.  
+Added 6 shader variations to Mobile/_Clipping series for VRChat.  
+
 2018/08/16
 Add MatcapMask
 Added MatcapMask that can adjust the power of MatCap effect applied on the UV base of the mesh. MatcapMask is a grayscale map, "white" becomes to MatCap full effect.
@@ -90,6 +94,6 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 2017/05/07: 2.0.0: Initial version 
 
 Latest Version: 2.0.4.2
-Update: 2018.08.16
+Update: 2018.08.21
 Category: 3D
 File format: zip
