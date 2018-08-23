@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.2
+//v.2.0.4.3
 Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather" {
     Properties {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK

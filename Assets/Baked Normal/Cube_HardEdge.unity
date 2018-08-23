@@ -182,15 +182,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 11661657b1275f84e8b9be41606dd3e9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11661657b1275f84e8b9be41606dd3e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11661657b1275f84e8b9be41606dd3e9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 11661657b1275f84e8b9be41606dd3e9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -216,6 +216,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7afe5987228686443bae07ceaf29d20c, type: 2}
+    - target: {fileID: 3300000, guid: 11661657b1275f84e8b9be41606dd3e9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 11661657b1275f84e8b9be41606dd3e9, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11661657b1275f84e8b9be41606dd3e9, type: 3}
   m_IsPrefabParent: 0
@@ -276,8 +280,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  far clip plane: 20
+  field of view: 56.3
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -301,10 +305,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1367092731}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1}
+  m_LocalRotation: {x: 0.16964783, y: 0.39459893, z: -0.074381925, w: 0.8999882}
+  m_LocalPosition: {x: -2.0210848, y: 1.151525, z: -1.9079764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.35, y: 47.35, z: 0}

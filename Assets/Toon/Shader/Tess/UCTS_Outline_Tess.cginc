@@ -1,6 +1,6 @@
 ﻿// UCTS_Outline_tess.cginc
-// 2017/03/08 N.Kobayashi (Unity Technologies Japan)
-// Ver.2.0.4.2
+// 2018/08/23 N.Kobayashi (Unity Technologies Japan)
+// Ver.2.0.4.3
 // カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版/Tessellation対応版）
 // 2018/02/05 Outline Tex対応版
 // #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
@@ -27,6 +27,10 @@
             //v2.0.4
             uniform sampler2D _OutlineTex; uniform float4 _OutlineTex_ST;
             uniform fixed _Is_OutlineTex;
+            //Baked Normal Texture for Outline
+            uniform sampler2D _BakedNormal; uniform float4 _BakedNormal_ST;
+            uniform fixed _Is_BakedNormal;
+            //
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_YES
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
@@ -38,12 +42,16 @@
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
+                float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
             };
 #endif
             struct VertexOutput {
                 float4 pos : SV_POSITION;
                 float2 uv0 : TEXCOORD0;
+                float3 normalDir : TEXCOORD1;
+                float3 tangentDir : TEXCOORD2;
+                float3 bitangentDir : TEXCOORD3;
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
@@ -52,6 +60,15 @@
                 float3 lightColor = _LightColor0.rgb;
                 float2 Set_UV0 = o.uv0;
                 float4 _Outline_Sampler_var = tex2Dlod(_Outline_Sampler,float4(TRANSFORM_TEX(Set_UV0, _Outline_Sampler),0.0,0));
+                //v.2.0.4.3 baked Normal Texture for Outline
+                o.normalDir = UnityObjectToWorldNormal(v.normal);
+                o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
+                o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
+                float3x3 tangentTransform = float3x3( o.tangentDir, o.bitangentDir, o.normalDir);
+                //UnpackNormal()が使えないので、以下で展開。使うテクスチャはBump指定をしないこと.
+                float4 _BakedNormal_var = (tex2Dlod(_BakedNormal,float4(TRANSFORM_TEX(Set_UV0, _BakedNormal),0.0,0)) * 2 - 1);
+                float3 _BakedNormalDir = normalize(mul(_BakedNormal_var.rgb, tangentTransform));
+                //ここまで.
                 float Set_Outline_Width = (_Outline_Width*0.001*smoothstep( _Farthest_Distance, _Nearest_Distance, distance(objPos.rgb,_WorldSpaceCameraPos) )*_Outline_Sampler_var.rgb).r;
                 //v.2.0.4.2 for VRChat mirror object without normalize()
                 float3 viewDirection = _WorldSpaceCameraPos.xyz - o.pos.xyz;
@@ -60,7 +77,9 @@
                 _Offset_Z = _Offset_Z * -0.01;
 //v2.0.4
 #ifdef _OUTLINE_NML
-                o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1) );
+                //o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1) );
+                //v.2.0.4.3 baked Normal Texture for Outline                
+                o.pos = UnityObjectToClipPos(lerp(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1), float4(v.vertex.xyz + _BakedNormalDir*Set_Outline_Width,1),_Is_BakedNormal));
 #elif _OUTLINE_POS
                 Set_Outline_Width = Set_Outline_Width*2;
                 o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + normalize(v.vertex)*Set_Outline_Width,1) );

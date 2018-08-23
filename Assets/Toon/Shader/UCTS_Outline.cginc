@@ -1,8 +1,8 @@
 ﻿// UCTS_Outline.cginc
-// 2017/03/08 N.Kobayashi (Unity Technologies Japan)
+// 2018/08/23 N.Kobayashi (Unity Technologies Japan)
 // カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版）
 // 2017/06/05 PS4対応版
-// Ver.2.0.4.2
+// Ver.2.0.4.3
 // 2018/02/05 Outline Tex対応版
 // #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
 // _IS_OUTLINE_CLIPPING_YESは、Clippigマスクを使用するシェーダーでのみ使用できる. OutlineのブレンドモードにBlend SrcAlpha OneMinusSrcAlphaを追加すること.
@@ -57,7 +57,7 @@
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 float3x3 tangentTransform = float3x3( o.tangentDir, o.bitangentDir, o.normalDir);
-                //Unpackormal()が使えないので、以下で展開。使うテクスチャはBump指定をしないこと.
+                //UnpackNormal()が使えないので、以下で展開。使うテクスチャはBump指定をしないこと.
                 float4 _BakedNormal_var = (tex2Dlod(_BakedNormal,float4(TRANSFORM_TEX(Set_UV0, _BakedNormal),0.0,0)) * 2 - 1);
                 float3 _BakedNormalDir = normalize(mul(_BakedNormal_var.rgb, tangentTransform));
                 //ここまで.

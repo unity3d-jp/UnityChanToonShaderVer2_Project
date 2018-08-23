@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.2
+//v.2.0.4.3
 Shader "UnityChanToonShader/Toon_ShadingGradeMap" {
     Properties {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
@@ -86,6 +86,10 @@ Shader "UnityChanToonShader/Toon_ShadingGradeMap" {
         _OutlineTex ("OutlineTex", 2D) = "white" {}
         //Offset parameter
         _Offset_Z ("Offset_Camera_Z", Float) = 0
+        //v.2.0.4.3 Baked Nrmal Texture for Outline
+        [MaterialToggle] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
+        _BakedNormal ("Baked Normal for Outline", 2D) = "white" {}
+        //GI Intensity
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
         _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 1)) = 0.5
