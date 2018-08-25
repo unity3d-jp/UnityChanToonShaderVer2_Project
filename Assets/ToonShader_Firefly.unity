@@ -777,8 +777,7 @@ MonoBehaviour:
     texture: {fileID: 0}
     depthTest: 1
     cullMode: 0
-  serializedRenderers:
-  - {fileID: 1074274529}
+  serializedRenderers: []
 --- !u!1 &882377317
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,12 +894,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1125860869633868, guid: dfd3f8cbb59500946b5f981986c2a23d,
     type: 2}
   m_PrefabInternal: {fileID: 1709489819}
---- !u!114 &1074274529 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114061527610916350, guid: dfd3f8cbb59500946b5f981986c2a23d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1709489819}
-  m_Script: {fileID: 11500000, guid: d287a757b512b004e928059da2a30510, type: 3}
 --- !u!1 &1076450055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,14 +1284,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114061527610916350, guid: dfd3f8cbb59500946b5f981986c2a23d,
-        type: 2}
-      propertyPath: m_mask
-      value: 
-      objectReference: {fileID: 794565952}
-    - target: {fileID: 4485053995679290, guid: dfd3f8cbb59500946b5f981986c2a23d, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+    - target: {fileID: 1505896528405314, guid: dfd3f8cbb59500946b5f981986c2a23d, type: 2}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_Illust
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfd3f8cbb59500946b5f981986c2a23d, type: 2}

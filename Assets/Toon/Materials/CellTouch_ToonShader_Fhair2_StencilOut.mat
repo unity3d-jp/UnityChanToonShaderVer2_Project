@@ -9,9 +9,9 @@ Material:
   m_Name: CellTouch_ToonShader_Fhair2_StencilOut
   m_Shader: {fileID: 4800000, guid: 0a1e4c9dcc0e9ea4db38ae9cb5059608, type: 3}
   m_ShaderKeywords: _ISKAGE_NORMAL_ON _ISMATCAP_NORMAL_ON _ISRIM_NORMAL_ON _IS_BLENDADDTOHICOLOR_ON
-    _IS_BLENDADDTOMATCAP_ON _IS_NORMALMAPFORMATCAP_ON _IS_NORMALMAPTOBASE_ON _IS_NORMALMAPTORIMLIGHT_ON
-    _IS_SPECULARTOHIGHCOLOR_ON _IS_USETWEAKMATCAPONSHADOW_ON _KAGE_NORMAL_ON _OUTLINE_POS
-    _RIMLIGHT_ON _RIM_NORMAL_ON _SET_SYSTEMSHADOWSTOBASE_ON
+    _IS_BLENDADDTOMATCAP_ON _IS_NORMALMAPTOBASE_ON _IS_NORMALMAPTORIMLIGHT_ON _IS_SPECULARTOHIGHCOLOR_ON
+    _IS_USETWEAKMATCAPONSHADOW_ON _KAGE_NORMAL_ON _OUTLINE_POS _RIMLIGHT_ON _RIM_NORMAL_ON
+    _SET_SYSTEMSHADOWSTOBASE_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -27,6 +27,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
         m_Texture: {fileID: 2800000, guid: e22da664ebab32d4ca5bea4d43b0ff43, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BakedNormal:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -58,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: 2a97ca8db51c5d347968b667f0fbfde0, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Matcap:
@@ -70,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapForMatCap:
-        m_Texture: {fileID: 2800000, guid: 966eac91234ebbf4fad5eed15f63fa78, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 50, y: 0.001}
         m_Offset: {x: 0, y: 0.5}
     - _OutlineTex:
@@ -102,6 +106,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_HighColorPosition:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Set_MatcapMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -137,6 +145,7 @@ Material:
     - _Gloss: 0
     - _HighColor_Power: 0
     - _Inverse_Clipping: 0
+    - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
@@ -147,7 +156,7 @@ Material:
     - _Is_LightColor_HighColor: 1
     - _Is_LightColor_MatCap: 1
     - _Is_LightColor_RimLight: 1
-    - _Is_NormalMapForMatCap: 1
+    - _Is_NormalMapForMatCap: 0
     - _Is_NormalMapToBase: 1
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 1
@@ -169,7 +178,7 @@ Material:
     - _Offset_Z: -0.03
     - _Outline: 0.003
     - _Outline_Power: 0.7
-    - _Outline_Width: 6.25
+    - _Outline_Width: 7.78
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
@@ -191,9 +200,11 @@ Material:
     - _Tweak_HighColorMaskLevel: 0
     - _Tweak_LightDirection_MaskLevel: 0
     - _Tweak_MatCapUV: -0.033
+    - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: -0.07
     - _Tweak_UV: 0
+    - _Unlit_Intensity: 0.5
     - _isKage_Normal: 1
     - _isMatcap_Normal: 1
     - _isRim_Normal: 1

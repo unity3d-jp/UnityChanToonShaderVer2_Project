@@ -31,6 +31,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: e22da664ebab32d4ca5bea4d43b0ff43, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BakedNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 38b0fd74fd3c31140bf78e39b7db1534, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -144,6 +148,7 @@ Material:
     - _HighColor_Power: 0
     - _Inverse_Clipping: 0
     - _IsBaseMapAlphaAsClippingMask: 0
+    - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 1
@@ -176,7 +181,7 @@ Material:
     - _Offset_Z: 0
     - _Outline: 0.003
     - _Outline_Power: 0.7
-    - _Outline_Width: 3.03
+    - _Outline_Width: 2.92
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
@@ -221,6 +226,6 @@ Material:
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _Line_Color: {r: 0.6901961, g: 0.5647059, b: 0.42745098, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Outline_Color: {r: 0.32352942, g: 0.32352942, b: 0.32352942, a: 1}
     - _RimLightColor: {r: 0.6102941, g: 0.5145411, b: 0.20193556, a: 1}
     - _Rim_Color: {r: 0.1764706, g: 0.14509805, b: 0.08627451, a: 1}
