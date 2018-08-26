@@ -95,6 +95,7 @@
             "RenderType"="TransparentCutout"
         }
         UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/OUTLINE"
+        UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/OUTLINE_DELTA"
         UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/FORWARD"
         UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/FORWARD_DELTA"
         UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping/SHADOWCASTER"

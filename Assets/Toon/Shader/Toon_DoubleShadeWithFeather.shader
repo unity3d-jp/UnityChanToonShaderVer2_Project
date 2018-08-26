@@ -86,37 +86,13 @@
         Tags {
             "RenderType"="Opaque"
         }
-        Pass {
-            Name "Outline"
-            Tags {
-            }
-            Cull Front
-
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc"
-            //#pragma fragmentoption ARB_precision_hint_fastest
-            //#pragma multi_compile_shadowcaster
-            //#pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
-            #pragma target 3.0
-            //V.2.0.4
-            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
-            #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理はUTS_Outline.cgincへ.
-            #include "UCTS_Outline.cginc"
-            ENDCG
-        }
 //ToonCoreStart
         Pass {
             Name "FORWARD"
             Tags {
                 "LightMode"="ForwardBase"
             }
-
             Cull[_CullMode]
-            
             
             CGPROGRAM
             #pragma vertex vert
@@ -142,10 +118,8 @@
             Tags {
                 "LightMode"="ForwardAdd"
             }
-
             Blend One One
             Cull[_CullMode]
-            
             
             CGPROGRAM
             #pragma vertex vert
@@ -168,6 +142,64 @@
             ENDCG
         }
         Pass {
+            Name "Outline"
+            Tags {
+				"LightMode" = "ForwardBase" 
+            }
+            Cull Front
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
+            #include "AutoLight.cginc"
+			#include "Lighting.cginc"
+
+			#pragma multi_compile_fwdbase_fullshadows
+            #pragma multi_compile_fog
+            //#pragma fragmentoption ARB_precision_hint_fastest
+            //#pragma multi_compile_shadowcaster
+            //#pragma multi_compile_fog
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma target 3.0
+            //V.2.0.4
+            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
+            #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+			#pragma multi_compile _IS_PASS_FWDBASE
+            //アウトライン処理はUTS_Outline.cgincへ.
+            #include "UCTS_Outline.cginc"
+            ENDCG
+        }
+		Pass {
+            Name "Outline_Delta"
+            Tags {
+				"LightMode" = "ForwardAdd" 
+            }
+			Blend One One
+            Cull Front
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
+            #include "AutoLight.cginc"
+			#include "Lighting.cginc"
+			#pragma multi_compile_fwdadd_fullshadows
+            #pragma multi_compile_fog
+            //#pragma fragmentoption ARB_precision_hint_fastest
+            //#pragma multi_compile_shadowcaster
+            //#pragma multi_compile_fog
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma target 3.0
+            //V.2.0.4
+            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
+            #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+			#pragma multi_compile _IS_PASS_FWDDELTA
+            //アウトライン処理はUTS_Outline.cgincへ.
+            #include "UCTS_Outline.cginc"
+            ENDCG
+        }
+        Pass {
             Name "ShadowCaster"
             Tags {
                 "LightMode"="ShadowCaster"
@@ -183,7 +215,6 @@
             #include "Lighting.cginc"
             #pragma fragmentoption ARB_precision_hint_fastest
             #pragma multi_compile_shadowcaster
-            #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 3.0
             //v.2.0.4

@@ -184,7 +184,7 @@
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
             //for Unity2018.x
-            //#pragma multi_compile_fwdadd_fullshadows
+            #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 3.0

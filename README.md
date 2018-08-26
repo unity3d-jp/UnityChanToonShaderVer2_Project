@@ -1,20 +1,56 @@
 README.md
 
+UTC-ac shader
 Tweaks by ACIIL.
 
-Intro:
-This is a modified UTC to Support typical lighting environments in vrchat. Further support and setting configurations will slowly progress. 
-The dev branch will be up to date and error prone.
 
-Install: 
+_Intro:
+This is a modified version of UTS2_ShaderOnly_v2.0.4 to Support typical lighting environments in vrchat. Further support and setting configurations will slowly progress. 
+The dev branch will be up to date and error prone.
+Any UTC shader that uses the DoubleShadeWithFeather base should look correct.
+
+
+_Install: 
 Copy over the Toon\ folder in assets into you unity install and verify the UnityChanToonShader\ shaders can be used as materials.
 
 
-Current bugs:
-Any UTC shader that uses the ShadingGradMap variant has been adapted. Outlines currently do not reflect the light environment edits and should not be used.
+_Shader setup: 
+UTC is a very technical and manual shader compared to other toon shaders seen in vrchat. The freedom comes with the risk of needing to manually balance every aspect in the settings.
+Follow the documentation for UTC  setup. I recommend installing the unity post proccessing stack in you avatar scene with bloom on and tracking when it goes off. 
+Balance color lumination (V) when combining albedo, highColor, outlines, and additive matcap, know that these effects ADD color together and into the emission range, because of this start the lum about 128 (50%) and increase from there depending on intended material context. 
+Please Use outlines with Opaque mode only.
 
-Support credits to: Noe, TCL, June, Cubed, Silent, RetroGeo, Xiexe
 
+_Current bugs:
+Please send issue reports to the github page. 
+Some vrchat maps are setup incorrectly, this shader's light and color inputs are not clamped and use full HDR range, maps without proper light balancing and postproccessing usage will explode in brightness. Balance your maps against standard shader with white albedo.
+Stencil lighting may have wrongly setup light passes, its being rechecked later.
+Incomplete Fog support with outlines.
+
+Potential issues with alpha and light passes with the transparency shaders. Using outlines outside of Opaque may look incorrect. 
+Recommend using only DoubleShadeWithFeather shader variants with or without outlines.
+
+
+_Support credits to:
+Noe, TCL, June, Cubed, Silent, RetroGeo, Xiexe, Mel0n, Cibbi, Hakanai
+
+
+_Hosting site:
+https://github.com/ACIIL/UnityChanToonShaderVer2_Project
+A fork of:
+https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
+
+
+_License:
+Unity-Chan Toon Shader 2.0 is provided under the Unity-Chan License 2.0 terms.  
+Please refer to the following link for information regarding the Unity-Chan License.  
+http://unity-chan.com/contents/guideline_en/
+
+
+As someone who likes to see avatars that do not use the standard Cubed shader, i love to see screenshots of UTC-ac in use.
+
+
+---------------------------------------------------------------
 
 
 # 【ユニティちゃんトゥーンシェーダー Ver.2.0.4】

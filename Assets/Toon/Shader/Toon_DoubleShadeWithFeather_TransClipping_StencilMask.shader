@@ -97,6 +97,7 @@
         Pass {
             Name "Outline"
             Tags {
+                "LightMode"="ForwardBase"
             }
             Cull Front
             //v.2.0.4
@@ -113,6 +114,9 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
+            #include "AutoLight.cginc"
+            #include "Lighting.cginc"
+            #pragma multi_compile_fwdbase_fullshadows
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
@@ -121,6 +125,43 @@
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_YES 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+            #pragma multi_compile _IS_PASS_FWDBASE
+            //アウトライン処理は以下のUCTS_Outline.cgincへ.
+            #include "UCTS_Outline.cginc"
+            ENDCG
+        }
+        Pass {
+            Name "Outline_Delta"
+            Tags {
+                "LightMode"="ForwardAdd"
+            }
+            Cull Front
+            //v.2.0.4
+            Blend one one
+
+            Stencil {
+                Ref[_StencilNo]
+                Comp Always
+                Pass Replace
+                Fail Replace
+            }
+            
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
+            #include "AutoLight.cginc"
+            #include "Lighting.cginc"
+            #pragma multi_compile_fwdadd_fullshadows
+            //#pragma fragmentoption ARB_precision_hint_fastest
+            //#pragma multi_compile_shadowcaster
+            //#pragma multi_compile_fog
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma target 3.0
+            //V.2.0.4
+            #pragma multi_compile _IS_OUTLINE_CLIPPING_YES 
+            #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+            #pragma multi_compile _IS_PASS_FWDDELTA
             //アウトライン処理は以下のUCTS_Outline.cgincへ.
             #include "UCTS_Outline.cginc"
             ENDCG
@@ -183,7 +224,7 @@
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
             //for Unity2018.x
-            //#pragma multi_compile_fwdadd_fullshadows
+            #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 3.0
