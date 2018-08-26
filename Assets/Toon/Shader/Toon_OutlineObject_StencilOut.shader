@@ -1,6 +1,6 @@
 ﻿//Unitychan Toon Shader ver.2.0
 //v.2.0.4.3
-Shader "UnityChanToonShader/Toon_OutlineObject_StencilOut" {
+Shader "UnityChanToonShader/Helper/Toon_OutlineObject_StencilOut" {
     Properties {
         _StencilNo ("Stencil No", int) =1
         _BaseMap ("BaseMap", 2D) = "white" {}

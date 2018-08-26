@@ -194,10 +194,10 @@ Material:
     - _Mix_KageTexture: 0.608
     - _Nearest_Distance: 0.5
     - _OUTLINE: 0
-    - _Offset_Z: 0.32
+    - _Offset_Z: 0.76
     - _Outline: 0.003
     - _Outline_Power: 0.6
-    - _Outline_Width: 1.28
+    - _Outline_Width: 2.9
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001

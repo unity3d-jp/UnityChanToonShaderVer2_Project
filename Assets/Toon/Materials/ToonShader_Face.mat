@@ -172,7 +172,7 @@ Material:
     - _Offset_Z: 0
     - _Outline: 0.003
     - _Outline_Power: 0.833
-    - _Outline_Width: 4
+    - _Outline_Width: 5
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001

@@ -77,7 +77,6 @@
                 _Offset_Z = _Offset_Z * -0.01;
 //v2.0.4
 #ifdef _OUTLINE_NML
-                //o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1) );
                 //v.2.0.4.3 baked Normal Texture for Outline                
                 o.pos = UnityObjectToClipPos(lerp(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1), float4(v.vertex.xyz + _BakedNormalDir*Set_Outline_Width,1),_Is_BakedNormal));
 #elif _OUTLINE_POS

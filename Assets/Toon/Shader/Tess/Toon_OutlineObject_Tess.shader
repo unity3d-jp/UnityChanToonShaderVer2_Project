@@ -1,6 +1,6 @@
 ﻿//Unitychan Toon Shader ver.2.0
 //v.2.0.4.3
-Shader "UnityChanToonShader/Helper/Toon_OutlineObject" {
+Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject" {
     Properties {
         _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
@@ -21,6 +21,10 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject" {
         //v.2.0.4.3 Baked Nrmal Texture for Outline
         [MaterialToggle] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
         _BakedNormal ("Baked Normal for Outline", 2D) = "white" {}
+        //Tessellation
+        _TessEdgeLength( "Tess Edge length", Range( 2,50 ) ) = 5
+        _TessPhongStrength( "Tess Phong Strengh", Range( 0,1 ) ) = 0.5
+        _TessExtrusionAmount( "TessExtrusionAmount", Float ) = 0.0
     }
     SubShader {
         Tags {
@@ -32,24 +36,33 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject" {
             }
             Cull Front
 
+
+
             CGPROGRAM
-            #pragma vertex vert
+            //Tessellation
+            #define TESSELLATION_ON
+            #pragma target 5.0
+            #pragma vertex tess_VertexInput
+            #pragma hull hs_VertexInput
+            #pragma domain ds_surf
+            //#pragma vertex vert
+
             #pragma fragment frag
             #include "UnityCG.cginc"
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
-            #pragma target 3.0
+            //Tessellation
+            //#pragma target 3.0
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理はUTS_Outline.cgincへ.
-            #include "UCTS_Outline.cginc"
+            //Tessellation
+            //アウトライン処理は以下のUCTS_Outline_Tess.cgincへ.
+            #include "UCTS_Outline_Tess.cginc"
             ENDCG
         }
-//ToonCoreStart
-//ToonCoreEnd
     }
     FallBack "Legacy Shaders/VertexLit"
 }
