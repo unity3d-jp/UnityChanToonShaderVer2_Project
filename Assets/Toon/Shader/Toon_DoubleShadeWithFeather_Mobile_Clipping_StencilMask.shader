@@ -100,7 +100,7 @@ Shader "UnityChanToonShader/Mobile/Toon_DoubleShadeWithFeather_Clipping_StencilM
         //GI Intensity
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
-        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 1)) = 0.5
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 2)) = 1
     }
     SubShader {
         Tags {

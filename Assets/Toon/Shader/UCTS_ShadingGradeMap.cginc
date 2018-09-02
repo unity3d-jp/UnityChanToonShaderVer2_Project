@@ -177,7 +177,7 @@
 
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
-                float3 defaultLightDirection = normalize(float3(0.0,0.1,0.1));
+                float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
                 float3 defaultLightColor = saturate(ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb*_Unlit_Intensity);
                 float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
                 //float3 lightColor = lerp(defaultLightColor,_LightColor0.rgb,any(_LightColor0.rgb));
