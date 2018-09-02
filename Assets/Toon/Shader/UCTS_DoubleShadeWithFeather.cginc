@@ -161,7 +161,9 @@
 #endif
                 float3 halfDirection = normalize(viewDirection+lightDirection);
 ////// Lighting:
-                float attenuation = LIGHT_ATTENUATION(i);
+                //float attenuation = LIGHT_ATTENUATION(i);
+                UNITY_LIGHT_ATTENUATION(attenuation, i, i.posWorld.xyz);
+
                 float3 Set_LightColor = lightColor.rgb;
                 float3 Set_BaseColor = lerp( (_BaseColor.rgb*_BaseMap_var.rgb), ((_BaseColor.rgb*_BaseMap_var.rgb)*Set_LightColor), _Is_LightColor_Base );
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));
@@ -210,8 +212,10 @@
                 float3 _Is_LightColor_MatCap_var = lerp( (_MatCap_Sampler_var.rgb*_MatCapColor.rgb), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb)*Set_LightColor), _Is_LightColor_MatCap );
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowSample)+(Set_FinalShadowSample*_TweakMatCapOnShadow))), _Is_UseTweakMatCapOnShadow );
                 float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
-                float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _RimLight_var, lerp( ((_RimLight_var*(1-(_Tweak_MatcapMaskLevel_var*0.5+0.5))+_RimLight_var*Set_MatCap*(_Tweak_MatcapMaskLevel_var*0.5+0.5))), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap ))+(_Emissive_Tex_var.rgb*_Emissive_Color.rgb)))*(1.0-(DecodeLightProbe( normalDirection )*_GI_Intensity))));
+                //float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _RimLight_var, lerp( ((_RimLight_var*(1-(_Tweak_MatcapMaskLevel_var*0.5+0.5))+_RimLight_var*Set_MatCap*(_Tweak_MatcapMaskLevel_var*0.5+0.5))), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap ))+(_Emissive_Tex_var.rgb*_Emissive_Color.rgb)))*(1.0-(DecodeLightProbe( normalDirection )*_GI_Intensity))));
 
+                float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _RimLight_var, lerp( ((_RimLight_var*(1-(_Tweak_MatcapMaskLevel_var*0.5+0.5))+_RimLight_var*Set_MatCap*(_Tweak_MatcapMaskLevel_var*0.5+0.5))), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap ))))));// Final Composition before Emissive
+                finalColor = finalColor * saturate(1.0-(DecodeLightProbe( normalDirection )*_GI_Intensity)) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
 
 //v.2.0.4
 #ifdef _IS_CLIPPING_OFF

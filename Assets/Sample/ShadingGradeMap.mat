@@ -33,6 +33,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BakedNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -121,10 +125,11 @@ Material:
     - _ColorThreshold: 0.327
     - _CullMode: 0
     - _Farthest_Distance: 10
-    - _GI_Intensity: 0
+    - _GI_Intensity: 1
     - _HighColor_Power: 0.014
     - _Is_1st_ShadeColorOnly: 0
     - _Is_1st_ShadeOnly: 0
+    - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
