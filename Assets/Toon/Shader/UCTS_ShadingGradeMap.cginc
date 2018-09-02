@@ -173,16 +173,15 @@
                 clip(Set_Clipping - 0.5);
 #endif
 
-                //float attenuation = LIGHT_ATTENUATION(i);
                 UNITY_LIGHT_ATTENUATION(attenuation, i, i.posWorld.xyz);
 
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
                 float3 defaultLightDirection = normalize(float3(0.0,0.1,0.1));
-                //float3 defaultLightColor = float3(_Unlit_Intensity,_Unlit_Intensity,_Unlit_Intensity);
                 float3 defaultLightColor = saturate(ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb*_Unlit_Intensity);
                 float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
-                float3 lightColor = lerp(defaultLightColor,_LightColor0.rgb,any(_LightColor0.rgb));                
+                //float3 lightColor = lerp(defaultLightColor,_LightColor0.rgb,any(_LightColor0.rgb));
+                float3 lightColor = max(defaultLightColor,_LightColor0.rgb);
 #elif _IS_PASS_FWDDELTA
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 //float3 lightColor = saturate(_LightColor0.rgb*0.5);
