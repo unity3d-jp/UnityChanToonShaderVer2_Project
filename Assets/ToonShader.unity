@@ -20,10 +20,10 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1, g: 0, b: 0, a: 1}
-  m_AmbientEquatorColor: {r: 0, g: 0.41176468, b: 0.053955425, a: 1}
-  m_AmbientGroundColor: {r: 0.11237915, g: 0.087802775, b: 0.41176468, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientSkyColor: {r: 0.13851647, g: 0.89705884, b: 0.14374775, a: 1}
+  m_AmbientEquatorColor: {r: 0.17766002, g: 0.5802111, b: 0.7794118, a: 1}
+  m_AmbientGroundColor: {r: 0.6536034, g: 0.650519, b: 0.6911765, a: 1}
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: d5373af5ea8737347a115dea12ca4c3b, type: 2}
@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 112000001, guid: ba61f2f646886b34b843ab36a7d19e49,
     type: 2}
-  m_ShadowMaskMode: 2
+  m_ShadowMaskMode: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -148,7 +148,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.7941176, g: 0.6243408, b: 0.07006922, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 0.69
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 794565941}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -1046,7 +1046,7 @@ Animation:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1521128764}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 6939d7b2b70023846b3eea5677f84d4e, type: 2}
   m_Animations:

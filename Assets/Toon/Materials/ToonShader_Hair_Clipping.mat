@@ -206,7 +206,7 @@ Material:
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: 0
     - _Tweak_UV: 0
-    - _Unlit_Intensity: 0.5
+    - _Unlit_Intensity: 1
     - _isKage_Normal: 1
     - _isMatcap_Normal: 1
     - _isRim_Normal: 1
