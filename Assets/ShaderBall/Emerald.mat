@@ -144,7 +144,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Farthest_Distance: 10
-    - _GI_Intensity: 0.2
+    - _GI_Intensity: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

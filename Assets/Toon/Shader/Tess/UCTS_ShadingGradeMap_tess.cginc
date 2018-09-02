@@ -276,7 +276,7 @@
 
                 float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _MatCap_var, lerp( (_MatCap_var+Set_AngelRing), ((_MatCap_var*(1.0 - Set_ARtexAlpha))+Set_AngelRingWithAlpha), _ARSampler_AlphaOn ), _AngelRing ))))));// Final Composition before Emissive
 #endif
-                finalColor = finalColor * saturate(1.0-(DecodeLightProbe( normalDirection )*_GI_Intensity)) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
+                finalColor = finalColor + saturate(DecodeLightProbe(normalDirection)*_GI_Intensity) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
 //v.2.0.4
 #ifdef _IS_TRANSCLIPPING_OFF
 	#ifdef _IS_PASS_FWDBASE

@@ -234,7 +234,8 @@
                 //float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _RimLight_var, lerp( ((_RimLight_var*(1-(_Tweak_MatcapMaskLevel_var*0.5+0.5))+_RimLight_var*Set_MatCap*(_Tweak_MatcapMaskLevel_var*0.5+0.5))), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap ))+(_Emissive_Tex_var.rgb*_Emissive_Color.rgb)))*(1.0-(DecodeLightProbe( normalDirection )*_GI_Intensity))));
 
                 float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _RimLight_var, lerp( ((_RimLight_var*(1-(_Tweak_MatcapMaskLevel_var*0.5+0.5))+_RimLight_var*Set_MatCap*(_Tweak_MatcapMaskLevel_var*0.5+0.5))), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap ))))));// Final Composition before Emissive
-                finalColor = finalColor * saturate(1.0-(DecodeLightProbe( normalDirection )*_GI_Intensity)) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
+                finalColor = finalColor + saturate(DecodeLightProbe(normalDirection)*_GI_Intensity) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
+
 
 //v.2.0.4
 #ifdef _IS_CLIPPING_OFF

@@ -125,7 +125,7 @@ Material:
     - _ColorThreshold: 0.327
     - _CullMode: 0
     - _Farthest_Distance: 10
-    - _GI_Intensity: 1
+    - _GI_Intensity: 0
     - _HighColor_Power: 0.014
     - _Is_1st_ShadeColorOnly: 0
     - _Is_1st_ShadeOnly: 0
