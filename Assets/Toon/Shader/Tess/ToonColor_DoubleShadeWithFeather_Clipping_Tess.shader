@@ -80,7 +80,7 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/ToonColor_DoubleShadeWithFeat
 //GI
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
-        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 2)) = 1
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 5)) = 1
         //Tessellation
         _TessEdgeLength( "Tess Edge length", Range( 2,50 ) ) = 5
         _TessPhongStrength( "Tess Phong Strengh", Range( 0,1 ) ) = 0.5

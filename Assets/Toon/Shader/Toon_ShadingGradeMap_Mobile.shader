@@ -92,7 +92,7 @@ Shader "UnityChanToonShader/Mobile/Toon_ShadingGradeMap" {
         //GI Intensity
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
-        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 2)) = 1
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 5)) = 1
     }
     SubShader {
         Tags {

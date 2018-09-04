@@ -76,7 +76,7 @@ Please contact us if you have any issues.
 
 -----
 ## 【新規】
-### 2018/09/04：2.0.4.3 Release：以下の修正と追加をしました。特にVRChat向けに便利な機能を搭載しています。  
+### 2018/09/05：2.0.4.3 Release：以下の修正と追加をしました。特にVRChat向けに便利な機能を搭載しています。  
 ### ●アンビエントライトブレンディングを搭載  
 アンビエントライトの設定をライトカラーが反映するようになりました。  
 その結果として、ディレクショナルライトのインテンシティの下限が、シーンのアンビエントライトの設定となります。　　
@@ -160,7 +160,7 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
-### 2018/09/04: 2.0.4.3 Release：Fixed bug and added new features below. Especially, added useful features for VRChat users! 
+### 2018/09/05: 2.0.4.3 Release：Fixed bug and added new features below. Especially, added useful features for VRChat users! 
 
 ### ●Add Ambient light blending  
 Light color now reflects ambient light settings.  
@@ -263,11 +263,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.4.3  
-最終リリース日：2018/09/04  
+最終リリース日：2018/09/05  
 カテゴリー：3D  
 形式：zip  
 
 Latest Version: 2.0.4,3  
-Update: 2018/09/04  
+Update: 2018/09/05  
 Category: 3D  
 File format: zip  
