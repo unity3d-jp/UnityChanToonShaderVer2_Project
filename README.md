@@ -90,7 +90,7 @@ VRChatで、アンビエントライトの設定に基づくワールドごと�
 ### ●Baked Normal for Outline搭載  
 頂点法線を焼き付けたノーマルマップを、法線反転アウトラインの設定時に読み込むことができるようになりました。本機能を使うことで、ハードエッジのオブジェクトに、ソフトエッジのオブジェクトのアウトラインを、事前にベイクしたノーマルマップを経由して適用することができるようになります。  
 
-Baked Normalマップを使用する時には、UST2のアウトライン設定プロパティで、  
+Baked Normalマップを使用する時には、UTS2のアウトライン設定プロパティで、  
 1.  OUTLINE MODE を "NML" に  
 2.  Is_BakedNormal を "ON" に  
 3.  Baked Normal for Outline に使用したいマップを適用します。 
@@ -161,6 +161,7 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 -----
 ## 【Version】
 ### 2018/09/04: 2.0.4.3 Release：Fixed bug and added new features below. Especially, added useful features for VRChat users! 
+
 ### ●Add Ambient light blending  
 Light color now reflects ambient light settings.  
 As a result, the lower limit of the intensity of the directional light becomes the setting of the ambient light of the scene.   
@@ -174,7 +175,7 @@ As a result, you always keep good lighting from the view of camera.
 ### ●Add Baked Normal for Outline  
 You can now use normal maps baked vertex normals when setting normal-inversion outlines. By using this feature, you can apply the outline of the soft edge object to the hard edge object via the pre-baked normal map.  
 
-When using the Baked Normal map, in the outline setting property of UST2:  
+When using the Baked Normal map, in the outline setting property of UTS2:  
 1.  OUTLINE MODE is "NML",  
 2.  Is_BakedNormal is "ON",  
 3.  Apply the map you want to use for "Baked Normal for Outline" slot.  
