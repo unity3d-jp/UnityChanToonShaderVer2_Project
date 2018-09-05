@@ -3054,7 +3054,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505896528405314}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3063,7 +3063,7 @@ Transform:
   - {fileID: 4809197168278826}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4487500044828688
 Transform:
   m_ObjectHideFlags: 1
@@ -5179,7 +5179,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 2
   m_Materials:
-  - {fileID: 2100000, guid: d3ad50d6134293d4fa208fb666d198b2, type: 2}
+  - {fileID: 2100000, guid: af2472435ee5a7e459b494c192f660a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5383,7 +5383,8 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: e0bcb7711e193a14cbf50e0e4669856f, type: 2}
   - {fileID: 2100000, guid: f85bb41401631bd468026d9d11deb0da, type: 2}
-  - {fileID: 2100000, guid: deacb5b55997246bb95f5fee433b4d80, type: 2}
+  - {fileID: 2100000, guid: 844b23bde650163459e5954a72feb858, type: 2}
+  - {fileID: 2100000, guid: 037d5de819ee9064da608e8593cf33b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5443,6 +5444,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 2
   m_Materials:
   - {fileID: 2100000, guid: d3ad50d6134293d4fa208fb666d198b2, type: 2}
+  - {fileID: 2100000, guid: 7bc6b74b5ead54445a091e5f20b5213a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

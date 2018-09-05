@@ -9,7 +9,7 @@ Material:
   m_Name: ToonShader_Eye_Clipping_StencilMask_ABN
   m_Shader: {fileID: 4800000, guid: 9c3978743d5db18448a8b945c723a6eb, type: 3}
   m_ShaderKeywords: _ISRIM_NORMAL_ON _IS_BLENDADDTOHICOLOR_ON _IS_BLENDADDTOMATCAP_ON
-    _IS_LIGHTCOLOR_BASE_ON _IS_SPECULARTOHIGHCOLOR_ON _LIGHTDIRECTION_MASKON_ON
+    _IS_LIGHTCOLOR_BASE_ON _IS_SPECULARTOHIGHCOLOR_ON _LIGHTDIRECTION_MASKON_ON _SET_SYSTEMSHADOWSTOBASE_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -95,6 +95,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Set_MatcapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -165,7 +169,7 @@ Material:
     - _Rim_Sharpness: 5
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
-    - _Set_SystemShadowsToBase: 0
+    - _Set_SystemShadowsToBase: 1
     - _Set_SystemShadowsToHighColor: 0
     - _ShadeColor_Step: 0
     - _ShadePower: 0.43
@@ -177,8 +181,10 @@ Material:
     - _Tweak_HighColorMaskLevel: 0
     - _Tweak_LightDirection_MaskLevel: 0
     - _Tweak_MatCapUV: 0
+    - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: 0
+    - _Unlit_Intensity: 0.5
     - _isKage_Normal: 0
     - _isRim_Normal: 1
     - _node_183: 0.51

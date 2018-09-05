@@ -29,6 +29,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: e22da664ebab32d4ca5bea4d43b0ff43, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BakedNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 38b0fd74fd3c31140bf78e39b7db1534, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -138,19 +142,20 @@ Material:
     - _Farthest_Distance: 10
     - _GI_Intensity: 0
     - _Gloss: 0
-    - _HighColor_Power: 0.2
+    - _HighColor_Power: 0.49
     - _Inverse_Clipping: 0
     - _IsBaseMapAlphaAsClippingMask: 0
+    - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 1
-    - _Is_LightColor_1st_Shade: 1
-    - _Is_LightColor_2nd_Shade: 1
+    - _Is_LightColor_1st_Shade: 0
+    - _Is_LightColor_2nd_Shade: 0
     - _Is_LightColor_Ap_RimLight: 1
-    - _Is_LightColor_Base: 1
+    - _Is_LightColor_Base: 0
     - _Is_LightColor_HighColor: 1
     - _Is_LightColor_MatCap: 1
-    - _Is_LightColor_RimLight: 1
+    - _Is_LightColor_RimLight: 0
     - _Is_NormalMapForMatCap: 0
     - _Is_NormalMapToBase: 0
     - _Is_NormalMapToHighColor: 1
@@ -177,7 +182,7 @@ Material:
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
-    - _RimLight_Power: 0.6
+    - _RimLight_Power: 0.641
     - _Rim_Normal: 1
     - _Rim_Normal_copy: 0
     - _Rim_Sharpness: 5
@@ -207,14 +212,14 @@ Material:
     - _node_9155: 0
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
-    - _2nd_ShadeColor: {r: 0.8602941, g: 0.664852, b: 0.45544982, a: 1}
+    - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _Emissive_Color: {r: 0.93725497, g: 0.43529415, b: 0, a: 1}
-    - _HighColor: {r: 0.53676474, g: 0.50124353, b: 0.50124353, a: 1}
+    - _Emissive_Color: {r: 1.634, g: 0.3721182, b: 0.19223528, a: 1}
+    - _HighColor: {r: 0.9852941, g: 0.7157873, b: 0.3115268, a: 1}
     - _Line_Color: {r: 0.6901961, g: 0.5647059, b: 0.42745098, a: 1}
     - _MatCapColor: {r: 0.30147058, g: 0.30147058, b: 0.30147058, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _RimLightColor: {r: 0.6911765, g: 0.43110907, b: 0.15246537, a: 1}
+    - _RimLightColor: {r: 1, g: 0.8651116, b: 0.7205882, a: 1}
     - _Rim_Color: {r: 0.1764706, g: 0.14509805, b: 0.08627451, a: 1}

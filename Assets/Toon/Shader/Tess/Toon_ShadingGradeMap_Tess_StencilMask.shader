@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.2
+//v.2.0.4.3
 Shader "UnityChanToonShader/Tessellation/Toon_ShadingGradeMap_StencilMask" {
     Properties {
         _StencilNo ("Stencil No", int) =1
@@ -87,9 +87,13 @@ Shader "UnityChanToonShader/Tessellation/Toon_ShadingGradeMap_StencilMask" {
         _OutlineTex ("OutlineTex", 2D) = "white" {}
         //Offset parameter
         _Offset_Z ("Offset_Camera_Z", Float) = 0
+        //v.2.0.4.3 Baked Nrmal Texture for Outline
+        [MaterialToggle] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
+        _BakedNormal ("Baked Normal for Outline", 2D) = "white" {}
+        //GI Intensity
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
-        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 1)) = 0.5
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 5)) = 1
         //Tessellation
         _TessEdgeLength( "Tess Edge length", Range( 2,50 ) ) = 5
         _TessPhongStrength( "Tess Phong Strengh", Range( 0,1 ) ) = 0.5
