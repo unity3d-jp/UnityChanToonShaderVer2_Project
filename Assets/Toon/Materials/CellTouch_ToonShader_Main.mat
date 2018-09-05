@@ -192,7 +192,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: 0.098
-    - _Unlit_Intensity: 0.5
+    - _Unlit_Intensity: 1
     - _isKage_Normal: 0
     - _isRim_Normal: 0
     - _node_183: 0.51
