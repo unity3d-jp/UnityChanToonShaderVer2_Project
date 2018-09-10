@@ -24,16 +24,6 @@ This pack was created in Unity 5.6.3p1.
 
 
 -----
-## 【iOS/OSX METALで使用する際の注意】
-iOS/OSX METALで使用する場合、CullMode=OFF（両面表示）の時に、正しい表示が出来ない場合があります。  
-その場合、メッシュを両面に貼って、それぞれにCullMode=Back（背面カリング）/CullMode=Front（正面カリング）のマテリアルを設定するようにしてください。
-
-### 【Use with iOS/OSX METAL】
-When using with iOS / OSX METAL, objects may not display correctly when CullMode = OFF (double-sided drawing).  
-To correct this, place meshes on both sides of the object and set materials to CullMode = Back (back-face culling) / CullMode = Front (front-face culling) on each side.
-
-
------
 ## 【提供ライセンス】
 「ユニティちゃんトゥーンシェーダーVer.2.0」は、UCL2.0（ユニティちゃんライセンス2.0）で提供されます。  
 ユニティちゃんライセンスについては、以下を参照してください。  
@@ -76,8 +66,10 @@ Please contact us if you have any issues.
 
 -----
 ## 【新規】
-### 2018/09/10：2.0.4.3 Patch 01：バグフィックス版
+### 2018/09/10：2.0.4.3 Releae Patch 1：バグフィックス版
 ・スポットライトが正常に使えなかったのを修正しました。  
+・リアルタイムポイントライトがレンジおよび距離に対し、正しく減衰するように修正しました。  
+・修正が確認されましたので、iOS/OSX METAL環境での注意を削除しました。  
 
 ### 2018/09/05：2.0.4.3 Release：以下の修正と追加をしました。特にVRChat向けに便利な機能を搭載しています。  
 ### ●アンビエントライトブレンディングを搭載  
@@ -163,8 +155,10 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
-### 2018/09/10：2.0.4.3 Patch 01：Bug fix version.  
-Fixed the problem that spotlight could not work properly.  
+### 2018/09/10：2.0.4.3 Release Patch 1：Bug fix version.  
+・Fixed the problem that spotlight could not work properly.  
+・Fixed real-time point light to attenuate correctly with respect to range and distance.  
+・Since bug-fixes were confirmed, the notes when using with iOS / OSX METAL environment were deleted.  
 
 ### 2018/09/05: 2.0.4.3 Release：Fixed bug and added new features below. Especially, added useful features for VRChat users! 
 
@@ -250,7 +244,6 @@ For VR Chat, we recommend using shaders in the Mobile folder in consideration of
 
 -----
 ## 【過去の修正履歴】
-2017/06/25：2.0.3：マニュアル修正。【iOS/OSX METALで使用する際の注意】を追加。  
 2017/06/19：2.0.3：Set_HighColorMask、Set_RimLightMaskの追加。機能強化の結果、Set_HighColorPositionは廃止。  
 2017/06/09：2.0.2：Nintendo Switch、PlayStation 4に正式対応。モバイル軽量版の追加。その他機能強化。  
 2017/05/20：2.0.1：TransClipping系シェーダーのブレンド仕様変更とリムライトに調整機能追加。  
@@ -259,7 +252,6 @@ For VR Chat, we recommend using shaders in the Mobile folder in consideration of
 2017/05/07：2.0.0：最初のバージョン  
 
 ### 【Version Update History】
-2017/06/25: 2.0.3: Manual updated, added 【Use with iOS/OSX METAL】.  
 2017/06/19: 2.0.3: Added Set_HighColorMask and Set_RimLightMask, as a result of these improvements Set_HighColorPosition was removed.  
 2017/06/09: 2.0.2: Official support for Nintendo Switch and PlayStation 4. Added lightweight version for mobile. Various other improvements  
 2017/05/20: 2.0.1: Modified the blend methods for TransClipping shaders and added rim light regulation function. 
