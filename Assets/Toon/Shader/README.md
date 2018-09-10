@@ -63,10 +63,40 @@ We recommend first erasing the previous shader then installing the new shader, t
 
 Please contact us if you have any issues. 
 
+-----
+## 【サンプルシーンについて】  
+プロジェクトを開くと、以下のサンプルシーンがあります。  
+
+・BoxProjection.unity：Box Projection を使った暗い部屋のライティング  
+・ToonShader.unity：イラストルックのシェーダー設定  
+・ToonShader_CelLook.unity：セルルックのシェーダー設定  
+・ToonShader_Emissive.unity：エミッシブを使ったシェーダー設定  
+・ToonShader_Firefly.unity：ビルトインライトと複数のリアルタイムポイントライト  
+・Baked Normal/Cube_HardEdge.unity：Baked Normalの参考  
+・Sample/Sample.unity：UTS2の基本シェーダーの紹介  
+・ShaderBall/ShaderBall.unity：シェーダーボールを使ってUTS2を設定する  
+
+各シーンは、シェーダーやライティングの設定の参考用です。  
+作りたいルックやシーンの参考に役立つと思います。  
+
+### 【About Sample scenes】  
+When you open this project, there are the following sample scenes.  
+
+・BoxProjection.unity: For lighting settings to dark room using Box Projection  
+・ToonShader.unity: Illustration-like shader settings  
+・ToonShader_CelLook.unity: Cellook Shader settings  
+・ToonShader_Emissive.unity: Shader settings using Emissive  
+・ToonShader_Firefly.unity: built-in light and multiple real-time point lights  
+・Baked Normal / Cube_HardEdge.unity: Reference of Baked Normal  
+・Sample / Sample.unity: Introduction of basic shaders of UTS2  
+・ShaderBall / ShaderBall.unity: Set UTS2 using shader ball  
+
+Each and every scenes are for reference of shader and lighting settings.  
+They will be useful for reference of the look and scene you want to make!  
 
 -----
 ## 【新規】
-### 2018/09/10：2.0.4.3 Releae Patch 1：バグフィックス版
+### 2018/09/10：2.0.4.3 Release Patch 1：バグフィックス版
 ・スポットライトが正常に使えなかったのを修正しました。  
 ・リアルタイムポイントライトがレンジおよび距離に対し、正しく減衰するように修正しました。  
 ・修正が確認されましたので、iOS/OSX METAL環境での注意を削除しました。  
@@ -76,7 +106,8 @@ Please contact us if you have any issues.
 アンビエントライトの設定をライトカラーが反映するようになりました。  
 その結果として、ディレクショナルライトのインテンシティの下限が、シーンのアンビエントライトの設定となります。　　
 VRChatで、アンビエントライトの設定に基づくワールドごとの明るさの差異を自動で調整できます。  
-なおアンビエントライトからの明るさは、Unlit_Intensity スライダーで調整することもできます。デフォルトは 1（そのまま）になっています。  
+なおアンビエ## 【サンプルシーンについて】  
+ントライトからの明るさは、Unlit_Intensity スライダーで調整することもできます。デフォルトは 1（そのまま）になっています。  
 
 ### ●カメラ追従型のデフォルトライトを搭載  
 ディレクショナルライトがシーン中にない場合、シェーダーに組み込まれたデフォルトライトが有効になりますが、その向きが常にカメラに追従するようになりました。  
