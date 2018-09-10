@@ -24,16 +24,6 @@ This pack was created in Unity 5.6.3p1.
 
 
 -----
-## 【iOS/OSX METALで使用する際の注意】
-iOS/OSX METALで使用する場合、CullMode=OFF（両面表示）の時に、正しい表示が出来ない場合があります。  
-その場合、メッシュを両面に貼って、それぞれにCullMode=Back（背面カリング）/CullMode=Front（正面カリング）のマテリアルを設定するようにしてください。
-
-### 【Use with iOS/OSX METAL】
-When using with iOS / OSX METAL, objects may not display correctly when CullMode = OFF (double-sided drawing).  
-To correct this, place meshes on both sides of the object and set materials to CullMode = Back (back-face culling) / CullMode = Front (front-face culling) on each side.
-
-
------
 ## 【提供ライセンス】
 「ユニティちゃんトゥーンシェーダーVer.2.0」は、UCL2.0（ユニティちゃんライセンス2.0）で提供されます。  
 ユニティちゃんライセンスについては、以下を参照してください。  
@@ -47,7 +37,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.4.3_Release.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.3_Release_p1.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが全面的に改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -60,7 +50,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.4.3_Release.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.3_Release_p1.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.
 
 When over-writing a previous version, the code will be completely revised, so please take the following precautions:  
@@ -73,15 +63,51 @@ We recommend first erasing the previous shader then installing the new shader, t
 
 Please contact us if you have any issues. 
 
+-----
+## 【サンプルシーンについて】  
+プロジェクトを開くと、以下のサンプルシーンがあります。  
+
+・BoxProjection.unity：Box Projection を使った暗い部屋のライティング  
+・ToonShader.unity：イラストルックのシェーダー設定  
+・ToonShader_CelLook.unity：セルルックのシェーダー設定  
+・ToonShader_Emissive.unity：エミッシブを使ったシェーダー設定  
+・ToonShader_Firefly.unity：ビルトインライトと複数のリアルタイムポイントライト  
+・Baked Normal/Cube_HardEdge.unity：Baked Normalの参考  
+・Sample/Sample.unity：UTS2の基本シェーダーの紹介  
+・ShaderBall/ShaderBall.unity：シェーダーボールを使ってUTS2を設定する  
+
+各シーンは、シェーダーやライティングの設定の参考用です。  
+作りたいルックやシーンの参考に役立つと思います。  
+
+### 【About Sample scenes】  
+When you open this project, there are the following sample scenes.  
+
+・BoxProjection.unity: For lighting settings to dark room using Box Projection  
+・ToonShader.unity: Illustration-like shader settings  
+・ToonShader_CelLook.unity: Cellook Shader settings  
+・ToonShader_Emissive.unity: Shader settings using Emissive  
+・ToonShader_Firefly.unity: built-in light and multiple real-time point lights  
+・Baked Normal / Cube_HardEdge.unity: Reference of Baked Normal  
+・Sample / Sample.unity: Introduction of basic shaders of UTS2  
+・ShaderBall / ShaderBall.unity: Set UTS2 using shader ball  
+
+Each and every scenes are for reference of shader and lighting settings.  
+They will be useful for reference of the look and scene you want to make!  
 
 -----
 ## 【新規】
+### 2018/09/10：2.0.4.3 Release Patch 1：バグフィックス版
+・スポットライトが正常に使えなかったのを修正しました。  
+・リアルタイムポイントライトがレンジおよび距離に対し、正しく減衰するように修正しました。  
+・修正が確認されましたので、iOS/OSX METAL環境での注意を削除しました。  
+
 ### 2018/09/05：2.0.4.3 Release：以下の修正と追加をしました。特にVRChat向けに便利な機能を搭載しています。  
 ### ●アンビエントライトブレンディングを搭載  
 アンビエントライトの設定をライトカラーが反映するようになりました。  
 その結果として、ディレクショナルライトのインテンシティの下限が、シーンのアンビエントライトの設定となります。　　
 VRChatで、アンビエントライトの設定に基づくワールドごとの明るさの差異を自動で調整できます。  
-なおアンビエントライトからの明るさは、Unlit_Intensity スライダーで調整することもできます。デフォルトは 1（そのまま）になっています。  
+なおアンビエ## 【サンプルシーンについて】  
+ントライトからの明るさは、Unlit_Intensity スライダーで調整することもできます。デフォルトは 1（そのまま）になっています。  
 
 ### ●カメラ追従型のデフォルトライトを搭載  
 ディレクショナルライトがシーン中にない場合、シェーダーに組み込まれたデフォルトライトが有効になりますが、その向きが常にカメラに追従するようになりました。  
@@ -160,6 +186,11 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2018/09/10：2.0.4.3 Release Patch 1：Bug fix version.  
+・Fixed the problem that spotlight could not work properly.  
+・Fixed real-time point light to attenuate correctly with respect to range and distance.  
+・Since bug-fixes were confirmed, the notes when using with iOS / OSX METAL environment were deleted.  
+
 ### 2018/09/05: 2.0.4.3 Release：Fixed bug and added new features below. Especially, added useful features for VRChat users! 
 
 ### ●Add Ambient light blending  
@@ -244,7 +275,6 @@ For VR Chat, we recommend using shaders in the Mobile folder in consideration of
 
 -----
 ## 【過去の修正履歴】
-2017/06/25：2.0.3：マニュアル修正。【iOS/OSX METALで使用する際の注意】を追加。  
 2017/06/19：2.0.3：Set_HighColorMask、Set_RimLightMaskの追加。機能強化の結果、Set_HighColorPositionは廃止。  
 2017/06/09：2.0.2：Nintendo Switch、PlayStation 4に正式対応。モバイル軽量版の追加。その他機能強化。  
 2017/05/20：2.0.1：TransClipping系シェーダーのブレンド仕様変更とリムライトに調整機能追加。  
@@ -253,7 +283,6 @@ For VR Chat, we recommend using shaders in the Mobile folder in consideration of
 2017/05/07：2.0.0：最初のバージョン  
 
 ### 【Version Update History】
-2017/06/25: 2.0.3: Manual updated, added 【Use with iOS/OSX METAL】.  
 2017/06/19: 2.0.3: Added Set_HighColorMask and Set_RimLightMask, as a result of these improvements Set_HighColorPosition was removed.  
 2017/06/09: 2.0.2: Official support for Nintendo Switch and PlayStation 4. Added lightweight version for mobile. Various other improvements  
 2017/05/20: 2.0.1: Modified the blend methods for TransClipping shaders and added rim light regulation function. 
@@ -263,11 +292,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.4.3  
-最終リリース日：2018/09/05  
+最終リリース日：2018/09/10  
 カテゴリー：3D  
 形式：zip  
 
 Latest Version: 2.0.4,3  
-Update: 2018/09/05  
+Update: 2018/09/10  
 Category: 3D  
 File format: zip  

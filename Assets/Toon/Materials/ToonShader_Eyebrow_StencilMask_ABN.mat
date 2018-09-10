@@ -95,6 +95,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Set_MatcapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -123,7 +127,7 @@ Material:
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Farthest_Distance: 10
-    - _GI_Intensity: 0.5
+    - _GI_Intensity: 0
     - _Gloss: 0
     - _HighColor_Power: 0.315
     - _Inverse_Clipping: 0
@@ -175,8 +179,10 @@ Material:
     - _Tweak_HighColorMaskLevel: 0
     - _Tweak_LightDirection_MaskLevel: 0
     - _Tweak_MatCapUV: 0
+    - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: 0
+    - _Unlit_Intensity: 0.001
     - _isKage_Normal: 0
     - _isRim_Normal: 1
     - _node_183: 0.51

@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -148,7 +148,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.08823532, g: 0.08758653, b: 0.08758653, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0.01
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -298,7 +298,7 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IntensityMultiplier: 3.25
+  m_IntensityMultiplier: 0.1
   m_BlendDistance: 1
   m_HDR: 1
   m_BoxProjection: 1
@@ -925,7 +925,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0, g: 0.56078434, b: 0.5137255, a: 1}
-  m_Intensity: 2.15
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
