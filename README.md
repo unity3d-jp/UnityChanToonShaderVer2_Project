@@ -47,7 +47,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.4.3_Release.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.3_Release_p1.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが全面的に改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -60,7 +60,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.4.3_Release.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.3_Release_p1.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.
 
 When over-writing a previous version, the code will be completely revised, so please take the following precautions:  
@@ -76,6 +76,9 @@ Please contact us if you have any issues.
 
 -----
 ## 【新規】
+### 2018/09/10：2.0.4.3 Patch 01：バグフィックス版
+・スポットライトが正常に使えなかったのを修正しました。  
+
 ### 2018/09/05：2.0.4.3 Release：以下の修正と追加をしました。特にVRChat向けに便利な機能を搭載しています。  
 ### ●アンビエントライトブレンディングを搭載  
 アンビエントライトの設定をライトカラーが反映するようになりました。  
@@ -160,6 +163,9 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2018/09/10：2.0.4.3 Patch 01：Bug fix version.  
+Fixed the problem that spotlight could not work properly.  
+
 ### 2018/09/05: 2.0.4.3 Release：Fixed bug and added new features below. Especially, added useful features for VRChat users! 
 
 ### ●Add Ambient light blending  
@@ -263,11 +269,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.4.3  
-最終リリース日：2018/09/05  
+最終リリース日：2018/09/10  
 カテゴリー：3D  
 形式：zip  
 
 Latest Version: 2.0.4,3  
-Update: 2018/09/05  
+Update: 2018/09/10  
 Category: 3D  
 File format: zip  
