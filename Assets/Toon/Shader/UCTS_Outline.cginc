@@ -1,4 +1,7 @@
 ﻿// UCTS_Outline.cginc
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 // 2018/08/23 N.Kobayashi (Unity Technologies Japan)
 // カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版）
 // 2017/06/05 PS4対応版

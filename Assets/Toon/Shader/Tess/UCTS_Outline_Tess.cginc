@@ -1,6 +1,8 @@
 ﻿// UCTS_Outline_tess.cginc
 // 2018/08/23 N.Kobayashi (Unity Technologies Japan)
-// Ver.2.0.4.3
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 // カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版/Tessellation対応版）
 // 2018/02/05 Outline Tex対応版
 // #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 

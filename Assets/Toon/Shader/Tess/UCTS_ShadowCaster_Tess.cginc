@@ -1,5 +1,7 @@
 ﻿//UCTS_ShadowCaster_Tess.cginc
-//v.2.0.4.2
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 //#pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE  _IS_CLIPPING_TRANSMODE
 // ※Tessellation対応
 //   対応部分のコードは、Nora氏の https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess を参考にしました.

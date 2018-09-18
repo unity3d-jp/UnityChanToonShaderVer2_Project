@@ -1,5 +1,7 @@
 ﻿//UCTS_DoubleShadeWithFeather_Tess.cginc
-//v.2.0.4.3
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 //#pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE  _IS_CLIPPING_TRANSMODE
 //#pragma multi_compile _IS_PASS_FWDBASE _IS_PASS_FWDDELTA
 // ※Tessellation対応
@@ -71,6 +73,8 @@
             uniform sampler2D _Emissive_Tex; uniform float4 _Emissive_Tex_ST;
             uniform float4 _Emissive_Color;
             uniform float _Unlit_Intensity;
+            //v.2.0.4.3p2
+            uniform float _StepOffset;
 //v.2.0.4
 #ifdef _IS_CLIPPING_MODE
 //DoubleShadeWithFeather_Clipping
@@ -173,7 +177,9 @@
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
                 float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
-                float3 defaultLightColor = saturate(ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb*_Unlit_Intensity);
+                //float3 defaultLightColor = saturate(ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb*_Unlit_Intensity);
+                //v.2.0.4.3p2
+                float3 defaultLightColor = saturate(max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0))).rgb*_Unlit_Intensity);
                 float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
                 float3 lightColor = max(defaultLightColor,_LightColor0.rgb);
 #elif _IS_PASS_FWDDELTA
@@ -237,6 +243,10 @@
                 finalColor = finalColor + saturate(DecodeLightProbe(normalDirection)*_GI_Intensity) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
 
 #elif _IS_PASS_FWDDELTA
+                //v.2.0.4.3p2
+                _BaseColor_Step = saturate(_BaseColor_Step - _StepOffset);
+                _ShadeColor_Step = saturate(_ShadeColor_Step - _StepOffset);
+                //
                 float3 Set_LightColor = lightColor.rgb;
                 float3 Set_BaseColor = lerp( (_BaseColor.rgb*_BaseMap_var.rgb), ((_BaseColor.rgb*_BaseMap_var.rgb)*Set_LightColor), _Is_LightColor_Base );
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));

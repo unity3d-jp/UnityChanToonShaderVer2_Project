@@ -1,5 +1,7 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.2
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Tessellation/NoOutline/AngelRing/ToonColor_ShadingGradeMap_StencilOut" {
     Properties {
         _StencilNo ("Stencil No", int) =1
@@ -15,14 +17,17 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/AngelRing/ToonColor_ShadingGr
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
         [MaterialToggle] _Is_NormalMap ("Is_NormalMap", Float ) = 0
+        //v.2.0.4.3p2        
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
-        _ShadingGradeMap ("ShadingGradeMap", 2D) = "white" {}
         [MaterialToggle] _Is_1st_ShadeColorOnly ("Is_1st_ShadeColorOnly", Float ) = 0
         _1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
         _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
         _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0.003
         _2nd_ShadeColor_Feather ("2nd_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
+        _StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
+        _ShadingGradeMap ("ShadingGradeMap", 2D) = "white" {}
+        //
         _HighColor ("HighColor", Color) = (0,0,0,1)
 //v.2.0.4 HighColor_Tex
         _HighColor_Tex ("HighColor_Tex", 2D) = "white" {}

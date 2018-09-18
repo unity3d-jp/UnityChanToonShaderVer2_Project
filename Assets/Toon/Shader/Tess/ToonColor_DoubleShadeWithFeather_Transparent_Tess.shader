@@ -1,5 +1,7 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.2
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Tessellation/NoOutline/ToonColor_DoubleShadeWithFeather_Transparent" {
     Properties {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
@@ -19,14 +21,17 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/ToonColor_DoubleShadeWithFeat
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
         [MaterialToggle] _Is_NormalMapToBase ("Is_NormalMapToBase", Float ) = 0
-        [HideInInspector] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
-        [HideInInspector] _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
+        //v.2.0.4.3p2
+        [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
+        _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
         _BaseColor_Step ("BaseColor_Step", Range(0, 1)) = 0.6
         _BaseShade_Feather ("Base/Shade_Feather", Range(0.0001, 1)) = 0.0001
-        _Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" {}
         _ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0.4
         _1st2nd_Shades_Feather ("1st/2nd_Shades_Feather", Range(0.0001, 1)) = 0.0001
+        _StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
+        _Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" {}
         _Set_2nd_ShadePosition ("Set_2nd_ShadePosition", 2D) = "white" {}
+        //
         _HighColor ("HighColor", Color) = (0,0,0,1)
 //v.2.0.4 HighColor_Tex
         _HighColor_Tex ("HighColor_Tex", 2D) = "white" {}

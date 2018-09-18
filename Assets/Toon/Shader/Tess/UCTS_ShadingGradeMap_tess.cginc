@@ -1,5 +1,7 @@
 ﻿//UCTS_ShadingGradeMap_Tess.cginc
-//v.2.0.4.3
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 //#pragma multi_compile _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
 //#pragma multi_compile _IS_ANGELRING_OFF _IS_ANGELRING_ON
 //#pragma multi_compile _IS_PASS_FWDBASE _IS_PASS_FWDDELTA
@@ -73,6 +75,8 @@
             uniform sampler2D _Emissive_Tex; uniform float4 _Emissive_Tex_ST;
             uniform float4 _Emissive_Color;
             uniform float _Unlit_Intensity;
+            //v.2.0.4.3p2
+            uniform float _StepOffset;
 //v.2.0.4
 #ifdef _IS_TRANSCLIPPING_OFF
 //
@@ -200,7 +204,8 @@
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
                 float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
-                float3 defaultLightColor = saturate(ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb*_Unlit_Intensity);
+                //v.2.0.4.3p2
+                float3 defaultLightColor = saturate(max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0))).rgb*_Unlit_Intensity);
                 float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
                 float3 lightColor = max(defaultLightColor,_LightColor0.rgb);
 #elif _IS_PASS_FWDDELTA
@@ -211,6 +216,10 @@
                 float3 halfDirection = normalize(viewDirection+lightDirection);
 
 #ifdef _IS_PASS_FWDBASE
+                //v.2.0.4.3p2
+                _1st_ShadeColor_Step = saturate(_1st_ShadeColor_Step - _StepOffset);
+                _2nd_ShadeColor_Step = saturate(_2nd_ShadeColor_Step - _StepOffset);
+                //
                 float3 Set_LightColor = lightColor.rgb;
                 float3 Set_BaseColor = lerp( (_BaseMap_var.rgb*_BaseColor.rgb), ((_BaseMap_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base );
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));

@@ -1,5 +1,7 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.3
+//v.2.0.4.3p2
+//nobuyuki@unity3d.com
+//(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject" {
     Properties {
         _BaseMap ("BaseMap", 2D) = "white" {}
