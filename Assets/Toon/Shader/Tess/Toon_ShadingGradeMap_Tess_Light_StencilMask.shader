@@ -98,6 +98,11 @@ Shader "UnityChanToonShader/Tessellation/Light/Toon_ShadingGradeMap_StencilMask"
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
         _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 5)) = 1
+        //Built-in Light Direction v.2.0.4.3p2
+        [MaterialToggle] _Is_BLD ("Advanced : Activate Built-in Light Direction", Float ) = 0
+        _Offset_X_Axis_BLD (" Offset X-Axis (Built-in Light Direction)", Range(-1, 1)) = -0.05
+        _Offset_Y_Axis_BLD (" Offset Y-Axis (Built-in Light Direction)", Range(-1, 1)) = 0.09
+        [MaterialToggle] _Inverse_Z_Axis_BLD (" Inverse Z-Axis (Built-in Light Direction)", Float ) = 1
         //Tessellation
         _TessEdgeLength( "Tess Edge length", Range( 2,50 ) ) = 5
         _TessPhongStrength( "Tess Phong Strengh", Range( 0,1 ) ) = 0.5
