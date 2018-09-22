@@ -1,6 +1,7 @@
 ﻿//Unitychan Toon Shader ver.2.0
 //v.2.0.4.3p2
 //nobuyuki@unity3d.com
+//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Clipping_StencilOut" {
     Properties {

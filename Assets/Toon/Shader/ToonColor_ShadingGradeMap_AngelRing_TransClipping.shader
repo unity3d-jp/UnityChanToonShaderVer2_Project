@@ -2,6 +2,7 @@
 //v.2.0.4.2
 //v.2.0.4.3p2
 //nobuyuki@unity3d.com
+//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/NoOutline/AngelRing/ToonColor_ShadingGradeMap_TransClipping" {
     Properties {

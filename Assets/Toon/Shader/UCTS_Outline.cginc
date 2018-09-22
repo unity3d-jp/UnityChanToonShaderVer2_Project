@@ -1,6 +1,7 @@
 ﻿// UCTS_Outline.cginc
 //v.2.0.4.3p2
 //nobuyuki@unity3d.com
+//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 // 2018/08/23 N.Kobayashi (Unity Technologies Japan)
 // カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版）

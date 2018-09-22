@@ -1,6 +1,7 @@
 ﻿//UCTS_ShadingGradeMap.cginc
 //v.2.0.4.3p2
 //nobuyuki@unity3d.com
+//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 //#pragma multi_compile _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
 //#pragma multi_compile _IS_ANGELRING_OFF _IS_ANGELRING_ON
