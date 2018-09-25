@@ -37,7 +37,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.4.3_Release_p1.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.4_Test.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが全面的に改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -50,7 +50,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.4.3_Release_p1.unitypackage  
+### UTS2_ShaderOnly_v2.0.4.4_Test.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.
 
 When over-writing a previous version, the code will be completely revised, so please take the following precautions:  
@@ -96,6 +96,20 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【新規】
+### 2018/09/25：2.0.4.4 Test：以下の機能追加をしました。  
+### ●Forward Addパス内で主にポイントライトのシェードステップを調整する、Step_Offsetスライダーを追加  
+BaseColor_Step、ShadeColor_Step、1st_ShadeColor_Step、2nd_ShadeColor_Stepでの設定に加えて、Step_Offsetでさらに微調整を加えることで、特にセルルック時でのポイントライトの調整ができるようになりました。  
+
+### ●アドバンス機能として、Built-in Light Directionを追加  
+上級者向け機能として、シェーダー内にビルトインされているライトディレクションベクトルを任意の方向に設定できるようにしました。  
+Built-in Light Directionを有効にしたマテリアルは、それが適応されるメッシュのオブジェクト座標に対して、独自のシェーディング用ライトディレクションベクトルを持つことができるので、専用の固定ライトを持つことと同じ効果が得られます。そのパーツが落とすドロップシャドウは、シーン中のディレクショナルライトを使いますので、シェーディングの落ち方とドロップシャドウの落ち方を変えることもできます。  
+Built-in Light Directionのライトカラーは、シーン中のメインとなるディレクショナルライトの設定を使います。  
+
+### ●以下の修正をしました。  
+・一部のプロパティの並び順を、より作業しやすいように入れ替えしました。  
+・シーン中のアンビエントカラーの取得方法を変更し、よりシーン全体のアンビエントライトのカラーを反映するようにしました。  
+
+-----
 ### 2018/09/10：2.0.4.3 Release Patch 1：バグフィックス版
 ・スポットライトが正常に使えなかったのを修正しました。  
 ・リアルタイムポイントライトがレンジおよび距離に対し、正しく減衰するように修正しました。  
@@ -186,6 +200,20 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2018/09/25: 2.0.4.4 Test：Added new features below.  
+### ●Add Step_Offset slider to adjust the shade stepping of the point lights mainly in the Forward-Add path.  
+In addition to the settings in BaseColor_Step, ShadeColor_Step, 1st_ShadeColor_Step,and 2nd_ShadeColor_Step, you can now fine-tune the shade stepping with Step_Offset to adjust the shading with point lights especially at cel-look style.  
+
+### ●Advanced function : Add Built-in Light Direction
+As the function for advanced users, you can now set the built-in light deirection vector within shader to your favorite direction.
+The material enabled Built-in Light Direction can have its own light deirection vector in the object coordination of the mesh, and shade it from as like as a fixed light. Drop shadow of the mesh has consistency with the directional light in the scene, so you can control how the shade falls and how the shadow dropps.  
+The color of Built-in Light Direction uses the setting of the main directional light in the scene.  
+
+### ●Made the following corrections.  
+・Rearranged the order of some properties for your easier operation.  
+・Changed the method of getting the ambient color in the scene, and so shader becomes to reflect the color of the ambient light from the whole scene more.  
+
+-----
 ### 2018/09/10：2.0.4.3 Release Patch 1：Bug fix version.  
 ・Fixed the problem that spotlight could not work properly.  
 ・Fixed real-time point light to attenuate correctly with respect to range and distance.  
@@ -291,12 +319,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.4.3  
-最終リリース日：2018/09/10  
+最新バージョン：2.0.4.4  
+最終リリース日：2018/09/25  
 カテゴリー：3D  
 形式：zip  
 
-Latest Version: 2.0.4,3  
-Update: 2018/09/10  
+Latest Version: 2.0.4,4  
+Update: 2018/09/25  
 Category: 3D  
 File format: zip  
