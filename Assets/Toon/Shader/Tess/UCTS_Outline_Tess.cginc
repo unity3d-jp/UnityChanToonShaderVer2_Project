@@ -1,6 +1,6 @@
-﻿// UCTS_Outline_tess.cginc
-// 2018/08/23 N.Kobayashi (Unity Technologies Japan)
-//v.2.0.4.3p2
+﻿//UCTS_Outline_tess.cginc
+//Unitychan Toon Shader ver.2.0
+//v.2.0.4.4
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL

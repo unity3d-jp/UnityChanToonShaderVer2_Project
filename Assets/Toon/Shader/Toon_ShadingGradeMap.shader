@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.3p2
+//v.2.0.4.4
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -17,7 +17,7 @@ Shader "UnityChanToonShader/Toon_ShadingGradeMap" {
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
         [MaterialToggle] _Is_NormalMap ("Is_NormalMap", Float ) = 0
-        //v.2.0.4.3p2        
+        //v.2.0.4.4
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
         [MaterialToggle] _Is_1st_ShadeColorOnly ("Is_1st_ShadeColorOnly", Float ) = 0
@@ -99,7 +99,7 @@ Shader "UnityChanToonShader/Toon_ShadingGradeMap" {
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
         _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 5)) = 1
-        //Built-in Light Direction v.2.0.4.3p2
+        //Built-in Light Direction
         [MaterialToggle] _Is_BLD ("Advanced : Activate Built-in Light Direction", Float ) = 0
         _Offset_X_Axis_BLD (" Offset X-Axis (Built-in Light Direction)", Range(-1, 1)) = -0.05
         _Offset_Y_Axis_BLD (" Offset Y-Axis (Built-in Light Direction)", Range(-1, 1)) = 0.09
