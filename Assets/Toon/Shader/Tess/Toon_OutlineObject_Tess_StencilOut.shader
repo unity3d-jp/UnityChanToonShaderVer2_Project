@@ -1,12 +1,12 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.4
+//v.2.0.5
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject_StencilOut" {
     Properties {
         _StencilNo ("Stencil No", int) =1
-        _BaseMap ("BaseMap", 2D) = "white" {}
+        _MainTex ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
 //Outline

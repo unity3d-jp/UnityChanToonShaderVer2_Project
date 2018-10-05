@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.4.4
+//v.2.0.5
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -11,7 +11,7 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/ToonColor_DoubleShadeWithFeat
         _Clipping_Level ("Clipping_Level", Range(0, 1)) = 0
         [MaterialToggle] _Inverse_Clipping ("Inverse_Clipping", Float ) = 0
         _Tweak_transparency ("Tweak_transparency", Range(-1, 1)) = 0
-        _BaseMap ("BaseMap", 2D) = "white" {}
+        _MainTex ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
         _1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}

@@ -1,17 +1,17 @@
 README.md
 
-# 【ユニティちゃんトゥーンシェーダー Ver.2.0.4】
+# 【ユニティちゃんトゥーンシェーダー Ver.2.0.5】
 「ユニティちゃんトゥーンシェーダー」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。
 
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
 Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。
 
-## 【Unity-Chan Toon Shader Ver.2.0.4】
+
+## 【Unity-Chan Toon Shader Ver.2.0.5】
 Unity-Chan Toon Shader is a toon shader for video and images that is designed to meet your needs when creating cel-shaded 3DCG animations.
 
 We have greatly enhanced the performance and features in Unity-Chan Toon Shader Ver. 2.0.  
 It still has the same rendering capabilities as Ver. 1.0, but now you can give your creations an even more sophisticated look.
-
 
 -----
 ## 【ターゲット環境】
@@ -37,29 +37,29 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.4.4_Test.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
-上書きインストール時には、コードが全面的に改修されていますので、注意が必要です。  
+上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
 2. Unityでプロジェクトを開き、新規シーンを作成して開いておく。  
 3. 元のトゥーンシェーダーが入っているフォルダ（Assets/Toon/Shader）をUnity上から削除する。  
 4. 本パッケージをUnityにD&Dする。  
 
-まず元のシェーダーを消した後で、すぐに新しいシェーダーをインストールすれば、既存のマテリアルへのリンクは途切れないので、そちらでやってみてください。
+まず元のシェーダーを消した後で、すぐに新しいシェーダーをインストールすれば、既存のマテリアルへのリンクは途切れないので、そちらでやってみてください。  
 
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.4.4_Test.unitypackage  
-When installing for the first time, simply drag and drop this package into Unity to begin the installation process.
+### UTS2_ShaderOnly_v2.0.5_Test.unitypackage  
+When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
-When over-writing a previous version, the code will be completely revised, so please take the following precautions:  
+When over-writing a previous version, the code will be revised, so please take the following precautions:  
 1. Back-up all previous projects.  
 2. When opening a project in Unity, create a new scene beforehand.  
 3. Erase the folder containing previous versions of the toon shader (Assets/Toon/Shader) from within Unity.  
 4. Drag and drop this pack into Unity.  
 
-We recommend first erasing the previous shader then installing the new shader, to preserve existing links between materials. 
+We recommend first erasing the previous shader then installing the new shader, to preserve existing links between materials.   
 
 Please contact us if you have any issues. 
 
@@ -96,7 +96,10 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【新規】
-### 2018/09/25：2.0.4.4 Test：以下の機能追加をしました。  
+### 2018/10/05：2.0.5 Test：以下の機能追加と仕様変更をしました。  
+### ●【重要】BaseMapの内部変数名を変更しました。  
+PostProcessing Stackに搭載されているSSAOでの不具合対処のために、BaseMapの内部変数名(_BaseMap)を_MainTexに変更しました。  
+
 ### ●Forward Addパス内で主にポイントライトのシェードステップを調整する、Step_Offsetスライダーを追加  
 BaseColor_Step、ShadeColor_Step、1st_ShadeColor_Step、2nd_ShadeColor_Stepでの設定に加えて、Step_Offsetでさらに微調整を加えることで、特にセルルック時でのポイントライトの調整ができるようになりました。  
 
@@ -200,7 +203,10 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
-### 2018/09/25: 2.0.4.4 Test：Added new features below.  
+### 2018/10/05: 2.0.5 Test：Added new features below.  
+### 【Caution】The internal variable name of BaseMap had been changed.  
+The internal variable name of BaseMap(_BaseMap) had been changed into _MainTex in order to fix the problems with SSAO in PostProcessing Stack.  
+
 ### ●Add Step_Offset slider to adjust the shade stepping of the point lights mainly in the Forward-Add path.  
 In addition to the settings in BaseColor_Step, ShadeColor_Step, 1st_ShadeColor_Step,and 2nd_ShadeColor_Step, you can now fine-tune the shade stepping with Step_Offset to adjust the shading with point lights especially at cel-look style.  
 
@@ -319,12 +325,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.4.4  
-最終リリース日：2018/09/25  
+最新バージョン：2.0.5  
+最終リリース日：2018/10/05  
 カテゴリー：3D  
 形式：zip  
 
-Latest Version: 2.0.4,4  
-Update: 2018/09/25  
+Latest Version: 2.0.5  
+Update: 2018/10/05  
 Category: 3D  
 File format: zip  
