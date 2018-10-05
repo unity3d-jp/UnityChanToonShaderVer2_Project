@@ -75,6 +75,8 @@ Please contact us if you have any issues.
 ・Baked Normal/Cube_HardEdge.unity：Baked Normalの参考  
 ・Sample/Sample.unity：UTS2の基本シェーダーの紹介  
 ・ShaderBall/ShaderBall.unity：シェーダーボールを使ってUTS2を設定する  
+・PointLightTest/PointLightTest.unity：ポイントライトを使ったセルルック表現のサンプル  
+・SSAO Test/SSAO.unity：SSAO in PPSのテスト用  
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
 作りたいルックやシーンの参考に役立つと思います。  
@@ -90,15 +92,21 @@ When you open this project, there are the following sample scenes.
 ・Baked Normal / Cube_HardEdge.unity: Reference of Baked Normal  
 ・Sample / Sample.unity: Introduction of basic shaders of UTS2  
 ・ShaderBall / ShaderBall.unity: Set UTS2 using shader ball  
+・PointLightTest / PointLightTest.unity: Sample of CelLook style using point lights  
+・SSAO Test / SSAO.unity: For testing SSAO in PPS  
 
 Each and every scenes are for reference of shader and lighting settings.  
 They will be useful for reference of the look and scene you want to make!  
 
 -----
 ## 【新規】
-### 2018/10/05：2.0.5 Test：以下の機能追加と仕様変更をしました。  
+### 2018/10/06：2.0.5 Test：以下の機能追加と仕様変更をしました。  
 ### ●【重要】BaseMapの内部変数名を変更しました。  
-PostProcessing Stackに搭載されているSSAOでの不具合対処のために、BaseMapの内部変数名(_BaseMap)を_MainTexに変更しました。  
+PostProcessing Stackに搭載されているSSAOでの不具合対処のために、BaseMapの内部変数名(`_BaseMap`)を`_MainTex`に変更しました。  
+
+また.shaderファイルのプロパティブロックに以下の行を追加しました。  
+`[HideInInspector] _Color ("Color", Color) = (1,1,1,1)`  
+元のSSAOの結果に戻したい時には、適宜コメントアウトしてください。  
 
 ### ●Forward Addパス内で主にポイントライトのシェードステップを調整する、Step_Offsetスライダーを追加  
 BaseColor_Step、ShadeColor_Step、1st_ShadeColor_Step、2nd_ShadeColor_Stepでの設定に加えて、Step_Offsetでさらに微調整を加えることで、特にセルルック時でのポイントライトの調整ができるようになりました。  
@@ -203,9 +211,13 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
-### 2018/10/05: 2.0.5 Test：Added new features below.  
+### 2018/10/06: 2.0.5 Test：Added new features below.  
 ### 【Caution】The internal variable name of BaseMap had been changed.  
-The internal variable name of BaseMap(_BaseMap) had been changed into _MainTex in order to fix the problems with SSAO in PostProcessing Stack.  
+The internal variable name of BaseMap(`_BaseMap`) had been changed into `_MainTex` in order to fix the problems with SSAO in PostProcessing Stack.  
+
+Also added the following line to the property block of the .shader file.  
+`[HideInInspector] _Color ("Color", Color) = (1, 1, 1, 1)`  
+If you want to return to the original SSAO result, comment out as appropriate.  
 
 ### ●Add Step_Offset slider to adjust the shade stepping of the point lights mainly in the Forward-Add path.  
 In addition to the settings in BaseColor_Step, ShadeColor_Step, 1st_ShadeColor_Step,and 2nd_ShadeColor_Step, you can now fine-tune the shade stepping with Step_Offset to adjust the shading with point lights especially at cel-look style.  
@@ -326,11 +338,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.5  
-最終リリース日：2018/10/05  
+最終リリース日：2018/10/06  
 カテゴリー：3D  
 形式：zip  
 
 Latest Version: 2.0.5  
-Update: 2018/10/05  
+Update: 2018/10/06  
 Category: 3D  
 File format: zip  

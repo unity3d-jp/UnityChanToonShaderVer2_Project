@@ -8,6 +8,10 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap" {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _MainTex ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
+        //v.2.0.5 : Clipping/TransClipping for SSAO Problems in PostProcessing Stack.
+        //If you want to go back the former SSAO results, comment out the below line.
+        [HideInInspector] _Color ("Color", Color) = (1,1,1,1)
+        //
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
         _1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}
         _1st_ShadeColor ("1st_ShadeColor", Color) = (1,1,1,1)

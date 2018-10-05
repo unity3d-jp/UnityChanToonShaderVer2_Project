@@ -7,6 +7,10 @@ Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject" {
     Properties {
         _MainTex ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
+        //v.2.0.5 : Clipping/TransClipping for SSAO Problems in PostProcessing Stack.
+        //If you want to go back the former SSAO results, comment out the below line.
+        [HideInInspector] _Color ("Color", Color) = (1,1,1,1)
+        //
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
 //Outline
         [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
