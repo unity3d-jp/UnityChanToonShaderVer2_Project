@@ -231,7 +231,7 @@ You can add shadows in addition to lighting whenever you want to add a special s
 
 ---
 ## 【Mutual Actions in 1st Shade and 2nd Shade Position Maps】
-![](Images_ja/0102-22_03_eng.jpg)
+![](Images_ja/0102-22_03.jpg)
 
 Stack and specify the 1st shade and 2nd shade position maps when you want to constantly display 2nd shade independent from the lighting and shadow conditions.  
 2nd Shade is also constantly displayed inside of shadows in the 2nd shade area.  
@@ -340,7 +340,7 @@ You can specify directly the color of "Angel's Ring" instead of adding.
 ## 【Check Box that Activates Light Color for Each Color】
 ![](Images_ja/Check.jpg)
 
-`Is_LightColor_Base` and other `Is_LightColor_***ColorName***` check box options with a color's name attached to the end are options that change whether the light color of the directional light, which is the main light, affects each color.  
+`Is_LightColor_Base` and other `Is_LightColor_"ColorName"` check box options with a color's name attached to the end are options that change whether the light color of the directional light, which is the main light, affects each color.  
 Changing whether the light color affects any of the other colors makes it possible for you to create more complicated lighting.  
 The example below only shows a red light color affecting the color of the shadow.  
 If you open the door on the same side as the camera, the red light that pours through from the door illuminates Unity-chan.  
