@@ -56,7 +56,7 @@
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                float3 lightColor = _LightColor0.rgb;
+                //float3 lightColor = _LightColor0.rgb;
                 float2 Set_UV0 = o.uv0;
                 float4 _Outline_Sampler_var = tex2Dlod(_Outline_Sampler,float4(TRANSFORM_TEX(Set_UV0, _Outline_Sampler),0.0,0));
                 //v.2.0.4.3 baked Normal Texture for Outline
@@ -89,11 +89,12 @@
                 //v.2.0.5
                 _Color = _BaseColor;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                float3 lightColor = _LightColor0.rgb;
+                //float3 lightColor = _LightColor0.rgb;
                 float2 Set_UV0 = i.uv0;
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
                 float3 _BaseColorMap_var = (_BaseColor.rgb*_MainTex_var.rgb);
-                float3 Set_BaseColor = lerp( _BaseColorMap_var, (_BaseColorMap_var*_LightColor0.rgb), _Is_LightColor_Base );
+                //v.2.0.5
+                float3 Set_BaseColor = lerp( _BaseColorMap_var, (_BaseColorMap_var*saturate(_LightColor0.rgb)), _Is_LightColor_Base );
                 //v.2.0.4
                 float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor), _Is_BlendBaseColor );
                 float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));

@@ -132,9 +132,12 @@ Material:
     - _Gloss: 0
     - _HighColor_Power: 0
     - _Inverse_Clipping: 0
+    - _Inverse_Z_Axis_BLD: 1
+    - _Is_BLD: 0
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
+    - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 0
     - _Is_LightColor_2nd_Shade: 0
     - _Is_LightColor_Ap_RimLight: 0
@@ -158,6 +161,8 @@ Material:
     - _Mix_BaseTexture: 0.5
     - _Mix_KageTexture: 0.49
     - _Nearest_Distance: 0.5
+    - _Offset_X_Axis_BLD: -0.05
+    - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
     - _Outline: 0.003
     - _Outline_Power: 0.833
@@ -175,6 +180,7 @@ Material:
     - _ShadePower: 0.43
     - _StencilNo: 1
     - _StencilOp: 1
+    - _StepOffset: 0
     - _TessLevel: 1
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0

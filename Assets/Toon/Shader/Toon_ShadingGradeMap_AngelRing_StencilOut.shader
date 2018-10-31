@@ -25,7 +25,7 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_StencilOut" {
         //v.2.0.4.4
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
-        [MaterialToggle] _Is_1st_ShadeColorOnly ("Is_1st_ShadeColorOnly", Float ) = 0
+        [HideInInspector] _Is_1st_ShadeColorOnly ("Is_1st_ShadeColorOnly", Float ) = 0
         _1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
         _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
         _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0.003
@@ -113,6 +113,8 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_StencilOut" {
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
         _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 5)) = 1
+        //v.2.0.5 
+        [MaterialToggle] _Is_Filter_LightColor ("VRChat : Directional Light Intensity Filter", Float ) = 0
         //Built-in Light Direction
         [MaterialToggle] _Is_BLD ("Advanced : Activate Built-in Light Direction", Float ) = 0
         _Offset_X_Axis_BLD (" Offset X-Axis (Built-in Light Direction)", Range(-1, 1)) = -0.05
