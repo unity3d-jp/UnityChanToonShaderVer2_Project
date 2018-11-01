@@ -100,6 +100,7 @@
             }
         //v.2.0.4
             Cull front 
+			zwrite on
             Blend SrcAlpha OneMinusSrcAlpha
 			
             CGPROGRAM
@@ -130,6 +131,7 @@
             }
         //v.2.0.4
             Cull front
+			//zwrite on
 			blend one one
 			
             CGPROGRAM
@@ -159,6 +161,7 @@
             Tags {
                 "LightMode"="ForwardBase"
             }
+			zwrite on
             Blend SrcAlpha OneMinusSrcAlpha
             Cull[_CullMode]
             
@@ -187,6 +190,7 @@
             Tags {
                 "LightMode"="ForwardAdd"
             }
+			//zwrite on
             Blend one one
             Cull[_CullMode]
             

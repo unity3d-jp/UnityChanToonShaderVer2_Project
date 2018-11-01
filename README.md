@@ -32,7 +32,7 @@ Recommend using only DoubleShadeWithFeather shader variants with or without outl
 
 
 _Support credits to:
-Noe, TCL, June, Cubed, Silent, RetroGeo, Xiexe, Mel0n, Cibbi, Hakanai
+Noe, TCL, June, Cubed, Silent, RetroGeo, Xiexe, Mel0n, Cibbi, Hakanai, Neitri
 
 
 _Hosting site:
