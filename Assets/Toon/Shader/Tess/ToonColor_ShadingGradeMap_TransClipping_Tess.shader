@@ -32,7 +32,7 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/ToonColor_ShadingGradeMap_Tra
         [HideInInspector] _Is_1st_ShadeColorOnly ("Is_1st_ShadeColorOnly", Float ) = 0
         _1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
         _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
-        _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0.003
+        _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0
         _2nd_ShadeColor_Feather ("2nd_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
         _StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
         _ShadingGradeMap ("ShadingGradeMap", 2D) = "white" {}

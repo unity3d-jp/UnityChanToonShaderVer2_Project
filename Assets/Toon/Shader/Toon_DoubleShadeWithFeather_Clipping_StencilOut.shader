@@ -11,8 +11,8 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilOut" {
         //v.2.0.4
         [HideInInspector] _IsBaseMapAlphaAsClippingMask ("IsBaseMapAlphaAsClippingMask", Float ) = 0
         //
-        _Clipping_Level ("Clipping_Level", Range(0, 1)) = 0
         [MaterialToggle] _Inverse_Clipping ("Inverse_Clipping", Float ) = 0
+        _Clipping_Level ("Clipping_Level", Range(0, 1)) = 0
         _MainTex ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         //v.2.0.5 : Clipping/TransClipping for SSAO Problems in PostProcessing Stack.
@@ -31,9 +31,9 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilOut" {
         //v.2.0.4.4
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
-        _BaseColor_Step ("BaseColor_Step", Range(0, 1)) = 0.6
+        _BaseColor_Step ("BaseColor_Step", Range(0, 1)) = 0.5
         _BaseShade_Feather ("Base/Shade_Feather", Range(0.0001, 1)) = 0.0001
-        _ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0.4
+        _ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0
         _1st2nd_Shades_Feather ("1st/2nd_Shades_Feather", Range(0.0001, 1)) = 0.0001
         _StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
         _Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" {}
