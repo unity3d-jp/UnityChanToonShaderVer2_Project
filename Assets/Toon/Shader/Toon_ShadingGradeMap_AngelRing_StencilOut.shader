@@ -112,7 +112,7 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_StencilOut" {
         //GI Intensity
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
-        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 5)) = 1
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 2)) = 1
         //v.2.0.5 
         [MaterialToggle] _Is_Filter_LightColor ("VRChat : Directional Light Intensity Filter", Float ) = 0
         //Built-in Light Direction
