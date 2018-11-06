@@ -104,6 +104,7 @@ They will be useful for reference of the look and scene you want to make!
 * Step_Offstの不具合修正。
 * Unlit_Intensityの上限値を2に変更。
 * Is_LightColor_カラー名スイッチをONにすると、複数リアルタイムライトがある環境で白飛びしやすかったのを改善。
+* Directional Light Intensity Filterを機能強化。VRChatで複数のディレクショナルライトがある為に白飛びがしやすい環境になっている場合にも、白飛びを抑えるようにした。  
 
 ### 2018/10/31：2.0.5 Test02：以下の機能追加をしました。  
 VRChatで、ディレクショナルライトのインテンシティが高めの設定がしてあるワールドで、白飛びを抑えるフィルタを実装したテストバージョン。
@@ -222,7 +223,8 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 ### 2018/11/06: 2.0.5 Test 03: Bug fix version.  
 * Fixed a bug in Step_Offst.  
 * Change the upper limit of Unlit_Intensity to 2.  
-* When Is_LightColor_* switches are turned on, the easy white jump in an environment with multiple real-time lights is improved.  
+* When Is_LightColor_* switches are turned on, the easy white over in an environment with multiple real-time lights is improved.  
+* Enhanced Directional Light Intensity Filter. Even when there is more than one directional light in VRChat, suppress the whitening even when it is in an environment that makes it easy to white over.  
 
 ### 2018/10/31: 2.0.5 Test 02: Added new features below.  
 In VRChat, this test version implements the filter that suppresses whitening in the world where the intensity of the directional light is set higher.  
