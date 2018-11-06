@@ -230,10 +230,6 @@
                 _Color = _BaseColor;
 
 #ifdef _IS_PASS_FWDBASE
-                //v.2.0.4.4
-                _1st_ShadeColor_Step = saturate(_1st_ShadeColor_Step - _StepOffset);
-                _2nd_ShadeColor_Step = saturate(_2nd_ShadeColor_Step - _StepOffset);
-                //
                 float3 Set_LightColor = lightColor.rgb;
                 float3 Set_BaseColor = lerp( (_MainTex_var.rgb*_BaseColor.rgb), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base );
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));
@@ -300,19 +296,31 @@
                 float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _MatCap_var, lerp( (_MatCap_var+Set_AngelRing), ((_MatCap_var*(1.0 - Set_ARtexAlpha))+Set_AngelRingWithAlpha), _ARSampler_AlphaOn ), _AngelRing ))))));// Final Composition before Emissive
 #endif
                 finalColor = finalColor + saturate(DecodeLightProbe(normalDirection)*_GI_Intensity) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
+
 #elif _IS_PASS_FWDDELTA
+                //v.2.0.5
+                _1st_ShadeColor_Step = saturate(_1st_ShadeColor_Step + _StepOffset);
+                _2nd_ShadeColor_Step = saturate(_2nd_ShadeColor_Step + _StepOffset);
+                //
+                //v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
+                float _LightIntensity = lerp(0,(0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b)*attenuation,_WorldSpaceLightPos0.w) ;
+                //
                 float3 Set_LightColor = lightColor.rgb;
-                float3 Set_BaseColor = lerp( (_MainTex_var.rgb*_BaseColor.rgb), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base );
+                float3 Set_BaseColor = lerp( (_MainTex_var.rgb*_BaseColor.rgb*_LightIntensity), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base );
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));
-                float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
+                float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb*_LightIntensity), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
                 float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMap ),lightDirection)+0.5; // Half Lambert
-                float Set_ShadingGrade = (_ShadingGradeMap_var.r*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(((attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel))), _Set_SystemShadowsToBase ));
+                //v2.0.5 :
+                float Set_ShadingGrade = _ShadingGradeMap_var.r*_HalfLambert_var;
+                //
                 float Set_FinalShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)))); // Base and 1st Shade Mask
                 float3 _BaseColor_var = lerp(Set_BaseColor,_Is_LightColor_1st_Shade_var,Set_FinalShadowMask);
                 float4 _2nd_ShadeMap_var = tex2D(_2nd_ShadeMap,TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap));
                 float Set_ShadeShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_2nd_ShadeColor_Step-_2nd_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_2nd_ShadeColor_Step - (_2nd_ShadeColor_Step-_2nd_ShadeColor_Feather)))); // 1st and 2nd Shades Mask
-                float3 finalColor = lerp( lerp(_BaseColor_var,lerp(_Is_LightColor_1st_Shade_var,lerp( (_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade ),Set_ShadeShadowMask),Set_FinalShadowMask), _BaseColor_var, _Is_1st_ShadeColorOnly );
+                float3 finalColor = lerp( lerp(_BaseColor_var,lerp(_Is_LightColor_1st_Shade_var,lerp( (_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb*_LightIntensity), ((_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade ),Set_ShadeShadowMask),Set_FinalShadowMask), _BaseColor_var, _Is_1st_ShadeColorOnly );
+                //v.2.0.5:
+                finalColor = saturate(finalColor);
 #endif
 
 //v.2.0.4

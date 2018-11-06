@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Grey_UTS2
-  m_Shader: {fileID: 4800000, guid: ca035891872022e4f80c952b3916e450, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
   m_ShaderKeywords: _INVERSE_Z_AXIS_BLD_ON _IS_BLENDADDTOMATCAP_ON _IS_LIGHTCOLOR_1ST_SHADE_ON
     _IS_LIGHTCOLOR_2ND_SHADE_ON _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON
     _IS_LIGHTCOLOR_HIGHCOLOR_ON _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON
@@ -138,7 +138,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Farthest_Distance: 10
-    - _GI_Intensity: 0.5
+    - _GI_Intensity: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.619
     - _GlossyReflections: 1
@@ -150,6 +150,7 @@ Material:
     - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
+    - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 1
     - _Is_LightColor_2nd_Shade: 1
     - _Is_LightColor_Ap_RimLight: 1
@@ -190,6 +191,9 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StepOffset: 0
+    - _TessEdgeLength: 5
+    - _TessExtrusionAmount: 0
+    - _TessPhongStrength: 0.5
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0
     - _Tweak_HighColorMaskLevel: 0
@@ -202,7 +206,7 @@ Material:
     - _Unlit_Intensity: 1
     - _ZWrite: 1
     m_Colors:
-    - _1st_ShadeColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _1st_ShadeColor: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
     - _2nd_ShadeColor: {r: 0.375, g: 0.375, b: 0.375, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
