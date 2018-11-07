@@ -25,7 +25,7 @@ Shader "UnityChanToonShader/Mobile/Toon_ShadingGradeMap_TransClipping" {
         _2nd_ShadeColor ("2nd_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
-        [MaterialToggle] _Is_NormalMap ("Is_NormalMap", Float ) = 0
+        [MaterialToggle] _Is_NormalMapToBase ("Is_NormalMapToBase", Float ) = 0
         //v.2.0.4.4
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0

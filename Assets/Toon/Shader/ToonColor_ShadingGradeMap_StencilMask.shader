@@ -21,7 +21,7 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_ShadingGradeMap_StencilMask" {
         _2nd_ShadeColor ("2nd_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
-        [MaterialToggle] _Is_NormalMap ("Is_NormalMap", Float ) = 0
+        [MaterialToggle] _Is_NormalMapToBase ("Is_NormalMapToBase", Float ) = 0
         //v.2.0.4.4
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
@@ -30,7 +30,10 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_ShadingGradeMap_StencilMask" {
         _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
         _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0
         _2nd_ShadeColor_Feather ("2nd_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
+        //v.2.0.5
         _StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
+        [MaterialToggle] _Is_Filter_HiCutPointLightColor ("PointLights HiCut_Filter (ForwardAdd Only)", Float ) = 1
+        //
         _ShadingGradeMap ("ShadingGradeMap", 2D) = "white" {}
         //
         _HighColor ("HighColor", Color) = (0,0,0,1)

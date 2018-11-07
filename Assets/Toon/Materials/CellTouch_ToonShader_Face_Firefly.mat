@@ -9,10 +9,10 @@ Material:
   m_Name: CellTouch_ToonShader_Face_Firefly
   m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
   m_ShaderKeywords: _INVERSE_CLIPPING_ON _ISRIM_NORMAL_ON _IS_BLENDADDTOHICOLOR_ON
-    _IS_BLENDADDTOMATCAP_ON _IS_FILTER_LIGHTCOLOR_ON _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON
-    _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
-    _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _IS_SPECULARTOHIGHCOLOR_ON
-    _OUTLINE_NML _RIMLIGHT_ON _SET_SYSTEMSHADOWSTOBASE_ON
+    _IS_BLENDADDTOMATCAP_ON _IS_FILTER_HICUTPOINTLIGHTCOLOR_ON _IS_FILTER_LIGHTCOLOR_ON
+    _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON _IS_LIGHTCOLOR_AP_RIMLIGHT_ON
+    _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON
+    _IS_SPECULARTOHIGHCOLOR_ON _OUTLINE_NML _RIMLIGHT_ON _SET_SYSTEMSHADOWSTOBASE_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -128,7 +128,7 @@ Material:
     - _AmbientLightPower: 0.5
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
-    - _BaseColor_Step: 0.439
+    - _BaseColor_Step: 0.39
     - _BaseShade_Feather: 0.0001
     - _BaseTexContrast: 0.38
     - _BaseTexPower: 0.34
@@ -148,6 +148,7 @@ Material:
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
+    - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 1
     - _Is_LightColor_1st_Shade: 1
     - _Is_LightColor_2nd_Shade: 1
@@ -192,7 +193,7 @@ Material:
     - _ShadeColor_Step: 0
     - _ShadePower: 0.43
     - _StencilNo: 1
-    - _StepOffset: -0.173
+    - _StepOffset: 0.2
     - _TessEdgeLength: 5
     - _TessExtrusionAmount: 0
     - _TessLevel: 1
@@ -204,7 +205,7 @@ Material:
     - _Tweak_MatCapUV: 0
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
-    - _Tweak_SystemShadowsLevel: -0.264
+    - _Tweak_SystemShadowsLevel: -0.184
     - _Unlit_Intensity: 1
     - _isKage_Normal: 0
     - _isRim_Normal: 1

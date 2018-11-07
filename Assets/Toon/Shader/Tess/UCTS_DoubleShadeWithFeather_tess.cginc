@@ -79,6 +79,7 @@
             uniform float _Unlit_Intensity;
             //v.2.0.5
             uniform fixed _Is_Filter_LightColor;
+            uniform fixed _Is_Filter_HiCutPointLightColor;
             //v.2.0.4.4
             uniform float _StepOffset;
             uniform fixed _Is_BLD;
@@ -265,8 +266,9 @@
                 //
                 //v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
                 float _LightIntensity = lerp(0,(0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b)*attenuation,_WorldSpaceLightPos0.w) ;
+                //v.2.0.5: Filtering the high intensity zone of PointLights
+                float3 Set_LightColor = lerp(lightColor,lerp(lightColor,min(lightColor,_LightColor0.rgb*attenuation*_BaseColor_Step),_WorldSpaceLightPos0.w),_Is_Filter_HiCutPointLightColor);
                 //
-                float3 Set_LightColor = lightColor.rgb;
                 float3 Set_BaseColor = lerp( (_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base );
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));
                 float3 Set_1st_ShadeColor = lerp( (_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb*_LightIntensity), ((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );

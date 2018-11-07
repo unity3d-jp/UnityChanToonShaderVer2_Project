@@ -34,7 +34,10 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping" {
         _BaseShade_Feather ("Base/Shade_Feather", Range(0.0001, 1)) = 0.0001
         _ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0
         _1st2nd_Shades_Feather ("1st/2nd_Shades_Feather", Range(0.0001, 1)) = 0.0001
+        //v.2.0.5
         _StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
+        [MaterialToggle] _Is_Filter_HiCutPointLightColor ("PointLights HiCut_Filter (ForwardAdd Only)", Float ) = 1
+        //
         _Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" {}
         _Set_2nd_ShadePosition ("Set_2nd_ShadePosition", 2D) = "white" {}
         //

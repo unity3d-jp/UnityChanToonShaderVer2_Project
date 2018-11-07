@@ -24,7 +24,7 @@
             uniform float4 _2nd_ShadeColor;
             uniform fixed _Is_LightColor_2nd_Shade;
             uniform sampler2D _NormalMap; uniform float4 _NormalMap_ST;
-            uniform fixed _Is_NormalMap;
+            uniform fixed _Is_NormalMapToBase;
             uniform fixed _Set_SystemShadowsToBase;
             uniform float _Tweak_SystemShadowsLevel;
             uniform sampler2D _ShadingGradeMap; uniform float4 _ShadingGradeMap_ST;
@@ -81,6 +81,7 @@
             uniform float _Unlit_Intensity;
             //v.2.0.5
             uniform fixed _Is_Filter_LightColor;
+            uniform fixed _Is_Filter_HiCutPointLightColor;
             //v.2.0.4.4
             uniform float _StepOffset;
             uniform fixed _Is_BLD;
@@ -238,7 +239,7 @@
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
-                float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMap ),lightDirection)+0.5; // Half Lambert
+                float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert
                 float Set_ShadingGrade = (_ShadingGradeMap_var.r*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(((attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel))), _Set_SystemShadowsToBase ));
                 float Set_FinalShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)))); // Base and 1st Shade Mask
                 float3 _BaseColor_var = lerp(Set_BaseColor,_Is_LightColor_1st_Shade_var,Set_FinalShadowMask);
@@ -307,13 +308,14 @@
                 //
                 //v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
                 float _LightIntensity = lerp(0,(0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b)*attenuation,_WorldSpaceLightPos0.w) ;
+                //v.2.0.5: Filtering the high intensity zone of PointLights
+                float3 Set_LightColor = lerp(lightColor,lerp(lightColor,min(lightColor,_LightColor0.rgb*attenuation*_1st_ShadeColor_Step),_WorldSpaceLightPos0.w),_Is_Filter_HiCutPointLightColor);
                 //
-                float3 Set_LightColor = lightColor.rgb;
                 float3 Set_BaseColor = lerp( (_MainTex_var.rgb*_BaseColor.rgb*_LightIntensity), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base );
                 float4 _1st_ShadeMap_var = tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap));
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb*_LightIntensity), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
-                float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMap ),lightDirection)+0.5; // Half Lambert
+                float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert
                 //v2.0.5 :
                 float Set_ShadingGrade = _ShadingGradeMap_var.r*_HalfLambert_var;
                 //
