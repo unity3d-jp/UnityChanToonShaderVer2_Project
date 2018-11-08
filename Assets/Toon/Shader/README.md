@@ -37,7 +37,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.5_Test03.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test034unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -50,7 +50,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.5_Test03.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test04.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
@@ -65,7 +65,7 @@ Please contact us if you have any issues.
 
 -----
 ## 【サンプルシーンについて】  
-プロジェクトを開くと、以下のサンプルシーンがあります。  
+プロジェクトを開くと、`Sample Scenes`フォルダに以下のサンプルシーンがあります。  
 
 ・BoxProjection.unity：Box Projection を使った暗い部屋のライティング  
 ・ToonShader.unity：イラストルックのシェーダー設定  
@@ -82,7 +82,7 @@ Please contact us if you have any issues.
 作りたいルックやシーンの参考に役立つと思います。  
 
 ### 【About Sample scenes】  
-When you open this project, there are the following sample scenes.  
+When you open this project, there are the following sample scenes in `Sample Scenes` Folder  
 
 ・BoxProjection.unity: For lighting settings to dark room using Box Projection  
 ・ToonShader.unity: Illustration-like shader settings  
@@ -100,6 +100,11 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【新規】
+### 2018/11/08：2.0.5 Test04：以下の機能追加と仕様変更をしました。  
+* プロパティ名の統一のために、ShadingGradeMap系シェーダーの`Is_NormalMap`スイッチを、`Is_NormalMapToBase`スイッチに改名。全てのシェーダーで名称を統一しました。お手数をおかけしますが、すでに設定済みのマテリアルは再度スイッチを設定し直してください。  
+* リアルタイムポイントライト使用時のセルルック品質が大いに向上しました。リアルタイムポイントライトだけでも綺麗なセルルックが実現できます。  
+* FowardAddパスで機能する`PointLights HiCut_Filter`を搭載しました。セルルック時に基本色内に現れるポイントライト由来のハイライトを抑え、ルックを向上させます。  
+
 ### 2018/11/06：2.0.5 Test03：以下の機能追加と仕様変更をしました。  
 * Step_Offstの不具合修正。
 * Unlit_Intensityの上限値を2に変更。
@@ -220,6 +225,11 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2018/11/08：2.0.5 Test04： Bug fix and Added new features below:  
+* For uniformity of property names, rename the 'Is_NormalMap` switch of ShadingGradeMap shaders to' Is_NormalMapToBase` switch. I unified the names with all the shaders. Sorry for the inconvenience but please set the switch again if you have the already set materials.  
+* Cel-look quality when using real-time point lights has improved greatly. Even just real-time point lights can achieve clean cel-look.  
+* Equipped `PointLights HiCut_Filter` functioning with FowardAdd pass. Suppresses the highlight from the point light appearing in the base color in cel-look, improving the look.  
+
 ### 2018/11/06: 2.0.5 Test 03: Bug fix version.  
 * Fixed a bug in Step_Offst.  
 * Change the upper limit of Unlit_Intensity to 2.  
@@ -356,12 +366,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.5 Test 03  
-最終リリース日：2018/11/06  
+最新バージョン：2.0.5 Test 04  
+最終リリース日：2018/11/08  
 カテゴリー：3D  
 形式：zip  
 
-Latest Version: 2.0.5 Test 03  
-Update: 2018/11/06  
+Latest Version: 2.0.5 Test 04  
+Update: 2018/11/08  
 Category: 3D  
 File format: zip  
