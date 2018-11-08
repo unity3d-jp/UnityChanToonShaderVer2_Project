@@ -128,8 +128,8 @@ Material:
     - _AmbientLightPower: 0.5
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
-    - _BaseColor_Step: 0.246
-    - _BaseShade_Feather: 0.303
+    - _BaseColor_Step: 0.388
+    - _BaseShade_Feather: 0.0001
     - _BaseTexContrast: 0.38
     - _BaseTexPower: 0.34
     - _Blightness: 0.67
@@ -193,7 +193,7 @@ Material:
     - _ShadeColor_Step: 0
     - _ShadePower: 0.43
     - _StencilNo: 1
-    - _StepOffset: 0.283
+    - _StepOffset: 0.216
     - _TessEdgeLength: 5
     - _TessExtrusionAmount: 0
     - _TessLevel: 1
@@ -205,7 +205,7 @@ Material:
     - _Tweak_MatCapUV: 0
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
-    - _Tweak_SystemShadowsLevel: 0.017
+    - _Tweak_SystemShadowsLevel: -0.047
     - _Unlit_Intensity: 1
     - _isKage_Normal: 0
     - _isRim_Normal: 1
