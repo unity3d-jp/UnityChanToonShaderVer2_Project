@@ -37,7 +37,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.5_Test034unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test05.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -50,7 +50,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.5_Test04.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test05.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
@@ -100,6 +100,9 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【新規】
+### 2018/11/11：2.0.5 Test05：以下の機能追加をしました。  
+* かにひら氏（@kanihira）考案のカメラ補正付きMatCapを搭載しました。オブジェクトがカメラ描画面の端に寄った時の、MatCapの歪みが出なくなります。  
+
 ### 2018/11/08：2.0.5 Test04：以下の機能追加と仕様変更をしました。  
 * プロパティ名の統一のために、ShadingGradeMap系シェーダーの`Is_NormalMap`スイッチを、`Is_NormalMapToBase`スイッチに改名。全てのシェーダーで名称を統一しました。お手数をおかけしますが、すでに設定済みのマテリアルは再度スイッチを設定し直してください。  
 * リアルタイムポイントライト使用時のセルルック品質が大いに向上しました。リアルタイムポイントライトだけでも綺麗なセルルックが実現できます。  
@@ -225,6 +228,9 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2018/11/11：2.0.5 Test05：　Added new features below:  
+* Thanks for the idea of Kanohira (@kanihira)-san, MatCap with camera skew correction was equipped. Distortion of MatCap image will not come out when the object is close to the edge of the camera drawing surface.  
+
 ### 2018/11/08：2.0.5 Test04： Bug fix and Added new features below:  
 * For uniformity of property names, rename the 'Is_NormalMap` switch of ShadingGradeMap shaders to' Is_NormalMapToBase` switch. I unified the names with all the shaders. Sorry for the inconvenience but please set the switch again if you have the already set materials.  
 * Cel-look quality when using real-time point lights has improved greatly. Even just real-time point lights can achieve clean cel-look.  
@@ -366,12 +372,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.5 Test 04  
-最終リリース日：2018/11/08  
+最新バージョン：2.0.5 Test 05  
+最終リリース日：2018/11/11  
 カテゴリー：3D  
 形式：zip  
 
-Latest Version: 2.0.5 Test 04  
-Update: 2018/11/08  
+Latest Version: 2.0.5 Test 05  
+Update: 2018/11/11  
 Category: 3D  
 File format: zip  
