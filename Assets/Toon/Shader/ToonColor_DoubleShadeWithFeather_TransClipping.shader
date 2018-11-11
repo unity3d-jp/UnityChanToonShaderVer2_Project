@@ -87,6 +87,8 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_TransClip
 //MatcapMask
         _Set_MatcapMask ("Set_MatcapMask", 2D) = "white" {}
         _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
+        //v.2.0.5
+         [MaterialToggle] _Is_Ortho ("Orthographic Projection for MatCap", Float ) = 0
 //
 //v.2.0.4 Emissive
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}

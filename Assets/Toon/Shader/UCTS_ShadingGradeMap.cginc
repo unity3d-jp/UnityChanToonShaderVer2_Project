@@ -69,10 +69,12 @@
             uniform float _Rotate_NormalMapForMatCapUV;
             uniform fixed _Is_UseTweakMatCapOnShadow;
             uniform float _TweakMatCapOnShadow;
-//MatcapMask
+            //MatcapMask
             uniform sampler2D _Set_MatcapMask; uniform float4 _Set_MatcapMask_ST;
             uniform float _Tweak_MatcapMaskLevel;
-//
+            //v.2.0.5
+            uniform fixed _Is_Ortho;
+            //Emissive
             uniform sampler2D _Emissive_Tex; uniform float4 _Emissive_Tex_ST;
             uniform float4 _Emissive_Color;
             uniform float _Unlit_Intensity;
@@ -256,7 +258,7 @@
                 float3 NormalBlend_MatcapUV_Detail = viewNormal.rgb * float3(-1,-1,1);
                 float3 NormalBlend_MatcapUV_Base = (mul( UNITY_MATRIX_V, float4(viewDirection,0) ).rgb*float3(-1,-1,1)) + float3(0,0,1);
                 float3 noSknewViewNormal = NormalBlend_MatcapUV_Base*dot(NormalBlend_MatcapUV_Base, NormalBlend_MatcapUV_Detail)/NormalBlend_MatcapUV_Base.b - NormalBlend_MatcapUV_Detail;                
-                float2 _ViewNormalAsMatCapUV = (noSknewViewNormal.rg*0.5)+0.5;
+                float2 _ViewNormalAsMatCapUV = (lerp(noSknewViewNormal,viewNormal,_Is_Ortho).rg*0.5)+0.5;
                 //
                 float2 _Rot_MatCapUV_var = (mul((0.0 + ((_ViewNormalAsMatCapUV - (0.0+_Tweak_MatCapUV)) * (1.0 - 0.0) ) / ((1.0-_Tweak_MatCapUV) - (0.0+_Tweak_MatCapUV)))-_Rot_MatCapUV_var_piv,float2x2( _Rot_MatCapUV_var_cos, -_Rot_MatCapUV_var_sin, _Rot_MatCapUV_var_sin, _Rot_MatCapUV_var_cos))+_Rot_MatCapUV_var_piv);
                 float4 _MatCap_Sampler_var = tex2D(_MatCap_Sampler,TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler));

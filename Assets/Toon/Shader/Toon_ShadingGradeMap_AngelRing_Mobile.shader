@@ -78,6 +78,8 @@ Shader "UnityChanToonShader/Mobile/AngelRing/Toon_ShadingGradeMap" {
 //MatcapMask
         _Set_MatcapMask ("Set_MatcapMask", 2D) = "white" {}
         _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
+        //v.2.0.5
+         [MaterialToggle] _Is_Ortho ("Orthographic Projection for MatCap", Float ) = 0
 //
 //天使の輪追加プロパティ.
         [MaterialToggle] _AngelRing ("AngelRing", Float ) = 0
