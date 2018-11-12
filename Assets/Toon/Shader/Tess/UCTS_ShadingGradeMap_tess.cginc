@@ -293,10 +293,9 @@
                 float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
 //v.2.0.4
 #ifdef _IS_ANGELRING_OFF
-
-                float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _RimLight_var, lerp( ((_RimLight_var*(1-(_Tweak_MatcapMaskLevel_var*0.5+0.5))+_RimLight_var*Set_MatCap*(_Tweak_MatcapMaskLevel_var*0.5+0.5))), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap ))))));// Final Composition before Emissive
+                float3 finalColor = lerp( _RimLight_var, lerp( ((_RimLight_var*(1-_Tweak_MatcapMaskLevel_var)+_RimLight_var*Set_MatCap*_Tweak_MatcapMaskLevel_var)), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap );// Final Composition before Emissive
 #elif _IS_ANGELRING_ON
-                float3 _MatCap_var = lerp( _RimLight_var, lerp( ((_RimLight_var*(1-(_Tweak_MatcapMaskLevel_var*0.5+0.5))+_RimLight_var*Set_MatCap*(_Tweak_MatcapMaskLevel_var*0.5+0.5))), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap );
+                float3 _MatCap_var = lerp( _RimLight_var, lerp( ((_RimLight_var*(1-_Tweak_MatcapMaskLevel_var)+_RimLight_var*Set_MatCap*_Tweak_MatcapMaskLevel_var)), (_RimLight_var+Set_MatCap*_Tweak_MatcapMaskLevel_var), _Is_BlendAddToMatCap ), _MatCap );
                 float3 _AR_OffsetU_var = lerp(mul( UNITY_MATRIX_V, float4(i.normalDir,0) ).xyz.rgb,float3(0,0,1),_AR_OffsetU);
                 float2 _AR_OffsetV_var = float2((_AR_OffsetU_var.r*0.5+0.5),lerp(i.uv1.g,(_AR_OffsetU_var.g*0.5+0.5),_AR_OffsetV));
                 float4 _AngelRing_Sampler_var = tex2D(_AngelRing_Sampler,TRANSFORM_TEX(_AR_OffsetV_var, _AngelRing_Sampler));
@@ -305,9 +304,9 @@
                 float Set_ARtexAlpha = _AngelRing_Sampler_var.a;
                 float3 Set_AngelRingWithAlpha = (_Is_LightColor_AR_var*_AngelRing_Sampler_var.a);
 
-                float3 finalColor = saturate((1.0-(1.0-(saturate(lerp( _MatCap_var, lerp( (_MatCap_var+Set_AngelRing), ((_MatCap_var*(1.0 - Set_ARtexAlpha))+Set_AngelRingWithAlpha), _ARSampler_AlphaOn ), _AngelRing ))))));// Final Composition before Emissive
+                float3 finalColor = lerp( _MatCap_var, lerp( (_MatCap_var+Set_AngelRing), ((_MatCap_var*(1.0 - Set_ARtexAlpha))+Set_AngelRingWithAlpha), _ARSampler_AlphaOn ), _AngelRing );// Final Composition before Emissive
 #endif
-                finalColor = finalColor + saturate(DecodeLightProbe(normalDirection)*_GI_Intensity) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
+                finalColor = saturate(finalColor + DecodeLightProbe(normalDirection)*_GI_Intensity) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
 
 #elif _IS_PASS_FWDDELTA
                 //v.2.0.5
