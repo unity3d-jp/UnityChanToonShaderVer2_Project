@@ -100,9 +100,12 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【新規】
-### 2018/11/12：2.0.5 Test05：以下の機能追加とバグ修正をしました。  
+### 2018/11/13：2.0.5 Test05：以下の機能追加とバグ修正をしました。  
 * かにひら氏（@kanihira）考案のカメラ補正付きMatCapを搭載しました。オブジェクトがカメラ描画面の端に寄った時の、MatCapの歪みが出なくなります。  
-* 乗算合成時のMatcapMaskの挙動を正しくしました。  
+* 乗算合成時のTweak_MatcapMaskLevelの挙動を正しくしました。  
+* Is_SpecularToHighColorスイッチがオンの時、常に加算合成するように仕様変更をしました。この場合、Is_BlendAddToHicolorスイッチは無効になります。  
+* HiColor_Powerのスライダの感度調整をしました。スペキュラ使用時の感度に合わせました。  
+
 
 ### 2018/11/08：2.0.5 Test04：以下の機能追加と仕様変更をしました。  
 * プロパティ名の統一のために、ShadingGradeMap系シェーダーの`Is_NormalMap`スイッチを、`Is_NormalMapToBase`スイッチに改名。全てのシェーダーで名称を統一しました。お手数をおかけしますが、すでに設定済みのマテリアルは再度スイッチを設定し直してください。  
@@ -229,9 +232,11 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
-### 2018/11/12：2.0.5 Test05：　Added new features and bug fix below:  
+### 2018/11/13：2.0.5 Test05：　Added new features and bug fix below:  
 * Thanks for the idea of Kanohira (@kanihira)-san, MatCap with camera skew correction was equipped. Distortion of MatCap image will not come out when the object is close to the edge of the camera drawing surface.  
-* MatcapMask works correctly in Multiply blend mode.  
+* Tweak_MatcapMaskLevel works correctly in Multiply blend mode.  
+* Is_SpecularToHighColor Specification changed so that additive synthesis always occurs when switch is on. In this case, the Is_BlendAddToHicolor switch is disabled.  
+* We adjusted the sensitivity of the slider of HiColor_Power. It matched the sensitivity when using specular.  
 
 ### 2018/11/08：2.0.5 Test04： Bug fix and Added new features below:  
 * For uniformity of property names, rename the 'Is_NormalMap` switch of ShadingGradeMap shaders to' Is_NormalMapToBase` switch. I unified the names with all the shaders. Sorry for the inconvenience but please set the switch again if you have the already set materials.  
@@ -375,11 +380,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.5 Test 05  
-最終リリース日：2018/11/12  
+最終リリース日：2018/11/13  
 カテゴリー：3D  
 形式：zip  
 
 Latest Version: 2.0.5 Test 05  
-Update: 2018/11/12  
+Update: 2018/11/13  
 Category: 3D  
 File format: zip  
