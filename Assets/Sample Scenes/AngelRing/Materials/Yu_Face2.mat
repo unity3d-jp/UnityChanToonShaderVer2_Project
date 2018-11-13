@@ -227,7 +227,7 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _Outline_Width: 0.99
+    - _Outline_Width: 0.02
     - _Parallax: 0.02
     - _RimLight: 0
     - _RimLight_FeatherOff: 0

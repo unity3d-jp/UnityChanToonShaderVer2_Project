@@ -269,6 +269,38 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4427fc64bbd8228499c0ab5c11938c39, type: 3}
   m_IsPrefabParent: 0
@@ -299,7 +331,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 759218312}
   m_LocalRotation: {x: 0.0301133, y: -0.92577463, z: 0.07550256, w: 0.36923423}
-  m_LocalPosition: {x: 2.339, y: 7.116, z: 2.406}
+  m_LocalPosition: {x: 2.165, y: 7.206, z: 2.354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -359,11 +391,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 20
+  near clip plane: 0.5
+  far clip plane: 30
   field of view: 30
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 0.8
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
