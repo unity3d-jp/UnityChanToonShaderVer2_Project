@@ -1,11 +1,11 @@
 ﻿# Unity-Chan Toon Shader Ver. 2.0 Manual
 
 ### Nobuyuki Kobayashi (Unity Technologies Japan), June 25, 2017
-![](Images_ja/LookSample_en.jpg)
-![](Images_ja/CRS01.jpg)
-![](Images_ja/CRS02.jpg)
-![](Images_ja/CRS03.jpg)
-![](Images_ja/HiUni01.jpg)
+![](Images_jpg/LookSample_en.jpg)
+![](Images_jpg/CRS01.jpg)
+![](Images_jpg/CRS02.jpg)
+![](Images_jpg/CRS03.jpg)
+![](Images_jpg/HiUni01.jpg)
 
 
 # 【What is the Unity-Chan Toon Shader?】
@@ -37,11 +37,11 @@ We recommend using the toon shader with Forward Rendering, and Linear color spac
 * Adjust the blur where the normal color and shadow color meet 
 * Change the distribution area of the shadow color without changing the light position
 
-![](Images_ja/0713-06_01_eng.jpg)
+![](Images_jpg/0713-06_01_eng.jpg)
 
 ### We have also added support for the resources below in Unity-Chan Toon Shader Ver. 2.0.  
 
-![](Images_ja/1230-11_14.jpg)
+![](Images_jpg/1230-11_14.jpg)
 
 * Support for Unity's system shadow added. You can use Receive Shadows and Cast Shadows.  
 * You can have as many light colors as possible in Forward Rendering. Support added for realtime point lights, in addition to directional lights, which were mainly used to set the look.  
@@ -89,7 +89,7 @@ They will be useful for reference of the look and scene you want to make!
 
 ---
 ## 【Initial Project Settings】
-![](Images_ja/0801-12_07.jpg)
+![](Images_jpg/0801-12_07.jpg)
 
 From: File>Build Settings>Player Settings  
 Select “Rendering Path⇒`Forward`”  
@@ -98,7 +98,7 @@ And “Color Space⇒`Linear`” (recommended)
 
 ---
 ## 【Description of Toon Shader Properties】
-![](Images_ja/UI_Toon_DoubleShadeWithFeather.jpg)
+![](Images_jpg/UI_Toon_DoubleShadeWithFeather.jpg)
 
 ---
 | `Property name`  | Function |
@@ -179,27 +179,27 @@ And “Color Space⇒`Linear`” (recommended)
 
 ---
 ## 【Strengthening the function of rim light】
-![](Images_ja/0609-04_11.jpg)
-![](Images_ja/0609-04_02.jpg)
+![](Images_jpg/0609-04_11.jpg)
+![](Images_jpg/0609-04_02.jpg)
 
 The light direction mask was added to Rim Light. By using the mask, it is now possible to individually specify the color of the rim light in the direction of the light source and vice versa.  
 If you also want to cut the rim light in the light direction and want to generate rim light only in the antipodean (opposite) direction to the light direction, please set the color of the rim light in the light direction to `Black (0, 0, 0)`.  
 
 
 ## 【Making Material Transparent with a Stencil】
-![](Images_ja/1230-11_10_eng.jpg)
+![](Images_jpg/1230-11_10_eng.jpg)
 
 ---
 ## 【Distributing Multiple Materials Made with a Clipping Mask 】
-![](Images_ja/1230-11_11.jpg)
+![](Images_jpg/1230-11_11.jpg)
 
 Set the necessary value for the size of the Materials in the Skinned Mesh Renderer, and set that value to each Element when distributing multiple materials in the `_Clipping` Shader.  
 
 
 ---
 ## 【_TransClipping Shader】
-![](Images_ja/0102-04_02_eng.jpg)
-![](Images_ja/0102-06_02_eng.jpg)
+![](Images_jpg/0102-04_02_eng.jpg)
+![](Images_jpg/0102-06_02_eng.jpg)
 
 Most of the functions in the `_TransClipping` Shader are the same as in the `_Clipping` Shader, but it typically considers the grayscale of the clipping mask to be alpha.  
 Use when thinning out the tip of a tuft of thin, rectangular hair that is considered to be alpha in the mask, and for animating frizz, etc.  
@@ -208,12 +208,12 @@ You can adjust transparency in the `Tweak_Transparency` Slider.
 
 ---
 ## 【Tips for Pasting Textures for MatCap】
-![](Images_ja/1230-11_15_eng.jpg)
+![](Images_jpg/1230-11_15_eng.jpg)
 
 
 ---
 ## 【Textures Used in Outline Sampler】
-![](Images_ja/0906-18_01_eng.jpg)
+![](Images_jpg/0906-18_01_eng.jpg)
 
 Black means there is no line. White means the line width is at 100%.  
 Generates varying thickness (thick or thin) in an outline by setting the appropriate Outline Sampler.  
@@ -222,7 +222,7 @@ You can generally control the thickness in the Outline Sampler by standardizing 
 
 ---
 ## 【Position Map that Specifies Where You Want to Cast Shadows】
-![](Images_ja/0906-18_03_eng.jpg)
+![](Images_jpg/0906-18_03_eng.jpg)
 
 You can specify where you want to cast shadows independently from lighting with the position map.  
 You can add shadows in addition to lighting whenever you want to add a special shadow to an individual scene, or place additional shadows in a scene.  
@@ -231,7 +231,7 @@ You can add shadows in addition to lighting whenever you want to add a special s
 
 ---
 ## 【Mutual Actions in 1st Shade and 2nd Shade Position Maps】
-![](Images_ja/0102-22_03.jpg)
+![](Images_jpg/0102-22_03.jpg)
 
 Stack and specify the 1st shade and 2nd shade position maps when you want to constantly display 2nd shade independent from the lighting and shadow conditions.  
 2nd Shade is also constantly displayed inside of shadows in the 2nd shade area.  
@@ -242,7 +242,7 @@ In bright areas, meanwhile, 2nd shade is only displayed on the inside of a shado
 ## 【Another Shader Group : Toon_ShadingGradeMap.shader】
 
 The standard toon shader for Unity-Chan Toon Shader Ver. 2.0 is called `Toon_DoubleShadeWithFeather.shader`. But there is also an extended shader called `Toon_ShadingGradeMap` that allows you to control where to place even more shadows with UV coordinate units if you use the `Shading Grade Map`, which was made using the features of the standard shader.  
-![](Images_ja/0122-06_04_eng.jpg)
+![](Images_jpg/0122-06_04_eng.jpg)
 
 You can control how easy it is to place 1st shade or 2nd shade with UV units by adding the `Shading Grade Map` (an incline map for adding shading) to the regular toon shader.  
 Using this map allows you to adjust how easy it is to cast partial shadows, so you can create animations where shadows show on wrinkles in clothes and disappear when illuminated.  
@@ -255,7 +255,7 @@ This is useful for shadows that follow the shape of bangs, and for the concave p
 Be aware that there is no position map option for 1st shade or 2nd shade in this shader.  
 We have also added the following properties. (Properties with the same name are the same as in the standard toon shader.)  
 
-![](Images_ja/UI_ShadingGradeMap.jpg)
+![](Images_jpg/UI_ShadingGradeMap.jpg)
 
 ---
 | `Property Name` | Function !
@@ -274,7 +274,7 @@ You can use Unity's Global Illumination (GI) system, which is controlled in the 
 GI intensity is 100% when `GI_Intensity` is set to 1.  
 GI Blend (as Screen mode) to toon color as an environment light.  
 You can use a baked Light Probe, and the `Skybox`, `Gradient`, and `Color` options in the `Ambient Source` property in Unity's Lighting Window with GI as the light source.  
-![](Images_ja/0201-11_05.jpg)
+![](Images_jpg/0201-11_05.jpg)
 
 Please use **one of the settings** below, **if you do not wish to show the toon color with GI**.  
 
@@ -282,11 +282,11 @@ Please use **one of the settings** below, **if you do not wish to show the toon 
 * Set `Ambient Intensity` in Unity's Lighting Window to `0`.
 * Set the `Color` option in `Ambient Source` in Unity's Lighting Window to `black (RGB = 0/0/0)`.
 
-![](Images_ja/0201-11_01.jpg)
+![](Images_jpg/0201-11_01.jpg)
 
 ---
 ## 【About Offset_Camera_Z】
-![](Images_ja/0205-11_01_eng.jpg)
+![](Images_jpg/0205-11_01_eng.jpg)
 
 Offset the outline in the direction of the Z axis of the camera by placing a positive value in the `Offset_Camera_Z` field.  
 Use this to adjust the appearance of outlines when you have shapes similar to spikey hair, like in the image below.  
@@ -295,29 +295,29 @@ Place a 0 in the field to return to the default setting.
 
 ---
 ## 【AngelRing Feature】
-![](Images_ja/AR_Postion.jpg)
+![](Images_jpg/AR_Postion.jpg)
 
 There are multiple shaders in `UnityChanToonShader/AngelRing` or `UnityChanToonShader/NoOutline/AngelRing` that support the AngelRing feature.  
 
 AngelRing is a highlight renderer. It produces the effect seen in the image below. The highlights always appear in a fixed position from the view of the camera.  
-![](Images_ja/AR_Image.jpg)
+![](Images_jpg/AR_Image.jpg)
 
 You will need two UVs for the Angel Ring highlight, in addition to the hair mesh you will apply and the UV for normal textures, in order to use this feature.  
 
 The UV for AngelRing, in contrast with a conventional hair texture UV, creates the effect with a planar projection on the entirety of the hair the AngelRing is applied to from the front side of the character.  
-![](Images_ja/HairModel.jpg)
+![](Images_jpg/HairModel.jpg)
 
 **※These tasks including creating UV 2 are done with DCC tools such as Maya, 3ds Max, Blender.**  
 
 Draw the texture for the highlighted parts with the AngelRing UV as a guide. Synthesize the color of the highlighted parts by adding to the original color values.  
 Register the texture you created to `AngelRing_Sampler`.  
 You can also draw the highlights in white, then add color to them later with `AngelRing_Color`.  
-![](Images_ja/Hair_UV1.jpg)
+![](Images_jpg/Hair_UV1.jpg)
 
 ---
 ### The properties for the AngelRing feature are below.  
 
-![](Images_ja/0609-04_12.jpg)
+![](Images_jpg/0609-04_12.jpg)
 
 ---
 | `Property name` | Function |
@@ -333,18 +333,18 @@ You can also draw the highlights in white, then add color to them later with `An
 
 If you check `ARSampler_AlphaOn`, you can use the alpha channel of "Angel's Ring" texture as clipping mask, as shown below.  
 You can specify directly the color of "Angel's Ring" instead of adding.  
-![](Images_ja/0609-04_13.jpg)
+![](Images_jpg/0609-04_13.jpg)
 
 
 ---
 ## 【Check Box that Activates Light Color for Each Color】
-![](Images_ja/Check.jpg)
+![](Images_jpg/Check.jpg)
 
 `Is_LightColor_Base` and other `Is_LightColor_"ColorName"` check box options with a color's name attached to the end are options that change whether the light color of the directional light, which is the main light, affects each color.  
 Changing whether the light color affects any of the other colors makes it possible for you to create more complicated lighting.  
 The example below only shows a red light color affecting the color of the shadow.  
 If you open the door on the same side as the camera, the red light that pours through from the door illuminates Unity-chan.  
-![](Images_ja/BoxProjection.jpg)
+![](Images_jpg/BoxProjection.jpg)
 
 
 ---
@@ -354,7 +354,7 @@ When creating a cel-shaded look, you will sometimes finely adjust the lighting (
 You can change the light in each part by preparing the necessary number of layers when light linking in Unity.  
 You will find an example of light linking below.  
 
-![](Images_ja/0801-12_05_eng.jpg)
+![](Images_jpg/0801-12_05_eng.jpg)
 
 In this example, the Directional Light_MainLight is only illuminated in the mesh belonging to the MainLight layer.  
 Please use light linking carefully, because certain settings can make Receive Shadow and other properties ineffective.  
@@ -376,7 +376,7 @@ https://github.com/unity3d-jp/AlembicImporter
 
 ---
 ## 【Using on mobile platforms】
-![](Images_ja/0609-05_01.jpg)
+![](Images_jpg/0609-05_01.jpg)
 
 For mobile platforms, added a lighter-weight version that almost does not change the look.  
 In the mobile version, it is limited to the following specifications.  
@@ -391,20 +391,20 @@ Thanks to property compatible with the standard version toon shader, rendering p
 Unity-Chan Toon Shader 2.0 is provided under the **Unity-Chan License 2.0** terms.  
 Please refer to the following link for information regarding the Unity-Chan License.  
 http://unity-chan.com/contents/guideline_en/  
-![](Images_ja/Light_Silhouette.jpg)
+![](Images_jpg/Light_Silhouette.jpg)
 
 ---
 # Unity-Chan Toon Shader Ver. 2.0 Supplementary Manual
 ## Reducing Artifacts Generated at the Border between Unity's System Shadow and Custom Lighting
 
-![](Images_ja/0105-22_01_eng.jpg)
+![](Images_jpg/0105-22_01_eng.jpg)
 
 How to Reduce Artifacts Generated at the Border between Unity's System Shadow and Custom Lighting above.  
 
 
 ### 【1: Change to Linear color space】
 
-![](Images_ja/0105-22_012_eng.jpg)
+![](Images_jpg/0105-22_012_eng.jpg)
 
 **Change to Linear color space** if you are in Gamma color space.  
 It is usually easier to change the gradation of artifacts in Linear color space.  
@@ -412,7 +412,7 @@ It is usually easier to change the gradation of artifacts in Linear color space.
 
 ### 【2: Increase Mesh Partitioning】
 
-![](Images_ja/0105-22_05_eng.jpg)
+![](Images_jpg/0105-22_05_eng.jpg)
 
 **Mesh partitioning will increase** if all parameters for lighting and shaders are the same.  
 Increasing mesh partitioning will cause many artifacts to disappear.  
@@ -420,17 +420,17 @@ Increasing mesh partitioning will cause many artifacts to disappear.
 
 ### 【3: Remove Artifacts by Adjusting BaseColor_Step/Tweak_SystemShadowsLevel 】
 
-![](Images_ja/0105-22_04.jpg)
+![](Images_jpg/0105-22_04.jpg)
 
 The shadow at the border in Fig. 1 was made by the threshold of Unity's system shadow and custom lighting, but it is virtually the same.  
 You can tell because the border position of the shadow does not move when you make the shadow this way, even if you disable `Set_SystemShadowsToBase`.  
 
-![](Images_ja/0105-22_07.jpg)
+![](Images_jpg/0105-22_07.jpg)
 
 As you can see in Fig. 1, you generate artifacts (Fig. 2) by moving the `Base/Shade_Feather` slider to the right when you have a shadow.  
 These artifacts are generated **because the custom lighting shadow threshold is cutting into Unity's system shadow**.
 
-![](Images_ja/0105-22_08.jpg)
+![](Images_jpg/0105-22_08.jpg)
 
 When this happens, you can **increase the shadow areas the custom lighting creates** by also **moving the `BaseColor_Step` slider to the right**, like in Fig. 3.  
 This helps reduce artifacts to an acceptable amount, and creates border gradation.  
@@ -442,7 +442,7 @@ You can also reduce artifacts by **adjusting the level on the system shadow side
 
 ### 【4: Increase Directional Light Bias】
 
-![](Images_ja/0105-23_02.jpg)
+![](Images_jpg/0105-23_02.jpg)
 
 Finally, you can reduce artifacts by **increasing the bias of a directional light** that illuminates a ball as key light.  
 This is because the system shadow position changes when increasing bias.  
