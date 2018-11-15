@@ -5,7 +5,9 @@
 <img width = "800" src="Images_jpg/CRS01.jpg">
 <img width = "800" src="Images_jpg/CRS02.jpg">
 <img width = "800" src="Images_jpg/CRS03.jpg">
-<div style="position:relative;height:0;padding-bottom:56.23%"><iframe src="https://www.youtube.com/embed/Pobi_MPaQEc?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="800" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+[![](https://img.youtube.com/vi/Pobi_MPaQEc/0.jpg)](https://www.youtube.com/watch?v=Pobi_MPaQEc)
+
 <img width = "800" src="Images_jpg/TPK_04.jpg">
 <img width = "800" src="Images_jpg/HiUni01.jpg">
 
@@ -95,7 +97,7 @@ Forwardレンダリング環境。リニアカラースペースでの使用を�
 
 例として、シェーダーボール上で肌色のマテリアルを設定してみましょう。  
 
-<div style="position:relative;height:0;padding-bottom:56.23%"><iframe src="https://www.youtube.com/embed/z7Pr39NW5Dk?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+[![](https://img.youtube.com/vi/z7Pr39NW5Dk/0.jpg)](https://www.youtube.com/watch?v=z7Pr39NW5Dk)
 
 
 # UTS2各シェーダーの使い分け
@@ -313,7 +315,7 @@ File>Build Settings>Player Settings... より
 カラー同様に、各エフェクトにもノーマルマップを影響させるかどうかを選べるチェックがあります。  
 これらのチェックを外すと、ジオメトリの頂点法線がそのまま使われます。  
 
-<div style="position:relative;height:0;padding-bottom:56.27%"><iframe src="https://www.youtube.com/embed/Hdyp8f7l0VI?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+[![](https://img.youtube.com/vi/Hdyp8f7l0VI/0.jpg)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
 
 **※ヒント**：もちろんノーマルマップをバンプのように疑似立体表現として利用することもできます。ただしバンプ表現に用いられる場合、ノーマルマップは実際にジオメトリの表面を凸凹させるものではなく、ライティングでその凹凸を表現するものですので、**ライティングの変化が現れやすくするように、基本色/1影色/2影色のステップを設定してやる**必要があります。[上の例](https://twitter.com/nyaa_toraneko/status/1051359237631164417)の場合、基本色側のステップを0.8、影色側のステップを0.5ぐらいにした上で、さらに少し暗めのハイカラーを足してやることで立体感を強調してやっています。  
 
@@ -348,7 +350,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 
 ### 【Step/Feather各スライダーの基本的な使い方】
-<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/eM3iwE67ICM?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+[![](https://img.youtube.com/vi/eM3iwE67ICM/0.jpg)](https://www.youtube.com/watch?v=eM3iwE67ICM)
 
 **塗り分け段階を設定するStepスライダー**、**各色の境界をぼかすFeatherスライダー**の基本的な使い方です。  
 
@@ -405,13 +407,13 @@ UTS2の標準シェーダーは、`Toon_DoubleShadeWithFeather.shader`という�
 ---
 ### 【ポイントライトによるカラー塗り分けを微調整する：Step_Offset、PointLights HiCut_Filter】
 
-<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/fJX8uQKzWhc?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+[![](https://img.youtube.com/vi/fJX8uQKzWhc/0.jpg)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
 
 UTS2 v.2.0.5では、ぼかしを使わないセルルック時のリアルタイムポイントライトへの反応を改善しました。結果、ポイントライトだけでもセル風のルックが実現できます。  
 セルルックは、基本色（明色）/１影色、１影色/２影色の各Stepスライダーを調整して設定しますが、ポイントライトの場合、ディレクショナルライト以上に移動に対する影の変化が顕著になります。  
 それらの変化ををある程度抑え込むための微調整用として、`Step_Offset`スライダーを使います。  
 
-<div style="position:relative;height:0;padding-bottom:56.28%"><iframe src="https://www.youtube.com/embed/WkJId-e2TKk?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+[![](https://img.youtube.com/vi/WkJId-e2TKk/0.jpg)](https://www.youtube.com/watch?v=WkJId-e2TKk)
 
 `Step_Offset`を使うことで、ポイントライトなどFowardAddパス側で追加されるリアルタイムライトのステップ（塗り分け段階）を微調整できます。  
 塗り分け用に使われる`BaseColor_Step`などの調整は、メインライトによる塗り分け段階を決めるのと同時に、ポイントライト側の設定にも使われます。  
