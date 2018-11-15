@@ -37,7 +37,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.5_Test05.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test06.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -50,7 +50,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.5_Test05.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test06.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
@@ -77,6 +77,9 @@ Please contact us if you have any issues.
 ・ShaderBall/ShaderBall.unity：シェーダーボールを使ってUTS2を設定する  
 ・PointLightTest/PointLightTest.unity：ポイントライトを使ったセルルック表現のサンプル  
 ・SSAO Test/SSAO.unity：SSAO in PPSのテスト用  
+・LightAndShadows/LightAndShadows.unity：Standard ShaderとUST2の比較  
+・AngelRing/AngelRing.unity：「天使の輪」のサンプル  
+・MatCapMask/MatCapMask.unity：MatcapMaskのサンプル  
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
 作りたいルックやシーンの参考に役立つと思います。  
@@ -94,18 +97,24 @@ When you open this project, there are the following sample scenes in `Sample Sce
 ・ShaderBall / ShaderBall.unity: Set UTS2 using shader ball  
 ・PointLightTest / PointLightTest.unity: Sample of CelLook style using point lights  
 ・SSAO Test / SSAO.unity: For testing SSAO in PPS  
+・LightAndShadows / LightAndShadows.unity: Comparison between Standard Shader and UST2  
+・AngelRing / AngelRing.unity: Sample of "Angel's Ring"  
+・MatCapMask / MatCapMask.unity: Sample MatcapMask  
 
 Each and every scenes are for reference of shader and lighting settings.  
 They will be useful for reference of the look and scene you want to make!  
 
 -----
 ## 【新規】
-### 2018/11/13：2.0.5 Test05：以下の機能追加とバグ修正をしました。  
-* かにひら氏（@kanihira）考案のカメラ補正付きMatCapを搭載しました。オブジェクトがカメラ描画面の端に寄った時の、MatCapの歪みが出なくなります。  
+### 2018/11/15：2.0.5 Test06：以下のバグ修正をしました。  
+* _Is_SystemShadowsToBaseスイッチをForwardADDパス側でも動作するようにしました。  
 * 乗算合成時のTweak_MatcapMaskLevelの挙動を正しくしました。  
 * Is_SpecularToHighColorスイッチがオンの時、常に加算合成するように仕様変更をしました。この場合、Is_BlendAddToHicolorスイッチは無効になります。  
 * HiColor_Powerのスライダの感度調整をしました。スペキュラ使用時の感度に合わせました。  
+* その他、コードの最適化を行いました。  
 
+### 2018/11/11：2.0.5 Test05：以下の機能追加をしました。  
+* かにひら氏（@kanihira）考案のカメラ補正付きMatCapを搭載しました。オブジェクトがカメラ描画面の端に寄った時の、MatCapの歪みが出なくなります。  
 
 ### 2018/11/08：2.0.5 Test04：以下の機能追加と仕様変更をしました。  
 * プロパティ名の統一のために、ShadingGradeMap系シェーダーの`Is_NormalMap`スイッチを、`Is_NormalMapToBase`スイッチに改名。全てのシェーダーで名称を統一しました。お手数をおかけしますが、すでに設定済みのマテリアルは再度スイッチを設定し直してください。  
@@ -232,7 +241,14 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
-### 2018/11/13：2.0.5 Test05：　Added new features and bug fix below:  
+### 2018/11/15：2.0.5 Test06：　Fixed bugs below:  
+* _Is_SystemShadowsToBase switch has been made to work also on the ForwardADD pass side.  
+* Tweak_MatcapMaskLevel works correctly in Multiply blend mode.  
+* Is_SpecularToHighColor Specification changed so that additive synthesis always occurs when switch is on. In this case, the Is_BlendAddToHicolor switch is disabled.  
+* Adjusted the sensitivity of the slider of HiColor_Power. It matched the sensitivity when using specular.  
+* And, also optimized the codes...:-)
+
+### 2018/11/11：2.0.5 Test05：　Added a new feature below:  
 * Thanks for the idea of Kanohira (@kanihira)-san, MatCap with camera skew correction was equipped. Distortion of MatCap image will not come out when the object is close to the edge of the camera drawing surface.  
 * Tweak_MatcapMaskLevel works correctly in Multiply blend mode.  
 * Is_SpecularToHighColor Specification changed so that additive synthesis always occurs when switch is on. In this case, the Is_BlendAddToHicolor switch is disabled.  
@@ -379,12 +395,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.5 Test 05  
-最終リリース日：2018/11/13  
+最新バージョン：2.0.5 Test 06  
+最終リリース日：2018/11/15  
 カテゴリー：3D  
 形式：zip  
 
-Latest Version: 2.0.5 Test 05  
-Update: 2018/11/13  
+Latest Version: 2.0.5 Test 06  
+Update: 2018/11/15  
 Category: 3D  
 File format: zip  
