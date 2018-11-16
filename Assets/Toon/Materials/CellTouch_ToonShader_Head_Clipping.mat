@@ -9,7 +9,7 @@ Material:
   m_Name: CellTouch_ToonShader_Head_Clipping
   m_Shader: {fileID: 4800000, guid: 345def18d0906d544b7d12b050937392, type: 3}
   m_ShaderKeywords: _ISKAGE_NORMAL_ON _ISMATCAP_NORMAL_ON _ISRIM_NORMAL_ON _IS_BLENDADDTOHICOLOR_ON
-    _IS_BLENDADDTOMATCAP_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON _IS_NORMALMAPTOHIGHCOLOR_ON
+    _IS_BLENDADDTOMATCAP_ON _IS_FILTER_LIGHTCOLOR_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON _IS_NORMALMAPTOHIGHCOLOR_ON
     _IS_NORMALMAPTORIMLIGHT_ON _IS_SPECULARTOHIGHCOLOR_ON _KAGE_NORMAL_ON _OUTLINE_NML
     _RIMLIGHT_ON _RIM_NORMAL_ON _SET_SYSTEMSHADOWSTOBASE_ON _USE_1STAS2ND_ON
   m_LightmapFlags: 5
@@ -152,7 +152,7 @@ Material:
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
     - _Is_Filter_HiCutPointLightColor: 1
-    - _Is_Filter_LightColor: 0
+    - _Is_Filter_LightColor: 1
     - _Is_LightColor_1st_Shade: 1
     - _Is_LightColor_2nd_Shade: 1
     - _Is_LightColor_Ap_RimLight: 1
