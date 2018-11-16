@@ -516,7 +516,7 @@ UTS2では、リムライトマスクを設定することで、それらのテ�
 ## 7.「MatCap」に関するプロパティ
 <img width = "500" src="Images_jpg/Property_UTS2_07.jpg">
 
-**「マットキャップ（MatCap）」**とは、カメラベースでオブジェクトに貼り付けるスフィアマップのことです。ZBrushの質感表現で使われています。  
+**「マットキャップ（MatCap）」** とは、カメラベースでオブジェクトに貼り付けるスフィアマップのことです。ZBrushの質感表現で使われています。  
 Google画像検索で、「Matcap」で検索すると、様々なMatcapの例を見ることができます。物理ベースシェーダーが普及する以前は、金属的なテカリを表現する時によく使われました。  
 それらの金属的な質感表現だけでなく、Matcapは工夫次第で様々な質感を表現することが可能です。  
 UTS2では、Matcapテクスチャを乗算だけでなく加算でも合成できます。  
@@ -563,7 +563,7 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 ## 8.「AngelRing（天使の輪）」に関するプロパティ
 <img width = "500" src="Images_jpg/Property_UTS2_08.jpg">
 
-「*AngelRing（天使の輪）**」とは、カメラから見て常に固定の位置に現れるハイライト表現で、髪のハイライト表現として使われます。「天使の輪」機能を持つシェーダーは、`AngelRing`フォルダ以下に収録されています。  
+**「AngelRing（天使の輪）」** とは、カメラから見て常に固定の位置に現れるハイライト表現で、髪のハイライト表現として使われます。「天使の輪」機能を持つシェーダーは、`AngelRing`フォルダ以下に収録されています。  
 
 <img width = "500" src="Images_jpg/AngelRing.jpg">
 
@@ -720,9 +720,9 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 
 | `プロパティ`  | 機能解説 |
 |:-------------------|:-------------------|
-| `GI_Intensity` | `GI_Intensity` を０以上に設定することで、UnityのLightingウィンドウ内で管理されているGIシステム、特に[ライトプローブ](https://docs.unity3d.com/ja/current/Manual/LightProbes.html)に対応します。 `GI_Intensity` が１の時、シーン内のGIの強度が100％となりますが、トゥーンシェーダーの場合、100%だと値が高すぎるようです。デフォルトは０で、好みにも寄りますが、ライトプローブ使用時で0.3程度で使うとよい効果が得られます。 |
+| `GI_Intensity` | `GI_Intensity` を０以上に設定することで、UnityのLightingウィンドウ内で管理されているGIシステム、特に[ライトプローブ](https://docs.unity3d.com/ja/current/Manual/LightProbes.html)に対応します。 `GI_Intensity` が１の時、シーン内のGIの強度が100％となりますが、トゥーンシェーダーの場合、100%だと値が高すぎるようです。デフォルトは０で、好みにも寄りますが、**ライトプローブ使用時で0.3程度で使うとよい効果が得られます。** |
 | `Unlit_Intensity` | シーン内に有効なリアルタイムディレクショナルライトが１灯もない時に、[Environment LightingのSource設定](https://docs.unity3d.com/ja/current/Manual/GlobalIllumination.html)を元にシーンの明るさとカラーを求め、それを`Unlit_Intensity`の値でブーストして光源として使用します（本機能を**「アンビエントブレンディング」**と呼んでいます）。デフォルトは１（アンビエントカラーをそのまま受ける）で、０にすると完全に消灯します。本機能は環境カラーにマテリアルカラーを馴染ませたい時に使いますが、**より暗めに馴染ませたい場合は 0.5～1 程度**に設定し、**より明るくカラーを出したい場合は 1.5～2 程度**に設定するとよいでしょう。 |
-| `VRChat : Directional Light Intensity Filter` | シーン内に極端に明るさ（Intensity）の高いディレクショナルライトがあったり、シーン内に複数の明るさ１のディレクショナルライトがあるような場合に、白飛びを抑えます。ONにすることで機能します。デフォルトは`OFF`ですが、VRChatユーザーは`ON`にすることをお薦めします。 |
+| `VRChat : Directional Light Intensity Filter` | シーン内に極端に明るさ（Intensity）の高いディレクショナルライトがあったり、シーン内に複数の明るさ１のディレクショナルライトがあるような場合に、白飛びを抑えます。ONにすることで機能します。デフォルトは`OFF`ですが、**VRChatユーザーは`ON`にすることをお薦めします。** |
 | `Advanced : Activate Buil-in Light Direction` | 上級者向け機能として、Buil-in Light Directionベクトル（シェーダー内に組み込まれているバーチャルライトの方向ベクトル）を有効にします。本機能が有効な時、ライトの明るさとカラーは、シーン内の有効なリアルタイムディレクショナルライトの値を使用します。もしそのようなライトがない場合は、アンビエントブレンディングの値を使用します。 |
 | ` Offset X-Axis (Buil-in Light Direction)` | Buil-in Light Directionベクトルによって生成される、バーチャルライトを左右に動かします。 |
 | ` Offset Y-Axis (Buil-in Light Direction)` | Buil-in Light Directionベクトルによって生成される、バーチャルライトを上下に動かします。 |
