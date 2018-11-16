@@ -144,7 +144,7 @@ Material:
     - _Gloss: 0
     - _HighColor_Power: 0.119
     - _Inverse_Clipping: 0
-    - _Inverse_Z_Axis_BLD: 1
+    - _Inverse_Z_Axis_BLD: 0
     - _IsBaseMapAlphaAsClippingMask: 0
     - _Is_BLD: 0
     - _Is_BakedNormal: 0
