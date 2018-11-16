@@ -7,11 +7,12 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: DoubleShadeWithFeather
-  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1f248db3b28fc5f44aabd7aca618bd1e, type: 3}
   m_ShaderKeywords: _INVERSE_Z_AXIS_BLD_ON _IS_ATTENUATION_CORRECTNESS_ON _IS_BLENDADDTOMATCAP_ON
-    _IS_FILTER_HICUTPOINTLIGHTCOLOR_ON _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON
-    _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
-    _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _OUTLINE_NML _SET_SYSTEMSHADOWSTOBASE_ON
+    _IS_FILTER_HICUTPOINTLIGHTCOLOR_ON _IS_FILTER_LIGHTCOLOR_ON _IS_LIGHTCOLOR_1ST_SHADE_ON
+    _IS_LIGHTCOLOR_2ND_SHADE_ON _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON
+    _IS_LIGHTCOLOR_HIGHCOLOR_ON _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON
+    _OUTLINE_NML _SET_SYSTEMSHADOWSTOBASE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -156,7 +157,7 @@ Material:
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
     - _Is_Filter_HiCutPointLightColor: 1
-    - _Is_Filter_LightColor: 0
+    - _Is_Filter_LightColor: 1
     - _Is_LightColor_1st_Shade: 1
     - _Is_LightColor_2nd_Shade: 1
     - _Is_LightColor_Ap_RimLight: 1
@@ -169,6 +170,7 @@ Material:
     - _Is_NormalMapToBase: 0
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 0
+    - _Is_Ortho: 0
     - _Is_OutlineTex: 0
     - _Is_SpecularToHighColor: 0
     - _Is_UseTweakHighColorOnShadow: 0
@@ -210,6 +212,8 @@ Material:
     - _Tweak_SystemShadowsLevel: 0
     - _UVSec: 0
     - _Unlit_Intensity: 1
+    - _Use_1stAs2nd: 0
+    - _Use_BaseAs1st: 0
     - _ZWrite: 1
     m_Colors:
     - _1st_ShadeColor: {r: 0.77205884, g: 0.8061203, b: 0.8061203, a: 1}

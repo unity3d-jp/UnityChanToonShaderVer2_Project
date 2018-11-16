@@ -109,8 +109,8 @@ Each and every scenes are for reference of shader and lighting settings.
 They will be useful for reference of the look and scene you want to make!  
 
 -----
-## 【新規】
 ### 2018/11/16：2.0.5 Test06：以下のバグ修正および機能追加をしました。  
+* SceneLights Hi-Cut_Filterを搭載。Directional Light Intensity Filterを機能強化し、複数のリアルタイムポイントライトに対応しました。  
 * _Is_SystemShadowsToBaseスイッチをForwardADDパス側でも動作するようにしました。  
 * 乗算合成時のTweak_MatcapMaskLevelの挙動を正しくしました。  
 * Is_SpecularToHighColorスイッチがオンの時、常に加算合成するように仕様変更をしました。この場合、Is_BlendAddToHicolorスイッチは無効になります。  
@@ -247,6 +247,7 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 -----
 ## 【Version】
 ### 2018/11/16：2.0.5 Test06：　Fixed bugs and added a new feature below:  
+* Equipped "SceneLights Hi-Cut_Filter". "Directional Light Intensity Filter" has been enhanced to support multiple real-time hi-intensity point lights.
 * _Is_SystemShadowsToBase switch has been made to work also on the ForwardADD pass side.  
 * Tweak_MatcapMaskLevel works correctly in Multiply blend mode.  
 * Is_SpecularToHighColor Specification changed so that additive synthesis always occurs when switch is on. In this case, the Is_BlendAddToHicolor switch is disabled.  

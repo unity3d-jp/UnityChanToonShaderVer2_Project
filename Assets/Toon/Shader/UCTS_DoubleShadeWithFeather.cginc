@@ -187,7 +187,7 @@
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 //v.2.0.5: 
                 float3 addPassLightColor = (0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ), lightDirection)+0.5) * _LightColor0.rgb * attenuation;
-                float3 lightColor = max(0, lerp(addPassLightColor, lerp(0,addPassLightColor,_WorldSpaceLightPos0.w),_Is_Filter_LightColor));
+                float3 lightColor = max(0, lerp(addPassLightColor, lerp(0,addPassLightColor/_LightColor0.rgb,_WorldSpaceLightPos0.w),_Is_Filter_LightColor));
 #endif
 ////// Lighting:
                 float3 halfDirection = normalize(viewDirection+lightDirection);
