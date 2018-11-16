@@ -13,7 +13,7 @@ Material:
     _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON
     _IS_NORMALMAPFORMATCAP_ON _IS_NORMALMAPTOBASE_ON _IS_NORMALMAPTORIMLIGHT_ON _IS_SPECULARTOHIGHCOLOR_ON
     _IS_USETWEAKMATCAPONSHADOW_ON _KAGE_NORMAL_ON _MATCAP_ON _RIMLIGHT_ON _RIM_NORMAL_ON
-    _SET_SYSTEMSHADOWSTOBASE_ON
+    _SET_SYSTEMSHADOWSTOBASE_ON _USE_1STAS2ND_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: e22da664ebab32d4ca5bea4d43b0ff43, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BakedNormal:
@@ -154,6 +154,7 @@ Material:
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 1
+    - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 1
     - _Is_LightColor_2nd_Shade: 1
@@ -166,6 +167,7 @@ Material:
     - _Is_NormalMapToBase: 1
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 1
+    - _Is_Ortho: 0
     - _Is_OutlineTex: 0
     - _Is_SpecularToHighColor: 1
     - _Is_UseTweakHighColorOnShadow: 0
@@ -215,6 +217,8 @@ Material:
     - _Tweak_UV: 0
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 2
+    - _Use_1stAs2nd: 1
+    - _Use_BaseAs1st: 0
     - _isKage_Normal: 1
     - _isMatcap_Normal: 1
     - _isRim_Normal: 1

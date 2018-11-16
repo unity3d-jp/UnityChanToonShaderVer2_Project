@@ -1,5 +1,5 @@
 ﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.5 マニュアル
-### 2018/11/00 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2018/11/15 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 <img width = "400" src="Images_jpg/CellLook.jpg">
 <img width = "800" src="Images_jpg/CRS01.jpg">
@@ -121,7 +121,7 @@ UTS2には、大きく分けて2つの系統のシェーダーがあります。
 搭載されている基本機能はほぼ同じですので、共に色分け段階（`_Step`）とぼかし程度（`_Feather`）の数値を合わせれば、同じルックを作ることができます。  
 どちらを使うかは好みの問題ですが、パキッとした色分けが必要なセルルックには`DoubleShadeWithFeather`系が向いており、ぼかしを多用するイラストルックには`ShadingGradeMap`系が向いているようです。  
 
-またシェーダー名の一番頭に`Toon`とあるものは、**法線反転方式によるアウトライン機能**を持っています。  
+またシェーダー名の一番頭に`Toon`とあるものは、**オブジェクト反転方式によるアウトライン機能**を持っています。  
 UTS2のアウトラインは、専用テクスチャを使ったアウトラインの入り抜き（強弱）調整の他、ベースカラーに馴染ませたり、カメラベースでオフセット調整ができたりなど、多彩な調整機能を持っています。  
 
 シェーダー名の後ろ側には、`Clipping`などの名前ブロックがあります。これらは以下のような機能があることを示しています。  
@@ -223,8 +223,8 @@ Phong テッセレーションを利用することで、アウトラインの�
 * SSAO Test\SSAO.unity		：SSAO in PPSのテスト用  
 * NormalMap\NormalMap.unity	：UTS2でノーマルマップを使う際のコツ  
 * LightAndShadows\LightAndShadows.unity：スタンダードシェーダーとUTS2との比較  
-* AngelRing/AngelRing.unity：「天使の輪」のサンプル  
-* MatCapMask/MatCapMask.unity：MatcapMaskのサンプル  
+* AngelRing\AngelRing.unity：「天使の輪」のサンプル  
+* MatCapMask\MatCapMask.unity：MatcapMaskのサンプル  
 
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
@@ -563,7 +563,7 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 ## 8.「AngelRing（天使の輪）」に関するプロパティ
 <img width = "500" src="Images_jpg/Property_UTS2_08.jpg">
 
-**AngelRing（天使の輪）** とは、カメラから見て常に固定の位置に現れるハイライト表現で、髪のハイライト表現として使われます。「天使の輪」機能を持つシェーダーは、`AngelRing`フォルダ以下に収録されています。  
+「*AngelRing（天使の輪）**」とは、カメラから見て常に固定の位置に現れるハイライト表現で、髪のハイライト表現として使われます。「天使の輪」機能を持つシェーダーは、`AngelRing`フォルダ以下に収録されています。  
 
 <img width = "500" src="Images_jpg/AngelRing.jpg">
 
@@ -604,7 +604,7 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 
 **「エミッシブ」** とは、自己発光のことです。  
 `Emissive_Color`にHDRカラー（明るさとして1以上の値を持てるカラー仕様のこと）を定義することで、周りのカラーよりも明るい領域を設定することができます。  
-[Post Processing Stack](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Stack.html)の[ブルーム](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Bloom.html)など、カメラにアタッチされるポストエフェクトと共に使われることで、パーツを効果的に光らせることができます。  
+**[Post Processing Stack](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Stack.html)の[ブルーム](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Bloom.html)など、カメラにアタッチされるポストエフェクトと共に使われることで、パーツを効果的に光らせることができます。**  
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_17.jpg">
 
@@ -808,10 +808,16 @@ https://github.com/unity3d-jp/AlembicImporter
 
 # ライセンスについて
 
-「ユニティちゃんトゥーンシェーダーVer.2.0」は、**UCL2.0（ユニティちゃんライセンス2.0）**で提供されます。  
+「ユニティちゃんトゥーンシェーダーVer.2.0」は、 **UCL2.0（ユニティちゃんライセンス2.0）** で提供されます。  
 ユニティちゃんライセンスについては、以下を参照してください。  
 http://unity-chan.com/contents/guideline/  
 <img width = "140" src="Images_jpg/Light_Silhouette.jpg">
+
+**※ヒント：** しばしば質問されることですが、UCL2.0で配布されるUTS2のシェーダーファイル（.shader）およびそのインクルードファイル（.cginc）は、これらのファイルを自作の3Dモデルなどに同梱し、商用/非商用を問わず再配布するのは自由です。また、どのようなタイプ/デザインの3Dモデルやコンテンツ（アダルト向けも含みます）に適用しても構いません。  
+再配布を受けるユーザーの便宜のために、「UTS2 v.2.0.5を使用している」などの後のバージョンアップのために便宜を図る情報を記載することはお願いしたいですが、それ以外には特に掲示すべきものはありません。  
+各ファイルのヘッダー部には、UCL2.0のライセンス表記がありますので、そちらは修正しないでそのまま同梱することをお願いします。  
+
+**※コンテンツに採用した場合** ：UTS2を使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
 
 # 補助マニュアル  
 

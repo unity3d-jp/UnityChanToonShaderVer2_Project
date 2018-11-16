@@ -15,9 +15,13 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/AngelRing/ToonColor_ShadingGr
         //
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
         _1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}
+        //v.2.0.5
+        [MaterialToggle] _Use_BaseAs1st ("Use BaseMap as 1st_ShadeMap", Float ) = 0
         _1st_ShadeColor ("1st_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_1st_Shade ("Is_LightColor_1st_Shade", Float ) = 1
         _2nd_ShadeMap ("2nd_ShadeMap", 2D) = "white" {}
+        //v.2.0.5
+        [MaterialToggle] _Use_1stAs2nd ("Use 1st_ShadeMap as 2nd_ShadeMap", Float ) = 0
         _2nd_ShadeColor ("2nd_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}

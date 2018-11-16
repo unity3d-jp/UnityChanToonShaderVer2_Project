@@ -4,7 +4,10 @@ README.md
 「ユニティちゃんトゥーンシェーダー」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。
 
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
-Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。
+Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。  
+
+以下のリンクに日本語マニュアル（v.2.0.5版）が提供されています。合わせてご利用ください。  
+https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/Manual/UTS2_Manual_ja.md
 
 
 ## 【Unity-Chan Toon Shader Ver.2.0.5】
@@ -63,6 +66,7 @@ We recommend first erasing the previous shader then installing the new shader, t
 
 Please contact us if you have any issues. 
 
+
 -----
 ## 【サンプルシーンについて】  
 プロジェクトを開くと、`Sample Scenes`フォルダに以下のサンプルシーンがあります。  
@@ -106,11 +110,12 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【新規】
-### 2018/11/15：2.0.5 Test06：以下のバグ修正をしました。  
+### 2018/11/16：2.0.5 Test06：以下のバグ修正および機能追加をしました。  
 * _Is_SystemShadowsToBaseスイッチをForwardADDパス側でも動作するようにしました。  
 * 乗算合成時のTweak_MatcapMaskLevelの挙動を正しくしました。  
 * Is_SpecularToHighColorスイッチがオンの時、常に加算合成するように仕様変更をしました。この場合、Is_BlendAddToHicolorスイッチは無効になります。  
 * HiColor_Powerのスライダの感度調整をしました。スペキュラ使用時の感度に合わせました。  
+* Use BaseMap as 1stShade_Map、Use 1stShade_Map as 2ndShade_Mapスイッチを追加しました。  
 * その他、コードの最適化を行いました。  
 
 ### 2018/11/11：2.0.5 Test05：以下の機能追加をしました。  
@@ -241,11 +246,12 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
-### 2018/11/15：2.0.5 Test06：　Fixed bugs below:  
+### 2018/11/16：2.0.5 Test06：　Fixed bugs and added a new feature below:  
 * _Is_SystemShadowsToBase switch has been made to work also on the ForwardADD pass side.  
 * Tweak_MatcapMaskLevel works correctly in Multiply blend mode.  
 * Is_SpecularToHighColor Specification changed so that additive synthesis always occurs when switch is on. In this case, the Is_BlendAddToHicolor switch is disabled.  
 * Adjusted the sensitivity of the slider of HiColor_Power. It matched the sensitivity when using specular.  
+* Added Use BaseMap as 1stShade_Map, Use 1stShade_Map as 2ndShade_Map switches.  
 * And, also optimized the codes...:-)
 
 ### 2018/11/11：2.0.5 Test05：　Added a new feature below:  
@@ -396,11 +402,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.5 Test 06  
-最終リリース日：2018/11/15  
+最終リリース日：2018/11/16  
 カテゴリー：3D  
-形式：zip  
+形式：zip/unitypackage  
 
 Latest Version: 2.0.5 Test 06  
-Update: 2018/11/15  
+Update: 2018/11/16  
 Category: 3D  
-File format: zip  
+File format: zip/unitypackage  

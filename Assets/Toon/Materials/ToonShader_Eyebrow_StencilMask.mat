@@ -10,6 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 9c3978743d5db18448a8b945c723a6eb, type: 3}
   m_ShaderKeywords: _ISRIM_NORMAL_ON _IS_BLENDADDTOHICOLOR_ON _IS_BLENDADDTOMATCAP_ON
     _IS_BLENDBASECOLOR_ON _IS_SPECULARTOHIGHCOLOR_ON _RIMLIGHT_ON _SET_SYSTEMSHADOWSTOBASE_ON
+    _USE_1STAS2ND_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -24,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: e22da664ebab32d4ca5bea4d43b0ff43, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -136,6 +137,7 @@ Material:
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 1
+    - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 1
     - _Is_LightColor_2nd_Shade: 1
@@ -148,6 +150,7 @@ Material:
     - _Is_NormalMapToBase: 0
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 0
+    - _Is_Ortho: 0
     - _Is_SpecularToHighColor: 1
     - _Is_UseTweakHighColorOnShadow: 0
     - _Is_UseTweakMatCapOnShadow: 0
@@ -188,6 +191,8 @@ Material:
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: 0
     - _Unlit_Intensity: 1
+    - _Use_1stAs2nd: 1
+    - _Use_BaseAs1st: 0
     - _isKage_Normal: 0
     - _isRim_Normal: 1
     - _node_183: 0.51
