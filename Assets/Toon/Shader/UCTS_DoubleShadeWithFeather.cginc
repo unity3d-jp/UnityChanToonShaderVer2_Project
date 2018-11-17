@@ -81,9 +81,9 @@
             uniform float4 _Emissive_Color;
             uniform float _Unlit_Intensity;
             //v.2.0.5
-            uniform fixed _Is_Filter_LightColor;
             uniform fixed _Is_Filter_HiCutPointLightColor;
-
+            uniform fixed _Is_Filter_LightColor;
+            uniform float _ColorBoost;
             //v.2.0.4.4
             uniform float _StepOffset;
             uniform fixed _Is_BLD;
@@ -187,7 +187,8 @@
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 //v.2.0.5: 
                 float3 addPassLightColor = (0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ), lightDirection)+0.5) * _LightColor0.rgb * attenuation;
-                float3 lightColor = max(0, lerp(addPassLightColor, lerp(0,addPassLightColor/_LightColor0.rgb,_WorldSpaceLightPos0.w),_Is_Filter_LightColor));
+                float pureIntencity = max(0.001,(0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b));
+                float3 lightColor = max(0, lerp(addPassLightColor, lerp(0,addPassLightColor/pureIntencity,_WorldSpaceLightPos0.w)*_ColorBoost,_Is_Filter_LightColor));
 #endif
 ////// Lighting:
                 float3 halfDirection = normalize(viewDirection+lightDirection);

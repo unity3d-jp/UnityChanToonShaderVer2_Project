@@ -108,6 +108,8 @@ Shader "UnityChanToonShader/NoOutline/AngelRing/ToonColor_ShadingGradeMap_Stenci
         _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 2)) = 1
         //v.2.0.5 
         [MaterialToggle] _Is_Filter_LightColor ("VRChat : SceneLights HiCut_Filter", Float ) = 0
+        //This advanced option compensates the color of point lights when SceneLights HiCut_Filter is checked.
+        [HideInInspector] _ColorBoost (" *Advanced Option : Compensation Boost", Range(1, 5)) = 1
         //Built-in Light Direction
         [MaterialToggle] _Is_BLD ("Advanced : Activate Built-in Light Direction", Float ) = 0
         _Offset_X_Axis_BLD (" Offset X-Axis (Built-in Light Direction)", Range(-1, 1)) = -0.05

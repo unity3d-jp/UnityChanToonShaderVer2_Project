@@ -40,7 +40,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.5_Test06.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test07.unitypackage  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -53,7 +53,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.5_Test06.unitypackage  
+### UTS2_ShaderOnly_v2.0.5_Test07.unitypackage  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
@@ -109,6 +109,9 @@ Each and every scenes are for reference of shader and lighting settings.
 They will be useful for reference of the look and scene you want to make!  
 
 -----
+### 2018/11/17：2.0.5 Test07：以下のバグ修正をしました。  
+* SceneLights Hi-Cut_FilterがONの時、ポイントライトのカラーに不具合が起こっていたので、修正しました。  
+
 ### 2018/11/16：2.0.5 Test06：以下のバグ修正および機能追加をしました。  
 * SceneLights Hi-Cut_Filterを搭載。Directional Light Intensity Filterを機能強化し、複数のリアルタイムポイントライトに対応しました。  
 * _Is_SystemShadowsToBaseスイッチをForwardADDパス側でも動作するようにしました。  
@@ -246,6 +249,9 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2018/11/16：2.0.5 Test06：　Fixed a bug below:  
+* When SceneLights Hi-Cut_Filter is ON, a deterioration of point light color is fixed.  
+
 ### 2018/11/16：2.0.5 Test06：　Fixed bugs and added a new feature below:  
 * Equipped "SceneLights Hi-Cut_Filter". "Directional Light Intensity Filter" has been enhanced to support multiple real-time hi-intensity point lights.
 * _Is_SystemShadowsToBase switch has been made to work also on the ForwardADD pass side.  
@@ -402,12 +408,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.5 Test 06  
-最終リリース日：2018/11/16  
+最新バージョン：2.0.5 Test 07  
+最終リリース日：2018/11/17  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.5 Test 06  
-Update: 2018/11/16  
+Latest Version: 2.0.5 Test 07  
+Update: 2018/11/17  
 Category: 3D  
 File format: zip/unitypackage  

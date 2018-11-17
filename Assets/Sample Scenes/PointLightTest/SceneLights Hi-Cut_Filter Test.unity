@@ -149,7 +149,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.953, g: 0.7724138, b: 0.047, a: 1}
-  m_Intensity: 5
+  m_Intensity: 8
   m_Range: 2.08
   m_SpotAngle: 9.1
   m_CookieSize: 10
@@ -215,7 +215,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.047, g: 0.46206903, b: 0.916, a: 1}
-  m_Intensity: 5
+  m_Intensity: 8
   m_Range: 3.26
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 356cd96bb2a10cf4891c59bf89102f24, type: 2}
+  profile: {fileID: 11400000, guid: d02f11cae813f9540a17b92a5eea5bb7, type: 2}
 --- !u!114 &794565952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,7 +1176,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1601,9 +1601,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.903, g: 0.065, b: 0.059, a: 1}
-  m_Intensity: 5
-  m_Range: 4.09
+  m_Color: {r: 0.9117647, g: 0.06116068, b: 0.053633213, a: 1}
+  m_Intensity: 8
+  m_Range: 2.42
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

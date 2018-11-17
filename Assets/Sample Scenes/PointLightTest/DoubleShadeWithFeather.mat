@@ -138,6 +138,7 @@ Material:
     - _BaseColor_Step: 0.9
     - _BaseShade_Feather: 0.0001
     - _BumpScale: 1
+    - _ColorBoost: 1
     - _CullMode: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
