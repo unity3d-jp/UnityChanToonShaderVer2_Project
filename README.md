@@ -40,7 +40,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### UTS2_ShaderOnly_v2.0.5_Test07.unitypackage  
+### [UTS2_ShaderOnly_v2.0.5_Test07.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_Test07.unitypackage)  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -53,7 +53,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### UTS2_ShaderOnly_v2.0.5_Test07.unitypackage  
+### [UTS2_ShaderOnly_v2.0.5_Test07.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_Test07.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
