@@ -6,8 +6,7 @@ README.md
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
 Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。  
 
-以下のリンクに日本語マニュアル（v.2.0.5版）が提供されています。合わせてご利用ください。  
-https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/Manual/UTS2_Manual_ja.md
+**● [日本語マニュアル（v.2.0.5版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 
 ## 【Unity-Chan Toon Shader Ver.2.0.5】
@@ -40,7 +39,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### [UTS2_ShaderOnly_v2.0.5_Test07.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_Test07.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.5_RC1.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_RC1.unitypackage)  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -53,7 +52,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### [UTS2_ShaderOnly_v2.0.5_Test07.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_Test07.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.5_RC1.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_RC1.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
@@ -109,6 +108,10 @@ Each and every scenes are for reference of shader and lighting settings.
 They will be useful for reference of the look and scene you want to make!  
 
 -----
+### 2018/11/18：2.0.5 RC1：以下の更新をしました。  
+* UTS2 v.2.0.5 Test07 をリリース候補版にリネームしました。コードに変更はありません。  
+* RC1向けにREADME.mdの更新をしました。  
+
 ### 2018/11/17：2.0.5 Test07：以下のバグ修正をしました。  
 * SceneLights Hi-Cut_FilterがONの時、ポイントライトのカラーに不具合が起こっていたので、修正しました。  
 
@@ -249,6 +252,10 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2018/11/18: 2.0.5 RC1: The following updates were made.  
+* Renamed UTS2 v.2.0.5 Test 07 to release candidate version. There is no change in the code.  
+* README.md was updated for RC1.  
+
 ### 2018/11/16：2.0.5 Test06：　Fixed a bug below:  
 * When SceneLights Hi-Cut_Filter is ON, a deterioration of point light color is fixed.  
 
@@ -408,12 +415,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.5 Test 07  
-最終リリース日：2018/11/17  
+最新バージョン：2.0.5 RC1  
+最終リリース日：2018/11/18  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.5 Test 07  
-Update: 2018/11/17  
+Latest Version: 2.0.5 RC1  
+Update: 2018/11/18  
 Category: 3D  
 File format: zip/unitypackage  
