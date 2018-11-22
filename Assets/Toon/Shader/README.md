@@ -6,7 +6,7 @@ README.md
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
 Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。  
 
-**● [日本語マニュアル（v.2.0.5版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+**● [日本語マニュアル（v.2.0.5版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 
 ## 【Unity-Chan Toon Shader Ver.2.0.5】
@@ -15,14 +15,26 @@ Unity-Chan Toon Shader is a toon shader for video and images that is designed to
 We have greatly enhanced the performance and features in Unity-Chan Toon Shader Ver. 2.0.  
 It still has the same rendering capabilities as Ver. 1.0, but now you can give your creations an even more sophisticated look.
 
+
+----
+## 【重要】v.2.0.4.3p1から、直接v.2.0.5へバージョンアップをする場合の注意
+* 内部パラメタの名前変更のために、すでに設定されているマテリアルから、BaseMapが外れる可能性があります。外れてしまった場合、お手数ですが再設定をお願いします。  
+* HiColor_Powerのスライダの感度調整をしました。Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合、HiColor_Powerの値を再調整する必要があります。Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
+
+### 【Important】 Notes on upgrading from v.2.0.4.3p1 directly to v.2.0.5
+* There is a possibility that BaseMap may be removed from material already set because of renaming internal parameters. If it has come off, sorry to trouble you but please set it again.  
+* Adjusted the sensitivity of the slider of HiColor_Power. If Is_SpecularToHighColor = OFF / Is_BlendAddToHiColor = 0FF, you need to readjust the value of HiColor_Power. If Is_SpecularToHighColor = ON is used, there is no need to modify it in particular.  
+
 -----
 ## 【ターゲット環境】
 Unity5.6.x もしくはそれ以降が必要です。Unity 2018.1.0f2以降でも使用できます。  
-本パッケージは、Unity5.6.3p1で作成されています。
+Unity 2018.2 16f1/Unity 2017.4 15f1 LTSでの動作確認済み  
+本パッケージは、Unity5.6.3p1で作成されています。  
 
 ### 【Target Environment】
-Requires Unity 5.6.x or later. Available on Unity 2018.1.0f2 or lator, too.
-This pack was created in Unity 5.6.3p1.
+Requires Unity 5.6.x or later. Available on Unity 2018.1.0f2 or lator, too.  
+Confirmed on Unity 2018.2 16f1/Unity 2017.4 15f1 LTS.  
+This pack was created in Unity 5.6.3p1.  
 
 
 -----
@@ -39,7 +51,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### [UTS2_ShaderOnly_v2.0.5_RC1.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_RC1.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.5_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.5_Release.unitypackage)  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -52,7 +64,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### [UTS2_ShaderOnly_v2.0.5_RC1.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev/UTS2_ShaderOnly_v2.0.5_RC1.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.5_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.5_Release.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
@@ -108,6 +120,9 @@ Each and every scenes are for reference of shader and lighting settings.
 They will be useful for reference of the look and scene you want to make!  
 
 -----
+### 2018/11/22：2.0.5 Release：リリース版  
+* マニュアル/README.mdを最新に更新しました  
+
 ### 2018/11/18：2.0.5 RC1：以下の更新をしました。  
 * UTS2 v.2.0.5 Test07 をリリース候補版にリネームしました。コードに変更はありません。  
 * RC1向けにREADME.mdの更新をしました。  
@@ -415,12 +430,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.5 RC1  
-最終リリース日：2018/11/18  
+最新バージョン：2.0.5 Release  
+最終リリース日：2018/11/22  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.5 RC1  
-Update: 2018/11/18  
+Latest Version: 2.0.5 Release  
+Update: 2018/11/22  
 Category: 3D  
 File format: zip/unitypackage  

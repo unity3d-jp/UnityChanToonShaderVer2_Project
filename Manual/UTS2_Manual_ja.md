@@ -1,5 +1,12 @@
 ﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.5 マニュアル
-### 2018/11/17 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2018/11/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+
+---
+## 【重要】v.2.0.4.3p1から、直接v.2.0.5へバージョンアップをする場合の注意
+* 内部パラメタの名前変更のために、すでに設定されているマテリアルから、BaseMapが外れる可能性があります。外れてしまった場合、お手数ですが再設定をお願いします。  
+* HiColor_Powerのスライダの感度調整をしました。Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合、HiColor_Powerの値を再調整する必要があります。Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
+* 最新事項や履歴情報は、 **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)** でご確認ください。  
+---
 
 <img width = "400" src="Images_jpg/CellLook.jpg">
 <img width = "800" src="Images_jpg/CRS01.jpg">
@@ -50,7 +57,7 @@ Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルッ�
 是非、貴方のご自慢のキャラクターモデルをユニティちゃんトゥーンシェーダー 2.0（UTS2）で彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、ユニティちゃんトゥーンシェーダー 2.0の最新版 **UTS2 v.2.0.5** 向けに書かれています。  
+本マニュアルは、ユニティちゃんトゥーンシェーダー 2.0の最新版 **UTS2 v.2.0.5 Release** 向けに書かれています。  
 
 
 ## 【開発環境】
@@ -842,7 +849,8 @@ http://unity-chan.com/contents/guideline/
 
 **※コンテンツに採用した場合** ：UTS2を使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
 
-# 補助マニュアル  
+# おまけ  
+UTS2を使う上で便利なTipsを紹介します。  
 
 ## １．Tips:システムシャドウ使用時に、各色の境界に生じるアーティファクトの軽減法  
 
@@ -896,4 +904,13 @@ http://unity-chan.com/contents/guideline/
 最後に、キーライトとして球を照らしている**ディレクショナルライトのバイアスをあげてやる**という方法があります。  
 バイアスを上げることで、システムシャドウの位置が変化するからです。  
 ただしバイアスを上げすぎると、今度は落ち影全体の発生位置がオブジェクトから大きくずれることも発生しますので、注意が必要です。  
+
+---
+## ２．Tips:リアルタイムポイントライトを複数使う時のライトフリップの軽減法  
+
+シーン内に4つ以上のリアルタイムポイントライトのレンジが重なっている場所がある場合、UTS2を適用したモデルに当たるライトがフリップすることがあります。  
+これは、「フォワードレンダリングでは、リアルタイムポイントライトは4つまで」というUnityの制限に基づく現象で、UTS2でも仕様となります。  
+本ムービーでは、そのようなフリップ現象をなくす方法を紹介します。こちらはUTS2だけでなく、Stadard Shaderなどでもそのまま使えます。  
+
+[![](https://img.youtube.com/vi/G5-alxDO0bs/0.jpg)](https://www.youtube.com/watch?v=G5-alxDO0bs)
 
