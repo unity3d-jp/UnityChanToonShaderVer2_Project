@@ -618,7 +618,7 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 | `プロパティ`  | 機能解説 |
 |:-------------------|:-------------------|
 | `Emissive_Tex` | エミッシブ用のテクスチャを設定します。グレースケールでマスクテクスチャを作成し、`Emissive_Color`で光らせることもできます。他のパーツと重ねて光って欲しくない部分などは、黒（RGB:0,0,0）にしておきます。 |
-| `Emissive_Color` | `Emissive_Tex`の各ピクセルカラーに乗算されるカラーです。多くの場合、**[HDRカラー](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html)**を設定します。  |
+| `Emissive_Color` | `Emissive_Tex`の各ピクセルカラーに乗算されるカラーです。多くの場合、 **[HDRカラー](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html)** を設定します。 |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_42.jpg">
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_43.jpg">
@@ -774,6 +774,7 @@ VRChatで、アンビエントライトの設定に基づくワールドごと�
 このライトは、アンビエントライトブレンディング動作中に機能します。  
 
 以下に、アンビエントブレンディングとUnlit_Intensityの機能を解説するムービーを用意しました。  
+
 [![](https://img.youtube.com/vi/7-k6m69JQ2g/0.jpg)](https://www.youtube.com/watch?v=7-k6m69JQ2g)
 
 
