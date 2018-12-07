@@ -3,12 +3,14 @@ using UnityEngine.PostProcessing;
 
 namespace UnityEditor.PostProcessing
 {
-    [CustomPropertyDrawer(typeof(MinAttribute))]
+    //2018/12/08 : Fixed for Unity 2018.3.x 
+    [CustomPropertyDrawer(typeof(UnityEngine.PostProcessing.MinAttribute))]
     sealed class MinDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            MinAttribute attribute = (MinAttribute)base.attribute;
+            //2018/12/08 : Fixed for Unity 2018.3.x 
+            UnityEngine.PostProcessing.MinAttribute attribute = (UnityEngine.PostProcessing.MinAttribute)base.attribute;
 
             if (property.propertyType == SerializedPropertyType.Integer)
             {
