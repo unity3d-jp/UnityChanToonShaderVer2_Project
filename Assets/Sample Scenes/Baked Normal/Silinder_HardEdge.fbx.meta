@@ -11,7 +11,7 @@ ModelImporter:
     3300000: //RootNode
     4300000: Silinder_HardEdge
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

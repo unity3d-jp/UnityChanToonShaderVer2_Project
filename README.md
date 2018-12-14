@@ -1,19 +1,22 @@
 README.md
 
 # 【ユニティちゃんトゥーンシェーダー Ver.2.0.5】
-「ユニティちゃんトゥーンシェーダー」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。
+「ユニティちゃんトゥーンシェーダー」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
 
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
 Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。  
 
-**● [日本語マニュアル（v.2.0.5版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+● **[日本語マニュアル（v.2.0.5版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 
 ## 【Unity-Chan Toon Shader Ver.2.0.5】
-Unity-Chan Toon Shader is a toon shader for video and images that is designed to meet your needs when creating cel-shaded 3DCG animations.
+Unity-Chan Toon Shader is a toon shader for video and images that is designed to meet your needs when creating cel-shaded 3DCG animations.  
 
 We have greatly enhanced the performance and features in Unity-Chan Toon Shader Ver. 2.0.  
-It still has the same rendering capabilities as Ver. 1.0, but now you can give your creations an even more sophisticated look.
+It still has the same rendering capabilities as Ver. 1.0, but now you can give your creations an even more sophisticated look.  
+
+● **[English manual for v.2.0.5](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) is available now.**  
+
 
 
 ----
