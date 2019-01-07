@@ -59,7 +59,7 @@ Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject" {
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d11 xboxone ps4
             //Tessellation
             //#pragma target 3.0
             //V.2.0.4

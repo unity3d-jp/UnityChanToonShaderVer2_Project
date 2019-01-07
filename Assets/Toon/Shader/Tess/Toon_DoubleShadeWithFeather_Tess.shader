@@ -152,7 +152,7 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d11 xboxone ps4
             //Tessellation
             //#pragma target 3.0
             //V.2.0.4
@@ -194,7 +194,7 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
 
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d11 xboxone ps4
             //Tessellation
             //#pragma target 3.0
 
@@ -239,7 +239,7 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
             //for Unity2018.x
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d11 xboxone ps4
             //Tessellation
             //#pragma target 3.0
 
@@ -280,7 +280,7 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
             #pragma fragmentoption ARB_precision_hint_fastest
             #pragma multi_compile_shadowcaster
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d11 xboxone ps4
             //Tessellation
             //#pragma target 3.0
             //v.2.0.4
