@@ -30,12 +30,12 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 
 -----
 ## 【ターゲット環境】
-Unity5.6.x もしくはそれ以降が必要です。Unity 2018.1.0f2以降でも使用できます。  
+Unity5.6.x もしくはそれ以降が必要です。Unity 2018.2.0f20 / Unity 2018.3.0f2 以降でも使用できます。  
 Unity 2018.2 16f1/Unity 2017.4 15f1 LTSでの動作確認済み  
 本パッケージは、Unity5.6.3p1で作成されています。  
 
 ### 【Target Environment】
-Requires Unity 5.6.x or later. Available on Unity 2018.1.0f2 or lator, too.  
+Requires Unity 5.6.x or later. Available on Unity 2018.2.0f20 / Unity 2018.3.0f2 or lator, too.  
 Confirmed on Unity 2018.2 16f1/Unity 2017.4 15f1 LTS.  
 This pack was created in Unity 5.6.3p1.  
 
@@ -123,6 +123,9 @@ Each and every scenes are for reference of shader and lighting settings.
 They will be useful for reference of the look and scene you want to make!  
 
 -----
+### 2019/01/07：2.0.5 Release：リリース版  
+* macOS / Unity 2018.3.0f2上でプロジェクトを開くと不正終了するのを修正しました。  
+
 ### 2018/11/22：2.0.5 Release：リリース版  
 * マニュアル/README.mdを最新に更新しました  
 
@@ -270,6 +273,12 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 -----
 ## 【Version】
+### 2019/01/07：2.0.5 Release: Release version.  
+* Fixed illegal termination when opening the project on macOS / Unity 2018.3.0f2.  
+
+### 2018/11/22：2.0.5 Release: Release version.  
+* Updated Manual and README.md.  
+
 ### 2018/11/18: 2.0.5 RC1: The following updates were made.  
 * Renamed UTS2 v.2.0.5 Test 07 to release candidate version. There is no change in the code.  
 * README.md was updated for RC1.  
@@ -434,11 +443,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.5 Release  
-最終リリース日：2018/11/22  
+最終リリース日：2019/01/07  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 Latest Version: 2.0.5 Release  
-Update: 2018/11/22  
+Update: 2019/01/07  
 Category: 3D  
 File format: zip/unitypackage  
