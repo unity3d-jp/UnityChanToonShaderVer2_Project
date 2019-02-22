@@ -1,8 +1,8 @@
-﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.5 マニュアル
-### 2018/11/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.6 マニュアル
+### 2019/02/21 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
-## 【重要】v.2.0.4.3p1から、直接v.2.0.5へバージョンアップをする場合の注意
+## 【重要】v.2.0.4.3p1から、直接v.2.0.6へバージョンアップをする場合の注意
 * 内部パラメタの名前変更のために、すでに設定されているマテリアルから、BaseMapが外れる可能性があります。外れてしまった場合、お手数ですが再設定をお願いします。  
 * HiColor_Powerのスライダの感度調整をしました。Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合、HiColor_Powerの値を再調整する必要があります。Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
 * 最新事項や履歴情報は、 **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)** でご確認ください。  
@@ -258,30 +258,47 @@ File>Build Settings>Player Settings... より
 
 
 
-# UTS2各シェーダーのプロパティ解説
+# UTS2　設定メニュー：UTS2カスタムインスペクター
 
-ここからは、UTS2各シェーダーに含まれるプロパティについて、上から順に機能ブロックごとに解説します。  
-全てのUTS2シェーダーで、プロパティの名前が同じならば機能は同じです。  
+ここからは、UTS2 の各機能を設定するユーザーインタフェース**「UTS2カスタムインスペクター」**の機能解説をします。  
 
-<img width = "400" src="Images_jpg/UI_Toon_DoubleShadeWithFeather.jpg">
+<img width = "400" src="Images_jpg/UTS2UI_Standard.jpg">
+
+UTS2カスタムインスペクターは、`Show All Properties` ボタンをクリックすることで、旧来のプロパティリスト型のインスペクターに切り替えることができます。  
+
+<img width = "400" src="Images_jpg/UTS2UI_AllProperties.jpg">
+
+プロパティリスト型の機能解説は[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Props_ja.md)です。
+プロパティリスト型のインスペクターは、`Change UTS2 Custom UI` ボタンで元に戻すことができます。
 
 
 ---
-## 1.「ステンシル、カリング、クリッピング」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_01.jpg">
+## 1. UTS2の基本設定をおこなう「Basic Shader Settings」メニュー
+<img width = "500" src="Images_jpg/UTS2UI_01_00.jpg">
 
-これらは、ステンシルバッファのリファレンスナンバーを設定したり、カリング方式を設定したり、各クリッピングシェーダーでどのようなマスクを設定するか指定するプロパティです。  
+こちらのメニューでは、UTS2の基本設定をおこなう他、ステンシルバッファのリファレンスナンバーを設定したり、カリング方式を設定したり、各クリッピングシェーダーでどのようなマスクを設定するか指定できます。  
+
 **※ヒント：カリング方式の設定は全てのシェーダーにありますが、ステンシルやクリッピング関連の設定は、それらの設定を使用するシェーダーにしかありません。**  
 
-| `プロパティ`  | 機能解説 |
+メニュー内のアイテムは、シェーダーの種類（機能）に応じて、最大以下のような形式に自動的に拡張されます。
+
+<img width = "500" src="Images_jpg/UTS2UI_01_01.jpg">
+
+
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
+| `UTS2 日本語マニュアル` | ブラウザを利用して、UTS2日本語公式マニュアルにジャンプします。 |
+| `UTS2 English Manual` | ブラウザを利用して、UTS2英語公式マニュアルにジャンプします。 |
+| `Cull　Mode` | ポリゴンのどちら側を描画しないか（カリング）を指定します。「`Culling Off`（両面描画）/ `Front Culling`（正面カリング）/ `Back Culling`（背面カリング）」が選べます。通常は`Back`で指定します。`Culling Off`はノーマルマップやライティング表示がおかしくなる場合がありますので、注意してください。 |
 | `Stencil No` | `StencilMask`　/　`StencilOut`各シェーダーで使用します。0～255の範囲で、ステンシルリファレンスナンバーを指定します（255には特別の意味がある場合がありますので、注意してください）。抜く側のマテリアルと抜かれる側のマテリアルで、数字を合わせます。 |
-| `Cull　Mode` | ポリゴンのどちら側を描画しないか（カリング）を指定します。「`OFF`（両面描画）/ `FRONT`（正面カリング）/ `BACK`（背面カリング）」が選べます。通常は`Back`で指定します。`OFF`はノーマルマップやライティング表示がおかしくなる場合がありますので、注意してください。 |
-| `ClippingMask` | `Clipping` / `TransClipping`各シェーダーで使用します。グレースケールのクリッピングマスクを指定します。白が「抜き」になります。何も指定しない場合、クリッピング機能は有効になりません。 |
-| `IsBaseMapAlphaAsClippingMask` | `TransClipping`シェーダーのみのプロパティです。チェックすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 |
-| `Inverse_Clipping` | クリッピングマスクを反転します。 |
-| `Clipping_Level` | クリッピングマスクの強さを指定します。 |
-| `Tweak_transparency` | `TransClipping`シェーダーで使用します。クリッピングマスクのグレースケールレベルをα値として考慮することで、透過度を調整します。 |
+| `Clipping Mask` | `Clipping` / `TransClipping`各シェーダーで使用します。グレースケールのクリッピングマスクを指定します。白が「抜き」になります。何も指定しない場合、クリッピング機能は有効になりません。 |
+| `Inverse Clipping Mask` | クリッピングマスクを反転します。 |
+| `Clipping Level` | クリッピングマスクの強さを指定します。 |
+| `Transparency Level` | `TransClipping`シェーダーで使用します。クリッピングマスクのグレースケールレベルをα値として考慮することで、透過度を調整します。 |
+| `Use BaseMap αas Clipping Mask` | `TransClipping`シェーダーのみのプロパティです。チェックすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 |
+| `Select UI Type` | ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |
+| `VRChat Recommendation` | VRChatを楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |
+
 
 <img width = "800" src="Images_jpg/0102-06_02.jpg">
 
@@ -290,91 +307,73 @@ File>Build Settings>Player Settings... より
 `Tweak_transparency`スライダーで透過度合いを調整できます。  
 
 ---
-## 2.「基本となる３色（基本色/１影色/２影色）の設定」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_02.jpg">
+## 2. 「Basic Three Colors and Control Maps Setups」メニュー
+<img width = "500" src="Images_jpg/UTS2UI_02_00.jpg">
 
-このブロックでは、UTS2の基本となる、基本色/１影色/２影色に用いるカラーを定義します。  
+このメニューでは、UTS2の基本となる、基本色/１影色/２影色に用いるカラーを定義します。  
 これらのカラーは、**光源方向から順に、基本色⇒１影色⇒２影色**のように配置されます。  
 おのおののカラーは、テクスチャの各ピクセルに対して各カラーを乗算し、さらにライトカラーを乗算することで決まります。  
 **※ヒント：各影色は、基本色よりも暗い必要はありませんし、２影色が１影色よりも明るくても問題ありません。特に２影色を１影色よりも明るくすると、環境からの照り返しのような表現ができます。**  
 
 **※ヒント：２影色を使うかどうかは、デザインによります。必要のない場合には、指定しなくてかまいません。**  
 
+さらにサブメニューから、基本3色用テクスチャのシェアリング設定や、ノーマルマップ、シャドウコントロールマップの設定が行えます。
 
-| `プロパティ`  | 機能解説 |
+<img width = "500" src="Images_jpg/UTS2UI_02_01.jpg">
+
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `BaseMap` | 基本色（明色）テクスチャを指定します。 |
-| `BaseColor` | `BaseMap`に乗算されるカラーです。テクスチャを指定せず、カラーのみの指定の場合、こちらを基本色（明色）設定として使います。 |
-| `Is_LightColor_Base` | 基本色に対しライトカラーを有効にします。 **※ヒント：`SceneLights Hi-Cut_Filter`を使用する時には、必ずチェックします。** |
-| `1st_ShadeMap` | １影色テクスチャを指定します。 |
-| `Use BaseMap as 1stShade_Map` | ONにすると、`BaseMap`に指定されているテクスチャを`1st_ShadeMap`にも適用します。 |
-| `1st_ShadeColor` | `1st_ShaderMap`に乗算されるカラーです。テクスチャを指定せず、カラーのみの指定の場合、こちらを１影色設定として使います。 |
-| `Is_LightColor_1st_Shade` | １影色に対しライトカラーを有効にします。 **※ヒント：`SceneLights Hi-Cut_Filter`を使用する時には、必ずチェックします。** |
-| `2nd_ShadeMap` | ２影色テクスチャを指定します。 |
-| `Use 1stShade_Map as 2ndShade_Map` | ONにすると、`1st_ShadeMap`に指定されているテクスチャを`2nd_ShadeMap`にも適用します。同時に`Use BaseMap as 1stShade_Map`もONの場合は、`BaseMap`が`2nd_ShadeMap`にも適用されます。 |
-| `2nd_ShadeColor` | `2nd_ShaderMap`に乗算されるカラーです。テクスチャを指定せず、カラーのみの指定の場合、こちらを２影色設定として使います。 |
-| `Is_LightColor_2nd_Shade` | ２影色に対しライトカラーを有効にします。 **※ヒント：`SceneLights Hi-Cut_Filter`を使用する時には、必ずチェックします。** |
-
-**※ヒント：各カラーに存在する、`Is_LightColor_カラー名`スイッチをオフにすると、ライトの強さに関わらず、「オフにされたカラーは、常にライトのIntensityが１、ライトカラーが白の状態で照らされている状態」になります。このスイッチは、なるべくディレクショナルライトが１灯しかない環境で使うほうがよいでしょう。**  
+| `BaseMap` | 基本色（明色）テクスチャと`BaseMap`に乗算されるカラーを指定します。テクスチャを指定せず、カラーのみの指定の場合、こちらを基本色（明色）設定として使います。 |
+| `1st ShadeMap` | １影色テクスチャと`1st_ShaderMap`に乗算されるカラーを指定します。テクスチャを指定せず、カラーのみの指定の場合、こちらを１影色設定として使います。 |
+| `2nd ShadeMap` | ２影色テクスチャと`2nd_ShaderMap`に乗算されるカラーです。テクスチャを指定せず、カラーのみの指定の場合、こちらを２影色設定として使います。 |
 
 ---
-## 3.「ノーマルマップ」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_03.jpg">
+### 「Sharing Textures」サブメニュー
 
-このブロックでは、ノーマルマップに関する設定を行います。  
-**UTS2では、ノーマルマップは主に影色のぼかし表現に使います。**  
-通常のシェーディング表現にノーマルマップを足してやることで、より複雑なぼかし表現をすることが可能となります。  
-
-| `プロパティ`  | 機能解説 |
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `NormalMap` | ノーマルマップを指定します。 |
-| `Is_NormalMapToBase` | ノーマルマップをカラーに反映させる時にチェックします。チェックをしないとオブジェクトのジオメトリそのものの形状が反映されます。 |
+| `1st_ShadeMap` | `BaseMap`に指定されているテクスチャを`1st_ShadeMap`にも適用します。 |
+| `2nd_ShadeMap` | `1st_ShadeMap`に指定されているテクスチャを`2nd_ShadeMap`にも適用します。同時に`1st_ShadeMap`も**Active**の場合は、`BaseMap`が`2nd_ShadeMap`にも適用されます。 |
+
+---
+### 「NormalMap Settings」サブメニュー
+このメニューでは、ノーマルマップに関する設定を行います。  
 
 <img width = "600" src="Images_jpg/Is_NormalToBase.jpg">
 
-カラー同様に、各エフェクトにもノーマルマップを影響させるかどうかを選べるチェックがあります。  
-これらのチェックを外すと、ジオメトリの頂点法線がそのまま使われます。  
+**UTS2では、ノーマルマップは主に影色のぼかし表現に使います。**  
+通常のシェーディング表現にノーマルマップを足してやることで、より複雑なぼかし表現をすることが可能となります。  
+
+<img width = "500" src="Images_jpg/UTS2UI_02_02.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `NormalMap` | ノーマルマップを指定します。右のスライダーは、ノーマルマップの強さを変化させるスケールです。 |
+| NormalMap Effectiveness | ノーマルマップを各カラーに反映させるかを選びます。ボタンが**Off**の場合、そのカラーはノーマルマップを反映せず、オブジェクトのジオメトリそのものの形状で評価されます。 |
+| `3 Basic Colors` | ノーマルマップを基本となる3カラーに反映させる時に**Active**にします。 |
+| `HighColor` | ノーマルマップをハイカラーに反映させる時に**Active**にします。 |
+| `RimLight` | ノーマルマップをリムライトに反映させる時に**Active**にします。 |
+
 
 [![](https://img.youtube.com/vi/Hdyp8f7l0VI/0.jpg)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
 
 **※ヒント**：もちろんノーマルマップをバンプのように疑似立体表現として利用することもできます。ただしバンプ表現に用いられる場合、ノーマルマップは実際にジオメトリの表面を凸凹させるものではなく、ライティングでその凹凸を表現するものですので、**ライティングの変化が現れやすくするように、基本色/1影色/2影色のステップを設定してやる**必要があります。[上の例](https://twitter.com/nyaa_toraneko/status/1051359237631164417)の場合、基本色側のステップを0.8、影色側のステップを0.5ぐらいにした上で、さらに少し暗めのハイカラーを足してやることで立体感を強調してやっています。  
 
+
 ---
-## 4.「セルルックおよびイラストレーションルックを作るための基本設定（各カラーの塗り範囲と境界ぼかしの強度設定）」に関するプロパティ
+### 「Shadow Control Maps」サブメニュー
+影の落ち具合を調整する、ポジションマップやシェーディンググレードマップを指定します。  
+使用するシェーダーに応じて、サブメニュー内のアイテムが切り替わります。  
 
-このブロックでは、基本色/１影色/２影色の各カラーの塗り分け範囲の設定と、各カラー境界ぼかしの強さを設定します。リアルタイムのディレクショナルライトの設定と共に、UTS2を使う上で最も重要な設定です。**このブロックの設定で、基本的なルックは決まります**。  
-これらのプロパティの設定は、Unity上でリアルタイムで繰り返しチェックをすることができます。  
-プロパティ変更の結果をいちいちレンダリングして確認する必要がありませんので、じっくりと取り組んでみてください。  
-光源方向が同じでも、各Stepと各Featherのパラメタを変えることで、まったく違ったルックを作ることができます。  
-合わせて、ポジションマップやシェーディンググレードマップのような、影指定のための特殊マップについても解説します。  
+### ●DoubleShadeWithFeather系シェーダーの場合
 
-## 4-1. DoubleShadeWithFeather系シェーダーの場合
+<img width = "500" src="Images_jpg/UTS2UI_02_03.jpg">
 
-UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダーの共通プロパティです。  
-ライティングとは関係なく、モデルの指定位置に各々１影/２影色を配置できる、**ポジションマップ**を２枚持てるのが特徴です。  
-
-<img width = "500" src="Images_jpg/Property_UTS2_04_1.jpg">
-
-| `プロパティ`  | 機能解説 |
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `Set_SystemShadowsToBase` | Unityのシャドウシステムを使う場合に指定します。ReceiveShadowを使いたい場合には、必ずチェックします。（同時にMesh Renderer側の`ReceiveShadow`もチェックされている必要があります。） |
-| `Tweak_SystemShadowsLevel` | `Set_SystemShadowsToBase`がONの時に有効になる調整項目です。Unityのシステムシャドウのレベル調整をします。デフォルトは0で、±0.5の範囲で調整が可能です。`BaseColor_Step`/`1st_ShadeColor_Step`で塗り分けレベルを決定した後で、さらに微調整をしたい時や、セルフシャドウ等のReceiveShadowの出方を微調整したい時に使用します。 |
-| `BaseColor_Step` | 基本色（明色）と影色領域の塗り分け段階を設定します。 |
-| `Base/Shade_Feather` | 基本色（明色）と影色領域の境界をぼかします。 |
-| `ShadeColor_Step` | 影色領域より１影色と２影色の塗り分け段階を設定します。２影色を使用しない場合には、ゼロにしてください。 |
-| `1st/2nd_Shades_Feather` | １影色と２影色の境界をぼかします。 |
-| `Step_Offset (ForwardAdd Only)`| リアルタイムポイントライトなど、主にForwardAddパス内で足されるライトのステップ（塗り分け段階）を微調整します。 Mobile/Light版には、このプロパティはありません。 |
-| `PointLights HiCut_Filter (ForwardAdd Only)` | リアルタイムポイントライトなど、主にForwardAddパス内で足されるライトの基本色（明色）領域にかかる不要なハイライトをカットします。 特にぼかしのないセルルック時に、セルルック感を高めます。 Mobile/Light版には、このプロパティはありません。 |
-| `Set_1st_ShadePosition` | ライティングに関係なく、１影色の位置を強制的に指定したい場合、ポジションマップを割り当てます。必ず影を落としたい部分を黒で指定します。 |
-| `Set_2nd_ShadePosition` | ライティングに関係なく、２影色の位置を強制的に指定したい場合、ポジションマップを割り当てます。必ず影を落としたい部分を黒で指定します。(１影色のポジションマップにも影響を受けます） |
+| `1st Shade Position Map` | ライティングに関係なく、１影色の位置を強制的に指定したい場合、ポジションマップを割り当てます。必ず影を落としたい部分を黒で指定します。 |
+| `2nd Shade Position Map` | ライティングに関係なく、２影色の位置を強制的に指定したい場合、ポジションマップを割り当てます。必ず影を落としたい部分を黒で指定します。(１影色のポジションマップにも影響を受けます） |
 
-
-### 【Step/Feather各スライダーの基本的な使い方】
-[![](https://img.youtube.com/vi/eM3iwE67ICM/0.jpg)](https://www.youtube.com/watch?v=eM3iwE67ICM)
-
-**塗り分け段階を設定するStepスライダー**、**各色の境界をぼかすFeatherスライダー**の基本的な使い方です。  
-
----
 ### 【ポジションマップとは？】
 <img width = "800" src="Images_jpg/0906-18_03.jpg">
 
@@ -390,28 +389,16 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 一方、**明るいところでは２影色が表示されない領域**（２影色のポジションマップでは指定されているが、１影のポジションマップでは指定されていない領域）は、ライトが作る影の中に入った時のみ２影色が表示されます。  
 
 ---
-## 4-2. ShadingGradeMap系シェーダーの場合
+### ●ShadingGradeMap系シェーダーの場合
 
-高機能版UST2シェーダーである、ShadingGradeMap系シェーダーの共通プロパティです。  
-**シェーディンググレードマップ**と呼ばれる、ライティングに対する影の出やすさを制御できるマップを持つことができます。  
-シェーディンググレードマップを使うことで、ジオメトリや法線の状態とは関係なく、指定の位置に決まった形状の影色を配置ことができます。  
-ポイントマップとの違いは、シェーディンググレードマップは影色を決まった位置に表示するだけでなく、ライトの当て方次第でその出方を調整できるところにあります。  
+<img width = "500" src="Images_jpg/UTS2UI_02_04.jpg">
 
-<img width = "500" src="Images_jpg/Property_UTS2_04_2.jpg">
-
-| `プロパティ`  | 機能解説 |
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `Set_SystemShadowsToBase` | Unityのシャドウシステムを使う場合に指定します。ReceiveShadowを使いたい場合には、必ずチェックします。（同時にMesh Renderer側の`ReceiveShadow`もチェックされている必要があります。） |
-| `Tweak_SystemShadowsLevel` | `Set_SystemShadowsToBase`がONの時に有効になる調整項目です。Unityのシステムシャドウのレベル調整をします。デフォルトは0で、±0.5の範囲で調整が可能です。`BaseColor_Step`/`1st_ShadeColor_Step`で塗り分けレベルを決定した後で、さらに微調整をしたい時や、セルフシャドウ等のReceiveShadowの出方を微調整したい時に使用します。 |
-| `1st_ShadeColor_Step` | 基本色（明色）と１影色の塗り分け段階を設定します。`BaseColor_Step`と同じ機能です。 |
-| `1st_ShadeColor_Feather` | 基本色(明色）と１影色の境界をぼかします。`Base/Shade_Feather`と同じ機能です。 |
-| `2nd_ShadeColor_Step` | １影色と２影色の塗り分け段階を設定します。`ShadeColor_Step`と同じ機能です。 |
-| `2nd_ShadeColor_Feather` | １影色と２影色の境界をぼかします。`1st/2nd_Shades_Feather`と同じ機能です。 |
-| `Step_Offset (ForwardAdd Only)`| リアルタイムポイントライトなど、主にForwardAddパス内で足されるライトのステップ（塗り分け段階）を微調整します。 Mobile/Light版には、このプロパティはありません。 |
-| `PointLights HiCut_Filter (ForwardAdd Only)` | リアルタイムポイントライトなど、主にForwardAddパス内で足されるライトの基本色（明色）領域にかかる不要なハイライトをカットします。 特にぼかしのないセルルック時に、セルルック感を高めます。 Mobile/Light版には、このプロパティはありません。 |
-| `ShadingGradeMap` | Shading Grade Mapをグレースケールで指定します。 |
+| `ShadingGradeMap` | Shading Grade Mapをグレースケールで指定します。 Shading Grade Mapに使用するテクスチャは、テクスチャインポートセッティングで、必ず `SRGB (Color Texture)` を `OFF` にするようにしてください。 |
+| `ShadingGradeMap Level` | Shading Grade Mapのグレースケール値をレベル補正します。デフォルトは0で、±0.5の範囲で調整が可能です。 |
+| `Blur Level of ShadingGradeMap` | Mip Map機能を利用して、Shading Grade Mapをぼかします。Mip Mapを有効にするためには、テクスチャインポートセッティングで、Advanced > `Generate Mip Maps` を `ON` にしてください。デフォルトは0（ぼかさない）です。 |
 
----
 ### 【シェーディンググレードマップとは？】
 UTS2の標準シェーダーは、`Toon_DoubleShadeWithFeather.shader`という系統になりますが、その標準シェーダーの機能を元にシェーディンググレードマップというグレースケールのマップを使うことで、さらに影の掛かり方をUV座標単位で制御できるように拡張したシェーダーが、`Toon_ShadingGradeMap`系統のシェーダーです。  
 
@@ -424,47 +411,133 @@ UTS2の標準シェーダーは、`Toon_DoubleShadeWithFeather.shader`という�
 
 **Ambient Occlusionマップなどの遮蔽マップ**をシェーディンググレードマップに適用すると、ライティングに対してより影をかかりやすくすることができます。他にも、前髪の形状に沿った影とか、服のしわの凹部分とかに使うとよいでしょう。  
 
+
 ---
-### 【ポイントライトによるカラー塗り分けを微調整する：Step_Offset、PointLights HiCut_Filter】
+## 3.「Shading Step and Feather Settings」メニュー
+
+<img width = "500" src="Images_jpg/UTS2UI_03_00.jpg">
+
+このメニューでは、基本色/１影色/２影色の各カラーの塗り分け範囲の設定（**Step**）と、各カラー境界ぼかしの強さ(**Feather**)を設定します。リアルタイムのディレクショナルライトの設定と共に、UTS2を使う上で最も重要な設定です。**このブロックの設定で、基本的なルックは決まります**。セルルックおよびイラストレーションルックを作るための基本的なアイテムが集まっているのが、本メニューです。  
+これらのアイテムの設定は、Unity上でリアルタイムで繰り返しチェックをすることができます。  
+プロパティ変更の結果をいちいちレンダリングして確認する必要がありませんので、じっくりと取り組んでみてください。  
+光源方向が同じでも、各Stepと各Featherのパラメタを変えることで、まったく違ったルックを作ることができます。  
+
+### 【Step/Feather各スライダーの基本的な使い方】
+[![](https://img.youtube.com/vi/eM3iwE67ICM/0.jpg)](https://www.youtube.com/watch?v=eM3iwE67ICM)
+
+**塗り分け段階を設定するStepスライダー**、**各色の境界をぼかすFeatherスライダー**の基本的な使い方です。  
+
+---
+### 「Basic Lookdevs : Shading Step and Feather Settings」サブメニュー
+### ●DoubleShadeWithFeather系シェーダーの場合
+
+UTS2の標準シェーダーである、DoubleShadeWithFeather系シェーダーのアイテムです。  
+ライティングとは関係なく、モデルの指定位置に各々１影/２影色を配置できる、**ポジションマップ**を２枚持てるのが特徴です。  
+
+<img width = "500" src="Images_jpg/UTS2UI_03_01.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `BaseColor Step` | 基本色（明色）と影色領域の塗り分け段階を設定します。 |
+| `Base/Shade Feather` | 基本色（明色）と影色領域の境界をぼかします。 |
+| `ShadeColor Step` | 影色領域より１影色と２影色の塗り分け段階を設定します。２影色を使用しない場合には、ゼロにしてください。 |
+| `1st/2nd_Shades Feather` | １影色と２影色の境界をぼかします。 |
+
+---
+### ●ShadingGradeMap系シェーダーの場合
+
+高機能版UTS2シェーダーである、ShadingGradeMap系シェーダーのアイテムです。  
+**シェーディンググレードマップ**と呼ばれる、ライティングに対する影の出やすさを制御できるマップを持つことができます。  
+シェーディンググレードマップを使うことで、ジオメトリや法線の状態とは関係なく、指定の位置に決まった形状の影色を配置ことができます。  
+ポイントマップとの違いは、シェーディンググレードマップは影色を決まった位置に表示するだけでなく、ライトの当て方次第でその出方を調整できるところにあります。  
+
+<img width = "500" src="Images_jpg/UTS2UI_03_02.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `1st ShadeColor Step` | 基本色（明色）と１影色の塗り分け段階を設定します。`BaseColor Step`と同じ機能です。 |
+| `1st ShadeColor Feather` | 基本色(明色）と１影色の境界をぼかします。`Base/Shade Feather`と同じ機能です。 |
+| `2nd ShadeColor Step` | １影色と２影色の塗り分け段階を設定します。`ShadeColor Step`と同じ機能です。 |
+| `2nd ShadeColor Feather` | １影色と２影色の境界をぼかします。`1st/2nd_Shades Feather`と同じ機能です。 |
+
+---
+### 「System Shadows : Self Shadows Receiving」サブメニュー
+
+Unityのシャドウシステムとトゥーンシェーディングを馴染ませるための調整アイテムです。  
+トゥーンシェードの場合、システムが提供する影は、キャラのセルフシャドウ（自身への落ち影）を表現するために必要なものです。  
+「Basic Lookdevs : Shading Step and Feather Settings」サブメニューアイテムで塗り分けレベルを決定した後で、さらに微調整をしたい時や、セルフシャドウ等のReceiveShadowの出方を微調整したい時に使用します。  
+
+<img width = "500" src="Images_jpg/UTS2UI_03_03.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `Receive System Shadows` | Unityのシャドウシステムを使う場合、**Active**にします。ReceiveShadowを使いたい場合には、必ず**Active**します。（同時にMesh Renderer側の`ReceiveShadow`もチェックされている必要があります。） |
+| `System Shadows Level` | Unityのシステムシャドウのレベル調整をします。デフォルトは0で、±0.5の範囲で調整が可能です。` |
+
+[![](https://img.youtube.com/vi/LXV37a1jhUE/0.jpg)](https://www.youtube.com/watch?v=LXV37a1jhUE)
+
+**↑ Unityでシステムシャドウを使いつつ、Stepスライダーを調整していると、影色との領域にノイズが現れることがあります。これらのノイズは、セルルックでは困りものですので、それらを`System Shadows Level`スライダーや`Tessellation`を使って改善する方法を紹介しています。**  
+
+ノイズの消し方は他にもありますので、[本マニュアルのおまけ](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%91tips%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%B7%E3%83%A3%E3%83%89%E3%82%A6%E4%BD%BF%E7%94%A8%E6%99%82%E3%81%AB%E5%90%84%E8%89%B2%E3%81%AE%E5%A2%83%E7%95%8C%E3%81%AB%E7%94%9F%E3%81%98%E3%82%8B%E3%82%A2%E3%83%BC%E3%83%86%E3%82%A3%E3%83%95%E3%82%A1%E3%82%AF%E3%83%88%E3%81%AE%E8%BB%BD%E6%B8%9B%E6%B3%95)も参照してみてください。
+
+
+---
+### 「Additional Settings」サブメニュー
+
+主にForwardAddパス内で処理されるリアルタイムポイントライト群に対する調整アイテムです。  
+Mobile/Light版には、このサブメニューはありません。  
+
+<img width = "500" src="Images_jpg/UTS2UI_03_04.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `Step Offset for PointLights`| リアルタイムポイントライトなど、主にForwardAddパス内で足されるライトのステップ（塗り分け段階）を微調整します。 |
+| `PointLights Hi-Cut Filter` | リアルタイムポイントライトなど、主にForwardAddパス内で足されるライトの基本色（明色）領域にかかる不要なハイライトをカットします。 特にぼかしのないセルルック時に、セルルック感を高めます。 |
+
+---
+### 【ポイントライトによるカラー塗り分けを微調整する：Step Offset、PointLights Hi-Cut Filter】
 
 [![](https://img.youtube.com/vi/fJX8uQKzWhc/0.jpg)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
 
 UTS2 v.2.0.5では、ぼかしを使わないセルルック時のリアルタイムポイントライトへの反応を改善しました。結果、ポイントライトだけでもセル風のルックが実現できます。  
 セルルックは、基本色（明色）/１影色、１影色/２影色の各Stepスライダーを調整して設定しますが、ポイントライトの場合、ディレクショナルライト以上に移動に対する影の変化が顕著になります。  
-それらの変化ををある程度抑え込むための微調整用として、`Step_Offset`スライダーを使います。  
+それらの変化ををある程度抑え込むための微調整用として、`Step Offset`スライダーを使います。  
 
 [![](https://img.youtube.com/vi/WkJId-e2TKk/0.jpg)](https://www.youtube.com/watch?v=WkJId-e2TKk)
 
-`Step_Offset`を使うことで、ポイントライトなどFowardAddパス側で追加されるリアルタイムライトのステップ（塗り分け段階）を微調整できます。  
-塗り分け用に使われる`BaseColor_Step`などの調整は、メインライトによる塗り分け段階を決めるのと同時に、ポイントライト側の設定にも使われます。  
-そこに`Step_Offset`を併用することで、さらに細かくポイントライトの当たり方を調整できます。  
+`Step Offset`を使うことで、ポイントライトなどFowardAddパス側で追加されるリアルタイムライトのステップ（塗り分け段階）を微調整できます。  
+塗り分け用に使われる`BaseColor Step`などの調整は、メインライトによる塗り分け段階を決めるのと同時に、ポイントライト側の設定にも使われます。  
+そこに`Step Offset`を併用することで、さらに細かくポイントライトの当たり方を調整できます。  
 特にメカ表現などで、ワカメハイライトなどを表現するのに便利です。  
 
 またポイントライトは、仕様上距離に対して明るさが減衰しますので、特に基本色（明色）部分のハイライトが必要以上に目立つことがあります。  
-そのような時に、`PointLights HiCut_Filter`をオンにすると、不要なハイライトが抑えられて、よりセルルックに馴染みやすくなります。  
-逆に積極的にハイライトを付けたい場合は、`PointLights HiCut_Filter`をオフにして使うといいでしょう。  
+そのような時に、`PointLights Hi-Cut Filter`をオンにすると、不要なハイライトが抑えられて、よりセルルックに馴染みやすくなります。  
+逆に積極的にハイライトを付けたい場合は、`PointLights Hi-Cut Filter`をオフにして使うといいでしょう。  
 
 ---
-## 5.「ハイカラー（ハイライト、スペキュラ）」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_05.jpg">
+## 4.「HighColor Settings」メニュー
+
+<img width = "500" src="Images_jpg/UTS2UI_04_00.jpg">
 
 **「ハイカラー」** は、**ハイライト、スペキュラ**とも呼ばれる表現です。  
 メインとなるディレクショナルライトからの「光」を照り返す表現として使われます。光の照り返し表現ですので、**ライトが動くと現れる位置も動きます**。  
 UTS2では、ハイカラー表現に対して様々な調整をすることが可能です。  
 
-| `プロパティ`  | 機能解説 |
+<img width = "500" src="Images_jpg/UTS2UI_04_01.jpg">
+
+| `アイテム` | 機能解説 |
 |:-------------------|:-------------------|
-| `HighColor` | ハイカラー指定するカラーを指定します。使用しない場合には`黒(0,0,0)`を設定してください。なおハイカラーは光源の方向に従って移動します。 |
-| `HighColor_Tex` | ハイカラーとしてカラーテクスチャを指定します。テクスチャを利用することで、複雑なカラーを載せることが可能になります。上の`HighColor`プロパティと乗算されますので、テクスチャのカラーをそのまま出したい場合には、`HighColor`を`白(1,1,1)`に設定してください。必要がない場合、設定しなくても大丈夫です。 |
-| `Is_LightColor_HighColor` | ハイカラーに対しライトカラーを有効にします。 |
-| `Is_NormalMapToHighColor` | ノーマルマップをハイカラー領域に反映させる時にチェックします。チェックをしないとオブジェクトのジオメトリそのものの形状が反映されます。 |
-| `HighColor_Power` | ハイカラーの範囲の大きさ（※スペキュラ的には「強さ」になります）を設定します。 |
-| `Is_SpecularToHighColor` | ハイカラー領域をスペキュラ（グロッシイ光沢）として描画します。チェックを外すとハイカラー領域の境界を円形で描画します。 |
-| `Is_BlendAddToHiColor` | ハイカラーの合成を加算（より明るくなります）にします。スペキュラは加算モードでしか使えません。 |
-| `Is_UseTweakHighColorOnShadow` | `TweakHighColorOnShadow`スライダーを有効にします。 |
-| `TweakHighColorOnShadow` | 影部分にかかるハイカラー領域の強さを調整します。 |
-| `Set_HighColorMask` | UV座標に基づきハイカラーをマスクします。白で100%表示、黒でハイカラーを表示しません。必要がない場合、設定しなくても大丈夫です。 |
-| `Tweak_HighColorMaskLevel` | ハイカラーマスクのレベル補正をします。デフォルト値は0です。 |
+| `HighColor` | ハイカラー指定するカラーを指定します。使用しない場合には`黒(0,0,0)`を設定してください。なおハイカラーは光源の方向に従って移動します。 カラー指定と同様にテクスチャも指定できます。テクスチャを利用することで、複雑なカラーを載せることが可能になります。右のパレットのカラーと乗算されますので、テクスチャのカラーをそのまま出したい場合には、パレットを`白(1,1,1)`に設定してください。必要がない場合、テクスチャは設定しなくても大丈夫です。 |
+| `HighColor Power` | ハイカラーの範囲の大きさ（※スペキュラ的には「強さ」になります）を設定します。 |
+| `Specular Mode` | `Active`の場合、ハイカラー領域をスペキュラ（グロッシイ光沢）として描画します。`Off`の場合、ハイカラー領域の境界を円形で描画します。 |
+| `Color Blend Mode` | `Additive`の場合、ハイカラーの合成を加算（結果は明るくなります）にします。スペキュラは加算モードでしか使えません。`Multiply`の場合、ハイカラーの合成を乗算（結果は暗くなります）にします。 |
+| `ShadowMask on HighColor` | `Active`の場合、影部分にかかるハイカラー領域をマスクします。 |
+| `HighColor Power on Shadow` | 影部分にかかるハイカラーの強さを調整します。 |
+| HighColor Mask | 以下、ハイカラーマスクの設定をします。 |
+| `HighColor Mask` | UV座標に基づきハイカラーをマスクします。白で100%表示、黒でハイカラーを表示しません。必要がない場合、設定しなくても大丈夫です。 |
+| `HighColor Mask Level` | ハイカラーマスクのレベル補正をします。デフォルト値は0です。 |
+
+**※ヒント：リアルタイムポイントライトのハイカラーを有効にしたい場合は、`PointLights Hi-Cut Filter`を`Off`にします。**  
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_rev_16.jpg">
 
@@ -479,40 +552,41 @@ UTS2では、ハイカラー表現に対して様々な調整をすることが�
 
 
 ---
-## 6.「リムライト」に関するプロパティ
+## 5.「RimLight Settings」メニュー
 
-<img width = "500" src="Images_jpg/Property_UTS2_06.jpg">
+<img width = "500" src="Images_jpg/UTS2UI_05_00.jpg">
 
 **「リムライト」** は、実写の世界では「ライトが被写体の周縁（リム）を照らすように配置する」テクニックを指しています。  
 トゥーンシェーダーを含むノンフォトリアリスティックな表現では、形状を強調するのに同じようにエッジにハイライトを置きますが、これもしばしば「リムライト」と呼ばれています。  
-UTS2では、リムライトに関しても様々なオプションが利用できます。  
+UTS2では、リムライトに関しても様々なアイテムが利用できます。  
 
-| `プロパティ`  | 機能解説 |
+<img width = "500" src="Images_jpg/UTS2UI_05_01.jpg">
+
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `RimLight` | リムライトを有効にします。 |
-| `RimLightColor` | リムライトのカラーを指定します。 |
-| `Is_LightColor_RimColor` | リムカラーに対しライトカラーを有効にします。 |
-| `Is_NormalMapToRimLight` | ノーマルマップをリムライトに反映させる時にチェックします。チェックをしないとオブジェクトのジオメトリそのものの形状が反映されます。 |
-| `RimLight_Power` | リムライトの強さを指定します。 |
-| `RimLight_InsideMask` | リムライトの内側マスクの強度を指定します。 |
-| `RimLight_FeatherOff` | リムライトのぼかしをカットします。 |
-| `LightDirection_MaskOn` | 光源方向にのみリムライトを発生します。 |
-| `Tweak_LightDirection_MaskLevel` | 光源方向リムマスクのレベル調整をします。 |
-| `Add_Antipodean_RimLight` | 光源方向に対し反対方向の位置にリムライト（APリムライト）を発生させます。 |
-| `Ap_RimLightColor` | APリムライトのカラーを指定します。 |
-| `Is_LightColor_Ap_RimLight` | APリムカラーに対しライトカラーを有効にします。 |
-| `Ap_RimLight_Power` | APリムライトの強さを指定します。 |
-| `Ap_RimLight_FeatherOff` | APリムライトのぼかしをカットします。 |
-| `Set_RimLightMask` | UV座標に基づきリムライトをマスクします。白で100%表示、黒でリムライトを表示しません。必要がない場合、設定しなくても大丈夫です。 |
-| `Tweak_RimLightMaskLevel` | リムライトマスクのレベル補正をします。デフォルト値は0です。 |
+| `RimLight` | `Active`の場合、リムライトを有効にします。 |
+| RimLight Settings | 以下、リムライトの設定をします。 |
+| `RimLight Color` | リムライトのカラーを指定します。 |
+| `RimLight Power` | リムライトの強さを指定します。 |
+| `RimLight Inside Mask` | リムライトの内側マスクの強度を指定します。 |
+| `RimLight FeatherOff` | `Active`の場合、リムライトのぼかしをカットします。 |
+| `LightDirection Mask` | `Active`の場合、光源方向にのみリムライトを発生します。 |
+| `LightDirection MaskLevel` | 光源方向リムマスクのレベル調整をします。 |
+| `Antipodean(Ap)_RimLight` | `Active`の場合、光源方向に対し反対方向の位置にリムライト（**APリムライト/対蹠リムライト**）を発生させます。 |
+| Ap_RimLight Settings | 以下、APリムライト（対蹠リムライト）の設定をします。 |
+| `Ap_RimLight Color` | APリムライトのカラーを指定します。 |
+| `Ap_RimLight Power` | APリムライトの強さを指定します。 |
+| `Ap_RimLight FeatherOff` | `Active`の場合、APリムライトのぼかしをカットします。 |
+| RimLight Mask | 以下、リムライトマスクの設定をします。 |
+| `RimLight Mask` | UV座標に基づきリムライトをマスクします。白で100%表示、黒でリムライトを表示しません。必要がない場合、設定しなくても大丈夫です。 |
+| `RimLight Mask Level` | リムライトマスクのレベル補正をします。デフォルト値は0です。 |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_14.jpg">
 
-基本的なリムライトは、カメラから見てオブジェクトの周縁に表示されます。  
-上に加えてUTS2では、メインライトが存在する方向を考慮してリムライトの出る位置を調整することができます。（`LightDirection_MaskOn`）  
-さらに光源とは反対方向のリムライトも設定できます（`Add_Antipodean_RimLight`）ので、「照り返し」も表現することが可能です。  
-もし光源方向のリムライトもカットして、光源方向の反対のみにリムライトを発生したい場合には、光源方向のリムライトのカラーを`黒（0,0,0）`に指定してください。  
-
+**基本的なリムライトは、カメラから見てオブジェクトの周縁に表示**されます。  
+上に加えてUTS2では、メインライトが存在する方向を考慮してリムライトの出る位置を調整することができます。（`LightDirection Mask`）  
+さらに**光源とは反対方向のリムライト（対蹠リムライト）も設定できます**（`Antipodean(Ap)_RimLight`が`Active`）ので、「照り返し」も表現することが可能です。  
+もし光源方向のリムライトもカットして、光源方向の反対のみにリムライトを発生したい場合には、光源方向のリムライトのカラー（`RimLight Color`）を`黒（0,0,0）`に指定してください。  
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_15.jpg">
 
@@ -527,8 +601,9 @@ UTS2では、リムライトマスクを設定することで、それらのテ�
 またリムライトマスクを使うことで、「**金属的な材質表現**」を他の素材と調整することで強調したり、服に差し込む入射光を調整することで 「**ベルベット風衣類のしわ表現**」などをすることが可能です。  
 
 ---
-## 7.「MatCap」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_07.jpg">
+## 6.「MatCap : Texture Projection Settings」メニュー
+
+<img width = "500" src="Images_jpg/UTS2UI_06_00.jpg">
 
 **「マットキャップ（MatCap）」** とは、カメラベースでオブジェクトに貼り付けるスフィアマップのことです。ZBrushの質感表現で使われています。  
 Google画像検索で、「Matcap」で検索すると、様々なMatcapの例を見ることができます。物理ベースシェーダーが普及する以前は、金属的なテカリを表現する時によく使われました。  
@@ -537,23 +612,29 @@ UTS2では、Matcapテクスチャを乗算だけでなく加算でも合成で�
 
 **※ヒント：UTS2 v.2.0.5からは、[カメラによる歪みに対して適切な補正が入る](https://twitter.com/kanihira/status/1061448868221480960)ようになりましたので、オブジェクトがカメラの端に来てもMatCapが歪まなくなりました。**  
 
-| `プロパティ`  | 機能解説 |
+<img width = "500" src="Images_jpg/UTS2UI_06_01.jpg">
+
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `MatCap` | MatCapを有効にします。 |
-| `MatCap_Sampler` | MatCapとして使用するテクスチャを設定します。 |
-| `MatCapColor` | `MatCap_Sampler`に乗算されるカラーです。`MatCap_Sampler`側にグレースケール画像を設定した場合、`MatCapColor`でMatCapにカラーを乗せることができます。 |
-| `Is_LightColor_MatCap` | MatCapに対しライトカラーを有効にします。 |
-| `Is_BlendAddToMatCap` | チェックするとMatCapのブレンドが**加算モード**になります（結果は明るくなります）。チェックしない場合には**乗算モード**で合成されます（結果は暗くなります）。 |
-| `Tweak_MatCapUV` | `MatCap_Sampler`のUVを中央から円形に拡縮することで、MatCapの領域調整ができます。 |
-| `Rotate_MatCapUV` | `MatCap_Sampler`のUVを中央を軸に回転します。 |
-| `Is_NormalMapForMatCap` | MatCapにMatCap専用ノーマルマップを割り当てます。MatCapをスペキュラ的に使っている場合には、スペキュラマスクとして使用できます。 |
-| `NormalMapForMatCap` | MatCap専用ノーマルマップを設定します。 |
-| `Rotate_NormalMapForMatCapUV` | MatCap専用ノーマルマップのUVを中央を軸に回転します。 |
-| `Is_UseTweakMatCapOnShadow` | `Tweak MatCapOnShadow`スライダーを有効にします。 |
-| `Tweak MatCapOnShadow` | 影部分にかかるMatCap領域の強さを調整します。 |
-| `Set_MatcapMask` |MatCapにグレースケールのマスクを設定することで、MatCapの出方を調整します。MatcapMaskは、MatCapが投影されるメッシュのUV座標基準で配置されます。黒でマスク、白で抜きになります。 |
-| `Tweak_MatcapMaskLevel` | MatcapMaskの強さを調整します。デフォルト値は0です。 |
-| `Orthographic Projection for MatCap` | シーン内で使用するカメラのプロジェクションが、**Orthographic（平行投影）の時、ON**にします。**パースカメラの時には、OFFにする**ことでカメラ歪み補正が働きます。 **※Tips：このチェックをONにすると、パースカメラ時の挙動がUTS2 v.2.0.4版と同じになります。つまりカメラ歪み補正がなくなります。** |
+| `MatCap` | `Active`の場合、MatCapを有効にします。 |
+| MatCap Settings | 以下、MatCapの設定をします。 |
+| `MatCap Sampler` | MatCapとして使用するテクスチャを設定します。右側のカラーがテクスチャに乗算されます。 |
+| `Blur Level of MatCap Sampler` | Mip Map機能を利用して、MatCap_Samplerをぼかします。Mip Mapを有効にするためには、テクスチャインポートセッティングで、Advanced > `Generate Mip Maps` を `ON` にしてください。デフォルトは0（ぼかさない）です。 |
+| `Color Blend Mode` | `Additive`の場合、MatCapのブレンドが**加算モード**になります（結果は明るくなります）。`Multiply`の場合には**乗算モード**で合成されます（結果は暗くなります）。 |
+| `Scale MatCapUV` | `MatCap Sampler`のUVを中央から円形にスケールすることで、MatCapの領域調整ができます。 |
+| `Rotate MatCapUV` | `MatCap Sampler`のUVを中央を軸に回転します。 |
+| `CameraRolling Stabillizer` | `Activate`にすることで、カメラのローリング（奥行き方向を軸とした回転のこと）に対してMatCapが回転してしまうのを抑止します。MatCapをカメラのローリングに対して固定したい時に便利な機能です。 |
+| `NormalMap for MatCap` | `Active`にすることで、MatCapにMatCap専用ノーマルマップを割り当てます。MatCapをスペキュラ的に使っている場合には、スペキュラマスクとして使用できます。 |
+| NormalMap for MatCap as SpecularMask | 以下、MatCap専用ノーマルマップの設定をします。 |
+| `NormalMap` | MatCap専用ノーマルマップを設定します。右側のスライダーはスケールです。 |
+| `Rotate NormalMapUV` | MatCap専用ノーマルマップのUVを中央を軸に回転します。 |
+| `MatCap on Shadow` | `Active`にすることで、影部分にかかるMatCap領域をマスクします。 |
+| `MatCap Power on Shadow` | 影部分にかかるMatCapの強さを調整します。 |
+| `MatCap Projection Camera` | ゲームビュー内で使用するカメラのプロジェクションを指定します。**パースカメラ（`Perspective`）の時には、カメラ歪み補正が働きます**。 |
+| MatCap Mask | 以下、MatCap Maskの設定をします。 |
+| `Matcap Mask` |MatCapにグレースケールのマスクを設定することで、MatCapの出方を調整します。Matcap Maskは、MatCapが投影されるメッシュのUV座標基準で配置されます。黒でマスク、白で抜きになります。 |
+| `Matcap Mask Level` | Matcap Maskの強さを調整します。値が1の時、マスクのあるなしに関わらずMatCapを100％表示します。値が-1の時には、MatCapは一切表示されず、MatCapがオフの状態と同じになります。デフォルト値は0です。 |
+| `Inverse Matcap Mask` | `Active`にすることで、Matcap Maskを反転します。 |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_36.jpg">
 
@@ -562,11 +643,11 @@ UTS2では、Matcapテクスチャを乗算だけでなく加算でも合成で�
 
 <img width = "800" src="Images_jpg/MatcapTips.jpg">
 
-上の例では、**サラサラ感のある髪の毛の光沢を表現する**のに、`MatCap`と`NormalMapForMatCap`、`MatcapMask`を使用しています。  
+上の例では、**サラサラ感のある髪の毛の光沢を表現する**のに、`MatCap`と`NormalMap for MatCap`、`Matcap Mask`を使用しています。  
 
-* MatCap_Sampler : 髪の上に乗算合成される、光の輪を表現します。  
-* NormalMapForMatCap : MatCap単体だとそのままの形状で合成されてしまいますが、NormalMapForMatCapを細かいリピートで重ねることで、三日月型の光沢をサラサラ感のある光に散らしています。このような使い方を`スペキュラマスク`と呼びます。ここで使われるノーマルマップは、バンプ的な表現には使われません。  
-* MatcapMask : MatCapが表示される範囲を調整します。垂直方向のグラデーションマスクを設定することで、`Tweak_MatcapMaskLevel`スライダーを調整することで、MatCapが表示される範囲を簡単に制御することができます。  
+* MatCap Sampler : 髪の上に乗算合成される、光の輪を表現します。  
+* NormalMap for MatCap : MatCap単体だとそのままの形状で合成されてしまいますが、NormalMap for MatCapを細かいリピートで重ねることで、三日月型の光沢をサラサラ感のある光に散らしています。このような使い方を`スペキュラマスク`と呼びます。ここで使われるノーマルマップは、バンプ的な表現には使われません。  
+* Matcap Mask : MatCapが表示される範囲を調整します。垂直方向のグラデーションマスクを設定することで、`Matcap Mask Level`スライダーを調整することで、MatCapが表示される範囲を簡単に制御することができます。  
 
 <img width = "800" src="Images_jpg/MatcapMask.jpg">
 
@@ -574,8 +655,9 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 
 
 ---
-## 8.「AngelRing（天使の輪）」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_08.jpg">
+## 7.「AngelRing Projection Settings」メニュー
+
+<img width = "500" src="Images_jpg/UTS2UI_07_00.jpg">
 
 **「AngelRing（天使の輪）」** とは、カメラから見て常に固定の位置に現れるハイライト表現で、髪のハイライト表現として使われます。「天使の輪」機能を持つシェーダーは、`AngelRing`フォルダ以下に収録されています。  
 
@@ -583,17 +665,17 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 
 「天使の輪」は、それが投映されるメッシュのUV2を参照しますので、Mayaや3ds Max、BlenderなどのDCCツールで、事前にUV2を設定しておく必要があります。  
 
-| `プロパティ`  | 機能解説 |
-|:-------------------|:-------------------|
-| `AngelRing` | 「天使の輪」機能を有効にします。 |
-| `AngelRing_Sampler` | 「天使の輪」テクスチャを指定します。 |
-| `AngelRing_Color` | 「天使の輪」に乗算するカラーを指定します。 |
-| `AR_OffsetU` | 「天使の輪」表示を縦方向に微調整します。 |
-| `AR_OffsetV` | 「天使の輪」表示を横方向に微調整します。 |
-| `Is_LightColor_AR` | 「天使の輪」に対しライトカラーを有効にします。 |
-| `ARSampler_AlphaOn` | チェックすることで、「天使の輪」テクスチャに含まれるαチャンネルをクリッピングマスクとして利用できます。 |
+<img width = "500" src="Images_jpg/UTS2UI_07_01.jpg">
 
----
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `AngelRing Projection` | `Active`の場合、「天使の輪」機能を有効にします。 |
+| AngelRing Sampler Settings | 以下、AngelRing Samplerの設定をします。 |
+| `AngelRing` | 「天使の輪」テクスチャを指定します。右に指定したカラーがテクスチャに乗算されます。 |
+| `Offset U` | 「天使の輪」表示を水平方向に微調整します。 |
+| `Offset V` | 「天使の輪」表示を垂直方向に微調整します。 |
+| `Use α channel as Clipping Mask` | `Active`の場合、「天使の輪」テクスチャに含まれるαチャンネルをクリッピングマスクとして利用します。`Off`の場合、αチャンネルは利用しません。 |
+
 ### ●「天使の輪」用素材の作成
 まず「天使の輪」機能を適用する髪の毛のメッシュに、２つめのUVを設定しましょう。  
 
@@ -603,29 +685,32 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 **※UV2の作成を含むこれらの作業は、Mayaや3ds Max、BlenderなどのDCCツールで行います。**  
 
 「天使の輪」用UVをガイドに、ハイライト部分のテクスチャを描きます。ハイライト部分のカラーは元のカラーに加算で合成されます。  
-作成したテクスチャは、`AngelRing_Sampler`に登録します。  
-ハイライトは白で描いて、後で`AngelRing_Color`で色を載せてもよいでしょう。  
+作成したテクスチャは、`AngelRing`のテクスチャに登録します。  
+ハイライトは白で描いて、後に乗算でカラーを載せてもよいでしょう。  
+
 <img width = "800" src="Images_jpg/Hair_UV1.jpg">
 
-`ARSampler_AlphaOn`をチェックすると、下の図のように「天使の輪」テクスチャのαチャンネルがクリッピングマスクとして利用できるようになります。  
+`Use α channel as Clipping Mask`を`Active`にすると、下の図のように「天使の輪」テクスチャのαチャンネルがクリッピングマスクとして利用できるようになります。  
 「天使の輪」のカラーを加算でなく、直接指定できるようになります。  
+
 <img width = "800" src="Images_jpg/0609-04_13.jpg">
 
 
 ---
-## 9.「エミッシブ」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_09.jpg">
+## 8.「Emissive : Self-luminescene Setings」メニュー
 
 **「エミッシブ」** とは、自己発光のことです。  
-`Emissive_Color`にHDRカラー（明るさとして1以上の値を持てるカラー仕様のこと）を定義することで、周りのカラーよりも明るい領域を設定することができます。  
-**[Post Processing Stack](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Stack.html)の[ブルーム](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Bloom.html)など、カメラにアタッチされるポストエフェクトと共に使われることで、パーツを効果的に光らせることができます。**  
+カラーに**HDRカラー**（明るさとして1以上の値を持てるカラー仕様のこと）を定義することで、周りのカラーよりも明るい領域を設定することができます。  
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_17.jpg">
 
-| `プロパティ`  | 機能解説 |
+**[Post Processing Stack](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Stack.html)の[ブルーム](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Bloom.html)など、カメラにアタッチされるポストエフェクトと共に使われることで、パーツを効果的に光らせることができます。**  
+
+<img width = "500" src="Images_jpg/UTS2UI_08_00.jpg">
+
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `Emissive_Tex` | エミッシブ用のテクスチャを設定します。グレースケールでマスクテクスチャを作成し、`Emissive_Color`で光らせることもできます。他のパーツと重ねて光って欲しくない部分などは、黒（RGB:0,0,0）にしておきます。 |
-| `Emissive_Color` | `Emissive_Tex`の各ピクセルカラーに乗算されるカラーです。多くの場合、 **[HDRカラー](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html)** を設定します。 |
+| `Emissive` | エミッシブ用のテクスチャを設定します。グレースケールでマスクテクスチャを作成し、それに乗算するカラーで光らせることもできます。 右側のカラーが、テクスチャの各ピクセルカラーに乗算されます。多くの場合、 **[HDRカラー](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html)** を設定します。他のパーツと重ねて**光って欲しくない部分は、テクスチャ上で黒（RGB:0,0,0）にしておきます。** |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_42.jpg">
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_43.jpg">
@@ -636,8 +721,8 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 
 
 ---
-## 10.「アウトライン」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_10.jpg">
+## 9.「Outline Settings」メニュー
+<img width = "500" src="Images_jpg/UTS2UI_09_00.jpg">
 
 UTS2では、アウトライン機能として、**マテリアルベースのオブジェクト反転方式のアウトライン**を採用しています。  
 この方式を簡単に説明すると、シェーダーで元のオブジェクトよりも少し大きめのオブジェクトを面法線だけ反転して生成します。  
@@ -648,29 +733,41 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 **＊参考：実際にオブジェクトの周りにラインを描画する方式もありますが、それらは主にポストプロセス（ポストエフェクト）方式のアウトラインとして知られています。**  
 ポストプロセス方式のアウトラインは採用する方式によって、スピードもクオリティも異なります。実際のゲームでは、従来型のオブジェクト反転方式に、軽めのポストプロセス方式を加えて補正する場合が多いです。  
 
-| `プロパティ`  | 機能解説 |
+<img width = "500" src="Images_jpg/UTS2UI_09_01.jpg">
+
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `OUTLINE MODE` | アウトライン用反転オブジェクトの生成方式を指定します。`NML`（法線反転方式） / `POS`（ポジションスケーリング方式）から選択できます。多くの場合、法線反転方式が使われますが、ハードエッジだけで構成されているキューブのようなメッシュの場合、ポジションスケーリング方式のほうがアウトラインが途切れにくくなります。比較的単純な形状はオブジェクトスケーリング方式で、キャラクターなどの複雑な形状のものは法線反転方式を使うといいでしょう。 |
-| `Outline_Width` | アウトラインの幅を設定します。 **※注意：この値は、Unityへのモデルインポート時のスケールに依存します** ので、取り込みスケールが１でない時には注意してください。 |
-| `Farthest_Distance` | カメラとオブジェクトの距離でアウトラインの幅が変化する、最遠距離を指定します。この距離でアウトラインがゼロになります。 |
-| `Nearest_Distance` | カメラとオブジェクトの距離でアウトラインの幅が変化する、最近距離を指定します。この距離でアウトラインが`Outline_Width`等で設定した最大の幅になります。 |
-| `Outline_Sampler` | アウトラインの幅に入り抜きを入れたい場合や特定のパーツにのみアウトラインを乗せたくない場合などにアウトラインサンプラー（テクスチャ）で指定します。白で最大幅、黒で最小幅になります。必要がない場合、設定しなくても大丈夫です。 |
-| `Outline_Color` | アウトラインのカラーを指定します。 |
-| `Is_BlendBaseColor` | オブジェクトの基本カラーにアウトラインのカラーを馴染ませたい場合に、チェックします。 |
-| `Is_OutlineTex` | アウトライン用反転オブジェクトにテクスチャを貼りたい場合、ONにします。 |
-| `OutlineTex` | アウトラインに特別なテクスチャを割り当てたい時に使用します。テクスチャを工夫することで、アウトラインに模様を入れたりすることができる他、フロントカリングされる反転オブジェクトに貼られるテクスチャだと考えると、一風変わった表現ができるかもしれません。 |
-| `Offset_Camera_Z` | アウトラインをカメラの奥行き方向（Ｚ方向）にオフセットします。スパイク形状の髪型などの場合、プラスの値を入れることでスパイク部分にはアウトラインがかかりにくくなります。通常は０を入れておいてください。 |
-| `Is_BakedNormal` | ONにすると、`BakedNormal for Outline`を有効にします。 |
-| `BakedNormal for Outline` | 事前に他のモデルから頂点法線を焼き付けたノーマルマップを、法線反転方式アウトラインの設定時に追加として読み込みます。詳しい説明は下を参照してください。 |
+| `Outline Mode` | アウトライン用反転オブジェクトの生成方式を指定します。`Normal Direction`（法線反転方式） / `Position Scalling`（ポジションスケーリング方式）から選択できます。多くの場合、法線反転方式が使われますが、ハードエッジだけで構成されているキューブのようなメッシュの場合、ポジションスケーリング方式のほうがアウトラインが途切れにくくなります。比較的単純な形状はポジションスケーリング方式で、キャラクターなどの複雑な形状のものは法線反転方式を使うといいでしょう。 |
+| `Outline Width` | アウトラインの幅を設定します。 **※注意：この値は、Unityへのモデルインポート時のスケールに依存します** ので、取り込みスケールが１でない時には注意してください。 |
+| `Outline Color` | アウトラインのカラーを指定します。 |
+| `BlendBaseColor to Outline` | オブジェクトの基本カラーにアウトラインのカラーを馴染ませたい場合に、`Active`にします。 |
+| `Outline Sampler` | アウトラインの幅に入り抜きを入れたい場合や特定のパーツにのみアウトラインを乗せたくない場合などにアウトラインサンプラー（テクスチャ）で指定します。白で最大幅、黒で最小幅になります。必要がない場合、設定しなくても大丈夫です。 |
+| `Offset Outline with Camera Z-axis` | アウトラインをカメラの奥行き方向（Ｚ方向）にオフセットします。スパイク形状の髪型などの場合、プラスの値を入れることでスパイク部分にはアウトラインがかかりにくくなります。通常は０を入れておいてください。 |
 
 ---
-### ●アウトラインの強弱を調整する：**Outline_Sampler**
+### 「Advanced Outline Settings」サブメニュー
+
+本サブメニューのアイテムで、アウトライン機能をさらに強化することができます。
+
+<img width = "500" src="Images_jpg/UTS2UI_09_02.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `Farthest Distance to vanish` | カメラとオブジェクトの距離でアウトラインの幅が変化する、最も遠い距離を指定します。この距離でアウトラインがゼロになります。 |
+| `Nearest Distance to draw with Outline Width` | カメラとオブジェクトの距離でアウトラインの幅が変化する、最も近い距離を指定します。この距離でアウトラインが`Outline_Width`等で設定した最大の幅になります。 |
+| `Use Outline Texture` | アウトライン用反転オブジェクトにテクスチャを貼りたい場合、`Active`にします。 |
+| `Outline Texture` | アウトラインに特別なテクスチャを割り当てたい時に使用します。テクスチャを工夫することで、アウトラインに模様を入れたりすることができる他、フロントカリングされる反転オブジェクトに貼られるテクスチャだと考えると、一風変わった表現ができます。 |
+| `Use Baked Normal for Outline` | `Active`の場合、`BakedNormal for Outline`を有効にします。このアイテムは、アウトラインの描画方式が法線反転方式の時のみ現れます。 |
+| `Baked Normal for Outline` | 事前に他のモデルから頂点法線を焼き付けたノーマルマップを、法線反転方式アウトラインの設定時に追加として読み込みます。詳しい説明は[下](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%99%E3%82%A4%E3%82%AF%E3%81%97%E3%81%9F%E9%A0%82%E7%82%B9%E6%B3%95%E7%B7%9A%E3%82%92%E8%BB%A2%E5%86%99%E3%81%99%E3%82%8Bbaked-normal-for-outline)を参照してください。 |
+
+---
+### ●アウトラインの強弱を調整する：**Outline Sampler**
 <img width = "800" src="Images_jpg/0906-18_01.jpg">
 
 黒でラインなし、白でラインの幅が100%になります。  
 適宜 Outline_Sampler を設定することで、アウトラインに入り抜き（強弱）が発生します。  
 
-**※Tips：Outline_Sampler を複数キャラに適用する際に、各キャラのパーツのUV配置を共通化する一工夫をすると、モデル汎用に入り抜きの制御が調整できるようになって便利です。**  
+**※Tips：Outline Sampler を複数キャラに適用する際に、各キャラのパーツのUV配置を共通化する一工夫をすると、モデル汎用に入り抜きの制御が調整できるようになって便利です。**  
 
 ---
 ### ●オブジェクト反転方式アウトラインを補う：**UTS_EdgeDetection**
@@ -702,9 +799,9 @@ Sobel Color Filterを使うことで、効果的にトゥーンラインエッ�
 ### ●ベイクした頂点法線を転写する：**Baked Normal for Outline**  
 頂点法線を焼き付けたノーマルマップを、法線反転アウトラインの設定時に追加的に読み込むことができるようになりました。本機能を使うことで、ハードエッジのオブジェクトに、ソフトエッジのオブジェクトのアウトラインを、事前にベイクしたノーマルマップを経由して適用することができるようになります。  
 
-Baked Normalマップを使用する時には、UTS2のアウトライン設定プロパティで、  
-1.  OUTLINE MODE を **"NML"** に  
-2.  Is_BakedNormal を **"ON"** に  
+Baked Normalマップを使用する時には、UTS2のアウトライン設定メニューで、  
+1.  Outline Mode を **"Normal Direction"** に  
+2.  Use Baked Normal for Outline を **"Active"** に  
 3.  Baked Normal for Outline に使用したいマップを適用します。 
 
 **Baked Normal for Outline として適用できるノーマルマップ**は以下のような仕様となっています。  
@@ -719,56 +816,105 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 **※注意：この方式による頂点法線の調整は、バーテックスシェーダー側で行われますので、適用される頂点数にそのまま依存します**。つまり、ピクセルシェーダー側のように頂点法線間で補正するものではありませんので、注意してください。  
 
 ---
-### ●アウトラインをカメラの奥に移動する：**Offset_Camera_Z**
+### ●アウトラインをカメラの奥に移動する：**Offset Outline with Camera Z-axis**
 <img width = "800" src="Images_jpg/0205-11_01.jpg">
 
-`Offset_Camera_Z`に値を入れることで、アウトラインがカメラの奥行き方向（Ｚ方向）にオフセットされます。  
+`Offset Outline with Camera Z-axis`に値を入れることで、アウトラインがカメラの奥行き方向（Ｚ方向）にオフセットされます。  
 図のようなスパイク形状の髪型の場合に、スパイク部分のアウトラインの出方を調整するのに使用します。  
 通常は０を入れておいてください。  
 
 
 ---
-## 11.「ライトプローブ」の利用、およびシェーダービルトインライトやVRChatに便利な機能に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_11.jpg">
+## 10.「DX11 Phong Tessellation Settings」メニュー
+UTS2のテッセレーション機能は、**Windows/DX11環境でのみ**使用できます。  
 
+<img width = "500" src="Images_jpg/UTS2UI_10_00.jpg">
 
-| `プロパティ`  | 機能解説 |
+| `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `GI_Intensity` | `GI_Intensity` を０以上に設定することで、UnityのLightingウィンドウ内で管理されているGIシステム、特に[ライトプローブ](https://docs.unity3d.com/ja/current/Manual/LightProbes.html)に対応します。 `GI_Intensity` が１の時、シーン内のGIの強度が100％となりますが、トゥーンシェーダーの場合、100%だと値が高すぎるようです。デフォルトは０で、好みにも寄りますが、 **ライトプローブ使用時で0.3程度で使うとよい効果が得られます。** |
-| `Unlit_Intensity` | シーン内に有効なリアルタイムディレクショナルライトが１灯もない時に、[Environment LightingのSource設定](https://docs.unity3d.com/ja/current/Manual/GlobalIllumination.html)を元にシーンの明るさとカラーを求め、それを`Unlit_Intensity`の値でブーストして光源として使用します（本機能を **「アンビエントブレンディング」** と呼んでいます）。デフォルトは１（アンビエントカラーをそのまま受ける）で、０にすると完全に消灯します。本機能は環境カラーにマテリアルカラーを馴染ませたい時に使いますが、 **より暗めに馴染ませたい場合は 0.5～1 程度** に設定し、 **より明るくカラーを出したい場合は 1.5～2 程度** に設定するとよいでしょう。 |
-| `VRChat : SceneLights Hi-Cut_Filter` | シーン内に極端に明るさ（Intensity）が高い、複数のリアルタイムディレクショナルライトやリアルタイムポイントライトがある場合に、白飛びを抑えます。ONにすることで、各々のライトのカラーと減衰特性を保ちつつ、マテリアルカラーが白飛びするような高いインテンシティだけをカットします。デフォルトは`OFF`です。本機能を使用する時には、`Is_LightColor_Base` などの`Is_LightColor_`系のチェックが`ON`になっていることを確認してください。 **VRChatユーザーは`ON`にすることをお薦めします。** ※ヒント：この機能を使っても白飛びが発生する場合、ポストエフェクト側のブルームなどの設定をチェックしてみてください。（特にブルームのスレッショルドの値が１以下だと白飛びしやすくなります。） |
-| `Advanced : Activate Buil-in Light Direction` | 上級者向け機能として、Buil-in Light Directionベクトル（シェーダー内に組み込まれているバーチャルライトの方向ベクトル）を有効にします。本機能が有効な時、ライトの明るさとカラーは、シーン内の有効なリアルタイムディレクショナルライトの値を使用します。もしそのようなライトがない場合は、アンビエントブレンディングの値を使用します。 |
-| ` Offset X-Axis (Buil-in Light Direction)` | Buil-in Light Directionベクトルによって生成される、バーチャルライトを左右に動かします。 |
-| ` Offset Y-Axis (Buil-in Light Direction)` | Buil-in Light Directionベクトルによって生成される、バーチャルライトを上下に動かします。 |
-| ` Inverse Z-Axis (Buil-in Light Direction)` | Buil-in Light Directionベクトルによって生成される、バーチャルライトの向きを前後で切り替えます。 |
+| `Edge Length` | カメラとの距離に基づいて、よりテッセレーションを分割します。同じ距離では、値が小さいほうが細分化されます。デフォルトは 5 です。 |
+| `Phong Strengh` | テッセレーションによって細分化された分割面の引っ張り強度を変化させます。デフォルトは 0.5 です。 |
+| `Extrusion Amount` | テッセレーションの結果として発生する、膨張分を全体としてスケーリングします。デフォルトは 0 です。 |
+
+対応部分のコードは、Nora氏の https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess を参考にさせていただきました。  
+Tessellationは、使えるプラットフォームが限られている上に、かなりパワフルなPC環境を要求しますので、覚悟して使ってください。  
+想定している用途は、パワフルなGPUを搭載しているWindows10/DX11のマシンを使って、映像＆VR向けに使用することです。  
+Light版とあるものは、ライトをディレクショナルライト１灯に制限した代わりに軽量化したバリエーションです。  
 
 ---
-### ●ライトプローブの明るさを決定する：GI_Intensity
+## 11.「LightColor Contribution to Materials」メニュー
+
+各カラーに対する、シーン内のリアルタイムライトのカラーの影響を、個別にON/OFFできるスイッチを集めたものです。
+`Active`の場合、各カラーに対するリアルタイムライトのカラーの影響が有効となり、`Off`の場合、インテンシティが１の時の各カラーの設定色がそのまま表示されます。
+
+[![](https://img.youtube.com/vi/THzoRcWpUmU/0.jpg)](https://www.youtube.com/watch?v=THzoRcWpUmU)
+
+本メニューから、各カラーへのライトカラーコントリビューション（寄与）のあり/なしを一元的に管理できます。  
+実際にシーン内で使用するキャラクターライトを使いながら、各カラーへの影響がライトコントリビューションのあり/なしでどう変わるかをリアルタイムで確認できます。ルックデブの仕上げに使うとよいでしょう。  
+
+<img width = "500" src="Images_jpg/UTS2UI_11_00.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `Base Color` | 基本色に対しライトカラーを有効にします。 |
+| `1st ShadeColor` | １影色に対しライトカラーを有効にします。 |
+| `2nd ShadeColor` | ２影色に対しライトカラーを有効にします。 |
+| `HighColor` | ハイカラーに対しライトカラーを有効にします。 |
+| `RimLight` | リムライトに対しライトカラーを有効にします。 |
+| `Ap_RimLight` | APリムライト（対蹠リムライト）に対しライトカラーを有効にします。 |
+| `MatCap` | MatCapに対しライトカラーを有効にします。 |
+| `AngelRing` | 「天使の輪」に対しライトカラーを有効にします。 |
+
+※ヒント：各カラーの設定が `Off` の場合、シーン内のライトの強さに関わらず、「オフにされたカラーは、常にライトのIntensityが１、ライトカラーが白の状態で照らされている状態」になります。  
+
+
+---
+## 12.「Environmental Lighting Contributions Setups」メニュー
+
+<img width = "500" src="Images_jpg/UTS2UI_12_00.jpg">
+
+本メニューには、シーン内の環境光設定（Skybox、Gradient、ColorなどのEnvironment Lighting）やライトプローブに対して、UTS2がどの程度反応をするか調整したり、リアルタイムディレクショナルライトがない環境で起動するシェーダービルトインライトの明るさを調整をするアイテムが含まれています。  
+また**VRChatユーザーに便利な機能**である、**SceneLights Hi-Cut Filter**のような白飛び防止機能のON/OFFも、このメニューからコントロールすることが可能です。  
+
+<img width = "500" src="Images_jpg/UTS2UI_12_01.jpg">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `GI Intensity` | `GI Intensity` を０以上に設定することで、UnityのLightingウィンドウ内で管理されているGIシステム、特に[ライトプローブ](https://docs.unity3d.com/ja/current/Manual/LightProbes.html)に対応します。 `GI Intensity` が１の時、シーン内のGIの強度が100％となります。 **v.2.0.6で機能強化をしましたので、ライトプローブを含むGIを利用したい場合には、まず１を設定した後（Standard Shaderとほぼ同様の明るさになります）で、必要に応じて調整してください。** |
+| `Unlit Intensity` | シーン内に有効なリアルタイムディレクショナルライトが１灯もない時に、[Environment LightingのSource設定](https://docs.unity3d.com/ja/current/Manual/GlobalIllumination.html)を元にシーンの明るさとカラーを求め、それを`Unlit Intensity`の値でブーストして光源として使用します（本機能を **「アンビエントブレンディング」** と呼んでいます）。デフォルトは１（アンビエントカラーをそのまま受ける）で、０にすると完全に消灯します。本機能は環境カラーにマテリアルカラーを馴染ませたい時に使いますが、 **より暗めに馴染ませたい場合は 0.5～1 程度** に設定し、 **より明るくカラーを出したい場合は 1.5～2 程度** に設定するとよいでしょう。（v.2.0.6より、最大値が4になりました。） |
+| `SceneLights Hi-Cut Filter` | シーン内に極端に明るさ（Intensity）が高い、複数のリアルタイムディレクショナルライトやリアルタイムポイントライトがある場合に、白飛びを抑えます。`Active`にすることで、各々のライトのカラーと減衰特性を保ちつつ、マテリアルカラーが白飛びするような高いインテンシティだけをカットします。デフォルトは`Off`です。本機能を使用する時には、「LightColor Contribution to Materials」メニュー内の、基本３色の設定がすべて`Active`になっていることを確認してください。 **VRChatユーザーは`Active`にすることをお薦めします。** ※ヒント：この機能を使っても白飛びが発生する場合、ポストエフェクト側のブルームなどの設定をチェックしてみてください。（特にブルームのスレッショルドの値が１以下だと白飛びしやすくなります。） |
+| `Built-in Light Direction` | 上級者向け機能として、ビルトインライトディレクション（シェーダー内に組み込まれているバーチャルライトの方向ベクトル）を有効にします。本機能が有効な時、ライトの明るさとカラーは、シーン内の有効なリアルタイムディレクショナルライトの値を使用します。もしそのようなライトがない場合は、アンビエントブレンディングの値を使用します。 |
+| Built-in Light Direction Settings | 以下、ビルトインライトディレクションの設定をします。 |
+| `Offset X-Axis Direction` | ビルトインライトディレクションによって生成される、バーチャルライトを左右に動かします。 |
+| `Offset Y-Axis Direction` | ビルトインライトディレクションによって生成される、バーチャルライトを上下に動かします。 |
+| `Inverse Z-Axis Direction` | ビルトインライトディレクションによって生成される、バーチャルライトの向きを前後で切り替えます。 |
+
+---
+### ●ライトプローブの明るさを決定する：GI Intensity
 
 <img width = "800" src="Images_jpg/GI_Intensity.jpg">
 
-**↑ 左側：GI_Intensity = 0、右側：GI_Intensity = 0.3程度。GI_Intensityの数値を上げると、マテリアルカラーにライトプローブのカラーが加算される。**  
+**↑ 左側：GI Intensity = 0、右側：GI Intensity = 1程度。GI Intensityの数値を上げると、マテリアルカラーにライトプローブのカラーが加算される。**  
 
 <img width = "800" src="Images_jpg/LightProbe.jpg">
 
 **↑ ステージ上に配置された、ベイク用ポイントライトとライトプローブの例。ベイクドライトは、各レンジが重なっても問題ない。ライトプローブは、ユニティちゃんの足元から背の高さまで敷き詰める。**  
 
 
-`GI_Intensity` を０以上に設定することで、ライトプローブなどの加算合成系のGIシステムに対応します。  
+`GI Intensity` を０以上に設定することで、ライトプローブなどの加算合成系のGIシステムに対応します。  
 ベイクドライトと一緒にシーン内にベイクされたライトプローブは、環境補助色としてマテリアルカラーに加算されます。  
-`GI_Intensity`が１の時、ライトプローブに焼き付けられたカラーを100％加算します。０の時は、元のマテリアルカラーのままです。  
-好みにもよりますが、`GI_Intensity`が高いと白飛び感がしますので、**最大 0.3～0.4 を目処に設定するとよい**でしょう。  
+`GI Intensity`が１の時、ライトプローブに焼き付けられたカラーを100％加算します。０の時は、元のマテリアルカラーのままです。  
 
 <img width = "800" src="Images_jpg/GI_IntensityOFF.jpg">
 
-**↑ GI_Intensity = 0**  
+**↑ GI Intensity = 0**  
 
 <img width = "800" src="Images_jpg/GI_IntensityON.jpg">
 
-**↑ GI_Intensity = 0.3程度**  
+**↑ GI Intensity = 1程度**  
 
 ---
-### ●アンビエントブレンディングを調整する：Unlit_Intensity  
+### ●アンビエントブレンディングを調整する：Unlit Intensity  
 
 アンビエントライトの設定をライトカラーが反映するようになりました。  
 その結果として、ディレクショナルライトのインテンシティの下限が、シーンのアンビエントライトの設定となります。  
@@ -786,8 +932,9 @@ VRChatで、アンビエントライトの設定に基づくワールドごと�
 
 
 ---
-### ●極めて明るいライトが複数存在するシーンでの白飛びを抑える：SceneLights HiCut_Filter  
-**SceneLights HiCut_Filter** は、VRChatユーザーには大変便利な機能です。  
+### ●極めて明るいライトが複数存在するシーンでの白飛びを抑える：SceneLights Hi-Cut Filter  
+
+**SceneLights Hi-Cut Filter** は、VRChatユーザーには大変便利な機能です。  
 下に詳しい機能説明のムービーを用意しました。  
 またムービー中では、PPSでトーンマッパーを設定する方法も簡単に説明しています。  
 
@@ -796,6 +943,7 @@ VRChatで、アンビエントライトの設定に基づくワールドごと�
 
 ---
 ### ●アドバンス機能として、Built-in Light Directionを追加  
+
 上級者向け機能として、シェーダー内にビルトインされているライトディレクションベクトルを任意の方向に設定できるようにしました。  
 Built-in Light Directionを有効にしたマテリアルは、それが適応されるメッシュのオブジェクト座標に対して、独自のシェーディング用ライトディレクションベクトルを持つことができるので、専用の固定ライトを持つことと同じ効果が得られます。  
 そのパーツが落とすドロップシャドウは、シーン中のディレクショナルライトを使いますので、シェーディングの落ち方とドロップシャドウの落ち方を変えることもできます。  
@@ -805,23 +953,6 @@ Built-in Light Directionの使い方は、下のムービーを見てみてく�
 
 [![](https://img.youtube.com/vi/IFAPrbAGfmw/0.jpg)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
 
-
----
-## 12.「テッセレーション」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_12.jpg">
-
-UTS2のテッセレーション機能は、Windows/DX11環境でのみ使用できます。  
-
-| `プロパティ`  | 機能解説 |
-|:-------------------|:-------------------|
-| `Tess Edge Length` | カメラとの距離に基づいて、よりテッセレーションを分割します。同じ距離では、値が小さいほうが細分化されます。デフォルトは 5 です。 |
-| `Tess Phong Strengh` | テッセレーションによって細分化された分割面の引っ張り強度を変化させます。デフォルトは 0.5 です。 |
-| `TessExtrusionAmount` | テッセレーションの結果として発生する、膨張分を全体としてスケーリングします。デフォルトは 0 です。 |
-
-対応部分のコードは、Nora氏の https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess を参考にさせていただきました。  
-Tessellationは、使えるプラットフォームが限られている上に、かなりパワフルなPC環境を要求しますので、覚悟して使ってください。  
-想定している用途は、パワフルなGPUを搭載しているWindows10/DX11のマシンを使って、映像＆VR向けに使用することです。  
-Light版とあるものは、ライトをディレクショナルライト１灯に制限した代わりに軽量化したバリエーションです。  
 
 
 # 映像（プリレンダー）での使用
@@ -858,14 +989,12 @@ UTS2を使う上で便利なTipsを紹介します。
 
 上図のような、Unityのシステムシャドウとカスタムライティングとの境界に生じるアーティファクトの軽減法を解説します  
 
-
 ### 【１：リニアカラースペースに変更する】
 
 <img width = "800" src="Images_jpg/0105-22_012.jpg">
 
 現在のカラースペースが、ガンマカラースペースの場合には、まず**リニアカラースペースに変更**します。  
 リニアカラースペースのほうが、アーティファクトの階調変化は柔らかくなる傾向があります。  
-
 
 ### 【２：メッシュの分割度をあげる】
 
@@ -874,28 +1003,25 @@ UTS2を使う上で便利なTipsを紹介します。
 ライティングおよびシェーダーのパラメタが全て同じ条件だったら、**メッシュの分割度を上げます**。  
 メッシュの分割度をあげることで、これらのアーティファクトの多くは消失します。  
 
-
-### 【３：BaseColor_Step/Tweak_SystemShadowsLevel の調整でアーティファクトを消す】
+### 【３：BaseColor Step/System Shadows Level の調整でアーティファクトを消す】
 
 <img width = "800" src="Images_jpg/0105-22_04.jpg">
 
 図①の影の境界の位置では、Unityのシステムシャドウとカスタムライティングの閾値より作られる影が、ほぼ一致しています。  
-そのことは、この状態で  `Set_SystemShadowsToBase`  のチェックを外しても、影の境界位置が動かないことからわかります。  
+そのことは、この状態で `Receive System Shadows` をオフにしても、影の境界位置が動かないことからわかります。  
 
 <img width = "800" src="Images_jpg/0105-22_07.jpg">
 
-図①の状態の時に、`Base/Shade_Feather`スライダーを右に動かすと、アーティファクトが発生します（図②）。  
+図①の状態の時に、`Base/Shade Feather`スライダーを右に動かすと、アーティファクトが発生します（図②）。  
 これは、**Unityのシステムシャドウの内側にカスタムライティングの影の閾値が食い込むために発生**します。  
 
 <img width = "800" src="Images_jpg/0105-22_08.jpg">
 
-このような時には、図③のように **`BaseColor_Step`スライダーも右に動かしてやる**ことにより、**カスタムライティングが作る影の領域を増やしてやります**。  
+このような時には、図③のように **`BaseColor Step`スライダーも右に動かしてやる**ことにより、**カスタムライティングが作る影の領域を増やしてやります**。  
 すると良い感じにアーティファクトも消失し、境界ぼかしが発生します。  
 
-
-また同様に、**`Tweak_SystemShadowsLevel` スライダーを使って、システムシャドウ側のレベル補正をする**ことで、アーティファクトを消すこともできます。  
-**※まずはこちらからお試しになることをお薦めいたします。**
-
+また同様に、**`System Shadows Level` スライダーを使って、システムシャドウ側のレベル補正をする**ことで、アーティファクトを消すこともできます。  
+**※まずはこちらからお試しになることをお薦めいたします。**  
 
 ### 【４：ディレクショナルライトのバイアスを上げてやる】
 
