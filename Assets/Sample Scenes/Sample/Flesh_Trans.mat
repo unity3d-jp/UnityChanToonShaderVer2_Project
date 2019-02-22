@@ -16,7 +16,7 @@ Material:
     _IS_SHADOW_ON _IS_SPECULARTOHIGHCOLOR_ON _IS_SPECULAR_ON _IS_SYSTEMSHADOWSTOBASECOLOR_ON
     _IS_SYSTEMSHADOWSTONORMALCOLOR_ON _IS_SYSTEMSHADOWSTOSHADE_ON _IS_SYSTEMSHADOWS_ON
     _IS_USEMATCAP_ON _IS_USERIMLIGHT_ON _IS_USETWEAKHIGHCOLORONSHADOW_ON _IS_USETWEAKMATCAPONSHADOW_ON
-    _MATCAP_ON _RIMLIGHT_ON _SET_SYSTEMSHADOWSTOBASE_ON
+    _MATCAP_ON _OUTLINE_NML _RIMLIGHT_ON _SET_SYSTEMSHADOWSTOBASE_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -108,15 +108,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0.238
-    - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0.5
-    - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0.003
+    - _1st_ShadeColor_Feather: 0.067
+    - _1st_ShadeColor_Step: 0.474
+    - _2nd_ShadeColor_Feather: 0.238
+    - _2nd_ShadeColor_Step: 0.338
     - _Add_Antipodean_RimLight: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _BaseColor_Step: 0.474
     - _BaseShade_Feather: 0.067
+    - _BlurLevelMatcap: 0
+    - _BumpScale: 1
+    - _BumpScaleMatcap: 1
+    - _CameraRolling_Stabilizer: 0
     - _Clipping_Level: 0
     - _CullMode: 0
     - _Cutoff: 0.5
@@ -124,6 +128,7 @@ Material:
     - _GI_Intensity: 0
     - _HighColor_Power: 0.5
     - _Inverse_Clipping: 0
+    - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
     - _IsBaseMapAlphaAsClippingMask: 0
     - _Is_1st_ShadeColorOnly: 0
@@ -181,6 +186,11 @@ Material:
     - _Tweak_SystemShadowsLevel: -0.122
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 0.5
+    - _Use_1stAs2nd: 0
+    - _Use_BaseAs1st: 0
+    - _simpleUI: 0
+    - _utsTechnique: 0
+    - _utsVersion: 2.06
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 0.67058825, b: 0.49411768, a: 1}
     - _2nd_ShadeColor: {r: 0.8078432, g: 0.37647063, b: 0.13725491, a: 1}

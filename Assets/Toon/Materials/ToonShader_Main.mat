@@ -133,10 +133,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0.08
-    - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0.5
-    - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0.003
+    - _1st_ShadeColor_Feather: 0.074
+    - _1st_ShadeColor_Step: 0.841
+    - _2nd_ShadeColor_Feather: 0.08
+    - _2nd_ShadeColor_Step: 0
     - _AR_OffsetU: 0
     - _AR_OffsetV: 0.3
     - _Add_Antipodean_RimLight: 0
@@ -149,6 +149,10 @@ Material:
     - _BaseTexContrast: 0.38
     - _BaseTexPower: 0.34
     - _Blightness: 0.67
+    - _BlurLevelMatcap: 0
+    - _BumpScale: 1
+    - _BumpScaleMatcap: 1
+    - _CameraRolling_Stabilizer: 0
     - _Clipping_Level: 0
     - _Contrast: 0.12
     - _CullMode: 2
@@ -158,6 +162,7 @@ Material:
     - _Gloss: 0
     - _HighColor_Power: 0
     - _Inverse_Clipping: 0
+    - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
     - _IsBaseMapAlphaAsClippingMask: 0
     - _IsOutline: 1
@@ -237,6 +242,9 @@ Material:
     - _node_1959: 1
     - _node_224: 0
     - _node_9155: 0
+    - _simpleUI: 0
+    - _utsTechnique: 0
+    - _utsVersion: 2.06
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 0.7490196, g: 0.69411767, b: 0.88235295, a: 1}

@@ -51,7 +51,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: 3e90fe72bfb86164b871921da8f90c6f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 05fec96af00a5a1489bfbc9a48c3af47, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -83,7 +83,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:
-        m_Texture: {fileID: 2800000, guid: 05fec96af00a5a1489bfbc9a48c3af47, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 3.22, y: 2}
         m_Offset: {x: -0.33, y: -0.54}
     - _Set_RimLightMask:
@@ -97,9 +97,9 @@ Material:
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
     - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0.646
+    - _1st_ShadeColor_Step: 0.8
     - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0
+    - _2nd_ShadeColor_Step: 0.5
     - _ARSampler_AlphaOn: 0
     - _AR_OffsetU: 0
     - _AR_OffsetV: 0.3
@@ -109,10 +109,16 @@ Material:
     - _Ap_RimLight_Power: 0.774
     - _BaseColor_Step: 0.8
     - _BaseShade_Feather: 0.0001
+    - _BlurLevelMatcap: 0
+    - _BumpScale: 1
+    - _BumpScaleMatcap: 1
+    - _CameraRolling_Stabilizer: 0
+    - _ColorBoost: 1
     - _CullMode: 2
     - _Farthest_Distance: 10
     - _GI_Intensity: 0
     - _HighColor_Power: 0.96
+    - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
     - _Is_1st_ShadeColorOnly: 0
     - _Is_BLD: 0
@@ -169,6 +175,11 @@ Material:
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel: 0
     - _Unlit_Intensity: 1
+    - _Use_1stAs2nd: 0
+    - _Use_BaseAs1st: 0
+    - _simpleUI: 0
+    - _utsTechnique: 0
+    - _utsVersion: 2.06
     m_Colors:
     - _1st_ShadeColor: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}
     - _2nd_ShadeColor: {r: 0, g: 0, b: 0, a: 1}

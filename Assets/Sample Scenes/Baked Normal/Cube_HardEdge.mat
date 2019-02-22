@@ -131,12 +131,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0.332
+    - _1st_ShadeColor_Feather: 0.304
+    - _1st_ShadeColor_Step: 1
+    - _2nd_ShadeColor_Feather: 0.332
+    - _2nd_ShadeColor_Step: 0.907
     - _Add_Antipodean_RimLight: 1
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.592
     - _BaseColor_Step: 1
     - _BaseShade_Feather: 0.304
+    - _BlurLevelMatcap: 0
     - _BumpScale: 1
+    - _BumpScaleMatcap: 1
+    - _CameraRolling_Stabilizer: 0
     - _CullMode: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -147,11 +154,16 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HighColor_Power: 0
+    - _Inverse_MatcapMask: 0
+    - _Inverse_Z_Axis_BLD: 1
+    - _Is_BLD: 0
     - _Is_BakedNormal: 1
     - _Is_BakedNormalTex: 1
     - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
+    - _Is_Filter_HiCutPointLightColor: 1
+    - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 1
     - _Is_LightColor_2nd_Shade: 1
     - _Is_LightColor_Ap_RimLight: 1
@@ -163,6 +175,7 @@ Material:
     - _Is_NormalMapToBase: 0
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 0
+    - _Is_Ortho: 0
     - _Is_OutlineNormalTex: 1
     - _Is_OutlineTex: 0
     - _Is_SpecularToHighColor: 0
@@ -175,6 +188,8 @@ Material:
     - _Nearest_Distance: 0.5
     - _OUTLINE: 0
     - _OcclusionStrength: 1
+    - _Offset_X_Axis_BLD: -0.05
+    - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
     - _Outline_Width: 16.9
     - _Parallax: 0.02
@@ -189,6 +204,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StepOffset: 0
     - _TessEdgeLength: 2
     - _TessExtrusionAmount: 0
     - _TessPhongStrength: 1
@@ -202,7 +218,12 @@ Material:
     - _Tweak_SystemShadowsLevel: 0.205
     - _UVSec: 0
     - _Unlit_Intensity: 0.5
+    - _Use_1stAs2nd: 0
+    - _Use_BaseAs1st: 0
     - _ZWrite: 1
+    - _simpleUI: 0
+    - _utsTechnique: 0
+    - _utsVersion: 2.06
     m_Colors:
     - _1st_ShadeColor: {r: 0.7488292, g: 0.97794116, b: 0.6759299, a: 1}
     - _2nd_ShadeColor: {r: 0, g: 0.6985294, b: 0.17824532, a: 1}

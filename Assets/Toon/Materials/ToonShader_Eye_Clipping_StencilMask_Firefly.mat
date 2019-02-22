@@ -124,6 +124,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0
+    - _1st_ShadeColor_Feather: 0.23
+    - _1st_ShadeColor_Step: 0.757
+    - _2nd_ShadeColor_Feather: 0
+    - _2nd_ShadeColor_Step: 0
     - _Add_Antipodean_RimLight: 0
     - _AmbientLightPower: 0.5
     - _Ap_RimLight_FeatherOff: 0
@@ -133,6 +137,10 @@ Material:
     - _BaseTexContrast: 0.38
     - _BaseTexPower: 0.34
     - _Blightness: 0.67
+    - _BlurLevelMatcap: 0
+    - _BumpScale: 1
+    - _BumpScaleMatcap: 1
+    - _CameraRolling_Stabilizer: 0
     - _Clipping_Level: 1
     - _CompFunc: 0
     - _Contrast: 0.12
@@ -143,6 +151,7 @@ Material:
     - _Gloss: 0
     - _HighColor_Power: 0.799
     - _Inverse_Clipping: 1
+    - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
     - _IsBaseMapAlphaAsClippingMask: 0
     - _Is_BLD: 0
@@ -163,6 +172,7 @@ Material:
     - _Is_NormalMapToBase: 0
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 0
+    - _Is_Ortho: 0
     - _Is_OutlineTex: 0
     - _Is_SpecularToHighColor: 1
     - _Is_UseTweakHighColorOnShadow: 0
@@ -208,6 +218,8 @@ Material:
     - _Tweak_SystemShadowsLevel: 0
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 1
+    - _Use_1stAs2nd: 0
+    - _Use_BaseAs1st: 0
     - _isKage_Normal: 0
     - _isRim_Normal: 1
     - _node_183: 0.51
@@ -216,6 +228,9 @@ Material:
     - _node_318: 100
     - _node_9009: 5
     - _node_9155: 0
+    - _simpleUI: 0
+    - _utsTechnique: 0
+    - _utsVersion: 2.06
     m_Colors:
     - _1st_ShadeColor: {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 1}
     - _2nd_ShadeColor: {r: 0, g: 0, b: 0, a: 1}
