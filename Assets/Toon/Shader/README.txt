@@ -1,26 +1,26 @@
 README.md
 
-# 【ユニティちゃんトゥーンシェーダー Ver.2.0.5】
+# 【ユニティちゃんトゥーンシェーダー Ver.2.0.6】
 「ユニティちゃんトゥーンシェーダー」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
 
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
 Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。  
 
-● **[日本語マニュアル（v.2.0.5版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+● **[日本語マニュアル（v.2.0.6版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 
-## 【Unity-Chan Toon Shader Ver.2.0.5】
+## 【Unity-Chan Toon Shader Ver.2.0.6】
 Unity-Chan Toon Shader is a toon shader for video and images that is designed to meet your needs when creating cel-shaded 3DCG animations.  
 
 We have greatly enhanced the performance and features in Unity-Chan Toon Shader Ver. 2.0.  
 It still has the same rendering capabilities as Ver. 1.0, but now you can give your creations an even more sophisticated look.  
 
-● **[English manual for v.2.0.5](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) is available now.**  
+● **[English manual for v.2.0.6](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) is available now.**  
 
 
 
 ----
-## 【重要】v.2.0.4.3p1から、直接v.2.0.5へバージョンアップをする場合の注意
+## 【重要】v.2.0.4.3p1から、直接v.2.0.6へバージョンアップをする場合の注意
 * 内部パラメタの名前変更のために、すでに設定されているマテリアルから、BaseMapが外れる可能性があります。外れてしまった場合、お手数ですが再設定をお願いします。  
 * HiColor_Powerのスライダの感度調整をしました。Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合、HiColor_Powerの値を再調整する必要があります。Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
 
@@ -30,13 +30,13 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 
 -----
 ## 【ターゲット環境】
-Unity5.6.x もしくはそれ以降が必要です。Unity 2018.2.0f20 / Unity 2018.3.0f2 以降でも使用できます。  
-Unity 2018.2 16f1/Unity 2017.4 15f1 LTSでの動作確認済み  
+Unity5.6.x もしくはそれ以降が必要です。Unity 2018.2.20f1 以降でも使用できます。  
+Unity 2017.4 15f1 LTSでの動作確認済み。  
 本パッケージは、Unity5.6.3p1で作成されています。  
 
 ### 【Target Environment】
-Requires Unity 5.6.x or later. Available on Unity 2018.2.0f20 / Unity 2018.3.0f2 or lator, too.  
-Confirmed on Unity 2018.2 16f1/Unity 2017.4 15f1 LTS.  
+Requires Unity 5.6.x or later. Available on Unity 2018.2.20f1 or lator, too.  
+Confirmed on Unity 2017.4 15f1 LTS.  
 This pack was created in Unity 5.6.3p1.  
 
 
@@ -54,7 +54,7 @@ http://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【インストールの注意】
-### [UTS2_ShaderOnly_v2.0.5_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.5_Release.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.6_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.6_Release.unitypackage)  
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -67,7 +67,7 @@ http://unity-chan.com/contents/guideline_en/
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
-### [UTS2_ShaderOnly_v2.0.5_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.5_Release.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.6_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.6_Release.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 
 When over-writing a previous version, the code will be revised, so please take the following precautions:  
@@ -96,7 +96,7 @@ Please contact us if you have any issues.
 ・PointLightTest/PointLightTest.unity：ポイントライトを使ったセルルック表現のサンプル  
 ・SSAO Test/SSAO.unity：SSAO in PPSのテスト用  
 ・LightAndShadows/LightAndShadows.unity：Standard ShaderとUST2の比較  
-・AngelRing/AngelRing.unity：「天使の輪」のサンプル  
+・AngelRing/AngelRing.unity：「天使の輪」および ShadingGradeMap を使ったキャラクターのサンプル  
 ・MatCapMask/MatCapMask.unity：MatcapMaskのサンプル  
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
@@ -123,6 +123,66 @@ Each and every scenes are for reference of shader and lighting settings.
 They will be useful for reference of the look and scene you want to make!  
 
 -----
+## 【Version】
+### 2019/02/21：2.0.6 Release：リリース版  
+* 以下のバグフィックスと新規機能を追加。さらに一部機能の強化を行いました。  
+
+#### 新UIを搭載  
+* ShaderGUIベースの専用ユーザーインタフェース「UTS2カスタムインスペクター」を搭載しました。マニュアルも一新されています。  
+
+#### バグフィックス  
+* MatCapの合成モードが乗算（Is_BlendAddToMatCap = OFF）の時、リムライトが反映されてなかったのを修正しました。  
+* MatCapの合成モードが乗算（Is_BlendAddToMatCap = OFF）の時、シャドウマスクとの順番が正しくなかったのを修正しました。  
+* アウトラインモード/ポジションスケーリング方式の面判定を微調整しました。  
+
+#### 新規機能  
+* カメラのローリングに対してMatCapが回転してしまうのを抑止する Activate CameraRolling_Stabilizer を搭載しました。本機能は、TwitterID：@ShowBuyS さんのコントリビューションにより実現しました。  
+* MatCap_Sampler に、Mip Mapに基づくぼかし機能 Blur Level of MatCap_Sampler を追加しました。  
+* MatcapMaskテクスチャを反転する Inverse_MatcapMask を追加しました。  
+* ShadingGradeMap機能を強化しました。レベル補正を行う Tweak_ShadingGradeMapLevel を追加した他、Mip Mapに基づくぼかし機能 Blur Level of ShadingGradeMap を追加しました。  
+
+#### 機能強化  
+* システムシャドウによるレシーブシャドウとシェーディングを馴染ませる Tweak_SystemShadowsLevel 機能を強化しました。  
+* PointLights HiCut_Filter (ForwardAdd Only) = OFF の時、リアルタイムポイントライトにハイカラーが追加されるようにしました。  
+* テッセレーションシェーダーのプロパティをわかりやすくした他、DX11 Tess : Extrusion Amount を調整しやすいようにスライダー化しました。  
+* GIの強さを設定する GI_Intensity を機能強化しました。GIをUTS2マテリアルに反映させたい時には、まず GI_Intensity = 1 に設定してみてください。Standard Shaderとほぼ同様の明るさで反映されます。  
+* ノーマルマップにバンプスケールを追加しました。  
+* Transparent系シェーダーにデプスバッファの書き込み処理を追加しました。  
+
+#### 変更  
+* Unlit_Intensity の最大値を2から4へ変更しました。  
+
+---
+### 2019/02/21: 2.0.6 Release: Release version  
+* Added following bug fixes and new features.  
+
+#### New UI installed
+* ShaderGUI based user interface "UTS 2 custom inspector" was installed. The manual has also been updated and redesigned.  
+
+#### Bug Fix  
+* Fixed that the rimlight was not reflected when the blend mode of MatCap was multiplying (Is_BlendAddToMatCap = OFF).  
+* When the color blend mode of MatCap is multiplication (Is_BlendAddToMatCap = OFF), the order of shadow masks was incorrect was corrected.  
+* Fine adjustment of surface judgment of outline mode / position scaling method.  
+
+#### New Features  
+* The new feature "Activate Camera Rolling_Stabilizer" which suppresses rotation of MatCap against the rolling of the camera was carried. This function was realized by Contribution of TwitterID: @ShowBuyS.  
+* The new feature "Blur Level of MatCap_Sampler" based on Mip Map has been added to MatCap_Sampler.  
+* The new function "Inverse_MatcapMask" to invert texture for MatcapMask was added.  
+* The ShadingGradeMap function has been enhanced. In addition to adding "Tweak_ShadingGradeMapLevel" for level correction, "Blur Level of ShadingGradeMap" based on Mip Map has been added.  
+
+#### Enhancements  
+* Enhanced the Tweak_SystemShadowsLevel function to adapt to receive shadows and shading with system shadows.  
+* When "PointLights HiCut_Filter (ForwardAdd Only) = OFF", high color is added to real time point light.  
+* In addition to making the properties of tessellation shaders easy to use, "DX 11 Tess: Extrusion Amount" was made slidable for easy adjustment.  
+* Improved the GI_Intensity to set the strength of GI. If you want GI to reflect on UTS2 material, please first set "GI_Intensity = 1". It is reflected at almost the same brightness as Standard Shader.  
+* Bump scale added to normal map.  
+* Depth buffer write processing has been added to Transparent shaders.  
+
+#### Change  
+* The maximum value of Unlit_Intensity has been changed from 2 to 4.
+
+
+---
 ### 2019/01/07：2.0.5 Release：リリース版  
 * macOS / Unity 2018.3.0f2上でプロジェクトを開くと不正終了するのを修正しました。  
 
@@ -442,12 +502,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.5 Release  
-最終リリース日：2019/01/07  
+最新バージョン：2.0.6 Release  
+最終リリース日：2019/02/22  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.5 Release  
-Update: 2019/01/07  
+Latest Version: 2.0.6 Release  
+Update: 2019/02/22  
 Category: 3D  
 File format: zip/unitypackage  

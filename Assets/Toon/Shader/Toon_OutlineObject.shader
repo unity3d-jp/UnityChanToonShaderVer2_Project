@@ -1,10 +1,13 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.5
+//v.2.0.6
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Helper/Toon_OutlineObject" {
     Properties {
+        [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
+        [HideInInspector] _utsVersion ("Version", Float ) = 2.06
+        [HideInInspector] _utsTechnique ("Technique", int ) = 2 //OutlineObj
         _MainTex ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         //v.2.0.5 : Clipping/TransClipping for SSAO Problems in PostProcessing Stack.
@@ -14,8 +17,8 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject" {
         [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
 //Outline
         [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
-        _Outline_Width ("Outline_Width", Float ) = 1
-        _Farthest_Distance ("Farthest_Distance", Float ) = 10
+        _Outline_Width ("Outline_Width", Float ) = 0
+        _Farthest_Distance ("Farthest_Distance", Float ) = 100
         _Nearest_Distance ("Nearest_Distance", Float ) = 0.5
         _Outline_Sampler ("Outline_Sampler", 2D) = "white" {}
         _Outline_Color ("Outline_Color", Color) = (0.5,0.5,0.5,1)

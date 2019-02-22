@@ -1,10 +1,13 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.5
+//v.2.0.6
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap_StencilOut" {
     Properties {
+        [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
+        [HideInInspector] _utsVersion ("Version", Float ) = 2.06
+        [HideInInspector] _utsTechnique ("Technique", int ) = 1 //SGM
         _StencilNo ("Stencil No", int) =1
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _MainTex ("BaseMap", 2D) = "white" {}
@@ -25,11 +28,16 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap_StencilO
         _2nd_ShadeColor ("2nd_ShadeColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_2nd_Shade ("Is_LightColor_2nd_Shade", Float ) = 1
         _NormalMap ("NormalMap", 2D) = "bump" {}
+        _BumpScale ("Normal Scale", Range(0, 1)) = 1
         [MaterialToggle] _Is_NormalMapToBase ("Is_NormalMapToBase", Float ) = 0
         //v.2.0.4.4
         [MaterialToggle] _Set_SystemShadowsToBase ("Set_SystemShadowsToBase", Float ) = 1
         _Tweak_SystemShadowsLevel ("Tweak_SystemShadowsLevel", Range(-0.5, 0.5)) = 0
-        [HideInInspector] _Is_1st_ShadeColorOnly ("Is_1st_ShadeColorOnly", Float ) = 0
+        //v.2.0.6
+        [HideInInspector] _BaseColor_Step ("BaseColor_Step", Range(0, 1)) = 0.5
+        [HideInInspector] _BaseShade_Feather ("Base/Shade_Feather", Range(0.0001, 1)) = 0.0001
+        [HideInInspector] _ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0
+        [HideInInspector] _1st2nd_Shades_Feather ("1st/2nd_Shades_Feather", Range(0.0001, 1)) = 0.0001
         _1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
         _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
         _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0
@@ -39,6 +47,9 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap_StencilO
         [MaterialToggle] _Is_Filter_HiCutPointLightColor ("PointLights HiCut_Filter (ForwardAdd Only)", Float ) = 1
         //
         _ShadingGradeMap ("ShadingGradeMap", 2D) = "white" {}
+        //v.2.0.6
+        _Tweak_ShadingGradeMapLevel ("Tweak_ShadingGradeMapLevel", Range(-0.5, 0.5)) = 0
+        _BlurLevelSGM ("Blur Level of ShadingGradeMap", Range(0, 10)) = 0
         //
         _HighColor ("HighColor", Color) = (0,0,0,1)
 //v.2.0.4 HighColor_Tex
@@ -74,23 +85,28 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap_StencilO
 //ここまで.
         [MaterialToggle] _MatCap ("MatCap", Float ) = 0
         _MatCap_Sampler ("MatCap_Sampler", 2D) = "black" {}
+        //v.2.0.6
+        _BlurLevelMatcap ("Blur Level of MatCap_Sampler", Range(0, 10)) = 0
         _MatCapColor ("MatCapColor", Color) = (1,1,1,1)
         [MaterialToggle] _Is_LightColor_MatCap ("Is_LightColor_MatCap", Float ) = 1
         [MaterialToggle] _Is_BlendAddToMatCap ("Is_BlendAddToMatCap", Float ) = 1
         _Tweak_MatCapUV ("Tweak_MatCapUV", Range(-0.5, 0.5)) = 0
         _Rotate_MatCapUV ("Rotate_MatCapUV", Range(-1, 1)) = 0
+        //v.2.0.6
+        [MaterialToggle] _CameraRolling_Stabilizer ("Activate CameraRolling_Stabilizer", Float ) = 0
         [MaterialToggle] _Is_NormalMapForMatCap ("Is_NormalMapForMatCap", Float ) = 0
         _NormalMapForMatCap ("NormalMapForMatCap", 2D) = "bump" {}
+        _BumpScaleMatcap ("Scale for NormalMapforMatCap", Range(0, 1)) = 1
         _Rotate_NormalMapForMatCapUV ("Rotate_NormalMapForMatCapUV", Range(-1, 1)) = 0
         [MaterialToggle] _Is_UseTweakMatCapOnShadow ("Is_UseTweakMatCapOnShadow", Float ) = 0
         _TweakMatCapOnShadow ("TweakMatCapOnShadow", Range(0, 1)) = 0
 //MatcapMask
         _Set_MatcapMask ("Set_MatcapMask", 2D) = "white" {}
         _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
+        [MaterialToggle] _Inverse_MatcapMask ("Inverse_MatcapMask", Float ) = 0
         //v.2.0.5
-         [MaterialToggle] _Is_Ortho ("Orthographic Projection for MatCap", Float ) = 0
-//
-//天使の輪追加プロパティ.
+        [MaterialToggle] _Is_Ortho ("Orthographic Projection for MatCap", Float ) = 0
+        ////天使の輪追加プロパティ.
         [MaterialToggle] _AngelRing ("AngelRing", Float ) = 0
         _AngelRing_Sampler ("AngelRing_Sampler", 2D) = "black" {}
         _AngelRing_Color ("AngelRing_Color", Color) = (1,1,1,1)
@@ -104,8 +120,8 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap_StencilO
         [HDR]_Emissive_Color ("Emissive_Color", Color) = (0,0,0,1)
 //Outline
         [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
-        _Outline_Width ("Outline_Width", Float ) = 1
-        _Farthest_Distance ("Farthest_Distance", Float ) = 10
+        _Outline_Width ("Outline_Width", Float ) = 0
+        _Farthest_Distance ("Farthest_Distance", Float ) = 100
         _Nearest_Distance ("Nearest_Distance", Float ) = 0.5
         _Outline_Sampler ("Outline_Sampler", 2D) = "white" {}
         _Outline_Color ("Outline_Color", Color) = (0.5,0.5,0.5,1)
@@ -121,20 +137,19 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap_StencilO
         //GI Intensity
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
-        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 2)) = 1
+        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 4)) = 1
         //v.2.0.5 
         [MaterialToggle] _Is_Filter_LightColor ("VRChat : SceneLights HiCut_Filter", Float ) = 0
-        //This advanced option compensates the color of point lights when SceneLights HiCut_Filter is checked.
-        [HideInInspector] _ColorBoost (" *Advanced Option : Compensation Boost", Range(1, 5)) = 1
         //Built-in Light Direction
         [MaterialToggle] _Is_BLD ("Advanced : Activate Built-in Light Direction", Float ) = 0
         _Offset_X_Axis_BLD (" Offset X-Axis (Built-in Light Direction)", Range(-1, 1)) = -0.05
         _Offset_Y_Axis_BLD (" Offset Y-Axis (Built-in Light Direction)", Range(-1, 1)) = 0.09
         [MaterialToggle] _Inverse_Z_Axis_BLD (" Inverse Z-Axis (Built-in Light Direction)", Float ) = 1
         //Tessellation
-        _TessEdgeLength( "Tess Edge length", Range( 2,50 ) ) = 5
-        _TessPhongStrength( "Tess Phong Strengh", Range( 0,1 ) ) = 0.5
-        _TessExtrusionAmount( "TessExtrusionAmount", Float ) = 0.0
+        _TessEdgeLength("DX11 Tess : Edge length", Range(2, 50)) = 5
+        _TessPhongStrength("DX11 Tess : Phong Strength", Range(0, 1)) = 0.5
+        _TessExtrusionAmount("DX11 Tess : Extrusion Amount", Range(-0.005, 0.005)) = 0.0
+
     }
     SubShader {
         Tags {
@@ -319,4 +334,5 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap_StencilO
 //ToonCoreEnd
     }
     FallBack "Legacy Shaders/VertexLit"
+    CustomEditor "UnityChan.UTS2GUI"
 }

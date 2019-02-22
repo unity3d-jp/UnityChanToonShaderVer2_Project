@@ -1,6 +1,6 @@
 ﻿//UCTS_Outline.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.5
+//v.2.0.6
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -80,7 +80,8 @@
                 o.pos = UnityObjectToClipPos(lerp(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1), float4(v.vertex.xyz + _BakedNormalDir*Set_Outline_Width,1),_Is_BakedNormal));
 #elif _OUTLINE_POS
                 Set_Outline_Width = Set_Outline_Width*2;
-                o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + normalize(v.vertex)*Set_Outline_Width,1) );
+                float signVar = dot(normalize(v.vertex),normalize(v.normal))<0 ? -1 : 1;
+                o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + signVar*normalize(v.vertex)*Set_Outline_Width, 1));
 #endif
                 o.pos.z = o.pos.z + _Offset_Z*viewDirectionVP.z;
                 return o;
