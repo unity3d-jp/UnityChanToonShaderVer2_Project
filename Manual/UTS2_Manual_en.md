@@ -897,7 +897,7 @@ It is also possible to control ON/OFF of the white jump prevention function like
 
 <img width = "800" src="Images_jpg/GI_Intensity.jpg">
 
-**↑ Left：GI Intensity = 0、Right：GI Intensity = 1 approx. When the value of GI Intensity goes up, the light probe’s color will be added to the material color.**  
+**↑ Left：GI Intensity = 0、Right：GI Intensity = 1. When the value of GI Intensity goes up, the light probe’s color will be added to the material color.**  
 
 <img width = "800" src="Images_jpg/LightProbe.jpg">
 
@@ -913,7 +913,7 @@ Light probes that are baked in a scene with other baked lights will be added to 
 
 <img width = "800" src="Images_jpg/GI_IntensityON.jpg">
 
-**↑ GI Intensity = approx. 1**.  
+**↑ GI Intensity = 1**.  
 
 ---
 

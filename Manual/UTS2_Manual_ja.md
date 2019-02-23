@@ -260,7 +260,7 @@ File>Build Settings>Player Settings... より
 
 # UTS2　設定メニュー：UTS2カスタムインスペクター
 
-ここからは、UTS2 の各機能を設定するユーザーインタフェース**「UTS2カスタムインスペクター」**の機能解説をします。  
+ここからは、UTS2 の各機能を設定するユーザーインタフェース「**UTS2カスタムインスペクター**」の機能解説をします。  
 
 <img width = "400" src="Images_jpg/UTS2UI_Standard.jpg">
 
@@ -894,7 +894,7 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 <img width = "800" src="Images_jpg/GI_Intensity.jpg">
 
-**↑ 左側：GI Intensity = 0、右側：GI Intensity = 1程度。GI Intensityの数値を上げると、マテリアルカラーにライトプローブのカラーが加算される。**  
+**↑ 左側：GI Intensity = 0、右側：GI Intensity = 1。GI Intensityの数値を上げると、マテリアルカラーにライトプローブのカラーが加算される。**  
 
 <img width = "800" src="Images_jpg/LightProbe.jpg">
 
@@ -911,7 +911,7 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 <img width = "800" src="Images_jpg/GI_IntensityON.jpg">
 
-**↑ GI Intensity = 1程度**  
+**↑ GI Intensity = 1**  
 
 ---
 ### ●アンビエントブレンディングを調整する：Unlit Intensity  
