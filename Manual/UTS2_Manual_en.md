@@ -71,9 +71,9 @@ This package uses a forward rendering environment. Using a linear color space is
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
 
 ## 【Installation】
-1. Extract the project included with Unity-Chan Toon Shader 2.0  and search directly under the folder for the `UTS_ShaderOnly_v(version name).unitypackage` file.  
+1. Extract the project included with Unity-Chan Toon Shader 2.0  and search directly under the folder for the `UTS2_ShaderOnly_(version name).unitypackage` file.  
 
-   The image below uses version `2.0.4.3_Release_p1`.  
+   The image below uses version `v2.0.6_Release`.  
 
 <img width = "600" src="Images_jpg/Explorer01.jpg">
 
@@ -81,7 +81,7 @@ This package uses a forward rendering environment. Using a linear color space is
 
 3. Open the Assets folder in the Unity Project window.  
 
-4. Drag and drop `UTS_ShaderOnly_v(version name).unitypackage` from the OS’ Explorer or Finder window into the the Assets folder in the Unity Project window.  
+4. Drag and drop `UTS2_ShaderOnly_v(version name).unitypackage` from the OS’ Explorer or Finder window into the the Assets folder in the Unity Project window.  
 
 <img width = "800" src="Images_jpg/DandD01.jpg">
 

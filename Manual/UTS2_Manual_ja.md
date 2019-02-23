@@ -75,8 +75,8 @@ Forwardレンダリング環境。リニアカラースペースでの使用を�
 
 
 ## 【インストールの仕方】
-1. ユニティちゃんトゥーンシェーダー 2.0の配布プロジェクトを解凍し、フォルダ直下にある `UTS_ShaderOnly_v(バージョン名).unitypackage`というファイルを探します。  
-図の例では、`2.0.4.3_Release_p1`という部分がバージョン名になっています。  
+1. ユニティちゃんトゥーンシェーダー 2.0の配布プロジェクトを解凍し、フォルダ直下にある `UTS2_ShaderOnly_(バージョン名).unitypackage`というファイルを探します。  
+図の例では、`v2.0.6_Release`という部分がバージョン名になっています。  
 
 <img width = "600" src="Images_jpg/Explorer01.jpg">
 
@@ -84,7 +84,7 @@ Forwardレンダリング環境。リニアカラースペースでの使用を�
 
 3. UnityのProjectウィンドウより、Assetsフォルダを開きます。  
 
-4. OSのExplorerやFinderから、`UTS_ShaderOnly_v(バージョン名).unitypackage`をUnityのProjectウィンドウ内のAssetsフォルダにドラッグ＆ドロップします。  
+4. OSのExplorerやFinderから、`UTS2_ShaderOnly_(バージョン名).unitypackage`をUnityのProjectウィンドウ内のAssetsフォルダにドラッグ＆ドロップします。  
 
 <img width = "800" src="Images_jpg/DandD01.jpg">
 
