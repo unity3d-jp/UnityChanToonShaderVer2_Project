@@ -38,10 +38,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _ClippingMask:
         m_Texture: {fileID: 2800000, guid: 58d0a20f7dadf5e40a0da5641266df4d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -90,19 +86,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Set_HighColorPosition:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:
         m_Texture: {fileID: 2800000, guid: 8d32fa3851e3600479a39e382b059b0d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ShadingGradeMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -131,13 +119,11 @@ Material:
     - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
     - _IsBaseMapAlphaAsClippingMask: 0
-    - _Is_1st_ShadeColorOnly: 0
     - _Is_BLD: 0
     - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
-    - _Is_BrendBaseColor: 0
     - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 1
@@ -147,7 +133,6 @@ Material:
     - _Is_LightColor_HighColor: 1
     - _Is_LightColor_MatCap: 1
     - _Is_LightColor_RimLight: 1
-    - _Is_NormalMap: 0
     - _Is_NormalMapForMatCap: 1
     - _Is_NormalMapToBase: 0
     - _Is_NormalMapToHighColor: 0
@@ -172,7 +157,6 @@ Material:
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: -0.15
     - _Set_SystemShadowsToBase: 1
-    - _Set_SystemShadowsToHighColor: 0
     - _ShadeColor_Step: 0.338
     - _StencilNo: 1
     - _StepOffset: 0
