@@ -107,7 +107,13 @@ For those completely new to UTS2, practicing “making a picture with Step and F
 It is important to first become familiar with the basics of UTS2, then gradually add rim lights and a 2nd Shade Color if necessary.  
 Feel free to use the following video for reference while practicing.  
 
+[![](https://img.youtube.com/vi/8cIR5pfRihA/0.jpg)](https://www.youtube.com/watch?v=8cIR5pfRihA)
+
+↑ Tutorial of setting up UTS2 v.2.0.6 to Unity-chan  
+
 [![](https://img.youtube.com/vi/qDAo5gqIezw/0.jpg)](https://www.youtube.com/watch?v=qDAo5gqIezw)
+
+↑ UTS2: SD Unity-chan Materials Setup (UTS2 v. 2.0.5)  
 
 # Using the Different Shaders in UTS2
 

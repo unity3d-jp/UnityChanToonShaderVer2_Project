@@ -111,8 +111,13 @@ Forwardレンダリング環境。リニアカラースペースでの使用を�
 これらのUTS2での基本の絵作りに十分慣れてから、徐々にリムライトなどを追加し、必要だったら２影色を加えるようにするのが取得のコツです。  
 是非、以下のムービーを参考に練習をしてみてください。  
 
+[![](https://img.youtube.com/vi/8cIR5pfRihA/0.jpg)](https://www.youtube.com/watch?v=8cIR5pfRihA)
+
+↑ UTS2 v.2.0.6をユニティちゃんにセットアップするチュートリアル  
+
 [![](https://img.youtube.com/vi/qDAo5gqIezw/0.jpg)](https://www.youtube.com/watch?v=qDAo5gqIezw)
 
+↑ UTS2：SDユニティちゃんマテリアルセットアップ（UTS2 v.2.0.5）  
 
 # UTS2各シェーダーの使い分け
 
