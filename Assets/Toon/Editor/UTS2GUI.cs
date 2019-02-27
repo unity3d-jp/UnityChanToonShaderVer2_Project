@@ -25,7 +25,17 @@ namespace UnityChan
         public _OutlineMode outlineMode;
         public _CullingMode cullingMode;
 
+        //ボタンサイズ
+        public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[]{ GUILayout.Width(180) }; 
+
+        //
+        static int _StencilNo_Setting;
+        static bool _HasOutline = true;
         static bool _OriginalInspector = false;
+        static bool _SimpleUI = false; 
+        bool _Use_VrcRecommend = false;
+
+        //Foldoutの初期値.
         static bool _BasicShaderSettings_Foldout = false;
         static bool _BasicThreeColors_Foldout = true;
             static bool _SharingTextures_Foldout = false;
@@ -38,17 +48,13 @@ namespace UnityChan
         static bool _HighColor_Foldout = true;
         static bool _RimLight_Foldout = true;
         static bool _MatCap_Foldout = true;
-        static bool _AngelRing_Foldout = false;
-        static bool _Emissive_Foldout = false;
+        static bool _AngelRing_Foldout = true;
+        static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
-            static bool _AdvancedOutline_Foldout = false;
+            static bool _AdvancedOutline_Foldout = true;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
         static bool _AdditionalLightingSettings_Foldout = false;
-        static int _StencilNo_Setting;
-        static bool _HasOutline = true;
-        static bool _SimpleUI = false; 
-        bool _Use_VrcRecommend = false;
 
     // -----------------------------------------------------
         // UTS2 materal properties -------------------------
@@ -358,6 +364,7 @@ namespace UnityChan
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
         {
+            EditorGUIUtility.fieldWidth = 0;
             FindProperties(props);
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
@@ -365,22 +372,8 @@ namespace UnityChan
             //UTSのシェーダー方式の確認.
             CheckUtsTechnique(material);
 
-            if (_OriginalInspector)
-            {
-                if (GUILayout.Button("Change UTS2 Custom UI"))
-                {
-                    _OriginalInspector = false;
-                }
-                //オリジナルのGUI表示
-                m_MaterialEditor.PropertiesDefaultGUI(props);
-                return;
-            }
-
-            if (GUILayout.Button("Show All properties"))
-            {
-                _OriginalInspector = true;
-            }
-
+            //Original Inspectorの選択チェック.
+            CheckOriginalInspector(material, props);
 
             EditorGUI.BeginChangeCheck();
 
@@ -534,7 +527,7 @@ namespace UnityChan
                 if (_LightColorContribution_Foldout)
                 {
                     EditorGUI.indentLevel++;
-                    EditorGUILayout.Space();
+                    //EditorGUILayout.Space();
                     GUI_LightColorContribution(material);
                     EditorGUI.indentLevel--;
                 }
@@ -587,6 +580,36 @@ namespace UnityChan
         }
 
 
+        void CheckOriginalInspector(Material material, MaterialProperty[] props){
+            if(material.HasProperty("_simpleUI")){
+                var selectedUI = material.GetInt("_simpleUI");
+                if(selectedUI==2){
+                    _OriginalInspector = true;  //Original GUI
+                }else if(selectedUI == 1){
+                    _SimpleUI = true;   //UTS2 Biginner GUI
+                }
+                //Original/Custom GUI 切り替えボタン.
+                if (_OriginalInspector)
+                {
+                    if (GUILayout.Button("Change UTS2 Custom UI"))
+                    {
+                        _OriginalInspector = false;
+                        material.SetInt("_simpleUI",0); //UTS2 Pro GUI
+                    }
+                    //オリジナルのGUI表示
+                    m_MaterialEditor.PropertiesDefaultGUI(props);
+                    return;
+                }
+
+                if (GUILayout.Button("Show All properties"))
+                {
+                    _OriginalInspector = true;
+                    material.SetInt("_simpleUI",2); //Original GUI
+                }        
+           }
+        }
+
+
         void GUI_SetCullingMode(Material material){
             int _CullMode_Setting = material.GetInt("_CullMode");
             //Enum形式に変換して、outlineMode変数に保持しておく.
@@ -626,12 +649,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Inverse Clipping Mask");
             if(material.GetFloat("_Inverse_Clipping") == 0){
-                if (GUILayout.Button("Off"))
+                if (GUILayout.Button("Off",shortButtonStyle))
                 {
                     material.SetFloat("_Inverse_Clipping",1);
                 }
             }else{
-                if (GUILayout.Button("Active"))
+                if (GUILayout.Button("Active",shortButtonStyle))
                 {
                     material.SetFloat("_Inverse_Clipping",0);
                 }
@@ -649,12 +672,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Use BaseMap α as Clipping Mask");
             if(material.GetFloat("_IsBaseMapAlphaAsClippingMask") == 0){
-                if (GUILayout.Button("Off"))
+                if (GUILayout.Button("Off",shortButtonStyle))
                 {
                     material.SetFloat("_IsBaseMapAlphaAsClippingMask",1);
                 }
             }else{
-                if (GUILayout.Button("Active"))
+                if (GUILayout.Button("Active",shortButtonStyle))
                 {
                     material.SetFloat("_IsBaseMapAlphaAsClippingMask",0);
                 }
@@ -666,38 +689,38 @@ namespace UnityChan
             GUILayout.Label("Option Menu", EditorStyles.boldLabel);
             if(material.HasProperty("_simpleUI")){
                 if(material.GetInt("_simpleUI") == 1){
-                    _SimpleUI = true;
+                    _SimpleUI = true; //UTS2 Custom GUI Biginner
                 }
                 else{
-                    _SimpleUI = false;
+                    _SimpleUI = false; //UTS2 Custom GUI Pro
                 }
             }
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Select UI Type");
+            EditorGUILayout.PrefixLabel("Current UI Type");
             if(_SimpleUI == false) {
-                if (GUILayout.Button("Pro / Full Controll"))
+                if (GUILayout.Button("Pro / Full Controll",shortButtonStyle))
                 {
-                    material.SetInt("_simpleUI",1);
+                    material.SetInt("_simpleUI",1); //UTS2 Custom GUI Biginner
                 }
             }else{
-                if (GUILayout.Button("Biginner"))
+                if (GUILayout.Button("Biginner",shortButtonStyle))
                 {
-                    material.SetInt("_simpleUI",0);
+                    material.SetInt("_simpleUI",0); //UTS2 Custom GUI Pro
                 }
             }
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("VRChat Recommendation");
-            if (GUILayout.Button("Apply Settings"))
+            if (GUILayout.Button("Apply Settings",shortButtonStyle))
             {
                 Set_Vrchat_Recommendation(material);
                 _Use_VrcRecommend = true;
             }
             EditorGUILayout.EndHorizontal();
             if(_Use_VrcRecommend){
-                EditorGUILayout.HelpBox("UTS2 : Applied VRChat Recommended Settings.",MessageType.Info);    
+                EditorGUILayout.HelpBox("UTS2 : Applied VRChat Recommended Settings.",MessageType.Info);
             }
 
         }
@@ -749,12 +772,12 @@ namespace UnityChan
                     EditorGUILayout.PrefixLabel("1st_ShadeMap");
 
                     if(material.GetFloat("_Use_BaseAs1st") == 0){
-                        if (GUILayout.Button("No Sharing"))
+                        if (GUILayout.Button("No Sharing",shortButtonStyle))
                         {
                             material.SetFloat("_Use_BaseAs1st",1);
                         }
                     }else{
-                        if (GUILayout.Button("Sharing BaseMap"))
+                        if (GUILayout.Button("Sharing BaseMap",shortButtonStyle))
                         {
                             material.SetFloat("_Use_BaseAs1st",0);
                         }
@@ -764,12 +787,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("2nd_ShadeMap");
                     if(material.GetFloat("_Use_1stAs2nd") == 0){
-                        if (GUILayout.Button("No Sharing"))
+                        if (GUILayout.Button("No Sharing",shortButtonStyle))
                         {
                             material.SetFloat("_Use_1stAs2nd",1);
                         }
                     }else{
-                        if (GUILayout.Button("Sharing 1st_ShadeMap"))
+                        if (GUILayout.Button("Sharing 1st_ShadeMap",shortButtonStyle))
                         {
                             material.SetFloat("_Use_1stAs2nd",0);
                         }
@@ -795,12 +818,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("3 Basic Colors");
                     if(material.GetFloat("_Is_NormalMapToBase") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Is_NormalMapToBase",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Is_NormalMapToBase",0);
                         }
@@ -810,12 +833,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("HighColor");
                     if(material.GetFloat("_Is_NormalMapToHighColor") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Is_NormalMapToHighColor",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Is_NormalMapToHighColor",0);
                         }
@@ -825,12 +848,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("RimLight");
                     if(material.GetFloat("_Is_NormalMapToRimLight") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Is_NormalMapToRimLight",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Is_NormalMapToRimLight",0);
                         }
@@ -898,12 +921,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Receive System Shadows");
                     if(material.GetFloat("_Set_SystemShadowsToBase") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Set_SystemShadowsToBase",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Set_SystemShadowsToBase",0);
                         }
@@ -963,12 +986,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("PointLights Hi-Cut Filter");
                 if(material.GetFloat("_Is_Filter_HiCutPointLightColor") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_Filter_HiCutPointLightColor",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_Filter_HiCutPointLightColor",0);
                     }
@@ -988,13 +1011,13 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Specular Mode");
                     if(material.GetFloat("_Is_SpecularToHighColor") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Is_SpecularToHighColor",1);
                             material.SetFloat("_Is_BlendAddToHiColor",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Is_SpecularToHighColor",0);
                         }
@@ -1004,12 +1027,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Color Blend Mode");
                     if(material.GetFloat("_Is_BlendAddToHiColor") == 0){
-                        if (GUILayout.Button("Multiply (makes darker)"))
+                        if (GUILayout.Button("Multiply (makes darker)",shortButtonStyle))
                         {
                             material.SetFloat("_Is_BlendAddToHiColor",1);
                         }
                     }else{
-                        if (GUILayout.Button("Additive (makes blighter)"))
+                        if (GUILayout.Button("Additive (makes blighter)",shortButtonStyle))
                         {
                             //加算モードはスペキュラオフでしか使えない.
                             if(material.GetFloat("_Is_SpecularToHighColor") == 1)
@@ -1025,12 +1048,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("ShadowMask on HihgColor");
                     if(material.GetFloat("_Is_UseTweakHighColorOnShadow") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Is_UseTweakHighColorOnShadow",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Is_UseTweakHighColorOnShadow",0);
                         }
@@ -1062,12 +1085,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("RimLight");
                 if(material.GetFloat("_RimLight") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_RimLight",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_RimLight",0);
                     }
@@ -1086,12 +1109,12 @@ namespace UnityChan
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.PrefixLabel("RimLight FeatherOff");
                             if(material.GetFloat("_RimLight_FeatherOff") == 0){
-                                if (GUILayout.Button("Off"))
+                                if (GUILayout.Button("Off",shortButtonStyle))
                                 {
                                     material.SetFloat("_RimLight_FeatherOff",1);
                                 }
                             }else{
-                                if (GUILayout.Button("Active"))
+                                if (GUILayout.Button("Active",shortButtonStyle))
                                 {
                                     material.SetFloat("_RimLight_FeatherOff",0);
                                 }
@@ -1100,12 +1123,12 @@ namespace UnityChan
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.PrefixLabel("LightDirection Mask");
                             if(material.GetFloat("_LightDirection_MaskOn") == 0){
-                                if (GUILayout.Button("Off"))
+                                if (GUILayout.Button("Off",shortButtonStyle))
                                 {
                                     material.SetFloat("_LightDirection_MaskOn",1);
                                 }
                             }else{
-                                if (GUILayout.Button("Active"))
+                                if (GUILayout.Button("Active",shortButtonStyle))
                                 {
                                     material.SetFloat("_LightDirection_MaskOn",0);
                                 }
@@ -1119,12 +1142,12 @@ namespace UnityChan
                                 EditorGUILayout.BeginHorizontal();
                                 EditorGUILayout.PrefixLabel("Antipodean(Ap)_RimLight");
                                     if(material.GetFloat("_Add_Antipodean_RimLight") == 0){
-                                        if (GUILayout.Button("Off"))
+                                        if (GUILayout.Button("Off",shortButtonStyle))
                                         {
                                             material.SetFloat("_Add_Antipodean_RimLight",1);
                                         }
                                     }else{
-                                        if (GUILayout.Button("Active"))
+                                        if (GUILayout.Button("Active",shortButtonStyle))
                                         {
                                             material.SetFloat("_Add_Antipodean_RimLight",0);
                                         }
@@ -1141,12 +1164,12 @@ namespace UnityChan
                                         EditorGUILayout.BeginHorizontal();
                                         EditorGUILayout.PrefixLabel("Ap_RimLight FeatherOff");
                                             if(material.GetFloat("_Ap_RimLight_FeatherOff") == 0){
-                                                if (GUILayout.Button("Off"))
+                                                if (GUILayout.Button("Off",shortButtonStyle))
                                                 {
                                                     material.SetFloat("_Ap_RimLight_FeatherOff",1);
                                                 }
                                             }else{
-                                                if (GUILayout.Button("Active"))
+                                                if (GUILayout.Button("Active",shortButtonStyle))
                                                 {
                                                     material.SetFloat("_Ap_RimLight_FeatherOff",0);
                                                 }
@@ -1183,12 +1206,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("MatCap");
                 if(material.GetFloat("_MatCap") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_MatCap",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_MatCap",0);
                     }
@@ -1208,12 +1231,12 @@ namespace UnityChan
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("Color Blend Mode");
                         if(material.GetFloat("_Is_BlendAddToMatCap") == 0){
-                            if (GUILayout.Button("Multiply (makes darker)"))
+                            if (GUILayout.Button("Multiply (makes darker)",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_BlendAddToMatCap",1);
                             }
                         }else{
-                            if (GUILayout.Button("Additive (makes blighter)"))
+                            if (GUILayout.Button("Additive (makes blighter)",shortButtonStyle))
                             {
                                     material.SetFloat("_Is_BlendAddToMatCap",0);
                             }
@@ -1226,12 +1249,12 @@ namespace UnityChan
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("CameraRolling Stabillizer");
                         if(material.GetFloat("_CameraRolling_Stabilizer") == 0){
-                            if (GUILayout.Button("Off"))
+                            if (GUILayout.Button("Off",shortButtonStyle))
                             {
                                 material.SetFloat("_CameraRolling_Stabilizer",1);
                             }
                         }else{
-                            if (GUILayout.Button("Active"))
+                            if (GUILayout.Button("Active",shortButtonStyle))
                             {
                                     material.SetFloat("_CameraRolling_Stabilizer",0);
                             }
@@ -1241,12 +1264,12 @@ namespace UnityChan
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("NormalMap for MatCap");
                         if(material.GetFloat("_Is_NormalMapForMatCap") == 0){
-                            if (GUILayout.Button("Off"))
+                            if (GUILayout.Button("Off",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_NormalMapForMatCap",1);
                             }
                         }else{
-                            if (GUILayout.Button("Active"))
+                            if (GUILayout.Button("Active",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_NormalMapForMatCap",0);
                             }
@@ -1264,12 +1287,12 @@ namespace UnityChan
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("MatCap on Shadow");
                         if(material.GetFloat("_Is_UseTweakMatCapOnShadow") == 0){
-                            if (GUILayout.Button("Off"))
+                            if (GUILayout.Button("Off",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_UseTweakMatCapOnShadow",1);
                             }
                         }else{
-                            if (GUILayout.Button("Active"))
+                            if (GUILayout.Button("Active",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_UseTweakMatCapOnShadow",0);
                             }
@@ -1284,12 +1307,12 @@ namespace UnityChan
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("MatCap Projection Camera");
                         if(material.GetFloat("_Is_Ortho") == 0){
-                            if (GUILayout.Button("Perspective"))
+                            if (GUILayout.Button("Perspective",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_Ortho",1);
                             }
                         }else{
-                            if (GUILayout.Button("Orthographic"))
+                            if (GUILayout.Button("Orthographic",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_Ortho",0);
                             }
@@ -1309,12 +1332,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Inverse Matcap Mask");
                 if(material.GetFloat("_Inverse_MatcapMask") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Inverse_MatcapMask",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Inverse_MatcapMask",0);
                     }
@@ -1332,12 +1355,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("AngelRing Projection");
                 if(material.GetFloat("_AngelRing") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_AngelRing",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_AngelRing",0);
                     }
@@ -1355,12 +1378,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Use α channel as Clipping Mask");
                     if(material.GetFloat("_ARSampler_AlphaOn") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_ARSampler_AlphaOn",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_ARSampler_AlphaOn",0);
                         }
@@ -1373,7 +1396,9 @@ namespace UnityChan
 
         void GUI_Emissive(Material material)
         {
-            GUILayout.Label("Emissive Tex × HDR Color (Bloom Post-Processing Effect necessary)", EditorStyles.boldLabel);
+            GUILayout.Label("Emissive Tex × HDR Color", EditorStyles.boldLabel);
+            GUILayout.Label("(Bloom Post-Processing Effect necessary)");
+            EditorGUILayout.Space();
             m_MaterialEditor.TexturePropertySingleLine(Styles.emissiveTexText, emissive_Tex, emissive_Color);
             m_MaterialEditor.TextureScaleOffsetProperty(emissive_Tex);
             
@@ -1412,12 +1437,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Blend BaseColor to Outline");
                 if(material.GetFloat("_Is_BlendBaseColor") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_BlendBaseColor",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_BlendBaseColor",0);
                     }
@@ -1440,13 +1465,13 @@ namespace UnityChan
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("Use Outline Texture");
                     if(material.GetFloat("_Is_OutlineTex") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Is_OutlineTex",1);
                         }
                         EditorGUILayout.EndHorizontal();
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Is_OutlineTex",0);
                         }
@@ -1458,13 +1483,13 @@ namespace UnityChan
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.PrefixLabel("Use Baked Normal for Outline");
                         if(material.GetFloat("_Is_BakedNormal") == 0){
-                            if (GUILayout.Button("Off"))
+                            if (GUILayout.Button("Off",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_BakedNormal",1);
                             }
                             EditorGUILayout.EndHorizontal();
                         }else{
-                            if (GUILayout.Button("Active"))
+                            if (GUILayout.Button("Active",shortButtonStyle))
                             {
                                 material.SetFloat("_Is_BakedNormal",0);
                             }
@@ -1492,12 +1517,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Base Color");
                 if(material.GetFloat("_Is_LightColor_Base") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_Base",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_Base",0);
                     }
@@ -1507,12 +1532,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("1st ShadeColor");
                 if(material.GetFloat("_Is_LightColor_1st_Shade") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_1st_Shade",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_1st_Shade",0);
                     }
@@ -1522,12 +1547,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("2nd ShadeColor");
                 if(material.GetFloat("_Is_LightColor_2nd_Shade") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_2nd_Shade",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_2nd_Shade",0);
                     }
@@ -1537,12 +1562,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("HighColor");
                 if(material.GetFloat("_Is_LightColor_HighColor") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_HighColor",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_HighColor",0);
                     }
@@ -1552,12 +1577,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("RimLight");
                 if(material.GetFloat("_Is_LightColor_RimLight") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_RimLight",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_RimLight",0);
                     }
@@ -1567,12 +1592,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Ap_RimLight");
                 if(material.GetFloat("_Is_LightColor_Ap_RimLight") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_Ap_RimLight",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_Ap_RimLight",0);
                     }
@@ -1582,12 +1607,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("MatCap");
                 if(material.GetFloat("_Is_LightColor_MatCap") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_MatCap",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_LightColor_MatCap",0);
                     }
@@ -1599,12 +1624,12 @@ namespace UnityChan
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Angel Ring");
                     if(material.GetFloat("_Is_LightColor_AR") == 0){
-                        if (GUILayout.Button("Off"))
+                        if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat("_Is_LightColor_AR",1);
                         }
                     }else{
-                        if (GUILayout.Button("Active"))
+                        if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat("_Is_LightColor_AR",0);
                         }
@@ -1622,7 +1647,7 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("SceneLights Hi-Cut Filter");
                 if(material.GetFloat("_Is_Filter_LightColor") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_Filter_LightColor",1);
                         material.SetFloat("_Is_LightColor_Base",1);
@@ -1630,7 +1655,7 @@ namespace UnityChan
                         material.SetFloat("_Is_LightColor_2nd_Shade",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_Filter_LightColor",0);
                     }
@@ -1640,12 +1665,12 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Built-in Light Direction");
                 if(material.GetFloat("_Is_BLD") == 0){
-                    if (GUILayout.Button("Off"))
+                    if (GUILayout.Button("Off",shortButtonStyle))
                     {
                         material.SetFloat("_Is_BLD",1);
                     }
                 }else{
-                    if (GUILayout.Button("Active"))
+                    if (GUILayout.Button("Active",shortButtonStyle))
                     {
                         material.SetFloat("_Is_BLD",0);
                     }
