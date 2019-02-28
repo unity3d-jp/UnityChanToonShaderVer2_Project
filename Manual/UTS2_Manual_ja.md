@@ -1,5 +1,5 @@
 ﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.6 マニュアル
-### 2019/02/21 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/02/28 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
 ## 【重要】v.2.0.4.3p1から、直接v.2.0.6へバージョンアップをする場合の注意
@@ -72,6 +72,10 @@ Unity5.6.x もしくはそれ以降が必要です。Unity 2017.4 15f1 LTSでの
 
 Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
+
+
+## 【プロジェクト全体のダウンロード】
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
 
 
 ## 【インストールの仕方】
@@ -257,7 +261,7 @@ File>Build Settings>Player Settings... より
 * Rendering Path⇒`Forward`  
 * Color Space⇒`Linear`  
 
-を推奨  
+を推奨します。リニアカラーの時、UTS2は最大限の能力を発揮できます。  
 
 <img width = "400" src="Images_jpg/0801-12_07.jpg">
 
@@ -274,7 +278,7 @@ UTS2カスタムインスペクターは、`Show All Properties` ボタンをク
 <img width = "400" src="Images_jpg/UTS2UI_AllProperties.jpg">
 
 プロパティリスト型の機能解説は[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Props_ja.md)です。
-プロパティリスト型のインスペクターは、`Change UTS2 Custom UI` ボタンで元に戻すことができます。
+プロパティリスト型のインスペクターは、`Change CustomUI` ボタンで元に戻すことができます。
 
 
 ---
@@ -292,16 +296,16 @@ UTS2カスタムインスペクターは、`Show All Properties` ボタンをク
 
 | `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `UTS2 日本語マニュアル` | ブラウザを利用して、UTS2日本語公式マニュアルにジャンプします。 |
-| `UTS2 English Manual` | ブラウザを利用して、UTS2英語公式マニュアルにジャンプします。 |
-| `Cull　Mode` | ポリゴンのどちら側を描画しないか（カリング）を指定します。「`Culling Off`（両面描画）/ `Front Culling`（正面カリング）/ `Back Culling`（背面カリング）」が選べます。通常は`Back`で指定します。`Culling Off`はノーマルマップやライティング表示がおかしくなる場合がありますので、注意してください。 |
+| `日本語マニュアル` | ブラウザを利用して、UTS2日本語公式マニュアルにジャンプします。 |
+| `English Manual` | ブラウザを利用して、UTS2英語公式マニュアルにジャンプします。 |
+| `Culling Mode` | ポリゴンのどちら側を描画しないか（カリング）を指定します。「`Culling Off`（両面描画）/ `Front Culling`（正面カリング）/ `Back Culling`（背面カリング）」が選べます。通常は`Back`で指定します。`Culling Off`はノーマルマップやライティング表示がおかしくなる場合がありますので、注意してください。 |
 | `Stencil No` | `StencilMask`　/　`StencilOut`各シェーダーで使用します。0～255の範囲で、ステンシルリファレンスナンバーを指定します（255には特別の意味がある場合がありますので、注意してください）。抜く側のマテリアルと抜かれる側のマテリアルで、数字を合わせます。 |
 | `Clipping Mask` | `Clipping` / `TransClipping`各シェーダーで使用します。グレースケールのクリッピングマスクを指定します。白が「抜き」になります。何も指定しない場合、クリッピング機能は有効になりません。 |
 | `Inverse Clipping Mask` | クリッピングマスクを反転します。 |
 | `Clipping Level` | クリッピングマスクの強さを指定します。 |
 | `Transparency Level` | `TransClipping`シェーダーで使用します。クリッピングマスクのグレースケールレベルをα値として考慮することで、透過度を調整します。 |
 | `Use BaseMap αas Clipping Mask` | `TransClipping`シェーダーのみのプロパティです。チェックすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 |
-| `Select UI Type` | ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |
+| `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |
 | `VRChat Recommendation` | VRChatを楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |
 
 
@@ -328,17 +332,9 @@ UTS2カスタムインスペクターは、`Show All Properties` ボタンをク
 
 | `アイテム`  | 機能解説 |
 |:-------------------|:-------------------|
-| `BaseMap` | 基本色（明色）テクスチャと`BaseMap`に乗算されるカラーを指定します。テクスチャを指定せず、カラーのみの指定の場合、こちらを基本色（明色）設定として使います。 |
-| `1st ShadeMap` | １影色テクスチャと`1st_ShaderMap`に乗算されるカラーを指定します。テクスチャを指定せず、カラーのみの指定の場合、こちらを１影色設定として使います。 |
+| `BaseMap` | 基本色（明色）テクスチャと`BaseMap`に乗算されるカラーを指定します。テクスチャを指定せず、カラーのみの指定の場合、こちらを基本色（明色）設定として使います。右側のボタンを押すことで、`BaseMap`に指定されているテクスチャを`1st ShadeMap`にも適用します。 |
+| `1st ShadeMap` | １影色テクスチャと`1st_ShaderMap`に乗算されるカラーを指定します。テクスチャを指定せず、カラーのみの指定の場合、こちらを１影色設定として使います。右側のボタンを押すことで、`1st ShadeMap`に指定されているテクスチャを`2nd ShadeMap`にも適用します。同時に`1st ShadeMap`も`BaseMap`と共有している場合は、`BaseMap`が`2nd_ShadeMap`にも適用されます。 |
 | `2nd ShadeMap` | ２影色テクスチャと`2nd_ShaderMap`に乗算されるカラーです。テクスチャを指定せず、カラーのみの指定の場合、こちらを２影色設定として使います。 |
-
----
-### 「Sharing Textures」サブメニュー
-
-| `アイテム`  | 機能解説 |
-|:-------------------|:-------------------|
-| `1st_ShadeMap` | `BaseMap`に指定されているテクスチャを`1st_ShadeMap`にも適用します。 |
-| `2nd_ShadeMap` | `1st_ShadeMap`に指定されているテクスチャを`2nd_ShadeMap`にも適用します。同時に`1st_ShadeMap`も**Active**の場合は、`BaseMap`が`2nd_ShadeMap`にも適用されます。 |
 
 ---
 ### 「NormalMap Settings」サブメニュー
@@ -347,7 +343,14 @@ UTS2カスタムインスペクターは、`Show All Properties` ボタンをク
 <img width = "600" src="Images_jpg/Is_NormalToBase.jpg">
 
 **UTS2では、ノーマルマップは主に影色のぼかし表現に使います。**  
-通常のシェーディング表現にノーマルマップを足してやることで、より複雑なぼかし表現をすることが可能となります。  
+通常のシェーディング表現にノーマルマップを足してやることで、より複雑なぼかし表現をすることが可能となります。上の図で、**左側がノーマルマップをカラーに反映させたもの、右が反映させていないもの**です。  
+
+他にもノーマルマップは、スケールと共に使うことで**肌の質感**を調整したり、MatCap用のノーマルマップを別途用意することで、**髪の毛の質感**を表現するのに使われます。  
+
+<img width = "600" src="Images_jpg/NormalMap01.jpg">
+<img width = "600" src="Images_jpg/NormalMapforMatCap.jpg">
+
+ノーマルマップを使いこなすことで、様々な表現を楽しむことができます。  
 
 <img width = "500" src="Images_jpg/UTS2UI_02_02.jpg">
 
@@ -418,7 +421,7 @@ UTS2の標準シェーダーは、`Toon_DoubleShadeWithFeather.shader`という�
 
 
 ---
-## 3.「Shading Step and Feather Settings」メニュー
+## 3.「Basic Lookdevs : Shading Step and Feather Settings」メニュー
 
 <img width = "500" src="Images_jpg/UTS2UI_03_00.jpg">
 
@@ -433,7 +436,6 @@ UTS2の標準シェーダーは、`Toon_DoubleShadeWithFeather.shader`という�
 **塗り分け段階を設定するStepスライダー**、**各色の境界をぼかすFeatherスライダー**の基本的な使い方です。  
 
 ---
-### 「Basic Lookdevs : Shading Step and Feather Settings」サブメニュー
 ### ●DoubleShadeWithFeather系シェーダーの場合
 
 UTS2の標準シェーダーである、DoubleShadeWithFeather系シェーダーのアイテムです。  
@@ -466,7 +468,7 @@ UTS2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 | `2nd ShadeColor Feather` | １影色と２影色の境界をぼかします。`1st/2nd_Shades Feather`と同じ機能です。 |
 
 ---
-### 「System Shadows : Self Shadows Receiving」サブメニュー
+### 「System Shadows : Self Shadows Receiving」アイテム
 
 Unityのシャドウシステムとトゥーンシェーディングを馴染ませるための調整アイテムです。  
 トゥーンシェードの場合、システムが提供する影は、キャラのセルフシャドウ（自身への落ち影）を表現するために必要なものです。  
@@ -763,7 +765,7 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 | `Use Outline Texture` | アウトライン用反転オブジェクトにテクスチャを貼りたい場合、`Active`にします。 |
 | `Outline Texture` | アウトラインに特別なテクスチャを割り当てたい時に使用します。テクスチャを工夫することで、アウトラインに模様を入れたりすることができる他、フロントカリングされる反転オブジェクトに貼られるテクスチャだと考えると、一風変わった表現ができます。 |
 | `Use Baked Normal for Outline` | `Active`の場合、`BakedNormal for Outline`を有効にします。このアイテムは、アウトラインの描画方式が法線反転方式の時のみ現れます。 |
-| `Baked Normal for Outline` | 事前に他のモデルから頂点法線を焼き付けたノーマルマップを、法線反転方式アウトラインの設定時に追加として読み込みます。詳しい説明は[下](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%99%E3%82%A4%E3%82%AF%E3%81%97%E3%81%9F%E9%A0%82%E7%82%B9%E6%B3%95%E7%B7%9A%E3%82%92%E8%BB%A2%E5%86%99%E3%81%99%E3%82%8Bbaked-normal-for-outline)を参照してください。 |
+| `Baked NormalMap for Outline` | 事前に他のモデルから頂点法線を焼き付けたノーマルマップを、法線反転方式アウトラインの設定時に追加として読み込みます。詳しい説明は[下](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%99%E3%82%A4%E3%82%AF%E3%81%97%E3%81%9F%E9%A0%82%E7%82%B9%E6%B3%95%E7%B7%9A%E3%82%92%E8%BB%A2%E5%86%99%E3%81%99%E3%82%8Bbaked-normal-for-outline)を参照してください。 |
 
 ---
 ### ●アウトラインの強弱を調整する：**Outline Sampler**

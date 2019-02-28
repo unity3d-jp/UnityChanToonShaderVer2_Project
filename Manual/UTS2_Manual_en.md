@@ -1,5 +1,5 @@
 # Unity-Chan Toon Shader 2.0 v.2.0.6 Manual
-### 2019/02/21 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/02/28 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
 ## 【IMPORTANT】Notice for those upgrading to v.2.0.6 from v.2.0.4.3p1
@@ -69,6 +69,11 @@ This package is developed in Unity 5.6.3p1.
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
+
+
+## 【Download the project】
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
+
 
 ## 【Installation】
 1. Extract the project included with Unity-Chan Toon Shader 2.0  and search directly under the folder for the `UTS2_ShaderOnly_(version name).unitypackage` file.  
@@ -261,7 +266,7 @@ UTS2 Custom Inspector can switch to the conventional property list type inspecto
 <img width = "400" src="Images_jpg/UTS2UI_AllProperties.jpg">
 
 Function description of the property list type is [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Props_en.md).  
-You can restore the UI style of Inspector with the `Change UTS2 Custom UI` button.  
+You can restore the UI style of Inspector with the `Change CustomUI` button.  
 
 
 ---
@@ -279,16 +284,16 @@ Items in the menu are automatically expanded to the following maximum format acc
 
 | `Item` | Function |
 |:-------------------|:-------------------|
-| `UTS2 日本語マニュアル` | Using the browser jumps to the UTS2 Japanese official manual. |
-| `UTS2 English Manual` | Using the browser jumps to the UTS2 English official manual. |
-| `Cull　Mode` | Designates which side of a polygon will not be drawn (culling). Available options are: `Culling Off` (both sides drawn) / `Culling Front` (front side culling) / `Culling Back` (back side culling). `Back` is selected by default. In some cases, selecting `Culling Off` can cause the normal map and lighting to display strangely. |
+| `日本語マニュアル` | Using the browser jumps to the UTS2 Japanese official manual. |
+| `English Manual` | Using the browser jumps to the UTS2 English official manual. |
+| `Culling Mode` | Designates which side of a polygon will not be drawn (culling). Available options are: `Culling Off` (both sides drawn) / `Culling Front` (front side culling) / `Culling Back` (back side culling). `Back` is selected by default. In some cases, selecting `Culling Off` can cause the normal map and lighting to display strangely. |
 | `Stencil No` | Used by  `StencilMask`　/　`StencilOut` shaders. Designates a stencil reference number between 0 - 255 (note that in some cases 255 carries a special significance). Matches the number for the cutting material and the material to be cut. |
 | `Clipping Mask` | Used by `Clipping` / `TransClipping` shaders. Designates the grayscale clipping mask. White indicates “none”. If no settings are chosen, the clipping feature will be inactive. |
 | `Inverse Clipping Mask` | Inverts the clipping mask. |
 | `Clipping Level` | Designates the strength of the clipping mask. |
 | `Transparency Level` | Used by `TransClipping` shaders. Adjusts the transparency level by treating the clipping mask grayscale level as an α value. |
 | `Use BaseMap αas Clipping Mask` | A property only found in `TransClipping` shaders. Checking this property will use the A channel, including the `BaseMap`, as a clipping mask. Designating a `ClippingMask` is not required. |
-| `Select UI Type` | Switch the user interface to `Beginner` mode. In `Beginner` mode, you can control as little UTS2 as necessary. Toggle back to `Pro / Full Controll` mode. |
+| `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS2's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS2 functions only. Toggle back to `Pro / Full Controll` mode. |
 | `VRChat Recommendation` | Set up convenient settings for enjoying VRChat all at once. When setting up for VRChat, recommend you to start from this button first. |
 
 
@@ -316,17 +321,9 @@ From the submenu, you can also set the sharing setting of texture for basic thre
 
 | `Item` | Function |
 |:-------------------|:-------------------|
-| `BaseMap` | Designates the Base Color texture and the color which is multiplied by the `BaseMap`. If there is no designated texture, this color will be set as the Base Color. |
-| `1st_ShadeMap`                    | Designates the 1st Shade Color texture and the color which is multiplied by the `1st_ShaderMap`. If there is no designated texture, this color will be used as the 1st Shade Color. |
-| `2nd_ShadeMap`                    | Designates the 2nd Shade Color texture and the color which is multiplied by the `2nd_ShaderMap`. If there is no designated texture, this color will be used as the 2nd Shade Color. |
-
----
-### “Sharing Textures” Submenu
-
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `1st_ShadeMap`     | When set to `Active`, applies the `1st_ShadeMap` to the texture designated as the `BaseMap`. |
-| `2nd_ShadeMap` | When set to `Active`, applies the `1st_ShadeMap` texture to the `2nd_ShadeMap`. If `Use BaseMap as 1stShade_Map` is also ON, the `BaseMap` will also be applied to the `2nd_ShadeMap`. |
+| `BaseMap` | Designates the Base Color texture and the color which is multiplied by the `BaseMap`. If there is no designated texture, this color will be set as the Base Color. By pressing the right button, you can apply the texture specified in `BaseMap` to` 1st ShadeMap`. |
+| `1st_ShadeMap` | Designates the 1st Shade Color texture and the color which is multiplied by the `1st_ShaderMap`. If there is no designated texture, this color will be used as the 1st Shade Color. By pressing the right button, the texture specified in `1st ShadeMap` will also be applied to` 2nd ShadeMap`. If `1st Shade Map` also shares` BaseMap` at the same time, `BaseMap` also applies to` 2nd_ShadeMap`. |
+| `2nd_ShadeMap` | Designates the 2nd Shade Color texture and the color which is multiplied by the `2nd_ShaderMap`. If there is no designated texture, this color will be used as the 2nd Shade Color. |
 
 ---
 
@@ -336,7 +333,14 @@ This block is where Normal Map settings are performed.
 <img width = "600" src="Images_jpg/Is_NormalToBase.jpg">
 
 **The Normal Map is generally used in UTS2 for Shade Color gradation.**.  
-Using the Normal Map along with standard shading allows for more complex gradation effects.  
+Using the Normal Map along with standard shading allows for more complex gradation effects. In the above image, **the left side reflects the normal map in color, the right does not reflect it**.  
+
+Besides, the normal map is used to adjust **skin texture** by using it together with the scale. Also, by preparing a normal map for MatCap, it is used to express **hair texture**.  
+
+<img width = "600" src="Images_jpg/NormalMap01.jpg">
+<img width = "600" src="Images_jpg/NormalMapforMatCap.jpg">
+
+By using normal maps, you can enjoy various expressions.  
 
 <img width = "500" src="Images_jpg/UTS2UI_02_02.jpg">
 
@@ -414,7 +418,7 @@ Applying **a shading map like the Ambient Occlusion map** to the shading grade m
 
 
 ---
-## 3. “Shading Step and Feather Settings” Menu
+## 3. “Basic Lookdevs : Shading Step and Feather Settings” Menu
 
 <img width = "500" src="Images_jpg/UTS2UI_03_00.jpg">
 
@@ -430,7 +434,6 @@ Adjust the Step and Feather parameters to create totally different looks, withou
 This covers the basics of using the **Step slider, which controls the color levels**, and the **Feather slider, which controls the gradation at the boundaries between colors**.  
 
 ---
-### “Basic Lookdevs : Shading Step and Feather Settings” Submenu
 ### ●DoubleShadeWithFeather Shaders
 
 There are common items among DoubleShadeWithFeather shaders, the standard shaders in UST2.  
@@ -463,7 +466,7 @@ Compared to Point Maps, in addition to placing shadows, Shading Grade Maps can a
 | `2nd ShadeColor Feather` | Feathers the boundary between the 1st and 2nd Shade Colors, the same as the `1st/2nd_Shades_Feather` properties. |
 
 ---
-### “System Shadows : Self Shadows Receiving” Submenu
+### “System Shadows : Self Shadows Receiving” Items
 
 These are adjustment items to make Unity's shadow system and toon shading familiar.  
 In the case of the toon shade, the shadow provided by the system is necessary to express the character 's self - shadow (falling shadow to himself).  
@@ -756,6 +759,8 @@ The type of outline used in post-process affects the speed and quality. In games
 
 Items in this submenu can further enhance the outline function.  
 
+<img width = "500" src="Images_jpg/UTS2UI_09_02.jpg">
+
 | `Item` | Function |
 |:-------------------|:-------------------|
 | `Farthest Distance to vanish` | The width of the outline will change depending on the distance between the camera and the object. Specifies the farthest distance. The farthest distance will be when the outline becomes 0. |
@@ -763,7 +768,7 @@ Items in this submenu can further enhance the outline function.
 | `Use Outline Texture` | Turn `Active` this, when you want to paste texture to the inverted-outline object. |
 | `Outline Texture` | Use this when you want the outline to have special textures. By changing the textures, you can give the outlines patterns, or make the outline unique by changing the texture of the inverted object which will be front-face culled. |
 | `Use Baked Normal for Outline` | By turning `Active` this, you can turn on `Baked Normal for Outline`. |
-| `Baked Normal for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline). |
+| `Baked NormalMap for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline). |
 
 ---
 ### ●Adjusting the strength of outlines：**Outline Sampler**

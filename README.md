@@ -53,8 +53,14 @@ http://unity-chan.com/contents/guideline_en/
 
 
 -----
+## 【プロジェクト全体のダウンロード/Download whole project】
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
+
+
+-----
 ## 【インストールの注意】
 ### [UTS2_ShaderOnly_v2.0.6_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.6_Release.unitypackage)  
+
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストール時には、コードが改修されていますので、注意が必要です。  
 1. 元のプロジェクトのバックアップをとっておく  
@@ -124,6 +130,9 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
+### 2019/02/28：2.0.6 Release：修正リリース版  
+* 「UTS2カスタムインスペクター」のデザインを再調整しました。合わせてマニュアルも更新しました。  
+
 ### 2019/02/21：2.0.6 Release：リリース版  
 * 以下のバグフィックスと新規機能を追加。さらに一部機能の強化を行いました。  
 
@@ -153,6 +162,9 @@ They will be useful for reference of the look and scene you want to make!
 * Unlit_Intensity の最大値を2から4へ変更しました。  
 
 ---
+### 2019/02/28: 2.0.6 Release: Fixed release version
+* We re-adjusted the design of "UTS2 Custom Inspector". Together we updated the manual as well.  
+
 ### 2019/02/21: 2.0.6 Release: Release version  
 * Added following bug fixes and new features.  
 
@@ -503,11 +515,11 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 -----
 最新バージョン：2.0.6 Release  
-最終リリース日：2019/02/22  
+最終リリース日：2019/02/28  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 Latest Version: 2.0.6 Release  
-Update: 2019/02/22  
+Update: 2019/02/28  
 Category: 3D  
 File format: zip/unitypackage  
