@@ -282,19 +282,19 @@ Items in the menu are automatically expanded to the following maximum format acc
 <img width = "500" src="Images_jpg/UTS2UI_01_01.jpg">
 
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `日本語マニュアル` | Using the browser jumps to the UTS2 Japanese official manual. |
-| `English Manual` | Using the browser jumps to the UTS2 English official manual. |
-| `Culling Mode` | Designates which side of a polygon will not be drawn (culling). Available options are: `Culling Off` (both sides drawn) / `Culling Front` (front side culling) / `Culling Back` (back side culling). `Back` is selected by default. In some cases, selecting `Culling Off` can cause the normal map and lighting to display strangely. |
-| `Stencil No` | Used by  `StencilMask`　/　`StencilOut` shaders. Designates a stencil reference number between 0 - 255 (note that in some cases 255 carries a special significance). Matches the number for the cutting material and the material to be cut. |
-| `Clipping Mask` | Used by `Clipping` / `TransClipping` shaders. Designates the grayscale clipping mask. White indicates “none”. If no settings are chosen, the clipping feature will be inactive. |
-| `Inverse Clipping Mask` | Inverts the clipping mask. |
-| `Clipping Level` | Designates the strength of the clipping mask. |
-| `Transparency Level` | Used by `TransClipping` shaders. Adjusts the transparency level by treating the clipping mask grayscale level as an α value. |
-| `Use BaseMap αas Clipping Mask` | A property only found in `TransClipping` shaders. Checking this property will use the A channel, including the `BaseMap`, as a clipping mask. Designating a `ClippingMask` is not required. |
-| `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS2's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS2 functions only. Toggle back to `Pro / Full Controll` mode. |
-| `VRChat Recommendation` | Set up convenient settings for enjoying VRChat all at once. When setting up for VRChat, recommend you to start from this button first. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `日本語マニュアル` | Using the browser jumps to the UTS2 Japanese official manual. |  |
+| `English Manual` | Using the browser jumps to the UTS2 English official manual. |  |
+| `Culling Mode` | Designates which side of a polygon will not be drawn (culling). Available options are: `Culling Off` (both sides drawn) / `Culling Front` (front side culling) / `Culling Back` (back side culling). `Back` is selected by default. In some cases, selecting `Culling Off` can cause the normal map and lighting to display strangely. | _CullMode |
+| `Stencil No` | Used by  `StencilMask`　/　`StencilOut` shaders. Designates a stencil reference number between 0 - 255 (note that in some cases 255 carries a special significance). Matches the number for the cutting material and the material to be cut. | _StencilNo |
+| `Clipping Mask` | Used by `Clipping` / `TransClipping` shaders. Designates the grayscale clipping mask. White indicates “none”. If no settings are chosen, the clipping feature will be inactive. | _ClippingMask |
+| `Inverse Clipping Mask` | Inverts the clipping mask. | _Inverse_Clipping |
+| `Clipping Level` | Designates the strength of the clipping mask. | _Clipping_Level |
+| `Transparency Level` | Used by `TransClipping` shaders. Adjusts the transparency level by treating the clipping mask grayscale level as an α value. | _Tweak_transparency |
+| `Use BaseMap αas Clipping Mask` | A property only found in `TransClipping` shaders. Checking this property will use the A channel, including the `BaseMap`, as a clipping mask. Designating a `ClippingMask` is not required. | _IsBaseMapAlphaAsClippingMask |
+| `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS2's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS2 functions only. Toggle back to `Pro / Full Controll` mode. |  |
+| `VRChat Recommendation` | Set up convenient settings for enjoying VRChat all at once. When setting up for VRChat, recommend you to start from this button first. |  |
 
 
 <img width = "800" src="Images_jpg/0102-06_02.jpg">
@@ -319,11 +319,11 @@ From the submenu, you can also set the sharing setting of texture for basic thre
 
 <img width = "500" src="Images_jpg/UTS2UI_02_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `BaseMap` | Designates the Base Color texture and the color which is multiplied by the `BaseMap`. If there is no designated texture, this color will be set as the Base Color. By pressing the right button, you can apply the texture specified in `BaseMap` to` 1st ShadeMap`. |
-| `1st_ShadeMap` | Designates the 1st Shade Color texture and the color which is multiplied by the `1st_ShaderMap`. If there is no designated texture, this color will be used as the 1st Shade Color. By pressing the right button, the texture specified in `1st ShadeMap` will also be applied to` 2nd ShadeMap`. If `1st Shade Map` also shares` BaseMap` at the same time, `BaseMap` also applies to` 2nd_ShadeMap`. |
-| `2nd_ShadeMap` | Designates the 2nd Shade Color texture and the color which is multiplied by the `2nd_ShaderMap`. If there is no designated texture, this color will be used as the 2nd Shade Color. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `BaseMap` | Designates the Base Color texture and the color which is multiplied by the `BaseMap`. If there is no designated texture, this color will be set as the Base Color. By pressing the right button, you can apply the texture specified in `BaseMap` to` 1st ShadeMap`. | _MainTex, _BaseColor, _Use_BaseAs1st |
+| `1st_ShadeMap` | Designates the 1st Shade Color texture and the color which is multiplied by the `1st_ShaderMap`. If there is no designated texture, this color will be used as the 1st Shade Color. By pressing the right button, the texture specified in `1st ShadeMap` will also be applied to` 2nd ShadeMap`. If `1st Shade Map` also shares` BaseMap` at the same time, `BaseMap` also applies to` 2nd_ShadeMap`. | _1st_ShadeMap, _1st_ShadeColor, _Use_1stAs2nd |
+| `2nd_ShadeMap` | Designates the 2nd Shade Color texture and the color which is multiplied by the `2nd_ShaderMap`. If there is no designated texture, this color will be used as the 2nd Shade Color. | _2nd_ShadeMap, _2nd_ShadeColor |
 
 ---
 
@@ -344,13 +344,13 @@ By using normal maps, you can enjoy various expressions.
 
 <img width = "500" src="Images_jpg/UTS2UI_02_02.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `NormalMap`          | Designates the Normal Map. The right slider is the scale that changes the strength of the normal map. |
-| NormalMap Effectiveness | Select whether to reflect the normal map on each color. If the button is **Off**, that color does not reflect the normal map but is evaluated by the geometry of the object itself. |
-| `3 Basic Colors` | Set **Active** when you want the normal map to be reflected in the colors. |
-| `HighColor` | Set **Active** when you want the normal map to influence the high color. |
-| `RimLight` | Set **Active** when you want the normal map to influence the RimLight. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `NormalMap`          | Designates the Normal Map. The right slider is the scale that changes the strength of the normal map. | _NormalMap, _BumpScale |
+| NormalMap Effectiveness | Select whether to reflect the normal map on each color. If the button is **Off**, that color does not reflect the normal map but is evaluated by the geometry of the object itself. |  |
+| `3 Basic Colors` | Set **Active** when you want the normal map to be reflected in the colors. | _Is_NormalMapToBase |
+| `HighColor` | Set **Active** when you want the normal map to influence the high color. | _Is_NormalMapToHighColor |
+| `RimLight` | Set **Active** when you want the normal map to influence the RimLight. | _Is_NormalMapToRimLight |
 
 
 [![](https://img.youtube.com/vi/Hdyp8f7l0VI/0.jpg)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
@@ -367,10 +367,10 @@ Depending on the shader you use, the items in the sub menu will change.
 
 <img width = "500" src="Images_jpg/UTS2UI_02_03.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `1st Shade Position Map` | Uses a Position Map to force the 1st Shade Color’s position, independent of the lighting. Indicates areas that must have a shadow in black. |
-| `2nd Shade Position Map` | Uses a Position Map to force the 2nd Shade Color’s position, independent of the lighting. Indicate areas that must have a shadow in black (also affects the 1st Shade Color’s Position Map). |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `1st Shade Position Map` | Uses a Position Map to force the 1st Shade Color’s position, independent of the lighting. Indicates areas that must have a shadow in black. | _Set_1st_ShadePosition |
+| `2nd Shade Position Map` | Uses a Position Map to force the 2nd Shade Color’s position, independent of the lighting. Indicate areas that must have a shadow in black (also affects the 1st Shade Color’s Position Map). | _Set_2nd_ShadePosition |
 
 ### 【What is the Position Map?】
 
@@ -398,11 +398,11 @@ On the other hand, **for areas where the 2nd Shade Color doesn’t show** (areas
 
 <img width = "500" src="Images_jpg/UTS2UI_02_04.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `ShadingGradeMap` | Designates the Shading Grade Map as grayscale. Be sure to set `SRGB (Color Texture)` to `OFF` in the texture import settings for Shading Grade Map.|
-| `ShadingGradeMap Level` | Level correction of the gray scale value of Shading Grade Map. The default is 0, and it can be adjusted in a range of ±0.5. |
-| `Blur Level of ShadingGradeMap` | Blur the Shading Grade Map using the Mip Map function. To enable Mip Map, set Advanced> `Generate Mip Maps` to` ON` in the texture import settings. The default is 0 (no blur). |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `ShadingGradeMap` | Designates the Shading Grade Map as grayscale. Be sure to set `SRGB (Color Texture)` to `OFF` in the texture import settings for Shading Grade Map.| _ShadingGradeMap |
+| `ShadingGradeMap Level` | Level correction of the gray scale value of Shading Grade Map. The default is 0, and it can be adjusted in a range of ±0.5. | _Tweak_ShadingGradeMapLevel |
+| `Blur Level of ShadingGradeMap` | Blur the Shading Grade Map using the Mip Map function. To enable Mip Map, set Advanced> `Generate Mip Maps` to` ON` in the texture import settings. The default is 0 (no blur). | _BlurLevelSGM |
 
 ### 【What is the Shading Grade Map?】
 `Toon_DoubleShadeWithFeather.shader` is the basic shader in UTS2, and that shader is based on the shading grade map, which is a shading gray scale map. The `Toon_ShadingGradeMap` shader is further expanded to use the UV points to control shadows.  
@@ -441,12 +441,12 @@ These shaders can have 2 **Position Maps**, a special feature that allows the 1s
 
 <img width = "500" src="Images_jpg/UTS2UI_03_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `BaseColor Step` | Sets the boundary between the Base Color and the Shade Colors. |
-| `Base/Shade Feather` | Feathers the boundary between the Base Color and the Shade Colors. |
-| `ShadeColor Step` | Sets the boundary between the 1st and 2nd Shade Colors. Set this to 0 if no 2nd Shade Color is used. |
-| `1st/2nd_Shades Feather` | Feathers the boundary between the 1st and 2nd Shade Colors.  |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `BaseColor Step` | Sets the boundary between the Base Color and the Shade Colors. | _BaseColor_Step |
+| `Base/Shade Feather` | Feathers the boundary between the Base Color and the Shade Colors. | _BaseShade_Feather |
+| `ShadeColor Step` | Sets the boundary between the 1st and 2nd Shade Colors. Set this to 0 if no 2nd Shade Color is used. | _ShadeColor_Step |
+| `1st/2nd_Shades Feather` | Feathers the boundary between the 1st and 2nd Shade Colors.  | _1st2nd_Shades_Feather |
 
 ---
 ### ●ShadingGradeMap Shaders
@@ -458,12 +458,12 @@ Compared to Point Maps, in addition to placing shadows, Shading Grade Maps can a
 
 <img width = "500" src="Images_jpg/UTS2UI_03_02.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `1st ShadeColor Step` | Sets the step between the Base color and 1st Shade Color, the same as the `BaseColor_Step` property. |
-| `1st ShadeColor Feather` | Feathers the boundary between the Base Color and the 1st Shade Color, the same as the `Base/Shade_Feather` property. |
-| `2nd ShadeColor Step` | Sets the step between the 1st and 2nd Shade Colors, the same as the `ShadeColor_Step` property. |
-| `2nd ShadeColor Feather` | Feathers the boundary between the 1st and 2nd Shade Colors, the same as the `1st/2nd_Shades_Feather` properties. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `1st ShadeColor Step` | Sets the step between the Base color and 1st Shade Color, the same as the `BaseColor_Step` property. | _1st_ShadeColor_Step |
+| `1st ShadeColor Feather` | Feathers the boundary between the Base Color and the 1st Shade Color, the same as the `Base/Shade_Feather` property. | _1st_ShadeColor_Feather |
+| `2nd ShadeColor Step` | Sets the step between the 1st and 2nd Shade Colors, the same as the `ShadeColor_Step` property. | _2nd_ShadeColor_Step |
+| `2nd ShadeColor Feather` | Feathers the boundary between the 1st and 2nd Shade Colors, the same as the `1st/2nd_Shades_Feather` properties. | _2nd_ShadeColor_Feather |
 
 ---
 ### “System Shadows : Self Shadows Receiving” Items
@@ -474,10 +474,10 @@ Use this when you want to make further fine adjustments after deciding the color
 
 <img width = "500" src="Images_jpg/UTS2UI_03_03.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `Receive System Shadows` | When using Unity shadow system, set it to **Active**. This option must be sure to **Active** to use ReceiveShadow. (`ReceiveShadow` must also be selected under Mesh Renderer) |
-| `System Shadows Level` | It controls Unity’s system shadow levels. The default is 0, and the levels can be adjusted to ±0.5. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `Receive System Shadows` | When using Unity shadow system, set it to **Active**. This option must be sure to **Active** to use ReceiveShadow. (`ReceiveShadow` must also be selected under Mesh Renderer) | _Set_SystemShadowsToBase |
+| `System Shadows Level` | It controls Unity’s system shadow levels. The default is 0, and the levels can be adjusted to ±0.5. | _Tweak_SystemShadowsLevel |
 
 [![](https://img.youtube.com/vi/LXV37a1jhUE/0.jpg)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
@@ -494,10 +494,10 @@ This submenu is not available in the Mobile/Light version.
 
 <img width = "500" src="Images_jpg/UTS2UI_03_04.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `Step Offset for PointLights` | Fine tunes light steps (boundaries) added in the ForwardAdd pass, such as real-time point lights. |
-| `PointLights Hi-CutFilter` | Cuts unnecessary highlights from the Base Color area of lights added during the ForwardAdd pass, such as real-time point lights. This is particularly useful for cel-shaded styles, where there is little to no feathering. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `Step Offset for PointLights` | Fine tunes light steps (boundaries) added in the ForwardAdd pass, such as real-time point lights. | _StepOffset |
+| `PointLights Hi-CutFilter` | Cuts unnecessary highlights from the Base Color area of lights added during the ForwardAdd pass, such as real-time point lights. This is particularly useful for cel-shaded styles, where there is little to no feathering. | _Is_Filter_HiCutPointLightColor |
 
 ---
 ### 【Adjusting the different colors of point lights ：Step Offset、PointLights Hi-Cut Filter】
@@ -528,17 +528,17 @@ It is used to reflect the main directional light. When the light moves the refle
 
 <img width = "500" src="Images_jpg/UTS2UI_04_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `HighColor` | Specifies the high color. If you are not using it, set it to Black (0,0,0). High color moves according to the direction of light. You can specify texture as well as color specification. By using texture, you can use complex colors. It will be multiplied to the (right) color palette, so if you only want the texture’s color, set the color pallet to white (1,1,1). If you do not need it, you do not have to touch the settings. |
-| `HighColor Power` | Adjust the high color’s range (In specular lighting terms, this will be the “power”) |
-| `Specular Mode` | In case of `Active`, render the high color range as speculum lighting (gloss). If turned off it the boundaries of the high color range will be drawn as circles. |
-| `Color Blend Mode` | In case of `Additive`, add the High Color to the base color(It becomes brighter). Specular can only be used with the Add mode. In case of `Multiply`, multiply the High color with the base color(It becomes darker). |
-| `ShadowMask on HighColor` | In case of `Active`, mask the high color area on the shadow area. |
-| `HighColor Power on Shadow` | Adjusts the power of the high color range in shadows. |
-| HighColor Mask | Hicolor Mask settings below. |
-| `HighColor Mask` | It masks the high color based on the UV coordinates. 100% with white, and black does not show it at all. If you do not need it, you do not need to adjust it. |
-| `HighColor Mask Level` | It adjust the mask level of the high color. The default is 0. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `HighColor` | Specifies the high color. If you are not using it, set it to Black (0,0,0). High color moves according to the direction of light. You can specify texture as well as color specification. By using texture, you can use complex colors. It will be multiplied to the (right) color palette, so if you only want the texture’s color, set the color pallet to white (1,1,1). If you do not need it, you do not have to touch the settings. | _HighColor, _HighColor_Tex |
+| `HighColor Power` | Adjust the high color’s range (In specular lighting terms, this will be the “power”) | _HighColor_Power |
+| `Specular Mode` | In case of `Active`, render the high color range as speculum lighting (gloss). If turned off it the boundaries of the high color range will be drawn as circles. | _Is_SpecularToHighColor |
+| `Color Blend Mode` | In case of `Additive`, add the High Color to the base color(It becomes brighter). Specular can only be used with the Add mode. In case of `Multiply`, multiply the High color with the base color(It becomes darker). | _Is_BlendAddToHiColor |
+| `ShadowMask on HighColor` | In case of `Active`, mask the high color area on the shadow area. | _Is_UseTweakHighColorOnShadow |
+| `HighColor Power on Shadow` | Adjusts the power of the high color range in shadows. | _TweakHighColorOnShadow |
+| HighColor Mask | Hicolor Mask settings below. |  |
+| `HighColor Mask` | It masks the high color based on the UV coordinates. 100% with white, and black does not show it at all. If you do not need it, you do not need to adjust it. | _Set_HighColorMask |
+| `HighColor Mask Level` | It adjust the mask level of the high color. The default is 0. | _Tweak_HighColorMaskLevel |
 
 **※Tip: If you want to enable high color of real-time point lights, set `PointLights Hi-Cut Filter` to` Off`.**
 
@@ -564,24 +564,24 @@ You can use these RimLight options in UTS2.
 
 <img width = "500" src="Images_jpg/UTS2UI_05_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `RimLight` | In case of `Active`, the ‘RimLight’ on. |
-| RimLight Settings | RimLight settings below. |
-| `RimLight Color` | Specifies the RimLight’s color. |
-| `RimLight Power` | Adjusts the RimLight’s power. |
-| `RimLight Inside Mask` | Adjusts the power of the inside masking of the RimLight. |
-| `RimLight FeatherOff` | In case of `Active`, cuts the RimLight’s blurring. |
-| `LightDirection Mask` | In case of `Active`, only shows RimLight in the light’s direction. |
-| `LightDirection MaskLevel` | Adjusts the rim mask level in the light’s direction. |
-| `Antipodean(Ap)_RimLight` | In case of `Active`, shows RimLight (AP RimLight) in the opposite direction of the light’s direction. |
-| Ap_RimLight Settings | Ap_RimLight settings below. |
-| `Ap_RimLight Color` | Specifies the AP RimLight’s color. |
-| `Ap_RimLight Power` | Specifies the power of the AP Rim Light. |
-| `Ap_RimLight FeatherOff` | In case of `Active`, cuts the AP Rim Light’s blurring. |
-| RimLight Mask | RimLight Mask settings below. |
-| `RimLight Mask` | Masks the RimLight according to the UV coordinates. Set to 100% for white, and the rim light does not show when set to black. If you do not need it, you do not have to adjust it. |
-| `RimLight Mask Level` | Adjusts the RimLight mask’s level. The default is 0. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `RimLight` | In case of `Active`, the ‘RimLight’ on. | _RimLight |
+| RimLight Settings | RimLight settings below. |  |
+| `RimLight Color` | Specifies the RimLight’s color. | _RimLightColor |
+| `RimLight Power` | Adjusts the RimLight’s power. | _RimLight_Power |
+| `RimLight Inside Mask` | Adjusts the power of the inside masking of the RimLight. | _RimLight_InsideMask |
+| `RimLight FeatherOff` | In case of `Active`, cuts the RimLight’s blurring. | _RimLight_FeatherOff |
+| `LightDirection Mask` | In case of `Active`, only shows RimLight in the light’s direction. | _LightDirection_MaskOn |
+| `LightDirection MaskLevel` | Adjusts the rim mask level in the light’s direction. | _Tweak_LightDirection_MaskLevel |
+| `Antipodean(Ap)_RimLight` | In case of `Active`, shows RimLight (AP RimLight) in the opposite direction of the light’s direction. | _Add_Antipodean_RimLight |
+| Ap_RimLight Settings | Ap_RimLight settings below. |  |
+| `Ap_RimLight Color` | Specifies the AP RimLight’s color. | _Ap_RimLightColor |
+| `Ap_RimLight Power` | Specifies the power of the AP Rim Light. | _Ap_RimLight_Power |
+| `Ap_RimLight FeatherOff` | In case of `Active`, cuts the AP Rim Light’s blurring. | _Ap_RimLight_FeatherOff |
+| RimLight Mask | RimLight Mask settings below. |  |
+| `RimLight Mask` | Masks the RimLight according to the UV coordinates. Set to 100% for white, and the rim light does not show when set to black. If you do not need it, you do not have to adjust it. | _Set_RimLightMask |
+| `RimLight Mask Level` | Adjusts the RimLight mask’s level. The default is 0. | _Tweak_RimLightMaskLevel |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_14.jpg">
 
@@ -623,27 +623,27 @@ In UTS2, you can enjoy MatCap with Adding mode, as well as Multiplication mode.
 
 <img width = "500" src="Images_jpg/UTS2UI_06_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `MatCap` | In case of `Active`, turns MatCap on. |
-| MatCap Settings | MatCap settings below. |
-| `MatCap Sampler` | Set which texture to use for MatCap. Color that will be multiplied to MatCap_Sampler. If you set a grayscale image on MatCap_Sampler, you can add color to the MatCap with MatCapColor. |
-| `Blur Level of MatCap Sampler` | Blur MatCap_Sampler using the Mip Map function. To enable Mip Map, set Advanced> `Generate Mip Maps` to` ON` in the texture import settings. The default is 0 (no blur). |
-| `Color Blend Mode` | In case of `Additive`, the MatCap blend will be set to Adding Mode. (It makes it brighter.) In case of `Multiply`, it will be blend with Multiplication Mode (It makes it darker.) |
-| `Scale MatCapUV` | You can adjust the MatCap’s range by adjusting the UV of the MatCap Sampler from the center to a circle by scalling. |
-| `Rotate MatCapUV` | Rotates the MatCap Sampler’s UV based on the center. |
-| `CameraRolling_Stabillizer` | In case of `Active`, it prevents MatCap from rotating for camera rolling (Rotation with the depth direction as the axis). This function is useful when you want to fix MatCap against the rolling of the camera. |
-| `NormalMap for MatCap` | In case of `Active`, gives a normal map specifically for MatCap. If you are using MatCap as speculum lighting, you can use this to mask it. |
-| NormalMap for MatCap as SpecularMask | NormalMap for MatCap settings below. |
-| `NormalMap` | Set normal map for the MatCap. The slider on the right is the scale. |
-| `Rotate NormalMapUV` | Rotates the UV of the MatCap’s normal map based on the center. |
-| `MatCap on Shadow` | In case of `Active`, masks the MatCap area that is shadowed. |
-| `MatCap Power on Shadow` | Adjusts the power of the Matcap’s range in shadows. |
-| `MatCap Projection Camera` | Specify the projection of the camera to use in the game view. ** Camera distortion correction works when the perspective camera (`Perspective`) **. |
-| MatCap Mask | MatCap Mask settings below. |
-| `Matcap Mask` | By setting a grayscale mask for MatCap, you can adjust how MatCap is shown. The MatcapMask is placed based on the UV coordinates of the mesh that the MatCap will be projected on. Mask with black and unmask with white. |
-| `Matcap Mask Level` | Adjusts the power of the MatcapMask. When the value is 1, MatCap is displayed 100% irrespective of whether or not there is a mask. When the value is -1, MatCap will not be displayed at all and MatCap will be the same as in the off state. The default value is 0. |
-| `Inverse MatcapMask` | In case of `Active`, the MatcapMask is inverted. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `MatCap` | In case of `Active`, turns MatCap on. | _MatCap |
+| MatCap Settings | MatCap settings below. |  |
+| `MatCap Sampler` | Set which texture to use for MatCap. Color that will be multiplied to MatCap_Sampler. If you set a grayscale image on MatCap_Sampler, you can add color to the MatCap with MatCapColor. | _MatCap_Sampler, _MatCapColor |
+| `Blur Level of MatCap Sampler` | Blur MatCap_Sampler using the Mip Map function. To enable Mip Map, set Advanced> `Generate Mip Maps` to` ON` in the texture import settings. The default is 0 (no blur). | _BlurLevelMatcap |
+| `Color Blend Mode` | In case of `Additive`, the MatCap blend will be set to Adding Mode. (It makes it brighter.) In case of `Multiply`, it will be blend with Multiplication Mode (It makes it darker.) | _Is_BlendAddToMatCap |
+| `Scale MatCapUV` | You can adjust the MatCap’s range by adjusting the UV of the MatCap Sampler from the center to a circle by scalling. | _Tweak_MatCapUV |
+| `Rotate MatCapUV` | Rotates the MatCap Sampler’s UV based on the center. | _Rotate_MatCapUV |
+| `CameraRolling_Stabillizer` | In case of `Active`, it prevents MatCap from rotating for camera rolling (Rotation with the depth direction as the axis). This function is useful when you want to fix MatCap against the rolling of the camera. | _CameraRolling_Stabilizer |
+| `NormalMap for MatCap` | In case of `Active`, gives a normal map specifically for MatCap. If you are using MatCap as speculum lighting, you can use this to mask it. | _Is_NormalMapForMatCap |
+| NormalMap for MatCap as SpecularMask | NormalMap for MatCap settings below. |  |
+| `NormalMap` | Set normal map for the MatCap. The slider on the right is the scale. | _NormalMapForMatCap, _BumpScaleMatcap |
+| `Rotate NormalMapUV` | Rotates the UV of the MatCap’s normal map based on the center. | _Rotate_NormalMapForMatCapUV |
+| `MatCap on Shadow` | In case of `Active`, masks the MatCap area that is shadowed. | _Is_UseTweakMatCapOnShadow |
+| `MatCap Power on Shadow` | Adjusts the power of the Matcap’s range in shadows. | _TweakMatCapOnShadow |
+| `MatCap Projection Camera` | Specify the projection of the camera to use in the game view. **Camera distortion correction works when the perspective camera (`Perspective`)**. | _Is_Ortho |
+| MatCap Mask | MatCap Mask settings below. |  |
+| `Matcap Mask` | By setting a grayscale mask for MatCap, you can adjust how MatCap is shown. The MatcapMask is placed based on the UV coordinates of the mesh that the MatCap will be projected on. Mask with black and unmask with white. | _Set_MatcapMask |
+| `Matcap Mask Level` | Adjusts the power of the MatcapMask. When the value is 1, MatCap is displayed 100% irrespective of whether or not there is a mask. When the value is -1, MatCap will not be displayed at all and MatCap will be the same as in the off state. The default value is 0. | _Tweak_MatcapMaskLevel |
+| `Inverse MatcapMask` | In case of `Active`, the MatcapMask is inverted. | _Inverse_MatcapMask |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_36.jpg">
 
@@ -675,14 +675,14 @@ Angel Ring is influenced by the UV2 of the mesh that it will be projected on. So
 
 <img width = "500" src="Images_jpg/UTS2UI_07_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `AngelRing` | In case of `Active`, turns Angel Ring on. |
-| AngelRing Sampler Settings | AngelRing Sampler settings below. |
-| `AngelRing` | Specifies the texture and color of the Angel Ring. The color that will be multiplied to the Angel Ring. |
-| `Offset U` | Adjusts the Angel Ring’s shape in the horizontal direction. |
-| `Offset V` | Adjusts the Angel Ring’s shape in the vertical direction. |
-| `Use α channel as Clipping Mask` | In case of `Active`, you can use the α channel that is included in the Angel Ring’s texture as a clipping mask. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `AngelRing` | In case of `Active`, turns Angel Ring on. | _AngelRing |
+| AngelRing Sampler Settings | AngelRing Sampler settings below. |  |
+| `AngelRing` | Specifies the texture and color of the Angel Ring. The color that will be multiplied to the Angel Ring. | _AngelRing_Sampler, _AngelRing_Color |
+| `Offset U` | Adjusts the Angel Ring’s shape in the horizontal direction. | _AR_OffsetU |
+| `Offset V` | Adjusts the Angel Ring’s shape in the vertical direction. | _AR_OffsetV |
+| `Use α channel as Clipping Mask` | In case of `Active`, you can use the α channel that is included in the Angel Ring’s texture as a clipping mask. | _ARSampler_AlphaOn |
 
 ### ●Making materials for Angel Ring.
 
@@ -718,9 +718,9 @@ By defining the **HDR color** for ‘Emissive’, you can create parts that are 
 
 <img width = "500" src="Images_jpg/UTS2UI_08_00.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `Emissive` | Specifies the texture for Emissive. You can also create  a mask texture with grayscale and make it emit light with Color. Color that will be multiplied to each pixel color in texture. In most cases, set [**HDR Color**](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html) If you do not want it to emit light on top of other parts, set it to Black (RGB: 0,0,0) |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `Emissive` | Specifies the texture for Emissive. You can also create  a mask texture with grayscale and make it emit light with Color. Color that will be multiplied to each pixel color in texture. In most cases, set [**HDR Color**](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html) If you do not want it to emit light on top of other parts, set it to Black (RGB: 0,0,0) | _Emissive_Tex, _Emissive_Color |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_42.jpg">
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_43.jpg">
@@ -745,14 +745,14 @@ The type of outline used in post-process affects the speed and quality. In games
 
 <img width = "500" src="Images_jpg/UTS2UI_09_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `Outline Mode` | Specifies how the inverted-outline object will be spawned.  You can choose between `Normal Direction`（normal inverted method） / `Position Scalling`（position scaling method). In most cases, `Normal Direction` is used but if it is a mesh that is only made of hard edges (such as cubes), `Position Scalling` will prevent the outline from being disconnected. It will be good to use `Position Scalling` for simple shapes and use `Normal Direction` for characters and things that have complicated outlines. |
-| `Outline Width` | Specifies the width of the outline. **NOTICE: This value relies on the scale when the model was imported to Unity** which means that you have to be careful if the scale is not 1. |
-| `Outline Color` | Specifies the color of the outline. |
-| `BlendBaseColor to Outline` | Turn "Active" this when you want to blend the color of the outline with the object’s base color. |
-| `Outline Sampler` | When you want to see the “start” and “end” of your outlines, or when you only want to outline certain parts, use the outline sampler (texture). The thickest width with white and the least thickest with white. |
-| `Offset Outline with Camera Z-axis` | Offsets the outlines in direction Z. The outline will be less visible for the spikey parts in spikey hair if you input a positive value. For most cases, just set this to 0. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `Outline Mode` | Specifies how the inverted-outline object will be spawned.  You can choose between `Normal Direction`（normal inverted method） / `Position Scalling`（position scaling method). In most cases, `Normal Direction` is used but if it is a mesh that is only made of hard edges (such as cubes), `Position Scalling` will prevent the outline from being disconnected. It will be good to use `Position Scalling` for simple shapes and use `Normal Direction` for characters and things that have complicated outlines. | _OUTLINE |
+| `Outline Width` | Specifies the width of the outline. **NOTICE: This value relies on the scale when the model was imported to Unity** which means that you have to be careful if the scale is not 1. | _Outline_Width |
+| `Outline Color` | Specifies the color of the outline. | _Outline_Color |
+| `BlendBaseColor to Outline` | Turn "Active" this when you want to blend the color of the outline with the object’s base color. | _Is_BlendBaseColor |
+| `Outline Sampler` | When you want to see the “start” and “end” of your outlines, or when you only want to outline certain parts, use the outline sampler (texture). The thickest width with white and the least thickest with white. | _Outline_Sampler |
+| `Offset Outline with Camera Z-axis` | Offsets the outlines in direction Z. The outline will be less visible for the spikey parts in spikey hair if you input a positive value. For most cases, just set this to 0. | _Offset_Z |
 
 ---
 ### “Advanced Outline Settings” Submenu
@@ -761,14 +761,14 @@ Items in this submenu can further enhance the outline function.
 
 <img width = "500" src="Images_jpg/UTS2UI_09_02.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `Farthest Distance to vanish` | The width of the outline will change depending on the distance between the camera and the object. Specifies the farthest distance. The farthest distance will be when the outline becomes 0. |
-| `Nearest Distance to draw with Outline Width` | The width of the outline will change depending on the distance between the camera and the object. Specifies the closest distance. The closest distance will be when the ‘Outline_Width” is the width that was set as the maximum. |
-| `Use Outline Texture` | Turn `Active` this, when you want to paste texture to the inverted-outline object. |
-| `Outline Texture` | Use this when you want the outline to have special textures. By changing the textures, you can give the outlines patterns, or make the outline unique by changing the texture of the inverted object which will be front-face culled. |
-| `Use Baked Normal for Outline` | By turning `Active` this, you can turn on `Baked Normal for Outline`. |
-| `Baked NormalMap for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline). |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `Farthest Distance to vanish` | The width of the outline will change depending on the distance between the camera and the object. Specifies the farthest distance. The farthest distance will be when the outline becomes 0. | _Farthest_Distance |
+| `Nearest Distance to draw with Outline Width` | The width of the outline will change depending on the distance between the camera and the object. Specifies the closest distance. The closest distance will be when the ‘Outline_Width” is the width that was set as the maximum. | _Nearest_Distance |
+| `Use Outline Texture` | Turn `Active` this, when you want to paste texture to the inverted-outline object. | _Is_OutlineTex |
+| `Outline Texture` | Use this when you want the outline to have special textures. By changing the textures, you can give the outlines patterns, or make the outline unique by changing the texture of the inverted object which will be front-face culled. | _OutlineTex |
+| `Use Baked Normal for Outline` | By turning `Active` this, you can turn on `Baked Normal for Outline`. | _Is_BakedNormal |
+| `Baked NormalMap for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline). | _BakedNormal |
 
 ---
 ### ●Adjusting the strength of outlines：**Outline Sampler**
@@ -843,11 +843,11 @@ You can only use Tessellation on UTS2 with **Windows/DX11**.
 
 <img width = "500" src="Images_jpg/UTS2UI_10_00.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `Edge Length` | Divides the tessellation according to the camera’s distance. The smaller the value, the smaller the tiles become. The default is 5. |
-| `Phong Strengh` | Adjusts the pulling strength of the surfaces divided by tessellation. The default is 0.5. |
-| `Extrusion Amount` | Scale the expanded parts due to tessellation. The default is 0. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `Edge Length` | Divides the tessellation according to the camera’s distance. The smaller the value, the smaller the tiles become. The default is 5. | _TessEdgeLength |
+| `Phong Strengh` | Adjusts the pulling strength of the surfaces divided by tessellation. The default is 0.5. | _TessPhongStrength |
+| `Extrusion Amount` | Scale the expanded parts due to tessellation. The default is 0. | _TessExtrusionAmount |
 
 We used Nora’s https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess  as reference for the code that deals with this.  
 Tessellation is not available on every platform and also requires a good PC environment, so please take this into account.  
@@ -867,16 +867,16 @@ While actually using the character lights used in the scene, you can see in real
 
 <img width = "500" src="Images_jpg/UTS2UI_11_00.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `Base Color` | Applies the light color to the Base Color. |
-| `1st ShadeColor` | Applies the light color to the 1st Shade Color. |
-| `2nd ShadeColor` | Applies the light color to the 2nd Shade Color.  |
-| `HighColor` | Applies the light color to the High Color. |
-| `RimLight` | Applies the light color to the RimLight Color. |
-| `Ap_RimLight` | Applies the light color to the Ap_RimLight Color. |
-| `MatCap` | Applies the light color to the MatCap Color. |
-| `AngelRing`  | Applies the light color to the AngelRing Color. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `Base Color` | Applies the light color to the Base Color. | _Is_LightColor_Base |
+| `1st ShadeColor` | Applies the light color to the 1st Shade Color. | _Is_LightColor_1st_Shade |
+| `2nd ShadeColor` | Applies the light color to the 2nd Shade Color. | _Is_LightColor_2nd_Shade |
+| `HighColor` | Applies the light color to the High Color. | _Is_LightColor_HighColor |
+| `RimLight` | Applies the light color to the RimLight Color. | _Is_LightColor_RimLight |
+| `Ap_RimLight` | Applies the light color to the Ap_RimLight Color. | _Is_LightColor_Ap_RimLight |
+| `MatCap` | Applies the light color to the MatCap Color. | _Is_LightColor_MatCap |
+| `AngelRing`  | Applies the light color to the AngelRing Color. | _Is_LightColor_AR |
 
 **※ Hint: Turning off any color switch will cause that color’s Light Intensity to be set to 1 with a light color of white, regardless of the strength of other lights in the environment.**  
 
@@ -891,16 +891,16 @@ It is also possible to control ON/OFF of the white jump prevention function like
 
 <img width = "500" src="Images_jpg/UTS2UI_12_01.jpg">
 
-| `Item` | Function |
-|:-------------------|:-------------------|
-| `GI Intensity` | By setting `GI Intensity` to 0 or higher, it will deal with the GI system within Unity’s Lighting window, especially [Light Probe](https://docs.unity3d.com/ja/current/Manual/LightProbes.html).  When `GI Intensity` is 1, the GI intensity will be 100%. **This function is improved with v.2.0.6, if you want to use GI including light probes, first set 1 (almost the same brightness as Standard Shader). and then adjust as necessary**. |
-| `Unlit Intensity` | When there is no real-time directional light in the scene, the scene’s brightness and color will be determined by [Environment Lighting’s Source Settings](<https://docs.unity3d.com/ja/current/Manual/GlobalIllumination.html>), boost it by `Unlit Intensity` and use it as a light source (This is called **Ambient Blending**). The default is 1 and 0 is to turn it off completely. This is used when you want to have the environment color blend with the material color, **but if you want it to be a darker blend, set it to 0.5～1 and if you want it to be a lighter blend, set it to 1.5～2.** (From v.2.0.6, the maximum value has become 4.) |
-| `SceneLights Hi-Cut Filter` | This will minimize overexposure when the light intensity is too high, or when there are multiple real-time directional lights, or multiple real-time point lights. By turning this one you can maintain the light colors and its attenuations while only cutting the intensity of the material color to avoid overexposure. The default is `OFF`. When using this function, please make sure that the basic 3 colors are `Active` in “LightColor Contribution to Materials” menu. **We recommend VRChat users to turn this on**. Hint: If overexposure still occurs even when this is turned on, please check the post-effect bloom settings. (In particular, when Bloom’s threshold value is under 1, it is easier to happen.) |
-| `Built-in Light Direction` | For experienced users, you can activate the Built-in Light Direction’s vector (the vector of the virtual lights in the shader). When this is activated, the intensity and color of the light will follow the real-time directional light’s values within the scene. If there aren’t lights like that, the values for ambient blending will be used. |
-| Built-in Light Direction Settings | Built-in Light Direction Settings below. |
-| `Offset X-Axis Direction` | Moves the virtual lights left and right that are spawned by the built-in light direction vector left and right . |
-| `Offset Y-Axis Direction` | Moves the virtual lights that are spawned by the built-in light direction vector up and down. |
-| `Inverse Z-Axis Direction` | Moves the virtual lights that are spawned by the built-in light direction vector back and forwards. |
+| `Item` | Function | Property |
+|:-------------------|:-------------------|:-------------------|
+| `GI Intensity` | By setting `GI Intensity` to 0 or higher, it will deal with the GI system within Unity’s Lighting window, especially [Light Probe](https://docs.unity3d.com/ja/current/Manual/LightProbes.html).  When `GI Intensity` is 1, the GI intensity will be 100%. **This function is improved with v.2.0.6, if you want to use GI including light probes, first set 1 (almost the same brightness as Standard Shader). and then adjust as necessary**. | _GI_Intensity |
+| `Unlit Intensity` | When there is no real-time directional light in the scene, the scene’s brightness and color will be determined by [Environment Lighting’s Source Settings](<https://docs.unity3d.com/ja/current/Manual/GlobalIllumination.html>), boost it by `Unlit Intensity` and use it as a light source (This is called **Ambient Blending**). The default is 1 and 0 is to turn it off completely. This is used when you want to have the environment color blend with the material color, **but if you want it to be a darker blend, set it to 0.5～1 and if you want it to be a lighter blend, set it to 1.5～2.** (From v.2.0.6, the maximum value has become 4.) | _Unlit_Intensity |
+| `SceneLights Hi-Cut Filter` | This will minimize overexposure when the light intensity is too high, or when there are multiple real-time directional lights, or multiple real-time point lights. By turning this one you can maintain the light colors and its attenuations while only cutting the intensity of the material color to avoid overexposure. The default is `OFF`. When using this function, please make sure that the basic 3 colors are `Active` in “LightColor Contribution to Materials” menu. **We recommend VRChat users to turn this on**. Hint: If overexposure still occurs even when this is turned on, please check the post-effect bloom settings. (In particular, when Bloom’s threshold value is under 1, it is easier to happen.) | _Is_Filter_LightColor |
+| `Built-in Light Direction` | For experienced users, you can activate the Built-in Light Direction’s vector (the vector of the virtual lights in the shader). When this is activated, the intensity and color of the light will follow the real-time directional light’s values within the scene. If there aren’t lights like that, the values for ambient blending will be used. | _Is_BLD |
+| Built-in Light Direction Settings | Built-in Light Direction Settings below. |  |
+| `Offset X-Axis Direction` | Moves the virtual lights left and right that are spawned by the built-in light direction vector left and right . | _Offset_X_Axis_BLD |
+| `Offset Y-Axis Direction` | Moves the virtual lights that are spawned by the built-in light direction vector up and down. | _Offset_Y_Axis_BLD |
+| `Inverse Z-Axis Direction` | Moves the virtual lights that are spawned by the built-in light direction vector back and forwards. | _Inverse_Z_Axis_BLD |
 
 ---
 
