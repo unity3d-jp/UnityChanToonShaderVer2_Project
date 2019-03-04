@@ -170,6 +170,10 @@ UTS2のアウトラインは、専用テクスチャを使ったアウトライ�
 `NoOutline`系シェーダーの中に、最後に`Transparent`という名前ブロックを持つシェーダーがあります。  
 これは、**半透明に特化したシェーダー**です。「頬染め」用パーツなどに使える他、ガラスのような表現にも使えます。  
 
+<img width = "800" src="Images_jpg/CheekMaterialSetting.jpg">
+
+↑頬染め用マテリアルの設定例  
+
 
 ## ●UnityChanToonShader/AngelRingフォルダ内のシェーダー
 
@@ -246,7 +250,7 @@ Phong テッセレーションを利用することで、アウトラインの�
 * SSAO Test\SSAO.unity		：SSAO in PPSのテスト用  
 * NormalMap\NormalMap.unity	：UTS2でノーマルマップを使う際のコツ  
 * LightAndShadows\LightAndShadows.unity：スタンダードシェーダーとUTS2との比較  
-* AngelRing\AngelRing.unity：「天使の輪」のサンプル  
+* AngelRing\AngelRing.unity：「天使の輪」とシェーディンググレードマップのサンプル  
 * MatCapMask\MatCapMask.unity：MatcapMaskのサンプル  
 
 

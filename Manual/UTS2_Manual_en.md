@@ -164,6 +164,11 @@ Parts without the outline function will have one less drawing pass, so these sha
 Some of the `NoOutline` shaders have the `Transparent` name block at the end of their names.  
 These are **special transparency shaders**. They are useful for parts meant to have a “blush” look, or for glass and glass-like objects.  
 
+<img width = "800" src="Images_jpg/CheekMaterialSetting.jpg">
+
+↑Sample setting for Blush material.  
+
+
 ## ●The Shaders in the UnityChanToonShader/AngelRing Folder
 
 <img width = "800" src="Images_jpg/UTS2_AngelRing.jpg">
@@ -237,7 +242,7 @@ The following sample scenes can be found by opening a project and opening the \A
 * SSAO Test\SSAO.unity        ：Test for SSAO in PPS.  
 * NormalMap\NormalMap.unity    ：Tricks for using the normal map with UTS2.  
 * LightAndShadows\LightAndShadows.unity：Comparison between the standard shader and UTS2.  
-* AngelRing\AngelRing.unity：”angel ring” sample.  
+* AngelRing\AngelRing.unity：”Angel ring” and Shading Frade Map sample.  
 * MatCapMask\MatCapMask.unity：MatcapMask sample.  
 
 
