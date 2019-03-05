@@ -32,12 +32,12 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 ## 【ターゲット環境】
 Unity5.6.x もしくはそれ以降が必要です。Unity 2018.2.20f1 以降でも使用できます。  
 Unity 2017.4 15f1 LTSでの動作確認済み。  
-本パッケージは、Unity5.6.3p1で作成されています。  
+本パッケージは、Unity5.6.7f1で作成されています。  
 
 ### 【Target Environment】
 Requires Unity 5.6.x or later. Available on Unity 2018.2.20f1 or lator, too.  
 Confirmed on Unity 2017.4 15f1 LTS.  
-This pack was created in Unity 5.6.3p1.  
+This pack was created in Unity 5.6.7f1.  
 
 
 -----
@@ -130,6 +130,9 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
+### 2019/03/05：2.0.6 Release：修正リリース版2  
+* 「UTS2カスタムインスペクター」のUI表示にタイポが3つありましたので修正しました。  
+
 ### 2019/02/28：2.0.6 Release：修正リリース版  
 * 「UTS2カスタムインスペクター」のデザインを再調整しました。合わせてマニュアルも更新しました。  
 
@@ -162,6 +165,9 @@ They will be useful for reference of the look and scene you want to make!
 * Unlit_Intensity の最大値を2から4へ変更しました。  
 
 ---
+### 2019/03/05: 2.0.6 Release: Fixed release version 2
+* Fixed three typos in the UI display of "UTS2 Custom Inspector".  
+
 ### 2019/02/28: 2.0.6 Release: Fixed release version
 * We re-adjusted the design of "UTS2 Custom Inspector". Together we updated the manual as well.  
 
@@ -514,12 +520,12 @@ In addition to the above modifications, added 2 transparent shaders (ToonColor_D
 
 
 -----
-最新バージョン：2.0.6 Release  
-最終リリース日：2019/02/28  
+最新バージョン：2.0.6 Fixed Release v.2  
+最終リリース日：2019/03/05  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.6 Release  
-Update: 2019/02/28  
+Latest Version: 2.0.6 Fixed Release v.2  
+Update: 2019/03/05  
 Category: 3D  
 File format: zip/unitypackage  

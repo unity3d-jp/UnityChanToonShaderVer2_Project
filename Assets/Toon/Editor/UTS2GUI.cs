@@ -14,7 +14,7 @@ namespace UnityChan
             DoubleSideWithFeather, ShadingGradeMap, OutlineObject
         }
         public enum _OutlineMode{
-            NormalDirection, PositionScalling
+            NormalDirection, PositionScaling
         }
 
         public enum _CullingMode{
@@ -740,7 +740,7 @@ namespace UnityChan
             EditorGUILayout.PrefixLabel("Current UI Type");
             //GUILayout.Space(60);
             if(_SimpleUI == false) {
-                if (GUILayout.Button("Pro / Full Controll",middleButtonStyle))
+                if (GUILayout.Button("Pro / Full Control",middleButtonStyle))
                 {
                     material.SetInt("_simpleUI",1); //UTS2 Custom GUI Biginner
                 }
@@ -974,7 +974,7 @@ namespace UnityChan
             // }
 
             if(!_SimpleUI){
-                // _SystemShadows_Foldout = FoldoutSubMenu(_SystemShadows_Foldout, "● System Shadows : Self Shadows Receving");
+                // _SystemShadows_Foldout = FoldoutSubMenu(_SystemShadows_Foldout, "● System Shadows : Self Shadows Receiving");
                 // if(_SystemShadows_Foldout){
                     GUI_SystemShadows(material);
                 // }
@@ -993,7 +993,7 @@ namespace UnityChan
 
         void GUI_SystemShadows(Material material){
 
-                GUILayout.Label("System Shadows : Self Shadows Receving", EditorStyles.boldLabel);
+                GUILayout.Label("System Shadows : Self Shadows Receiving", EditorStyles.boldLabel);
 
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Receive System Shadows");
@@ -1334,7 +1334,7 @@ namespace UnityChan
                     m_MaterialEditor.RangeProperty(rotate_MatCapUV, "Rotate MatCapUV");
 
                     EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.PrefixLabel("CameraRolling Stabillizer");
+                    EditorGUILayout.PrefixLabel("CameraRolling Stabilizer");
                     //GUILayout.Space(60);
                         if(material.GetFloat("_CameraRolling_Stabilizer") == 0){
                             if (GUILayout.Button("Off",shortButtonStyle))
@@ -1508,8 +1508,8 @@ namespace UnityChan
             //Enum形式に変換して、outlineMode変数に保持しておく.
             if ((int)_OutlineMode.NormalDirection == _OutlineMode_Setting){
                 outlineMode = _OutlineMode.NormalDirection;
-            }else if((int)_OutlineMode.PositionScalling == _OutlineMode_Setting){
-                outlineMode = _OutlineMode.PositionScalling;
+            }else if((int)_OutlineMode.PositionScaling == _OutlineMode_Setting){
+                outlineMode = _OutlineMode.PositionScaling;
             }
             //EnumPopupでGUI記述.
             outlineMode = (_OutlineMode)EditorGUILayout.EnumPopup("Outline Mode", outlineMode);
@@ -1519,7 +1519,7 @@ namespace UnityChan
                 //UTCS_Outline.cginc側のキーワードもトグル入れ替え.
                 material.EnableKeyword("_OUTLINE_NML");
                 material.DisableKeyword("_OUTLINE_POS");
-            }else if(outlineMode == _OutlineMode.PositionScalling){
+            }else if(outlineMode == _OutlineMode.PositionScaling){
                 material.SetFloat("_OUTLINE",1);
                 material.EnableKeyword("_OUTLINE_POS");
                 material.DisableKeyword("_OUTLINE_NML");
