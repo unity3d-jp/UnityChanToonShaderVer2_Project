@@ -60,7 +60,7 @@ ModelImporter:
     9500000: //RootNode
     13700000: yuko_head
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 1
     materialSearch: 1
   animations:
@@ -104,7 +104,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
