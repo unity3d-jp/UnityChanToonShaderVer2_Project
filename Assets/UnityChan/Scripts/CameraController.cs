@@ -167,8 +167,9 @@ namespace UnityChan
 			focusTrans.localEulerAngles = focusTrans.localEulerAngles + eulerAngle;
 
 			//Change this.transform.LookAt(this.focus) to q.SetLookRotation(this.focus)
-			q.SetLookRotation (this.focus) ;
-
+			if(this.focus != Vector3.zero){// for Error: "Look Rotation Viewing Vector Is Zero"
+				q.SetLookRotation (this.focus) ;
+			}
 			return;
 		}
 	}

@@ -1,8 +1,8 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.6 Manual
-### 2019/02/28 Nobuyuki Kobayashi (Unity Technologies Japan)
+# Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
+### 2019/03/23 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
-## 【IMPORTANT】Notice for those upgrading to v.2.0.6 from v.2.0.4.3p1
+## 【IMPORTANT】Notice for those upgrading from v.2.0.4.3p1 to v.2.0.5～v.2.0.7
 * The BaseMap may be removed from pre-existing materials due to changes to internal parameter names. In such cases, remember to reattach the BaseMap.  
 * The HiColor_Power slider’s sensitivity has been adjusted. The HiColor_Power value will need to be readjusted when using Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FF. This is not necessary for Is_SpecularToHighColor=ON.  
 * Latest updates and version history can be found here **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)**.  
@@ -65,7 +65,7 @@ Unity-Chan Toon Shader Ver. 2.0 is developed based on Unity 5.6.3p1, and verific
 
 ## 【Target Environment】
 Unity 5.6.x or later is required. This shader is confirmed to be compatible with Unity 2017.4 15f1 LTS. Unity 2018.1.0f2 and later versions can also be used.  
-This package is developed in Unity 5.6.7f1.  
+This package is developed in Unity 5.6.3p1.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
@@ -242,8 +242,9 @@ The following sample scenes can be found by opening a project and opening the \A
 * SSAO Test\SSAO.unity        ：Test for SSAO in PPS.  
 * NormalMap\NormalMap.unity    ：Tricks for using the normal map with UTS2.  
 * LightAndShadows\LightAndShadows.unity：Comparison between the standard shader and UTS2.  
-* AngelRing\AngelRing.unity：”Angel ring” and Shading Frade Map sample.  
+* AngelRing\AngelRing.unity：”Angel ring” and ShadingGradeMap sample.  
 * MatCapMask\MatCapMask.unity：MatcapMask sample.  
+* EmissiveAnimation\EmisssiveAnimation.unity：EmissiveAnimation sample.  
 
 
 Each scene is intended as a reference for the relevant shader and lighting settings.  
@@ -298,7 +299,7 @@ Items in the menu are automatically expanded to the following maximum format acc
 | `Clipping Level` | Designates the strength of the clipping mask. | _Clipping_Level |
 | `Transparency Level` | Used by `TransClipping` shaders. Adjusts the transparency level by treating the clipping mask grayscale level as an α value. | _Tweak_transparency |
 | `Use BaseMap αas Clipping Mask` | A property only found in `TransClipping` shaders. Checking this property will use the A channel, including the `BaseMap`, as a clipping mask. Designating a `ClippingMask` is not required. | _IsBaseMapAlphaAsClippingMask |
-| `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS2's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS2 functions only. Toggle back to `Pro / Full Control` mode. |  |
+| `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS2's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS2 functions only. Toggle back to `Pro / Full Controll` mode. |  |
 | `VRChat Recommendation` | Set up convenient settings for enjoying VRChat all at once. When setting up for VRChat, recommend you to start from this button first. |  |
 
 
@@ -637,7 +638,7 @@ In UTS2, you can enjoy MatCap with Adding mode, as well as Multiplication mode.
 | `Color Blend Mode` | In case of `Additive`, the MatCap blend will be set to Adding Mode. (It makes it brighter.) In case of `Multiply`, it will be blend with Multiplication Mode (It makes it darker.) | _Is_BlendAddToMatCap |
 | `Scale MatCapUV` | You can adjust the MatCap’s range by adjusting the UV of the MatCap Sampler from the center to a circle by scalling. | _Tweak_MatCapUV |
 | `Rotate MatCapUV` | Rotates the MatCap Sampler’s UV based on the center. | _Rotate_MatCapUV |
-| `CameraRolling_Stabilizer` | In case of `Active`, it prevents MatCap from rotating for camera rolling (Rotation with the depth direction as the axis). This function is useful when you want to fix MatCap against the rolling of the camera. | _CameraRolling_Stabilizer |
+| `CameraRolling_Stabillizer` | In case of `Active`, it prevents MatCap from rotating for camera rolling (Rotation with the depth direction as the axis). This function is useful when you want to fix MatCap against the rolling of the camera. | _CameraRolling_Stabilizer |
 | `NormalMap for MatCap` | In case of `Active`, gives a normal map specifically for MatCap. If you are using MatCap as speculum lighting, you can use this to mask it. | _Is_NormalMapForMatCap |
 | NormalMap for MatCap as SpecularMask | NormalMap for MatCap settings below. |  |
 | `NormalMap` | Set normal map for the MatCap. The slider on the right is the scale. | _NormalMapForMatCap, _BumpScaleMatcap |
@@ -711,8 +712,9 @@ You can set the color of the AngelRing directly instead of adding it.
 <img width = "800" src="Images_jpg/0609-04_13.jpg">
 
 ---
-## 8. “Emissive : Self-luminescene Settings” Menu
+## 8. “Emissive : Self-luminescene Setings” Menu
 
+<img width = "500" src="Images_jpg/UTS2UI_08_00.jpg">
 
 **Emissive** means that objects emit light.  
 By defining the **HDR color** for ‘Emissive’, you can create parts that are brighter than the other colors.  
@@ -721,11 +723,24 @@ By defining the **HDR color** for ‘Emissive’, you can create parts that are 
 
 **By using it with post-effects that are attached to the camera, like [Bloom](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Bloom.html) in [Post Processing Stack](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Stack.html) you can make parts emit light effectively.**  
 
-<img width = "500" src="Images_jpg/UTS2UI_08_00.jpg">
+<img width = "500" src="Images_jpg/UTS2UI_08_01.jpg">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
-| `Emissive` | Specifies the texture for Emissive. You can also create  a mask texture with grayscale and make it emit light with Color. Color that will be multiplied to each pixel color in texture. In most cases, set [**HDR Color**](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html) If you do not want it to emit light on top of other parts, set it to Black (RGB: 0,0,0) | _Emissive_Tex, _Emissive_Color |
+| `Emissive` | Specifies the texture for Emissive. You can also create a texture with grayscale and make it emit light with Color. Color that will be multiplied to each pixel color in texture. In most cases, set [**HDR Color**](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html) **If you do not want it to emit light on top of other parts, set it to Black (RGB: 0,0,0)** | _Emissive_Tex.rgb, _Emissive_Color |
+| `The αchannel of Emissive Texure` | As of v. 2.0.7, the alpha channel can be used as a mask for emissive textures. Emissive is displayed at the position where the alpha channel is set to white (RGB = (1, 1, 1)) on UV basis. When black (RGB = (0, 0, 0)), the emissive disappears. | _Emissive_Tex.a |
+| `Emissive Animation` | By making it `Active`, you can animate the RGB channel part of the texture specified by` Emissive` in various ways. **Alpha channel is a mask, so it can not be animated.** | EMISSIVE MODE = ANIMATION |
+| `Base Speed (Time)` | Specifies the base update speed of the animation. If the value is 1, it will be updated in 1 second. Specifying a value of 2 results in twice the speed of a value of 1, so it will be updated in 0.5 seconds. | _Base_Speed |
+| `UV Coord Scroll`, `View Coord Scroll` | Specifies the coordinate system to use for scrolling. In the case of `UV Coord Scroll`, scrolling is performed based on the UV coordinates of Emissive_Tex. In the case of `View Coord Scroll`, it scrolls based on the same view coordinates as MatCap. Scrolling in the view coordinate system is very useful because it does not take into account the UV coordinates of the texture, but it is often the case that objects with flat faces like cubes can not be displayed well. On the other hand, the view coordinate system can be used very conveniently for objects with many surfaces such as characters. | _Is_ViewCoord_Scroll |
+| `Scroll U direction` | Specifies how much the Emissive texture is to be scrolled in the U direction (direction of the X axis) when updating the animation. Specify in the range -1 to 1 and the default is 0. Scroll animation is ultimately determined as the result of `Base Speed (Time)` x `Scroll U Direction` x` Scroll V Direction`. | _Scroll_EmissiveU |
+| `Scroll V direction` | Specifies how much the Emissive texture is to be scrolled in the V direction (direction of the Y axis) to update the animation. Specify in the range -1 to 1 and the default is 0. | _Scroll_EmissiveV |
+| `Rotate around UV center` | Specifies how much the Emissive texture should be rotated around the center of the UV coordinates (UV = (0.5, 0.5)) as an animation update. When Base Speed = 1, turns 1 clockwise with a value of 1. When combined with scrolling, it will rotate after scrolling. | _Rotate_EmissiveUV |
+| `PingPong Move for Base` | By setting it to `Active`, you can set PingPong (back and forth) in the direction of the animation. | _Is_PingPong_Base |
+| `ColorShift with Time` | By setting it to `Active`, the color multiplied to the Emissive texture changes by linear interpolation (Lerp) toward` Destination Color`. **When using this function, it is better to set the Emissive texture to grayscale and design the each colors on the color side to be multiplied.** | _Is_ColorShift |
+| `Destination Color` | This is the target color for color shifting. It can be specified in HDR. | _ColorShift |
+| `ColorShift Speed (Time)` | Set the standard speed for color shift. When the value is 1, change of one cycle should be approximately 6 seconds as a guide. | _ColorShift_Speed |
+| `ViewShift of Color` | `Active` shifts the color relative to the camera's viewing angle to view the object. When viewed from the front of the surface of the object, the normal Emissive color is displayed, and the color changes to the shifted color as the view angle gradually inclines. | _Is_ViewShift |
+| `ViewShift Color` | This is the color to change to when shifting views. Specify in HDR. | _ViewShift |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_42.jpg">
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_43.jpg">
@@ -733,6 +748,45 @@ By defining the **HDR color** for ‘Emissive’, you can create parts that are 
 
 This is an example from @einz_zwei, in which emissive parts are used very effectively.  
 By combining color maps and emissive maps, details are added according to the light’s brightness.  
+
+---
+### ●How to create a texture with alpha channel
+
+Texture with alpha channel is created with DCC tools such as Photoshop.  
+You can use it as an alpha channel by adding a new channel from the channel tab and pasting a grayscale image on the created channel. If you use an image format that has an alpha channel such as Targa format, you can save as it is.  
+
+<img width = "800" src="Images_jpg/Emissive_Tex00.jpg">
+
+To enable the alpha channel on Unity, set `Alpha Source` to` Input Texture Alpha` in the Import Settings of each texture.  
+
+**In the case of PNG format** can not have an alpha channel directly in the image specification, so after loading an alpha channel as a selection range in Photoshop, specify “Layer mask> Mask outside selection range”, PNG Save in format.  
+
+<img width = "800" src="Images_jpg/Emissive_Tex01.jpg">
+<img width = "800" src="Images_jpg/Emissive_Tex02.jpg">
+
+Then import it into Unity, and in Import Settings, set `Alpha Source` to` Input Texture Alpha` and `Alpha Is Transparency` to` ON`.  
+
+<img width = "500" src="Images_jpg/Emissive_Tex03.jpg">
+
+
+---
+### ●Tips for setting Destination Color
+
+When using the color shift function, set `Destination Color` as the target, but if the original color and the target color have the same hue, unexpected colors may be mixed into the frame. For example, if you shift from the color shown on the left side of the arrow to one of the two colors on the right that looks similar, the first color on the right of the arrow shifts color within the same hue range. The second color is a mixture of bluish frames.  
+
+<img width = "800" src="Images_jpg/DestColor00.jpg">
+
+This is because the color that mixes blueish frames has a B channel that has a higher value when compared to the RGB of the original color.  
+
+In this way, when shifting colors with different luminance within the same hue to the target in this way, **by aligning the direction of change of each RGB**, it is possible to prevent unexpected colors from entering the frame.  
+
+<img width = "800" src="Images_jpg/DestColor01.jpg">
+
+↑Example of color shift within the same hue. The target color RGB values are all smaller than the original color.  
+
+<img width = "800" src="Images_jpg/DestColor02.jpg">
+
+↑Example where frames outside the hue are mixed. The B value of the target color is higher than the original color, and the change in G value is extremely large.  
 
 
 ---
@@ -851,7 +905,7 @@ You can only use Tessellation on UTS2 with **Windows/DX11**.
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
 | `Edge Length` | Divides the tessellation according to the camera’s distance. The smaller the value, the smaller the tiles become. The default is 5. | _TessEdgeLength |
-| `Phong Strength` | Adjusts the pulling strength of the surfaces divided by tessellation. The default is 0.5. | _TessPhongStrength |
+| `Phong Strengh` | Adjusts the pulling strength of the surfaces divided by tessellation. The default is 0.5. | _TessPhongStrength |
 | `Extrusion Amount` | Scale the expanded parts due to tessellation. The default is 0. | _TessExtrusionAmount |
 
 We used Nora’s https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess  as reference for the code that deals with this.  

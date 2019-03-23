@@ -1,8 +1,8 @@
-﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.6 マニュアル
-### 2019/02/28 Nobuyuki Kobayashi (Unity Technologies Japan)
+﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
+### 2019/03/23 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
-## 【重要】v.2.0.4.3p1から、直接v.2.0.6へバージョンアップをする場合の注意
+## 【重要】v.2.0.4.3p1から、直接v2.0.5～v.2.0.7へバージョンアップをする場合の注意
 * 内部パラメタの名前変更のために、すでに設定されているマテリアルから、BaseMapが外れる可能性があります。外れてしまった場合、お手数ですが再設定をお願いします。  
 * HiColor_Powerのスライダの感度調整をしました。Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合、HiColor_Powerの値を再調整する必要があります。Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
 * 最新事項や履歴情報は、 **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)** でご確認ください。  
@@ -68,7 +68,7 @@ Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルッ�
 
 ## 【ターゲット環境】
 Unity5.6.x もしくはそれ以降が必要です。Unity 2017.4 15f1 LTSでの動作確認済み。Unity 2018.1.0f2以降でも使用できます。  
-本パッケージは、Unity5.6.7f1で作成されています。  
+本パッケージは、Unity5.6.3p1で作成されています。  
 
 Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
@@ -198,7 +198,7 @@ UTS2のアウトラインは、専用テクスチャを使ったアウトライ�
 * **リアルタイムディレクショナルライト１灯のみ**の対応に制限しています（**複数のライトや、リアルタイムポイントライトには反応しません**）。  
 * ポイントライトへは、ベイク済みポイントライト＋[ライトプローブ](https://docs.unity3d.com/ja/current/Manual/LightProbes-MovingObjects.html)の組み合わせで対応します。その場合、`GI_Intensity` を適度に調整する必要があります。  
 
-通常版`Toon_DoubleShadeWithFeather`系、`Toon_ShadingGradeMap`系各シェーダーとはプロパティ互換がありますので、上記機能で十分な場合、通常版と同名のMobile版シェーダーに切り替えるとレンダリングパフォーマンスが向上します。  
+通常版`Toon_DoubleShadeWithFeathe`系、`Toon_ShadingGradeMap`系各シェーダーとはプロパティ互換がありますので、上記機能で十分な場合、通常版と同名のMobile版シェーダーに切り替えるとレンダリングパフォーマンスが向上します。  
 
 `Mobile/AngelRing`フォルダ内には、「天使の輪」機能に対応したモバイル版シェーダーが入っています。  
 各シェーダーの基本機能は、通常版の同名のものと同じです。  
@@ -252,6 +252,7 @@ Phong テッセレーションを利用することで、アウトラインの�
 * LightAndShadows\LightAndShadows.unity：スタンダードシェーダーとUTS2との比較  
 * AngelRing\AngelRing.unity：「天使の輪」とシェーディンググレードマップのサンプル  
 * MatCapMask\MatCapMask.unity：MatcapMaskのサンプル  
+* EmissiveAnimation\EmisssiveAnimation.unity：EmissiveAnimationのサンプル  
 
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
@@ -309,7 +310,7 @@ UTS2カスタムインスペクターは、`Show All Properties` ボタンをク
 | `Clipping Level` | クリッピングマスクの強さを指定します。 | _Clipping_Level |
 | `Transparency Level` | `TransClipping`シェーダーで使用します。クリッピングマスクのグレースケールレベルをα値として考慮することで、透過度を調整します。 | _Tweak_transparency |
 | `Use BaseMap αas Clipping Mask` | `TransClipping`シェーダーのみのプロパティです。チェックすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 | _IsBaseMapAlphaAsClippingMask |
-| `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Control`モードに戻ります。 |  |
+| `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |  |
 | `VRChat Recommendation` | VRChatを楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
 
 
@@ -634,7 +635,7 @@ UTS2では、Matcapテクスチャを乗算だけでなく加算でも合成で�
 | `Color Blend Mode` | `Additive`の場合、MatCapのブレンドが**加算モード**になります（結果は明るくなります）。`Multiply`の場合には**乗算モード**で合成されます（結果は暗くなります）。 | _Is_BlendAddToMatCap |
 | `Scale MatCapUV` | `MatCap Sampler`のUVを中央から円形にスケールすることで、MatCapの領域調整ができます。 | _Tweak_MatCapUV |
 | `Rotate MatCapUV` | `MatCap Sampler`のUVを中央を軸に回転します。 | _Rotate_MatCapUV |
-| `CameraRolling Stabilizer` | `Activate`にすることで、カメラのローリング（奥行き方向を軸とした回転のこと）に対してMatCapが回転してしまうのを抑止します。MatCapをカメラのローリングに対して固定したい時に便利な機能です。 | _CameraRolling_Stabilizer |
+| `CameraRolling Stabillizer` | `Activate`にすることで、カメラのローリング（奥行き方向を軸とした回転のこと）に対してMatCapが回転してしまうのを抑止します。MatCapをカメラのローリングに対して固定したい時に便利な機能です。 | _CameraRolling_Stabilizer |
 | `NormalMap for MatCap` | `Active`にすることで、MatCapにMatCap専用ノーマルマップを割り当てます。MatCapをスペキュラ的に使っている場合には、スペキュラマスクとして使用できます。 | _Is_NormalMapForMatCap |
 | NormalMap for MatCap as SpecularMask | 以下、MatCap専用ノーマルマップの設定をします。 |  |
 | `NormalMap` | MatCap専用ノーマルマップを設定します。右側のスライダーはスケールです。 | _NormalMapForMatCap, _BumpScaleMatcap |
@@ -708,7 +709,9 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 
 
 ---
-## 8.「Emissive : Self-luminescene Settings」メニュー
+## 8.「Emissive : Self-luminescene Setings」メニュー
+
+<img width = "500" src="Images_jpg/UTS2UI_08_00.jpg">
 
 **「エミッシブ」** とは、自己発光のことです。  
 カラーに**HDRカラー**（明るさとして1以上の値を持てるカラー仕様のこと）を定義することで、周りのカラーよりも明るい領域を設定することができます。  
@@ -717,11 +720,24 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 
 **[Post Processing Stack](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Stack.html)の[ブルーム](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Bloom.html)など、カメラにアタッチされるポストエフェクトと共に使われることで、パーツを効果的に光らせることができます。**  
 
-<img width = "500" src="Images_jpg/UTS2UI_08_00.jpg">
+<img width = "500" src="Images_jpg/UTS2UI_08_01.jpg">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
-| `Emissive` | エミッシブ用のテクスチャを設定します。グレースケールでマスクテクスチャを作成し、それに乗算するカラーで光らせることもできます。 右側のカラーが、テクスチャの各ピクセルカラーに乗算されます。多くの場合、 **[HDRカラー](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html)** を設定します。他のパーツと重ねて**光って欲しくない部分は、テクスチャ上で黒（RGB:0,0,0）にしておきます。** | _Emissive_Tex, _Emissive_Color |
+| `Emissive` | エミッシブ用のテクスチャを設定します。グレースケールでテクスチャを作成し、それに乗算するカラーを載せることで光らせることもできます。 右側のカラーが、テクスチャの各ピクセルカラーに乗算されます。多くの場合、 **[HDRカラー](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html)** を設定します。他のパーツと重ねて**光って欲しくない部分は、テクスチャ上で黒（RGB:0,0,0）にしておきます。** | _Emissive_Tex.rgb, _Emissive_Color |
+| `Emissivテクスチャのαチャンネル` | v.2.0.7より、αチャンネルがエミッシブテクスチャのマスクとして使えるようになりました。UVベースで、αチャンネルを白（RGB = (1,1,1)）に設定した位置にエミッシブを表示します。黒（RGB=(0,0,0)）でエミッシブが表示されなくなります。 | _Emissive_Tex.a |
+| `Emissive Animation` | `Active`にすることで、`Emissive`で指定したテクスチャのRGBチャンネル部分を、様々な方法でアニメーションします。**αチャンネルはマスクですので、アニメーションの対象にはなりません。** | EMISSIVE MODE = ANIMATION |
+| `Base Speed (Time)` | アニメーションの基本となる更新スピードを指定します。値1の時、1秒で更新することになります。値2を指定すると、値1の時の2倍のスピードになりますので、 0.5秒で更新することになります。 | _Base_Speed |
+| `UV Coord Scroll`、`View Coord Scroll` | スクロールに使用する座標系を指定します。`UV Coord Scroll`の場合、Emissive_TexのUV座標を基準にスクロールをします。`View Coord Scroll`の場合、MatCapと同様のビュー座標を基準にスクロールをします。ビュー座標系でのスクロールは、テクスチャのUV座標を考慮しないで済むのでとても便利ですが、キューブのようなフラットな面を持つオブジェクトでは、うまく表示できない場合がほとんどです。一方、キャラクターなどの曲面が多いオブジェクトでは、ビュー座標系は大変便利に使えます。 | _Is_ViewCoord_Scroll |
+| `Scroll U direction` | アニメーションの更新にあたり、EmissiveテクスチャをU方向（X軸方向）にどれだけスクロールさせるかを指定します。-1～1範囲で指定し、デフォルトは0です。スクロールアニメーションは、最終的には、`Base Speed (Time)`×`Scroll U Direction`×`Scroll V Direction`の結果として決まります。 | _Scroll_EmissiveU |
+| `Scroll V direction` | アニメーションの更新にあたり、EmissiveテクスチャをV方向（Y軸方向）にどれだけスクロールさせるかを指定します。-1～1範囲で指定し、デフォルトは0です。 | _Scroll_EmissiveV |
+| `Rotate around UV center` | アニメーションの更新にあたり、EmissiveテクスチャをUV座標の中央（UV=(0.5,0.5)）を軸にどれだけ回転させるかを指定します。Base Speed=1の時、値1で右まわり方向に1回転します。スクロールと組み合わせた場合、スクロール後に回転することになります。 | _Rotate_EmissiveUV |
+| `PingPong Move for Base` | `Active`にすることで、アニメーションの進行方向をPingPong（行ったり来たり）にします。 | _Is_PingPong_Base |
+| `ColorShift with Time` | `Active`にすることで、Emissiveテクスチャに掛け合わせるカラーを、`Destination Color`に向かう線形補間（Lerp）で変化させます。**この機能を利用する時には、Emissiveテクスチャでの指定はグレースケールとし、掛け合わせるカラー側でカラー設計をしたほうがよいでしょう。** | _Is_ColorShift |
+| `Destination Color` | カラーシフトをする際の、ターゲットとなるカラーです。HDRで指定できます。 | _ColorShift |
+| `ColorShift Speed (Time)` | カラーシフトをする際の、基準となるスピードを設定します。値が1の時、1サイクルの変化はおおよそ6秒程度を目安としてください。 | _ColorShift_Speed |
+| `ViewShift of Color` | `Active`にすることで、オブジェクトを見るカメラのビュー角に対してカラーをシフトさせます。オブジェクトのサーフェイスに対し真っ正面から見た場合は、通常状態のEmissiveカラーが表示され、ビュー角が徐々に傾いていくにつれてシフト先のカラーに変化します。 | _Is_ViewShift |
+| `ViewShift Color` | ビューシフトする際の、変化先となるカラーです。HDRで指定します。 | _ViewShift |
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_42.jpg">
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_43.jpg">
@@ -729,6 +745,45 @@ MatcapMaskを使うことで、上のようなライトクッキー的な表現�
 
 あいんつばい（@einz_zwei）さんの作例。エミッシブパーツが大変効果的に使われています。  
 しかもカラーマップとエミッシブマップを組み合わせることで、ライトの明るさの変化に応じて、ディティールが追加されるような仕組みになっています。  
+
+---
+### ●αチャンネル付きテクスチャを作成するには
+
+αチャンネル付きテクスチャは、PhotoshopなどのDCCツールで作成します。  
+チャンネルタブより、新規チャンネルを追加し、できたチャンネルの上にグレースケールの画像を貼り付ければ、αチャンネルとして利用出来ます。Targa形式などαチャンネルが持てる画像形式の場合は、このままセーブできます。  
+
+<img width = "800" src="Images_jpg/Emissive_Tex00.jpg">
+
+Unity上でαチャンネルを有効にするためには、各テクスチャのImport Settingsで、`Alpha Source`を`Input Texture Alpha`にしてください。  
+
+**PNG形式の場合**は画像仕様上、直接αチャンネルを持てないので、Photoshop上でαチャンネルを選択範囲として読み込んだ後で、「レイヤーマスク＞選択範囲外をマスク」で指定し、PNG形式で保存します。  
+
+<img width = "800" src="Images_jpg/Emissive_Tex01.jpg">
+<img width = "800" src="Images_jpg/Emissive_Tex02.jpg">
+
+続いてUnityに読み込み、Import Settingsで、`Alpha Source`を`Input Texture Alpha`に、`Alpha Is Transparency`を`ON`にしてください。
+
+<img width = "500" src="Images_jpg/Emissive_Tex03.jpg">
+
+
+---
+### ●Destination Color設定の際のTips
+
+カラーシフト機能を使う際に、`Destination Color`をターゲットに設定しますが、元のカラーとターゲットとなるカラーが同色相の場合、想定していないカラーがフレームに混じることがあります。例えば、下図の矢印左側のカラーから、一見見た目は同じような右側の２つのいずれかのカラーにシフトさせると、矢印右側１つめのカラーは同色相の範囲でカラーシフトしますが、矢印右側２つめのカラーは、青っぽいフレームが混じります。  
+
+<img width = "800" src="Images_jpg/DestColor00.jpg">
+
+これは、青っぽいフレームが混じるほうのカラーには、元のカラーのRGBと比較してみると、値が高くなっているBチャンネルがあるからです。  
+
+このように、**同色相内で輝度が違うカラーをターゲットにシフトさせる場合、各RGBの変化の方向を揃える**ことで、想定外のカラーがフレームに混入するのを避けることができます。  
+
+<img width = "800" src="Images_jpg/DestColor01.jpg">
+
+↑同一色相内でカラーがシフトする例。ターゲットカラーのRGBの値は、いずれも元のカラーよりも小さい。  
+
+<img width = "800" src="Images_jpg/DestColor02.jpg">
+
+↑色相外のフレームが混じる例。ターゲットカラーのBの値が元のカラーよりも高く、かつG値の変化が極端に大きい。  
 
 
 ---
@@ -748,7 +803,7 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
-| `Outline Mode` | アウトライン用反転オブジェクトの生成方式を指定します。`Normal Direction`（法線反転方式） / `Position Scaling`（ポジションスケーリング方式）から選択できます。多くの場合、法線反転方式が使われますが、ハードエッジだけで構成されているキューブのようなメッシュの場合、ポジションスケーリング方式のほうがアウトラインが途切れにくくなります。比較的単純な形状はポジションスケーリング方式で、キャラクターなどの複雑な形状のものは法線反転方式を使うといいでしょう。 | _OUTLINE |
+| `Outline Mode` | アウトライン用反転オブジェクトの生成方式を指定します。`Normal Direction`（法線反転方式） / `Position Scalling`（ポジションスケーリング方式）から選択できます。多くの場合、法線反転方式が使われますが、ハードエッジだけで構成されているキューブのようなメッシュの場合、ポジションスケーリング方式のほうがアウトラインが途切れにくくなります。比較的単純な形状はポジションスケーリング方式で、キャラクターなどの複雑な形状のものは法線反転方式を使うといいでしょう。 | _OUTLINE |
 | `Outline Width` | アウトラインの幅を設定します。 **※注意：この値は、Unityへのモデルインポート時のスケールに依存します** ので、取り込みスケールが１でない時には注意してください。 | _Outline_Width |
 | `Outline Color` | アウトラインのカラーを指定します。 | _Outline_Color |
 | `BlendBaseColor to Outline` | オブジェクトの基本カラーにアウトラインのカラーを馴染ませたい場合に、`Active`にします。 | _Is_BlendBaseColor |
@@ -819,7 +874,7 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 1.  適用するオブジェクトの UV は重ならないこと。つまり、**全てのノーマルマップが重ならないように UV 展開がされていること**が必須です。  
 2.  ノーマルマップ自体の仕様は、Unity と同じで、**OpenGL 準拠**となります。  
 3.  使用するノーマルマップのテクスチャ設定は、以下のようになります。  
-・Texture Type は **"Default"** にする。 **※注意： "Normal map" に設定してはいけません**。  
+・Texuture Type は **"Default"** にする。 **※注意： "Normal map" に設定してはいけません**。  
 ・sRGB (Color Texture) を必ず **"OFF"** にする。  
 
 詳しくはサンプルプロジェクト内の Baked Normal フォルダ内のアセットを確認してください。  
@@ -844,7 +899,7 @@ UTS2のテッセレーション機能は、**Windows/DX11環境でのみ**使用
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
 | `Edge Length` | カメラとの距離に基づいて、よりテッセレーションを分割します。同じ距離では、値が小さいほうが細分化されます。デフォルトは 5 です。 | _TessEdgeLength |
-| `Phong Strength` | テッセレーションによって細分化された分割面の引っ張り強度を変化させます。デフォルトは 0.5 です。 | _TessPhongStrength |
+| `Phong Strengh` | テッセレーションによって細分化された分割面の引っ張り強度を変化させます。デフォルトは 0.5 です。 | _TessPhongStrength |
 | `Extrusion Amount` | テッセレーションの結果として発生する、膨張分を全体としてスケーリングします。デフォルトは 0 です。 | _TessExtrusionAmount |
 
 対応部分のコードは、Nora氏の https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess を参考にさせていただきました。  
@@ -1046,7 +1101,7 @@ UTS2を使う上で便利なTipsを紹介します。
 
 シーン内に4つ以上のリアルタイムポイントライトのレンジが重なっている場所がある場合、UTS2を適用したモデルに当たるライトがフリップすることがあります。  
 これは、「フォワードレンダリングでは、リアルタイムポイントライトは4つまで」というUnityの制限に基づく現象で、UTS2でも仕様となります。  
-本ムービーでは、そのようなフリップ現象をなくす方法を紹介します。こちらはUTS2だけでなく、Standard Shaderなどでもそのまま使えます。  
+本ムービーでは、そのようなフリップ現象をなくす方法を紹介します。こちらはUTS2だけでなく、Stadard Shaderなどでもそのまま使えます。  
 
 [![](https://img.youtube.com/vi/G5-alxDO0bs/0.jpg)](https://www.youtube.com/watch?v=G5-alxDO0bs)
 

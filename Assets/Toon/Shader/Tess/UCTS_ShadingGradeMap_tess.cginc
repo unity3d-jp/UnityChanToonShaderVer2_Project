@@ -1,6 +1,6 @@
 ﻿//UCTS_ShadingGradeMap_Tess.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.6
+//v.2.0.7
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -92,6 +92,20 @@
             //Emissive
             uniform sampler2D _Emissive_Tex; uniform float4 _Emissive_Tex_ST;
             uniform float4 _Emissive_Color;
+            //v.2.0.7
+            uniform fixed _Is_ViewCoord_Scroll;
+            uniform float _Rotate_EmissiveUV;
+            uniform float _Base_Speed;
+            uniform float _Scroll_EmissiveU;
+            uniform float _Scroll_EmissiveV;
+            uniform fixed _Is_PingPong_Base;
+            uniform float4 _ColorShift;
+            uniform float4 _ViewShift;
+            uniform float _ColorShift_Speed;
+            uniform fixed _Is_ColorShift;
+            uniform fixed _Is_ViewShift;
+            uniform float3 emissive;
+            // 
             uniform float _Unlit_Intensity;
             //v.2.0.5
             uniform fixed _Is_Filter_HiCutPointLightColor;
@@ -113,6 +127,16 @@
             uniform float _Tweak_transparency;
 #endif
 
+            // UV回転をする関数：RotateUV()
+            //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
+            float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
+            {
+                float RotateUV_ang = _radian;
+                float RotateUV_cos = cos(_time*RotateUV_ang);
+                float RotateUV_sin = sin(_time*RotateUV_ang);
+                return (mul(_uv - _piv, float2x2( RotateUV_cos, -RotateUV_sin, RotateUV_sin, RotateUV_cos)) + _piv);
+            }
+            //
             fixed3 DecodeLightProbe( fixed3 N ){
             return ShadeSH9(float4(N,1));
             }
@@ -157,17 +181,22 @@
                 float3 normalDir : TEXCOORD2;
                 float3 tangentDir : TEXCOORD3;
                 float3 bitangentDir : TEXCOORD4;
-                LIGHTING_COORDS(5,6)
-                UNITY_FOG_COORDS(7)
+                //v.2.0.7
+                float mirrorFlag : TEXCOORD5;
+                LIGHTING_COORDS(6,7)
+                UNITY_FOG_COORDS(8)
+                //
 #elif _IS_ANGELRING_ON
                 float2 uv1 : TEXCOORD1;
                 float4 posWorld : TEXCOORD2;
                 float3 normalDir : TEXCOORD3;
                 float3 tangentDir : TEXCOORD4;
                 float3 bitangentDir : TEXCOORD5;
-                LIGHTING_COORDS(6,7)
-                UNITY_FOG_COORDS(8)
-
+                //v.2.0.7
+                float mirrorFlag : TEXCOORD6;
+                LIGHTING_COORDS(7,8)
+                UNITY_FOG_COORDS(9)
+                //
 #endif
             };
             VertexOutput vert (VertexInput v) {
@@ -185,6 +214,10 @@
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 float3 lightColor = _LightColor0.rgb;
                 o.pos = UnityObjectToClipPos( v.vertex );
+                //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
+                float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
+                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
+                //
                 UNITY_TRANSFER_FOG(o,o.pos);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
@@ -209,7 +242,6 @@
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
                 float2 Set_UV0 = i.uv0;
                 //v.2.0.6
-                //float3 _NormalMap_var = UnpackNormal(tex2D(_NormalMap,TRANSFORM_TEX(Set_UV0, _NormalMap)));
                 float3 _NormalMap_var = UnpackScaleNormal(tex2D(_NormalMap,TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
                 float3 normalLocal = _NormalMap_var.rgb;
                 float3 normalDirection = normalize(mul( normalLocal, tangentTransform )); // Perturbed normals
@@ -257,10 +289,8 @@
                 float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert
-                //float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
                 //v.2.0.6
                 float4 _ShadingGradeMap_var = tex2Dlod(_ShadingGradeMap,float4(TRANSFORM_TEX(Set_UV0, _ShadingGradeMap),0.0,_BlurLevelSGM));
-                //float Set_ShadingGrade = (_ShadingGradeMap_var.r*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(((attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel))), _Set_SystemShadowsToBase ));
                 //v.2.0.6
                 //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
                 float _SystemShadowsLevel_var = (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
@@ -295,7 +325,9 @@
                 //Matcap
                 //v.2.0.6 : CameraRolling Stabilizer
                 //鏡スクリプト判定：_sign_Mirror = -1 なら、鏡の中と判定.
-                fixed _sign_Mirror = facing >0 ? 1 : -1;
+                //v.2.0.7
+                fixed _sign_Mirror = i.mirrorFlag;
+                //
                 float3 _Camera_Right = UNITY_MATRIX_V[0].xyz;
                 float3 _Camera_Front = UNITY_MATRIX_V[2].xyz;
                 float3 _Up_Unit = float3(0, 1, 0);
@@ -313,19 +345,9 @@
                 float _Camera_Roll = acos(clamp(_Camera_Roll_Cos, -1, 1));
                 fixed _Camera_Dir = _Camera_Right.y < 0 ? -1 : 1;
                 float _Rot_MatCapUV_var_ang = (_Rotate_MatCapUV*3.141592654) - _Camera_Dir*_Camera_Roll*_CameraRolling_Stabilizer;
-                //
-                float _Rot_MatCapUV_var_spd = 1.0;
-                float _Rot_MatCapUV_var_cos = cos(_Rot_MatCapUV_var_spd*_Rot_MatCapUV_var_ang);
-                float _Rot_MatCapUV_var_sin = sin(_Rot_MatCapUV_var_spd*_Rot_MatCapUV_var_ang);
-                float2 _Rot_MatCapUV_var_piv = float2(0.5,0.5);
-                float _Rot_MatCapNmUV_var_ang = (_Rotate_NormalMapForMatCapUV*3.141592654);
-                float _Rot_MatCapNmUV_var_spd = 1.0;
-                float _Rot_MatCapNmUV_var_cos = cos(_Rot_MatCapNmUV_var_spd*_Rot_MatCapNmUV_var_ang);
-                float _Rot_MatCapNmUV_var_sin = sin(_Rot_MatCapNmUV_var_spd*_Rot_MatCapNmUV_var_ang);
-                float2 _Rot_MatCapNmUV_var_piv = float2(0.5,0.5);
-                float2 _Rot_MatCapNmUV_var = (mul(Set_UV0-_Rot_MatCapNmUV_var_piv,float2x2( _Rot_MatCapNmUV_var_cos, -_Rot_MatCapNmUV_var_sin, _Rot_MatCapNmUV_var_sin, _Rot_MatCapNmUV_var_cos))+_Rot_MatCapNmUV_var_piv);
+                //v.2.0.7
+                float2 _Rot_MatCapNmUV_var = RotateUV(Set_UV0, (_Rotate_NormalMapForMatCapUV*3.141592654), float2(0.5, 0.5), 1.0);
                 //V.2.0.6
-                //float3 _NormalMapForMatCap_var = UnpackNormal(tex2D(_NormalMapForMatCap,TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)));
                 float3 _NormalMapForMatCap_var = UnpackScaleNormal(tex2D(_NormalMapForMatCap,TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)),_BumpScaleMatcap);
                 //v.2.0.5: MatCap with camera skew correction
                 float3 viewNormal = (mul(UNITY_MATRIX_V, float4(lerp( i.normalDir, mul( _NormalMapForMatCap_var.rgb, tangentTransform ).rgb, _Is_NormalMapForMatCap ),0))).rgb;
@@ -333,8 +355,8 @@
                 float3 NormalBlend_MatcapUV_Base = (mul( UNITY_MATRIX_V, float4(viewDirection,0) ).rgb*float3(-1,-1,1)) + float3(0,0,1);
                 float3 noSknewViewNormal = NormalBlend_MatcapUV_Base*dot(NormalBlend_MatcapUV_Base, NormalBlend_MatcapUV_Detail)/NormalBlend_MatcapUV_Base.b - NormalBlend_MatcapUV_Detail;                
                 float2 _ViewNormalAsMatCapUV = (lerp(noSknewViewNormal,viewNormal,_Is_Ortho).rg*0.5)+0.5;
-                //
-                float2 _Rot_MatCapUV_var = (mul((0.0 + ((_ViewNormalAsMatCapUV - (0.0+_Tweak_MatCapUV)) * (1.0 - 0.0) ) / ((1.0-_Tweak_MatCapUV) - (0.0+_Tweak_MatCapUV)))-_Rot_MatCapUV_var_piv,float2x2( _Rot_MatCapUV_var_cos, -_Rot_MatCapUV_var_sin, _Rot_MatCapUV_var_sin, _Rot_MatCapUV_var_cos))+_Rot_MatCapUV_var_piv);
+                //v.2.0.7
+                float2 _Rot_MatCapUV_var = RotateUV((0.0 + ((_ViewNormalAsMatCapUV - (0.0+_Tweak_MatCapUV)) * (1.0 - 0.0) ) / ((1.0-_Tweak_MatCapUV) - (0.0+_Tweak_MatCapUV))), _Rot_MatCapUV_var_ang, float2(0.5, 0.5), 1.0);
                 //鏡の中ならUV左右反転.
                 if(_sign_Mirror < 0){
                     _Rot_MatCapUV_var.x = 1-_Rot_MatCapUV_var.x;
@@ -342,7 +364,6 @@
                     _Rot_MatCapUV_var = _Rot_MatCapUV_var;
                 }
                 //v.2.0.6 : LOD of Matcap
-                //float4 _MatCap_Sampler_var = tex2D(_MatCap_Sampler,TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler));
                 float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler,float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler),0.0,_BlurLevelMatcap));
                 //                
                 //MatcapMask
@@ -353,7 +374,6 @@
                 //v.2.0.6 : ShadowMask on Matcap in Blend mode : multiply
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakMatCapOnShadow)) + lerp(Set_HighColor*Set_FinalShadowMask*(1.0-_TweakMatCapOnShadow), float3(0.0, 0.0, 0.0), _Is_BlendAddToMatCap)), _Is_UseTweakMatCapOnShadow );
                 //
-                float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
                 //v.2.0.6
                 //Composition: RimLight and MatCap as finalColor
                 //Broke down finalColor composition
@@ -366,10 +386,12 @@
                 float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before Emissive
                 //
 #elif _IS_ANGELRING_ON
-                float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before Emissive
-                //
-                float3 _AR_OffsetU_var = lerp(mul( UNITY_MATRIX_V, float4(i.normalDir,0) ).xyz.rgb,float3(0,0,1),_AR_OffsetU);
-                float2 _AR_OffsetV_var = float2((_AR_OffsetU_var.r*0.5+0.5),lerp(i.uv1.g,(_AR_OffsetU_var.g*0.5+0.5),_AR_OffsetV));
+                float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before AR
+                //v.2.0.7 AR Camera Rolling Stabilizer
+                float3 _AR_OffsetU_var = lerp(mul(UNITY_MATRIX_V, float4(i.normalDir,0)).xyz,float3(0,0,1),_AR_OffsetU);
+                float2 AR_VN = _AR_OffsetU_var.xy*0.5 + float2(0.5,0.5);
+                float2 AR_VN_Rotate = RotateUV(AR_VN, -(_Camera_Dir*_Camera_Roll), float2(0.5,0.5), 1.0);
+                float2 _AR_OffsetV_var = float2(AR_VN_Rotate.x, lerp(i.uv1.y, AR_VN_Rotate.y, _AR_OffsetV));
                 float4 _AngelRing_Sampler_var = tex2D(_AngelRing_Sampler,TRANSFORM_TEX(_AR_OffsetV_var, _AngelRing_Sampler));
                 float3 _Is_LightColor_AR_var = lerp( (_AngelRing_Sampler_var.rgb*_AngelRing_Color.rgb), ((_AngelRing_Sampler_var.rgb*_AngelRing_Color.rgb)*Set_LightColor), _Is_LightColor_AR );
                 float3 Set_AngelRing = _Is_LightColor_AR_var;
@@ -378,11 +400,49 @@
                 //Composition: MatCap and AngelRing as finalColor
                 finalColor = lerp(finalColor, lerp( (finalColor+Set_AngelRing), ((finalColor*(1.0 - Set_ARtexAlpha))+Set_AngelRingWithAlpha), _ARSampler_AlphaOn ), _AngelRing );// Final Composition before Emissive
 #endif
-
+//v.2.0.7
+#ifdef _EMISSIVE_SIMPLE
+                float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
+                float emissiveMask = _Emissive_Tex_var.a;
+                emissive = _Emissive_Tex_var.rgb * _Emissive_Color.rgb * emissiveMask;
+#elif _EMISSIVE_ANIMATION
+                //v.2.0.7 Calculation View Coord UV for Scroll 
+                float3 viewNormal_Emissive = (mul(UNITY_MATRIX_V, float4(i.normalDir,0))).xyz;
+                float3 NormalBlend_Emissive_Detail = viewNormal_Emissive * float3(-1,-1,1);
+                float3 NormalBlend_Emissive_Base = (mul( UNITY_MATRIX_V, float4(viewDirection,0)).xyz*float3(-1,-1,1)) + float3(0,0,1);
+                float3 noSknewViewNormal_Emissive = NormalBlend_Emissive_Base*dot(NormalBlend_Emissive_Base, NormalBlend_Emissive_Detail)/NormalBlend_Emissive_Base.z - NormalBlend_Emissive_Detail;
+                float2 _ViewNormalAsEmissiveUV = noSknewViewNormal_Emissive.xy*0.5+0.5;
+                float2 _ViewCoord_UV = RotateUV(_ViewNormalAsEmissiveUV, -(_Camera_Dir*_Camera_Roll), float2(0.5,0.5), 1.0);
+                //鏡の中ならUV左右反転.
+                if(_sign_Mirror < 0){
+                    _ViewCoord_UV.x = 1-_ViewCoord_UV.x;
+                }else{
+                    _ViewCoord_UV = _ViewCoord_UV;
+                }
+                float2 emissive_uv = lerp(i.uv0, _ViewCoord_UV, _Is_ViewCoord_Scroll);
+                //
+                float4 _time_var = _Time;
+                float _base_Speed_var = (_time_var.g*_Base_Speed);
+                float _Is_PingPong_Base_var = lerp(_base_Speed_var, sin(_base_Speed_var), _Is_PingPong_Base );
+                float2 scrolledUV = emissive_uv + float2(_Scroll_EmissiveU, _Scroll_EmissiveV)*_Is_PingPong_Base_var;
+                float rotateVelocity = _Rotate_EmissiveUV*3.141592654;
+                float2 _rotate_EmissiveUV_var = RotateUV(scrolledUV, rotateVelocity, float2(0.5, 0.5), _Is_PingPong_Base_var);
+                float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
+                float emissiveMask = _Emissive_Tex_var.a;
+                _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(_rotate_EmissiveUV_var, _Emissive_Tex));
+                float _colorShift_Speed_var = 1.0 - cos(_time_var.g*_ColorShift_Speed);
+                float viewShift_var = smoothstep( 0.0, 1.0, max(0,dot(normalDirection,viewDirection)));
+                float4 colorShift_Color = lerp(_Emissive_Color, lerp(_Emissive_Color, _ColorShift, _colorShift_Speed_var), _Is_ColorShift);
+                float4 viewShift_Color = lerp(_ViewShift, colorShift_Color, viewShift_var);
+                float4 emissive_Color = lerp(colorShift_Color, viewShift_Color, _Is_ViewShift);
+                emissive = emissive_Color.rgb * _Emissive_Tex_var.rgb * emissiveMask;
+#endif
+//
                 //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
                 float3 envLightColor = DecodeLightProbe(normalDirection) < float3(1,1,1) ? DecodeLightProbe(normalDirection) : float3(1,1,1);
                 float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b <1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
-                finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + (_Emissive_Tex_var.rgb*_Emissive_Color.rgb);//Final Composition
+                //Final Composition
+                finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
 
 #elif _IS_PASS_FWDDELTA
                 //v.2.0.5
@@ -399,10 +459,6 @@
                 float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb*_LightIntensity), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert                
-                //v2.0.5 :
-                //float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
-                //float Set_ShadingGrade = _ShadingGradeMap_var.r*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(1.0+_Tweak_SystemShadowsLevel)), _Set_SystemShadowsToBase );
-                //
                 //v.2.0.6
                 float4 _ShadingGradeMap_var = tex2Dlod(_ShadingGradeMap,float4(TRANSFORM_TEX(Set_UV0, _ShadingGradeMap),0.0,_BlurLevelSGM));
                 //v.2.0.6

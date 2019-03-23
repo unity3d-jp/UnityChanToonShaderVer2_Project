@@ -1,12 +1,12 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.6
+//v.2.0.7
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Helper/Toon_OutlineObject_StencilOut" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
-        [HideInInspector] _utsVersion ("Version", Float ) = 2.06
+        [HideInInspector] _utsVersion ("Version", Float ) = 2.07
         [HideInInspector] _utsTechnique ("Technique", int ) = 2 //OutlineObj
         _StencilNo ("Stencil No", int) =1
         _MainTex ("BaseMap", 2D) = "white" {}
@@ -58,7 +58,7 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject_StencilOut" {
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 

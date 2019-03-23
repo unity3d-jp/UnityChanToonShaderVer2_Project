@@ -1,5 +1,5 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.6 Manual
-### 2019/02/21 Nobuyuki Kobayashi (Unity Technologies Japan)
+# Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
+### 2019/03/23 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 
 # The Various Properties of UTS2 Shader  
@@ -207,8 +207,21 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 | Property         | Function                                                     |
 | ---------------- | ------------------------------------------------------------ |
+| `EMISSIVE MODE` | By making it `ANIMATION`, you can animate the RGB channel part of the texture specified by` Emissive` in various ways. **Alpha channel is a mask, so it can not be animated.** |
 | `Emissive_Tex`   | Specifies the texture for Emissive. You can also create  a mask texture with grayscale and make it emit light with Emissive_Color. If you do not want it to emit light on top of other parts, set it to Black (RGB: 0,0,0) |
 | `Emissive_Color` | Color that will be multiplied to each pixel color in ‘Emissive_Tex’. In most cases, set **[HDR Color](https://docs.unity3d.com/ja/current/Manual/HDRColorPicker.html)** |
+| `The αchannel of Emissive Texure` | As of v. 2.0.7, the alpha channel can be used as a mask for emissive textures. Emissive is displayed at the position where the alpha channel is set to white (RGB = (1, 1, 1)) on UV basis. When black (RGB = (0, 0, 0)), the emissive disappears. In order to enable the alpha channel, in the case of an image format that can have an alpha channel such as Targa format, set `Alpha Source` to` Input Texture Alpha` in Import Settings of each texture. In the case of PNG format, since it is not possible to have an alpha channel directly in the image specification, after importing an alpha channel as a selection range in Photoshop, specify "Layer mask> Mask outside selection range" and save in PNG format You Then import it into Unity, and in Import Settings, set `Alpha Source` to` Input Texture Alpha` and `Alpha Is Transparency` to` ON`. |
+| `Base_Speed` | Specifies the base update speed of the animation. If the value is 1, it will be updated in 1 second. Specifying a value of 2 results in twice the speed of a value of 1, so it will be updated in 0.5 seconds. |
+| `Scroll_EmissiveU` | Specifies how much the Emissive texture is to be scrolled in the U direction (direction of the X axis) when updating the animation. Specify in the range -1 to 1 and the default is 0. Scroll animation is ultimately determined as the result of `Base Speed (Time)` x `Scroll U Direction` x` Scroll V Direction`. |
+| `Scroll_EmissiveV` | Specifies how much the Emissive texture is to be scrolled in the V direction (direction of the Y axis) to update the animation. Specify in the range -1 to 1 and the default is 0. |
+| `Rotate_EmissiveUV` | Specifies how much the Emissive texture should be rotated around the center of the UV coordinates (UV = (0.5, 0.5)) as an animation update. When Base Speed = 1, turns 1 clockwise with a value of 1. When combined with scrolling, it will rotate after scrolling. |
+| `Is_PingPong_Base` | By setting it to `ON`, you can set PingPong (back and forth) in the direction of the animation. |
+| `Activate ColorShift` | By setting it to `ON`, the color to be multiplied to the Emissive texture is changed between` Destination Color`. **When using this function, it is better to set the Emissive texture to grayscale and design the each colors on the color side to be multiplied.** |
+| `Destination Color` | This is the color to change to when color shifting. It can be specified in HDR. |
+| `ColorShift_Speed` | Set the standard speed for color shift. When the value is 1, change of one cycle should be approximately 6 seconds as a guide. |
+| `Activate_ViewShift` | `ON` shifts the color relative to the camera's viewing angle to view the object. When viewed from the front of the surface of the object, the normal Emissive color is displayed, and the color changes to the shifted color as the view angle gradually inclines. |
+| `ViewShift` | This is the color to change to when shifting views. Specify in HDR. |
+| `Is_ViewCoord_Scroll` | Specifies the coordinate system to use for scrolling. In the case of `OFF`, scrolling is performed based on the UV coordinates of Emissive_Tex. In the case of `ON`, it scrolls based on the same view coordinates as MatCap. Scrolling in the view coordinate system is very useful because it does not take into account the UV coordinates of the texture, but it is often the case that objects with flat faces like cubes can not be displayed well. On the other hand, the view coordinate system can be used very conveniently for objects with many surfaces such as characters. |
 
 ---
 

@@ -1,12 +1,12 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.6
+//v.2.0.7
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
-        [HideInInspector] _utsVersion ("Version", Float ) = 2.06
+        [HideInInspector] _utsVersion ("Version", Float ) = 2.07
         [HideInInspector] _utsTechnique ("Technique", int ) = 1 //SGM
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _ClippingMask ("ClippingMask", 2D) = "white" {}
@@ -119,9 +119,22 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping" {
         _AR_OffsetV ("AR_OffsetV", Range(0, 1)) = 0.3
         [MaterialToggle] _ARSampler_AlphaOn ("ARSampler_AlphaOn", Float ) = 0
 //ここまで.
-//v.2.0.4 Emissive
+        //v.2.0.7 Emissive
+        [KeywordEnum(SIMPLE,ANIMATION)] _EMISSIVE("EMISSIVE MODE", Float) = 0
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}
         [HDR]_Emissive_Color ("Emissive_Color", Color) = (0,0,0,1)
+        _Base_Speed ("Base_Speed", Float ) = 0
+        _Scroll_EmissiveU ("Scroll_EmissiveU", Range(-1, 1)) = 0
+        _Scroll_EmissiveV ("Scroll_EmissiveV", Range(-1, 1)) = 0
+        _Rotate_EmissiveUV ("Rotate_EmissiveUV", Float ) = 0
+        [MaterialToggle] _Is_PingPong_Base ("Is_PingPong_Base", Float ) = 0
+        [MaterialToggle] _Is_ColorShift ("Activate ColorShift", Float ) = 0
+        [HDR]_ColorShift ("ColorSift", Color) = (0,0,0,1)
+        _ColorShift_Speed ("ColorShift_Speed", Float ) = 0
+        [MaterialToggle] _Is_ViewShift ("Activate ViewShift", Float ) = 0
+        [HDR]_ViewShift ("ViewSift", Color) = (0,0,0,1)
+        [MaterialToggle] _Is_ViewCoord_Scroll ("Is_ViewCoord_Scroll", Float ) = 0
+        //
 //Outline
         [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
         _Outline_Width ("Outline_Width", Float ) = 0
@@ -171,7 +184,7 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping" {
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_YES 
@@ -199,13 +212,16 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping" {
             #include "Lighting.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
 
             //v.2.0.4
             #pragma multi_compile _IS_TRANSCLIPPING_ON
             #pragma multi_compile _IS_ANGELRING_ON
             #pragma multi_compile _IS_PASS_FWDBASE
+            //v.2.0.7
+            #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
+            //
             #include "UCTS_ShadingGradeMap.cginc"
 
             ENDCG
@@ -229,7 +245,7 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping" {
             //for Unity2018.x
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
 
             //v.2.0.4
@@ -257,7 +273,7 @@ Shader "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping" {
             #pragma fragmentoption ARB_precision_hint_fastest
             #pragma multi_compile_shadowcaster
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
             //v.2.0.4
             #pragma multi_compile _IS_CLIPPING_TRANSMODE
