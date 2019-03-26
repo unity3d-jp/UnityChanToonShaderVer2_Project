@@ -8,6 +8,28 @@
 * 最新事項や履歴情報は、 **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)** でご確認ください。  
 ---
 
+## VRChatユーザー向けの便利機能について
+UTS2は、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  VRChat上でUTS2を楽しむ場合、以下の便利機能を使うことで、UTS2の高機能を活かしつつ、VRChatの様々な環境下でも安定して楽しむことができるようになります。  
+
+<img width = "500" src="Images_jpg/VRChatUser00.jpg">
+
+上の図で、赤い囲み内のボタンがそれに当たります。これらのボタンを使用するタイミングは２つあります。  
+
+### 【UTS2でマテリアル設定をはじめる時】
+UTS2で各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`VRChat Recommendation`ボタンを実行してください。  
+このコマンドを実行することで、VRChatの様々なライティング環境にUTS2を馴染みやすくします。  
+VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
+
+
+### 【UTS2で設定したアバターをパブリッシュする時】
+UTS2で各マテリアルを設定したアバターをVRChatに公開する前に、Basic Shader Settings > Option Menu内の`Remove Unused Keywords/Properties from Material`ボタンを実行してください。  
+このコマンドを実行することで、Unityで作業している途中で各マテリアルファイル内に溜まる未使用のプロパティ設定値やシェーダーキーワードを、整理し削除することができます。  
+例えば、Standard Shaderを最初割り当ててあったマテリアルから、シェーダーをUTS2のものに変えただけでも、これらの未使用の値は溜まっていきます。これらの未使用の値は、次にシェーダーを再度Standard Shaderに切り替える時のために、Unityが念のために保持しているものなのですが、マテリアルが完成しそれらを適用したアバターやモデルを公開する時には、不要になります。  
+これらの使われない値が各マテリアルに入ったままだと、システムに不要な負荷を与える可能性も考えられますので、アバターを公開するタイミングで整理しておくのが推奨されます。  
+このコマンドは、ご自身のプロジェクトをビルドする際にも使うといいでしょう。  
+
+---
+
 <img width = "400" src="Images_jpg/CellLook.jpg">
 <img width = "800" src="Images_jpg/CRS01.jpg">
 <img width = "800" src="Images_jpg/CRS02.jpg">
@@ -310,9 +332,10 @@ UTS2カスタムインスペクターは、`Show All Properties` ボタンをク
 | `Clipping Level` | クリッピングマスクの強さを指定します。 | _Clipping_Level |
 | `Transparency Level` | `TransClipping`シェーダーで使用します。クリッピングマスクのグレースケールレベルをα値として考慮することで、透過度を調整します。 | _Tweak_transparency |
 | `Use BaseMap αas Clipping Mask` | `TransClipping`シェーダーのみのプロパティです。チェックすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 | _IsBaseMapAlphaAsClippingMask |
+| Option Menu | 以下、オプション機能のメニューになります。 |  |
 | `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |  |
 | `VRChat Recommendation` | VRChatを楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
-
+| `Remove Unused Keywords/Properties from Material` | プロジェクトをビルドしたり、VRChatにパブリッシュする直前に実行することで、UTS2マテリアルから不要なシェーダーキーワードや、使われていないプロパティ値を取り除きます。これらの値は、Unity上で作業しているうちに自然と溜まってしまうものです。これらの不要な値を各マテリアルよりあらかじめ削除しておくことで、システムに不要な負荷を与えることが避けられます。本機能を実行した後は、念のために`File`>`Save Project`を実行することで、プロジェクトをセーブするようにしましょう（このタイミングで全てのマテリアルがセーブされるからです）。 |  |
 
 <img width = "800" src="Images_jpg/0102-06_02.jpg">
 

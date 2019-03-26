@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//UTS2GUI.cs for UTS2 v.2.0.6
+//UTS2GUI.cs for UTS2 v.2.0.7
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -30,28 +30,25 @@ namespace UnityChan
         public _CullingMode cullingMode;
         public _EmissiveMode emissiveMode;
 
-        //ボタンサイズ
+        //ボタンサイズ.
         public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
         public GUILayoutOption[] middleButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
 
-
-
-        //
+        //各種設定保持用.
         static int _StencilNo_Setting;
         static bool _HasOutline = true;
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false; 
+        //メッセージ表示用.
         bool _Use_VrcRecommend = false;
+        bool _RemovedUnusedKeywordsMessage = false;
 
         //Foldoutの初期値.
         static bool _BasicShaderSettings_Foldout = false;
         static bool _BasicThreeColors_Foldout = true;
-            // static bool _SharingTextures_Foldout = false;
             static bool _NormalMap_Foldout = false;
             static bool _ShadowControlMaps_Foldout = false;
         static bool _StepAndFeather_Foldout = true;
-            //static bool _SystemShadows_Foldout = true;
-            //static bool _BasicLookdevs_Foldout = true;
             static bool _AdditionalLookdevs_Foldout = false;
         static bool _HighColor_Foldout = true;
         static bool _RimLight_Foldout = true;
@@ -65,35 +62,24 @@ namespace UnityChan
         static bool _AdditionalLightingSettings_Foldout = false;
 
     // -----------------------------------------------------
+        //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         // UTS2 materal properties -------------------------
-    //    MaterialProperty ustTechnique = null;
-    //    MaterialProperty cullMode = null;
-    //    MaterialProperty stencilNo = null;
         MaterialProperty clippingMask = null;
-    //    MaterialProperty inverse_Clipping = null;
         MaterialProperty clipping_Level = null;
         MaterialProperty tweak_transparency = null;
-    //    MaterialProperty isBaseMapAlphaAsClippingMask = null;
-    //    MaterialProperty simpleUI = null;
         MaterialProperty mainTex = null;
         MaterialProperty baseColor = null;
         MaterialProperty firstShadeMap = null;
         MaterialProperty firstShadeColor = null;
         MaterialProperty secondShadeMap = null;
         MaterialProperty secondShadeColor = null;
-    //    MaterialProperty use_BaseAs1st = null;
-    //    MaterialProperty use_1stAs2nd = null;
         MaterialProperty normalMap = null;
         MaterialProperty bumpScale = null;
-    //    MaterialProperty is_NormalMapToBase = null;
-    //    MaterialProperty is_NormalMapToHighColor = null;
-    //    MaterialProperty is_NormalMapToRimLight = null;
         MaterialProperty set_1st_ShadePosition = null;
         MaterialProperty set_2nd_ShadePosition = null;
         MaterialProperty shadingGradeMap = null;
         MaterialProperty tweak_ShadingGradeMapLevel = null;
         MaterialProperty blurLevelSGM = null;
-    //    MaterialProperty set_SystemShadowsToBase =null;
         MaterialProperty tweak_SystemShadowsLevel = null;
         MaterialProperty baseColor_Step = null;
         MaterialProperty baseShade_Feather = null;
@@ -104,53 +90,35 @@ namespace UnityChan
         MaterialProperty second_ShadeColor_Step = null;
         MaterialProperty second_ShadeColor_Feather = null;
         MaterialProperty stepOffset = null;
-    //    MaterialProperty is_Filter_HiCutPointLightColor = null;
         MaterialProperty highColor_Tex = null;
         MaterialProperty highColor = null;
         MaterialProperty highColor_Power = null;
-    //    MaterialProperty is_SpecularToHighColor = null;
-    //    MaterialProperty is_BlendAddToHiColor = null;
-    //    MaterialProperty is_UseTweakHighColorOnShadow = null;
         MaterialProperty tweakHighColorOnShadow = null;
         MaterialProperty set_HighColorMask = null;
         MaterialProperty tweak_HighColorMaskLevel = null;
-    //    MaterialProperty rimLight = null;
         MaterialProperty rimLightColor = null;
         MaterialProperty rimLight_Power = null;
         MaterialProperty rimLight_InsideMask = null;
-    //    MaterialProperty rimLight_FeatherOff = null;
-    //    MaterialProperty lightDirection_MaskOn = null;
         MaterialProperty tweak_LightDirection_MaskLevel = null;
-    //    MaterialProperty add_Antipodean_RimLight = null;
         MaterialProperty ap_RimLightColor = null;
         MaterialProperty ap_RimLight_Power = null;
-    //    MaterialProperty ap_RimLight_FeatherOff = null;
         MaterialProperty set_RimLightMask = null;
         MaterialProperty tweak_RimLightMaskLevel = null;
-    //    MaterialProperty matCap = null;
         MaterialProperty matCap_Sampler = null;
         MaterialProperty matCapColor = null;
         MaterialProperty blurLevelMatcap = null;
-    //    MaterialProperty is_BlendAddToMatCap = null;
         MaterialProperty tweak_MatCapUV = null;
         MaterialProperty rotate_MatCapUV = null;
-    //    MaterialProperty cameraRolling_Stabilizer = null;
-    //    MaterialProperty is_NormalMapForMatCap = null;
         MaterialProperty normalMapForMatCap = null;
         MaterialProperty bumpScaleMatcap = null;
         MaterialProperty rotate_NormalMapForMatCapUV = null;
-    //    MaterialProperty is_UseTweakMatCapOnShadow = null;
         MaterialProperty tweakMatCapOnShadow = null;
-    //    MaterialProperty is_Ortho = null;
         MaterialProperty set_MatcapMask = null;
         MaterialProperty tweak_MatcapMaskLevel = null;
-    //    MaterialProperty inverse_MatcapMask = null;
-    //    MaterialProperty angelRing = null;
         MaterialProperty angelRing_Sampler = null;
         MaterialProperty angelRing_Color = null;
         MaterialProperty ar_OffsetU = null;
         MaterialProperty ar_OffsetV = null;
-    //    MaterialProperty arSampler_AlphaOn = null;
         MaterialProperty emissive_Tex = null;
         MaterialProperty emissive_Color = null;
         MaterialProperty base_Speed = null;
@@ -160,73 +128,47 @@ namespace UnityChan
         MaterialProperty colorShift = null;
         MaterialProperty colorShift_Speed = null;
         MaterialProperty viewShift = null;
-    //    MaterialProperty outline = null;
         MaterialProperty outline_Width = null;
         MaterialProperty outline_Color = null;
-    //    MaterialProperty is_BlendBaseColor = null;
         MaterialProperty outline_Sampler = null;
         MaterialProperty offset_Z = null;
         MaterialProperty farthest_Distance = null;
         MaterialProperty nearest_Distance = null;
-    //    MaterialProperty is_OutlineTex = null;
         MaterialProperty outlineTex = null;
-    //    MaterialProperty is_BakedNormal = null;
         MaterialProperty bakedNormal = null;
         MaterialProperty tessEdgeLength = null;
         MaterialProperty tessPhongStrength = null;
         MaterialProperty tessExtrusionAmount = null;
-    //    MaterialProperty is_LightColor_Base = null;
-    //    MaterialProperty is_LightColor_1st_Shade = null;
-    //    MaterialProperty is_LightColor_2nd_Shade = null;
-    //    MaterialProperty is_LightColor_HighColor = null;
-    //    MaterialProperty is_LightColor_RimLight = null;
-    //    MaterialProperty is_LightColor_Ap_RimLight = null;
-    //    MaterialProperty is_LightColor_MatCap = null;
-    //    MaterialProperty is_LightColor_AR = null;
         MaterialProperty gi_Intensity = null;
         MaterialProperty unlit_Intensity = null;
-    //    MaterialProperty is_Filter_LightColor = null;
-    //   MaterialProperty is_BLD = null;
         MaterialProperty offset_X_Axis_BLD = null;
         MaterialProperty offset_Y_Axis_BLD = null;
-    //    MaterialProperty inverse_Z_Axis_BLD = null;
         //------------------------------------------------------
 
         MaterialEditor m_MaterialEditor;
 
         // -----------------------------------------------------
 
+        //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         public void FindProperties(MaterialProperty[] props)
         {
-    //		ustTechnique = FindProperty("_utsTechnique", props);
-    //        cullMode = FindProperty("_CullMode", props);
             //シェーダーによって無い可能性があるプロパティはfalseを追加.
-    //        stencilNo = FindProperty("_StencilNo", props, false);
             clippingMask = FindProperty("_ClippingMask", props, false);
-    //        inverse_Clipping = FindProperty("_Inverse_Clipping", props, false);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
-    //        isBaseMapAlphaAsClippingMask = FindProperty("_IsBaseMapAlphaAsClippingMask", props, false);
-    //        simpleUI = FindProperty("_simpleUI", props);
             mainTex = FindProperty("_MainTex", props);
             baseColor = FindProperty("_BaseColor", props);
             firstShadeMap = FindProperty("_1st_ShadeMap", props);
             firstShadeColor = FindProperty("_1st_ShadeColor", props);
             secondShadeMap = FindProperty("_2nd_ShadeMap", props);
             secondShadeColor = FindProperty("_2nd_ShadeColor", props);
-    //        use_BaseAs1st = FindProperty("_Use_BaseAs1st", props);
-    //        use_1stAs2nd = FindProperty("_Use_1stAs2nd", props);
             normalMap = FindProperty("_NormalMap", props);
             bumpScale = FindProperty("_BumpScale", props);
-    //        is_NormalMapToBase = FindProperty("_Is_NormalMapToBase", props);
-    //        is_NormalMapToHighColor = FindProperty("_Is_NormalMapToHighColor", props);
-    //        is_NormalMapToRimLight = FindProperty("_Is_NormalMapToRimLight", props);
             set_1st_ShadePosition = FindProperty("_Set_1st_ShadePosition", props, false);
             set_2nd_ShadePosition = FindProperty("_Set_2nd_ShadePosition", props, false);
             shadingGradeMap = FindProperty("_ShadingGradeMap", props, false);
             tweak_ShadingGradeMapLevel = FindProperty("_Tweak_ShadingGradeMapLevel", props, false);
             blurLevelSGM = FindProperty("_BlurLevelSGM", props, false);
-    //        set_SystemShadowsToBase = FindProperty("_Set_SystemShadowsToBase",props);
             tweak_SystemShadowsLevel = FindProperty("_Tweak_SystemShadowsLevel",props);
             baseColor_Step = FindProperty("_BaseColor_Step",props);
             baseShade_Feather = FindProperty("_BaseShade_Feather", props);
@@ -237,53 +179,35 @@ namespace UnityChan
             second_ShadeColor_Step = FindProperty("_2nd_ShadeColor_Step", props);
             second_ShadeColor_Feather = FindProperty("_2nd_ShadeColor_Feather",props);
             stepOffset = FindProperty("_StepOffset", props, false);
-    //        is_Filter_HiCutPointLightColor = FindProperty("_Is_Filter_HiCutPointLightColor",props);
             highColor_Tex = FindProperty("_HighColor_Tex",props);
             highColor = FindProperty("_HighColor", props);
             highColor_Power = FindProperty("_HighColor_Power", props);
-    //        is_SpecularToHighColor = FindProperty("_Is_SpecularToHighColor", props);
-    //        is_BlendAddToHiColor = FindProperty("_Is_BlendAddToHiColor", props);
-    //        is_UseTweakHighColorOnShadow = FindProperty("_Is_UseTweakHighColorOnShadow", props);
             tweakHighColorOnShadow = FindProperty("_TweakHighColorOnShadow", props);
             set_HighColorMask = FindProperty("_Set_HighColorMask", props);
             tweak_HighColorMaskLevel = FindProperty("_Tweak_HighColorMaskLevel", props);
-    //        rimLight = FindProperty("_RimLight", props);
             rimLightColor = FindProperty("_RimLightColor", props);
             rimLight_Power = FindProperty("_RimLight_Power", props);
             rimLight_InsideMask = FindProperty("_RimLight_InsideMask", props);
-    //        rimLight_FeatherOff = FindProperty("_RimLight_FeatherOff", props);
-    //        lightDirection_MaskOn = FindProperty("_LightDirection_MaskOn", props);
             tweak_LightDirection_MaskLevel = FindProperty("_Tweak_LightDirection_MaskLevel", props);
-    //        add_Antipodean_RimLight = FindProperty("_Add_Antipodean_RimLight", props);
             ap_RimLightColor = FindProperty("_Ap_RimLightColor", props);
             ap_RimLight_Power = FindProperty("_Ap_RimLight_Power", props);
-    //        ap_RimLight_FeatherOff = FindProperty("_Ap_RimLight_FeatherOff", props);
             set_RimLightMask = FindProperty("_Set_RimLightMask", props);
             tweak_RimLightMaskLevel = FindProperty("_Tweak_RimLightMaskLevel", props);
-    //        matCap = FindProperty("_MatCap", props);
             matCap_Sampler = FindProperty("_MatCap_Sampler", props);
             matCapColor = FindProperty("_MatCapColor", props);
             blurLevelMatcap = FindProperty("_BlurLevelMatcap", props);
-    //        is_BlendAddToMatCap = FindProperty("_Is_BlendAddToMatCap", props);
             tweak_MatCapUV = FindProperty("_Tweak_MatCapUV", props);
             rotate_MatCapUV = FindProperty("_Rotate_MatCapUV", props);
-    //        cameraRolling_Stabilizer = FindProperty("_CameraRolling_Stabilizer", props);
-    //        is_NormalMapForMatCap = FindProperty("_Is_NormalMapForMatCap", props);
             normalMapForMatCap = FindProperty("_NormalMapForMatCap", props);
             bumpScaleMatcap = FindProperty("_BumpScaleMatcap", props);
             rotate_NormalMapForMatCapUV = FindProperty("_Rotate_NormalMapForMatCapUV", props);
-    //        is_UseTweakMatCapOnShadow = FindProperty("_Is_UseTweakMatCapOnShadow", props);
             tweakMatCapOnShadow = FindProperty("_TweakMatCapOnShadow", props);
-    //        is_Ortho = FindProperty("_Is_Ortho", props);
             set_MatcapMask = FindProperty("_Set_MatcapMask", props);
             tweak_MatcapMaskLevel = FindProperty("_Tweak_MatcapMaskLevel", props);
-    //        inverse_MatcapMask = FindProperty("_Inverse_MatcapMask", props);
-    //        angelRing = FindProperty("_AngelRing", props, false);
             angelRing_Sampler = FindProperty("_AngelRing_Sampler", props, false);
             angelRing_Color = FindProperty("_AngelRing_Color", props, false);
             ar_OffsetU = FindProperty("_AR_OffsetU", props, false);
             ar_OffsetV = FindProperty("_AR_OffsetV", props, false);
-    //        arSampler_AlphaOn = FindProperty("_ARSampler_AlphaOn", props, false);
             emissive_Tex = FindProperty("_Emissive_Tex", props);
             emissive_Color = FindProperty("_Emissive_Color", props);
             base_Speed = FindProperty("_Base_Speed", props);
@@ -293,36 +217,21 @@ namespace UnityChan
             colorShift = FindProperty("_ColorShift", props);
             colorShift_Speed = FindProperty("_ColorShift_Speed", props);
             viewShift = FindProperty("_ViewShift", props);
-    //        outline = FindProperty("_OUTLINE", props, false);
             outline_Width = FindProperty("_Outline_Width", props, false);
             outline_Color = FindProperty("_Outline_Color", props, false);
-    //        is_BlendBaseColor = FindProperty("_Is_BlendBaseColor", props, false);
             outline_Sampler = FindProperty("_Outline_Sampler", props, false);
             offset_Z = FindProperty("_Offset_Z", props, false);
             farthest_Distance = FindProperty("_Farthest_Distance", props, false);
             nearest_Distance = FindProperty("_Nearest_Distance", props, false);
-    //        is_OutlineTex = FindProperty("_Is_OutlineTex", props, false);
             outlineTex = FindProperty("_OutlineTex", props, false);
-    //        is_BakedNormal = FindProperty("_Is_BakedNormal", props, false);
             bakedNormal = FindProperty("_BakedNormal", props, false);
             tessEdgeLength = FindProperty("_TessEdgeLength", props, false);
             tessPhongStrength = FindProperty("_TessPhongStrength", props, false);
             tessExtrusionAmount = FindProperty("_TessExtrusionAmount", props, false);
-    //        is_LightColor_Base = FindProperty("_Is_LightColor_Base", props);
-    //        is_LightColor_1st_Shade = FindProperty("_Is_LightColor_1st_Shade", props);
-    //        is_LightColor_2nd_Shade = FindProperty("_Is_LightColor_2nd_Shade", props, false);
-    //        is_LightColor_HighColor = FindProperty("_Is_LightColor_HighColor", props);
-    //        is_LightColor_RimLight = FindProperty("_Is_LightColor_RimLight", props);
-    //        is_LightColor_Ap_RimLight = FindProperty("_Is_LightColor_Ap_RimLight", props);
-    //        is_LightColor_MatCap = FindProperty("_Is_LightColor_MatCap", props);
-    //        is_LightColor_AR = FindProperty("_Is_LightColor_AR", props, false);
             gi_Intensity = FindProperty("_GI_Intensity", props);
             unlit_Intensity = FindProperty("_Unlit_Intensity", props);
-    //        is_Filter_LightColor = FindProperty("_Is_Filter_LightColor", props);
-    //        is_BLD = FindProperty("_Is_BLD", props);
             offset_X_Axis_BLD = FindProperty("_Offset_X_Axis_BLD", props);
             offset_Y_Axis_BLD = FindProperty("_Offset_Y_Axis_BLD", props);
-    //s        inverse_Z_Axis_BLD = FindProperty("_Inverse_Z_Axis_BLD", props);
         }
     // --------------------------------
 
@@ -393,6 +302,7 @@ namespace UnityChan
 
 
     // --------------------------------
+        //m_MaterialEditorのメソッドをUIとして使うもののみを指定する. 1行表示のテクスチャ＆カラー指定用.
         private static class Styles
         {
             public static GUIContent baseColorText = new GUIContent("BaseMap","Base Color : Texture(sRGB) × Color(RGB) Default:White");
@@ -784,7 +694,95 @@ namespace UnityChan
                 EditorGUILayout.HelpBox("UTS2 : Applied VRChat Recommended Settings.",MessageType.Info);
             }
 
+            //v.2.0.7
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Remove Unused Keywords/Properties from Material");
+            //GUILayout.Space(60);
+            if (GUILayout.Button("Execute",middleButtonStyle))
+            {
+                RemoveUnusedKeywordsUtility(material);
+                _RemovedUnusedKeywordsMessage = true;
+            }
+            EditorGUILayout.EndHorizontal();
+            if(_RemovedUnusedKeywordsMessage){
+                EditorGUILayout.HelpBox("UTS2 : Unused Material Properties and ShaderKeywords are removed.",MessageType.Info);
+            }
+            //
         }
+
+        //v.2.0.7
+        void RemoveUnusedKeywordsUtility(Material material)
+        {
+				RemoveUnusedMaterialProperties(material);
+				RemoveShaderKeywords(material);
+        }
+
+		void RemoveShaderKeywords(Material material)
+		{
+			string shaderKeywords = "";
+
+			if(material.HasProperty("_EMISSIVE")){
+				float outlineMode = material.GetFloat("_EMISSIVE");
+				if(outlineMode == 0)
+				{
+					shaderKeywords = shaderKeywords + "_EMISSIVE_SIMPLE";
+				}else{
+					shaderKeywords = shaderKeywords + "_EMISSIVE_ANIMATION";
+				}
+			}
+			if(material.HasProperty("_OUTLINE")){
+				float outlineMode = material.GetFloat("_OUTLINE");
+				if(outlineMode == 0)
+				{
+					shaderKeywords = shaderKeywords + " _OUTLINE_NML";
+				}else{
+					shaderKeywords = shaderKeywords + " _OUTLINE_POS";
+				}
+			}
+
+			var so = new SerializedObject(material);
+			so.Update();
+			so.FindProperty("m_ShaderKeywords").stringValue = shaderKeywords;
+			so.ApplyModifiedProperties();
+		}
+
+		// http://light11.hatenadiary.com/entry/2018/12/04/224253
+		void RemoveUnusedMaterialProperties(Material material)
+		{
+			var sourceProps = new SerializedObject(material);
+			sourceProps.Update();
+
+			var savedProp = sourceProps.FindProperty("m_SavedProperties");
+
+			// Tex Envs
+			var texProp = savedProp.FindPropertyRelative("m_TexEnvs");
+			for (int i = texProp.arraySize - 1; i >= 0; i--) {
+				var propertyName = texProp.GetArrayElementAtIndex(i).FindPropertyRelative("first").stringValue;
+				if (!material.HasProperty(propertyName)) {
+					texProp.DeleteArrayElementAtIndex(i);
+				}
+			}
+
+			// Floats
+			var floatProp = savedProp.FindPropertyRelative("m_Floats");
+			for (int i = floatProp.arraySize - 1; i >= 0; i--) {
+				var propertyName = floatProp.GetArrayElementAtIndex(i).FindPropertyRelative("first").stringValue;
+				if (!material.HasProperty(propertyName)) {
+					floatProp.DeleteArrayElementAtIndex(i);
+				}
+			}
+
+			// Colors
+			var colorProp = savedProp.FindPropertyRelative("m_Colors");
+			for (int i = colorProp.arraySize - 1; i >= 0; i--) {
+				var propertyName = colorProp.GetArrayElementAtIndex(i).FindPropertyRelative("first").stringValue;
+				if (!material.HasProperty(propertyName)) {
+					colorProp.DeleteArrayElementAtIndex(i);
+				}
+			}
+			sourceProps.ApplyModifiedProperties();
+		}
+        //
 
         void Set_Vrchat_Recommendation(Material material)
         {
@@ -818,6 +816,12 @@ namespace UnityChan
 
             EditorGUILayout.BeginHorizontal();
                 m_MaterialEditor.TexturePropertySingleLine(Styles.baseColorText, mainTex, baseColor);
+                //v.2.0.7 Synchronize _Color to _BaseColor.
+                if(material.HasProperty("_Color"))
+                {
+                    material.SetColor("_Color", material.GetColor("_BaseColor")); 
+                }
+                //
                 if(material.GetFloat("_Use_BaseAs1st") == 0){
                     if (GUILayout.Button("No Sharing",middleButtonStyle))
                     {
@@ -831,7 +835,7 @@ namespace UnityChan
                 }
                 GUILayout.Space(60);
             EditorGUILayout.EndHorizontal();
-            
+
             EditorGUILayout.BeginHorizontal();
                 m_MaterialEditor.TexturePropertySingleLine(Styles.firstShadeColorText, firstShadeMap, firstShadeColor);
                 if(material.GetFloat("_Use_1stAs2nd") == 0){

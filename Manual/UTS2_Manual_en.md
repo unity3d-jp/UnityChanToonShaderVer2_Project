@@ -9,6 +9,27 @@
 
 ---
 
+## Useful functions for VRChat users
+UTS2 is a general purpose toon shader that can be used in various projects in Unity. If you enjoy UTS2 on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of UTS2's advanced features.  
+
+<img width = "500" src="Images_jpg/VRChatUser00.jpg">
+
+In the picture above, the button in the red box corresponds to it. There are two timings to use these buttons.  
+
+### 【When setting up materials on UTS2】
+When you set up each material in UTS2, please execute the `VRChat Recommendation` button in the Basic Shader Settings> Option Menu.  
+By executing this command, UTS2 will become familiar with various VRChat lighting environments.  
+If you upload your avatar on VRChat and it feels different from what you intended, you should try this command first.  
+
+### 【When publishing avatars set in UTS2】
+Before releasing the avatars with each material set in UTS2 to VRChat, please execute the `Remove Unused Keywords / Properties from Material` button in Basic Shader Settings> Option Menu.  
+By executing this command, you can organize and delete unused property settings and shader keywords that accumulate in each material file while working in Unity.  
+For example, from the material to which Standard Shader was initially assigned, even if you change the shader to that of UTS2, these unused values ​​will accumulate. These unused values ​​are what Unity holds in mind for the next time you switch shaders back to Standard Shader, but publish avatars and models with completed materials and applied them When you do, it becomes unnecessary.  
+If these unused values remain in each material, it is possible to put unnecessary load on the system, so it is recommended to organize them at the time of publishing avatars.  
+This command should also be used when building your own project.  
+
+---
+
 <img width = "400" src="Images_jpg/CellLook.jpg">
 <img width = "800" src="Images_jpg/CRS01.jpg">
 <img width = "800" src="Images_jpg/CRS02.jpg">
@@ -299,9 +320,10 @@ Items in the menu are automatically expanded to the following maximum format acc
 | `Clipping Level` | Designates the strength of the clipping mask. | _Clipping_Level |
 | `Transparency Level` | Used by `TransClipping` shaders. Adjusts the transparency level by treating the clipping mask grayscale level as an α value. | _Tweak_transparency |
 | `Use BaseMap αas Clipping Mask` | A property only found in `TransClipping` shaders. Checking this property will use the A channel, including the `BaseMap`, as a clipping mask. Designating a `ClippingMask` is not required. | _IsBaseMapAlphaAsClippingMask |
+| Option Menu | The list of Optional features is below. |  |
 | `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS2's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS2 functions only. Toggle back to `Pro / Full Controll` mode. |  |
 | `VRChat Recommendation` | Set up convenient settings for enjoying VRChat all at once. When setting up for VRChat, recommend you to start from this button first. |  |
-
+| `Remove Unused Keywords/Properties from Material` | Just before building your project or publishing It to VRChat system, execute this command to remove unnecessary shader keywords and unused property values from UTS2 materials. These values will naturally accumulate while your working on Unity. By removing these unnecessary values from each material before publishing, it is possible to avoid giving unnecessary load to the system. After executing this command, be sure to save the project by executing `File`>` Save Project` just in case (because all materials are saved at this time). |  |
 
 <img width = "800" src="Images_jpg/0102-06_02.jpg">
 

@@ -15,7 +15,7 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject_StencilOut" {
         //If you want to go back the former SSAO results, comment out the below line.
         [HideInInspector] _Color ("Color", Color) = (1,1,1,1)
         //
-        [MaterialToggle] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
+        [Toggle(_)] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
 //Outline
         [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
         _Outline_Width ("Outline_Width", Float ) = 0
@@ -23,14 +23,14 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject_StencilOut" {
         _Nearest_Distance ("Nearest_Distance", Float ) = 0.5
         _Outline_Sampler ("Outline_Sampler", 2D) = "white" {}
         _Outline_Color ("Outline_Color", Color) = (0.5,0.5,0.5,1)
-        [MaterialToggle] _Is_BlendBaseColor ("Is_BlendBaseColor", Float ) = 0
+        [Toggle(_)] _Is_BlendBaseColor ("Is_BlendBaseColor", Float ) = 0
         //v.2.0.4
-        [MaterialToggle] _Is_OutlineTex ("Is_OutlineTex", Float ) = 0
+        [Toggle(_)] _Is_OutlineTex ("Is_OutlineTex", Float ) = 0
         _OutlineTex ("OutlineTex", 2D) = "white" {}
         //Offset parameter
         _Offset_Z ("Offset_Camera_Z", Float) = 0
         //v.2.0.4.3 Baked Nrmal Texture for Outline
-        [MaterialToggle] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
+        [Toggle(_)] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
         _BakedNormal ("Baked Normal for Outline", 2D) = "white" {}
     }
     SubShader {

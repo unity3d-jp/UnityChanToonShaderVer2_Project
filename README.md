@@ -86,8 +86,7 @@ When over-writing a previous version, the code will be revised, so please take t
 
 We recommend first erasing the previous shader then installing the new shader, to preserve existing links between materials.   
 
-Please contact us if you have any issues. 
-
+Please contact us if you have any issues.  
 
 -----
 ## 【サンプルシーンについて】  
@@ -136,6 +135,15 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
+### 2019/03/**：2.0.7 Release：修正リリース版１  
+* 以下の新規機能を追加しました。  
+
+#### 新規機能
+* Basic Shader Settings内Option Menuに、`Remove Unused Keywords/Properties from Material`ボタンを追加しました。  
+本機能を実行することで、UTS2マテリアル内の不要なシェーダーキーワードや、使用されていないプロパティ値を整理して削除することができます。  
+プロジェクトのパブリッシュ時に、特にVRChatにアバターをアップロードする直前に適用することで、システムに対する不要な負荷を下げる効果が期待できます。  
+
+
 ### 2019/03/23：2.0.7 Release：リリース版  
 * 以下の新規機能を追加しました。  
 
@@ -146,6 +154,15 @@ They will be useful for reference of the look and scene you want to make!
 #### 機能強化
 * Angel Ring Camera Rolling Stabilizerを搭載しました。（常にONです）  
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
+
+
+### 2019/03/**: 2.0.7 Release: Fixed release version 1
+* The following new features have been added.  
+
+#### New Features  
+* Added 'Remove Unused Keywords/Properties from Material` button to Option Menu in Basic Shader Settings.  
+By executing this function, unnecessary shader keywords and unused property values in the UTS2 material can be removed.  
+Applying this when publishing a project, especially just before uploading avatars to VRChat, can reduce the unnecessary load on the system.  
 
 
 ### 2019/03/23: 2.0.7 Release: Release version  
@@ -270,12 +287,12 @@ They will be useful for reference of the look and scene you want to make!
 
 
 -----
-最新バージョン：2.0.7 Release  
-最終リリース日：2019/03/23  
+最新バージョン：2.0.7 Release：修正リリース版１  
+最終リリース日：2019/03/**  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.7 Release  
-Update: 2019/03/23  
+Latest Version: 2.0.7 Release: Fixed release version 1  
+Update: 2019/03/**  
 Category: 3D  
 File format: zip/unitypackage  

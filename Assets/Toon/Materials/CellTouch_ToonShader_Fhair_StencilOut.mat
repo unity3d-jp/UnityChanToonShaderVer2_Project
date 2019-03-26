@@ -8,11 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: CellTouch_ToonShader_Fhair_StencilOut
   m_Shader: {fileID: 4800000, guid: 0a1e4c9dcc0e9ea4db38ae9cb5059608, type: 3}
-  m_ShaderKeywords: _ISKAGE_NORMAL_ON _ISMATCAP_NORMAL_ON _ISRIM_NORMAL_ON _IS_BLENDADDTOHICOLOR_ON
-    _IS_BLENDADDTOMATCAP_ON _IS_FILTER_HICUTPOINTLIGHTCOLOR_ON _IS_NORMALMAPFORMATCAP_ON
-    _IS_NORMALMAPTOBASE_ON _IS_NORMALMAPTORIMLIGHT_ON _IS_SPECULARTOHIGHCOLOR_ON _IS_USETWEAKMATCAPONSHADOW_ON
-    _KAGE_NORMAL_ON _OUTLINE_NML _RIMLIGHT_ON _RIM_NORMAL_ON _SET_SYSTEMSHADOWSTOBASE_ON
-    _USE_1STAS2ND_ON
+  m_ShaderKeywords: _EMISSIVE_SIMPLE _OUTLINE_NML
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -97,11 +93,14 @@ Material:
     - _Ap_RimLight_Power: 0.1
     - _BaseColor_Step: 0.71
     - _BaseShade_Feather: 0.133
+    - _Base_Speed: 0
     - _BlurLevelMatcap: 0
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
+    - _ColorShift_Speed: 0
     - _CullMode: 2
+    - _EMISSIVE: 0
     - _Farthest_Distance: 10
     - _GI_Intensity: 0
     - _HighColor_Power: 0
@@ -112,6 +111,7 @@ Material:
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
+    - _Is_ColorShift: 0
     - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 1
@@ -127,9 +127,12 @@ Material:
     - _Is_NormalMapToRimLight: 1
     - _Is_Ortho: 0
     - _Is_OutlineTex: 0
+    - _Is_PingPong_Base: 0
     - _Is_SpecularToHighColor: 1
     - _Is_UseTweakHighColorOnShadow: 0
     - _Is_UseTweakMatCapOnShadow: 1
+    - _Is_ViewCoord_Scroll: 0
+    - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
     - _MatCap: 0
     - _Nearest_Distance: 0.5
@@ -142,8 +145,11 @@ Material:
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.565
+    - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
+    - _Scroll_EmissiveU: 0
+    - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0
     - _StencilNo: 1
@@ -167,9 +173,11 @@ Material:
     - _2nd_ShadeColor: {r: 0.8602941, g: 0.664852, b: 0.45544982, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0.04411763, g: 0.04411763, b: 0.04411763, a: 1}
     - _RimLightColor: {r: 0.3602941, g: 0.26090264, b: 0, a: 1}
+    - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

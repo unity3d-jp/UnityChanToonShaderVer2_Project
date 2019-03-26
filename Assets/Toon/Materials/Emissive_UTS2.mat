@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Emissive_UTS2
   m_Shader: {fileID: 4800000, guid: 96d4d9f975e6c8849bd1a5c06acfae84, type: 3}
-  m_ShaderKeywords: _EMISSION _SET_SYSTEMSHADOWSTOBASE_ON
+  m_ShaderKeywords: _EMISSIVE_SIMPLE
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -81,11 +81,14 @@ Material:
     - _Ap_RimLight_Power: 0.1
     - _BaseColor_Step: 0.753
     - _BaseShade_Feather: 0.178
+    - _Base_Speed: 0
     - _BlurLevelMatcap: 0
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
+    - _ColorShift_Speed: 0
     - _CullMode: 2
+    - _EMISSIVE: 0
     - _GI_Intensity: 0
     - _HighColor_Power: 0
     - _Inverse_MatcapMask: 0
@@ -93,6 +96,7 @@ Material:
     - _Is_BLD: 0
     - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 0
+    - _Is_ColorShift: 0
     - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 0
     - _Is_LightColor_1st_Shade: 0
@@ -107,9 +111,12 @@ Material:
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 0
     - _Is_Ortho: 0
+    - _Is_PingPong_Base: 0
     - _Is_SpecularToHighColor: 0
     - _Is_UseTweakHighColorOnShadow: 0
     - _Is_UseTweakMatCapOnShadow: 0
+    - _Is_ViewCoord_Scroll: 0
+    - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
     - _MatCap: 0
     - _Offset_X_Axis_BLD: -0.05
@@ -118,8 +125,11 @@ Material:
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
+    - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
+    - _Scroll_EmissiveU: 0
+    - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0.527
     - _StepOffset: 0
@@ -142,8 +152,10 @@ Material:
     - _2nd_ShadeColor: {r: 0, g: 0, b: 0, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.28676465, g: 0.28676465, b: 0.28676465, a: 1}
+    - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 1.5, g: 0.0765, b: 0, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
