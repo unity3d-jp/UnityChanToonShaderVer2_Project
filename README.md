@@ -135,7 +135,7 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
-### 2019/03/**：2.0.7 Release：修正リリース版１  
+### 2019/03/28：2.0.7 Release：修正リリース版１  
 * 以下の新規機能を追加しました。  
 
 #### 新規機能
@@ -156,7 +156,7 @@ They will be useful for reference of the look and scene you want to make!
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
 
 
-### 2019/03/**: 2.0.7 Release: Fixed release version 1
+### 2019/03/28: 2.0.7 Release: Fixed release version 1
 * The following new features have been added.  
 
 #### New Features  
@@ -288,11 +288,11 @@ Applying this when publishing a project, especially just before uploading avatar
 
 -----
 最新バージョン：2.0.7 Release：修正リリース版１  
-最終リリース日：2019/03/**  
+最終リリース日：2019/03/28  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 Latest Version: 2.0.7 Release: Fixed release version 1  
-Update: 2019/03/**  
+Update: 2019/03/28  
 Category: 3D  
 File format: zip/unitypackage  

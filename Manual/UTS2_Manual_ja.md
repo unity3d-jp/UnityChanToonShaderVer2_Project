@@ -1,5 +1,5 @@
 ﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
-### 2019/03/23 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/03/28 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
 ## 【重要】v.2.0.4.3p1から、直接v2.0.5～v.2.0.7へバージョンアップをする場合の注意
