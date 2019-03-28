@@ -28,6 +28,10 @@ For example, from the material to which Standard Shader was initially assigned, 
 If these unused values remain in each material, it is possible to put unnecessary load on the system, so it is recommended to organize them at the time of publishing avatars.  
 This command should also be used when building your own project.  
 
+<img width = "400" src="Images_jpg/ShaderKeywords.jpg">
+
+When the command is executed, for UTS2 material, the remaining shader keywords are optimized to one of `_EMISSIVE_SIMPLE` / ` _EMISSIVE_ANIMATION` and one of `_OUTLINE_NML` / ` _OUTLINE_POS`. These are needed during shader compilation, so leave them as is.  
+
 ---
 
 <img width = "400" src="Images_jpg/CellLook.jpg">

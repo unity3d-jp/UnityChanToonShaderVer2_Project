@@ -142,6 +142,7 @@ They will be useful for reference of the look and scene you want to make!
 * Basic Shader Settings内Option Menuに、`Remove Unused Keywords/Properties from Material`ボタンを追加しました。  
 本機能を実行することで、UTS2マテリアル内の不要なシェーダーキーワードや、使用されていないプロパティ値を整理して削除することができます。  
 プロジェクトのパブリッシュ時に、特にVRChatにアバターをアップロードする直前に適用することで、システムに対する不要な負荷を下げる効果が期待できます。  
+本機能は、ACiiL TwitterID：@__aciil さんのIssue #18に基づき開発いたしました。  
 
 
 ### 2019/03/23：2.0.7 Release：リリース版  
@@ -156,6 +157,7 @@ They will be useful for reference of the look and scene you want to make!
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
 
 
+
 ### 2019/03/28: 2.0.7 Release: Fixed release version 1
 * The following new features have been added.  
 
@@ -163,7 +165,7 @@ They will be useful for reference of the look and scene you want to make!
 * Added 'Remove Unused Keywords/Properties from Material` button to Option Menu in Basic Shader Settings.  
 By executing this function, unnecessary shader keywords and unused property values in the UTS2 material can be removed.  
 Applying this when publishing a project, especially just before uploading avatars to VRChat, can reduce the unnecessary load on the system.  
-
+This function was developed based on the Issue #18 of ACiiL TwitterID: @__ aciil's .
 
 ### 2019/03/23: 2.0.7 Release: Release version  
 * The following new features have been added.  
