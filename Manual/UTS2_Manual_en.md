@@ -1143,3 +1143,58 @@ This is because the maximum number of real-time point lights is four for forward
 This video explains how to unflip the lights. You can also use this for standard shaders.  
 
 [![](https://img.youtube.com/vi/G5-alxDO0bs/0.jpg)](https://www.youtube.com/watch?v=G5-alxDO0bs)
+
+---
+## ３．Solution to trouble cases sent to user support  
+
+Here, we will pick up and introduce problems that may be difficult to solve just by looking at the manual.  
+Please refer to us.  
+
+---
+### 3-1. Shadows appear in unexpected places  
+<img width = "600" src="Images_jpg/Errors_01.jpg">
+
+The black shadow at the position of the arrow in the figure corresponds to it.  
+In this example, the pipe with the unexpected shadow has **UV not expanded**. Similarly, even if **UV is crushed**, such unexpected shadows may appear.  
+In such a case, open the model again with the DCC tool and unfold the UVs, and the display will be as normal as the right pipe.  
+This is rare when you use Maya for the DCC tool, but if you use Blender or import data from an application such as CAD, you should be careful.  
+
+---
+### 3-2. I uploaded the avatar to the VRChat server, and when I saw it on the HMD, the parallax between the left and right is off.  
+<img width = "600" src="Images_jpg/Errors_02.jpg">
+
+※Screen shot provided：@NonameReUnder  
+
+Occasionally, when uploading avatars to the VRChat server and looking at the HMD, you may receive reports that the left and right parallaxes have shifted.  
+
+Although the detailed cause is unknown here, it is considered that the shader uploaded to the VRChat server is broken for some reason.  
+
+If this symptom occurs, try one of the following procedures.  
+
+1. Create a new project that contains an avatar and upload it again to VRChat.  
+
+2. From the project, delete the Toon folder in Assets that contains UTS2. Then reinstall UTS2 and upload it to VRChat again.  
+
+
+After performing items 1 or 2, if you try to upload again to the VRChat server, it has been reported that it works.  
+It seems that the congestion of the VRChat server is probably related, so if something goes wrong, you may want to change the time and try uploading several times.  
+
+---
+### 3-3. Bloome may glow badly on VRChat  
+
+<img width = "600" src="Images_jpg/Errors_03.jpg">
+
+※Screen shot provided：@nD_ntny  
+
+In rare cases, the Bloom effect included in the Post-Processing Stack (PPS) used in VRChat will be severely lit.  
+※ According to @nD_ntny, **this bug does not occur with UTS2 or Standard Shader**.  
+
+This seems to be a defect on the PPS side, but the phenomenon occurs when there are particles with a scale of 0 in the screen or parts with concentrated UVs in the screen. Depending on the angle of the camera, UVs can also occur at the moment when the plane is horizontal with respect to the camera. You should be careful with the scale as it is particularly prone to particle generation.  
+
+Although this error seems to be based on a divide by zero error, it seems that the PPS in VRChat does not take any measures, and the symptom still appears.  
+For more information, please check the following:  
+
+* [Bloom White-out](https://github.com/Unity-Technologies/PostProcessing/issues/356)
+* [[V2] Temporal AA creates NaNs (or infinities?) when handling alpha blended particle shader](https://github.com/Unity-Technologies/PostProcessing/issues/340)
+
+---
