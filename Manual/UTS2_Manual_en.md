@@ -74,6 +74,9 @@ Of course, it also supports Unity’s system shadow feature.
 
 <img width = "800" src="Images_jpg/Comp_ST_UTS2.jpg">
 
+<img width = "800" src="Images_jpg/Comp_ST_UTS2_2.jpg">
+
+
 Adding post effects allows UTS2 to use non-photorealistic rendering (NPR) to create any picture-like element that can be made with a standard shader that supports physics-based rendering (PBR).  
 
 Several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat users.  
