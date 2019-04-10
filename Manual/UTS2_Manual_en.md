@@ -1,5 +1,5 @@
 # Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
-### 2019/03/28 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/04/10 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
 ## 【IMPORTANT】Notice for those upgrading from v.2.0.4.3p1 to v.2.0.5～v.2.0.7
@@ -20,6 +20,18 @@ In the picture above, the button in the red box corresponds to it. There are two
 When you set up each material in UTS2, please execute the `VRChat Recommendation` button in the Basic Shader Settings> Option Menu.  
 By executing this command, UTS2 will become familiar with various VRChat lighting environments.  
 If you upload your avatar on VRChat and it feels different from what you intended, you should try this command first.  
+
+#### ● If you want to brighten the appearance of characters in dark worlds
+After executing the `VRChat Recommendation` button, you may want to adjust the appearance of the character in a dark world, which has only point lights, more brightly.  
+In that case, you can raise the brightness in dark world by adjusting the `Unlit Intensity` slider in the 'Environmental Lighting Contributions Setups' menu.  
+
+<img width = "300" src="Images_jpg/Unlit_Intensity_Comp.gif">
+
+**※Hint: Unlit Intensity is a function that boosts the brightness of the material in dark places while taking into consideration the brightness of the environment, so it can not be extremely bright in a world where the original environment lightings are set to be dark.**  
+
+However, in a dark world, the post effect's bloom is often set to strong as well.  
+In such a world, if the value of **Unlit Intensity is set to over 1 (default value), it is also susceptible to bloom**, so be careful with it.  
+
 
 ### 【When publishing avatars set in UTS2】
 Before releasing the avatars with each material set in UTS2 to VRChat, please execute the `Remove Unused Keywords / Properties from Material` button in Basic Shader Settings> Option Menu.  
