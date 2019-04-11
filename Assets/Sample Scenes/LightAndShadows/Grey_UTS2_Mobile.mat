@@ -137,8 +137,8 @@ Material:
     - _MatCap: 0
     - _Nearest_Distance: 0.5
     - _OUTLINE: 0
-    - _Offset_X_Axis_BLD: -0.05
-    - _Offset_Y_Axis_BLD: 0.09
+    - _Offset_X_Axis_BLD: 0.058
+    - _Offset_Y_Axis_BLD: 0.055
     - _Offset_Z: 0
     - _Outline_Width: 3.29
     - _RimLight: 0
