@@ -26,6 +26,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ClippingMask:
         m_Texture: {fileID: 2800000, guid: c0f9157172f554e48b775acd9b452270, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -154,7 +158,7 @@ Material:
     - _Use_BaseAs1st: 0
     - _simpleUI: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.06
+    - _utsVersion: 2.072
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

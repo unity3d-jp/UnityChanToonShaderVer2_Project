@@ -1,10 +1,14 @@
 ﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
-### 2019/04/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/04/17 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
-## 【重要】v.2.0.4.3p1から、直接v2.0.5～v.2.0.7へバージョンアップをする場合の注意
-* 内部パラメタの名前変更のために、すでに設定されているマテリアルから、BaseMapが外れる可能性があります。外れてしまった場合、お手数ですが再設定をお願いします。  
-* HiColor_Powerのスライダの感度調整をしました。Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合、HiColor_Powerの値を再調整する必要があります。Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
+## 【重要】旧バージョンから、直接v.2.0.7へバージョンアップをする場合の注意
+
+* v.2.0.5以降は、そのままシェーダーのみ上書きアップデートをして大丈夫です。  
+* v.2.0.4.3p1以前からアップデートをする場合、シェーダーを上書きアップデートした後で、各マテリアルをプロジェクトウィンドウ内から再度選択することで、マテリアルを更新してください。BaseMapが元通りに修復されます。  
+* v.2.0.4.3p1以前からアップデートをする場合、HiColor_Powerのスライダの感度調整をした影響が出る場合があります。以下に従って調整をしてください。  
+1. Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合には、HiColor_Powerの値を今までよりも低めに調整してください。  
+2. Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
 * 最新事項や履歴情報は、 **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)** でご確認ください。  
 ---
 
@@ -50,7 +54,7 @@ UTS2で各マテリアルを設定したアバターをVRChatに公開する前�
 <img width = "800" src="Images_jpg/CRS02.jpg">
 <img width = "800" src="Images_jpg/CRS03.jpg">
 
-[![](https://img.youtube.com/vi/Pobi_MPaQEc/0.jpg)](https://www.youtube.com/watch?v=Pobi_MPaQEc)
+[![](https://img.youtube.com/vi/81uGu18ixpw/0.jpg)](https://www.youtube.com/watch?v=81uGu18ixpw)
 
 <img width = "800" src="Images_jpg/TPK_04.jpg">
 <img width = "800" src="Images_jpg/HiUni01.jpg">

@@ -20,13 +20,22 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 
 
 ----
-## 【重要】v.2.0.4.3p1から、直接v.2.0.7へバージョンアップをする場合の注意
-* 内部パラメタの名前変更のために、すでに設定されているマテリアルから、BaseMapが外れる可能性があります。外れてしまった場合、お手数ですが再設定をお願いします。  
-* HiColor_Powerのスライダの感度調整をしました。Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合、HiColor_Powerの値を再調整する必要があります。Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
+## 【重要】旧バージョンから、直接v.2.0.7へバージョンアップをする場合の注意
 
-### 【Important】 Notes on upgrading from v.2.0.4.3p1 directly to v.2.0.7
-* There is a possibility that BaseMap may be removed from material already set because of renaming internal parameters. If it has come off, sorry to trouble you but please set it again.  
-* Adjusted the sensitivity of the slider of HiColor_Power. If Is_SpecularToHighColor = OFF / Is_BlendAddToHiColor = 0FF, you need to readjust the value of HiColor_Power. If Is_SpecularToHighColor = ON is used, there is no need to modify it in particular.  
+* v.2.0.5以降は、そのままシェーダーのみ上書きアップデートをして大丈夫です。  
+* v.2.0.4.3p1以前からアップデートをする場合、シェーダーを上書きアップデートした後で、各マテリアルをプロジェクトウィンドウ内から再度選択することで、マテリアルを更新してください。BaseMapが元通りに修復されます。  
+* v.2.0.4.3p1以前からアップデートをする場合、HiColor_Powerのスライダの感度調整をした影響が出る場合があります。以下に従って調整をしてください。  
+1. Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合には、HiColor_Powerの値を今までよりも低めに調整してください。  
+2. Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
+
+
+## [Important] Note on upgrading to version 2.0.7 directly
+
+* In v.2.0.5 or later, you can overwrite and update only the shader.  
+* When updating from v.2.0.4.3p1 or earlier, update the materials by selecting each material again from within the project window after overwriting and updating the shader. BaseMap is restored as it was.  
+* When updating from v.2.0.4.3p1 or earlier, the sensitivity of the slider of HiColor_Power may be affected. Please adjust according to the following.  
+1. If Is_SpecularToHighColor = OFF / Is_BlendAddToHiColor = 0FF, adjust the HiColor_Power value lower than before.  
+2. If you use Is_SpecularToHighColor = ON, there is no need to modify it.  
 
 -----
 ## 【ターゲット環境】
@@ -64,27 +73,28 @@ http://unity-chan.com/contents/guideline_en/
 ### [UTS2_ShaderOnly_v2.0.7_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.7_Release.unitypackage)  
 
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
-上書きインストール時には、コードが改修されていますので、注意が必要です。  
+上書きインストールの場合も、同様の手順で問題ありませんが、細心の注意を払いたい場合は、以下の手順で行うとよいでしょう。  
 1. 元のプロジェクトのバックアップをとっておく  
 2. Unityでプロジェクトを開き、新規シーンを作成して開いておく。  
 3. 元のトゥーンシェーダーが入っているフォルダ（Assets/Toon/Shader）をUnity上から削除する。  
 4. 本パッケージをUnityにD&Dする。  
 
-まず元のシェーダーを消した後で、すぐに新しいシェーダーをインストールすれば、既存のマテリアルへのリンクは途切れないので、そちらでやってみてください。  
+インストール後は、必ず[マニュアル](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)を確認するようにしてください。  
+マニュアルには、UTS2の使い方が詳しく解説されています。  
 
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 ### 【Installation】
 ### [UTS2_ShaderOnly_v2.0.7_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.7_Release.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
-
-When over-writing a previous version, the code will be revised, so please take the following precautions:  
+When over-writing a previous version, there is no problem with the same process, but if you want to pay close attention, so please take the following precautions:  
 1. Back-up all previous projects.  
 2. When opening a project in Unity, create a new scene beforehand.  
 3. Erase the folder containing previous versions of the toon shader (Assets/Toon/Shader) from within Unity.  
 4. Drag and drop this pack into Unity.  
 
-We recommend first erasing the previous shader then installing the new shader, to preserve existing links between materials.   
+Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) after installation.  
+The manual explains how to use UTS2 in detail.  
 
 Please contact us if you have any issues.  
 
@@ -135,6 +145,9 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
+### 2019/04/17：2.0.7 Release：修正リリース版２  
+* UTS2 v.2.0.4.3p1以前のバージョンから、v.2.0.7へのアップデートが簡単になりました。  
+
 ### 2019/03/28：2.0.7 Release：修正リリース版１  
 * 以下の新規機能を追加しました。  
 
@@ -156,7 +169,9 @@ They will be useful for reference of the look and scene you want to make!
 * Angel Ring Camera Rolling Stabilizerを搭載しました。（常にONです）  
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
 
-
+---
+### 2019 04/17: 2.0.7 Release: Fixed release version 2
+* Updating to UTS2 v.2.0.7 is easier than with v.2.0.4.3p1 or earlier.  
 
 ### 2019/03/28: 2.0.7 Release: Fixed release version 1
 * The following new features have been added.  
@@ -165,7 +180,7 @@ They will be useful for reference of the look and scene you want to make!
 * Added 'Remove Unused Keywords/Properties from Material` button to Option Menu in Basic Shader Settings.  
 By executing this function, unnecessary shader keywords and unused property values in the UTS2 material can be removed.  
 Applying this when publishing a project, especially just before uploading avatars to VRChat, can reduce the unnecessary load on the system.  
-This function was developed based on the Issue #18 of ACiiL TwitterID: @__ aciil's .
+This function was developed based on the Issue #18 of ACiiL TwitterID: @__aciil's .
 
 ### 2019/03/23: 2.0.7 Release: Release version  
 * The following new features have been added.  
@@ -289,12 +304,12 @@ This function was developed based on the Issue #18 of ACiiL TwitterID: @__ aciil
 
 
 -----
-最新バージョン：2.0.7 Release：修正リリース版１  
-最終リリース日：2019/03/28  
+最新バージョン：2.0.7 Release：修正リリース版２  
+最終リリース日：2019/04/17  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.7 Release: Fixed release version 1  
-Update: 2019/03/28  
+Latest Version: 2.0.7 Release: Fixed release version 2  
+Update: 2019/04/17  
 Category: 3D  
 File format: zip/unitypackage  

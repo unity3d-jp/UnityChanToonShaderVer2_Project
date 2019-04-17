@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.7
+//v.2.0.7.2
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -10,6 +10,7 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/AngelRing/ToonColor_ShadingGr
         [HideInInspector] _utsTechnique ("Technique", int ) = 1 //SGM
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _MainTex ("BaseMap", 2D) = "white" {}
+        [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         //v.2.0.5 : Clipping/TransClipping for SSAO Problems in PostProcessing Stack.
         //If you want to go back the former SSAO results, comment out the below line.

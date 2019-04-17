@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//UTS2GUI.cs for UTS2 v.2.0.7
+//UTS2GUI.cs for UTS2 v.2.0.7.2
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -332,6 +332,25 @@ namespace UnityChan
             FindProperties(props);
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
+
+            //v.2.0.7.2
+            //v.2.0.4.3p1以前のBaseMap名との互換性対策、および_utsVersionの更新をおこなう.
+            //shader側で新規設定されるのは、_utsVersion = 2.07fなので、CustomGUI側でサブバージョンを付ける.
+            if(material.GetFloat("_utsVersion") < 2.072f)
+            {
+                //_MainTexを使っている世代は、_BaseMapにはテクスチャ情報はない.
+                if(material.GetTexture("_BaseMap") != null)
+                {
+                    //v.2.0.4.3p1以前は_BaseMapにテクスチャ情報があるので、_MainTexにコピー.
+                    material.SetTexture("_MainTex",material.GetTexture("_BaseMap"));
+                    //処理が終わったので、_utsVersionを更新して設定.
+                    material.SetFloat("_utsVersion", 2.072f);
+                }else{
+                    //処理が不要な場合も、_utsVersionを更新して設定.
+                    material.SetFloat("_utsVersion", 2.072f);
+                }
+            }
+            //ここまで.
 
             //UTSのシェーダー方式の確認.
             CheckUtsTechnique(material);

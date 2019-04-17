@@ -1,12 +1,14 @@
 # Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
-### 2019/04/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/04/17 Nobuyuki Kobayashi (Unity Technologies Japan)
 
 ---
-## 【IMPORTANT】Notice for those upgrading from v.2.0.4.3p1 to v.2.0.5～v.2.0.7
-* The BaseMap may be removed from pre-existing materials due to changes to internal parameter names. In such cases, remember to reattach the BaseMap.  
-* The HiColor_Power slider’s sensitivity has been adjusted. The HiColor_Power value will need to be readjusted when using Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FF. This is not necessary for Is_SpecularToHighColor=ON.  
+## [Important] Note on upgrading to version 2.0.7 directly
+* In v.2.0.5 or later, you can overwrite and update only the shader.  
+* When updating from v.2.0.4.3p1 or earlier, update the materials by selecting each material again from within the project window after overwriting and updating the shader. BaseMap is restored as it was.  
+* When updating from v.2.0.4.3p1 or earlier, the sensitivity of the slider of HiColor_Power may be affected. Please adjust according to the following.  
+1. If Is_SpecularToHighColor = OFF / Is_BlendAddToHiColor = 0FF, adjust the HiColor_Power value lower than before.  
+2. If you use Is_SpecularToHighColor = ON, there is no need to modify it.  
 * Latest updates and version history can be found here **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)**.  
-
 ---
 
 ## Useful functions for VRChat users
@@ -51,7 +53,7 @@ When the command is executed, for UTS2 material, the remaining shader keywords a
 <img width = "800" src="Images_jpg/CRS02.jpg">
 <img width = "800" src="Images_jpg/CRS03.jpg">
 
-[![](https://img.youtube.com/vi/Pobi_MPaQEc/0.jpg)](https://www.youtube.com/watch?v=Pobi_MPaQEc)
+[![](https://img.youtube.com/vi/81uGu18ixpw/0.jpg)](https://www.youtube.com/watch?v=81uGu18ixpw)
 
 <img width = "800" src="Images_jpg/TPK_04.jpg">
 <img width = "800" src="Images_jpg/HiUni01.jpg">

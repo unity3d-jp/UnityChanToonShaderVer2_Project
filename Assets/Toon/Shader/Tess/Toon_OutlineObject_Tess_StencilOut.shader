@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.7
+//v.2.0.7.2
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -10,6 +10,7 @@ Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject_StencilOut" {
         [HideInInspector] _utsTechnique ("Technique", int ) = 2 //OutlineObj
         _StencilNo ("Stencil No", int) =1
         _MainTex ("BaseMap", 2D) = "white" {}
+        [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         //v.2.0.5 : Clipping/TransClipping for SSAO Problems in PostProcessing Stack.
         //If you want to go back the former SSAO results, comment out the below line.
