@@ -73,8 +73,14 @@
                 o.pos = UnityObjectToClipPos(v.vertex); //v.2.0.7
                 float3 viewDirection = _WorldSpaceCameraPos.xyz - o.pos.xyz;
                 float4 viewDirectionVP = mul(UNITY_MATRIX_VP, float4(viewDirection.xyz, 1));
-                //v.2.0.4.2
-                _Offset_Z = _Offset_Z * -0.01;
+                //v.2.0.7
+                #if defined(UNITY_REVERSED_Z)
+                    //v.2.0.4.2 (DX)
+                    _Offset_Z = _Offset_Z * -0.01;
+                #else
+                    //OpenGL
+                    _Offset_Z = _Offset_Z * 0.01;
+                #endif
 //v2.0.4
 #ifdef _OUTLINE_NML
                 //v.2.0.4.3 baked Normal Texture for Outline                
