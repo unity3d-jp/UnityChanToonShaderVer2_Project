@@ -116,6 +116,7 @@ Please contact us if you have any issues.
 ・AngelRing/AngelRing.unity：「天使の輪」および ShadingGradeMap を使ったキャラクターのサンプル  
 ・MatCapMask/MatCapMask.unity：MatcapMaskのサンプル  
 ・EmissiveAnimation/EmisssiveAnimation.unity：EmissiveAnimationのサンプル  
+・Mirror/MirrorTest.unity：鏡オブジェクトチェック用サンプルシーン  
 
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
@@ -137,7 +138,8 @@ When you open this project, there are the following sample scenes in `Sample Sce
 ・LightAndShadows/LightAndShadows.unity: Comparison between Standard Shader and UST2  
 ・AngelRing/AngelRing.unity: Sample of "Angel's Ring" and ShadingGradeMap  
 ・MatCapMask/MatCapMask.unity: Sample of MatcapMask  
-・EmissiveAnimation/EmisssiveAnimation.unity：Sample of EmissiveAnimation  
+・EmissiveAnimation/EmisssiveAnimation.unity: Sample of EmissiveAnimation  
+・Mirror/MirrorTest.unity: Sample scene checking for a mirror object
 
 
 Each and every scenes are for reference of shader and lighting settings.  
@@ -145,6 +147,10 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
+### 2019/05/10：2.0.7 Release：修正リリース版３  
+* テスト用シーン（Mirror/MirrorTest.unity）を追加しました。  
+* OpenGL時の_Offset_Zの符号を修正しました（UCTS_Outline.cginc）。  
+
 ### 2019/04/17：2.0.7 Release：修正リリース版２  
 * UTS2 v.2.0.4.3p1以前のバージョンから、v.2.0.7へのアップデートが簡単になりました。  
 
@@ -170,6 +176,10 @@ They will be useful for reference of the look and scene you want to make!
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
 
 ---
+### 2019 05/10: 2.0.7 Release: Fixed release version 3
+* Added a new sample scene for testing(Mirror/MirrorTest.unity).  
+* Fixed sign of _Offset_Z in UCTS_Outline.cginc for OpenGL.  
+
 ### 2019 04/17: 2.0.7 Release: Fixed release version 2
 * Updating to UTS2 v.2.0.7 is easier than with v.2.0.4.3p1 or earlier.  
 
@@ -304,12 +314,12 @@ This function was developed based on the Issue #18 of ACiiL TwitterID: @__aciil'
 
 
 -----
-最新バージョン：2.0.7 Release：修正リリース版２  
-最終リリース日：2019/04/17  
+最新バージョン：2.0.7 Release：修正リリース版３  
+最終リリース日：2019/05/10  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.7 Release: Fixed release version 2  
-Update: 2019/04/17  
+Latest Version: 2.0.7 Release: Fixed release version 3  
+Update: 2019/05/10  
 Category: 3D  
 File format: zip/unitypackage  
