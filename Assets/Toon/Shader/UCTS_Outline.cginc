@@ -1,6 +1,6 @@
 ﻿//UCTS_Outline.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.7
+//v.2.0.7.4
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -69,9 +69,8 @@
                 float3 _BakedNormalDir = normalize(mul(_BakedNormal_var.rgb, tangentTransform));
                 //ここまで.
                 float Set_Outline_Width = (_Outline_Width*0.001*smoothstep( _Farthest_Distance, _Nearest_Distance, distance(objPos.rgb,_WorldSpaceCameraPos) )*_Outline_Sampler_var.rgb).r;
-                //v.2.0.4.2 for VRChat mirror object without normalize()
                 o.pos = UnityObjectToClipPos(v.vertex); //v.2.0.7
-                float3 viewDirection = _WorldSpaceCameraPos.xyz - o.pos.xyz;
+                float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - o.pos.xyz); //v.2.0.7.4
                 float4 viewDirectionVP = mul(UNITY_MATRIX_VP, float4(viewDirection.xyz, 1));
                 //v.2.0.7
                 #if defined(UNITY_REVERSED_Z)

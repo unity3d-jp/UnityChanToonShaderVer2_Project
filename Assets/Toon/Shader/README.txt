@@ -147,6 +147,9 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
+### 2019/05/15：2.0.7 Release：修正リリース版４  
+* アウトラインにZ-Offsetを指定した場合、鏡オブジェクトに映った像のアウトラインの表示不正の発生を緩和しました。  
+
 ### 2019/05/10：2.0.7 Release：修正リリース版３  
 * テスト用シーン（Mirror/MirrorTest.unity）を追加しました。  
 * OpenGL時の_Offset_Zの符号を修正しました（UCTS_Outline.cginc）。  
@@ -176,6 +179,9 @@ They will be useful for reference of the look and scene you want to make!
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
 
 ---
+### 2019/05/15: 2.0.7 Release: Fixed release version 4
+* When Z-Offset is specified for the outline, the problem of incorrect display of the outline of the image reflected in the mirror object has been alleviated.  
+
 ### 2019 05/10: 2.0.7 Release: Fixed release version 3
 * Added a new sample scene for testing(Mirror/MirrorTest.unity).  
 * Fixed sign of _Offset_Z in UCTS_Outline.cginc for OpenGL.  
@@ -314,12 +320,12 @@ This function was developed based on the Issue #18 of ACiiL TwitterID: @__aciil'
 
 
 -----
-最新バージョン：2.0.7 Release：修正リリース版３  
-最終リリース日：2019/05/10  
+最新バージョン：2.0.7 Release：修正リリース版４  
+最終リリース日：2019/05/15  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.7 Release: Fixed release version 3  
-Update: 2019/05/10  
+Latest Version: 2.0.7 Release: Fixed release version 4  
+Update: 2019/05/15  
 Category: 3D  
 File format: zip/unitypackage  
