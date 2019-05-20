@@ -18,6 +18,10 @@
 			uniform float4 _LightColor0;
 #endif
             uniform float4 _BaseColor;
+            //v.2.0.7.5
+            uniform float _Unlit_Intensity;
+            uniform fixed _Is_Filter_LightColor;
+            uniform fixed _Is_LightColor_Outline;
             //v.2.0.5
             uniform float4 _Color;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
@@ -27,7 +31,6 @@
             uniform sampler2D _Outline_Sampler; uniform float4 _Outline_Sampler_ST;
             uniform float4 _Outline_Color;
             uniform fixed _Is_BlendBaseColor;
-            uniform fixed _Is_LightColor_Base;
             uniform float _Offset_Z;
             //v2.0.4
             uniform sampler2D _OutlineTex; uniform float4 _OutlineTex_ST;
@@ -62,7 +65,6 @@
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                //float3 lightColor = _LightColor0.rgb;
                 float2 Set_UV0 = o.uv0;
                 float4 _Outline_Sampler_var = tex2Dlod(_Outline_Sampler,float4(TRANSFORM_TEX(Set_UV0, _Outline_Sampler),0.0,0));
                 //v.2.0.4.3 baked Normal Texture for Outline
@@ -113,14 +115,15 @@
                 //v.2.0.5
                 _Color = _BaseColor;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                //float3 lightColor = _LightColor0.rgb;
+                //v.2.0.7.5
+                float3 defaultLightColor = saturate(max(half3(0.05,0.05,0.05)*_Unlit_Intensity,max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
+                float3 lightColor = lerp(max(defaultLightColor,_LightColor0.rgb),max(defaultLightColor,saturate(_LightColor0.rgb)),_Is_Filter_LightColor);
+                lightColor = lerp(float3(1,1,1), lightColor, _Is_LightColor_Outline);
                 float2 Set_UV0 = i.uv0;
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
-                float3 _BaseColorMap_var = (_BaseColor.rgb*_MainTex_var.rgb);
-                //v.2.0.5
-                float3 Set_BaseColor = lerp( _BaseColorMap_var, (_BaseColorMap_var*saturate(_LightColor0.rgb)), _Is_LightColor_Base );
-                //v.2.0.4
-                float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor), _Is_BlendBaseColor );
+                float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
+                float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
+                //
                 float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_NO
@@ -137,4 +140,4 @@
                 return Set_Outline_Color;
 #endif
             }
-// UCTS_Outline.cginc ここまで.
+// UCTS_Outline_Tess.cginc ここまで.

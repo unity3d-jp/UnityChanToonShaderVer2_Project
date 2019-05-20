@@ -149,6 +149,7 @@ They will be useful for reference of the look and scene you want to make!
 ## 【Version】
 ### 2019/05/20：2.0.7 Release：修正リリース版５  
 * 修正リリース版４を破棄し、新規に「アウトラインにZ-Offsetを指定した場合、鏡オブジェクトに映った像のアウトラインの表示不正」を修正しました。  
+* 従来はBase Colorと一緒になっていた、_Is_LightColor_Outlineを追加しました。カスタムGUIからは「LightColor Contribution to Materials」メニューからアクセスできます。  
 
 ### 2019/05/15：2.0.7 Release：修正リリース版４  
 * アウトラインにZ-Offsetを指定した場合、鏡オブジェクトに映った像のアウトラインの表示不正の発生を緩和しました。  
@@ -184,6 +185,7 @@ They will be useful for reference of the look and scene you want to make!
 ---
 ### 2019/05/20: 2.0.7 Release: Fixed release version 5
 * Fixed Version 4 has been discarded and a new "the problem of incorrect display of the image outline reflected in the mirror object when Z-Offset is specified in the outline" has been corrected.  
+* Added _Is_LightColor_Outline, which was formerly with Base Color. You can access it from the "LightColor Contribution to Materials" menu from the custom GUI Inspctor.  
 
 ### 2019/05/15: 2.0.7 Release: Fixed release version 4
 * When Z-Offset is specified for the outline, the problem of incorrect display of the outline of the image reflected in the mirror object has been alleviated.  

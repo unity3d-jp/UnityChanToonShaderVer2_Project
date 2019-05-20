@@ -818,6 +818,10 @@ namespace UnityChan
             if(material.HasProperty("_AngelRing")){//AngelRingがある場合.
                 material.SetFloat("_Is_LightColor_AR",1);
             }
+            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+            {
+                material.SetFloat("_Is_LightColor_Outline",1);
+            }
             material.SetFloat("_Set_SystemShadowsToBase",1);
             material.SetFloat("_Is_Filter_HiCutPointLightColor",1);
 
@@ -1854,6 +1858,25 @@ namespace UnityChan
                     }
                 EditorGUILayout.EndHorizontal();
             }
+
+            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Outline");
+                //GUILayout.Space(60);
+                    if(material.GetFloat("_Is_LightColor_Outline") == 0){
+                        if (GUILayout.Button("Off",shortButtonStyle))
+                        {
+                            material.SetFloat("_Is_LightColor_Outline",1);
+                        }
+                    }else{
+                        if (GUILayout.Button("Active",shortButtonStyle))
+                        {
+                            material.SetFloat("_Is_LightColor_Outline",0);
+                        }
+                    }
+                EditorGUILayout.EndHorizontal();
+            }
             EditorGUILayout.Space();
         }
 
@@ -1872,6 +1895,10 @@ namespace UnityChan
                         material.SetFloat("_Is_LightColor_Base",1);
                         material.SetFloat("_Is_LightColor_1st_Shade",1);
                         material.SetFloat("_Is_LightColor_2nd_Shade",1);
+                        if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+                        {
+                            material.SetFloat("_Is_LightColor_Outline",1);
+                        }
                     }
                 }else{
                     if (GUILayout.Button("Active",shortButtonStyle))
