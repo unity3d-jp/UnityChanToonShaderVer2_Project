@@ -147,6 +147,9 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
+### 2019/05/20：2.0.7 Release：修正リリース版５  
+* 修正リリース版４を破棄し、新規に「アウトラインにZ-Offsetを指定した場合、鏡オブジェクトに映った像のアウトラインの表示不正」を修正しました。  
+
 ### 2019/05/15：2.0.7 Release：修正リリース版４  
 * アウトラインにZ-Offsetを指定した場合、鏡オブジェクトに映った像のアウトラインの表示不正の発生を緩和しました。  
 
@@ -179,6 +182,9 @@ They will be useful for reference of the look and scene you want to make!
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
 
 ---
+### 2019/05/20: 2.0.7 Release: Fixed release version 5
+* Fixed Version 4 has been discarded and a new "the problem of incorrect display of the image outline reflected in the mirror object when Z-Offset is specified in the outline" has been corrected.  
+
 ### 2019/05/15: 2.0.7 Release: Fixed release version 4
 * When Z-Offset is specified for the outline, the problem of incorrect display of the outline of the image reflected in the mirror object has been alleviated.  
 
@@ -320,12 +326,12 @@ This function was developed based on the Issue #18 of ACiiL TwitterID: @__aciil'
 
 
 -----
-最新バージョン：2.0.7 Release：修正リリース版４  
-最終リリース日：2019/05/15  
+最新バージョン：2.0.7 Release：修正リリース版５  
+最終リリース日：2019/05/20  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.7 Release: Fixed release version 4  
-Update: 2019/05/15  
+Latest Version: 2.0.7 Release: Fixed release version 5  
+Update: 2019/05/20  
 Category: 3D  
 File format: zip/unitypackage  

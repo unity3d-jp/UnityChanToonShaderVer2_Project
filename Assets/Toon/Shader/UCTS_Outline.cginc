@@ -1,6 +1,6 @@
 ﻿//UCTS_Outline.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.7.4
+//v.2.0.7.5
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -69,9 +69,8 @@
                 float3 _BakedNormalDir = normalize(mul(_BakedNormal_var.rgb, tangentTransform));
                 //ここまで.
                 float Set_Outline_Width = (_Outline_Width*0.001*smoothstep( _Farthest_Distance, _Nearest_Distance, distance(objPos.rgb,_WorldSpaceCameraPos) )*_Outline_Sampler_var.rgb).r;
-                o.pos = UnityObjectToClipPos(v.vertex); //v.2.0.7
-                float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - o.pos.xyz); //v.2.0.7.4
-                float4 viewDirectionVP = mul(UNITY_MATRIX_VP, float4(viewDirection.xyz, 1));
+                //v.2.0.7.5
+                float4 _ClipCameraPos = mul(UNITY_MATRIX_VP, float4(_WorldSpaceCameraPos.xyz, 1));
                 //v.2.0.7
                 #if defined(UNITY_REVERSED_Z)
                     //v.2.0.4.2 (DX)
@@ -82,14 +81,15 @@
                 #endif
 //v2.0.4
 #ifdef _OUTLINE_NML
-                //v.2.0.4.3 baked Normal Texture for Outline                
+                //v.2.0.4.3 baked Normal Texture for Outline
                 o.pos = UnityObjectToClipPos(lerp(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1), float4(v.vertex.xyz + _BakedNormalDir*Set_Outline_Width,1),_Is_BakedNormal));
 #elif _OUTLINE_POS
                 Set_Outline_Width = Set_Outline_Width*2;
                 float signVar = dot(normalize(v.vertex),normalize(v.normal))<0 ? -1 : 1;
                 o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + signVar*normalize(v.vertex)*Set_Outline_Width, 1));
 #endif
-                o.pos.z = o.pos.z + _Offset_Z*viewDirectionVP.z;
+                //v.2.0.7.5
+                o.pos.z = o.pos.z + _Offset_Z * _ClipCameraPos.z;
                 return o;
             }
             float4 frag(VertexOutput i) : SV_Target{

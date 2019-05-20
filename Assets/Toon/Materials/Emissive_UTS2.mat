@@ -150,7 +150,7 @@ Material:
     - _Use_BaseAs1st: 0
     - _simpleUI: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.074
+    - _utsVersion: 2.075
     m_Colors:
     - _1st_ShadeColor: {r: 0, g: 0, b: 0, a: 1}
     - _2nd_ShadeColor: {r: 0, g: 0, b: 0, a: 1}

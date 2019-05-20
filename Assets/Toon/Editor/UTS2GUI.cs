@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//UTS2GUI.cs for UTS2 v.2.0.7.4
+//UTS2GUI.cs for UTS2 v.2.0.7.5
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -36,7 +36,7 @@ namespace UnityChan
 
         //各種設定保持用.
         //UTS2のバージョン.
-        static float _UTS2VersionNumber = 2.074f; 
+        static float _UTS2VersionNumber = 2.075f; 
         //
         static int _StencilNo_Setting;
         static bool _HasOutline = true;
