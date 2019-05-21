@@ -39,7 +39,7 @@ namespace UnityChan
         static float _UTS2VersionNumber = 2.075f; 
         //
         static int _StencilNo_Setting;
-        static bool _HasOutline = true;
+        //static bool _HasOutline = true;
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false; 
         //メッセージ表示用.
@@ -504,7 +504,7 @@ namespace UnityChan
             EditorGUILayout.Space();
 
             if(material.HasProperty("_OUTLINE")){
-                _HasOutline = true;
+                //_HasOutline = true;
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -514,8 +514,8 @@ namespace UnityChan
                     EditorGUI.indentLevel--;
                 }
                 EditorGUILayout.Space();
-            }else{
-                _HasOutline = false;
+            //}else{
+                //_HasOutline = false;
             }
 
             if(material.HasProperty("_TessEdgeLength")){
@@ -818,19 +818,13 @@ namespace UnityChan
             if(material.HasProperty("_AngelRing")){//AngelRingがある場合.
                 material.SetFloat("_Is_LightColor_AR",1);
             }
-            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
-            {
-                material.SetFloat("_Is_LightColor_Outline",1);
-            }
             material.SetFloat("_Set_SystemShadowsToBase",1);
             material.SetFloat("_Is_Filter_HiCutPointLightColor",1);
-
             material.SetFloat("_CameraRolling_Stabilizer",1);
             material.SetFloat("_Is_Ortho",0);
-
-            if(_HasOutline){
-                material.SetFloat("_Is_BlendBaseColor",1);
-            }
+            // if(_HasOutline){
+            //     material.SetFloat("_Is_BlendBaseColor",1);
+            // }
             material.SetFloat("_GI_Intensity",0);
             material.SetFloat("_Unlit_Intensity",1);
             material.SetFloat("_Is_Filter_LightColor",1);
@@ -1859,24 +1853,6 @@ namespace UnityChan
                 EditorGUILayout.EndHorizontal();
             }
 
-            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
-            {
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PrefixLabel("Outline");
-                //GUILayout.Space(60);
-                    if(material.GetFloat("_Is_LightColor_Outline") == 0){
-                        if (GUILayout.Button("Off",shortButtonStyle))
-                        {
-                            material.SetFloat("_Is_LightColor_Outline",1);
-                        }
-                    }else{
-                        if (GUILayout.Button("Active",shortButtonStyle))
-                        {
-                            material.SetFloat("_Is_LightColor_Outline",0);
-                        }
-                    }
-                EditorGUILayout.EndHorizontal();
-            }
             EditorGUILayout.Space();
         }
 
@@ -1895,10 +1871,6 @@ namespace UnityChan
                         material.SetFloat("_Is_LightColor_Base",1);
                         material.SetFloat("_Is_LightColor_1st_Shade",1);
                         material.SetFloat("_Is_LightColor_2nd_Shade",1);
-                        if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
-                        {
-                            material.SetFloat("_Is_LightColor_Outline",1);
-                        }
                     }
                 }else{
                     if (GUILayout.Button("Active",shortButtonStyle))

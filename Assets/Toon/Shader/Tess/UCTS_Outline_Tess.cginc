@@ -21,7 +21,6 @@
             //v.2.0.7.5
             uniform float _Unlit_Intensity;
             uniform fixed _Is_Filter_LightColor;
-            uniform fixed _Is_LightColor_Outline;
             //v.2.0.5
             uniform float4 _Color;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
@@ -120,8 +119,8 @@
                 float defaultLightColorIntensity = (0.299*defaultLightColor.r + 0.587*defaultLightColor.g + 0.114*defaultLightColor.b);
                 defaultLightColorIntensity = lerp(defaultLightColorIntensity, saturate(defaultLightColorIntensity), _Is_Filter_LightColor);
                 float3 lightColor = saturate(lerp(max(defaultLightColor,_LightColor0.rgb),max(defaultLightColor,saturate(_LightColor0.rgb)),_Is_Filter_LightColor));
-                float3 Unlit_LightColor_Level = saturate(float3(defaultLightColorIntensity,defaultLightColorIntensity,defaultLightColorIntensity)*_Unlit_Intensity*2);
-                lightColor = lerp(Unlit_LightColor_Level, max(lightColor,Unlit_LightColor_Level), _Is_LightColor_Outline);
+                float3 Unlit_LightColor_Level = saturate(float3(defaultLightColorIntensity,defaultLightColorIntensity,defaultLightColorIntensity)*_Unlit_Intensity*3);
+                lightColor = max(lightColor,Unlit_LightColor_Level);
                 float2 Set_UV0 = i.uv0;
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
                 float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
