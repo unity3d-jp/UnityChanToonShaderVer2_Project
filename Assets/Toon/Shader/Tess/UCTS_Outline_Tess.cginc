@@ -115,23 +115,22 @@
                 //v.2.0.5
                 _Color = _BaseColor;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                //v.2.0.7.5  
-                float3 defaultLightColor = saturate(max(half3(0.05,0.05,0.05),max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
-                float defaultLightColorIntensity = (0.299*defaultLightColor.r + 0.587*defaultLightColor.g + 0.114*defaultLightColor.b);
-                defaultLightColorIntensity = lerp(defaultLightColorIntensity, saturate(defaultLightColorIntensity), _Is_Filter_LightColor);
-                float3 lightColor = saturate(lerp(max(defaultLightColor,_LightColor0.rgb),max(defaultLightColor,saturate(_LightColor0.rgb)),_Is_Filter_LightColor));
-                float3 Unlit_LightColor_Level = saturate(float3(defaultLightColorIntensity,defaultLightColorIntensity,defaultLightColorIntensity)*_Unlit_Intensity*2);
-                lightColor = lerp(Unlit_LightColor_Level, max(lightColor,Unlit_LightColor_Level), _Is_LightColor_Outline);
+                //v.2.0.7.5
+                half3 ambientSkyColor = unity_AmbientSky.rgb>0.05 ? unity_AmbientSky.rgb*_Unlit_Intensity : half3(0.05,0.05,0.05)*_Unlit_Intensity;
+                float3 lightColor = _LightColor0.rgb >0.05 ? _LightColor0.rgb : ambientSkyColor.rgb;
+                float lightColorIntensity = (0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b);
+                lightColor = lightColorIntensity<1 ? lightColor : lightColor/lightColorIntensity;
+                lightColor = lerp(half3(1.0,1.0,1.0), lightColor, _Is_LightColor_Outline);
                 float2 Set_UV0 = i.uv0;
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
                 float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
-                float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*lightColor), _Is_BlendBaseColor );
+                float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
                 //
                 float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));
-//v.2.0.4
+//v.2.0.7.5
 #ifdef _IS_OUTLINE_CLIPPING_NO
-                float3 Set_Outline_Color = lerp(_Is_BlendBaseColor_var, _OutlineTex_var.rgb*_Is_BlendBaseColor_var, _Is_OutlineTex );
-                return fixed4(Set_Outline_Color,1.0);
+                float3 Set_Outline_Color = lerp(_Is_BlendBaseColor_var, _OutlineTex_var.rgb*_Outline_Color.rgb*lightColor, _Is_OutlineTex );
+                return float4(Set_Outline_Color,1.0);
 #elif _IS_OUTLINE_CLIPPING_YES
                 float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
                 float Set_MainTexAlpha = _MainTex_var.a;
@@ -139,7 +138,7 @@
                 float _Inverse_Clipping_var = lerp( _IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping );
                 float Set_Clipping = saturate((_Inverse_Clipping_var+_Clipping_Level));
                 clip(Set_Clipping - 0.5);
-                float4 Set_Outline_Color = lerp( float4(_Is_BlendBaseColor_var,Set_Clipping), float4((_OutlineTex_var.rgb*_Is_BlendBaseColor_var),Set_Clipping), _Is_OutlineTex );
+                float4 Set_Outline_Color = lerp( float4(_Is_BlendBaseColor_var,Set_Clipping), float4((_OutlineTex_var.rgb*_Outline_Color.rgb*lightColor),Set_Clipping), _Is_OutlineTex );
                 return Set_Outline_Color;
 #endif
             }

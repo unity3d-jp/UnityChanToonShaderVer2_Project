@@ -39,7 +39,6 @@ namespace UnityChan
         static float _UTS2VersionNumber = 2.075f; 
         //
         static int _StencilNo_Setting;
-        static bool _HasOutline = true;
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false; 
         //メッセージ表示用.
@@ -504,7 +503,6 @@ namespace UnityChan
             EditorGUILayout.Space();
 
             if(material.HasProperty("_OUTLINE")){
-                _HasOutline = true;
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -514,8 +512,6 @@ namespace UnityChan
                     EditorGUI.indentLevel--;
                 }
                 EditorGUILayout.Space();
-            }else{
-                _HasOutline = false;
             }
 
             if(material.HasProperty("_TessEdgeLength")){
@@ -824,13 +820,8 @@ namespace UnityChan
             }
             material.SetFloat("_Set_SystemShadowsToBase",1);
             material.SetFloat("_Is_Filter_HiCutPointLightColor",1);
-
             material.SetFloat("_CameraRolling_Stabilizer",1);
             material.SetFloat("_Is_Ortho",0);
-
-            if(_HasOutline){
-                material.SetFloat("_Is_BlendBaseColor",1);
-            }
             material.SetFloat("_GI_Intensity",0);
             material.SetFloat("_Unlit_Intensity",1);
             material.SetFloat("_Is_Filter_LightColor",1);
