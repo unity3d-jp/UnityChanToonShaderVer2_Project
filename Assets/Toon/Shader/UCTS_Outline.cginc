@@ -98,14 +98,17 @@
                 //v.2.0.5
                 _Color = _BaseColor;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                //v.2.0.7.5
-                float3 defaultLightColor = saturate(max(half3(0.05,0.05,0.05)*_Unlit_Intensity,max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
-                float3 lightColor = lerp(max(defaultLightColor,_LightColor0.rgb),max(defaultLightColor,saturate(_LightColor0.rgb)),_Is_Filter_LightColor);
-                lightColor = lerp(float3(1,1,1), lightColor, _Is_LightColor_Outline);
+                //v.2.0.7.5  
+                float3 defaultLightColor = saturate(max(half3(0.05,0.05,0.05),max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
+                float defaultLightColorIntensity = (0.299*defaultLightColor.r + 0.587*defaultLightColor.g + 0.114*defaultLightColor.b);
+                defaultLightColorIntensity = lerp(defaultLightColorIntensity, saturate(defaultLightColorIntensity), _Is_Filter_LightColor);
+                float3 lightColor = saturate(lerp(max(defaultLightColor,_LightColor0.rgb),max(defaultLightColor,saturate(_LightColor0.rgb)),_Is_Filter_LightColor));
+                float3 Unlit_LightColor_Level = saturate(float3(defaultLightColorIntensity,defaultLightColorIntensity,defaultLightColorIntensity)*_Unlit_Intensity*2);
+                lightColor = lerp(Unlit_LightColor_Level, max(lightColor,Unlit_LightColor_Level), _Is_LightColor_Outline);
                 float2 Set_UV0 = i.uv0;
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
                 float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
-                float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
+                float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*lightColor), _Is_BlendBaseColor );
                 //
                 float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));
 //v.2.0.4
