@@ -147,9 +147,9 @@ They will be useful for reference of the look and scene you want to make!
 
 -----
 ## 【Version】
-### 2019/05/20：2.0.7 Release：修正リリース版５  
+### 2019/05/22：2.0.7 Release：修正リリース版５  
 * 修正リリース版４を破棄し、新規に「アウトラインにZ-Offsetを指定した場合、鏡オブジェクトに映った像のアウトラインの表示不正」を修正しました。  
-* 従来はBase Colorと一緒になっていた、_Is_LightColor_Outlineを追加しました。カスタムGUIからは「LightColor Contribution to Materials」メニューからアクセスできます。  
+* アウトラインカラーへライトカラーを反応させる、"_Is_LightColor_Outline"を追加しました。カスタムGUIからは「LightColor Contribution to Materials」メニューから"Outline"ボタンを"Active"にすることで機能をONにすることができます。アウトラインの場合、ライトカラーへの反応はいくつか仕様上の制約がありますので、詳しくはマニュアルを参照してください。  
 
 ### 2019/05/15：2.0.7 Release：修正リリース版４  
 * アウトラインにZ-Offsetを指定した場合、鏡オブジェクトに映った像のアウトラインの表示不正の発生を緩和しました。  
@@ -183,9 +183,9 @@ They will be useful for reference of the look and scene you want to make!
 * 全てのバージョンのUnityで、鏡に映るMatCapの像とCamera Rolling Stabilizerが正しく機能するようになりました。  
 
 ---
-### 2019/05/20: 2.0.7 Release: Fixed release version 5
+### 2019/05/22: 2.0.7 Release: Fixed release version 5
 * Fixed Version 4 has been discarded and a new "the problem of incorrect display of the image outline reflected in the mirror object when Z-Offset is specified in the outline" has been corrected.  
-* Added _Is_LightColor_Outline, which was formerly with Base Color. You can access it from the "LightColor Contribution to Materials" menu from the custom GUI Inspctor.  
+* Added "_Is_LightColor_Outline" to make light color react to outline color. From the custom GUI, the function can be turned on by setting "Outline" button to "Active" from "LightColor Contribution to Materials" menu. In the case of the outline, there are some specification restrictions on the reaction to the light color, so please refer to the manual for details.  
 
 ### 2019/05/15: 2.0.7 Release: Fixed release version 4
 * When Z-Offset is specified for the outline, the problem of incorrect display of the outline of the image reflected in the mirror object has been alleviated.  
@@ -329,11 +329,11 @@ This function was developed based on the Issue #18 of ACiiL TwitterID: @__aciil'
 
 -----
 最新バージョン：2.0.7 Release：修正リリース版５  
-最終リリース日：2019/05/20  
+最終リリース日：2019/05/22  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 Latest Version: 2.0.7 Release: Fixed release version 5  
-Update: 2019/05/20  
+Update: 2019/05/22  
 Category: 3D  
 File format: zip/unitypackage  
