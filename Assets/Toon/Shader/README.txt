@@ -329,11 +329,11 @@ This function was developed based on the Issue #18 of ACiiL TwitterID: @__aciil'
 
 -----
 最新バージョン：2.0.7 Release：修正リリース版５  
-最終リリース日：2019/05/22  
+最終リリース日：2019/05/25  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 Latest Version: 2.0.7 Release: Fixed release version 5  
-Update: 2019/05/22  
+Update: 2019/05/25  
 Category: 3D  
 File format: zip/unitypackage  

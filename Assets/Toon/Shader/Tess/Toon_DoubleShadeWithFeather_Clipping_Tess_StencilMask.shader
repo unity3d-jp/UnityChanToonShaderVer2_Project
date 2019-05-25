@@ -135,6 +135,7 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather_Clipping_St
         _Outline_Sampler ("Outline_Sampler", 2D) = "white" {}
         _Outline_Color ("Outline_Color", Color) = (0.5,0.5,0.5,1)
         [Toggle(_)] _Is_BlendBaseColor ("Is_BlendBaseColor", Float ) = 0
+        [Toggle(_)] _Is_LightColor_Outline ("Is_LightColor_Outline", Float ) = 1
         [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
         //v.2.0.4
         [Toggle(_)] _Is_OutlineTex ("Is_OutlineTex", Float ) = 0
