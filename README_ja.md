@@ -27,12 +27,12 @@ UTS2は、「**基本色（ベースカラー）**」、「**１影色**」、�
 
 これらデザイン上必要となる固定影の配置も、各影色ごとに発生する位置を設定できる「**ポジションマップ**」と、ライティングによって影の出やすさを変えることのできる「**シェーディンググレードマップ**」の、２つの手法が選べます。  
 
-[![](https://img.youtube.com/vi/vEVx5xOMWG4/0.jpg)](https://www.youtube.com/watch?v=vEVx5xOMWG4)
+<img width = "350" src="Manual/Images_jpg/UTS2_TopImage06.gif">
 
 また昨今のVRChatでのユーザーの声を反映し、様々なライティング設定の環境下でも、キャラクターが美しく表現されるように様々な工夫が実装されています。  
 
-<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_00.jpg">
-<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_01.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage07_00.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage07_01.jpg">
 
 -----
 ## 【ユーザーマニュアル】

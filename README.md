@@ -27,12 +27,12 @@ In Animation movies, shadows are used not only to represent light directions but
 
 For this purpose, UTS2 also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting.  
 
-[![](https://img.youtube.com/vi/vEVx5xOMWG4/0.jpg)](https://www.youtube.com/watch?v=vEVx5xOMWG4)
+<img width = "350" src="Manual/Images_jpg/UTS2_TopImage06.gif">
 
 Finally, several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat users.  
 
-<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_00.jpg">
-<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_01.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage07_00.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage07_01.jpg">
 
 -----
 ## 【Users' Manual】
