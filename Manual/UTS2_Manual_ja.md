@@ -9,7 +9,7 @@
 * v.2.0.4.3p1以前からアップデートをする場合、HiColor_Powerのスライダの感度調整をした影響が出る場合があります。以下に従って調整をしてください。  
 1. Is_SpecularToHighColor=OFF/Is_BlendAddToHiColor=0FFの場合には、HiColor_Powerの値を今までよりも低めに調整してください。  
 2. Is_SpecularToHighColor=ONで利用している場合には、特に修正する必要はありません。  
-* 最新事項や履歴情報は、 **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)** でご確認ください。  
+* 最新事項や履歴情報は、 **[README_ja.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README_ja.md)** でご確認ください。  
 ---
 
 ## VRChatユーザー向けの便利機能について
@@ -101,7 +101,7 @@ Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルッ�
 是非、貴方のご自慢のキャラクターモデルをユニティちゃんトゥーンシェーダー 2.0（UTS2）で彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、ユニティちゃんトゥーンシェーダー 2.0の最新版 **UTS2 v.2.0.5 Release** 向けに書かれています。  
+本マニュアルは、ユニティちゃんトゥーンシェーダー 2.0の最新版 **UTS2 v.2.0.7** 向けに書かれています。  
 
 
 ## 【開発環境】
@@ -280,7 +280,7 @@ Phong テッセレーションを利用することで、アウトラインの�
 
 
 # サンプルシーン
-プロジェクトを開くと、\Assets\Sample Scenesフォルダ以下に、次のようなサンプルシーンがあります。  
+プロジェクトを開くと、`\Assets\Sample Scenes`フォルダ以下に、次のようなサンプルシーンがあります。  
 
 * BoxProjection.unity		：Box Projection を使った暗い部屋のライティング  
 * ToonShader.unity			：イラストルックのシェーダー設定  
@@ -294,9 +294,10 @@ Phong テッセレーションを利用することで、アウトラインの�
 * SSAO Test\SSAO.unity		：SSAO in PPSのテスト用  
 * NormalMap\NormalMap.unity	：UTS2でノーマルマップを使う際のコツ  
 * LightAndShadows\LightAndShadows.unity：スタンダードシェーダーとUTS2との比較  
-* AngelRing\AngelRing.unity：「天使の輪」とシェーディンググレードマップのサンプル  
+* AngelRing\AngelRing.unity：「天使の輪」および ShadingGradeMap を使ったキャラクターのサンプル  
 * MatCapMask\MatCapMask.unity：MatcapMaskのサンプル  
 * EmissiveAnimation\EmisssiveAnimation.unity：EmissiveAnimationのサンプル  
+* Mirror\MirrorTest.unity：鏡オブジェクトチェック用サンプルシーン  
 
 
 各シーンは、シェーダーやライティングの設定の参考用です。  

@@ -99,7 +99,7 @@ See for yourself by coloring your best character model with Unity-Chan Toon Shad
 
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.0.5 Release**.  
+This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.0.7**.  
 
 ## 【Development Environment】
 Unity-Chan Toon Shader Ver. 2.0 is developed based on Unity 5.6.3p1, and verification of compatibility with the latest versions of Unity 2018.x is ongoing.  
@@ -284,9 +284,10 @@ The following sample scenes can be found by opening a project and opening the \A
 * SSAO Test\SSAO.unity        ：Test for SSAO in PPS.  
 * NormalMap\NormalMap.unity    ：Tricks for using the normal map with UTS2.  
 * LightAndShadows\LightAndShadows.unity：Comparison between the standard shader and UTS2.  
-* AngelRing\AngelRing.unity：”Angel ring” and ShadingGradeMap sample.  
+* AngelRing\AngelRing.unity：`Angel ring` and `ShadingGradeMap` sample.  
 * MatCapMask\MatCapMask.unity：MatcapMask sample.  
 * EmissiveAnimation\EmisssiveAnimation.unity：EmissiveAnimation sample.  
+* Mirror\MirrorTest.unity: Sample scene checking for a mirror object  
 
 
 Each scene is intended as a reference for the relevant shader and lighting settings.  
