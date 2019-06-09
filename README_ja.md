@@ -4,8 +4,8 @@
 
 ***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md).***  
 
-## 【UTS2の概要】  
-**ユニティちゃんトゥーンシェーダー 2.0(UTS2)**は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。UTS2の強力な機能を使うことで、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
+## 【UTS2の概要】
+**ユニティちゃんトゥーンシェーダー 2.0(UTS2)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。UTS2の強力な機能を使うことで、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
 
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage01.jpg">
 
