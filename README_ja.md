@@ -1,29 +1,29 @@
 # 【ユニティちゃんトゥーンシェーダー 2.0 (UTS2) Ver.2.0.7】
 ---
-<img width = "800" src="Images_jpg/UTS2_TopImage00.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
 ***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md).***  
 
 ## 【UTS2の概要】  
 **ユニティちゃんトゥーンシェーダー 2.0(UTS2)**は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。UTS2の強力な機能を使うことで、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage01.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage01.jpg">
 
 UTS2は、「**基本色（ベースカラー）**」、「**１影色**」、「**２影色**」からなる基本３色による塗り分けに加えて、「**ハイカラー**」や「**リムライト**」、「**MatCap**（スフィアマッピング）」、「**エミッシブ**（自己発光）」などの沢山のオプションを追加することで、各カラーやテクスチャを様々に彩ることができます。  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage02.gif">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage02.gif">
 
 また各カラー間のぼかし加減も、Unity上でリアルタイムに調整することが可能となっています。  
 
-<img width = "480" src="Images_jpg/UTS2_TopImage03.gif">
+<img width = "480" src="Manual/Images_jpg/UTS2_TopImage03.gif">
 
 アニメーション制作の現場では、各シーンごとに各々のパーツに対してカラーデザインがなされます。またこれらのカラーデザインを作るスペシャリストがいるのが一般的です。UTS2はそのようなパイプラインに適した設計になっています。  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage04.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage04.jpg">
 
 アニメーション映画では、影は光の差し込む方向を表すためだけでなく、キャラクターの形状を明確にするためにも使用されます。影は、単なる影に留まらず、キャラクターデザインの重要な部分を占めています。  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage05.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage05.jpg">
 
 これらデザイン上必要となる固定影の配置も、各影色ごとに発生する位置を設定できる「**ポジションマップ**」と、ライティングによって影の出やすさを変えることのできる「**シェーディンググレードマップ**」の、２つの手法が選べます。  
 
@@ -31,8 +31,8 @@ UTS2は、「**基本色（ベースカラー）**」、「**１影色**」、「**２影色**」からなる基
 
 また昨今のVRChatでのユーザーの声を反映し、様々なライティング設定の環境下でも、キャラクターが美しく表現されるように様々な工夫が実装されています。  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage06_00.jpg">
-<img width = "800" src="Images_jpg/UTS2_TopImage06_01.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_00.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_01.jpg">
 
 -----
 ## 【ユーザーマニュアル】

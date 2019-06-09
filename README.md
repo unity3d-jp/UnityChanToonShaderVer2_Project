@@ -1,29 +1,29 @@
 # 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.7】
 ---
-<img width = "800" src="Images_jpg/UTS2_TopImage00.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
 ***Read this document in other languages: [日本語](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README_ja.md).***  
 
 ## 【Overview : What is UTS2?】  
 **Unity-Chan Toon Shader 2.0(UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. UTS2 has great power and makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage01.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage01.jpg">
 
 UTS2 has the 3 basic layers of **Base Color**, **1st Shade Color**, and **2nd Shade Color**, colors and textures can also accept a wide variety of customization options, such as **High Color**, **Rim Light**, **MatCap** (sphere mapping), and **Emissive** (light emission).  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage02.gif">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage02.gif">
 
 The level of gradation between colors can also be adjusted in Unity in real-time.  
 
-<img width = "480" src="Images_jpg/UTS2_TopImage03.gif">
+<img width = "480" src="Manual/Images_jpg/UTS2_TopImage03.gif">
 
 In animation production, color design is made for each part in each scene unit. It is common to have specialists who make these color designs. UTS2 is suitable for such pipelines.  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage04.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage04.jpg">
 
 In Animation movies, shadows are used not only to represent light directions but also to clarify shapes of characters. It’s not just shadow, but a vital part of character design.  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage05.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage05.jpg">
 
 For this purpose, UTS2 also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting.  
 
@@ -31,8 +31,8 @@ For this purpose, UTS2 also has 2 options for creating fixed shadows necessary t
 
 Finally, several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat users.  
 
-<img width = "800" src="Images_jpg/UTS2_TopImage06_00.jpg">
-<img width = "800" src="Images_jpg/UTS2_TopImage06_01.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_00.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage06_01.jpg">
 
 -----
 ## 【Users' Manual】
