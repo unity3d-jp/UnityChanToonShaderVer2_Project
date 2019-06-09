@@ -1,5 +1,5 @@
-# Release History of UTS2
-## ÅyVersionÅz
+Ôªø# Release History of UTS2
+## Version
 ### 2019/05/22: 2.0.7 Release: Fixed release version 5
 * Fixed Version 4 has been discarded and a new "the problem of incorrect display of the image outline reflected in the mirror object when Z-Offset is specified in the outline" has been corrected.  
 * Added "_Is_LightColor_Outline" to make light color react to outline color. From the custom GUI, the function can be turned on by setting "Outline" button to "Active" from "LightColor Contribution to Materials" menu. In the case of the outline, there are some specification restrictions on the reaction to the light color, so please refer to the manual for details.  
@@ -67,7 +67,7 @@ This function was developed based on the Issue #18 of ACiiL TwitterID: @__aciil'
 * The maximum value of Unlit_Intensity has been changed from 2 to 4.
 
 ---
-### ÅyVersion Update HistoryÅz
+### Version Update History
 2019/01/07: 2.0.5 Release: Fixed illegal termination when opening the project on macOS / Unity 2018.3.0f2.  
 2018/11/22: 2.0.5 Release: Release version.  
 2018/11/16: 2.0.5 Test07: Bugfix.  
