@@ -1,9 +1,79 @@
 ﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
-### 2019/04/17 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md)***  
 
+# もくじ
+- [【重要】旧バージョンから、直接v.2.0.7へバージョンアップをする場合の注意](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E9%87%8D%E8%A6%81%E6%97%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89%E7%9B%B4%E6%8E%A5v207%E3%81%B8%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E3%82%92%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E6%B3%A8%E6%84%8F)
+- [ユニティちゃんトゥーンシェーダー 2.0 の紹介](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%A6%E3%83%8B%E3%83%86%E3%82%A3%E3%81%A1%E3%82%83%E3%82%93%E3%83%88%E3%82%A5%E3%83%BC%E3%83%B3%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC-20-%E3%81%AE%E7%B4%B9%E4%BB%8B)
+  - [【開発環境】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83)
+  - [【ターゲット環境】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%BF%E3%83%BC%E3%82%B2%E3%83%83%E3%83%88%E7%92%B0%E5%A2%83)
+  - [【プロジェクト全体のダウンロード】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E5%85%A8%E4%BD%93%E3%81%AE%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89)
+  - [【インストールの仕方】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%AE%E4%BB%95%E6%96%B9)
+  - [【UTS2の基本的な設定の仕方】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#uts2%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E4%BB%95%E6%96%B9)
+- [UTS2各シェーダーの使い分け](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#uts2%E5%90%84%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91)
+  - [UnityChanToonShaderルートフォルダ内のシェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#unitychantoonshader%E3%83%AB%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
+  - [UnityChanToonShader/NoOutlineフォルダ内のシェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#unitychantoonshadernooutline%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
+  - [UnityChanToonShader/AngelRingフォルダ内のシェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#unitychantoonshaderangelring%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
+  - [UnityChanToonShader/Mobileフォルダ内のシェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#unitychantoonshadermobile%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
+  - [UnityChanToonShader/Tessellationフォルダ内のシェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#unitychantoonshadertessellation%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
+  - [UnityChanToonShader/Helperフォルダ内のシェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#unitychantoonshaderhelper%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
+- [サンプルシーン](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B7%E3%83%BC%E3%83%B3)
+- [プロジェクトの初期設定](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A)
+- [UTS2 設定メニュー：UTS2カスタムインスペクター](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#uts2%E8%A8%AD%E5%AE%9A%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BCuts2%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC)
+  - [1. UTS2の基本設定をおこなう「Basic Shader Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#1-uts2%E3%81%AE%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%8A%E3%81%93%E3%81%AA%E3%81%86basic-shader-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [VRChatユーザー向けの便利機能について](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#vrchat%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E5%90%91%E3%81%91%E3%81%AE%E4%BE%BF%E5%88%A9%E6%A9%9F%E8%83%BD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+      - [『UTS2でマテリアル設定をはじめる時』](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#uts2%E3%81%A7%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B%E6%99%82)
+        - [暗いワールドでのキャラの見え方を明るくしたい場合](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#-%E6%9A%97%E3%81%84%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%81%A7%E3%81%AE%E3%82%AD%E3%83%A3%E3%83%A9%E3%81%AE%E8%A6%8B%E3%81%88%E6%96%B9%E3%82%92%E6%98%8E%E3%82%8B%E3%81%8F%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88)
+      - [『UTS2で設定したアバターをパブリッシュする時』](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#uts2%E3%81%A7%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%9F%E3%82%A2%E3%83%90%E3%82%BF%E3%83%BC%E3%82%92%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B%E6%99%82)
+  - [2.「Basic Three Colors and Control Maps Setups」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#2-basic-three-colors-and-control-maps-setups%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [「NormalMap Settings」サブメニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#normalmap-settings%E3%82%B5%E3%83%96%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [「Shadow Control Maps」サブメニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#shadow-control-maps%E3%82%B5%E3%83%96%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+      - [ポジションマップ（DoubleShadeWithFeather系シェーダー）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#doubleshadewithfeather%E7%B3%BB%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E5%A0%B4%E5%90%88)
+      - [シェーディンググレードマップ（ShadingGradeMap系シェーダー）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#shadinggrademap%E7%B3%BB%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E5%A0%B4%E5%90%88)
+  - [3.「Basic Lookdevs : Shading Step and Feather Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#3basic-lookdevs--shading-step-and-feather-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [【Step/Feather各スライダーの基本的な使い方】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#stepfeather%E5%90%84%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%80%E3%83%BC%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9)
+      - [DoubleShadeWithFeather系シェーダーの場合](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#doubleshadewithfeather%E7%B3%BB%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E5%A0%B4%E5%90%88-1)
+      - [ShadingGradeMap系シェーダーの場合](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#shadinggrademap%E7%B3%BB%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E5%A0%B4%E5%90%88-1)
+    - [「System Shadows : Self Shadows Receiving」アイテム](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#system-shadows--self-shadows-receiving%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0)
+    - [「Additional Settings」サブメニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#additional-settings%E3%82%B5%E3%83%96%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+      - [【ポイントライトによるカラー塗り分けを微調整する：Step Offset、PointLights Hi-Cut Filter】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%83%A9%E3%82%A4%E3%83%88%E3%81%AB%E3%82%88%E3%82%8B%E3%82%AB%E3%83%A9%E3%83%BC%E5%A1%97%E3%82%8A%E5%88%86%E3%81%91%E3%82%92%E5%BE%AE%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8Bstep-offsetpointlights-hi-cut-filter)
+  - [4.「HighColor Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#4highcolor-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+  - [5.「RimLight Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#5rimlight-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+  - [6.「MatCap : Texture Projection Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#6matcap--texture-projection-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+  - [7.「AngelRing Projection Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#7angelring-projection-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [「天使の輪」用素材の作成](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E5%A4%A9%E4%BD%BF%E3%81%AE%E8%BC%AA%E7%94%A8%E7%B4%A0%E6%9D%90%E3%81%AE%E4%BD%9C%E6%88%90)
+  - [8.「Emissive : Self-luminescene Setings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#8emissive--self-luminescene-setings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [αチャンネル付きテクスチャを作成するには](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%CE%B1%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E4%BB%98%E3%81%8D%E3%83%86%E3%82%AF%E3%82%B9%E3%83%81%E3%83%A3%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF)
+    - [Destination Color設定の際のTips](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#destination-color%E8%A8%AD%E5%AE%9A%E3%81%AE%E9%9A%9B%E3%81%AEtips)
+  - [9.「Outline Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#9outline-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [「Advanced Outline Settings」サブメニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#advanced-outline-settings%E3%82%B5%E3%83%96%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [アウトラインの強弱を調整する：Outline Sampler](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%A2%E3%82%A6%E3%83%88%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%AE%E5%BC%B7%E5%BC%B1%E3%82%92%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8Boutline-sampler)
+    - [オブジェクト反転方式アウトラインを補う：UTS_EdgeDetection](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E5%8F%8D%E8%BB%A2%E6%96%B9%E5%BC%8F%E3%82%A2%E3%82%A6%E3%83%88%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92%E8%A3%9C%E3%81%86uts_edgedetection)
+    - [ベイクした頂点法線を転写する：Baked Normal for Outline](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%99%E3%82%A4%E3%82%AF%E3%81%97%E3%81%9F%E9%A0%82%E7%82%B9%E6%B3%95%E7%B7%9A%E3%82%92%E8%BB%A2%E5%86%99%E3%81%99%E3%82%8Bbaked-normal-for-outline)
+    - [アウトラインをカメラの奥に移動する：Offset Outline with Camera Z-axis](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%A2%E3%82%A6%E3%83%88%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92%E3%82%AB%E3%83%A1%E3%83%A9%E3%81%AE%E5%A5%A5%E3%81%AB%E7%A7%BB%E5%8B%95%E3%81%99%E3%82%8Boffset-outline-with-camera-z-axis)
+  - [10.「DX11 Phong Tessellation Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#10dx11-phong-tessellation-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+  - [11.「LightColor Contribution to Materials」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#11lightcolor-contribution-to-materials%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+  - [12.「Environmental Lighting Contributions Setups」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#12environmental-lighting-contributions-setups%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+    - [ライトプローブの明るさを決定する：GI Intensity](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%A9%E3%82%A4%E3%83%88%E3%83%97%E3%83%AD%E3%83%BC%E3%83%96%E3%81%AE%E6%98%8E%E3%82%8B%E3%81%95%E3%82%92%E6%B1%BA%E5%AE%9A%E3%81%99%E3%82%8Bgi-intensity)
+    - [アンビエントブレンディングを調整する：Unlit Intensity](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%A2%E3%83%B3%E3%83%93%E3%82%A8%E3%83%B3%E3%83%88%E3%83%96%E3%83%AC%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%92%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8Bunlit-intensity)
+    - [極めて明るいライトが複数存在するシーンでの白飛びを抑える：SceneLights Hi-Cut Filter](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E6%A5%B5%E3%82%81%E3%81%A6%E6%98%8E%E3%82%8B%E3%81%84%E3%83%A9%E3%82%A4%E3%83%88%E3%81%8C%E8%A4%87%E6%95%B0%E5%AD%98%E5%9C%A8%E3%81%99%E3%82%8B%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%A7%E3%81%AE%E7%99%BD%E9%A3%9B%E3%81%B3%E3%82%92%E6%8A%91%E3%81%88%E3%82%8Bscenelights-hi-cut-filter)
+    - [アドバンス機能として、Built-in Light Directionを追加](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%82%A2%E3%83%89%E3%83%90%E3%83%B3%E3%82%B9%E6%A9%9F%E8%83%BD%E3%81%A8%E3%81%97%E3%81%A6built-in-light-direction%E3%82%92%E8%BF%BD%E5%8A%A0)
+- [映像（プリレンダー）での使用](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E6%98%A0%E5%83%8F%E3%83%97%E3%83%AA%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC%E3%81%A7%E3%81%AE%E4%BD%BF%E7%94%A8)
+- [ライセンスについて](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+- [おまけ](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%E3%81%8A%E3%81%BE%E3%81%91)
+  - [１．Tips:システムシャドウ使用時に、各色の境界に生じるアーティファクトの軽減法](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%91tips%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%B7%E3%83%A3%E3%83%89%E3%82%A6%E4%BD%BF%E7%94%A8%E6%99%82%E3%81%AB%E5%90%84%E8%89%B2%E3%81%AE%E5%A2%83%E7%95%8C%E3%81%AB%E7%94%9F%E3%81%98%E3%82%8B%E3%82%A2%E3%83%BC%E3%83%86%E3%82%A3%E3%83%95%E3%82%A1%E3%82%AF%E3%83%88%E3%81%AE%E8%BB%BD%E6%B8%9B%E6%B3%95)
+    - [【１：リニアカラースペースに変更する】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%91%E3%83%AA%E3%83%8B%E3%82%A2%E3%82%AB%E3%83%A9%E3%83%BC%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B)
+    - [【２：メッシュの分割度をあげる】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%92%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AE%E5%88%86%E5%89%B2%E5%BA%A6%E3%82%92%E3%81%82%E3%81%92%E3%82%8B)
+    - [【３：BaseColor Step/System Shadows Level の調整でアーティファクトを消す】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%93basecolor-stepsystem-shadows-level-%E3%81%AE%E8%AA%BF%E6%95%B4%E3%81%A7%E3%82%A2%E3%83%BC%E3%83%86%E3%82%A3%E3%83%95%E3%82%A1%E3%82%AF%E3%83%88%E3%82%92%E6%B6%88%E3%81%99)
+    - [【４：ディレクショナルライトのバイアスを上げてやる】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%94%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%8A%E3%83%AB%E3%83%A9%E3%82%A4%E3%83%88%E3%81%AE%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9%E3%82%92%E4%B8%8A%E3%81%92%E3%81%A6%E3%82%84%E3%82%8B)
+  - [２．Tips:リアルタイムポイントライトを複数使う時のライトフリップの軽減法](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%92tips%E3%83%AA%E3%82%A2%E3%83%AB%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%83%A9%E3%82%A4%E3%83%88%E3%82%92%E8%A4%87%E6%95%B0%E4%BD%BF%E3%81%86%E6%99%82%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%88%E3%83%95%E3%83%AA%E3%83%83%E3%83%97%E3%81%AE%E8%BB%BD%E6%B8%9B%E6%B3%95)
+  - [３．ユーザーサポートに寄せられたトラブル事例の解決法](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%93%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AB%E5%AF%84%E3%81%9B%E3%82%89%E3%82%8C%E3%81%9F%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E4%BA%8B%E4%BE%8B%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%B3%95)
+    - [3-1.予期していない場所に影が出る](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#%EF%BC%93%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AB%E5%AF%84%E3%81%9B%E3%82%89%E3%82%8C%E3%81%9F%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E4%BA%8B%E4%BE%8B%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%B3%95)
+    - [3-2.VRChatサーバーにアバターをアップロードして、HMDで見たところ、左右の視差がずれている](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#3-2-vrchat%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AB%E3%82%A2%E3%83%90%E3%82%BF%E3%83%BC%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%97%E3%81%A6hmd%E3%81%A7%E8%A6%8B%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E5%B7%A6%E5%8F%B3%E3%81%AE%E8%A6%96%E5%B7%AE%E3%81%8C%E3%81%9A%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B)
+    - [3-3.VRChat上で、ブルームが酷く光ることがある](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md#3-3-vrchat%E4%B8%8A%E3%81%A7%E3%83%96%E3%83%AB%E3%83%BC%E3%83%A0%E3%81%8C%E9%85%B7%E3%81%8F%E5%85%89%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%82%E3%82%8B)
+- [全プロパティリスト](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Props_ja.md)
 ---
 ## 【重要】旧バージョンから、直接v.2.0.7へバージョンアップをする場合の注意
-
 * v.2.0.5以降は、そのままシェーダーのみ上書きアップデートをして大丈夫です。  
 * v.2.0.4.3p1以前からアップデートをする場合、シェーダーを上書きアップデートした後で、各マテリアルをプロジェクトウィンドウ内から再度選択することで、マテリアルを更新してください。BaseMapが元通りに修復されます。  
 * v.2.0.4.3p1以前からアップデートをする場合、HiColor_Powerのスライダの感度調整をした影響が出る場合があります。以下に従って調整をしてください。  
@@ -12,53 +82,11 @@
 * 最新事項や履歴情報は、 **[README_ja.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README_ja.md)** でご確認ください。  
 ---
 
-## VRChatユーザー向けの便利機能について
-UTS2は、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  VRChat上でUTS2を楽しむ場合、以下の便利機能を使うことで、UTS2の高機能を活かしつつ、VRChatの様々な環境下でも安定して楽しむことができるようになります。  
-
-<img width = "500" src="Images_jpg/VRChatUser00.jpg">
-
-上の図で、赤い囲み内のボタンがそれに当たります。これらのボタンを使用するタイミングは２つあります。  
-
-### 【UTS2でマテリアル設定をはじめる時】
-UTS2で各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`VRChat Recommendation`ボタンを実行してください。  
-このコマンドを実行することで、VRChatの様々なライティング環境にUTS2を馴染みやすくします。  
-VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
-
-#### ● 暗いワールドでのキャラの見え方を明るくしたい場合
-`VRChat Recommendation`ボタンを実行した後で、主にポイントライトしかない暗いワールドでのキャラの見え方を、もっと明るめに調整したい場合があります。  
-その場合、「Environmental Lighting Contributions Setups」メニュー内の`Unlit Intensity`スライダーを調整することで、暗い場所での明るさを底上げすることができます。  
-
-<img width = "300" src="Images_jpg/Unlit_Intensity_Comp.gif">
-
-**※ヒント：Unlit Intensityは、周りの明るさを考慮しつつ、暗い場所でのマテリアルの明るさをブーストする機能ですので、元々の環境光が暗めに設定されているワールドで極端に明るくすることはできません。**  
-
-ただし、暗いワールドでは同時にポストエフェクトのブルームも強めに設定されている場合がよくあります。
-そのようなワールドで**Unlit Intensityの値をデフォルトの1以上にすると、ブルームの影響も受けやすくなります**ので、十分に注意してください。  
-
-
-### 【UTS2で設定したアバターをパブリッシュする時】
-UTS2で各マテリアルを設定したアバターをVRChatに公開する前に、Basic Shader Settings > Option Menu内の`Remove Unused Keywords/Properties from Material`ボタンを実行してください。  
-このコマンドを実行することで、Unityで作業している途中で各マテリアルファイル内に溜まる未使用のプロパティ設定値やシェーダーキーワードを、整理し削除することができます。  
-例えば、Standard Shaderを最初割り当ててあったマテリアルから、シェーダーをUTS2のものに変えただけでも、これらの未使用の値は溜まっていきます。これらの未使用の値は、次にシェーダーを再度Standard Shaderに切り替える時のために、Unityが念のために保持しているものなのですが、マテリアルが完成しそれらを適用したアバターやモデルを公開する時には、不要になります。  
-これらの使われない値が各マテリアルに入ったままだと、システムに不要な負荷を与える可能性も考えられますので、アバターを公開するタイミングで整理しておくのが推奨されます。  
-このコマンドは、ご自身のプロジェクトをビルドする際にも使うといいでしょう。  
-
-<img width = "400" src="Images_jpg/ShaderKeywords.jpg">
-
-コマンドを実行すると、UTS2マテリアルの場合、残っているシェーダーキーワードは、`_EMISSIVE_SIMPLE` / `_EMISSIVE_ANIMATION`のいずれかと、`_OUTLINE_NML` / `_OUTLINE_POS`のいずれかの２つに最適化されます。これらはシェーダーコンパイル時に必要なので、そのまま残しておいてください。  
-
----
-
 <img width = "400" src="Images_jpg/CellLook.jpg">
-<img width = "800" src="Images_jpg/CRS01.jpg">
-<img width = "800" src="Images_jpg/CRS02.jpg">
 <img width = "800" src="Images_jpg/CRS03.jpg">
-
 [![](https://img.youtube.com/vi/81uGu18ixpw/0.jpg)](https://www.youtube.com/watch?v=81uGu18ixpw)
-
 <img width = "800" src="Images_jpg/TPK_04.jpg">
 <img width = "800" src="Images_jpg/HiUni01.jpg">
-
 
 # ユニティちゃんトゥーンシェーダー 2.0 の紹介
 ユニティちゃんトゥーンシェーダー（UTS）は、セルルック3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
@@ -317,7 +345,7 @@ File>Build Settings>Player Settings... より
 
 
 
-# UTS2　設定メニュー：UTS2カスタムインスペクター
+# UTS2 設定メニュー：UTS2カスタムインスペクター
 
 ここからは、UTS2 の各機能を設定するユーザーインタフェース「**UTS2カスタムインスペクター**」の機能解説をします。  
 
@@ -365,6 +393,43 @@ UTS2カスタムインスペクターは、`Show All Properties` ボタンをク
 `TransClipping`シェーダーは、`Clipping`シェーダーと主な機能は同じですが、クリッピングマスクのグレースケールレベルをα値として使えます。  
 短冊状の毛の房の先端をアルファを考慮しつつマスクで抜く場合や、アホ毛などの表現に使います。  
 `Tweak_transparency`スライダーで透過度合いを調整できます。  
+
+---
+### VRChatユーザー向けの便利機能について
+UTS2は、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  VRChat上でUTS2を楽しむ場合、以下の便利機能を使うことで、UTS2の高機能を活かしつつ、VRChatの様々な環境下でも安定して楽しむことができるようになります。  
+
+<img width = "500" src="Images_jpg/VRChatUser00.jpg">
+
+上の図で、赤い囲み内のボタンがそれに当たります。これらのボタンを使用するタイミングは２つあります。  
+
+#### 『UTS2でマテリアル設定をはじめる時』
+UTS2で各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`VRChat Recommendation`ボタンを実行してください。  
+このコマンドを実行することで、VRChatの様々なライティング環境にUTS2を馴染みやすくします。  
+VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
+
+##### ● 暗いワールドでのキャラの見え方を明るくしたい場合
+`VRChat Recommendation`ボタンを実行した後で、主にポイントライトしかない暗いワールドでのキャラの見え方を、もっと明るめに調整したい場合があります。  
+その場合、「Environmental Lighting Contributions Setups」メニュー内の`Unlit Intensity`スライダーを調整することで、暗い場所での明るさを底上げすることができます。  
+
+<img width = "300" src="Images_jpg/Unlit_Intensity_Comp.gif">
+
+**※ヒント：Unlit Intensityは、周りの明るさを考慮しつつ、暗い場所でのマテリアルの明るさをブーストする機能ですので、元々の環境光が暗めに設定されているワールドで極端に明るくすることはできません。**  
+
+ただし、暗いワールドでは同時にポストエフェクトのブルームも強めに設定されている場合がよくあります。
+そのようなワールドで**Unlit Intensityの値をデフォルトの1以上にすると、ブルームの影響も受けやすくなります**ので、十分に注意してください。  
+
+
+#### 『UTS2で設定したアバターをパブリッシュする時』
+UTS2で各マテリアルを設定したアバターをVRChatに公開する前に、Basic Shader Settings > Option Menu内の`Remove Unused Keywords/Properties from Material`ボタンを実行してください。  
+このコマンドを実行することで、Unityで作業している途中で各マテリアルファイル内に溜まる未使用のプロパティ設定値やシェーダーキーワードを、整理し削除することができます。  
+例えば、Standard Shaderを最初割り当ててあったマテリアルから、シェーダーをUTS2のものに変えただけでも、これらの未使用の値は溜まっていきます。これらの未使用の値は、次にシェーダーを再度Standard Shaderに切り替える時のために、Unityが念のために保持しているものなのですが、マテリアルが完成しそれらを適用したアバターやモデルを公開する時には、不要になります。  
+これらの使われない値が各マテリアルに入ったままだと、システムに不要な負荷を与える可能性も考えられますので、アバターを公開するタイミングで整理しておくのが推奨されます。  
+このコマンドは、ご自身のプロジェクトをビルドする際にも使うといいでしょう。  
+
+<img width = "400" src="Images_jpg/ShaderKeywords.jpg">
+
+コマンドを実行すると、UTS2マテリアルの場合、残っているシェーダーキーワードは、`_EMISSIVE_SIMPLE` / `_EMISSIVE_ANIMATION`のいずれかと、`_OUTLINE_NML` / `_OUTLINE_POS`のいずれかの２つに最適化されます。これらはシェーダーコンパイル時に必要なので、そのまま残しておいてください。  
+
 
 ---
 ## 2. 「Basic Three Colors and Control Maps Setups」メニュー
@@ -1170,7 +1235,7 @@ DCCツールにMayaを使っている場合には、滅多に発生しません�
 
 
 ---
-### 3-2. VRChatサーバーにアバターをアップロードして、HMDで見たところ、左右の視差がずれている。  
+### 3-2. VRChatサーバーにアバターをアップロードして、HMDで見たところ、左右の視差がずれている  
 <img width = "600" src="Images_jpg/Errors_02.jpg">
 
 ※スクリーンショット提供：@NonameReUnder さん  

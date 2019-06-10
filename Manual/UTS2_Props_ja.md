@@ -1,5 +1,6 @@
 ﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
-### 2019/03/28 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Props_en.md)***  
 
 # UTS2各シェーダーのプロパティ解説
 
