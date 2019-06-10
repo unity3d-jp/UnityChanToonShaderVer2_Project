@@ -13,6 +13,7 @@
 - [Using the Different Shaders in UTS2](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#using-the-different-shaders-in-uts2)
   - [The Shaders in the UnityChanToonShader Root Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshader-root-folder)
   - [The Shaders in the UnityChanToonShader/NoOutline Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadernooutline-folder)
+    - [Transparent shaders for transparency materials](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#transparent-shaders-for-transparency-materials)
   - [The Shaders in the UnityChanToonShader/AngelRing Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshaderangelring-folder)
   - [The Shaders in the UnityChanToonShader/Mobile Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadermobile-folder)
   - [The Shaders in the UnityChanToonShader/Tessellation Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadertessellation-folder)
