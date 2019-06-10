@@ -239,6 +239,8 @@ UTS2のアウトラインは、専用テクスチャを使ったアウトライ�
 
 アウトライン機能を持たないぶん、描画パスがひとつ少なくなりますので、アウトラインの必要がないデザインだったり、別途 [PSOFT Pencil+ 4 Line for Unity](https://www.psoft.co.jp/jp/product/pencil/unity/) のような高精度のトゥーンラインシェーダーを使用したい場合には、こちらを選ぶとよいでしょう。  
 
+### ・半透明マテリアル向けのTransparentシェーダー
+
 <img width = "600" src="Images_jpg/ToonColor_Transparent.jpg">
 
 `NoOutline`系シェーダーの中に、最後に`Transparent`という名前ブロックを持つシェーダーがあります。  
@@ -247,6 +249,13 @@ UTS2のアウトラインは、専用テクスチャを使ったアウトライ�
 <img width = "800" src="Images_jpg/CheekMaterialSetting.jpg">
 
 ↑頬染め用マテリアルの設定例  
+
+[![](https://img.youtube.com/vi/oAzgUJxP2y4/0.jpg)](https://www.youtube.com/watch?v=oAzgUJxP2y4)
+
+↑ Custom Render Queueの設定の仕方  
+
+UTS2 v.2.0.7を使って、カスタムレンダーキューを各マテリアルに設定する方法を解説します。  
+特に半透明（Transparent）系のマテリアルを正確に表示したい場合には、カスタムレンダーキューの調整が欠かせません。本ムービーで使用しているサンプルシーンは、UTS2のサンプルプロジェクトに含まれていますので、実際に手で動かして確認することができます。  
 
 
 ## ●UnityChanToonShader/AngelRingフォルダ内のシェーダー
