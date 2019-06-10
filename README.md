@@ -2,37 +2,52 @@
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [日本語](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README_ja.md).***  
+***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README_ja.md).***  
 
-## 【Overview : What is UTS2?】  
-**Unity-Chan Toon Shader 2.0(UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. UTS2 has great power and makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
+## 【Overview : What is UTS2?】
+**Unity-Chan Toon Shader 2.0 (UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations.  
+
+Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of UTS2**.  
 
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage01.jpg">
 
-UTS2 has the 3 basic layers of **Base Color**, **1st Shade Color**, and **2nd Shade Color**, colors and textures can also accept a wide variety of customization options, such as **High Color**, **Rim Light**, **MatCap** (sphere mapping), and **Emissive** (light emission).  
+UTS2 has great power and makes a wide variety of character designs possible, **from cel-shaded to light novel illustration styles**.  
 
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage02.gif">
 
-The level of gradation between colors can also be adjusted in Unity in real-time.  
-
-<img width = "480" src="Manual/Images_jpg/UTS2_TopImage03.gif">
-
-In animation production, color design is made for each part in each scene unit. It is common to have specialists who make these color designs. UTS2 is suitable for such pipelines.  
-
-<img width = "800" src="Manual/Images_jpg/UTS2_TopImage04.jpg">
-
-In Animation movies, shadows are used not only to represent light directions but also to clarify shapes of characters. It’s not just shadow, but a vital part of character design.  
+UTS2 has the 3 basic layers of **Base Color**, **1st Shade Color**, and **2nd Shade Color**, colors and textures can also accept a wide variety of customization options, such as **High Color**, **Rim Light**, **MatCap** (sphere mapping), and **Emissive** (light emission).  
 
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage05.jpg">
 
-For this purpose, UTS2 also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting.  
+What colors will you select as **accent colors**? The accent color is the color which is set at the opposite side of light direction.  
+
+In UTS2, you can use **2nd shade color and Ap-RimLight** as accent color. Of course, these accent colors also change dynamically to the light.  
+
+<img width = "480" src="Manual/Images_jpg/UTS2_TopImage03.gif">
+
+**The level of gradation (feather) between colors can also be adjusted in Unity in real-time**.  
+
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage04.jpg">
+
+In animation production, color design is made for each part in each scene unit. It is common to have specialists who make these color designs. UTS2 is suitable for such pipelines.  
+
+In Animation movies, shadows are used not only to represent light directions but also to clarify shapes of characters. It’s not just shadow, but a vital part of character design.  
 
 <img width = "350" src="Manual/Images_jpg/UTS2_TopImage06.gif">
 
-Finally, several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat users.  
+For this purpose, UTS2 also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting. The movie above is a sample of the features of **Shading Grade Map and AngelRing**.  
 
-<img width = "800" src="Manual/Images_jpg/UTS2_TopImage07_00.jpg">
-<img width = "800" src="Manual/Images_jpg/UTS2_TopImage07_01.jpg">
+<img width = "800" src="Manual/Images_jpg/UTS2_TopImage07.jpg">
+
+These two images are comparison between **Standard Shader** and **UTS2 v.2.0.7.5** under the same lighting conditions.  
+
+Although there is a difference between Photo-realistic and Non-photo-realistic images, you can understand all surface reflections to real-time lights are seen in the same areas. **It means UTS2 can be used as same as Standard Shader under various lighting conditions.**  
+
+UTS2 is very useful if you want to decorate your game scene with beautiful lightings.
+
+<img width = "500" src="Manual/Images_jpg/VRChatUser00.jpg">
+
+Finally, several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat users.  
 
 -----
 ## 【Users' Manual】
@@ -70,7 +85,7 @@ http://unity-chan.com/contents/guideline_en/
 The project comes with sample scenes where you can learn various setting examples of UTS2.  
 
 -----
-## 【Installation】
+## 【Shader Installation】
 ### [UTS2_ShaderOnly_v2.0.7_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.7_Release.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 When over-writing a previous version, there is no problem with the same process, but if you want to pay close attention, so please take the following precautions:  
@@ -96,4 +111,5 @@ Category: 3D
 File format: zip/unitypackage  
 
 -----
-**README.md 2019/06/09**  
+**README.md 2019/06/10**  
+
