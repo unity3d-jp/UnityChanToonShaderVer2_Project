@@ -19,7 +19,7 @@
   - [The shaders in the UnityChanToonShader/Helper Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshaderhelper-folder)
 - [Sample Scenes](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#sample-scenes)
 - [Initial Project Settings](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#initial-project-settings)
-- [UTS2 Setting Menu：UTS2 Custom Inspector](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#uts2setting-menuuts2-custom-inspector)
+- [UTS2 Setting Menu：UTS2 Custom Inspector](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#uts2-setting-menuuts2-custom-inspector)
   - [1.“Basic Shader Settings” Menu for UTS2](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#1-basic-shader-settings-menu-for-uts2)
     - [Useful functions for VRChat users](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#useful-functions-for-vrchat-users)
       - [“When setting up materials on UTS2”](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#when-setting-up-materials-on-uts2)
