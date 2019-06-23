@@ -38,13 +38,14 @@ GraphicsSettings:
   m_PreloadedShaders: []
   m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000,
     type: 0}
-  m_CustomRenderPipeline: {fileID: 0}
+  m_CustomRenderPipeline: {fileID: 11400000, guid: 37211e63f1bd228419e99d0ef797103d,
+    type: 2}
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
   m_DefaultRenderingPath: 1
   m_DefaultMobileRenderingPath: 1
   m_TierSettings:
-  - serializedVersion: 4
+  - serializedVersion: 5
     m_BuildTarget: 1
     m_Tier: 0
     m_Settings:
@@ -57,10 +58,11 @@ GraphicsSettings:
       useHDR: 1
       useDetailNormalMap: 1
       useCascadedShadowMaps: 1
+      prefer32BitShadowMaps: 0
       enableLPPV: 1
       useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 0
-  - serializedVersion: 4
+  - serializedVersion: 5
     m_BuildTarget: 1
     m_Tier: 1
     m_Settings:
@@ -73,10 +75,11 @@ GraphicsSettings:
       useHDR: 1
       useDetailNormalMap: 1
       useCascadedShadowMaps: 1
+      prefer32BitShadowMaps: 0
       enableLPPV: 1
       useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 0
-  - serializedVersion: 4
+  - serializedVersion: 5
     m_BuildTarget: 1
     m_Tier: 2
     m_Settings:
@@ -89,6 +92,7 @@ GraphicsSettings:
       useHDR: 1
       useDetailNormalMap: 1
       useCascadedShadowMaps: 1
+      prefer32BitShadowMaps: 0
       enableLPPV: 1
       useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 0
@@ -105,5 +109,6 @@ GraphicsSettings:
   m_FogKeepExp: 1
   m_FogKeepExp2: 1
   m_AlbedoSwatchInfos: []
-  m_LightsUseLinearIntensity: 0
+  m_LightsUseLinearIntensity: 1
   m_LightsUseColorTemperature: 0
+  m_LogWhenShaderIsCompiled: 0
