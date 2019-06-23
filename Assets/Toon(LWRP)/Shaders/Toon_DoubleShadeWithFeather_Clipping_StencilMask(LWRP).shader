@@ -3,7 +3,7 @@
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
-Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilMask" {
+Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_Clipping_StencilMask" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
         [HideInInspector] _utsVersion ("Version", Float ) = 2.07
@@ -184,20 +184,20 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilMask" {
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 3.0
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_YES 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             //アウトライン処理は以下のUCTS_Outline.cgincへ.
-            #include "UCTS_Outline.cginc"
+            #include "../../Toon/Shader/UCTS_Outline.cginc"
             ENDCG
         }
 //ToonCoreStart
         Pass {
             Name "FORWARD"
             Tags {
-                "LightMode"="ForwardBase"
+                "LightMode"="LightweightForward"
             }
             Cull[_CullMode]
             
@@ -208,27 +208,49 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilMask" {
                 Fail Replace
             }
             
-            CGPROGRAM
+            HLSLPROGRAM
+            #pragma prefer_hlslcc gles
+            #pragma exclude_renderers d3d11_9x
+            #pragma target 3.0
+
             #pragma vertex vert
             #pragma fragment frag
             //#define UNITY_PASS_FORWARDBASE
+#if false
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 3.0
 
             //v.2.0.4
             #pragma multi_compile _IS_CLIPPING_MODE
             #pragma multi_compile _IS_PASS_FWDBASE
-            //v.2.0.7
-            #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
-            //
-            #include "UCTS_DoubleShadeWithFeather.cginc"
+#endif	    
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature _RECEIVE_SHADOWS_OFF
 
-            ENDCG
+            // -------------------------------------
+            // Lightweight Pipeline keywords
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+
+            // -------------------------------------
+            // Unity defined keywords
+            #pragma multi_compile _ DIRLIGHTMAP_COMBINED
+            #pragma multi_compile _ LIGHTMAP_ON
+            #pragma multi_compile_fog
+
+	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
+	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
+	    #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
+	    
+	    #include "UCTS_LWRP.cginc"
+            #include "../../Toon/Shader/UCTS_DoubleShadeWithFeather.cginc"
+
+            ENDHLSL
         }
         Pass {
             Name "FORWARD_DELTA"
@@ -245,52 +267,111 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilMask" {
                 Fail Replace
             }            
             
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             //#define UNITY_PASS_FORWARDADD
+#if false
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
             //for Unity2018.x
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 3.0
 
             //v.2.0.4
             #pragma multi_compile _IS_CLIPPING_MODE
             #pragma multi_compile _IS_PASS_FWDDELTA
-            #include "UCTS_DoubleShadeWithFeather.cginc"
+#endif
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature _RECEIVE_SHADOWS_OFF
 
-            ENDCG
-        }
-        Pass {
-            Name "ShadowCaster"
-            Tags {
-                "LightMode"="ShadowCaster"
-            }
-            Offset 1, 1
-            Cull Off
-            
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            //#define UNITY_PASS_SHADOWCASTER
-            #include "UnityCG.cginc"
-            #include "Lighting.cginc"
-            #pragma fragmentoption ARB_precision_hint_fastest
-            #pragma multi_compile_shadowcaster
+            // -------------------------------------
+            // Lightweight Pipeline keywords
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+
+            // -------------------------------------
+            // Unity defined keywords
+            #pragma multi_compile _ DIRLIGHTMAP_COMBINED
+            #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
-            #pragma target 3.0
-            //v.2.0.4
-            #pragma multi_compile _IS_CLIPPING_MODE
-            #include "UCTS_ShadowCaster.cginc"
-            ENDCG
+
+	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
+	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
+	    #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
+	    
+	    #include "UCTS_LWRP.cginc"
+            #include "../../Toon/Shader/UCTS_DoubleShadeWithFeather.cginc"
+
+            ENDHLSL
+        }
+        Pass
+        {
+            Name "ShadowCaster"
+            Tags{"LightMode" = "ShadowCaster"}
+
+            ZWrite On
+            ZTest LEqual
+            Cull[_Cull]
+
+            HLSLPROGRAM
+            // Required to compile gles 2.0 with standard srp library
+            #pragma prefer_hlslcc gles
+            #pragma exclude_renderers d3d11_9x
+            #pragma target 2.0
+
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature _ALPHATEST_ON
+
+            //--------------------------------------
+            // GPU Instancing
+            #pragma multi_compile_instancing
+            #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+
+            #pragma vertex ShadowPassVertex
+            #pragma fragment ShadowPassFragment
+
+            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/ShadowCasterPass.hlsl"
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "DepthOnly"
+            Tags{"LightMode" = "DepthOnly"}
+
+            ZWrite On
+            ColorMask 0
+            Cull[_Cull]
+
+            HLSLPROGRAM
+            // Required to compile gles 2.0 with standard srp library
+            #pragma prefer_hlslcc gles
+            #pragma exclude_renderers d3d11_9x
+            #pragma target 2.0
+
+            #pragma vertex DepthOnlyVertex
+            #pragma fragment DepthOnlyFragment
+
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature _ALPHATEST_ON
+            #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+
+            //--------------------------------------
+            // GPU Instancing
+            #pragma multi_compile_instancing
+
+            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/DepthOnlyPass.hlsl"
+            ENDHLSL
         }
 //ToonCoreEnd
     }
-    FallBack "Legacy Shaders/VertexLit"
     CustomEditor "UnityChan.UTS2GUI"
 }
