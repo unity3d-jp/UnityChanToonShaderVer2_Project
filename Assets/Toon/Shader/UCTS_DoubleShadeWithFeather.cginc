@@ -168,7 +168,7 @@
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
 # ifdef _MAIN_LIGHT_SHADOWS
-				float4 shadowCoord              : TEXCOORD7;
+				float4 shadowCoord              : TEXCOORD8;
 # endif
 #else
 				LIGHTING_COORDS(6, 7)
