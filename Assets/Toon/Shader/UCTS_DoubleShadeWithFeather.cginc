@@ -203,6 +203,7 @@
 				OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
 				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+				o.positionCS = positionCS;
 #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
 #if SHADOWS_SCREEN
 				o.shadowCoord = ComputeScreenPos(positionCS);
