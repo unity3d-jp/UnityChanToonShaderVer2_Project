@@ -456,11 +456,11 @@
 					float notDirectional = 1.0f; //_WorldSpaceLightPos0.w
 					
 					Light light = GetAdditionalLight(iLight, inputData.positionWS);
-					half3 lightAttenuation = light.distanceAttenuation; // *light.shadowAttenuation;
-//					half NdotL = saturate(dot(inputData.normalWS, light.direction));
-//					half3 radiance = lightColor * (lightAttenuation * NdotL);
+					attenuation = light.distanceAttenuation *light.shadowAttenuation;
+					half NdotL = saturate(dot(inputData.normalWS, light.direction));
+					half3 radiance = light.color * (attenuation * NdotL);
 
-					float3 testColor = light.color * lightAttenuation;
+					float3 testColor = radiance;
 #if true
 					float _LightIntensity = (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b)*attenuation;
 
@@ -493,7 +493,7 @@
 					//
 
 					finalColor = saturate(finalColor);
-			//		pointLightColor += finalColor;
+			//		pointLightColor += Set_LightColor;
 #endif
 					pointLightColor += testColor;
 				}
