@@ -220,6 +220,14 @@
             }
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET {
                 i.normalDir = normalize(i.normalDir);
+#ifdef UCTS_LWRP
+                SurfaceData surfaceData;
+                InitializeStandardLitSurfaceData(i.uv0, surfaceData);
+
+                InputData inputData;
+				Varyings  input;
+//                InitializeInputData(input, surfaceData.normalTS, inputData);
+#endif
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
                 float2 Set_UV0 = i.uv0;
