@@ -247,6 +247,8 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_Clipping_StencilMa
 	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
 	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
 	    #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
+		#include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitForwardPass.hlsl"
+
 	    
 	    #include "UCTS_LWRP.cginc"
             #include "../../Toon/Shader/UCTS_DoubleShadeWithFeather.cginc"
