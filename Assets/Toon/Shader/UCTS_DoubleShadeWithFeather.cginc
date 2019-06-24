@@ -456,20 +456,19 @@
 					float notDirectional = 1.0f; //_WorldSpaceLightPos0.w
 					
 					Light light = GetAdditionalLight(iLight, inputData.positionWS);
-					attenuation = light.distanceAttenuation *light.shadowAttenuation;
-					half NdotL = saturate(dot(inputData.normalWS, light.direction));
-					half3 radiance = light.color * (attenuation * NdotL);
+					attenuation = light.distanceAttenuation; // *light.shadowAttenuation;
+//					half NdotL = saturate(dot(inputData.normalWS, light.direction));
+//					half3 radiance = light.color * (attenuation * NdotL);
 
-					float3 testColor = radiance;
+//					float3 testColor = radiance;
 
-#if 1
 					float3 lightDirection = light.direction;
 					//v.2.0.5: 
 					float3 addPassLightColor = (0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * light.color.rgb * attenuation;
-					float pureIntencity = max(0.001, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b));
+					float  pureIntencity = max(0.001, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b));
 					float3 lightColor = max(0, lerp(addPassLightColor, lerp(0, min(addPassLightColor, addPassLightColor / pureIntencity), notDirectional), _Is_Filter_LightColor));
-#endif
-#if 1
+					float3 halfDirection = normalize(viewDirection + lightDirection); // has to be recalced.
+
 					//v.2.0.5:
 					_BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
 					_ShadeColor_Step = saturate(_ShadeColor_Step + _StepOffset);
@@ -495,23 +494,27 @@
 					float3 finalColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _1st2nd_Shades_Feather)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _1st2nd_Shades_Feather))))), Set_FinalShadowMask); // Final Color
 
 					//v.2.0.6: Add HighColor if _Is_Filter_HiCutPointLightColor is False
+
+
 					float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
-					float _Specular_var = 0.5*dot(halfDirection, lerp(i.normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
+					float _Specular_var =  0.5*dot(halfDirection, lerp(i.normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
 					float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
 					float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
 					float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb*_HighColor.rgb), ((_HighColor_Tex_var.rgb*_HighColor.rgb)*Set_LightColor), _Is_LightColor_HighColor)*_TweakHighColorMask_var);
+
 					finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
 					//
 
 					finalColor = saturate(finalColor);
 
 					pointLightColor += finalColor;
-#endif
 					//	pointLightColor += lightColor;
 				}
 
   #endif
 #endif
+				//
+
 //v.2.0.7
 #ifdef _EMISSIVE_SIMPLE
                 float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
@@ -549,13 +552,13 @@
                 float4 emissive_Color = lerp(colorShift_Color, viewShift_Color, _Is_ViewShift);
                 emissive = emissive_Color.rgb * _Emissive_Tex_var.rgb * emissiveMask;
 #endif
-//
-#ifdef UCTS_LWRP
-				finalColor += pointLightColor;
-#endif
+
                 //Final Composition#if 
                 finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
 
+#ifdef UCTS_LWRP
+				finalColor += pointLightColor;
+#endif
 #elif _IS_PASS_FWDDELTA
                 //v.2.0.5:
                 _BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
