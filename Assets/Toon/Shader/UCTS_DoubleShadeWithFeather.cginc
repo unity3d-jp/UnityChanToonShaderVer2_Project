@@ -167,13 +167,17 @@
 #if UCTS_LWRP
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
-# ifdef _MAIN_LIGHT_SHADOWS
+# ifndef _MAIN_LIGHT_SHADOWS
+				float4 positionCS               : TEXCORRD8;
+# else
 				float4 shadowCoord              : TEXCOORD8;
+				float4 positionCS               : TEXCORRD9;
 # endif
 #else
 				LIGHTING_COORDS(6, 7)
-				UNITY_FOG_COORDS(8)
+					UNITY_FOG_COORDS(8)
 #endif
+
                 //
             };
             VertexOutput vert (VertexInput v) {
