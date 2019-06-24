@@ -272,11 +272,11 @@
 				input.positionWS = i.posWorld.xyz;
 #  endif
 #  ifdef _NORMALMAP
-				input.normalWS = half4(normalDirection, viewDirection.x);      // xyz: normal, w: viewDir.x
+				input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
 				input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
 				input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
 #  else
-				input.normalWS  = half3(normalDirection);
+				input.normalWS  = half3(i.normalDir);
 				input.viewDirWS = half3(viewDirection);
 #  endif
 				InitializeInputData(input, surfaceData.normalTS, inputData);
@@ -461,12 +461,23 @@
 					half3 radiance = light.color * (attenuation * NdotL);
 
 					float3 testColor = radiance;
-#if true
-					float _LightIntensity = (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b)*attenuation;
 
-					float3 lightDirection = light.direction.xyz;
+#if 1
+					float3 lightDirection = light.direction;
+					//v.2.0.5: 
+					float3 addPassLightColor = (0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * light.color.rgb * attenuation;
+					float pureIntencity = max(0.001, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b));
+					float3 lightColor = max(0, lerp(addPassLightColor, lerp(0, min(addPassLightColor, addPassLightColor / pureIntencity), notDirectional), _Is_Filter_LightColor));
+#endif
+#if 1
+					//v.2.0.5:
+					_BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
+					_ShadeColor_Step = saturate(_ShadeColor_Step + _StepOffset);
+					//
+					//v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
+					float _LightIntensity = lerp(0, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b)*attenuation, notDirectional);
 					//v.2.0.5: Filtering the high intensity zone of PointLights
-					float3 Set_LightColor = lerp(lightColor, min(lightColor, light.color.rgb*attenuation*_BaseColor_Step), _Is_Filter_HiCutPointLightColor);
+					float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, light.color.rgb*attenuation*_BaseColor_Step), notDirectional), _Is_Filter_HiCutPointLightColor);
 					//
 					float3 Set_BaseColor = lerp((_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base);
 					//v.2.0.5
@@ -493,9 +504,10 @@
 					//
 
 					finalColor = saturate(finalColor);
-			//		pointLightColor += Set_LightColor;
+
+					pointLightColor += finalColor;
 #endif
-					pointLightColor += testColor;
+					//	pointLightColor += lightColor;
 				}
 
   #endif
