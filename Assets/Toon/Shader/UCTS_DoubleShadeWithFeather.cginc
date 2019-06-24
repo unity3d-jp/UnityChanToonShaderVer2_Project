@@ -220,16 +220,13 @@
             }
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET {
                 i.normalDir = normalize(i.normalDir);
-#ifdef UCTS_LWRP
-                SurfaceData surfaceData;
-                InitializeStandardLitSurfaceData(i.uv0, surfaceData);
+			    float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
 
-                InputData inputData;
-				Varyings  input;
-//                InitializeInputData(input, surfaceData.normalTS, inputData);
-#endif
+
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
-                float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
+
+
+
                 float2 Set_UV0 = i.uv0;
                 //v.2.0.6
                 //float3 _NormalMap_var = UnpackNormal(tex2D(_NormalMap,TRANSFORM_TEX(Set_UV0, _NormalMap)));
@@ -238,9 +235,41 @@
 #else
 				float3 _NormalMap_var = UnpackScaleNormal(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
 #endif
-
                 float3 normalLocal = _NormalMap_var.rgb;
                 float3 normalDirection = normalize(mul( normalLocal, tangentTransform )); // Perturbed normals
+
+#ifdef UCTS_LWRP
+				// todo. not necessary to calc gi factor in  shadowcaster pass.
+				SurfaceData surfaceData;
+				InitializeStandardLitSurfaceData(i.uv0, surfaceData);
+
+				InputData inputData;
+				Varyings  input;
+				input = (Varyings)0;
+				UNITY_SETUP_INSTANCE_ID(input);
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+
+				input.uv = i.uv0;
+				input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
+#  ifdef _MAIN_LIGHT_SHADOWS
+				input.shadowCoord = i.shadowCoord;
+#  endif
+
+#  ifdef _ADDITIONAL_LIGHTS
+				input.positionWS = i.pos.xyz;
+#  endif
+#  ifdef _NORMALMAP
+				input.normalWS = half4(normalDirection, viewDirection.x);      // xyz: normal, w: viewDir.x
+				input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
+				input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
+#  else
+				input.normalWS  = half3(normalDirection);
+				input.viewDirWS = half3(viewDirection);
+#  endif
+				InitializeInputData(input, surfaceData.normalTS, inputData);
+#endif //UCTS_LWRP
+
+
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
 //v.2.0.4
 #ifdef _IS_CLIPPING_MODE
