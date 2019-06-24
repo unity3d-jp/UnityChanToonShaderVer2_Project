@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CellTouch_ToonShader_Fhair_StencilOut
-  m_Shader: {fileID: 4800000, guid: b85adf478b8e3bc4bb2ddef4df79eca7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3faca5929059eb34ebf9fa169e0402ed, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _OUTLINE_NML
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0

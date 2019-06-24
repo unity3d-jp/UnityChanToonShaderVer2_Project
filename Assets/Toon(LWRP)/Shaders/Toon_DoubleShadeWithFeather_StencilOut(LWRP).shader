@@ -405,5 +405,6 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_StencilOut" {
 //ToonCoreEnd
     }
 
+
     CustomEditor "UnityChan.UTS2GUI"
 }
