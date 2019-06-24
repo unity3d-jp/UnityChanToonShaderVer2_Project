@@ -269,7 +269,7 @@
 #  endif
 
 #  ifdef _ADDITIONAL_LIGHTS
-				input.positionWS = i.pos.xyz;
+				input.positionWS = i.posWorld.xyz;
 #  endif
 #  ifdef _NORMALMAP
 				input.normalWS = half4(normalDirection, viewDirection.x);      // xyz: normal, w: viewDir.x
@@ -452,11 +452,21 @@
 				int pixelLightCount = GetAdditionalLightsCount();
 				for (int iLight = 0; iLight < pixelLightCount; ++iLight)
 				{
+
+					float notDirectional = 1.0f; //_WorldSpaceLightPos0.w
+					
 					Light light = GetAdditionalLight(iLight, inputData.positionWS);
-					half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
-					float _LightIntensity = lerp(0, (0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b)*attenuation, _WorldSpaceLightPos0.w);
+					half3 lightAttenuation = light.distanceAttenuation; // *light.shadowAttenuation;
+//					half NdotL = saturate(dot(inputData.normalWS, light.direction));
+//					half3 radiance = lightColor * (lightAttenuation * NdotL);
+
+					float3 testColor = light.color * lightAttenuation;
+#if true
+					float _LightIntensity = (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b)*attenuation;
+
+					float3 lightDirection = light.direction.xyz;
 					//v.2.0.5: Filtering the high intensity zone of PointLights
-					float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, _LightColor0.rgb*attenuation*_BaseColor_Step), _WorldSpaceLightPos0.w), _Is_Filter_HiCutPointLightColor);
+					float3 Set_LightColor = lerp(lightColor, min(lightColor, light.color.rgb*attenuation*_BaseColor_Step), _Is_Filter_HiCutPointLightColor);
 					//
 					float3 Set_BaseColor = lerp((_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base);
 					//v.2.0.5
@@ -479,9 +489,15 @@
 					float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
 					float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
 					float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb*_HighColor.rgb), ((_HighColor_Tex_var.rgb*_HighColor.rgb)*Set_LightColor), _Is_LightColor_HighColor)*_TweakHighColorMask_var);
+					finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
+					//
 
+					finalColor = saturate(finalColor);
+			//		pointLightColor += finalColor;
+#endif
+					pointLightColor += testColor;
 				}
-				pointLightColor = pointLightColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
+
   #endif
 #endif
 //v.2.0.7
@@ -522,11 +538,12 @@
                 emissive = emissive_Color.rgb * _Emissive_Tex_var.rgb * emissiveMask;
 #endif
 //
-                //Final Composition#if 
-                finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
 #ifdef UCTS_LWRP
 				finalColor += pointLightColor;
 #endif
+                //Final Composition#if 
+                finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
+
 #elif _IS_PASS_FWDDELTA
                 //v.2.0.5:
                 _BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
