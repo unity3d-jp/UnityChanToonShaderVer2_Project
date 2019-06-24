@@ -209,19 +209,19 @@
 				float4 positionCS = TransformWorldToHClip(positionWS);
 				half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
 				half fogFactor = ComputeFogFactor(positionCS.z);
-				float2 lightmaUV = float2(0.0, 0.0);
-				OUTPUT_LIGHTMAP_UV(lightmapUV, unity_LightmapST, lightmapUV);
+
+				OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
 				OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
 				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
 				o.positionCS = positionCS;
-#if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
-#if SHADOWS_SCREEN
+  #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
+   #if SHADOWS_SCREEN
 				o.shadowCoord = ComputeScreenPos(positionCS);
-#else
+    #else
 				o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
-#endif
-#endif
+    #endif
+  #endif
 
 #else		
 				UNITY_TRANSFER_FOG(o, o.pos);
