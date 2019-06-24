@@ -154,6 +154,10 @@
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
+#if UCTS_LWRP
+				float2 lightmapUV   : TEXCOORD1;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
+#endif
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
