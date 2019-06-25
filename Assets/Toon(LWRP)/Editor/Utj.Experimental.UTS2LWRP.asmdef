@@ -1,0 +1,11 @@
+﻿{
+  "name": "UTJ.Experimental.UTS2LWRP",
+  "references": [
+    "Unity.ShaderGraph.Editor"
+  ],
+  "optionalUnityReferences": [],
+  "includePlatforms": [
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false
+}
