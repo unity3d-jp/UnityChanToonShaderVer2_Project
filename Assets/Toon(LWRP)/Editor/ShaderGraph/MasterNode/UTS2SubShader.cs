@@ -116,8 +116,8 @@ namespace UTJ.Experimental.UTS2LWRP
             string extraTemplate = File.ReadAllText(extraPassesTemplatePath);
 
 
-            var pbrMasterNode = masterNode as PBRMasterNode;
-            var pass = pbrMasterNode.model == PBRMasterNode.Model.Metallic ? m_ForwardPassMetallic : m_ForwardPassSpecular;
+            var pbrMasterNode = masterNode as UTS2LWRPMasterNode;
+            var pass = pbrMasterNode.model == UTS2LWRPMasterNode.Model.Metallic ? m_ForwardPassMetallic : m_ForwardPassSpecular;
             var subShader = new ShaderStringBuilder();
             subShader.AppendLine("SubShader");
             using (subShader.BlockScope())
@@ -175,7 +175,7 @@ namespace UTJ.Experimental.UTS2LWRP
             throw new FileNotFoundException(string.Format(@"Cannot find a template with name ""{0}"".", templateName));
         }
 
-        static string GetShaderPassFromTemplate(string template, PBRMasterNode masterNode, Pass pass, GenerationMode mode, SurfaceMaterialOptions materialOptions)
+        static string GetShaderPassFromTemplate(string template, UTS2LWRPMasterNode masterNode, Pass pass, GenerationMode mode, SurfaceMaterialOptions materialOptions)
         {
             // ----------------------------------------------------- //
             //                         SETUP                         //
@@ -258,13 +258,13 @@ namespace UTJ.Experimental.UTS2LWRP
             // -------------------------------------
             // Generate defines
 
-            if (masterNode.IsSlotConnected(PBRMasterNode.NormalSlotId))
+            if (masterNode.IsSlotConnected(UTS2LWRPMasterNode.NormalSlotId))
                 defines.AppendLine("#define _NORMALMAP 1");
 
-            if (masterNode.model == PBRMasterNode.Model.Specular)
+            if (masterNode.model == UTS2LWRPMasterNode.Model.Specular)
                 defines.AppendLine("#define _SPECULAR_SETUP 1");
 
-            if (masterNode.IsSlotConnected(PBRMasterNode.AlphaThresholdSlotId))
+            if (masterNode.IsSlotConnected(UTS2LWRPMasterNode.AlphaThresholdSlotId))
                 defines.AppendLine("#define _AlphaClip 1");
 
             if (masterNode.surfaceType == SurfaceType.Transparent && masterNode.alphaMode == AlphaMode.Premultiply)
