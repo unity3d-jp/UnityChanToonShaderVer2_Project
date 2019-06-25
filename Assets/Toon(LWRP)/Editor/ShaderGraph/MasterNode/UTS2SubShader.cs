@@ -93,8 +93,8 @@ namespace UTJ.Experimental.UTS2LWRP
                 sourceAssetDependencyPaths.Add(AssetDatabase.GUIDToAssetPath("10f802b230a2cd54782d75e7d20ca7aa"));
             }
 
-            var templatePath = GetTemplatePath("lightweightPBRForwardPass.template");
-            var extraPassesTemplatePath = GetTemplatePath("lightweightPBRExtraPasses.template");
+            var templatePath = GetTemplatePath("UTS2_DoubleShadeFeather.template");
+            var extraPassesTemplatePath = GetTemplatePath("UTS2_DoubleShadeFeatherExtra.template");
 
             if (!File.Exists(templatePath) || !File.Exists(extraPassesTemplatePath))
                 return string.Empty;
