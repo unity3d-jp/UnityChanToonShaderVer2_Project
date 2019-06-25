@@ -10,6 +10,8 @@
 
 **ユニティちゃんトゥーンシェーダー 2.0 (UTS2)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、UTS2の最大の特長です**。  
 
+[![](https://img.youtube.com/vi/3yajmhc5A08/0.jpg)](https://www.youtube.com/watch?v=3yajmhc5A08)
+
 <img width = "800" src="Manual/Images_jpg/IllustSample_UTS2.jpg">
 
 UTS2の強力な機能を使うことで、**セルルックから始まり、ラノベ風のイラスト表現**まで幅広いキャラクター表現が可能となっています。  
