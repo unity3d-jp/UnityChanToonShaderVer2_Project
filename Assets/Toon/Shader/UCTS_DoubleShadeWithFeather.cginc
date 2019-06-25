@@ -280,6 +280,8 @@
 				input.viewDirWS = half3(viewDirection);
 #  endif
 				InitializeInputData(input, surfaceData.normalTS, inputData);
+
+//				half4 envColor = LightweightFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
 #endif //UCTS_LWRP
 
 
@@ -307,6 +309,7 @@
 				half attenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
 				Light mainLight = GetMainLight(i.shadowCoord);
+//				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
 # endif
 #else
@@ -323,7 +326,17 @@
                 float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
+#ifdef UCTS_LWRP
+				half3 originalLightColor = _LightColor0.rgb;
+//				originalLightColor = GammaToLinearSpace(originalLightColor);
+//				originalLightColor = LinearToGammaSpace(originalLightColor);
+				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
+
+#else
+
                 float3 lightColor = lerp(max(defaultLightColor,_LightColor0.rgb),max(defaultLightColor,saturate(_LightColor0.rgb)),_Is_Filter_LightColor);
+#endif
+
 #elif _IS_PASS_FWDDELTA
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 //v.2.0.5: 
