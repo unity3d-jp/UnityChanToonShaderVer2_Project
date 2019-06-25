@@ -154,6 +154,10 @@
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
+#if UCTS_LWRP
+				float2 lightmapUV   : TEXCOORD1;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
+#endif
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
@@ -167,17 +171,28 @@
 #if UCTS_LWRP
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
-# ifdef _MAIN_LIGHT_SHADOWS
+# ifndef _MAIN_LIGHT_SHADOWS
+				float4 positionCS               : TEXCORRD8;
+# else
 				float4 shadowCoord              : TEXCOORD8;
+				float4 positionCS               : TEXCORRD9;
 # endif
+				UNITY_VERTEX_INPUT_INSTANCE_ID
+				UNITY_VERTEX_OUTPUT_STEREO
 #else
 				LIGHTING_COORDS(6, 7)
 				UNITY_FOG_COORDS(8)
 #endif
+
                 //
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+#ifdef UCTS_LWRP
+				UNITY_SETUP_INSTANCE_ID(v);
+				UNITY_TRANSFER_INSTANCE_ID(v, o);
+				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+#endif
                 o.uv0 = v.texcoord0;
                 o.normalDir = UnityObjectToWorldNormal(v.normal);
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
@@ -194,18 +209,19 @@
 				float4 positionCS = TransformWorldToHClip(positionWS);
 				half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
 				half fogFactor = ComputeFogFactor(positionCS.z);
-				float2 lightmaUV = float2(0.0, 0.0);
-				OUTPUT_LIGHTMAP_UV(lightmapUV, unity_LightmapST, lightmapUV);
+
+				OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
 				OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
 				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
-#if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
-#if SHADOWS_SCREEN
+				o.positionCS = positionCS;
+  #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
+   #if SHADOWS_SCREEN
 				o.shadowCoord = ComputeScreenPos(positionCS);
-#else
+    #else
 				o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
-#endif
-#endif
+    #endif
+  #endif
 
 #else		
 				UNITY_TRANSFER_FOG(o, o.pos);
@@ -215,8 +231,13 @@
             }
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET {
                 i.normalDir = normalize(i.normalDir);
+			    float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
+
+
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
-                float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
+
+
+
                 float2 Set_UV0 = i.uv0;
                 //v.2.0.6
                 //float3 _NormalMap_var = UnpackNormal(tex2D(_NormalMap,TRANSFORM_TEX(Set_UV0, _NormalMap)));
@@ -225,9 +246,53 @@
 #else
 				float3 _NormalMap_var = UnpackScaleNormal(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
 #endif
-
                 float3 normalLocal = _NormalMap_var.rgb;
                 float3 normalDirection = normalize(mul( normalLocal, tangentTransform )); // Perturbed normals
+
+#ifdef UCTS_LWRP
+				// todo. not necessary to calc gi factor in  shadowcaster pass.
+				SurfaceData surfaceData;
+				InitializeStandardLitSurfaceData(i.uv0, surfaceData);
+
+				InputData inputData;
+				Varyings  input;
+
+				// todo.  it has to be cared more.
+				UNITY_SETUP_INSTANCE_ID(input);
+				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+				input.vertexSH = i.vertexSH;
+				input.uv = i.uv0;
+				input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
+#  ifdef _MAIN_LIGHT_SHADOWS
+				input.shadowCoord = i.shadowCoord;
+#  endif
+
+#  ifdef _ADDITIONAL_LIGHTS
+				input.positionWS = i.posWorld.xyz;
+#  endif
+#  ifdef _NORMALMAP
+				input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
+				input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
+				input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
+#  else
+				input.normalWS  = half3(i.normalDir);
+				input.viewDirWS = half3(viewDirection);
+#  endif
+				InitializeInputData(input, surfaceData.normalTS, inputData);
+
+				BRDFData brdfData;
+				InitializeBRDFData(surfaceData.albedo, 
+					surfaceData.metallic, 
+					surfaceData.specular, 
+					surfaceData.smoothness,
+					surfaceData.alpha, brdfData);
+
+				half3 envColor = GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
+				envColor *= 1.8f;
+
+#endif //UCTS_LWRP
+
+
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
 //v.2.0.4
 #ifdef _IS_CLIPPING_MODE
@@ -252,6 +317,7 @@
 				half attenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
 				Light mainLight = GetMainLight(i.shadowCoord);
+//				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
 # endif
 #else
@@ -268,7 +334,16 @@
                 float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
+#ifdef UCTS_LWRP
+				half3 originalLightColor = _LightColor0.rgb;
+
+				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
+
+#else
+
                 float3 lightColor = lerp(max(defaultLightColor,_LightColor0.rgb),max(defaultLightColor,saturate(_LightColor0.rgb)),_Is_Filter_LightColor);
+#endif
+
 #elif _IS_PASS_FWDDELTA
                 float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 //v.2.0.5: 
@@ -382,8 +457,80 @@
                 float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before Emissive
                 //
                 //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
+#ifdef UCTS_LWRP
+				float3 envLightColor = envColor.rgb;
+#else
                 float3 envLightColor = DecodeLightProbe(normalDirection) < float3(1,1,1) ? DecodeLightProbe(normalDirection) : float3(1,1,1);
+#endif
                 float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b <1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
+
+#ifdef UCTS_LWRP
+				float3 pointLightColor = 0;
+  #ifdef _ADDITIONAL_LIGHTS
+
+				int pixelLightCount = GetAdditionalLightsCount();
+				for (int iLight = 0; iLight < pixelLightCount; ++iLight)
+				{
+
+					float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
+					
+					Light light = GetAdditionalLight(iLight, inputData.positionWS);
+					attenuation = light.distanceAttenuation; 
+
+
+					float3 lightDirection = light.direction;
+					//v.2.0.5: 
+					float3 addPassLightColor = (0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * light.color.rgb * attenuation;
+					float  pureIntencity = max(0.001, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b));
+					float3 lightColor = max(0, lerp(addPassLightColor, lerp(0, min(addPassLightColor, addPassLightColor / pureIntencity), notDirectional), _Is_Filter_LightColor));
+					float3 halfDirection = normalize(viewDirection + lightDirection); // has to be recalced here.
+
+					//v.2.0.5:
+					_BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
+					_ShadeColor_Step = saturate(_ShadeColor_Step + _StepOffset);
+					//
+					//v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
+					float _LightIntensity = lerp(0, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b)*attenuation, notDirectional);
+					//v.2.0.5: Filtering the high intensity zone of PointLights
+					float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, light.color.rgb*attenuation*_BaseColor_Step), notDirectional), _Is_Filter_HiCutPointLightColor);
+					//
+					float3 Set_BaseColor = lerp((_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base);
+					//v.2.0.5
+					float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
+					float3 Set_1st_ShadeColor = lerp((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb*_LightIntensity), ((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_1st_Shade);
+					//v.2.0.5
+					float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
+					float3 Set_2nd_ShadeColor = lerp((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb*_LightIntensity), ((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade);
+					float _HalfLambert_var = 0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5;
+					float4 _Set_2nd_ShadePosition_var = tex2D(_Set_2nd_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_2nd_ShadePosition));
+					float4 _Set_1st_ShadePosition_var = tex2D(_Set_1st_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_1st_ShadePosition));
+					//v.2.0.5:
+					float Set_FinalShadowMask = saturate((1.0 + ((lerp(_HalfLambert_var, (_HalfLambert_var*saturate(1.0 + _Tweak_SystemShadowsLevel)), _Set_SystemShadowsToBase) - (_BaseColor_Step - _BaseShade_Feather)) * ((1.0 - _Set_1st_ShadePosition_var.rgb).r - 1.0)) / (_BaseColor_Step - (_BaseColor_Step - _BaseShade_Feather))));
+					//Composition: 3 Basic Colors as finalColor
+					float3 finalColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _1st2nd_Shades_Feather)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _1st2nd_Shades_Feather))))), Set_FinalShadowMask); // Final Color
+
+					//v.2.0.6: Add HighColor if _Is_Filter_HiCutPointLightColor is False
+
+
+					float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
+					float _Specular_var =  0.5*dot(halfDirection, lerp(i.normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
+					float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
+					float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
+					float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb*_HighColor.rgb), ((_HighColor_Tex_var.rgb*_HighColor.rgb)*Set_LightColor), _Is_LightColor_HighColor)*_TweakHighColorMask_var);
+
+					finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
+					//
+
+					finalColor = saturate(finalColor);
+
+					pointLightColor += finalColor;
+					//	pointLightColor += lightColor;
+				}
+
+  #endif
+#endif
+				//
+
 //v.2.0.7
 #ifdef _EMISSIVE_SIMPLE
                 float4 _Emissive_Tex_var = tex2D(_Emissive_Tex,TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
@@ -421,10 +568,14 @@
                 float4 emissive_Color = lerp(colorShift_Color, viewShift_Color, _Is_ViewShift);
                 emissive = emissive_Color.rgb * _Emissive_Tex_var.rgb * emissiveMask;
 #endif
-//
-                //Final Composition
+
+                //Final Composition#if 
                 finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
 
+#ifdef UCTS_LWRP
+				finalColor += pointLightColor;
+///				finalColor = envColor;
+#endif
 #elif _IS_PASS_FWDDELTA
                 //v.2.0.5:
                 _BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);

@@ -241,6 +241,7 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather" {
 	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
 	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
 	    #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
+		#include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitForwardPass.hlsl"
 	    
 	    #include "UCTS_LWRP.cginc"
 	    #include "../../Toon/Shader/UCTS_DoubleShadeWithFeather.cginc"
@@ -317,6 +318,8 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather" {
 	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
 	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
 	    #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
+		#include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitForwardPass.hlsl"
+
 	    
 	    #include "./UCTS_LWRP.cginc"
 	    #include "../../Toon/Shader/UCTS_DoubleShadeWithFeather.cginc"
