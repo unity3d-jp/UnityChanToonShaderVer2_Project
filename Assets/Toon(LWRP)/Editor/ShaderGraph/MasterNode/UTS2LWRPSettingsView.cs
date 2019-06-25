@@ -20,7 +20,14 @@ namespace UTJ.Experimental.UTS2LWRP
 
             PropertySheet ps = new PropertySheet();
 
-
+            ps.Add(new PropertyRow(new Label("Workflow")), (row) =>
+            {
+                row.Add(new EnumField(PBRMasterNode.Model.Metallic), (field) =>
+                {
+                    field.value = m_Node.model;
+                    field.RegisterValueChangedCallback(ChangeWorkFlow);
+                });
+            });
 
             ps.Add(new PropertyRow(new Label("Surface")), (row) =>
             {
@@ -50,9 +57,16 @@ namespace UTJ.Experimental.UTS2LWRP
             });
 
             Add(ps);
-
         }
 
+        void ChangeWorkFlow(ChangeEvent<Enum> evt)
+        {
+            if (Equals(m_Node.model, evt.newValue))
+                return;
+
+            m_Node.owner.owner.RegisterCompleteObjectUndo("Work Flow Change");
+            m_Node.model = (UTS2LWRPMasterNode.Model)evt.newValue;
+        }
 
         void ChangeSurface(ChangeEvent<Enum> evt)
         {
@@ -79,9 +93,5 @@ namespace UTJ.Experimental.UTS2LWRP
             td.isOn = evt.newValue;
             m_Node.twoSided = td;
         }
-
     }
-
-
 }
-

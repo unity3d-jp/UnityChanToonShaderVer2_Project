@@ -7,12 +7,13 @@ using UnityEngine;
 using UnityEditor.ShaderGraph;
 using UnityEditor;
 using UnityEngine.UIElements;
+using UnityEditor.ShaderGraph.Drawing.Controls;
 
 namespace UTJ.Experimental.UTS2LWRP
 {
     [Serializable]
     [Title("Master", "UTS2 LWRP (Experimental)")]
-    class UTS2LWRPMasterNode : MasterNode<IUTS2Shader>, IMayRequirePosition,IMayRequireNormal
+    class UTS2LWRPMasterNode : MasterNode<IUTS2Shader>, IMayRequirePosition, IMayRequireNormal
     {
         public const string AlbedoSlotName = "Albedo";
         public const string NormalSlotName = "Normal";
@@ -37,15 +38,86 @@ namespace UTJ.Experimental.UTS2LWRP
         public const int PositionSlotId = 9;
 
         [MenuItem("Assets/Create/Shader/UTS2 Graph", false, 208)]
-        public static void CreateUTS2MasterMaterialGraph()
+        public static void CreateUnlitMasterMaterialGraph()
         {
             GraphUtil.CreateNewGraph(new UTS2LWRPMasterNode());
+        }
+
+        public enum Model
+        {
+            Specular,
+            Metallic
+        }
+
+        [SerializeField]
+        Model m_Model = Model.Metallic;
+
+        public Model model
+        {
+            get { return m_Model; }
+            set
+            {
+                if (m_Model == value)
+                    return;
+
+                m_Model = value;
+                UpdateNodeAfterDeserialization();
+                Dirty(ModificationScope.Topological);
+            }
+        }
+
+        [SerializeField]
+        SurfaceType m_SurfaceType;
+
+        public SurfaceType surfaceType
+        {
+            get { return m_SurfaceType; }
+            set
+            {
+                if (m_SurfaceType == value)
+                    return;
+
+                m_SurfaceType = value;
+                Dirty(ModificationScope.Graph);
+            }
+        }
+
+        [SerializeField]
+        AlphaMode m_AlphaMode;
+
+        public AlphaMode alphaMode
+        {
+            get { return m_AlphaMode; }
+            set
+            {
+                if (m_AlphaMode == value)
+                    return;
+
+                m_AlphaMode = value;
+                Dirty(ModificationScope.Graph);
+            }
+        }
+
+        [SerializeField]
+        bool m_TwoSided;
+
+        public ToggleData twoSided
+        {
+            get { return new ToggleData(m_TwoSided); }
+            set
+            {
+                if (m_TwoSided == value.isOn)
+                    return;
+                m_TwoSided = value.isOn;
+                Dirty(ModificationScope.Graph);
+            }
         }
 
         public UTS2LWRPMasterNode()
         {
             UpdateNodeAfterDeserialization();
         }
+
 
         public sealed override void UpdateNodeAfterDeserialization()
         {
@@ -54,6 +126,15 @@ namespace UTJ.Experimental.UTS2LWRP
             AddSlot(new PositionMaterialSlot(PositionSlotId, PositionName, PositionName, CoordinateSpace.Object, ShaderStageCapability.Vertex));
             AddSlot(new ColorRGBMaterialSlot(AlbedoSlotId, AlbedoSlotName, AlbedoSlotName, SlotType.Input, Color.grey.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new NormalMaterialSlot(NormalSlotId, NormalSlotName, NormalSlotName, CoordinateSpace.Tangent, ShaderStageCapability.Fragment));
+            AddSlot(new ColorRGBMaterialSlot(EmissionSlotId, EmissionSlotName, EmissionSlotName, SlotType.Input, Color.black, ColorMode.Default, ShaderStageCapability.Fragment));
+            if (model == Model.Metallic)
+                AddSlot(new Vector1MaterialSlot(MetallicSlotId, MetallicSlotName, MetallicSlotName, SlotType.Input, 0, ShaderStageCapability.Fragment));
+            else
+                AddSlot(new ColorRGBMaterialSlot(SpecularSlotId, SpecularSlotName, SpecularSlotName, SlotType.Input, Color.grey, ColorMode.Default, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(SmoothnessSlotId, SmoothnessSlotName, SmoothnessSlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(OcclusionSlotId, OcclusionSlotName, OcclusionSlotName, SlotType.Input, 1f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(AlphaSlotId, AlphaSlotName, AlphaSlotName, SlotType.Input, 1f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(AlphaThresholdSlotId, AlphaClipThresholdSlotName, AlphaClipThresholdSlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
 
             // clear out slot names that do not match the slots
             // we support
@@ -63,6 +144,12 @@ namespace UTJ.Experimental.UTS2LWRP
                 PositionSlotId,
                 AlbedoSlotId,
                 NormalSlotId,
+                EmissionSlotId,
+                model == Model.Metallic ? MetallicSlotId : SpecularSlotId,
+                SmoothnessSlotId,
+                OcclusionSlotId,
+                AlphaSlotId,
+                AlphaThresholdSlotId
             }, true);
         }
 
@@ -71,7 +158,7 @@ namespace UTJ.Experimental.UTS2LWRP
             return new UTS2LWRPSettingsView(this);
         }
 
-        public NeededCoordinateSpace RequiresNormal(ShaderStageCapability stageCapability = ShaderStageCapability.All)
+        public NeededCoordinateSpace RequiresNormal(ShaderStageCapability stageCapability)
         {
             List<MaterialSlot> slots = new List<MaterialSlot>();
             GetSlots(slots);
@@ -85,10 +172,9 @@ namespace UTJ.Experimental.UTS2LWRP
                 validSlots.Add(slots[i]);
             }
             return validSlots.OfType<IMayRequireNormal>().Aggregate(NeededCoordinateSpace.None, (mask, node) => mask | node.RequiresNormal(stageCapability));
-
         }
 
-        public NeededCoordinateSpace RequiresPosition(ShaderStageCapability stageCapability = ShaderStageCapability.All)
+        public NeededCoordinateSpace RequiresPosition(ShaderStageCapability stageCapability)
         {
             List<MaterialSlot> slots = new List<MaterialSlot>();
             GetSlots(slots);
@@ -102,7 +188,6 @@ namespace UTJ.Experimental.UTS2LWRP
                 validSlots.Add(slots[i]);
             }
             return validSlots.OfType<IMayRequirePosition>().Aggregate(NeededCoordinateSpace.None, (mask, node) => mask | node.RequiresPosition(stageCapability));
-
         }
     }
 }

@@ -8,9 +8,7 @@ using UnityEditor.ShaderGraph;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.LWRP;
 using System.IO;
-
 namespace UTJ.Experimental.UTS2LWRP
 {
 
@@ -89,13 +87,13 @@ namespace UTJ.Experimental.UTS2LWRP
         {
             if (sourceAssetDependencyPaths != null)
             {
-                // LightWeightPBRSubShader.cs
-                sourceAssetDependencyPaths.Add(AssetDatabase.GUIDToAssetPath("ca91dbeb78daa054c9bbe15fef76361c"));
+                // UTS2SubShader.cs
+                sourceAssetDependencyPaths.Add(AssetDatabase.GUIDToAssetPath("10f802b230a2cd54782d75e7d20ca7aa"));
             }
 
             var templatePath = GetTemplatePath("lightweightPBRForwardPass.template");
             var extraPassesTemplatePath = GetTemplatePath("lightweightPBRExtraPasses.template");
-            var lightweight2DPath = GetTemplatePath("lightweight2DPBRPass.template");
+
             if (!File.Exists(templatePath) || !File.Exists(extraPassesTemplatePath))
                 return string.Empty;
 
@@ -104,7 +102,7 @@ namespace UTJ.Experimental.UTS2LWRP
             {
                 sourceAssetDependencyPaths.Add(templatePath);
                 sourceAssetDependencyPaths.Add(extraPassesTemplatePath);
-                sourceAssetDependencyPaths.Add(lightweight2DPath);
+
 
                 var relativePath = "Packages/com.unity.render-pipelines.lightweight/";
                 var fullPath = Path.GetFullPath(relativePath);
@@ -114,7 +112,7 @@ namespace UTJ.Experimental.UTS2LWRP
 
             string forwardTemplate = File.ReadAllText(templatePath);
             string extraTemplate = File.ReadAllText(extraPassesTemplatePath);
-            string lightweight2DTemplate = File.ReadAllText(lightweight2DPath);
+
 
             var pbrMasterNode = masterNode as PBRMasterNode;
             var pass = pbrMasterNode.model == PBRMasterNode.Model.Metallic ? m_ForwardPassMetallic : m_ForwardPassSpecular;
@@ -124,7 +122,7 @@ namespace UTJ.Experimental.UTS2LWRP
             {
                 var materialTags = ShaderGenerator.BuildMaterialTags(pbrMasterNode.surfaceType);
                 var tagsBuilder = new ShaderStringBuilder(0);
-                materialTags.GetTags(tagsBuilder, LightweightRenderPipeline.k_ShaderTagName);
+                materialTags.GetTags(tagsBuilder, "LightweightPipeline");
                 subShader.AppendLines(tagsBuilder.ToString());
 
                 var materialOptions = ShaderGenerator.GetMaterialOptions(pbrMasterNode.surfaceType, pbrMasterNode.alphaMode, pbrMasterNode.twoSided.isOn);
@@ -142,6 +140,7 @@ namespace UTJ.Experimental.UTS2LWRP
                         mode,
                         materialOptions));
 
+                /*
                 string txt = GetShaderPassFromTemplate(
                         lightweight2DTemplate,
                         pbrMasterNode,
@@ -149,16 +148,18 @@ namespace UTJ.Experimental.UTS2LWRP
                         mode,
                         materialOptions);
                 subShader.AppendLines(txt);
+                */
 
             }
-            subShader.Append("CustomEditor \"UnityEditor.ShaderGraph.PBRMasterGUI\"");
+            subShader.Append("CustomEditor \"UnityEditor.ShaderGraph.UTS2MasterGUI\"");
 
             return subShader.ToString();
         }
 
         public bool IsPipelineCompatible(RenderPipelineAsset renderPipelineAsset)
         {
-            return renderPipelineAsset is LightweightRenderPipelineAsset;
+            //          return renderPipelineAsset is LightweightRenderPipelineAsset;
+            return true;
         }
 
         static string GetTemplatePath(string templateName)
