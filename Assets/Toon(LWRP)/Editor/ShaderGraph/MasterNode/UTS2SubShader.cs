@@ -8,7 +8,9 @@ using UnityEditor.ShaderGraph;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.LWRP;
 using System.IO;
+
 namespace UTJ.Experimental.UTS2LWRP
 {
 
@@ -122,7 +124,7 @@ namespace UTJ.Experimental.UTS2LWRP
             {
                 var materialTags = ShaderGenerator.BuildMaterialTags(pbrMasterNode.surfaceType);
                 var tagsBuilder = new ShaderStringBuilder(0);
-                materialTags.GetTags(tagsBuilder, "LightweightPipeline");
+                materialTags.GetTags(tagsBuilder, LightweightRenderPipeline.k_ShaderTagName);
                 subShader.AppendLines(tagsBuilder.ToString());
 
                 var materialOptions = ShaderGenerator.GetMaterialOptions(pbrMasterNode.surfaceType, pbrMasterNode.alphaMode, pbrMasterNode.twoSided.isOn);
@@ -151,15 +153,15 @@ namespace UTJ.Experimental.UTS2LWRP
                 */
 
             }
-            subShader.Append("CustomEditor \"UnityEditor.ShaderGraph.UTS2MasterGUI\"");
+            subShader.Append("CustomEditor \"UnityEditor.ShaderGraph.PBRMasterGUI\"");
+//            subShader.Append("CustomEditor \"UnityEditor.ShaderGraph.UTS2MasterGUI\"");
 
             return subShader.ToString();
         }
 
         public bool IsPipelineCompatible(RenderPipelineAsset renderPipelineAsset)
         {
-            //          return renderPipelineAsset is LightweightRenderPipelineAsset;
-            return true;
+            return renderPipelineAsset is LightweightRenderPipelineAsset;
         }
 
         static string GetTemplatePath(string templateName)
