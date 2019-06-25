@@ -281,7 +281,7 @@
 #  endif
 				InitializeInputData(input, surfaceData.normalTS, inputData);
 
-//				half4 envColor = LightweightFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
+				half4 envColor = LightweightFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
 #endif //UCTS_LWRP
 
 
@@ -451,8 +451,9 @@
                 //
                 //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
 #ifdef UCTS_LWRP
-				float3 envLightColor = SAMPLE_GI(input.lightmapUV, input.vertexSH, normalDirection) <float3(1,1,1) ?
-					SAMPLE_GI(input.lightmapUV, input.vertexSH, normalDirection) : float3(1, 1, 1);
+//				float3 envLightColor = SAMPLE_GI(input.lightmapUV, input.vertexSH, normalDirection) <float3(1,1,1) ?
+//					SAMPLE_GI(input.lightmapUV, input.vertexSH, normalDirection) : float3(1, 1, 1);
+				float3 envLightColor = envColor.rgb;
 #else
                 float3 envLightColor = DecodeLightProbe(normalDirection) < float3(1,1,1) ? DecodeLightProbe(normalDirection) : float3(1,1,1);
 #endif
