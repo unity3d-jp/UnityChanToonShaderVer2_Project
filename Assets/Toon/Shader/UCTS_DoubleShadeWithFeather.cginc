@@ -256,12 +256,12 @@
 
 				InputData inputData;
 				Varyings  input;
-				input = (Varyings)0;
+//				input = (Varyings)0;
 
 				// todo.  it has to be cared more.
 				UNITY_SETUP_INSTANCE_ID(input);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
-
+				input.vertexSH = i.vertexSH;
 				input.uv = i.uv0;
 				input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
 #  ifdef _MAIN_LIGHT_SHADOWS
@@ -280,8 +280,9 @@
 				input.viewDirWS = half3(viewDirection);
 #  endif
 				InitializeInputData(input, surfaceData.normalTS, inputData);
-
+				surfaceData.smoothness = 0.5f;
 				half4 envColor = LightweightFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
+//				envColor = half4(1.0, 1.0, 1.0, 1.0);
 #endif //UCTS_LWRP
 
 
@@ -572,6 +573,7 @@
 
 #ifdef UCTS_LWRP
 				finalColor += pointLightColor;
+///				finalColor = envColor;
 #endif
 #elif _IS_PASS_FWDDELTA
                 //v.2.0.5:
