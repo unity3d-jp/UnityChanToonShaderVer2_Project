@@ -279,8 +279,7 @@
 				input.viewDirWS = half3(viewDirection);
 #  endif
 				InitializeInputData(input, surfaceData.normalTS, inputData);
-//				surfaceData.smoothness = 0.5f;
-//				surfaceData.metallic = 0.5f;
+
 				BRDFData brdfData;
 				InitializeBRDFData(surfaceData.albedo, 
 					surfaceData.metallic, 
@@ -290,9 +289,7 @@
 
 				half3 envColor = GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
 				envColor *= 1.8f;
-//				surfaceData.smoothness = 0.5f;
-//				half4 envColor = LightweightFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
-//				envColor = half4(1.0, 1.0, 1.0, 1.0);
+
 #endif //UCTS_LWRP
 
 
@@ -339,8 +336,7 @@
                 //v.2.0.5: 
 #ifdef UCTS_LWRP
 				half3 originalLightColor = _LightColor0.rgb;
-//				originalLightColor = GammaToLinearSpace(originalLightColor);
-//				originalLightColor = LinearToGammaSpace(originalLightColor);
+
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
 #else
@@ -462,8 +458,6 @@
                 //
                 //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
 #ifdef UCTS_LWRP
-//				float3 envLightColor = SAMPLE_GI(input.lightmapUV, input.vertexSH, normalDirection) <float3(1,1,1) ?
-//					SAMPLE_GI(input.lightmapUV, input.vertexSH, normalDirection) : float3(1, 1, 1);
 				float3 envLightColor = envColor.rgb;
 #else
                 float3 envLightColor = DecodeLightProbe(normalDirection) < float3(1,1,1) ? DecodeLightProbe(normalDirection) : float3(1,1,1);
@@ -478,21 +472,18 @@
 				for (int iLight = 0; iLight < pixelLightCount; ++iLight)
 				{
 
-					float notDirectional = 1.0f; //_WorldSpaceLightPos0.w
+					float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
 					
 					Light light = GetAdditionalLight(iLight, inputData.positionWS);
-					attenuation = light.distanceAttenuation; // *light.shadowAttenuation;
-//					half NdotL = saturate(dot(inputData.normalWS, light.direction));
-//					half3 radiance = light.color * (attenuation * NdotL);
+					attenuation = light.distanceAttenuation; 
 
-//					float3 testColor = radiance;
 
 					float3 lightDirection = light.direction;
 					//v.2.0.5: 
 					float3 addPassLightColor = (0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * light.color.rgb * attenuation;
 					float  pureIntencity = max(0.001, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b));
 					float3 lightColor = max(0, lerp(addPassLightColor, lerp(0, min(addPassLightColor, addPassLightColor / pureIntencity), notDirectional), _Is_Filter_LightColor));
-					float3 halfDirection = normalize(viewDirection + lightDirection); // has to be recalced.
+					float3 halfDirection = normalize(viewDirection + lightDirection); // has to be recalced here.
 
 					//v.2.0.5:
 					_BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
