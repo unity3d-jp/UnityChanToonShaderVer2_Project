@@ -256,7 +256,6 @@
 
 				InputData inputData;
 				Varyings  input;
-//				input = (Varyings)0;
 
 				// todo.  it has to be cared more.
 				UNITY_SETUP_INSTANCE_ID(input);
@@ -280,8 +279,17 @@
 				input.viewDirWS = half3(viewDirection);
 #  endif
 				InitializeInputData(input, surfaceData.normalTS, inputData);
-				surfaceData.smoothness = 0.5f;
-				half4 envColor = LightweightFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
+
+				BRDFData brdfData;
+				InitializeBRDFData(surfaceData.albedo, 
+					surfaceData.metallic, 
+					surfaceData.specular, 
+					surfaceData.smoothness,
+					surfaceData.alpha, brdfData);
+
+				half3 envColor = GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
+//				surfaceData.smoothness = 0.5f;
+//				half4 envColor = LightweightFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
 //				envColor = half4(1.0, 1.0, 1.0, 1.0);
 #endif //UCTS_LWRP
 
