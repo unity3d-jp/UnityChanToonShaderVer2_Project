@@ -32,18 +32,18 @@ namespace UTJ.Experimental.UTS2LWRP
             Name = "LightweightForward",
             PixelShaderSlots = new List<int>
         {
-            PBRMasterNode.AlbedoSlotId,
-            PBRMasterNode.NormalSlotId,
-            PBRMasterNode.EmissionSlotId,
-            PBRMasterNode.MetallicSlotId,
-            PBRMasterNode.SmoothnessSlotId,
-            PBRMasterNode.OcclusionSlotId,
-            PBRMasterNode.AlphaSlotId,
-            PBRMasterNode.AlphaThresholdSlotId
+            UTS2LWRPMasterNode.AlbedoSlotId,
+            UTS2LWRPMasterNode.NormalSlotId,
+            UTS2LWRPMasterNode.EmissionSlotId,
+            UTS2LWRPMasterNode.MetallicSlotId,
+            UTS2LWRPMasterNode.SmoothnessSlotId,
+            UTS2LWRPMasterNode.OcclusionSlotId,
+            UTS2LWRPMasterNode.AlphaSlotId,
+            UTS2LWRPMasterNode.AlphaThresholdSlotId
         },
             VertexShaderSlots = new List<int>()
         {
-            PBRMasterNode.PositionSlotId
+            UTS2LWRPMasterNode.PositionSlotId
         }
         };
 
@@ -52,18 +52,18 @@ namespace UTJ.Experimental.UTS2LWRP
             Name = "LightweightForward",
             PixelShaderSlots = new List<int>()
         {
-            PBRMasterNode.AlbedoSlotId,
-            PBRMasterNode.NormalSlotId,
-            PBRMasterNode.EmissionSlotId,
-            PBRMasterNode.SpecularSlotId,
-            PBRMasterNode.SmoothnessSlotId,
-            PBRMasterNode.OcclusionSlotId,
-            PBRMasterNode.AlphaSlotId,
-            PBRMasterNode.AlphaThresholdSlotId
+            UTS2LWRPMasterNode.AlbedoSlotId,
+            UTS2LWRPMasterNode.NormalSlotId,
+            UTS2LWRPMasterNode.EmissionSlotId,
+            UTS2LWRPMasterNode.SpecularSlotId,
+            UTS2LWRPMasterNode.SmoothnessSlotId,
+            UTS2LWRPMasterNode.OcclusionSlotId,
+            UTS2LWRPMasterNode.AlphaSlotId,
+            UTS2LWRPMasterNode.AlphaThresholdSlotId
         },
             VertexShaderSlots = new List<int>()
         {
-            PBRMasterNode.PositionSlotId
+            UTS2LWRPMasterNode.PositionSlotId
         }
         };
 
@@ -72,14 +72,14 @@ namespace UTJ.Experimental.UTS2LWRP
             Name = "",
             PixelShaderSlots = new List<int>()
         {
-            PBRMasterNode.AlbedoSlotId,
-            PBRMasterNode.EmissionSlotId,
-            PBRMasterNode.AlphaSlotId,
-            PBRMasterNode.AlphaThresholdSlotId
+            UTS2LWRPMasterNode.AlbedoSlotId,
+            UTS2LWRPMasterNode.EmissionSlotId,
+            UTS2LWRPMasterNode.AlphaSlotId,
+            UTS2LWRPMasterNode.AlphaThresholdSlotId
         },
             VertexShaderSlots = new List<int>()
         {
-            PBRMasterNode.PositionSlotId
+            UTS2LWRPMasterNode.PositionSlotId
         }
         };
 
@@ -166,7 +166,8 @@ namespace UTJ.Experimental.UTS2LWRP
 
         static string GetTemplatePath(string templateName)
         {
-            var basePath = "Packages/com.unity.render-pipelines.lightweight/Editor/ShaderGraph/";
+            //            var basePath = "Packages/com.unity.render-pipelines.lightweight/Editor/ShaderGraph/";
+            var basePath = "Assets/Toon(LWRP)/Editor/ShaderGraph";
             string templatePath = Path.Combine(basePath, templateName);
 
             if (File.Exists(templatePath))
