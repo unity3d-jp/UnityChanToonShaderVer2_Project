@@ -281,7 +281,30 @@ ${PixelShaderSurfaceRemap}
         float3 i_normalDir = normalize(inputData.normalWS);
 		float3 viewDirection = inputData.viewDirectionWS;
 		float3x3 tangentTransform = float3x3( WorldSpaceTangent, WorldSpaceBiTangent, i_normalDir);
+		// #todo. normal maps
+        float2 Set_UV0 = IN.uv1.xy;
 
+		BRDFData brdfData;
+		InitializeBRDFData(Albedo0, 
+			Metallic, 
+			Specular, 
+			Smoothness,
+			Alpha, brdfData);
+
+		half3 envColor = GlobalIllumination(brdfData, inputData.bakedGI, Occlusion, inputData.normalWS, inputData.viewDirectionWS);
+		envColor *= 1.8f;
+
+		half attenuation = 1.0;
+# ifdef _MAIN_LIGHT_SHADOWS
+		Light mainLight = GetMainLight(IN.shadowCoord);
+//		attenuation = mainLight.distanceAttenuation; 
+		attenuation = mainLight.shadowAttenuation;
+# endif
+
+        float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
+
+
+                //v.2.0.5: 
 		half4 color = LightweightFragmentPBR(
 			inputData, 
 			Albedo0, 
