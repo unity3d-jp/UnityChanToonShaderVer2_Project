@@ -255,63 +255,6 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_Clipping_StencilMa
 
             ENDHLSL
         }
-        Pass {
-            Name "FORWARD_DELTA"
-            Tags {
-                "LightMode"="ForwardAdd"
-            }
-            Blend One One
-            Cull[_CullMode]
-
-            Stencil {
-                Ref[_StencilNo]
-                Comp Always
-                Pass Replace
-                Fail Replace
-            }            
-            
-            HLSLPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            //#define UNITY_PASS_FORWARDADD
-#if false
-            #include "UnityCG.cginc"
-            #include "AutoLight.cginc"
-            #include "Lighting.cginc"
-            //for Unity2018.x
-            #pragma multi_compile_fwdadd_fullshadows
-            #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
-            #pragma target 3.0
-
-            //v.2.0.4
-            #pragma multi_compile _IS_CLIPPING_MODE
-            #pragma multi_compile _IS_PASS_FWDDELTA
-#endif
-            // -------------------------------------
-            // Material Keywords
-            #pragma shader_feature _RECEIVE_SHADOWS_OFF
-
-            // -------------------------------------
-            // Lightweight Pipeline keywords
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-
-            // -------------------------------------
-            // Unity defined keywords
-            #pragma multi_compile _ DIRLIGHTMAP_COMBINED
-            #pragma multi_compile _ LIGHTMAP_ON
-            #pragma multi_compile_fog
-
-	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
-	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
-	    #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
-		#include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitForwardPass.hlsl"
-	    
-	    #include "UCTS_LWRP.cginc"
-            #include "../../Toon/Shader/UCTS_DoubleShadeWithFeather.cginc"
-
-            ENDHLSL
-        }
         Pass
         {
             Name "ShadowCaster"
