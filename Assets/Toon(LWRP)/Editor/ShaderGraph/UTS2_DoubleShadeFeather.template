@@ -44,6 +44,20 @@ ${Defines}
 	#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
 	#include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/ShaderGraphFunctions.hlsl"
 
+
+    // defines for UTS2
+    #define UCTS_LWRP 1
+
+    #define fixed  half
+    #define fixed3 half3
+    #define fixed4 half4
+
+    #define _WorldSpaceLightPos0 _MainLightPosition
+    #define _LightColor0 _MainLightColor
+    #ifndef DIRECTIONAL
+    # define DIRECTIONAL
+    #endif
+    // defines for UTS2
 ${Graph}
 	struct GraphVertexOutput
     {
@@ -59,12 +73,10 @@ ${VertexOutputStruct}
     };
 
 
-#define UCTS_LWRP 1
-            uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
-#if UCTS_LWRP
-#else
+
+//            uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
             uniform float4 _BaseColor;
-#endif
+
             //v.2.0.5
             uniform float4 _Color;
             uniform half _Use_BaseAs1st;
@@ -281,7 +293,7 @@ ${PixelShaderSurfaceRemap}
         float3 i_normalDir = normalize(inputData.normalWS);
 		float3 viewDirection = inputData.viewDirectionWS;
 		float3x3 tangentTransform = float3x3( WorldSpaceTangent, WorldSpaceBiTangent, i_normalDir);
-		// #todo. normal maps
+        float3 normalDirection = normalize(mul( Normal, tangentTransform )); // Perturbed normals
         float2 Set_UV0 = IN.uv1.xy;
 
 		BRDFData brdfData;
@@ -302,8 +314,40 @@ ${PixelShaderSurfaceRemap}
 # endif
 
         float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
+        //v.2.0.5
+        float3 defaultLightColor = float3(0.0,0.0,0.0); // todo.
+        float3 customLightDirection = normalize(mul( unity_ObjectToWorld, float4(((float3(1.0,0.0,0.0)*_Offset_X_Axis_BLD*10)+(float3(0.0,1.0,0.0)*_Offset_Y_Axis_BLD*10)+(float3(0.0,0.0,-1.0)*lerp(-1.0,1.0,_Inverse_Z_Axis_BLD))),0)).xyz);
+        float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
+        lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
+		half3 originalLightColor = _LightColor0.rgb;
+
+		float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
+        float3 halfDirection = normalize(viewDirection+lightDirection);
+		float4 _MainTex_var = float4(1.0f,1.0f,1.0f,1.0f);
+         //v.2.0.5
+		_BaseColor = float4(Albedo0,1.0f);
+        _Color = _BaseColor;
+        float3 Set_LightColor = lightColor.rgb;
+        float3 Set_BaseColor = lerp( (_BaseColor.rgb*_MainTex_var.rgb), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base );
+
+        //v.2.0.5
+        float4 _1st_ShadeMap_var = float4(1.0f,1.0f,1.0f,1.0f);
+        float3 Set_1st_ShadeColor = lerp( (_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb), ((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
+        //v.2.0.5
+        float4 _2nd_ShadeMap_var = float4(1.0f,1.0f,1.0f,1.0f);
+        float3 Set_2nd_ShadeColor = lerp( (_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb), ((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade );
+        float _HalfLambert_var = 0.5*dot(lerp( i_normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5;
+
+        float4 _Set_2nd_ShadePosition_var = float4(1.0,1.0,1.0,1.0);
+        float4 _Set_1st_ShadePosition_var = float4(1.0,1.0,1.0,1.0);
+        //v.2.0.6
+        //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
+        float _SystemShadowsLevel_var = (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
+        float Set_FinalShadowMask = saturate((1.0 + ( (lerp( _HalfLambert_var, _HalfLambert_var*saturate(_SystemShadowsLevel_var), _Set_SystemShadowsToBase ) - (_BaseColor_Step-_BaseShade_Feather)) * ((1.0 - _Set_1st_ShadePosition_var.rgb).r - 1.0) ) / (_BaseColor_Step - (_BaseColor_Step-_BaseShade_Feather))));
 
 
+  		float3 Set_FinalBaseColor = lerp(Set_BaseColor,lerp(Set_1st_ShadeColor,Set_2nd_ShadeColor,saturate((1.0 + ( (_HalfLambert_var - (_ShadeColor_Step-_1st2nd_Shades_Feather)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0) ) / (_ShadeColor_Step - (_ShadeColor_Step-_1st2nd_Shades_Feather))))),Set_FinalShadowMask); // Final Color
+            
                 //v.2.0.5: 
 		half4 color = LightweightFragmentPBR(
 			inputData, 
