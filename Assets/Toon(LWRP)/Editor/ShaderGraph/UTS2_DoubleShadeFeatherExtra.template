@@ -84,7 +84,9 @@ ${PixelShader}
 ${PixelShaderSurfaceInputs}
         SurfaceDescription surf = PopulateSurfaceData(surfaceInput);
 
-        float3 Albedo = float3(0.5, 0.5, 0.5);
+        float3 Albedo0 = float3(0.5, 0.5, 0.5);
+        float3 Albedo1 = float3(0.5, 0.5, 0.5);
+        float3 Albedo2 = float3(0.5, 0.5, 0.5);
 		float3 Emission = 0;
 		float Alpha = 1;
 		float AlphaClipThreshold = 0;
@@ -176,7 +178,10 @@ ${PixelShader}
 ${PixelShaderSurfaceInputs}
         SurfaceDescription surf = PopulateSurfaceData(surfaceInput);
 
-        float3 Albedo = float3(0.5, 0.5, 0.5);
+        float3 Albedo0 = float3(0.5, 0.5, 0.5);
+        float3 Albedo1 = float3(0.5, 0.5, 0.5);
+        float3 Albedo2 = float3(0.5, 0.5, 0.5);
+
 		float3 Emission = 0;
 		float Alpha = 1;
 		float AlphaClipThreshold = 0;
@@ -259,7 +264,9 @@ ${PixelShader}
 ${PixelShaderSurfaceInputs}
         SurfaceDescription surf = PopulateSurfaceData(surfaceInput);
 
-		float3 Albedo = float3(0.5, 0.5, 0.5);
+		float3 Albedo0 = float3(0.5, 0.5, 0.5);
+		float3 Albedo1 = float3(0.5, 0.5, 0.5);
+		float3 Albedo2 = float3(0.5, 0.5, 0.5);
 		float3 Emission = 0;
 		float Alpha = 1;
 		float AlphaClipThreshold = 0;
@@ -271,7 +278,7 @@ ${PixelShaderSurfaceRemap}
 #endif
 
         MetaInput metaInput = (MetaInput)0;
-        metaInput.Albedo = Albedo;
+        metaInput.Albedo = Albedo0;
         metaInput.Emission = Emission;
         
         return MetaFragment(metaInput);

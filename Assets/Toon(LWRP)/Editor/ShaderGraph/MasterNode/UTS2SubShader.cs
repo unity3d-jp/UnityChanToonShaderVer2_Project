@@ -32,7 +32,9 @@ namespace UTJ.Experimental.UTS2LWRP
             Name = "LightweightForward",
             PixelShaderSlots = new List<int>
         {
-            UTS2LWRPMasterNode.AlbedoSlotId,
+            UTS2LWRPMasterNode.Albedo0SlotId,
+            UTS2LWRPMasterNode.Albedo1SlotId,
+            UTS2LWRPMasterNode.Albedo2SlotId,
             UTS2LWRPMasterNode.NormalSlotId,
             UTS2LWRPMasterNode.EmissionSlotId,
             UTS2LWRPMasterNode.MetallicSlotId,
@@ -52,7 +54,9 @@ namespace UTJ.Experimental.UTS2LWRP
             Name = "LightweightForward",
             PixelShaderSlots = new List<int>()
         {
-            UTS2LWRPMasterNode.AlbedoSlotId,
+            UTS2LWRPMasterNode.Albedo0SlotId,
+            UTS2LWRPMasterNode.Albedo1SlotId,
+            UTS2LWRPMasterNode.Albedo2SlotId,
             UTS2LWRPMasterNode.NormalSlotId,
             UTS2LWRPMasterNode.EmissionSlotId,
             UTS2LWRPMasterNode.SpecularSlotId,
@@ -72,7 +76,9 @@ namespace UTJ.Experimental.UTS2LWRP
             Name = "",
             PixelShaderSlots = new List<int>()
         {
-            UTS2LWRPMasterNode.AlbedoSlotId,
+            UTS2LWRPMasterNode.Albedo0SlotId,
+            UTS2LWRPMasterNode.Albedo1SlotId,
+            UTS2LWRPMasterNode.Albedo2SlotId,
             UTS2LWRPMasterNode.EmissionSlotId,
             UTS2LWRPMasterNode.AlphaSlotId,
             UTS2LWRPMasterNode.AlphaThresholdSlotId
