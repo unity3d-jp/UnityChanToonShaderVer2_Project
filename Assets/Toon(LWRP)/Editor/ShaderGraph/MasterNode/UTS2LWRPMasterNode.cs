@@ -19,6 +19,7 @@ namespace UTJ.Experimental.UTS2LWRP
         public const string Albedo1SlotName = "Albedo1";
         public const string Albedo2SlotName = "Albedo2";
         public const string NormalSlotName = "Normal";
+        public const string HiColorSlotName = "HiColor";
         public const string EmissionSlotName = "Emission";
         public const string MetallicSlotName = "Metallic";
         public const string SpecularSlotName = "Specular";
@@ -32,14 +33,15 @@ namespace UTJ.Experimental.UTS2LWRP
         public const int Albedo1SlotId = 1;
         public const int Albedo2SlotId = 2;
         public const int NormalSlotId = 3;
-        public const int MetallicSlotId = 4;
-        public const int SpecularSlotId = 5;
-        public const int EmissionSlotId = 6;
-        public const int SmoothnessSlotId = 7;
-        public const int OcclusionSlotId = 8;
-        public const int AlphaSlotId = 9;
-        public const int AlphaThresholdSlotId = 10;
-        public const int PositionSlotId = 11;
+        public const int HiColorSlotId = 4;
+        public const int MetallicSlotId = 5;
+        public const int SpecularSlotId = 6;
+        public const int EmissionSlotId = 7;
+        public const int SmoothnessSlotId = 8;
+        public const int OcclusionSlotId = 9;
+        public const int AlphaSlotId = 10;
+        public const int AlphaThresholdSlotId = 11;
+        public const int PositionSlotId = 12;
 
         [MenuItem("Assets/Create/Shader/UTS2 Graph", false, 208)]
         public static void CreateUnlitMasterMaterialGraph()
@@ -132,6 +134,7 @@ namespace UTJ.Experimental.UTS2LWRP
             AddSlot(new ColorRGBMaterialSlot(Albedo1SlotId, Albedo1SlotName, Albedo1SlotName, SlotType.Input, Color.grey.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new ColorRGBMaterialSlot(Albedo2SlotId, Albedo2SlotName, Albedo2SlotName, SlotType.Input, Color.grey.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new NormalMaterialSlot(NormalSlotId, NormalSlotName, NormalSlotName, CoordinateSpace.Tangent, ShaderStageCapability.Fragment));
+            AddSlot(new ColorRGBMaterialSlot(HiColorSlotId, HiColorSlotName, HiColorSlotName, SlotType.Input, Color.white.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new ColorRGBMaterialSlot(EmissionSlotId, EmissionSlotName, EmissionSlotName, SlotType.Input, Color.black, ColorMode.Default, ShaderStageCapability.Fragment));
             if (model == Model.Metallic)
                 AddSlot(new Vector1MaterialSlot(MetallicSlotId, MetallicSlotName, MetallicSlotName, SlotType.Input, 0, ShaderStageCapability.Fragment));
@@ -152,6 +155,7 @@ namespace UTJ.Experimental.UTS2LWRP
                 Albedo1SlotId,
                 Albedo2SlotId,
                 NormalSlotId,
+                HiColorSlotId,
                 EmissionSlotId,
                 model == Model.Metallic ? MetallicSlotId : SpecularSlotId,
                 SmoothnessSlotId,
