@@ -184,7 +184,6 @@ ${VertexOutputStruct}
 //DoubleShadeWithFeather
 #endif
 
-
     GraphVertexOutput vert (GraphVertexInput v)
 	{
 		GraphVertexOutput o = (GraphVertexOutput)0;
@@ -277,6 +276,11 @@ ${PixelShaderSurfaceRemap}
 	    inputData.fogCoord = IN.fogFactorAndVertexLight.x;
 	    inputData.vertexLighting = IN.fogFactorAndVertexLight.yzw;
 	    inputData.bakedGI = SAMPLE_GI(IN.lightmapUV, IN.vertexSH, inputData.normalWS);
+
+		// ------------------ UTS2 code from here -------------------------
+        float3 i_normalDir = normalize(inputData.normalWS);
+		float3 viewDirection = inputData.viewDirectionWS;
+		float3x3 tangentTransform = float3x3( WorldSpaceTangent, WorldSpaceBiTangent, i_normalDir);
 
 		half4 color = LightweightFragmentPBR(
 			inputData, 
