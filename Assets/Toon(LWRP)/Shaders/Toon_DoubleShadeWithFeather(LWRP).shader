@@ -193,10 +193,10 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather" {
 	    #pragma vertex vert
             #pragma fragment frag
 	    //#define UNITY_PASS_FORWARDBASE
-#if false
-            #include "UnityCG.cginc"
-            #include "AutoLight.cginc"
-            #include "Lighting.cginc"
+#if 1
+//            #include "UnityCG.cginc"
+//            #include "AutoLight.cginc"
+//            #include "Lighting.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch

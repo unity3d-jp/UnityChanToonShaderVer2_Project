@@ -208,11 +208,8 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_StencilOut" {
 
             #pragma vertex vert
             #pragma fragment frag
-#if false
+#if 1
             //#define UNITY_PASS_FORWARDBASE
-            #include "UnityCG.cginc"
-            #include "AutoLight.cginc"
-            #include "Lighting.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
