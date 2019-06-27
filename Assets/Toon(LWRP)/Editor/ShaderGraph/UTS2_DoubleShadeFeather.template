@@ -396,6 +396,11 @@ ${PixelShaderSurfaceRemap}
         float3 _RimLight_var = lerp( Set_HighColor, (Set_HighColor+Set_RimLight), RimLightLevel );
         float3 finalColor = _RimLight_var;// Final Composition before Emissive
  
+
+		float3 envLightColor = envColor.rgb;
+        float  envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b <1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
+
+
 #if 0            
                 //v.2.0.5: 
 		half4 color = LightweightFragmentPBR(
