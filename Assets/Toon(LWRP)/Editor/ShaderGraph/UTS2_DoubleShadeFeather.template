@@ -179,6 +179,7 @@ ${VertexOutputStruct}
             uniform float _Offset_X_Axis_BLD;
             uniform float _Offset_Y_Axis_BLD;
             uniform half _Inverse_Z_Axis_BLD;
+            uniform float _GI_Intensity;
 //v.2.0.4
 #ifdef _IS_CLIPPING_MODE
 //DoubleShadeWithFeather_Clipping
@@ -193,6 +194,8 @@ ${VertexOutputStruct}
             uniform half _Inverse_Clipping;
             uniform float _Tweak_transparency;
 #elif _IS_CLIPPING_OFF
+
+
 //DoubleShadeWithFeather
 #endif
 
@@ -300,6 +303,7 @@ ${PixelShaderSurfaceRemap}
 
 		// ------------------ UTS2 code from here -------------------------
 		_Is_LightColor_RimLight = 0.0f;
+		_GI_Intensity = 1.0f;
 //		_RimLight = 1.0f;
 //		_RimLight_Power = 0.35f;
 //		_RimLightColor = float4(1.0,1.0,1.0,1.0);
@@ -400,6 +404,8 @@ ${PixelShaderSurfaceRemap}
 		float3 envLightColor = envColor.rgb;
         float  envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b <1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
+        //Final Composition#if 
+        finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + Emission;
 
 #if 0            
                 //v.2.0.5: 
