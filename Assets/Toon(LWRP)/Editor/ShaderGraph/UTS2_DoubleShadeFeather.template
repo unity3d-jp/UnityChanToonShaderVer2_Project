@@ -256,6 +256,11 @@ ${PixelShaderSurfaceInputs}
  		float BaseColorStep = 0.8; 
         float ShadeColorStep = 0.5;
 		float SpecularPower = 0.35f;
+
+        float3 RimLightColor = float3(1.0, 1.0, 1.0);
+        float RimLightLevel  = 0.0;
+        float RimLightPower  = 0.35;
+
 		float3 Specular = float3(0, 0, 0);
 		float Metallic = 1;
 		float3 Normal = float3(0, 0, 1);
@@ -295,9 +300,9 @@ ${PixelShaderSurfaceRemap}
 
 		// ------------------ UTS2 code from here -------------------------
 		_Is_LightColor_RimLight = 0.0f;
-		_RimLight = 1.0f;
-		_RimLight_Power = 0.35f;
-		_RimLightColor = float4(1.0,1.0,1.0,1.0);
+//		_RimLight = 1.0f;
+//		_RimLight_Power = 0.35f;
+//		_RimLightColor = float4(1.0,1.0,1.0,1.0);
 // 		_BaseColor_Step = 0.8; // test.
 //      _ShadeColor_Step = 0.5;
 //		_HighColor = float4(1.0,1.0,1.0,1.0);
@@ -379,16 +384,16 @@ ${PixelShaderSurfaceRemap}
         float3 Set_HighColor = (lerp( saturate((Set_FinalBaseColor-_TweakHighColorMask_var)), Set_FinalBaseColor, lerp(_Is_BlendAddToHiColor,1.0,_Is_SpecularToHighColor) )+lerp( _HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow ));
  
         float4 _Set_RimLightMask_var = float4(1.0f,1.0f,1.0f,1.0f);
-        float3 _Is_LightColor_RimLight_var = lerp( _RimLightColor.rgb, (_RimLightColor.rgb*Set_LightColor), _Is_LightColor_RimLight );
+        float3 _Is_LightColor_RimLight_var = lerp( RimLightColor.rgb, (RimLightColor.rgb*Set_LightColor), _Is_LightColor_RimLight );
         float _RimArea_var = (1.0 - dot(lerp( i_normalDir, normalDirection, _Is_NormalMapToRimLight ),viewDirection));
-        float _RimLightPower_var = pow(_RimArea_var,exp2(lerp(3,0,_RimLight_Power)));
+        float _RimLightPower_var = pow(_RimArea_var,exp2(lerp(3,0,RimLightPower)));
         float _Rimlight_InsideMask_var = saturate(lerp( (0.0 + ( (_RimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0) ) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask,_RimLightPower_var), _RimLight_FeatherOff ));
         float _VertHalfLambert_var = 0.5*dot(i_normalDir,lightDirection)+0.5;
         float3 _LightDirection_MaskOn_var = lerp( (_Is_LightColor_RimLight_var*_Rimlight_InsideMask_var), (_Is_LightColor_RimLight_var*saturate((_Rimlight_InsideMask_var-((1.0 - _VertHalfLambert_var)+_Tweak_LightDirection_MaskLevel)))), _LightDirection_MaskOn );
         float _ApRimLightPower_var = pow(_RimArea_var,exp2(lerp(3,0,_Ap_RimLight_Power)));
         float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g+_Tweak_RimLightMaskLevel))*lerp( _LightDirection_MaskOn_var, (_LightDirection_MaskOn_var+(lerp( _Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb*Set_LightColor), _Is_LightColor_Ap_RimLight )*saturate((lerp( (0.0 + ( (_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0) ) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask,_ApRimLightPower_var), _Ap_RimLight_FeatherOff )-(saturate(_VertHalfLambert_var)+_Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight ));
         //Composition: HighColor and RimLight as _RimLight_var
-        float3 _RimLight_var = lerp( Set_HighColor, (Set_HighColor+Set_RimLight), _RimLight );
+        float3 _RimLight_var = lerp( Set_HighColor, (Set_HighColor+Set_RimLight), RimLightLevel );
 
  
 #if 0            

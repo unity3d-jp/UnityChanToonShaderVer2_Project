@@ -23,6 +23,9 @@ namespace UTJ.Experimental.UTS2LWRP
         public const string NormalSlotName = "Normal";
         public const string HiColorSlotName = "HiColor";
         public const string SpecularPowerSlotName = "SpecularPower";
+        public const string RimLightColorSlotName = "RimLightColor";
+        public const string RimLightLevelSlotName = "RimLightLevel";
+        public const string RimLightPowerSlotName = "RimLightPower";
         public const string EmissionSlotName = "Emission";
         public const string MetallicSlotName = "Metallic";
         public const string SpecularSlotName = "Specular";
@@ -37,18 +40,20 @@ namespace UTJ.Experimental.UTS2LWRP
         public const int Albedo2SlotId = 2;
         public const int BaseColorStepSlotId = 3;
         public const int ShadeColorStepSlotId = 4;
-
         public const int NormalSlotId = 5;
         public const int HiColorSlotId = 6;
         public const int SpecularPowerSlotId = 7;
-        public const int MetallicSlotId = 8;
-        public const int SpecularSlotId = 9;
-        public const int EmissionSlotId = 10;
-        public const int SmoothnessSlotId =11;
-        public const int OcclusionSlotId = 12;
-        public const int AlphaSlotId = 13;
-        public const int AlphaThresholdSlotId = 14;
-        public const int PositionSlotId = 15;
+        public const int RimLightColorSlotId = 8;
+        public const int RimLightLevelSlotId = 9;
+        public const int RimLightPowerSlotId = 10;
+        public const int MetallicSlotId = 11;
+        public const int SpecularSlotId = 12;
+        public const int EmissionSlotId = 13;
+        public const int SmoothnessSlotId =14;
+        public const int OcclusionSlotId = 15;
+        public const int AlphaSlotId = 16;
+        public const int AlphaThresholdSlotId = 17;
+        public const int PositionSlotId = 18;
 
         [MenuItem("Assets/Create/Shader/UTS2 Graph", false, 208)]
         public static void CreateUnlitMasterMaterialGraph()
@@ -146,6 +151,11 @@ namespace UTJ.Experimental.UTS2LWRP
             AddSlot(new NormalMaterialSlot(NormalSlotId, NormalSlotName, NormalSlotName, CoordinateSpace.Tangent, ShaderStageCapability.Fragment));
             AddSlot(new ColorRGBMaterialSlot(HiColorSlotId, HiColorSlotName, HiColorSlotName, SlotType.Input, Color.white.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(SpecularPowerSlotId, SpecularPowerSlotName, SpecularPowerSlotName, SlotType.Input, 0.35f, ShaderStageCapability.Fragment));
+
+            AddSlot(new ColorRGBMaterialSlot(RimLightColorSlotId, RimLightColorSlotName, RimLightColorSlotName, SlotType.Input, Color.white.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(RimLightLevelSlotId, RimLightLevelSlotName, RimLightLevelSlotName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(RimLightPowerSlotId, RimLightPowerSlotName, RimLightPowerSlotName, SlotType.Input, 0.35f, ShaderStageCapability.Fragment));
+
             AddSlot(new ColorRGBMaterialSlot(EmissionSlotId, EmissionSlotName, EmissionSlotName, SlotType.Input, Color.black, ColorMode.Default, ShaderStageCapability.Fragment));
 
             if (model == Model.Metallic)
@@ -171,6 +181,9 @@ namespace UTJ.Experimental.UTS2LWRP
                 NormalSlotId,
                 HiColorSlotId,
                 SpecularPowerSlotId,
+                RimLightColorSlotId,
+                RimLightLevelSlotId,
+                RimLightPowerSlotId,
                 EmissionSlotId,
                 model == Model.Metallic ? MetallicSlotId : SpecularSlotId,
                 SmoothnessSlotId,
