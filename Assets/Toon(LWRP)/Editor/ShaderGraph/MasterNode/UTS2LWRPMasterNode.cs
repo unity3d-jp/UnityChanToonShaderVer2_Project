@@ -36,6 +36,8 @@ namespace UTJ.Experimental.UTS2LWRP
         public const string AlphaClipThresholdSlotName = "AlphaClipThreshold";
         public const string PositionName = "Position";
         public const string IsLightColorBaseName = "IsLightColorBase";
+        public const string IsLightColor1stShadeName = "IsLightColor1stShade";
+        public const string IsLightColor2ndShadeName = "IsLightColor2ndShade";
 
         public const int Albedo0SlotId = 0;
         public const int Albedo1SlotId = 1;
@@ -58,6 +60,8 @@ namespace UTJ.Experimental.UTS2LWRP
         public const int AlphaThresholdSlotId = 18;
         public const int PositionSlotId = 19;
         public const int IsLightColorBaseId = 20;
+        public const int IsLightColor1stShadeId = 21;
+        public const int IsLightColor2ndShadeId = 22;
 
         [MenuItem("Assets/Create/Shader/UTS2 Graph", false, 208)]
         public static void CreateUnlitMasterMaterialGraph()
@@ -176,6 +180,9 @@ namespace UTJ.Experimental.UTS2LWRP
             AddSlot(new Vector1MaterialSlot(AlphaThresholdSlotId, AlphaClipThresholdSlotName, AlphaClipThresholdSlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
             
             AddSlot(new Vector1MaterialSlot(IsLightColorBaseId, IsLightColorBaseName, IsLightColorBaseName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(IsLightColor1stShadeId, IsLightColor1stShadeName, IsLightColor1stShadeName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(IsLightColor2ndShadeId, IsLightColor2ndShadeName, IsLightColor2ndShadeName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
+            
             // clear out slot names that do not match the slots
             // we support
             RemoveSlotsNameNotMatching(
@@ -200,7 +207,9 @@ namespace UTJ.Experimental.UTS2LWRP
                 OcclusionSlotId,
                 AlphaSlotId,
                 AlphaThresholdSlotId,
-                IsLightColorBaseId
+                IsLightColorBaseId,
+                IsLightColor1stShadeId,
+                IsLightColor2ndShadeId
             }, true);
         }
 

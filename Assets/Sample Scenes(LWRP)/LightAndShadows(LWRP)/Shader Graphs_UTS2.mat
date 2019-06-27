@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_UTS2
-  m_Shader: {fileID: -6465566751694194690, guid: 79b8129e5f0cbdf43b1ab91884234400,
+  m_Name: Shader Graphs_uts2
+  m_Shader: {fileID: -6465566751694194690, guid: 44f4a56be18041e4e9d6cb15703841ea,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
