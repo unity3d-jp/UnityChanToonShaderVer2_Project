@@ -449,13 +449,26 @@ ${PixelShaderSurfaceRemap}
 			//Composition: 3 Basic Colors as finalColor
 			float3 finalColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (ShadeColorStep - _1st2nd_Shades_Feather)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (ShadeColorStep - (ShadeColorStep - _1st2nd_Shades_Feather))))), Set_FinalShadowMask); // Final Color
 
+			float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
+			float _Specular_var =  0.5*dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular     
+          
+			float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(SpecularPower, 5)))), pow(_Specular_var, exp2(lerp(11, 1, SpecularPower))), _Is_SpecularToHighColor));
+			float4 _HighColor_Tex_var = float4(1.0,1.0,1.0,1.0);
+			float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb*HiColor.rgb), ((_HighColor_Tex_var.rgb*HiColor.rgb)*Set_LightColor), _Is_LightColor_HighColor)*_TweakHighColorMask_var);
+#if 1
+			finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
+			//
+
+			finalColor = saturate(finalColor);
+#endif
+			pointLightColor += finalColor;
 
 		}
   #endif // _ADDITIONAL_LIGHTS
         //Final Composition#if 
         finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*GiIntensity*smoothstep(1,0,envLightIntensity/2)) + Emission;
 
-
+		finalColor += pointLightColor;
 		half4 color = half4(finalColor,1.0); //half4(_RimLight_var,1.0);
 		// Computes fog factor per-vertex
     	color.rgb = MixFog(color.rgb, IN.fogFactorAndVertexLight.x);
