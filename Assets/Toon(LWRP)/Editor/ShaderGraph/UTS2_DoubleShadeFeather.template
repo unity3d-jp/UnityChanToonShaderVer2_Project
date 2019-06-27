@@ -316,9 +316,7 @@ ${PixelShaderSurfaceInputs}
 		float AlphaClipThreshold = 0;
 
 
-//		Albedo0 = LinearToGammaSpace(Albedo0);
-//		Albedo1 = LinearToGammaSpace(Albedo1);
-//		Albedo2 = LinearToGammaSpace(Albedo2);
+
 
 		// Surface description remap performed by graph
 ${PixelShaderSurfaceRemap}
@@ -349,6 +347,7 @@ ${PixelShaderSurfaceRemap}
 	    inputData.bakedGI = SAMPLE_GI(IN.lightmapUV, IN.vertexSH, inputData.normalWS);
 
 		// ------------------ UTS2 code from here -------------------------
+_Is_LightColor_Base = 1.0f;
 		_Is_LightColor_RimLight = 0.0f;
 //		_GI_Intensity = 1.0f;
 //		_RimLight = 1.0f;
@@ -515,6 +514,7 @@ ${PixelShaderSurfaceRemap}
         finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*GiIntensity*smoothstep(1,0,envLightIntensity/2)) + Emission;
 
 		finalColor += pointLightColor;
+
 		half4 color = half4(finalColor,1.0); //half4(_RimLight_var,1.0);
 		// Computes fog factor per-vertex
     	color.rgb = MixFog(color.rgb, IN.fogFactorAndVertexLight.x);
