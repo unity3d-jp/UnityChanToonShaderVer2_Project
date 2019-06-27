@@ -35,6 +35,7 @@ namespace UTJ.Experimental.UTS2LWRP
         public const string AlphaSlotName = "Alpha";
         public const string AlphaClipThresholdSlotName = "AlphaClipThreshold";
         public const string PositionName = "Position";
+        public const string IsLightColorBaseName = "IsLightColorBase";
 
         public const int Albedo0SlotId = 0;
         public const int Albedo1SlotId = 1;
@@ -56,6 +57,7 @@ namespace UTJ.Experimental.UTS2LWRP
         public const int AlphaSlotId = 17;
         public const int AlphaThresholdSlotId = 18;
         public const int PositionSlotId = 19;
+        public const int IsLightColorBaseId = 20;
 
         [MenuItem("Assets/Create/Shader/UTS2 Graph", false, 208)]
         public static void CreateUnlitMasterMaterialGraph()
@@ -172,7 +174,8 @@ namespace UTJ.Experimental.UTS2LWRP
             AddSlot(new Vector1MaterialSlot(OcclusionSlotId, OcclusionSlotName, OcclusionSlotName, SlotType.Input, 1f, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(AlphaSlotId, AlphaSlotName, AlphaSlotName, SlotType.Input, 1f, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(AlphaThresholdSlotId, AlphaClipThresholdSlotName, AlphaClipThresholdSlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
-
+            
+            AddSlot(new Vector1MaterialSlot(IsLightColorBaseId, IsLightColorBaseName, IsLightColorBaseName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
             // clear out slot names that do not match the slots
             // we support
             RemoveSlotsNameNotMatching(
@@ -196,7 +199,8 @@ namespace UTJ.Experimental.UTS2LWRP
                 SmoothnessSlotId,
                 OcclusionSlotId,
                 AlphaSlotId,
-                AlphaThresholdSlotId
+                AlphaThresholdSlotId,
+                IsLightColorBaseId
             }, true);
         }
 
