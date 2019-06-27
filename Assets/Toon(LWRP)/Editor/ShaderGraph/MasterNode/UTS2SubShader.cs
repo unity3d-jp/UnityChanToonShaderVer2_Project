@@ -52,7 +52,10 @@ namespace UTJ.Experimental.UTS2LWRP
             UTS2LWRPMasterNode.AlphaThresholdSlotId,
             UTS2LWRPMasterNode.IsLightColorBaseId,
             UTS2LWRPMasterNode.IsLightColor1stShadeId,
-            UTS2LWRPMasterNode.IsLightColor2ndShadeId
+            UTS2LWRPMasterNode.IsLightColor2ndShadeId,
+            UTS2LWRPMasterNode.IsLightColorHighColorId,
+            UTS2LWRPMasterNode.IsSpecularToHighColorId,
+
         },
             VertexShaderSlots = new List<int>()
         {
@@ -83,7 +86,11 @@ namespace UTJ.Experimental.UTS2LWRP
             UTS2LWRPMasterNode.OcclusionSlotId,
             UTS2LWRPMasterNode.AlphaSlotId,
             UTS2LWRPMasterNode.AlphaThresholdSlotId,
-            UTS2LWRPMasterNode.IsLightColorBaseId
+            UTS2LWRPMasterNode.IsLightColorBaseId,
+            UTS2LWRPMasterNode.IsLightColor1stShadeId,
+            UTS2LWRPMasterNode.IsLightColor2ndShadeId,
+            UTS2LWRPMasterNode.IsLightColorHighColorId,
+            UTS2LWRPMasterNode.IsSpecularToHighColorId,
 
         },
             VertexShaderSlots = new List<int>()
