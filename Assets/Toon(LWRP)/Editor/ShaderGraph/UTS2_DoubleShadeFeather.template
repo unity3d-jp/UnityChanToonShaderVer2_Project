@@ -264,6 +264,7 @@ ${PixelShaderSurfaceInputs}
         float RimLightLevel  = 0.0;
         float RimLightPower  = 0.35;
 
+		float GiIntensity = 0.0;
 		float3 Specular = float3(0, 0, 0);
 		float Metallic = 1;
 		float3 Normal = float3(0, 0, 1);
@@ -303,7 +304,7 @@ ${PixelShaderSurfaceRemap}
 
 		// ------------------ UTS2 code from here -------------------------
 		_Is_LightColor_RimLight = 0.0f;
-		_GI_Intensity = 1.0f;
+//		_GI_Intensity = 1.0f;
 //		_RimLight = 1.0f;
 //		_RimLight_Power = 0.35f;
 //		_RimLightColor = float4(1.0,1.0,1.0,1.0);
@@ -404,24 +405,40 @@ ${PixelShaderSurfaceRemap}
 		float3 envLightColor = envColor.rgb;
         float  envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b <1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
+		float3 pointLightColor = 0;
+  #ifdef _ADDITIONAL_LIGHTS
+
+		int pixelLightCount = GetAdditionalLightsCount();
+		for (int iLight = 0; iLight < pixelLightCount; ++iLight)
+		{
+			float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
+			Light light = GetAdditionalLight(iLight, inputData.positionWS);
+			attenuation = light.distanceAttenuation; 
+
+			float3 lightDirection = light.direction;
+			//v.2.0.5: 
+			float3 addPassLightColor = (0.5*dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * light.color.rgb * attenuation;
+			float  pureIntencity = max(0.001, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b));
+			float3 lightColor = max(0, lerp(addPassLightColor, lerp(0, min(addPassLightColor, addPassLightColor / pureIntencity), notDirectional), _Is_Filter_LightColor));
+			float3 halfDirection = normalize(viewDirection + lightDirection); // has to be recalced here.
+
+
+					//v.2.0.5:
+			BaseColorStep = saturate(BaseColorStep + _StepOffset);
+			ShadeColorStep = saturate(ShadeColorStep + _StepOffset);
+
+			//
+			//v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
+			float _LightIntensity = lerp(0, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b)*attenuation, notDirectional);
+			//v.2.0.5: Filtering the high intensity zone of PointLights
+			float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, light.color.rgb*attenuation*_BaseColor_Step), notDirectional), _Is_Filter_HiCutPointLightColor);
+
+		}
+  #endif // _ADDITIONAL_LIGHTS
         //Final Composition#if 
-        finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + Emission;
+        finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*GiIntensity*smoothstep(1,0,envLightIntensity/2)) + Emission;
 
-#if 0            
-                //v.2.0.5: 
-		half4 color = LightweightFragmentPBR(
-			inputData, 
-			Albedo0, 
-			Metallic, 
-			Specular, 
-			Smoothness, 
-			Occlusion, 
-			Emission, 
-			Alpha);
-#else
-//		half4 color = half4(Set_HighColor,1.0); //half4(Set_FinalBaseColor,1.0);
 
-#endif
 		half4 color = half4(finalColor,1.0); //half4(_RimLight_var,1.0);
 		// Computes fog factor per-vertex
     	color.rgb = MixFog(color.rgb, IN.fogFactorAndVertexLight.x);

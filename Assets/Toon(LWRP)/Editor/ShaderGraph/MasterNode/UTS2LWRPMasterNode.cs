@@ -26,6 +26,7 @@ namespace UTJ.Experimental.UTS2LWRP
         public const string RimLightColorSlotName = "RimLightColor";
         public const string RimLightLevelSlotName = "RimLightLevel";
         public const string RimLightPowerSlotName = "RimLightPower";
+        public const string GiIntensitySlotName = "GiIntensity";
         public const string EmissionSlotName = "Emission";
         public const string MetallicSlotName = "Metallic";
         public const string SpecularSlotName = "Specular";
@@ -46,14 +47,15 @@ namespace UTJ.Experimental.UTS2LWRP
         public const int RimLightColorSlotId = 8;
         public const int RimLightLevelSlotId = 9;
         public const int RimLightPowerSlotId = 10;
-        public const int MetallicSlotId = 11;
-        public const int SpecularSlotId = 12;
-        public const int EmissionSlotId = 13;
-        public const int SmoothnessSlotId =14;
-        public const int OcclusionSlotId = 15;
-        public const int AlphaSlotId = 16;
-        public const int AlphaThresholdSlotId = 17;
-        public const int PositionSlotId = 18;
+        public const int GiIntensitySlotId = 11;
+        public const int MetallicSlotId = 12;
+        public const int SpecularSlotId = 13;
+        public const int EmissionSlotId = 14;
+        public const int SmoothnessSlotId =15;
+        public const int OcclusionSlotId = 16;
+        public const int AlphaSlotId = 17;
+        public const int AlphaThresholdSlotId = 18;
+        public const int PositionSlotId = 19;
 
         [MenuItem("Assets/Create/Shader/UTS2 Graph", false, 208)]
         public static void CreateUnlitMasterMaterialGraph()
@@ -155,6 +157,7 @@ namespace UTJ.Experimental.UTS2LWRP
             AddSlot(new ColorRGBMaterialSlot(RimLightColorSlotId, RimLightColorSlotName, RimLightColorSlotName, SlotType.Input, Color.white.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(RimLightLevelSlotId, RimLightLevelSlotName, RimLightLevelSlotName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(RimLightPowerSlotId, RimLightPowerSlotName, RimLightPowerSlotName, SlotType.Input, 0.35f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(GiIntensitySlotId, GiIntensitySlotName, GiIntensitySlotName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
 
             AddSlot(new ColorRGBMaterialSlot(EmissionSlotId, EmissionSlotName, EmissionSlotName, SlotType.Input, Color.black, ColorMode.Default, ShaderStageCapability.Fragment));
 
@@ -184,6 +187,7 @@ namespace UTJ.Experimental.UTS2LWRP
                 RimLightColorSlotId,
                 RimLightLevelSlotId,
                 RimLightPowerSlotId,
+                GiIntensitySlotId,
                 EmissionSlotId,
                 model == Model.Metallic ? MetallicSlotId : SpecularSlotId,
                 SmoothnessSlotId,
