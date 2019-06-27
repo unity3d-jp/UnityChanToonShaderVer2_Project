@@ -123,7 +123,7 @@ Material:
     - _Is_LightColor_2nd_Shade: 1
     - _Is_LightColor_Ap_RimLight: 1
     - _Is_LightColor_Base: 1
-    - _Is_LightColor_HighColor: 1
+    - _Is_LightColor_HighColor: 0
     - _Is_LightColor_MatCap: 1
     - _Is_LightColor_Outline: 1
     - _Is_LightColor_RimLight: 1
@@ -170,7 +170,7 @@ Material:
     - _Unlit_Intensity: 1
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
-    - _simpleUI: 0
+    - _simpleUI: 2
     - _utsTechnique: 0
     - _utsVersion: 2.075
     m_Colors:

@@ -55,6 +55,7 @@ namespace UTJ.Experimental.UTS2LWRP
             UTS2LWRPMasterNode.IsLightColor2ndShadeId,
             UTS2LWRPMasterNode.IsLightColorHighColorId,
             UTS2LWRPMasterNode.IsSpecularToHighColorId,
+            UTS2LWRPMasterNode.UnlitIntensityId
 
         },
             VertexShaderSlots = new List<int>()
@@ -91,7 +92,7 @@ namespace UTJ.Experimental.UTS2LWRP
             UTS2LWRPMasterNode.IsLightColor2ndShadeId,
             UTS2LWRPMasterNode.IsLightColorHighColorId,
             UTS2LWRPMasterNode.IsSpecularToHighColorId,
-
+            UTS2LWRPMasterNode.UnlitIntensityId
         },
             VertexShaderSlots = new List<int>()
         {

@@ -321,6 +321,7 @@ ${PixelShaderSurfaceInputs}
         float IsLightColorHighColor = 0;
         float IsSpecularToHighColor = 0;
 
+		float UnlitIntensity = 0;
 		// Surface description remap performed by graph
 ${PixelShaderSurfaceRemap}
 		InputData inputData;
@@ -351,7 +352,7 @@ ${PixelShaderSurfaceRemap}
 
 		// ------------------ UTS2 code from here -------------------------
 // _Is_LightColor_Base = 1.0f;
-        _Unlit_Intensity = 1.0f;
+//        _Unlit_Intensity = 1.0f;
 // _Is_LightColor_1st_Shade = 1.0f;
 // _Is_LightColor_2nd_Shade = 1.0f;
 		_Is_LightColor_RimLight = 0.0f;
@@ -365,6 +366,9 @@ ${PixelShaderSurfaceRemap}
 //		_HighColor_Power = 0.35;
 		_Tweak_HighColorMaskLevel = 0.136;
 
+//		Albedo0 = LinearToGammaSpace(Albedo0);
+//		Albedo1 = LinearToGammaSpace(Albedo1);
+//		Albedo2 = LinearToGammaSpace(Albedo2);
         float3 i_normalDir = normalize(inputData.normalWS);
 		float3 viewDirection = inputData.viewDirectionWS;
 		float3x3 tangentTransform = float3x3( WorldSpaceTangent, WorldSpaceBiTangent, i_normalDir);
