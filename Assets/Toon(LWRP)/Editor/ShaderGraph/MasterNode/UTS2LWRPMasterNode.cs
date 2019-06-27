@@ -141,6 +141,9 @@ namespace UTJ.Experimental.UTS2LWRP
 
         public sealed override void UpdateNodeAfterDeserialization()
         {
+            var Asbedo0Gray = new Color(204.0f / 255.0f, 204.0f / 255.0f, 204.0f / 255.0f);
+            var Asbedo1Gray = new Color(171.0f / 255.0f, 171.0f / 255.0f, 171.0f / 255.0f);
+            var Asbedo2Gray = new Color(96.0f / 255.0f, 96.0f / 255.0f, 96.0f / 255.0f);
             base.UpdateNodeAfterDeserialization();
             name = "UTS2 Master";
             AddSlot(new PositionMaterialSlot(PositionSlotId, PositionName, PositionName, CoordinateSpace.Object, ShaderStageCapability.Vertex));
@@ -152,7 +155,7 @@ namespace UTJ.Experimental.UTS2LWRP
 
             AddSlot(new NormalMaterialSlot(NormalSlotId, NormalSlotName, NormalSlotName, CoordinateSpace.Tangent, ShaderStageCapability.Fragment));
             AddSlot(new ColorRGBMaterialSlot(HiColorSlotId, HiColorSlotName, HiColorSlotName, SlotType.Input, Color.white.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
-            AddSlot(new Vector1MaterialSlot(SpecularPowerSlotId, SpecularPowerSlotName, SpecularPowerSlotName, SlotType.Input, 0.35f, ShaderStageCapability.Fragment));
+            AddSlot(new Vector1MaterialSlot(SpecularPowerSlotId, SpecularPowerSlotName, SpecularPowerSlotName, SlotType.Input, 0.28f, ShaderStageCapability.Fragment));
 
             AddSlot(new ColorRGBMaterialSlot(RimLightColorSlotId, RimLightColorSlotName, RimLightColorSlotName, SlotType.Input, Color.white.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(RimLightLevelSlotId, RimLightLevelSlotName, RimLightLevelSlotName, SlotType.Input, 0.0f, ShaderStageCapability.Fragment));
