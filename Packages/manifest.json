@@ -5,6 +5,7 @@
     "com.unity.ide.rider": "1.0.8",
     "com.unity.ide.visualstudio": "1.0.11",
     "com.unity.ide.vscode": "1.0.7",
+    "com.unity.postprocessing": "2.1.7",
     "com.unity.render-pipelines.core": "file:../../SRP/com.unity.render-pipelines.core",
     "com.unity.render-pipelines.lightweight": "file:../../SRP/com.unity.render-pipelines.lightweight",
     "com.unity.shadergraph": "file:../../SRP/com.unity.shadergraph",

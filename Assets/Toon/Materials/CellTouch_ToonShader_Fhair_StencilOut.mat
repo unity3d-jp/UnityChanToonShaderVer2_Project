@@ -4,11 +4,12 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: CellTouch_ToonShader_Fhair_StencilOut
-  m_Shader: {fileID: 4800000, guid: 0a1e4c9dcc0e9ea4db38ae9cb5059608, type: 3}
-  m_ShaderKeywords: _EMISSIVE_SIMPLE _OUTLINE_NML
+  m_Shader: {fileID: 4800000, guid: 3faca5929059eb34ebf9fa169e0402ed, type: 3}
+  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _OUTLINE_NML
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -31,6 +32,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ClippingMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -102,14 +107,18 @@ Material:
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
+    - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _CullMode: 2
+    - _Cutoff: 0.5
     - _EMISSIVE: 0
     - _Farthest_Distance: 10
     - _GI_Intensity: 0
     - _HighColor_Power: 0
+    - _Inverse_Clipping: 0
     - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
+    - _IsBaseMapAlphaAsClippingMask: 0
     - _Is_BLD: 0
     - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
@@ -124,6 +133,7 @@ Material:
     - _Is_LightColor_Base: 1
     - _Is_LightColor_HighColor: 1
     - _Is_LightColor_MatCap: 1
+    - _Is_LightColor_Outline: 1
     - _Is_LightColor_RimLight: 1
     - _Is_NormalMapForMatCap: 1
     - _Is_NormalMapToBase: 1
