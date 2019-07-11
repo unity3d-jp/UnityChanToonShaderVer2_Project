@@ -330,5 +330,5 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_Clipping_StencilOu
         }
 //ToonCoreEnd
     }
-//    CustomEditor "UnityChan.UTS2GUI"
+    CustomEditor "UnityChan.UTS2GUI"
 }
