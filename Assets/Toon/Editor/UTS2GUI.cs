@@ -1610,6 +1610,34 @@ namespace UnityChan
 
         void GUI_Outline(Material material)
         {
+            string lightModeName = "SRPDefaultUnlit";
+            var tag = material.GetTag("LightMode", false, lightModeName);
+            bool isOutlineEnabled = true;
+            if ( tag == lightModeName)
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Outline");
+                if (isOutlineEnabled = material.GetShaderPassEnabled(lightModeName) )
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetShaderPassEnabled(lightModeName, false);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetShaderPassEnabled(lightModeName, true);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            if ( !isOutlineEnabled)
+            {
+                return;
+            }
+            //
             //Shaderプロパティ [KeywordEnum(NML,POS)] をEumPopupで表現する.
             //マテリアル内のアウトラインモードの設定を読み込み.
             int _OutlineMode_Setting = material.GetInt("_OUTLINE");

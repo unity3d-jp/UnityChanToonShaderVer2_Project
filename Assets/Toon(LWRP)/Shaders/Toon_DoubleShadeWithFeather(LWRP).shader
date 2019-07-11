@@ -157,6 +157,7 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather" {
         Pass {
             Name "Outline"
             Tags {
+				"LightMode" = "SRPDefaultUnlit"
             }
             Cull Front
 

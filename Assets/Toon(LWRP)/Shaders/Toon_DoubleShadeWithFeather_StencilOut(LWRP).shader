@@ -157,8 +157,9 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_StencilOut" {
         }
         Pass {
             Name "Outline"
-            Tags {
-            }
+			Tags {
+				"LightMode" = "SRPDefaultUnlit"
+			}
             Cull Front
             //v.2.0.4
             Blend SrcAlpha OneMinusSrcAlpha
