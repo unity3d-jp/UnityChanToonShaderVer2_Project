@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000014, guid: 836af08669d552b42a9b8291f8fdd2ae,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -717,6 +717,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 108560918871008174, guid: 836fb1f93bea967418802e74763c68e9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.09251513
+      objectReference: {fileID: 0}
+    - target: {fileID: 108560918871008174, guid: 836fb1f93bea967418802e74763c68e9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 108560918871008174, guid: 836fb1f93bea967418802e74763c68e9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.25253758
       objectReference: {fileID: 0}
     - target: {fileID: 1820536469884500, guid: 836fb1f93bea967418802e74763c68e9, type: 3}
       propertyPath: m_IsActive

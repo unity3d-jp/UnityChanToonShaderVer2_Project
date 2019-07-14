@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grey_UTS2(LWRP)
-  m_Shader: {fileID: 4800000, guid: 677c4069f6ed49e4599b06900c59a749, type: 3}
-  m_ShaderKeywords: _EMISSIVE_SIMPLE _INVERSE_Z_AXIS_BLD_ON _IS_BLENDADDTOHICOLOR_ON
+  m_Shader: {fileID: 4800000, guid: d7e0df49bd4acf8429dd6456c57f2ae3, type: 3}
+  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _INVERSE_Z_AXIS_BLD_ON _IS_BLENDADDTOHICOLOR_ON
     _IS_BLENDADDTOMATCAP_ON _IS_BLENDBASECOLOR_ON _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON
     _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
     _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _OUTLINE_NML _SET_SYSTEMSHADOWSTOBASE_ON
@@ -90,6 +90,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShadingGradeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
     - _1st_ShadeColor_Feather: 0.0001
@@ -103,6 +107,7 @@ Material:
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _BlurLevelMatcap: 0
+    - _BlurLevelSGM: 0
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
@@ -169,12 +174,13 @@ Material:
     - _Tweak_MatCapUV: 0
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
-    - _Tweak_SystemShadowsLevel: 0
+    - _Tweak_ShadingGradeMapLevel: 0
+    - _Tweak_SystemShadowsLevel: 0.01
     - _Unlit_Intensity: 1
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _simpleUI: 0
-    - _utsTechnique: 0
+    - _utsTechnique: 1
     - _utsVersion: 2.075
     m_Colors:
     - _1st_ShadeColor: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
