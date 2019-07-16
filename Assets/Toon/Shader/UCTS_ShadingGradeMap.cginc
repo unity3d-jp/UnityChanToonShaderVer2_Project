@@ -641,7 +641,9 @@
 				//Composition: 3 Basic Colors as finalColor
                 float3 finalColor =
                     lerp(
-                        _BaseColor_var*(Set_LightColor*1.5),
+                        Set_BaseColor,
+                        //_BaseColor_var*(Set_LightColor*1.5),
+
                         lerp(
                             Set_1st_ShadeColor,
                             Set_2nd_ShadeColor,
