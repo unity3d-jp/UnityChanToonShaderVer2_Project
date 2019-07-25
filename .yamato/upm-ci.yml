@@ -1,0 +1,98 @@
+test_editors:
+  - version: 2019.1
+  - version: trunk
+test_platforms:
+  - name: win
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  - name: mac
+    type: Unity::VM::osx
+    image: buildfarm/mac:stable
+    flavor: m1.mac
+---
+pack:
+  name: Pack
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package pack
+  artifacts:
+    packages:
+      paths:
+        - "upm-ci~/**/*"
+
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
+test_{{ platform.name }}_{{ editor.version }}:
+  name : Test {{ editor.version }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package test --unity-version {{ editor.version }}
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+  dependencies:
+    - .yamato/upm-ci.yml#pack
+{% endfor %}
+{% endfor %}
+
+test_trigger:
+  name: Tests Trigger
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  commands:
+    - dir
+  triggers:
+    branches:
+      only:
+        - "/.*/"
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+    packages:
+      paths:
+        - "upm-ci~/packages/**/*"
+  dependencies:
+    - .yamato/upm-ci.yml#pack
+    {% for editor in test_editors %}
+    {% for platform in test_platforms %}
+    - .yamato/upm-ci.yml#test_{{platform.name}}_{{editor.version}}
+    {% endfor %}
+    {% endfor %}
+
+publish:
+  name: Publish to Internal Registry
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package publish
+  triggers:
+    tags:
+      only:
+        - /^(r|R)(c|C)-\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
+  artifacts:
+    artifacts:
+      paths:
+        - "upm-ci~/packages/*.tgz"
+  dependencies:
+    - .yamato/upm-ci.yml#pack
+    {% for editor in test_editors %}
+    {% for platform in test_platforms %}
+    - .yamato/upm-ci.yml#test_{{ platform.name }}_{{ editor.version }}
+    {% endfor %}
+    {% endfor %}

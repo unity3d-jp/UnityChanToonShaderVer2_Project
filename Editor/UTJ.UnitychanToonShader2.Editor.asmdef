@@ -1,0 +1,10 @@
+{
+    "name": "UTJ.UnitychanToonShader2.Editor",
+    "references": [
+      "UTJ.UnitychanToonShader2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

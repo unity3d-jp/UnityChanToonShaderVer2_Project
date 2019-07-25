@@ -1,0 +1,6 @@
+{
+    "name": "Unity.[SubGroup].[YourPackageName]",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
