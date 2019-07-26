@@ -1,5 +1,5 @@
 # About &lt;Unity-Chan Toon Shader 2.0&gt;
-**Unity-Chan Toon Shader 2.0 (UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, all features can be adjusted in real time on Unity, which is the greatest feature of UTS2.  
+**Unity-Chan Toon Shader 2.0.7.5 (UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, all features can be adjusted in real time on Unity, which is the greatest feature of UTS2.  
 
 UTS2 has great power and makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
 
