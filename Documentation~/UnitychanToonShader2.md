@@ -1,12 +1,12 @@
-# About &lt;Unity-Chan Toon Shader 2.0&gt;
-**Unity-Chan Toon Shader 2.0.7.5 (UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, all features can be adjusted in real time on Unity, which is the greatest feature of UTS2.  
+# About &lt;Unitychan ToonShader2&gt;
+**Unitychan ToonShader 2.0.7.5 (UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, all features can be adjusted in real time on Unity, which is the greatest feature of UTS2.  
 
 UTS2 has great power and makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
 
 For more information, see [README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md).
 
 
-# Installing &lt;Unity-Chan Toon Shader 2.0&gt;
+# Installing &lt;Unitychan ToonShader2&gt;
 To install this package, follow the instructions in the [Package Manager documentation](https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/index.html). 
 
 If you installed this package, UTS2 files are installed into **Toon** folder under **Assets** folder in your Unity project.  
@@ -16,7 +16,7 @@ The project comes with sample scenes where you can learn various setting example
 
 
 <a name="UsingUnitychanToonShader2"></a>
-# Using &lt;Unity-Chan Toon Shader 2.0&gt;
+# Using &lt;Unitychan ToonShader2&gt;
 To learn how to use UTS2, see [Users' Manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md). Users' manual is a document with plentiful knowledge of toon style.  
 
 You can open Users' Manual from the custom inspector **English Manual** button of UTS2, see [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#1-basic-shader-settings-menu-for-uts2).  
@@ -39,7 +39,7 @@ The following table indicates the &lt;describe the breakdown you used here&gt;:
 
 |Folder Location|Description|
 |---|---|
-|`<Assets/Toon>`|Contains UTS2 shader files.|
+|`<Toon>`|Contains UTS2 shader files.|
 
 
 ## Document revision history
