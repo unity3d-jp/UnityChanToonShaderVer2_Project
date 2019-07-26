@@ -77,15 +77,17 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
   m_LightingDataAsset: {fileID: 112000001, guid: ba61f2f646886b34b843ab36a7d19e49,
     type: 2}
   m_ShadowMaskMode: 0
@@ -491,7 +493,6 @@ GameObject:
   - component: {fileID: 794565942}
   - component: {fileID: 794565947}
   - component: {fileID: 794565948}
-  - component: {fileID: 794565952}
   - component: {fileID: 794565951}
   - component: {fileID: 794565950}
   - component: {fileID: 794565949}
@@ -872,32 +873,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 5ccf1295057a1c24d8278cbb5ef9f1a1, type: 2}
---- !u!114 &794565952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 794565941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101ac74223261194c952044eea3af2fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  opacity: 0
-  invert: 0
-  blur: 0
-  captureMode: 0
-  fullScreenTexture: {fileID: 0}
-  renderersEnabled: 1
-  globalRendererOptions:
-    opacity: 1
-    scale: {x: 1, y: 1, z: 1}
-    extrude: 0
-    texture: {fileID: 0}
-    depthTest: 1
-    cullMode: 0
-  serializedRenderers:
-  - {fileID: 1334879616}
 --- !u!1 &882377317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,12 +1051,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1334879616 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114144249680451566, guid: 8c7fbd21045e76e42bf4bf341643917b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1709489819}
-  m_Script: {fileID: 11500000, guid: d287a757b512b004e928059da2a30510, type: 3}
 --- !u!1 &1382183769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,7 +1267,7 @@ Prefab:
         type: 2}
       propertyPath: m_mask
       value: 
-      objectReference: {fileID: 794565952}
+      objectReference: {fileID: 0}
     - target: {fileID: 4690491684004222, guid: 8c7fbd21045e76e42bf4bf341643917b, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
@@ -1308,6 +1277,7 @@ Prefab:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: deacb5b55997246bb95f5fee433b4d80, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114144249680451566, guid: 8c7fbd21045e76e42bf4bf341643917b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8c7fbd21045e76e42bf4bf341643917b, type: 2}
   m_IsPrefabParent: 0
