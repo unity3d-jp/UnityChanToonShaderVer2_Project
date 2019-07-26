@@ -8,6 +8,6 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project.git",
-		"revision": "083179cd603d8c20bba67d36bbfa734fec6e7a4b"
+		"revision": "package/legacy"
 	}
 }
