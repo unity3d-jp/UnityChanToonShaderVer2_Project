@@ -7,12 +7,12 @@
 ここからは、UTS2各シェーダーに含まれるプロパティについて、上から順に機能ブロックごとに解説します。  
 全てのUTS2シェーダーで、プロパティの名前が同じならば機能は同じです。  
 
-<img width = "400" src="Images_jpg/UI_Toon_DoubleShadeWithFeather.jpg">
+<img width = "400" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/UI_Toon_DoubleShadeWithFeather.jpg?raw=true">
 
 
 ---
 ## 1.「ステンシル、カリング、クリッピング」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_01.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_01.jpg?raw=true">
 
 | `プロパティ`  | 機能解説 |
 |:-------------------|:-------------------|
@@ -27,7 +27,7 @@
 
 ---
 ## 2.「基本となる３色（基本色/１影色/２影色）の設定」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_02.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_02.jpg?raw=true">
 
 | `プロパティ`  | 機能解説 |
 |:-------------------|:-------------------|
@@ -47,7 +47,7 @@
 
 ---
 ## 3.「ノーマルマップ」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_03.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_03.jpg?raw=true">
 
 | `プロパティ`  | 機能解説 |
 |:-------------------|:-------------------|
@@ -62,7 +62,7 @@
 
 UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダーの共通プロパティです。  
 
-<img width = "500" src="Images_jpg/Property_UTS2_04_1.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_04_1.jpg?raw=true">
 
 | `プロパティ`  | 機能解説 |
 |:-------------------|:-------------------|
@@ -83,7 +83,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 高機能版UST2シェーダーである、ShadingGradeMap系シェーダーの共通プロパティです。  
 
-<img width = "500" src="Images_jpg/Property_UTS2_04_2.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_04_2.jpg?raw=true">
 
 | `プロパティ`  | 機能解説 |
 |:-------------------|:-------------------|
@@ -102,7 +102,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 ---
 ## 5.「ハイカラー（ハイライト、スペキュラ）」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_05.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_05.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
@@ -123,7 +123,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 ---
 ## 6.「リムライト」に関するプロパティ
 
-<img width = "500" src="Images_jpg/Property_UTS2_06.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_06.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
@@ -148,7 +148,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 ---
 ## 7.「MatCap」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_07.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_07.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
@@ -175,7 +175,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 ---
 ## 8.「AngelRing（天使の輪）」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_08.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_08.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
@@ -190,7 +190,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 ---
 ## 9.「エミッシブ」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_09.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_09.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
@@ -214,7 +214,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 ---
 ## 10.「アウトライン」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_10.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_10.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
@@ -236,7 +236,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 ---
 ## 11.「ライトプローブ」の利用、およびシェーダービルトインライトやVRChatに便利な機能に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_11.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_11.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
@@ -253,7 +253,7 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 ---
 ## 12.「テッセレーション」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_12.jpg">
+<img width = "500" src="https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/Images_jpg/Property_UTS2_12.jpg?raw=true">
 
 
 | `プロパティ`  | 機能解説 |
