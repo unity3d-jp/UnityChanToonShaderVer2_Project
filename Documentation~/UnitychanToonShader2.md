@@ -9,9 +9,10 @@ For more information, see [README.md](https://github.com/unity3d-jp/UnityChanToo
 # Installing &lt;Unitychan ToonShader2&gt;
 To install this package, follow the instructions in the [Package Manager documentation](https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/index.html). 
 
-If you installed this package, UTS2 files are installed into **Toon** folder under **Assets** folder in your Unity project.  
+If you installed this package, UTS2 files are installed into **Unitychan ToonShader2** folder under **Packages** folder in your Unity project.  
 
-To get the sample scenes of UTS2, download whole project from [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip).  
+To get the sample scenes of UTS2, download whole project from [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/package/sample-project.zip).  
+
 The project comes with sample scenes where you can learn various setting examples of UTS2.  
 
 
@@ -39,8 +40,8 @@ The following table indicates the &lt;describe the breakdown you used here&gt;:
 
 |Folder Location|Description|
 |---|---|
-|`<Toon>`|Contains UTS2 shader files.|
-
+|`<Packages\Unitychan ToonShader2\UTS2>`|Contains UTS2 shader files.|
+|`<Packages\Unitychan ToonShader2\Editor>`|Contains UTS2 Custom Inspector and other utilities.|
 
 ## Document revision history
 The release history of UTS2 is [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/HISTORY_en.md).  
