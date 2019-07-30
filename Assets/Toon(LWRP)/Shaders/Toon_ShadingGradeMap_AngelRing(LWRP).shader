@@ -4,7 +4,7 @@
 //toshiyuki@unity3d.com (LWRP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
-Shader "UnityChanToonShader(LWRP)/Toon_ShadingGradeMap" {
+Shader "UnityChanToonShader(LWRP)/AngelRing/Toon_ShadingGradeMap" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
         [HideInInspector] _utsVersion ("Version", Float ) = 2.07
@@ -107,6 +107,15 @@ Shader "UnityChanToonShader(LWRP)/Toon_ShadingGradeMap" {
         [Toggle(_)] _Inverse_MatcapMask ("Inverse_MatcapMask", Float ) = 0
         //v.2.0.5
         [Toggle(_)] _Is_Ortho ("Orthographic Projection for MatCap", Float ) = 0
+        ////天使の輪追加プロパティ.
+        [Toggle(_)] _AngelRing ("AngelRing", Float ) = 0
+        _AngelRing_Sampler ("AngelRing_Sampler", 2D) = "black" {}
+        _AngelRing_Color ("AngelRing_Color", Color) = (1,1,1,1)
+        [Toggle(_)] _Is_LightColor_AR ("Is_LightColor_AR", Float ) = 1
+        _AR_OffsetU ("AR_OffsetU", Range(0, 0.5)) = 0
+        _AR_OffsetV ("AR_OffsetV", Range(0, 1)) = 0.3
+        [Toggle(_)] _ARSampler_AlphaOn ("ARSampler_AlphaOn", Float ) = 0
+//ここまで.
         //v.2.0.7 Emissive
         [KeywordEnum(SIMPLE,ANIMATION)] _EMISSIVE("EMISSIVE MODE", Float) = 0
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}
@@ -186,7 +195,7 @@ Shader "UnityChanToonShader(LWRP)/Toon_ShadingGradeMap" {
                 "LightMode"="LightweightForward"
             }
             Cull[_CullMode]
-
+            
             HLSLPROGRAM
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
@@ -198,7 +207,7 @@ Shader "UnityChanToonShader(LWRP)/Toon_ShadingGradeMap" {
 
             //v.2.0.4
             #pragma multi_compile _IS_TRANSCLIPPING_OFF
-            #pragma multi_compile _IS_ANGELRING_OFF
+            #pragma multi_compile _IS_ANGELRING_ON
             #pragma multi_compile _IS_PASS_FWDBASE
             //v.2.0.7
             #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
@@ -245,7 +254,7 @@ Shader "UnityChanToonShader(LWRP)/Toon_ShadingGradeMap" {
 	    #include "../../Toon/Shader/UCTS_ShadingGradeMap.cginc"
 
             ENDHLSL
-            
+
         }
 
         Pass
