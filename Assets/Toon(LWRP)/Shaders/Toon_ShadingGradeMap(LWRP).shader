@@ -159,6 +159,7 @@ Shader "UnityChanToonShader(LWRP)/Toon_ShadingGradeMap" {
         Pass {
             Name "Outline"
             Tags {
+				"LightMode" = "SRPDefaultUnlit"
             }
             Cull Front
             
