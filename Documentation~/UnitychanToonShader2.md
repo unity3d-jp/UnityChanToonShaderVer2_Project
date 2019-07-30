@@ -25,9 +25,11 @@ You can open Users' Manual from the custom inspector **English Manual** button o
 
 # Technical details
 ## Requirements
-* Requires Unity 5.6.x or higher. The operation check from latest Unity 2019.3.x to Unity 2017.4.x LTS has been completed.  
-* UTS2 uses a forward rendering environment. Using a linear color space is recommended. (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html).)
+* **Requires Unity 5.6.x or higher**. The operation check from latest Unity 2019.3.x to Unity 2017.4.x LTS has been completed.  
+* UTS2 uses **a forward rendering environment**. Using **a linear color space** is recommended. (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html).)
 * Target Platforms are **Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch**. Tessellation version is only supported for environments where DX11/DX12 works properly.  
+* This Package Manager version is equivalent to UTS2 v.2.0.7.5 in the Original Github repository.  
+
 
 ## Known limitations
 
@@ -36,7 +38,7 @@ You can open Users' Manual from the custom inspector **English Manual** button o
 
 ## Package contents
 
-The following table indicates the &lt;describe the breakdown you used here&gt;:
+The following table indicates the directory of Unitychan ToonShader2:
 
 |Folder Location|Description|
 |---|---|
