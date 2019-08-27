@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.unitychantoonshader2": "0.0.1-preview",
     "com.unity.ide.vscode": "1.0.7",
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.test-framework": "1.0.13",
