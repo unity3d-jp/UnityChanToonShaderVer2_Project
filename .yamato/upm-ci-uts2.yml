@@ -1,0 +1,76 @@
+test_editors:
+  - version: 2019.1
+  - version: 2019.2
+  - version: 2019.3
+test_platforms:
+  - name: win
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  - name: mac
+    type: Unity::VM::osx
+    image: buildfarm/mac:stable
+    flavor: m1.mac
+---
+pack:
+  name: Pack
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package pack
+  artifacts:
+    uts2_pack_artifacts:
+      paths:
+        - "upm-ci~/**/*"
+
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
+test_{{ platform.name }}_{{ editor.version }}:
+  name : Test {{ editor.version }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package test --unity-version {{ editor.version }}
+  triggers:
+    branches:
+      only:
+      - "/.*/"
+  artifacts:
+    uts2_test_results:
+      paths:
+        - "upm-ci~/test-results/**/*"
+  dependencies:
+    - .yamato/upm-ci-uts2.yml#pack
+{% endfor %}
+{% endfor %}
+
+publish:
+  name: Publish to Internal Registry
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package publish
+  triggers:
+    tags:
+      only:
+        - /^(r|R)(c|C)-\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
+  artifacts:
+    uts2_publish_artifacts:
+      paths:
+        - "upm-ci~/packages/*.tgz"
+  dependencies:
+    - .yamato/upm-ci-uts2.yml#pack
+    {% for editor in test_editors %}
+    {% for platform in test_platforms %}
+    - .yamato/upm-ci-uts2.yml#test_{{ platform.name }}_{{ editor.version }}
+    {% endfor %}
+    {% endfor %}
