@@ -4,6 +4,7 @@ build/**
 node_modules/**
 Documentation/ApiDocs/**
 Documentation~/ApiDocs/**
+UTS2_Project~/**
 .DS_Store
 .npmrc
 .npmignore
@@ -17,3 +18,4 @@ build.sh
 build.sh.meta
 build.bat
 build.bat.meta
+
