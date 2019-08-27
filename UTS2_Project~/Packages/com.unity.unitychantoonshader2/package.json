@@ -1,0 +1,17 @@
+{
+	"name": "com.unity.unitychantoonshader2",
+	"displayName":"Unitychan ToonShader2",
+	"version": "0.0.1-preview",
+	"unity": "2018.4",
+	"description": "Unity-Chan Toon Shader 2.0.7.5 (UTS2) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations.\nUnlike other pre-render toon shaders, all features can be adjusted in real time on Unity, which is the greatest feature of UTS2.\n\nUTS2 has great power and makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.\n\nUTS2 has the 3 basic layers of Base Color, 1st Shade Color, and 2nd Shade Color, colors and textures can also accept a wide variety of customization options, such as High Color, Rim Light, MatCap (sphere mapping), and Emissive (light emission).The level of gradation (feather) between colors can also be adjusted in Unity in real-time.\n\nMore precisely, View documentation above.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project.git"
+	},
+    "author": "Nobuyuki Kobayashi<nobuyuki@unity3d.com> (https://github.com/Nobuyuki-Kobayashi)",
+    "contributors": [      
+      "Nobuyuki Kobayashi<nobuyuki@unity3d.com> (https://github.com/Nobuyuki-Kobayashi)",
+      "Sindharta Tanuwijaya <sindharta.tanuwijaya@unity3d.com> (https://github.com/sindharta)"
+    ]        
+    
+}
