@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Unity.UnityChanToonShader2.Tests {
     public class ShaderCompileTest
@@ -17,17 +18,54 @@ namespace Unity.UnityChanToonShader2.Tests {
             for (int i=0;i<numShaders && !m_shaderCompileError;++i) {
                 string curAssetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
                 Shader shader = AssetDatabase.LoadAssetAtPath<Shader>(curAssetPath);
-
                 AssetDatabase.ImportAsset(curAssetPath); //Recompile the shader to make sure there are no compile errors
                 Assert.True(shader.isSupported);             
                 
             }
 
             Application.logMessageReceived-= ShaderCompileErrorChecker;
-
             Assert.False(m_shaderCompileError);
         }
 
+//---------------------------------------------------------------------------------------------------------------------
+        [Test]        
+        public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
+            m_shaderCompileError = false;
+            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2/Runtime/Shader"});
+            Application.logMessageReceived+= ShaderCompileErrorChecker;
+            int numShaders = guids.Length;
+
+            List<Material> materials = new List<Material>();
+
+            //Try to compile shader manually
+            System.Type t = typeof(ShaderUtil);
+            MethodInfo dynMethod = t.GetMethod("OpenCompiledShader", BindingFlags.NonPublic | BindingFlags.Static);
+            int defaultMask = (1 << System.Enum.GetNames(typeof(UnityEditor.Rendering.ShaderCompilerPlatform)).Length - 1);
+
+
+            for (int i=0;i<numShaders && !m_shaderCompileError;++i) {
+                string curAssetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
+                Shader shader = AssetDatabase.LoadAssetAtPath<Shader>(curAssetPath);
+                AssetDatabase.ImportAsset(curAssetPath); //Recompile the shader to make sure there are no compile errors
+                Assert.True(shader.isSupported);
+
+                Material mat = new Material(shader);
+                mat.EnableKeyword("UTS_USE_RAYTRACING_SHADOW");
+                materials.Add(mat);
+                const bool INCLUDE_ALL_VARIANTS = false;
+                dynMethod.Invoke(null, new object[] { shader, 1, defaultMask, INCLUDE_ALL_VARIANTS});
+            }
+
+            Shader.WarmupAllShaders();
+            int numMaterials = materials.Count;
+            for (int i=0;i<numMaterials;++i) {
+                Object.DestroyImmediate(materials[i]);
+            }
+
+            Application.logMessageReceived-= ShaderCompileErrorChecker;
+            Assert.False(m_shaderCompileError);
+
+        }
 //---------------------------------------------------------------------------------------------------------------------
 
          static void ShaderCompileErrorChecker(string message, string stackTrace, LogType logType)
