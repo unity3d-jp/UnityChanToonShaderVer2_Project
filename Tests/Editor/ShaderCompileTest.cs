@@ -23,7 +23,6 @@ namespace Unity.UnityChanToonShader2.Tests {
                 Assert.False(shaderHasError);             
                 
             }
-            Assert.False(m_shaderCompileError);
         }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -31,7 +30,6 @@ namespace Unity.UnityChanToonShader2.Tests {
         public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
             m_shaderCompileError = false;
             string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2/Runtime/Shader"});
-            Application.logMessageReceived+= ShaderCompileErrorChecker;
             int numShaders = guids.Length;
 
             List<Material> materials = new List<Material>();
@@ -41,8 +39,9 @@ namespace Unity.UnityChanToonShader2.Tests {
             MethodInfo dynMethod = t.GetMethod("OpenCompiledShader", BindingFlags.NonPublic | BindingFlags.Static);
             int defaultMask = (1 << System.Enum.GetNames(typeof(UnityEditor.Rendering.ShaderCompilerPlatform)).Length - 1);
 
+            bool shaderHasError = false;
 
-            for (int i=0;i<numShaders && !m_shaderCompileError;++i) {
+            for (int i=0;i<numShaders && !shaderHasError;++i) {
                 string curAssetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
                 Shader shader = AssetDatabase.LoadAssetAtPath<Shader>(curAssetPath);
                 AssetDatabase.ImportAsset(curAssetPath); //Recompile the shader to make sure there are no compile errors
@@ -53,6 +52,10 @@ namespace Unity.UnityChanToonShader2.Tests {
                 materials.Add(mat);
                 const bool INCLUDE_ALL_VARIANTS = false;
                 dynMethod.Invoke(null, new object[] { shader, 1, defaultMask, INCLUDE_ALL_VARIANTS});
+
+                shaderHasError = ShaderUtil.ShaderHasError(shader);
+                Assert.False(shaderHasError);             
+
             }
 
             Shader.WarmupAllShaders();
@@ -61,18 +64,7 @@ namespace Unity.UnityChanToonShader2.Tests {
                 Object.DestroyImmediate(materials[i]);
             }
 
-            Application.logMessageReceived-= ShaderCompileErrorChecker;
-            Assert.False(m_shaderCompileError);
-
         }
-//---------------------------------------------------------------------------------------------------------------------
-
-         static void ShaderCompileErrorChecker(string message, string stackTrace, LogType logType)
-         {
-             // if we receive a Debug.LogError we can assume that compilation failed
-             if (logType == LogType.Error)
-                 m_shaderCompileError  = true;
-         }
 
 //---------------------------------------------------------------------------------------------------------------------
 
