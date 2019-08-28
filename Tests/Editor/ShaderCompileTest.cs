@@ -9,21 +9,20 @@ namespace Unity.UnityChanToonShader2.Tests {
     {
         
         [Test]
-        public void CompileAllToonShaders() {
-            m_shaderCompileError = false;
+        public void CompileAllToonShadersDefault() {
             string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2/Runtime/Shader"});
-            Application.logMessageReceived+= ShaderCompileErrorChecker;
             int numShaders = guids.Length;
-
-            for (int i=0;i<numShaders && !m_shaderCompileError;++i) {
+            bool shaderHasError = false;
+            for (int i=0;i<numShaders && !shaderHasError;++i) {
                 string curAssetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
                 Shader shader = AssetDatabase.LoadAssetAtPath<Shader>(curAssetPath);
                 AssetDatabase.ImportAsset(curAssetPath); //Recompile the shader to make sure there are no compile errors
-                Assert.True(shader.isSupported);             
+
+                Assert.True(shader.isSupported);     
+                shaderHasError = ShaderUtil.ShaderHasError(shader);
+                Assert.False(shaderHasError);             
                 
             }
-
-            Application.logMessageReceived-= ShaderCompileErrorChecker;
             Assert.False(m_shaderCompileError);
         }
 
