@@ -208,6 +208,7 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/ToonColor_DoubleShadeWithFeat
             #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             //
             //Tessellation
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_DoubleShadeWithFeather_Tess.cginc"
 
             ENDCG
