@@ -37,8 +37,11 @@ namespace Unity.UnityChanToonShader2.Tests {
             //Try to compile shader manually
             System.Type t = typeof(ShaderUtil);
             MethodInfo dynMethod = t.GetMethod("OpenCompiledShader", BindingFlags.NonPublic | BindingFlags.Static);
-            int defaultMask = (1 << System.Enum.GetNames(typeof(UnityEditor.Rendering.ShaderCompilerPlatform)).Length - 1);
+            Assert.NotNull(dynMethod);
+            if (null == dynMethod)
+                return;
 
+            int defaultMask = (1 << System.Enum.GetNames(typeof(UnityEditor.Rendering.ShaderCompilerPlatform)).Length - 1);
             bool shaderHasError = false;
 
             for (int i=0;i<numShaders && !shaderHasError;++i) {
