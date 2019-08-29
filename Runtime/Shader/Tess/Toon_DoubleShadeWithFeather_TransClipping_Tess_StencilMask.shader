@@ -203,6 +203,7 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather_TransClippi
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             //Tessellation
             //アウトライン処理は以下のUCTS_Outline_Tess.cgincへ.
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_Outline_Tess.cginc"
             ENDCG
         }

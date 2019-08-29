@@ -197,6 +197,7 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap" {
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             //Tessellation
             //アウトライン処理は以下のUCTS_Outline_Tess.cgincへ.
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_Outline_Tess.cginc"
             ENDCG
         }
@@ -242,6 +243,7 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap" {
             #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             //
             //Tessellation
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_ShadingGradeMap_Tess.cginc"
 
             ENDCG
@@ -286,6 +288,7 @@ Shader "UnityChanToonShader/Tessellation/AngelRing/Toon_ShadingGradeMap" {
             #pragma multi_compile _IS_ANGELRING_ON
             #pragma multi_compile _IS_PASS_FWDDELTA
             //Tessellation            
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_ShadingGradeMap_Tess.cginc"
 
             ENDCG

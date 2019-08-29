@@ -191,6 +191,7 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Transpare
             //v.2.0.7
             #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             //
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_DoubleShadeWithFeather.cginc"
 
             ENDCG

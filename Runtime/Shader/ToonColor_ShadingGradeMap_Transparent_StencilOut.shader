@@ -193,6 +193,7 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_ShadingGradeMap_Transparent_Sten
             //v.2.0.7
             #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             //
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_ShadingGradeMap.cginc"
 
             ENDCG

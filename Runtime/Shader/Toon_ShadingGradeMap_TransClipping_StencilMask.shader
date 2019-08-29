@@ -229,6 +229,7 @@ Shader "UnityChanToonShader/Toon_ShadingGradeMap_TransClipping_StencilMask" {
             //v.2.0.7
             #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             //
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_ShadingGradeMap.cginc"
 
             ENDCG
@@ -265,6 +266,7 @@ Shader "UnityChanToonShader/Toon_ShadingGradeMap_TransClipping_StencilMask" {
             #pragma multi_compile _IS_TRANSCLIPPING_ON
             #pragma multi_compile _IS_ANGELRING_OFF
             #pragma multi_compile _IS_PASS_FWDDELTA
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_ShadingGradeMap.cginc"
 
             ENDCG
