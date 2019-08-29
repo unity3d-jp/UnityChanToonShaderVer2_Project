@@ -10,7 +10,18 @@
 
     uniform sampler2D _RaytracedHardShadow;
     fixed rths_shadowAttenuation(float2 lightmapUV, float3 worldPos, float4 screenPos) {
+
+//Handle division by zero warning, based on how UNITY_SHADOW_ATTENUATION is used in Autolight.cginc
+#if (!defined(HANDLE_SHADOWS_BLENDING_IN_GI)) \
+    && !(defined(SHADOWS_SCREEN) && !defined(LIGHTMAP_ON) && !defined(UNITY_NO_SCREENSPACE_SHADOWS)) \
+    && !(defined(SHADOWS_SHADOWMASK)) \
+    && !(defined(SHADOWS_DEPTH) || defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE)) \
+    && (UNITY_LIGHT_PROBE_PROXY_VOLUME)
+        float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(screenPos.xyz,1)).r;
+#else
         float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, screenPos).r;
+#endif //end handling division by zero
+
         return r;
     }
 
