@@ -11,6 +11,26 @@
 // ※Tessellation対応
 //   対応部分のコードは、Nora氏の https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess を参考にしました.
 //
+#ifndef TESSELLATION_ON
+struct VertexInput {
+    float4 vertex : POSITION;
+    float3 normal : NORMAL;
+    float4 tangent : TANGENT;
+    float2 texcoord0 : TEXCOORD0;
+};
+
+#endif
+
+struct VertexOutput {
+    float4 pos : SV_POSITION;
+    float2 uv0 : TEXCOORD0;
+    float3 normalDir : TEXCOORD1;
+    float3 tangentDir : TEXCOORD2;
+    float3 bitangentDir : TEXCOORD3;
+};
+
+//---------------------------------------------------------------------------------------------------------------------
+
 #ifdef TESSELLATION_ON
 			#include "UCTS_Tess.cginc"
 #endif
@@ -46,21 +66,6 @@
             uniform fixed _Inverse_Clipping;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
 #endif
-#ifndef TESSELLATION_ON
-            struct VertexInput {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-                float4 tangent : TANGENT;
-                float2 texcoord0 : TEXCOORD0;
-            };
-#endif
-            struct VertexOutput {
-                float4 pos : SV_POSITION;
-                float2 uv0 : TEXCOORD0;
-                float3 normalDir : TEXCOORD1;
-                float3 tangentDir : TEXCOORD2;
-                float3 bitangentDir : TEXCOORD3;
-            };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;

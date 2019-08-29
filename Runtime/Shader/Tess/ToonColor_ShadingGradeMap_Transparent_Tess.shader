@@ -204,6 +204,7 @@ Shader "UnityChanToonShader/Tessellation/NoOutline/ToonColor_ShadingGradeMap_Tra
             #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             //
             //Tessellation
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_ShadingGradeMap_Tess.cginc"
 
             ENDCG

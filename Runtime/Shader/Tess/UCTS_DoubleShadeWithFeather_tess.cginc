@@ -10,6 +10,35 @@
 //   対応部分のコードは、Nora氏の https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess を参考にしました.
 //
 
+//Tessellation OFF
+#ifndef TESSELLATION_ON
+struct VertexInput {
+    float4 vertex : POSITION;
+    float3 normal : NORMAL;
+    float4 tangent : TANGENT;
+    float2 texcoord0 : TEXCOORD0;
+};
+#endif
+
+struct VertexOutput {
+    float4 pos : SV_POSITION;
+    float2 uv0 : TEXCOORD0;
+    float4 posWorld : TEXCOORD1;
+    float3 normalDir : TEXCOORD2;
+    float3 tangentDir : TEXCOORD3;
+    float3 bitangentDir : TEXCOORD4;
+    //v.2.0.7
+    float mirrorFlag : TEXCOORD5;
+    LIGHTING_COORDS(6,7)
+    UNITY_FOG_COORDS(8)
+    //
+};
+
+//---------------------------------------------------------------------------------------------------------------------
+
+#include "../UCTS_Light.cginc"
+
+
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
             uniform float4 _BaseColor;
             //v.2.0.5
@@ -144,28 +173,6 @@
             
             uniform float _GI_Intensity;
 
-//Tessellation OFF
-#ifndef TESSELLATION_ON
-            struct VertexInput {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-                float4 tangent : TANGENT;
-                float2 texcoord0 : TEXCOORD0;
-            };
-#endif
-            struct VertexOutput {
-                float4 pos : SV_POSITION;
-                float2 uv0 : TEXCOORD0;
-                float4 posWorld : TEXCOORD1;
-                float3 normalDir : TEXCOORD2;
-                float3 tangentDir : TEXCOORD3;
-                float3 bitangentDir : TEXCOORD4;
-                //v.2.0.7
-                float mirrorFlag : TEXCOORD5;
-                LIGHTING_COORDS(6,7)
-                UNITY_FOG_COORDS(8)
-                //
-            };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
@@ -226,7 +233,7 @@
 //DoubleShadeWithFeather
 #endif
 
-                UNITY_LIGHT_ATTENUATION(attenuation, i, i.posWorld.xyz);
+                UTS_LIGHT_ATTENUATION(attenuation, i, i.posWorld.xyz);
 
 //v.2.0.4
 #ifdef _IS_PASS_FWDBASE
