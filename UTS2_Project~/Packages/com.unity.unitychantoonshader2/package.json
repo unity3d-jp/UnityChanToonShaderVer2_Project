@@ -8,6 +8,14 @@
 		"type": "git",
 		"url": "https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project.git"
 	},
+    "samples": [
+        {
+         "displayName": "ShaderBall",
+         "description": "A sample using a sphere showing the use of 3 basic layers: Base Color, 1st Shade Color, and 2nd Shade Color, with a wide variety of customization options such as High Color, Rim Light, MatCap (sphere mapping), and Emissive (light emission).",
+         "path": "Samples~/ShaderBall"
+        }
+    ],
+    
     "author": "Nobuyuki Kobayashi<nobuyuki@unity3d.com> (https://github.com/Nobuyuki-Kobayashi)",
     "contributors": [      
       "Nobuyuki Kobayashi<nobuyuki@unity3d.com> (https://github.com/Nobuyuki-Kobayashi)",
