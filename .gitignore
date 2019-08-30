@@ -37,3 +37,6 @@ sysinfo.txt
 
 # Unity Logs
 Logs/
+
+# Imported Samples
+UTS2_Project~/Assets/Samples**
