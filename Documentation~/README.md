@@ -64,12 +64,12 @@ The project comes with sample scenes where you can learn various setting example
 
 <a name="UsingUnitychanToonShader2"></a>
 ## 【Using Unitychan ToonShader2】
-To learn how to use UTS2, see [Users' Manual](../en/UTS2_Manual_en.md).  
+To learn how to use UTS2, see [Users' Manual](UTS2_Manual_en.md).  
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using UTS2 actually is the best way to learn the beautiful toon style.  
 
 You can open Users' Manual from the custom inspector **English Manual** button of UTS2, 
-see [here](../en/UTS2_Manual_en.md#1-basic-shader-settings-menu-for-uts2).  
+see [here](UTS2_Manual_en.md#1-basic-shader-settings-menu-for-uts2).  
 
 
 
@@ -122,14 +122,14 @@ When over-writing a previous version, there is no problem with the same process,
 3. Erase the folder containing previous versions of the toon shader (Assets/Toon/Shader) from within Unity.  
 4. Drag and drop this pack into Unity.  
 
-Be sure to check the [manual](../en/UTS2_Manual_en.md) after installation.  
+Be sure to check the [manual](UTS2_Manual_en.md) after installation.  
 The manual explains how to use UTS2 in detail.  
 
 Please contact us if you have any issues.  
 
 -----
 ## 【Release History】  
-The release history of UTS2 is [here.](../en/HISTORY_en.md)  
+The release history of UTS2 is [here.](HISTORY_en.md)  
 
 -----
 ## 【Information】  
