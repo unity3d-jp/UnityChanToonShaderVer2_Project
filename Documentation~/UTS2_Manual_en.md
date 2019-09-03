@@ -1188,14 +1188,14 @@ Here is how to minimize the artifacts that appear at the edges of Unity’s syst
 
 ### 【１：Changing the linear color space】
 
-<img width = "800" src="images/0105-22_012.jpg?raw=true">
+<img width = "800" src="images/0105-22_012_eng.jpg?raw=true">
 
 If the current color space is set to gamma color space, change it to **linear color space** .  
 The gradation of artifacts is less harsh with linear color space.  
 
 ### 【２：Increase mesh density】
 
-<img width = "800" src="images/0105-22_05.jpg?raw=true">
+<img width = "800" src="images/0105-22_05_eng.jpg?raw=true">
 
 If the lighting, shader parameters are all the same, increase **mesh density**.  
 By doing this, most of the artifacts will disappear.  
