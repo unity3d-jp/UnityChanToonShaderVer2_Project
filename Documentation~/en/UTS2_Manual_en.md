@@ -389,7 +389,7 @@ Items in the menu are automatically expanded to the following maximum format acc
 | `VRChat Recommendation` | Set up convenient settings for enjoying VRChat all at once. When setting up for VRChat, recommend you to start from this button first. |  |
 | `Remove Unused Keywords/Properties from Material` | Just before building your project or publishing It to VRChat system, execute this command to remove unnecessary shader keywords and unused property values from UTS2 materials. These values will naturally accumulate while your working on Unity. By removing these unnecessary values from each material before publishing, it is possible to avoid giving unnecessary load to the system. After executing this command, be sure to save the project by executing `File`>` Save Project` just in case (because all materials are saved at this time). |  |
 
-<img width = "800" src="../Images/0102-06_02.jpg?raw=true">
+<img width = "800" src="../Images/0102-06_02.png?raw=true">
 
 `TransClipping` shaders have the same general features as `Clipping` shaders, but can also use the clipping mask grayscale level as an α value.  
 These shaders are often used to cut the ends of long, straight hair using a mask which references the alpha, or for things like strands of hair that stick up out of the top of a character’s head.  
