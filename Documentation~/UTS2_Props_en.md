@@ -7,12 +7,12 @@
 The following table is an explanation of the properties found in each UTS2 shader, in order by feature block.  
 For all UTS2 shaders, if the property name is the same, then they also function the same.  
 
-<img width = "400" src="images/UI_Toon_DoubleShadeWithFeather.jpg?raw=true">
+<img width = "400" src="images/UI_Toon_DoubleShadeWithFeather.png?raw=true">
 
 ---
 
 ## 1. Stencil, Culling, and Clipping Properties
-<img width = "500" src="images/Property_UTS2_01.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_01.png?raw=true">
 
 
 | `Property`                     | Function                                                     |
@@ -30,7 +30,7 @@ For all UTS2 shaders, if the property name is the same, then they also function 
 
 ## 2. “The Three Basic Colors (Base Color, 1st Shade Color, 2nd Shade Color)”, Their Settings, and Properties
 
-<img width = "500" src="images/Property_UTS2_02.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_02.png?raw=true">
 
 | `Property`                        | Function                                                     |
 | --------------------------------- | ------------------------------------------------------------ |
@@ -52,7 +52,7 @@ For all UTS2 shaders, if the property name is the same, then they also function 
 
 ## 3. “Normal Map” Properties
 
-<img width = "500" src="images/Property_UTS2_03.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_03.png?raw=true">
 
 | `Property`           | Function                                                     |
 | -------------------- | ------------------------------------------------------------ |
@@ -67,7 +67,7 @@ For all UTS2 shaders, if the property name is the same, then they also function 
 
 There are common properties among DoubleShadeWithFeather shaders, the standard shaders in UST2.  
 
-<img width = "500" src="images/Property_UTS2_04_1.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_04_1.png?raw=true">
 
 | `Property`                                   | Function                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
@@ -88,7 +88,7 @@ There are common properties among DoubleShadeWithFeather shaders, the standard s
 
 These properties are common among UTS2’s high spec ShadingGradeMap shaders.  
 
-<img width = "500" src="images/Property_UTS2_04_2.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_04_2.png?raw=true">
 
 | `Property`                                   | Function                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
@@ -108,7 +108,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 5. Properties of High color (Highlights, Specular Lighting)  
 
-<img width = "500" src="images/Property_UTS2_05.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_05.png?raw=true">
 
 
 | Property                       | Function                                                     |
@@ -129,7 +129,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 6.Properties of RimLight
 
-<img width = "500" src="images/Property_UTS2_06.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_06.png?raw=true">
 
 
 | Property                         | Function                                                     |
@@ -156,7 +156,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 7. Properties of MatCap
 
-<img width = "500" src="images/Property_UTS2_07.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_07.png?raw=true">
 
 
 | Property                             | Function                                                     |
@@ -184,7 +184,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 8.Angel Ring Properties
 
-<img width = "500" src="images/Property_UTS2_08.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_08.png?raw=true">
 
 
 | Property            | Function                                                     |
@@ -202,7 +202,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 9. Properties of Emissive
 
-<img width = "500" src="images/Property_UTS2_09.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_09.png?raw=true">
 
 
 | Property         | Function                                                     |
@@ -227,7 +227,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 10.Properties of Outline  
 
-<img width = "500" src="images/Property_UTS2_10.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_10.png?raw=true">
 
 
 | Property                  | Function                                                     |
@@ -251,7 +251,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 11.  Using Light Probes, and the properties of functions that are useful for Shader Built-in Light and VRChat  
 
-<img width = "500" src="images/Property_UTS2_11.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_11.png?raw=true">
 
 | `Property`                                     | Function                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------ |
@@ -267,7 +267,7 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 
 ## 12.Properties of Tessellation  
 
-<img width = "500" src="images/Property_UTS2_12.jpg?raw=true">
+<img width = "500" src="images/Property_UTS2_12.png?raw=true">
 
 
 | `Property`            | Function                                                     |

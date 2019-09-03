@@ -83,45 +83,45 @@
 * Latest updates and version history can be found here **[README.md](./README.md)**.  
 ---
 
-<img width = "400" src="images/CellLook.jpg?raw=true">
-<img width = "800" src="images/CRS03.jpg?raw=true">
+<img width = "400" src="images/CellLook.png?raw=true">
+<img width = "800" src="images/CRS03.png?raw=true">
 
-[![](https://img.youtube.com/vi/81uGu18ixpw/0.jpg)](https://www.youtube.com/watch?v=81uGu18ixpw)
+[![](https://img.youtube.com/vi/81uGu18ixpw/0.png)](https://www.youtube.com/watch?v=81uGu18ixpw)
 
-<img width = "800" src="images/TPK_04.jpg?raw=true">
-<img width = "800" src="images/HiUni01.jpg?raw=true">
+<img width = "800" src="images/TPK_04.png?raw=true">
+<img width = "800" src="images/HiUni01.png?raw=true">
 
 # Introduction to Unity-Chan Toon Shader 2.  
 Unity-Chan Toon Shader (UTS) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations.  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_10.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_10.png?raw=true">
 
 This Toon shader is configured to easily produce all shadows essential to character design, such as those that accentuate the form of various parts of a character model, without having to worry about the position and intensity of light sources. Shadow color settings can also be used  to make it easy for the person responsible for color design to create shadows.  
 
 One of this shader’s particularly powerful features is the ability to adjust shadows using sliders within the shader itself, eliminating the need for multiple light sources.  
 
-<img width = "800" src="images/0713-06_01.jpg?raw=true">
+<img width = "800" src="images/0713-06_01.png?raw=true">
 
 Performance was greatly enhanced in Unity-Chan Toon Shader Ver. 2.0; the same rendering capabilities as Ver. 1.0 were retained while also allowing for an even more sophisticated look.  
 
-<img width = "800" src="images/SS_SampleScene.jpg?raw=true">
+<img width = "800" src="images/SS_SampleScene.png?raw=true">
 
 In addition to the 3 basic layers of **Base Color**, **1st Shade Color**, and **2nd Shade Color**, colors and textures can also accept a wide variety of customization options, such as **High Color**, **Rim Light**, **MatCap** (sphere mapping), and **Emissive** (light emission).  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_11.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_11.png?raw=true">
 
 The level of gradation between colors can also be adjusted in Unity in real-time.  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_13.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_13.png?raw=true">
 
 This shader also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting.  
 There are several other convenient tools for things like **how visible eyes and eyebrows are through bangs**, which can further emphasize an anime-style look.  
 In short, Unity-Chan Toon Shader 2.0 (UTS2) makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
 Of course, it also supports Unity’s system shadow feature.  
 
-<img width = "800" src="images/Comp_ST_UTS2.jpg?raw=true">
+<img width = "800" src="images/Comp_ST_UTS2.png?raw=true">
 
-<img width = "800" src="images/Comp_ST_UTS2_2.jpg?raw=true">
+<img width = "800" src="images/Comp_ST_UTS2_2.png?raw=true">
 
 
 Adding post effects allows UTS2 to use non-photorealistic rendering (NPR) to create any picture-like element that can be made with a standard shader that supports physics-based rendering (PBR).  
@@ -155,7 +155,7 @@ This package uses a forward rendering environment. Using a linear color space is
 
    The image below uses version `v2.0.6_Release`.  
 
-<img width = "600" src="images/Explorer01.jpg?raw=true">
+<img width = "600" src="images/Explorer01.png?raw=true">
 
 2. Install Unity-Chan Toon Shader 2.0 and open a Unity project.  
 
@@ -163,35 +163,35 @@ This package uses a forward rendering environment. Using a linear color space is
 
 4. Drag and drop `UTS2_ShaderOnly_v(version name).unitypackage` from the OS’ Explorer or Finder window into the the Assets folder in the Unity Project window.  
 
-<img width = "800" src="images/DandD01.jpg?raw=true">
+<img width = "800" src="images/DandD01.png?raw=true">
 
 5. When the Import Unity Package window opens, import all files.  
 
-<img width = "600" src="images/ImportWindow01.jpg?raw=true">
+<img width = "600" src="images/ImportWindow01.png?raw=true">
 
 6. This will create a Toon folder, where Unity-Chan Toon Shader 2.0 is installed, under Assets.  
 
-<img width = "400" src="images/ProjectWindow01.jpg?raw=true">
+<img width = "400" src="images/ProjectWindow01.png?raw=true">
 
 7. Create a new material, and if a section called UnityChanToonShader appears in the Shader drop down menu, installation has completed successfully.  
 
-<img width = "400" src="images/NewShader01.jpg?raw=true">
+<img width = "400" src="images/NewShader01.png?raw=true">
 
 ## 【Basic UTS2 Settings】
 
 Consult the following movie for an example of creating a skin-toned material on a shader ball.  
 
-[![](https://img.youtube.com/vi/z7Pr39NW5Dk/0.jpg)](https://www.youtube.com/watch?v=z7Pr39NW5Dk)
+[![](https://img.youtube.com/vi/z7Pr39NW5Dk/0.png)](https://www.youtube.com/watch?v=z7Pr39NW5Dk)
 
 For those completely new to UTS2, practicing “making a picture with Step and Feathering using only the Base Color and 1st Shade Color” is recommended, rather than immediately attempting to use all the available features.  
 It is important to first become familiar with the basics of UTS2, then gradually add rim lights and a 2nd Shade Color if necessary.  
 Feel free to use the following video for reference while practicing.  
 
-[![](https://img.youtube.com/vi/8cIR5pfRihA/0.jpg)](https://www.youtube.com/watch?v=8cIR5pfRihA)
+[![](https://img.youtube.com/vi/8cIR5pfRihA/0.png)](https://www.youtube.com/watch?v=8cIR5pfRihA)
 
 ↑ Tutorial of setting up UTS2 v.2.0.6 to Unity-chan  
 
-[![](https://img.youtube.com/vi/qDAo5gqIezw/0.jpg)](https://www.youtube.com/watch?v=qDAo5gqIezw)
+[![](https://img.youtube.com/vi/qDAo5gqIezw/0.png)](https://www.youtube.com/watch?v=qDAo5gqIezw)
 
 ↑ UTS2: SD Unity-chan Materials Setup (UTS2 v. 2.0.5)  
 
@@ -203,13 +203,13 @@ Now, let's take a look at each name block and their features.
 
 ## ●The Shaders in the UnityChanToonShader Root Folder
 
-<img width = "480" src="images/UTS2_Standard.jpg?raw=true">
+<img width = "480" src="images/UTS2_Standard.png?raw=true">
 
 UTS2 shaders fall into two main categories.  
 * `DoubleShadeWithFeather` : The standard shader for UTS2. Allows for 2 shade colors (Double Shade Colors) and  gradation between colors (Feathering).  
 * `ShadingGradeMap`: A more advanced UTS2 shader. In addition to the DoubleShadeWithFeather features, this shader can also hold a special map called a ShadingGradeMap.  
 
-<img width = "800" src="images/Comp_UTS2_Shaders.jpg?raw=true">
+<img width = "800" src="images/Comp_UTS2_Shaders.png?raw=true">
 
 Both types have the same basic features, so the same look can be achieved with either type by matching the color (`_Step`) and gradation (`_Feather`) values.  
 Choosing which shader to use is a matter of personal taste, but generally `DoubleShadeWithFeather` is more suited to cel styles that need sharp, well defined colors, while `ShadingGradeMap` may be better for illustrated styles where the colors are more blurred together.  
@@ -224,11 +224,11 @@ Shader names also have name blocks such as `Clipping` at the end. These indicate
 * `StencilMask`: Uses the stencil buffer to designate how visible certain parts are through others. For example, for an anime style character it may be desirable to always have the eyebrows visible instead of covered by the character’s bangs. This shader must always be used with a `StencilOut` type shader.  
 * `StencilOut` : Used together with `StencilMask` type shaders. In the above example, this shader would be set on the “bangs” part to make them transparent so that the “eyebrows” parts are visible.  
 
-<img width = "800" src="images/1230-11_10.jpg?raw=true">
+<img width = "800" src="images/1230-11_10.png?raw=true">
 
 ## ●The Shaders in the UnityChanToonShader/NoOutline Folder
 
-<img width = "800" src="images/UTS2_NoOutline.jpg?raw=true">
+<img width = "800" src="images/UTS2_NoOutline.png?raw=true">
 
 The shaders in the `NoOutline` folder have `ToonColor` at the front of their names, but here this indicates that the shader **does not have the outline feature**.  
 
@@ -236,16 +236,16 @@ Parts without the outline function will have one less drawing pass, so these sha
 
 ### ・Transparent shaders for transparency materials
 
-<img width = "600" src="images/ToonColor_Transparent.jpg?raw=true">
+<img width = "600" src="images/ToonColor_Transparent.png?raw=true">
 
 Some of the `NoOutline` shaders have the `Transparent` name block at the end of their names.  
 These are **special transparency shaders**. They are useful for parts meant to have a “blush” look, or for glass and glass-like objects.  
 
-<img width = "800" src="images/CheekMaterialSetting.jpg?raw=true">
+<img width = "800" src="images/CheekMaterialSetting.png?raw=true">
 
 ↑Sample setting for Blush material.  
 
-[![](https://img.youtube.com/vi/oAzgUJxP2y4/0.jpg)](https://www.youtube.com/watch?v=oAzgUJxP2y4)
+[![](https://img.youtube.com/vi/oAzgUJxP2y4/0.png)](https://www.youtube.com/watch?v=oAzgUJxP2y4)
 
 ↑ How To Set Custom Render Queue into UTS2 materials  
 
@@ -255,19 +255,19 @@ Custom render cue adjustments are essential, especially if you want to accuratel
 
 ## ●The Shaders in the UnityChanToonShader/AngelRing Folder
 
-<img width = "800" src="images/UTS2_AngelRing.jpg?raw=true">
+<img width = "800" src="images/UTS2_AngelRing.png?raw=true">
 
 The `AngelRing` folder contains shaders with an “angel ring” feature.  
 The “angel ring” is a highlight effect, as demonstrated in the image below. They have a fixed position from the camera’s perspective.  
 
-<img width = "800" src="images/AR_Image.jpg?raw=true">
+<img width = "800" src="images/AR_Image.png?raw=true">
 
 Only UTS2’s hi-spec `ShadingGradeMap` shaders and their variant `ShadingGradeMap_TransClipping` shaders have this “angel ring” feature.  
 These shaders are primarily used in “hair” parts, which puts them in a similar category to `StencilOut` shaders, which are omitted by stencils.  
 
 ## ●The Shaders in the UnityChanToonShader/Mobile Folder
 
-<img width = "800" src="images/UTS2_Mobile.jpg?raw=true">
+<img width = "800" src="images/UTS2_Mobile.png?raw=true">
 
 Lightweight versions of shaders, intended for Mobile and VR content,  that generally won’t change the look of objects can be found in the  `Mobile` folder.  
 The following features are restricted in order to make these shaders lighter for mobile platforms.  
@@ -283,7 +283,7 @@ The basic features of each shader are identical to their standard version counte
 
 ## ●The Shaders in the UnityChanToonShader/Tessellation Folder
 
-<img width = "800" src="images/UTS2_Tess.jpg?raw=true">
+<img width = "800" src="images/UTS2_Tess.png?raw=true">
 
 UTS2 shaders that support DirectX 11 [Phong Tessellation](https://docs.unity3d.com/ja/current/Manual/SL-SurfaceShaderTessellation.html) can be found in the `Tessellation` folder.  
 Phong Tessellation corrects the position of subdivided surfaces so that they will be more closely aligned with the mesh’s normal vectors. It’s an effective method for smoothing low-poly meshes.  
@@ -292,19 +292,19 @@ UTS2 can only use Phong Tessellation with DirectX 11 in a Windows environment.
 The `Tessellation/Light` folder contains lightweight versions of the Tessellation shaders with the same restrictions as the `Mobile` shaders.  
 The rest of the folders also contain versions of the previously described shaders, with added support for Phong Tessellation.  
 
-<img width = "800" src="images/DX11Tess.jpg?raw=true">
+<img width = "800" src="images/DX11Tess.png?raw=true">
 
 Adding Phong Tessellation noticeably improves the quality of outlines and other small details such as the lips.  
 These shaders are primarily intended for pre-rendered content, however they also have applications in high-end VR character content with requirements such as having characters get very close to the user.  
 
 ## ●The shaders in the UnityChanToonShader/Helper Folder
 
-<img width = "800" src="images/UTS2_Helper.jpg?raw=true">
+<img width = "800" src="images/UTS2_Helper.png?raw=true">
 
 The `Helper` folder contains shaders that are only used to show the outline object.  
 The outline object can be applied to a character as a multi-material.  
 
-<img width = "800" src="images/OutlineHelper.jpg?raw=true">
+<img width = "800" src="images/OutlineHelper.png?raw=true">
 
 Add outlines by going to the mesh’s `Skinned Mesh Renderer` > `Materials` and increasing `Size` by 1, then register the desired outline material.  
 
@@ -344,17 +344,17 @@ In File>Build Settings>Player Settings...
 
 is recommended.  
 
-<img width = "400" src="images/0801-12_07.jpg?raw=true">
+<img width = "400" src="images/0801-12_07.png?raw=true">
 
 # UTS2 Setting Menu：UTS2 Custom Inspector
 
 From here, you will know the function of the user interface **UTS 2 custom inspector** which sets each function of UTS2.
 
-<img width = "400" src="images/UTS2UI_Standard.jpg?raw=true">
+<img width = "400" src="images/UTS2UI_Standard.png?raw=true">
 
 UTS2 Custom Inspector can switch to the conventional property list type inspector by clicking the `Show All Properties` button.
 
-<img width = "400" src="images/UTS2UI_AllProperties.jpg?raw=true">
+<img width = "400" src="images/UTS2UI_AllProperties.png?raw=true">
 
 Function description of the property list type is [here](./UTS2_Props_en.md).  
 You can restore the UI style of Inspector with the `Change CustomUI` button.  
@@ -362,7 +362,7 @@ You can restore the UI style of Inspector with the `Change CustomUI` button.
 
 ---
 ## 1. “Basic Shader Settings” Menu for UTS2
-<img width = "500" src="images/UTS2UI_01_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_01_00.png?raw=true">
 
 In this menu, in addition to performing the basic setting of UTS2, you can specify reference number of stencil buffer, set culling method, and specify what kind of mask is set for each clipping shader.  
 
@@ -370,7 +370,7 @@ In this menu, in addition to performing the basic setting of UTS2, you can speci
 
 Items in the menu are automatically expanded to the following maximum format according to the type (function) of the shader.  
 
-<img width = "500" src="images/UTS2UI_01_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_01_01.png?raw=true">
 
 
 | `Item` | Function | Property |
@@ -399,7 +399,7 @@ Adjust the transparency level using the `Tweak_transparency` slider.
 ### Useful functions for VRChat users
 UTS2 is a general purpose toon shader that can be used in various projects in Unity. If you enjoy UTS2 on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of UTS2's advanced features.  
 
-<img width = "500" src="images/VRChatUser00.jpg?raw=true">
+<img width = "500" src="images/VRChatUser00.png?raw=true">
 
 In the picture above, the button in the red box corresponds to it. There are two timings to use these buttons.  
 
@@ -427,14 +427,14 @@ For example, from the material to which Standard Shader was initially assigned, 
 If these unused values remain in each material, it is possible to put unnecessary load on the system, so it is recommended to organize them at the time of publishing avatars.  
 This command should also be used when building your own project.  
 
-<img width = "400" src="images/ShaderKeywords.jpg?raw=true">
+<img width = "400" src="images/ShaderKeywords.png?raw=true">
 
 When the command is executed, for UTS2 material, the remaining shader keywords are optimized to one of `_EMISSIVE_SIMPLE` / ` _EMISSIVE_ANIMATION` and one of `_OUTLINE_NML` / ` _OUTLINE_POS`. These are needed during shader compilation, so leave them as is.  
 
 
 ---
 ## 2. “Basic Three Colors and Control Maps Setups” Menu
-<img width = "500" src="images/UTS2UI_02_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_02_00.png?raw=true">
 
 This Menu defines the basic colors used by UTS2: the Base Color, 1st Shade Color, and 2nd Shade Color.  
 These colors are arranged **in order from the light source’s direction, Base Color⇒ 1st Shade Color ⇒ 2nd Shade Color**.  
@@ -446,7 +446,7 @@ Each color is determined by multiplying each pixel in the texture by each color,
 
 From the submenu, you can also set the sharing setting of texture for basic three colors, normal map, shadow control maps.  
 
-<img width = "500" src="images/UTS2UI_02_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_02_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -459,19 +459,19 @@ From the submenu, you can also set the sharing setting of texture for basic thre
 ### “NormalMap Settings” Submenu
 This block is where Normal Map settings are performed.  
 
-<img width = "600" src="images/Is_NormalToBase.jpg?raw=true">
+<img width = "600" src="images/Is_NormalToBase.png?raw=true">
 
 **The Normal Map is generally used in UTS2 for Shade Color gradation.**.  
 Using the Normal Map along with standard shading allows for more complex gradation effects. In the above image, **the left side reflects the normal map in color, the right does not reflect it**.  
 
 Besides, the normal map is used to adjust **skin texture** by using it together with the scale. Also, by preparing a normal map for MatCap, it is used to express **hair texture**.  
 
-<img width = "600" src="images/NormalMap01.jpg?raw=true">
-<img width = "600" src="images/NormalMapforMatCap.jpg?raw=true">
+<img width = "600" src="images/NormalMap01.png?raw=true">
+<img width = "600" src="images/NormalMapforMatCap.png?raw=true">
 
 By using normal maps, you can enjoy various expressions.  
 
-<img width = "500" src="images/UTS2UI_02_02.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_02_02.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -482,7 +482,7 @@ By using normal maps, you can enjoy various expressions.
 | `RimLight` | Set **Active** when you want the normal map to influence the RimLight. | _Is_NormalMapToRimLight |
 
 
-[![](https://img.youtube.com/vi/Hdyp8f7l0VI/0.jpg)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
+[![](https://img.youtube.com/vi/Hdyp8f7l0VI/0.png)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
 
 **※ Hint:** The Normal Map can also be used for pseudo-solid effects like bumps. However, the Normal Map will not actually make the surface of the object’s geometry bumpy and instead will cause the lighting to give the appearance of bumps. Therefore it is necessary to **set the Base Color/1st Shade Color/2nd Shade color step so that it is easier for the light to bring out this effect**. [In the example above](https://twitter.com/nyaa_toraneko/status/1051359237631164417), the Base Color step is set to 0.8, the Shade Color step is set to 0.5, and a slightly darker Hi-Color is used to emphasize the object as solid.  
 
@@ -494,7 +494,7 @@ Depending on the shader you use, the items in the sub menu will change.
 
 ### ●DoubleShadeWithFeather Shaders
 
-<img width = "500" src="images/UTS2UI_02_03.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_02_03.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -503,7 +503,7 @@ Depending on the shader you use, the items in the sub menu will change.
 
 ### 【What is the Position Map?】
 
-<img width = "800" src="images/0906-18_03.jpg?raw=true">
+<img width = "800" src="images/0906-18_03.png?raw=true">
 
 The Position Map designates shadows that you want to cast regardless of the lighting.  
 
@@ -513,7 +513,7 @@ It can be added to a material in addition to the lighting, for times when you wa
 
 ### 【How the 1st and 2nd Shade Color Position Maps Interact】
 
-<img width = "800" src="images/0102-22_03.jpg?raw=true">
+<img width = "800" src="images/0102-22_03.png?raw=true">
 
 In order to **display the 2nd Shade Color** independent of lighting, make sure to **fill in the places where the 1st and 2nd Shade Color Position Maps will overlap**.  
 
@@ -525,7 +525,7 @@ On the other hand, **for areas where the 2nd Shade Color doesn’t show** (areas
 
 ### ●ShadingGradeMap Shaders
 
-<img width = "500" src="images/UTS2UI_02_04.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_02_04.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -536,7 +536,7 @@ On the other hand, **for areas where the 2nd Shade Color doesn’t show** (areas
 ### 【What is the Shading Grade Map?】
 `Toon_DoubleShadeWithFeather.shader` is the basic shader in UTS2, and that shader is based on the shading grade map, which is a shading gray scale map. The `Toon_ShadingGradeMap` shader is further expanded to use the UV points to control shadows.  
 
-<img width = "800" src="images/0122-06_04.jpg?raw=true">
+<img width = "800" src="images/0122-06_04.png?raw=true">
 
 Adding the `Shading Grade Map` to the normal toon shader allows the 1st and/or 2nd Shade Colors to be controlled at the UV point level.  
 This map’s fine level of control makes effects like “hiding the wrinkles in clothes **when the light hits them**” possible.  
@@ -549,7 +549,7 @@ Applying **a shading map like the Ambient Occlusion map** to the shading grade m
 ---
 ## 3. “Basic Lookdevs : Shading Step and Feather Settings” Menu
 
-<img width = "500" src="images/UTS2UI_03_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_03_00.png?raw=true">
 
 This block is where the Base Color/1st Shade Color/2nd Shade Color Step and the Feathering Intensity are set. In addition to the real-time directional light settings, these are the most important settings in UTS2. **These settings will determine the basic look of your content**. This menu is where basic items for making Cel and Illustration Styles are gathered.  
 These settings can be checked repeatedly in real-time in Unity.  
@@ -558,7 +558,7 @@ Adjust the Step and Feather parameters to create totally different looks, withou
 
 ### 【The Basics of Using the Step/Feather Sliders】
 
-[![](https://img.youtube.com/vi/eM3iwE67ICM/0.jpg)](https://www.youtube.com/watch?v=eM3iwE67ICM)
+[![](https://img.youtube.com/vi/eM3iwE67ICM/0.png)](https://www.youtube.com/watch?v=eM3iwE67ICM)
 
 This covers the basics of using the **Step slider, which controls the color levels**, and the **Feather slider, which controls the gradation at the boundaries between colors**.  
 
@@ -568,7 +568,7 @@ This covers the basics of using the **Step slider, which controls the color leve
 There are common items among DoubleShadeWithFeather shaders, the standard shaders in UST2.  
 These shaders can have 2 **Position Maps**, a special feature that allows the 1st and 2nd Shade Colors to be fixed to a model regardless of lighting.  
 
-<img width = "500" src="images/UTS2UI_03_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_03_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -585,7 +585,7 @@ Shaders with a **Shading Grade Map** can control the sharpness and intensity of 
 These maps allow you to set shadows of any shape and in any place you like, regardless of geometry or vectors.  
 Compared to Point Maps, in addition to placing shadows, Shading Grade Maps can also adjust how shadows look depending on the way the light hits them.  
 
-<img width = "500" src="images/UTS2UI_03_02.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_03_02.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -601,14 +601,14 @@ These are adjustment items to make Unity's shadow system and toon shading famili
 In the case of the toon shade, the shadow provided by the system is necessary to express the character 's self - shadow (falling shadow to himself).  
 Use this when you want to make further fine adjustments after deciding the coloring level with the “Basic Lookdevs: Shading Step and Feather Settings” submenu items and want to fine-tune the way ReceiveShadow exits, such as self shadow.  
 
-<img width = "500" src="images/UTS2UI_03_03.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_03_03.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
 | `Receive System Shadows` | When using Unity shadow system, set it to **Active**. This option must be sure to **Active** to use ReceiveShadow. (`ReceiveShadow` must also be selected under Mesh Renderer) | _Set_SystemShadowsToBase |
 | `System Shadows Level` | It controls Unity’s system shadow levels. The default is 0, and the levels can be adjusted to ±0.5. | _Tweak_SystemShadowsLevel |
 
-[![](https://img.youtube.com/vi/LXV37a1jhUE/0.jpg)](https://www.youtube.com/watch?v=LXV37a1jhUE)
+[![](https://img.youtube.com/vi/LXV37a1jhUE/0.png)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
 **↑ When using the system shadow with Unity and adjusting the Step slider, noise may appear in the area with shadow color. These noises are troublesome in Cel-look style, so I show you how to improve them using the `System Shadows Level` slider and` Tessellation`.**  
 
@@ -621,7 +621,7 @@ There are other ways to eliminate noise, so please also refer to [Additionl Note
 These are adjustment items mainly for the real-time point light group processed in the ForwardAdd path.  
 This submenu is not available in the Mobile/Light version.  
 
-<img width = "500" src="images/UTS2UI_03_04.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_03_04.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -631,13 +631,13 @@ This submenu is not available in the Mobile/Light version.
 ---
 ### 【Adjusting the different colors of point lights ：Step Offset、PointLights Hi-Cut Filter】
 
-[![](https://img.youtube.com/vi/fJX8uQKzWhc/0.jpg)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
+[![](https://img.youtube.com/vi/fJX8uQKzWhc/0.png)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
 
 In UTS2 v.2.0.5 we have improved the reaction of  Real-time Point Light in cel-styles that doesn’t use  feathering.  As a result, we can create a cel-shaded look with just point lighting.  
 This is done by adjusting the Step slider of the Base Color /1st Shade Color, 1st Shade Color / 2nd Shade Color. With point lighting, the changes in shadows are more obvious when moving, compared to directional lighting.  
 To make it less obvious, use “Step_Offset” to make finer adjustments.  
 
-[![](https://img.youtube.com/vi/WkJId-e2TKk/0.jpg)](https://www.youtube.com/watch?v=WkJId-e2TKk)
+[![](https://img.youtube.com/vi/WkJId-e2TKk/0.png)](https://www.youtube.com/watch?v=WkJId-e2TKk)
 
 By using “Step Offset”, you can adjust the Realtime light steps (the level of gradation) like point lighting that will be added to the ForwardAdd path.  
 The adjustments on “BaseColor_Step” will determine the main light’s gradation but you can also use it to adjust the point lighting settings.  
@@ -650,12 +650,12 @@ If you want the highlights to be brighter, turn off “PointLights Hi-Cut Filter
 ---
 ## 4. “HighColor Settings” Menu
 
-<img width = "500" src="images/UTS2UI_04_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_04_00.png?raw=true">
 
 **High Color** is also known as **Highlights or Speculum Lighting**.  
 It is used to reflect the main directional light. When the light moves the reflection also moves accordingly. In UTS2, you can adjust the high color rendering.  
 
-<img width = "500" src="images/UTS2UI_04_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_04_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -671,13 +671,13 @@ It is used to reflect the main directional light. When the light moves the refle
 
 **※Tip: If you want to enable high color of real-time point lights, set `PointLights Hi-Cut Filter` to` Off`.**
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_rev_16.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_rev_16.png?raw=true">
 
 By using HighColorMask, you can dim light (on skin etc.) that reflects too much depending on the angle.  
 This is useful when highlighting skin color on the cheeks and chest.  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_31.jpg?raw=true">
-<img width = "800" src="images/UT2018_UTS2_SuperTips_32.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_31.png?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_32.png?raw=true">
 
 You can also use HighColorMask as a specular lighting map for reflective surfaces. So it can also be use for metallic textures as well.  
 As seen in Akatsuki Yuki’s (@AkatsukiWorks) work, by using HighColorMask and RimLightMask, you can create art that looks like an illustration but also render the texture of each material.  
@@ -685,13 +685,13 @@ As seen in Akatsuki Yuki’s (@AkatsukiWorks) work, by using HighColorMask and R
 ---
 ## 5. “RimLight Settings” Menu
 
-<img width = "500" src="images/UTS2UI_05_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_05_00.png?raw=true">
 
 In realistic styles, **RimLight**  is a technique in which light is set to shine on the rims of the object.  
 In non-photorealistic styles that includes Toon Shader, highlights are also placed on the edges of objects to make it more visible, and it is also called RimLight.  
 You can use these RimLight options in UTS2.  
 
-<img width = "500" src="images/UTS2UI_05_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_05_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -712,7 +712,7 @@ You can use these RimLight options in UTS2.
 | `RimLight Mask` | Masks the RimLight according to the UV coordinates. Set to 100% for white, and the rim light does not show when set to black. If you do not need it, you do not have to adjust it. | _Set_RimLightMask |
 | `RimLight Mask Level` | Adjusts the RimLight mask’s level. The default is 0. | _Tweak_RimLightMaskLevel |
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_14.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_14.png?raw=true">
 
 The RimLight is generally shown around the objects edges from the camera’s perspective. In UTS2, you can adjust where the rim light is shown in relation to where the main light is. (‘LightDirection Mask’)
 
@@ -720,7 +720,7 @@ You can also set RimLight in the opposite direction of the light source. You can
 
 Specify the RimLight’s color of the light direction as Black (0,0,0) if you only want the rim light to be shown on the opposite direction of the light source and cut the rim light in the direction of the light source.  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_15.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_15.png?raw=true">
 
 RimLight can also be too bright like HighColor depending on the camera’s angles.  
 
@@ -728,18 +728,18 @@ In UTS2, you can adjust RimLight’s mask to make it dimmer.
 
 In the image above, the RimLight’s color in the light source’s direction and the light reflection’s direction is changed. The rim light is also masked around the underarms to prevent unnecessary highlights.  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_33.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_33.png?raw=true">
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_34.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_34.png?raw=true">
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_35.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_35.png?raw=true">
 
 By masking the RimLight, you can also emphasize the metallic textures in comparison to other materials, or adjust the incidental light on clothes to create wrinkles on velvet.  
 
 ---
 ## 6. “MatCap : Texture Projection Settings” Menu
 
-<img width = "500" src="images/UTS2UI_06_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_06_00.png?raw=true">
 
 MatCap is a camera based sphere map that you can paste on to objects.
 It is used for ZBrush texture rendering.  
@@ -750,7 +750,7 @@ In UTS2, you can enjoy MatCap with Adding mode, as well as Multiplication mode.
 
 **※ HINT: UTS2 v.2.0.5 and later, [appropriate adjustments will be made to distortions caused by the camera](https://twitter.com/kanihira/status/1061448868221480960). So the Matcap will not be distorted even when the object is on at the edge of the camera’s perspective.**.  
 
-<img width = "500" src="images/UTS2UI_06_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_06_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -774,12 +774,12 @@ In UTS2, you can enjoy MatCap with Adding mode, as well as Multiplication mode.
 | `Matcap Mask Level` | Adjusts the power of the MatcapMask. When the value is 1, MatCap is displayed 100% irrespective of whether or not there is a mask. When the value is -1, MatCap will not be displayed at all and MatCap will be the same as in the off state. The default value is 0. | _Tweak_MatcapMaskLevel |
 | `Inverse MatcapMask` | In case of `Active`, the MatcapMask is inverted. | _Inverse_MatcapMask |
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_36.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_36.png?raw=true">
 
 In the example above, Matcap is used as a similar environment map.  
 By using MatCap, you can create light reflections of smooth surfaces while keeping the illustration style.
 
-<img width = "800" src="images/MatcapTips.jpg?raw=true">
+<img width = "800" src="images/MatcapTips.png?raw=true">
 
 In the example above, MatCap, NormalMap for MatCap and MatcapMask is used to express the light reflections on hair.  
 
@@ -787,22 +787,22 @@ In the example above, MatCap, NormalMap for MatCap and MatcapMask is used to exp
 * NormalMapForMatCap : If only MatCap is used, it will be rendered as is, but by repeatedly using NormalMapForMatCap, the crescent-shaped light reflections are created. This is known as Speculum Masking. The normal map used here is not used for bumpy textures.  
 * MatcapMask : Adjusts the range where MatCap is shown. By setting the gradation mask vertically, and adjusting the Matcap Mask Level slider, you can easily control the range of the MatCap shown.  
 
-<img width = "800" src="images/MatcapMask.jpg?raw=true">
+<img width = "800" src="images/MatcapMask.png?raw=true">
 
 You can also express light cookies like this with MatcapMask.  
 
 ---
 ## 7. “AngelRing Projection Settings” Menu
 
-<img width = "500" src="images/UTS2UI_07_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_07_00.png?raw=true">
 
 Angel Ring is a highlight that is always shown in a fixed place from the camera’s perspective. It is used on highlights for hair. Shaders that have the Angel Ring function can be found in the AngelRing folder.  
 
-<img width = "500" src="images/AngelRing.jpg?raw=true">
+<img width = "500" src="images/AngelRing.png?raw=true">
 
 Angel Ring is influenced by the UV2 of the mesh that it will be projected on. So you have to set the UV2 of the DCC tools like Maya, 3ds Max, Blender, etc. beforehand.  
 
-<img width = "500" src="images/UTS2UI_07_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_07_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -819,7 +819,7 @@ First, set a second UV that will be applied to the Angel Ring function of the ha
 
 The UV for AngelRing is separate from the UV for the hair’s texture and is created orthographically from the character’s front.  
 
-<img width = "800" src="images/HairModel.jpg?raw=true">
+<img width = "800" src="images/HairModel.png?raw=true">
 
 **The steps from here, including creating UV2, are done with DCC tools like Maya, 3ds Max, Blender etc.**.  
 
@@ -827,26 +827,26 @@ By using the AngelWing’s UV as a guide, draw the texture of the highlights. Th
 Register the created texture as AngelRing_Sampler.  
 You can draw the highlight with white and add color in AngelRing_Color too.  
 
-<img width = "800" src="images/Hair_UV1.jpg?raw=true">
+<img width = "800" src="images/Hair_UV1.png?raw=true">
 
 In case of `Active` with `Use α channel as Clipping Mask`, you can use the α channel that is included in the AngelRing’s texture as a clipping mask, as shown below.  
 You can set the color of the AngelRing directly instead of adding it.  
 
-<img width = "800" src="images/0609-04_13.jpg?raw=true">
+<img width = "800" src="images/0609-04_13.png?raw=true">
 
 ---
 ## 8. “Emissive : Self-luminescene Setings” Menu
 
-<img width = "500" src="images/UTS2UI_08_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_08_00.png?raw=true">
 
 **Emissive** means that objects emit light.  
 By defining the **HDR color** for ‘Emissive’, you can create parts that are brighter than the other colors.  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_17.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_17.png?raw=true">
 
 **By using it with post-effects that are attached to the camera, like [Bloom](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Bloom.html) in [Post Processing Stack](https://docs.unity3d.com/ja/current/Manual/PostProcessing-Stack.html) you can make parts emit light effectively.**  
 
-<img width = "500" src="images/UTS2UI_08_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_08_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -865,9 +865,9 @@ By defining the **HDR color** for ‘Emissive’, you can create parts that are 
 | `ViewShift of Color` | `Active` shifts the color relative to the camera's viewing angle to view the object. When viewed from the front of the surface of the object, the normal Emissive color is displayed, and the color changes to the shifted color as the view angle gradually inclines. | _Is_ViewShift |
 | `ViewShift Color` | This is the color to change to when shifting views. Specify in HDR. | _ViewShift |
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_42.jpg?raw=true">
-<img width = "800" src="images/UT2018_UTS2_SuperTips_43.jpg?raw=true">
-<img width = "800" src="images/UT2018_UTS2_SuperTips_48.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_42.png?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_43.png?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_48.png?raw=true">
 
 This is an example from @einz_zwei, in which emissive parts are used very effectively.  
 By combining color maps and emissive maps, details are added according to the light’s brightness.  
@@ -878,18 +878,18 @@ By combining color maps and emissive maps, details are added according to the li
 Texture with alpha channel is created with DCC tools such as Photoshop.  
 You can use it as an alpha channel by adding a new channel from the channel tab and pasting a grayscale image on the created channel. If you use an image format that has an alpha channel such as Targa format, you can save as it is.  
 
-<img width = "800" src="images/Emissive_Tex00.jpg?raw=true">
+<img width = "800" src="images/Emissive_Tex00.png?raw=true">
 
 To enable the alpha channel on Unity, set `Alpha Source` to` Input Texture Alpha` in the Import Settings of each texture.  
 
 **In the case of PNG format** can not have an alpha channel directly in the image specification, so after loading an alpha channel as a selection range in Photoshop, specify “Layer mask> Mask outside selection range”, PNG Save in format.  
 
-<img width = "800" src="images/Emissive_Tex01.jpg?raw=true">
-<img width = "800" src="images/Emissive_Tex02.jpg?raw=true">
+<img width = "800" src="images/Emissive_Tex01.png?raw=true">
+<img width = "800" src="images/Emissive_Tex02.png?raw=true">
 
 Then import it into Unity, and in Import Settings, set `Alpha Source` to` Input Texture Alpha` and `Alpha Is Transparency` to` ON`.  
 
-<img width = "500" src="images/Emissive_Tex03.jpg?raw=true">
+<img width = "500" src="images/Emissive_Tex03.png?raw=true">
 
 
 ---
@@ -897,24 +897,24 @@ Then import it into Unity, and in Import Settings, set `Alpha Source` to` Input 
 
 When using the color shift function, set `Destination Color` as the target, but if the original color and the target color have the same hue, unexpected colors may be mixed into the frame. For example, if you shift from the color shown on the left side of the arrow to one of the two colors on the right that looks similar, the first color on the right of the arrow shifts color within the same hue range. The second color is a mixture of bluish frames.  
 
-<img width = "800" src="images/DestColor00.jpg?raw=true">
+<img width = "800" src="images/DestColor00.png?raw=true">
 
 This is because the color that mixes blueish frames has a B channel that has a higher value when compared to the RGB of the original color.  
 
 In this way, when shifting colors with different luminance within the same hue to the target in this way, **by aligning the direction of change of each RGB**, it is possible to prevent unexpected colors from entering the frame.  
 
-<img width = "800" src="images/DestColor01.jpg?raw=true">
+<img width = "800" src="images/DestColor01.png?raw=true">
 
 ↑Example of color shift within the same hue. The target color RGB values are all smaller than the original color.  
 
-<img width = "800" src="images/DestColor02.jpg?raw=true">
+<img width = "800" src="images/DestColor02.png?raw=true">
 
 ↑Example where frames outside the hue are mixed. The B value of the target color is higher than the original color, and the change in G value is extremely large.  
 
 
 ---
 ## 9. “Outline Settings” Menu
-<img width = "500" src="images/UTS2UI_09_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_09_00.png?raw=true">
 
 We are using the **inverted outline method for material-based objects** for the outline functions.  
 This method, to put it simply, spawns the inverted surface normal slightly bigger than the original object with a shader.  
@@ -925,7 +925,7 @@ Please be aware that **actual lines are not drawn around the objects**.
 **Reference: You can draw lines around the objects too, but that is mostly used as a post-process (post-effects) outline.**.  
 The type of outline used in post-process affects the speed and quality. In games, the inverted-object method and light post-process methods are used to make adjustments.  
 
-<img width = "500" src="images/UTS2UI_09_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_09_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -941,7 +941,7 @@ The type of outline used in post-process affects the speed and quality. In games
 
 Items in this submenu can further enhance the outline function.  
 
-<img width = "500" src="images/UTS2UI_09_02.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_09_02.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -954,7 +954,7 @@ Items in this submenu can further enhance the outline function.
 
 ---
 ### ●Adjusting the strength of outlines：**Outline Sampler**
-<img width = "800" src="images/0906-18_01.jpg?raw=true">
+<img width = "800" src="images/0906-18_01.png?raw=true">
 
 Black means “no lines” and white means that the width is at 100%.  
 
@@ -966,12 +966,12 @@ Black means “no lines” and white means that the width is at 100%.
 The inverted object outline that is used in UTS2 is a technique that has been used for a long time but it is still used in games that is real-time sensitive.  
 On the other hand, machine power is considerably better today so it is also used with material-based outlines and post-process effects outlines that are attached to the camera.  
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_23.jpg?raw=true">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_23.png?raw=true">
 
 UTS2 also has a post-effect called  **UTS_EdgeDetection** that is used with the inverted object outline.  
 By attaching UTS_EdgeDetection to the main camera, UTS2’s inverted object outline looks better.  
 
-<img width = "800" src="images/UTS_EdgeDitectionV1.jpg?raw=true">
+<img width = "800" src="images/UTS_EdgeDitectionV1.png?raw=true">
 
 UTS_EdgeDetection is provided at UTS2’s project route, **UTS_EdgeDetection.unitypackage**.  
 You can install this package by drag and dropping it to Unity.  
@@ -979,7 +979,7 @@ You can install this package by drag and dropping it to Unity.
 
 ### ●UTS_EdgeDetection.unitypackage  
 
-<img width = "400" src="images/UTS_EdgeDetectWindow.jpg?raw=true">
+<img width = "400" src="images/UTS_EdgeDetectWindow.png?raw=true">
 
 This is a post-effect edge extraction filter.  
 In addition to the three filters that were made by modifying Unity’s [standard assets](https://docs.unity3d.com/ja/540/Manual/script-EdgeDetectEffectNormals.html), **Sobel Color Filter** has been added.  
@@ -1012,7 +1012,7 @@ For more please check the assets in the Baked Normal folder of the sample projec
 ---
 ### ●Moving the outline away from the camera：**Offset Outline with Camera Z-axis**
 
-<img width = "800" src="images/0205-11_01.jpg?raw=true">
+<img width = "800" src="images/0205-11_01.png?raw=true">
 
 By inputting a value in `Offset Outline with Camera Z-axis` , you can offset the outline in Z direction.  
 You can use this when your model has spikey hair to adjust the outlines of the spikes.  
@@ -1023,7 +1023,7 @@ In normal situations, please set this to 0.
 ## 10. “DX11 Phong Tessellation Settings” Menu
 You can only use Tessellation on UTS2 with **Windows/DX11**.  
 
-<img width = "500" src="images/UTS2UI_10_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_10_00.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -1042,12 +1042,12 @@ The Light version is a version that is lightened by only having one directional 
 This menu collects switches that can individually turn ON/OFF “the influence of color of real time light”(LightColor Contribution) in the scene for each color.  
 In the case of `Active`, the effect of the color of the real time light on each color is effective, and in the case of `Off`, the setting color of each color when the intensity = 1 is displayed as it is.  
 
-[![](https://img.youtube.com/vi/THzoRcWpUmU/0.jpg)](https://www.youtube.com/watch?v=THzoRcWpUmU)
+[![](https://img.youtube.com/vi/THzoRcWpUmU/0.png)](https://www.youtube.com/watch?v=THzoRcWpUmU)
 
 From this menu you can centrally manage the presence / absence of light color contribution to each color.  
 While actually using the character lights used in the scene, you can see in real-time how the effect on each color will change with / without light contribution. It is a good idea to use it to finish the look-dev.  
 
-<img width = "500" src="images/UTS2UI_11_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_11_00.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -1067,12 +1067,12 @@ While actually using the character lights used in the scene, you can see in real
 ---
 ## 12. “Environmental Lighting Contributions Setups” Menu
 
-<img width = "500" src="images/UTS2UI_12_00.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_12_00.png?raw=true">
 
 In this menu, adjust the response of the UTS 2 to “the ambient light setting”(Environment Lighting including Skybox, Gradient and Color) and the light probe in the scene, and adjust the brightness of the shader built-in light that starts up in an environment where there is no real-time directional light Items are included.  
 It is also possible to control ON/OFF of the white jump prevention function like **SceneLights Hi-Cut Filter**, which is **a useful function for VRChat users**, from this menu.  
 
-<img width = "500" src="images/UTS2UI_12_01.jpg?raw=true">
+<img width = "500" src="images/UTS2UI_12_01.png?raw=true">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -1089,11 +1089,11 @@ It is also possible to control ON/OFF of the white jump prevention function like
 
 ### ●Decide the light probe’s brightness ：GI Intensity
 
-<img width = "800" src="images/GI_Intensity.jpg?raw=true">
+<img width = "800" src="images/GI_Intensity.png?raw=true">
 
 **↑ Left：GI Intensity = 0、Right：GI Intensity = 1. When the value of GI Intensity goes up, the light probe’s color will be added to the material color.**  
 
-<img width = "800" src="images/LightProbe.jpg?raw=true">
+<img width = "800" src="images/LightProbe.png?raw=true">
 
 **↑ This is an example of a baked point light and a light probe that is positioned on a stage. There is no problem for baked lights overlapping in each range. Line light probes from the top to bottom of Unity-chan.**  
 
@@ -1101,11 +1101,11 @@ It is also possible to control ON/OFF of the white jump prevention function like
 By setting  ’GI Intensity’ to 0 and above, it will be compatible with GI systems like light probes.  
 Light probes that are baked in a scene with other baked lights will be added to the material color as a complementary color. When is at 1, the color that is baked into light probes is added 100%. When it is set to 0, it is the color of the material color.  
 
-<img width = "800" src="images/GI_IntensityOFF.jpg?raw=true">
+<img width = "800" src="images/GI_IntensityOFF.png?raw=true">
 
 **↑ GI Intensity = 0**.  
 
-<img width = "800" src="images/GI_IntensityON.jpg?raw=true">
+<img width = "800" src="images/GI_IntensityON.png?raw=true">
 
 **↑ GI Intensity = 1**.  
 
@@ -1124,7 +1124,7 @@ This light will function when the ambient light is blended.
 
 This is a video that explains the Unlit_Intensity function and ambient blending.  
 
-[![](https://img.youtube.com/vi/7-k6m69JQ2g/0.jpg)](https://www.youtube.com/watch?v=7-k6m69JQ2g)
+[![](https://img.youtube.com/vi/7-k6m69JQ2g/0.png)](https://www.youtube.com/watch?v=7-k6m69JQ2g)
 
 ---
 ### ●Preventing overexposure when there are multiple bright lights in a scene ：SceneLights Hi-Cut Filter  
@@ -1133,7 +1133,7 @@ This is a video that explains the Unlit_Intensity function and ambient blending.
 This is a video that explains it in detail.  
 It also explains in brief how to set the tone mapper with PPS.  
 
-[![](https://img.youtube.com/vi/FM8TomuNwnI/0.jpg)](https://www.youtube.com/watch?v=FM8TomuNwnI)
+[![](https://img.youtube.com/vi/FM8TomuNwnI/0.png)](https://www.youtube.com/watch?v=FM8TomuNwnI)
 
 ---
 ### ●Adding Built-in Light Direction as an advanced feature  
@@ -1143,7 +1143,7 @@ The drop shadow of this part will be used for the directional light in the scene
 
 Please watch this video about how to use Built-in Light Direction.  
 
-[![](https://img.youtube.com/vi/IFAPrbAGfmw/0.jpg)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
+[![](https://img.youtube.com/vi/IFAPrbAGfmw/0.png)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
 
 ---
 
@@ -1168,7 +1168,7 @@ For more details on Unity-chan’s license, see here.
 
 http://unity-chan.com/contents/guideline/.  
 
-<img width = "140" src="images/Light_Silhouette.jpg?raw=true">
+<img width = "140" src="images/Light_Silhouette.png?raw=true">
 
 **HINT:** This is a frequently asked question, but you can redistribute your own 3D models (for both commercial use and non-commercial use) that includes the shader file (.shader) and the included file (.cginc) of UTS2 that is distributed by UCL2.0. You can do this regardless of the 3D model or content (including adult content).  
 For the convenience of users, we would like to ask you to state things such as “UTS2 v.2.0.5 was used” to make it easier for later versions but other than that, you are not required to state anything.  
@@ -1182,38 +1182,38 @@ Tips on using UTS2
 
 ## １．Tips: Minimizing the artifacts that appear at the edge of each color when using system shadow.  
 
-<img width = "800" src="images/0105-22_01.jpg?raw=true">
+<img width = "800" src="images/0105-22_01.png?raw=true">
 
 Here is how to minimize the artifacts that appear at the edges of Unity’s system shadow and custom lighting as shown above.  
 
 ### 【１：Changing the linear color space】
 
-<img width = "800" src="images/0105-22_012_eng.jpg?raw=true">
+<img width = "800" src="images/0105-22_012_eng.png?raw=true">
 
 If the current color space is set to gamma color space, change it to **linear color space** .  
 The gradation of artifacts is less harsh with linear color space.  
 
 ### 【２：Increase mesh density】
 
-<img width = "800" src="images/0105-22_05_eng.jpg?raw=true">
+<img width = "800" src="images/0105-22_05_eng.png?raw=true">
 
 If the lighting, shader parameters are all the same, increase **mesh density**.  
 By doing this, most of the artifacts will disappear.  
 
 ### 【３：Make artifacts disappear by adjusting BaseColor_Step/System Shadows Level 】
 
-<img width = "800" src="images/0105-22_04.jpg?raw=true">
+<img width = "800" src="images/0105-22_04.png?raw=true">
 
 At the shadow’s edges in Image 1, the shadows made by Unity’s system shadow and custom lighting are almost identical.  
 This means that even if you turned `Receive System Shadows` off at this point, the edges of the shadow will not change its place.  
 
-<img width = "800" src="images/0105-22_07.jpg?raw=true">
+<img width = "800" src="images/0105-22_07.png?raw=true">
 
 When it looks like Image 1, artifacts appear if you move the `Base/Shade Feather` slider to the right. (Image 2.  
 
 This is because **the custom lighting’s shadow is within Unity’s system shadow**.  
 
-<img width = "800" src="images/0105-22_08.jpg?raw=true">
+<img width = "800" src="images/0105-22_08.png?raw=true">
 
 When this happens, **move the `BaseColor Step`slider to the right to increase custom lighting’s shadow**.  
 
@@ -1224,7 +1224,7 @@ By using the `System Shadows Level` slider, you can also adjust the system shado
 
 ### 【４：Increasing the bias of the directional light】
 
-<img width = "800" src="images/0105-23_02.jpg?raw=true">
+<img width = "800" src="images/0105-23_02.png?raw=true">
 
 You can also increase the bias of the directional light that works as a key light that is directed at the ball.  
 By doing this you can change the position of the system shadow.  
@@ -1237,7 +1237,7 @@ If there is somewhere that more than four real-time point light ranges overlap, 
 This is because the maximum number of real-time point lights is four for forward rendering in Unity. UTS2 also follows this.  
 This video explains how to unflip the lights. You can also use this for standard shaders.  
 
-[![](https://img.youtube.com/vi/G5-alxDO0bs/0.jpg)](https://www.youtube.com/watch?v=G5-alxDO0bs)
+[![](https://img.youtube.com/vi/G5-alxDO0bs/0.png)](https://www.youtube.com/watch?v=G5-alxDO0bs)
 
 ---
 ## ３．Solution to trouble cases sent to user support  
@@ -1247,7 +1247,7 @@ Please refer to us.
 
 ---
 ### 3-1. Shadows appear in unexpected places  
-<img width = "600" src="images/Errors_01.jpg?raw=true">
+<img width = "600" src="images/Errors_01.png?raw=true">
 
 The black shadow at the position of the arrow in the figure corresponds to it.  
 In this example, the pipe with the unexpected shadow has **UV not expanded**. Similarly, even if **UV is crushed**, such unexpected shadows may appear.  
@@ -1256,7 +1256,7 @@ This is rare when you use Maya for the DCC tool, but if you use Blender or impor
 
 ---
 ### 3-2. I uploaded the avatar to the VRChat server, and when I saw it on the HMD, the parallax between the left and right is off.  
-<img width = "600" src="images/Errors_02.jpg?raw=true">
+<img width = "600" src="images/Errors_02.png?raw=true">
 
 ※Screen shot provided：@NonameReUnder  
 
@@ -1277,7 +1277,7 @@ It seems that the congestion of the VRChat server is probably related, so if som
 ---
 ### 3-3. Bloome may glow badly on VRChat  
 
-<img width = "600" src="images/Errors_03.jpg?raw=true">
+<img width = "600" src="images/Errors_03.png?raw=true">
 
 ※Screen shot provided：@nD_ntny  
 
