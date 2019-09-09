@@ -28,7 +28,6 @@ namespace Unity.UnityChanToonShader2.Tests {
 //---------------------------------------------------------------------------------------------------------------------
         [Test]        
         public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
-            m_shaderCompileError = false;
             string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2/Runtime/Shader"});
             int numShaders = guids.Length;
 
@@ -71,6 +70,5 @@ namespace Unity.UnityChanToonShader2.Tests {
 
 //---------------------------------------------------------------------------------------------------------------------
 
-         static bool m_shaderCompileError = false;
     }
 }
