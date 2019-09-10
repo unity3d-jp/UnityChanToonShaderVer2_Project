@@ -1158,14 +1158,13 @@ https://github.com/unity3d-jp/AlembicImporter
 
 # ライセンスについて
 
-「ユニティちゃんトゥーンシェーダーVer.2.0」は、 **UCL2.0（ユニティちゃんライセンス2.0）** で提供されます。  
-ユニティちゃんライセンスについては、以下を参照してください。  
-http://unity-chan.com/contents/guideline/  
-<img width = "140" src="../images/Light_Silhouette.png?raw=true">
+「ユニティちゃんトゥーンシェーダーVer.2.0」は、 
+**Unity Companion License for Unity-dependent projects** で提供されます。
+[Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License) をご参照ください.
 
-**※ヒント：** しばしば質問されることですが、UCL2.0で配布されるUTS2のシェーダーファイル（.shader）およびそのインクルードファイル（.cginc）は、これらのファイルを自作の3Dモデルなどに同梱し、商用/非商用を問わず再配布するのは自由です。また、どのようなタイプ/デザインの3Dモデルやコンテンツ（アダルト向けも含みます）に適用しても構いません。  
-再配布を受けるユーザーの便宜のために、「UTS2 v.2.0.5を使用している」などの後のバージョンアップのために便宜を図る情報を記載することはお願いしたいですが、それ以外には特に掲示すべきものはありません。  
-各ファイルのヘッダー部には、UCL2.0のライセンス表記がありますので、そちらは修正しないでそのまま同梱することをお願いします。  
+
+**※ヒント：** 
+各ファイルのヘッダー部には、ライセンス表記がありますので、そちらは修正しないでそのまま同梱することをお願いします。  
 
 **※コンテンツに採用した場合** ：UTS2を使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
 
