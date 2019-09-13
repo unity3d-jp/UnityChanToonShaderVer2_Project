@@ -79,9 +79,9 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 
 -----
 ## 【提供ライセンス】
-「ユニティちゃんトゥーンシェーダー 2.0」は、UCL2.0（ユニティちゃんライセンス2.0）で提供されます。  
-ユニティちゃんライセンスについては、以下を参照してください。  
-http://unity-chan.com/contents/guideline/
+「ユニティちゃんトゥーンシェーダーVer.2.0」は、 
+**Unity Companion License for Unity-dependent projects** で提供されます。
+[Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License) をご参照ください.
 
 -----
 ## 【プロジェクト全体のダウンロード】

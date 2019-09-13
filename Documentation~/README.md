@@ -102,9 +102,11 @@ The following table indicates the directory of Unitychan ToonShader2:
 
 -----
 ## 【License】
-Unity-Chan Toon Shader 2.0 is provided under the Unity-Chan License 2.0 terms.  
-Please refer to the following link for information regarding the Unity-Chan License.  
-http://unity-chan.com/contents/guideline_en/
+
+Licensed under the Unity Companion License for 
+Unity-dependent projects--see [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License). 
+
+Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these and other terms and conditions.
 
 -----
 ## 【Download whole project】

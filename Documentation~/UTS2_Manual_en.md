@@ -1163,16 +1163,13 @@ https://github.com/unity3d-jp/AlembicImporter.
 
 # About Licensing  
 
-Unity-chan Toon Shader Ver.2.0 is provided as **UCL2.0（Unity-chan License2.0）.**  
-For more details on Unity-chan’s license, see here.  
+Licensed under the Unity Companion License for 
+Unity-dependent projects--see [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License). 
 
-http://unity-chan.com/contents/guideline/.  
+Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these and other terms and conditions.
 
-<img width = "140" src="images/Light_Silhouette.png?raw=true">
-
-**HINT:** This is a frequently asked question, but you can redistribute your own 3D models (for both commercial use and non-commercial use) that includes the shader file (.shader) and the included file (.cginc) of UTS2 that is distributed by UCL2.0. You can do this regardless of the 3D model or content (including adult content).  
-For the convenience of users, we would like to ask you to state things such as “UTS2 v.2.0.5 was used” to make it easier for later versions but other than that, you are not required to state anything.  
-We would also like to ask you not to remove the header that states the  UCL2.0 license in each file.  
+**HINT:** 
+We would like to ask you not to remove the header that states the license in each file.  
 
 **※If you decide to use it for your work** : When  you have finished your model or content that used UTS2, we would love to hear from you!!! Please tweet at  [Unity Technologies Japan](https://twitter.com/unity_japan) ! We look forward to hearing from you and seeing your amazing work!  
 
