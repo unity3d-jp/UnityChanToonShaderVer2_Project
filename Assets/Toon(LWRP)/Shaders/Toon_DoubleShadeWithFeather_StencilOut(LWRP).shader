@@ -245,10 +245,10 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_StencilOut" {
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_fog
 
-	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
-	    #include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Lighting.hlsl"
-	    #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
-		#include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitForwardPass.hlsl"
+	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+	    #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+		#include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
 
 	    
 	    #include "UCTS_LWRP.cginc"
@@ -283,8 +283,8 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_StencilOut" {
             #pragma vertex ShadowPassVertex
             #pragma fragment ShadowPassFragment
 
-            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/ShadowCasterPass.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
             ENDHLSL
         }
 
@@ -315,8 +315,8 @@ Shader "UnityChanToonShader(LWRP)/Toon_DoubleShadeWithFeather_StencilOut" {
             // GPU Instancing
             #pragma multi_compile_instancing
 
-            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.lightweight/Shaders/DepthOnlyPass.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
             ENDHLSL
         }
 //ToonCoreEnd
