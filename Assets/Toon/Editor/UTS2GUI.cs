@@ -11,7 +11,7 @@ namespace UnityChan
     public class UTS2GUI : ShaderGUI {
 
         public enum _UTS_Technique{
-            DoubleSideWithFeather, ShadingGradeMap, OutlineObject
+            DoubleShadeWithFeather, ShadingGradeMap, OutlineObject
         }
         public enum _OutlineMode{
             NormalDirection, PositionScaling
@@ -571,7 +571,7 @@ namespace UnityChan
         void CheckUtsTechnique(Material material){
             if (material.HasProperty("_utsTechnique"))//DoubleWithFeather==0 or ShadingGradeMap==1
             {
-                if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleSideWithFeather)   //DWF
+                if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                 {
                     if(!material.HasProperty("_Set_1st_ShadePosition")){
                         //SGMに変更.
@@ -581,7 +581,7 @@ namespace UnityChan
                 //SGM
                     if(!material.HasProperty("_ShadingGradeMap")){
                         //DWFに変更.
-                        material.SetInt("_utsTechnique", (int)_UTS_Technique.DoubleSideWithFeather);
+                        material.SetInt("_utsTechnique", (int)_UTS_Technique.DoubleShadeWithFeather);
                     }
                 }else{
 
@@ -954,7 +954,7 @@ namespace UnityChan
         {
             if (material.HasProperty("_utsTechnique"))//DoubleWithFeather or ShadingGradeMap
             {
-                if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleSideWithFeather)   //DWF
+                if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                 {
                     GUILayout.Label("Technipue : Double Shade With Feather", EditorStyles.boldLabel);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.firstPositionMapText, set_1st_ShadePosition);
@@ -1019,7 +1019,7 @@ namespace UnityChan
         void GUI_BasicLookdevs(Material material){
                 if (material.HasProperty("_utsTechnique"))//DoubleWithFeather or ShadingGradeMap
                 {
-                    if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleSideWithFeather)   //DWF
+                    if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                     {
                         GUILayout.Label("Technipue : Double Shade With Feather", EditorStyles.boldLabel);
                         m_MaterialEditor.RangeProperty(baseColor_Step, "BaseColor Step");
