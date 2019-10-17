@@ -63,9 +63,10 @@ namespace UnityChan
         static bool _LightColorContribution_Foldout = false;
         static bool _AdditionalLightingSettings_Foldout = false;
 
-    // -----------------------------------------------------
+        // -----------------------------------------------------
         //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         // UTS2 materal properties -------------------------
+        MaterialProperty utsTechnique = null;
         MaterialProperty clippingMask = null;
         MaterialProperty clipping_Level = null;
         MaterialProperty tweak_transparency = null;
@@ -149,12 +150,15 @@ namespace UnityChan
 
         MaterialEditor m_MaterialEditor;
 
+        public static GUIContent workflowModeText = new GUIContent("Workflow Mode",
+            "Select a workflow that fits your textures. Choose between DoubleShadeWithFeather or ShadingGradeMap.");
         // -----------------------------------------------------
 
         //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         public void FindProperties(MaterialProperty[] props)
         {
             //シェーダーによって無い可能性があるプロパティはfalseを追加.
+            utsTechnique = FindProperty("_utsTechnique", props);
             clippingMask = FindProperty("_ClippingMask", props, false);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
@@ -355,7 +359,7 @@ namespace UnityChan
             //ここまで.
 
             //UTSのシェーダー方式の確認.
-            CheckUtsTechnique(material);
+            CheckUtsTechnique(material); // ??? tosh. check this is still neccessary?
 
             //1行目の横並び3ボタン.
             EditorGUILayout.BeginHorizontal();
@@ -394,6 +398,9 @@ namespace UnityChan
 
             EditorGUI.BeginChangeCheck();
 
+            EditorGUILayout.Space();
+
+            DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
             EditorGUILayout.Space();
 
             _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
@@ -1968,5 +1975,28 @@ namespace UnityChan
             EditorGUILayout.Space();
         }
 
+        public void DoPopup(GUIContent label, MaterialProperty property, string[] options)
+        {
+            DoPopup(label, property, options, m_MaterialEditor);
+        }
+
+        public static void DoPopup(GUIContent label, MaterialProperty property, string[] options, MaterialEditor materialEditor)
+        {
+            if (property == null)
+                throw new System.ArgumentNullException("property");
+
+            EditorGUI.showMixedValue = property.hasMixedValue;
+
+            var mode = property.floatValue;
+            EditorGUI.BeginChangeCheck();
+            mode = EditorGUILayout.Popup(label, (int)mode, options);
+            if (EditorGUI.EndChangeCheck())
+            {
+                materialEditor.RegisterPropertyChangeUndo(label.text);
+                property.floatValue = mode;
+            }
+
+            EditorGUI.showMixedValue = false;
+        }
     } // End of UTS2GUI2
 }// End of namespace UnityChan
