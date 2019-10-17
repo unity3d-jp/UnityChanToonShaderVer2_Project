@@ -56,3 +56,14 @@ The following packages were updated:
   com.unity.test-framework from version 1.0.13 to 1.0.14
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
+
+=== Thu Oct 17 21:07:39 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.rider from version 1.0.8 to 1.1.0
+  com.unity.ide.vscode from version 1.0.7 to 1.1.2
+  com.unity.test-framework from version 1.0.14 to 1.1.2
+  com.unity.timeline from version 1.1.0 to 1.2.2
