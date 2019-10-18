@@ -4,7 +4,7 @@
 //toshiyuki@unity3d.com (LWRP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
-Shader "UnityChanToonShader(LWRP)/AngelRing/Toon_ShadingGradeMap" {
+Shader "UnityChanToonShader(Universal)/AngelRing/Toon_ShadingGradeMap" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
         [HideInInspector] _utsVersion ("Version", Float ) = 2.07
