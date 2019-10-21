@@ -203,7 +203,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma multi_compile _IS_ANGELRING_OFF _IS_ANGELRING_ON
             // used in ShadingGradeMap
 
-            #pragma multi_compile _IS_CLIPPING_OFF
+            #pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
             #pragma multi_compile _IS_PASS_FWDBASE
 #endif
             // -------------------------------------

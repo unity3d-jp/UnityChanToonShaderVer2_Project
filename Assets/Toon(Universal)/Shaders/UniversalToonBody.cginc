@@ -135,28 +135,17 @@
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
             uniform float _Clipping_Level;
             uniform fixed _Inverse_Clipping;
-#elif _IS_CLIPPING_TRANSMODE
+#elif defined(_IS_CLIPPING_TRANSMODE) || defined(_IS_TRANSCLIPPING_ON)
 //DoubleShadeWithFeather_TransClipping
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
             uniform float _Clipping_Level;
             uniform fixed _Inverse_Clipping;
             uniform float _Tweak_transparency;
-#elif _IS_CLIPPING_OFF
+#elif defined(_IS_CLIPPING_OFF) || defined(_IS_TRANSCLIPPING_OFF)
 //DoubleShadeWithFeather
 #endif
 
-//ShadinGradeMap
-#ifdef _IS_TRANSCLIPPING_OFF
-//
-#elif _IS_TRANSCLIPPING_ON
-            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-            uniform fixed _IsBaseMapAlphaAsClippingMask;
-            uniform float _Clipping_Level;
-            uniform fixed _Inverse_Clipping;
-            uniform float _Tweak_transparency;
-#endif
-//ShadinGradeMap
 
             // UV回転をする関数：RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
@@ -377,12 +366,12 @@
 
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
 //v.2.0.4
-#ifdef _IS_CLIPPING_MODE
+#if defined(_IS_CLIPPING_MODE) 
 //DoubleShadeWithFeather_Clipping
                 float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
                 float Set_Clipping = saturate((lerp( _ClippingMask_var.r, (1.0 - _ClippingMask_var.r), _Inverse_Clipping )+_Clipping_Level));
                 clip(Set_Clipping - 0.5);
-#elif _IS_CLIPPING_TRANSMODE
+#elif defined(_IS_CLIPPING_TRANSMODE) || defined(_IS_TRANSCLIPPING_ON)
 //DoubleShadeWithFeather_TransClipping
                 float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
                 float Set_MainTexAlpha = _MainTex_var.a;
@@ -391,7 +380,7 @@
                 float Set_Clipping = saturate((_Inverse_Clipping_var+_Clipping_Level));
                 clip(Set_Clipping - 0.5);
 
-#elif _IS_CLIPPING_OFF
+#elif defined(_IS_CLIPPING_OFF) || defined(_IS_TRANSCLIPPING_OFF)
 //DoubleShadeWithFeather
 #endif
 
