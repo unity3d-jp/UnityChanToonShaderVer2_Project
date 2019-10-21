@@ -8,6 +8,7 @@
 //#pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE  _IS_CLIPPING_TRANSMODE
 //#pragma multi_compile _IS_PASS_FWDBASE _IS_PASS_FWDDELTA
 //
+	    uniform float _utsTechnique;
 
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
 #if UCTS_LWRP
@@ -300,7 +301,15 @@
 #endif		
                 return o;
             }
-            float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET {
+
+
+	    float4 flagShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
+        {
+	          return fixed4(1.0f,0.0f,0.0f,1.0f);
+	    }
+
+        float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
+        {
                 i.normalDir = normalize(i.normalDir);
 			    float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
 
@@ -714,4 +723,13 @@
 					UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
 #endif	
                 return finalRGBA;
+            }
+
+            float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET
+            {
+                if (_utsTechnique == 0)
+                {
+                    return fragDoubleShadeFeather(i, facing);
+                }
+                return flagShadingGradeMap(i, facing);
             }
