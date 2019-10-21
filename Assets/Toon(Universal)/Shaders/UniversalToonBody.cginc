@@ -174,19 +174,45 @@
             
             uniform float _GI_Intensity;
 
+//v.2.0.4
+#ifdef _IS_ANGELRING_OFF
+//
+#elif _IS_ANGELRING_ON
+            uniform fixed _AngelRing;
+            uniform sampler2D _AngelRing_Sampler; uniform float4 _AngelRing_Sampler_ST;
+            uniform float4 _AngelRing_Color;
+            uniform fixed _Is_LightColor_AR;
+            uniform float _AR_OffsetU;
+            uniform float _AR_OffsetV;
+            uniform fixed _ARSampler_AlphaOn;
+
+#endif
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
+//v.2.0.4
+#ifdef _IS_ANGELRING_OFF
+//
+#elif _IS_ANGELRING_ON
+                float2 texcoord1 : TEXCOORD1;
+#endif
+
 #if UCTS_LWRP
+#ifdef _IS_ANGELRING_OFF
 				float2 lightmapUV   : TEXCOORD1;
+#elif _IS_ANGELRING_ON
+				float2 lightmapUV   : TEXCOORD2;
+#endif
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 #endif
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
                 float2 uv0 : TEXCOORD0;
+//v.2.0.4
+#ifdef _IS_ANGELRING_OFF
                 float4 posWorld : TEXCOORD1;
                 float3 normalDir : TEXCOORD2;
                 float3 tangentDir : TEXCOORD3;
@@ -205,12 +231,37 @@
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 #else
-				LIGHTING_COORDS(6, 7)
-				UNITY_FOG_COORDS(8)
+                LIGHTING_COORDS(6,7)
+                UNITY_FOG_COORDS(8)
 #endif
-
                 //
+#elif _IS_ANGELRING_ON
+                float2 uv1 : TEXCOORD1;
+                float4 posWorld : TEXCOORD2;
+                float3 normalDir : TEXCOORD3;
+                float3 tangentDir : TEXCOORD4;
+                float3 bitangentDir : TEXCOORD5;
+                //v.2.0.7
+                float mirrorFlag : TEXCOORD6;
+#if UCTS_LWRP
+				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 7);
+				half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
+# ifndef _MAIN_LIGHT_SHADOWS
+				float4 positionCS               : TEXCORRD9;
+# else
+				float4 shadowCoord              : TEXCOORD9;
+				float4 positionCS               : TEXCORRD10;
+# endif
+				UNITY_VERTEX_INPUT_INSTANCE_ID
+				UNITY_VERTEX_OUTPUT_STEREO
+#else
+                LIGHTING_COORDS(7,8)
+                UNITY_FOG_COORDS(9)
+#endif
+                //
+#endif
             };
+ 
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
 #ifdef UCTS_LWRP

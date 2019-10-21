@@ -198,24 +198,29 @@ Shader "Universal Render Pipeline/Toon" {
 
 
             //v.2.0.4
+            // used in ShadingGradeMap
+            #pragma multi_compile _IS_TRANSCLIPPING_OFF
+            #pragma multi_compile _IS_ANGELRING_OFF
+            // used in ShadingGradeMap
+
             #pragma multi_compile _IS_CLIPPING_OFF
             #pragma multi_compile _IS_PASS_FWDBASE
 #endif
             // -------------------------------------
             // Material Keywords
-			// -------------------------------------
-			// Material Keywords
-			#pragma shader_feature _NORMALMAP
-			#pragma shader_feature _ALPHATEST_ON
-			#pragma shader_feature _ALPHAPREMULTIPLY_ON
-			#pragma shader_feature _EMISSION
-			#pragma shader_feature _METALLICSPECGLOSSMAP
-			#pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-			#pragma shader_feature _OCCLUSIONMAP
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature _NORMALMAP
+            #pragma shader_feature _ALPHATEST_ON
+            #pragma shader_feature _ALPHAPREMULTIPLY_ON
+            #pragma shader_feature _EMISSION
+            #pragma shader_feature _METALLICSPECGLOSSMAP
+            #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+            #pragma shader_feature _OCCLUSIONMAP
 
-			#pragma shader_feature _SPECULARHIGHLIGHTS_OFF
-			#pragma shader_feature _ENVIRONMENTREFLECTIONS_OFF
-			#pragma shader_feature _SPECULAR_SETUP
+            #pragma shader_feature _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature _ENVIRONMENTREFLECTIONS_OFF
+            #pragma shader_feature _SPECULAR_SETUP
             #pragma shader_feature _RECEIVE_SHADOWS_OFF
 
             // -------------------------------------
@@ -311,5 +316,5 @@ Shader "Universal Render Pipeline/Toon" {
 
 //ToonCoreEnd
     }
-    CustomEditor "UnityChan.UTS2GUI"
+    CustomEditor "UnityChan.UniversalToonGUI"
 }
