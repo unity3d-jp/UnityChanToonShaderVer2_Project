@@ -200,7 +200,7 @@ Shader "Universal Render Pipeline/Toon" {
             //v.2.0.4
             // used in ShadingGradeMap
             #pragma multi_compile _IS_TRANSCLIPPING_OFF
-            #pragma multi_compile _IS_ANGELRING_OFF
+            #pragma multi_compile _IS_ANGELRING_OFF _IS_ANGELRING_ON
             // used in ShadingGradeMap
 
             #pragma multi_compile _IS_CLIPPING_OFF
@@ -241,8 +241,7 @@ Shader "Universal Render Pipeline/Toon" {
 	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 	    #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-		#include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
-	    
+	    #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
 	    #include "UniversalToonHead.cginc"
 	    #include "UniversalToonBody.cginc"
 

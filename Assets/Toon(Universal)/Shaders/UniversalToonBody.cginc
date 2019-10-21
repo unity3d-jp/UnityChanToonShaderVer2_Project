@@ -270,6 +270,12 @@
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 #endif
                 o.uv0 = v.texcoord0;
+//v.2.0.4
+#ifdef _IS_ANGELRING_OFF
+//
+#elif _IS_ANGELRING_ON
+                o.uv1 = v.texcoord1;
+#endif
                 o.normalDir = UnityObjectToWorldNormal(v.normal);
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
