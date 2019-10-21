@@ -36,6 +36,19 @@
             uniform float _ShadeColor_Step;
             uniform float _1st2nd_Shades_Feather;
             uniform sampler2D _Set_2nd_ShadePosition; uniform float4 _Set_2nd_ShadePosition_ST;
+
+// ShadingGradeMap
+            uniform sampler2D _ShadingGradeMap; uniform float4 _ShadingGradeMap_ST;
+            //v.2.0.6
+            uniform float _Tweak_ShadingGradeMapLevel;
+            uniform fixed _BlurLevelSGM;
+            //
+            uniform float _1st_ShadeColor_Step;
+            uniform float _1st_ShadeColor_Feather;
+            uniform float _2nd_ShadeColor_Step;
+            uniform float _2nd_ShadeColor_Feather;
+// ShadingGradeMap
+
             uniform float4 _HighColor;
             uniform sampler2D _HighColor_Tex; uniform float4 _HighColor_Tex_ST;
             uniform fixed _Is_LightColor_HighColor;
@@ -132,6 +145,18 @@
 #elif _IS_CLIPPING_OFF
 //DoubleShadeWithFeather
 #endif
+
+//ShadinGradeMap
+#ifdef _IS_TRANSCLIPPING_OFF
+//
+#elif _IS_TRANSCLIPPING_ON
+            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
+            uniform fixed _IsBaseMapAlphaAsClippingMask;
+            uniform float _Clipping_Level;
+            uniform fixed _Inverse_Clipping;
+            uniform float _Tweak_transparency;
+#endif
+//ShadinGradeMap
 
             // UV回転をする関数：RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
