@@ -360,7 +360,7 @@ namespace UnityChan
             //ここまで.
 
             //UTSのシェーダー方式の確認.
-            CheckUtsTechnique(material); // ??? tosh. check this is still neccessary?
+            //CheckUtsTechnique(material); // ??? tosh. check this is still neccessary?
 
             //1行目の横並び3ボタン.
             EditorGUILayout.BeginHorizontal();
@@ -401,6 +401,7 @@ namespace UnityChan
 
             EditorGUILayout.Space();
 
+            // select UTS technique here.
             DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
             EditorGUILayout.Space();
 
