@@ -770,6 +770,7 @@
 #else
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
 #endif	
+
                 return finalRGBA;
 
 

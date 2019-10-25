@@ -1476,6 +1476,11 @@ namespace UnityChan
                     material.SetFloat(ShaderPropAngelRing, 1);
                     material.EnableKeyword(ShaderDefineANGELRING_ON);
                     material.DisableKeyword(ShaderDefineANGELRING_OFF);
+                    material.EnableKeyword("_IS_TRANSCLIPPING_OFF");
+                    material.DisableKeyword("_IS_TRANSCLIPPING_ON");
+                    material.DisableKeyword("_IS_CLIPPING_OFF");
+                    material.DisableKeyword("_IS_CLIPPING_MODE");
+                    material.DisableKeyword("_IS_CLIPPING_TRANSMODE");
 
 
                 }
@@ -1485,7 +1490,11 @@ namespace UnityChan
                     material.SetFloat(ShaderPropAngelRing, 0);
                     material.DisableKeyword(ShaderDefineANGELRING_ON);
                     material.EnableKeyword(ShaderDefineANGELRING_OFF);
-
+                    material.DisableKeyword("_IS_TRANSCLIPPING_OFF");
+                    material.DisableKeyword("_IS_TRANSCLIPPING_ON");
+                    material.EnableKeyword("_IS_CLIPPING_OFF");
+                    material.DisableKeyword("_IS_CLIPPING_MODE");
+                    material.DisableKeyword("_IS_CLIPPING_TRANSMODE");
                 }
             }
             EditorGUILayout.EndHorizontal();
@@ -1542,6 +1551,7 @@ namespace UnityChan
                         material.SetFloat("_EMISSIVE",1);
                         material.EnableKeyword("_EMISSIVE_ANIMATION");
                         material.DisableKeyword("_EMISSIVE_SIMPLE");
+
                     }
                 }else{
                     if (GUILayout.Button("Active",shortButtonStyle))
