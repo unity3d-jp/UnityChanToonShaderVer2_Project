@@ -12,6 +12,7 @@ namespace UnityChan
     public class UniversalToonGUI : ShaderGUI {
 
         static readonly string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
+        static readonly string ShaderPropAngelRing = "_AngelRing";
         public enum _UTS_Technique{
             DoubleShadeWithFeather, ShadingGradeMap, OutlineObject
         }
@@ -151,6 +152,17 @@ namespace UnityChan
         //------------------------------------------------------
 
         MaterialEditor m_MaterialEditor;
+
+        private bool AngelRingPropertyAvailable
+        {
+            get
+            {
+
+                Material material = m_MaterialEditor.target as Material;
+                return material.GetInt("_utsTechnique") == (int)_UTS_Technique.ShadingGradeMap;
+                //return material.HasProperty("_AngelRing");
+            }
+        }
 
         public static GUIContent workflowModeText = new GUIContent("Workflow Mode",
             "Select a workflow that fits your textures. Choose between DoubleShadeWithFeather or ShadingGradeMap.");
@@ -498,7 +510,7 @@ namespace UnityChan
 
             EditorGUILayout.Space();
 
-            if(material.HasProperty("_AngelRing")){
+            if(AngelRingPropertyAvailable){
                 _AngelRing_Foldout = Foldout(_AngelRing_Foldout, "【AngelRing Projection Settings】");
                 if (_AngelRing_Foldout)
                 {
@@ -831,7 +843,7 @@ namespace UnityChan
             material.SetFloat("_Is_LightColor_RimLight",1);
             material.SetFloat("_Is_LightColor_Ap_RimLight",1);
             material.SetFloat("_Is_LightColor_MatCap",1);
-            if(material.HasProperty("_AngelRing")){//AngelRingがある場合.
+            if(material.HasProperty(ShaderPropAngelRing)){//AngelRingがある場合.
                 material.SetFloat("_Is_LightColor_AR",1);
             }
             if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
@@ -1456,20 +1468,20 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("AngelRing Projection");
                 //GUILayout.Space(60);
-                    if(material.GetFloat("_AngelRing") == 0){
+                    if(material.GetFloat(ShaderPropAngelRing) == 0){
                         if (GUILayout.Button("Off",shortButtonStyle))
                         {
-                            material.SetFloat("_AngelRing",1);
+                            material.SetFloat(ShaderPropAngelRing, 1);
                         }
                     }else{
                         if (GUILayout.Button("Active",shortButtonStyle))
                         {
-                            material.SetFloat("_AngelRing",0);
+                            material.SetFloat(ShaderPropAngelRing, 0);
                         }
                     }
             EditorGUILayout.EndHorizontal();
 
-            if(material.GetFloat("_AngelRing") == 1){
+            if(material.GetFloat(ShaderPropAngelRing) == 1){
                 GUILayout.Label("    AngelRing Sampler Settings", EditorStyles.boldLabel);
                 m_MaterialEditor.TexturePropertySingleLine(Styles.angelRingText, angelRing_Sampler, angelRing_Color);
                 EditorGUI.indentLevel++;
@@ -1879,7 +1891,7 @@ namespace UnityChan
                 }
             EditorGUILayout.EndHorizontal();
 
-            if(material.HasProperty("_AngelRing"))//AngelRingがある場合.
+            if(AngelRingPropertyAvailable)//AngelRingがある場合.
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Angel Ring");

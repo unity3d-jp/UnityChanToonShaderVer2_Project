@@ -165,10 +165,13 @@
             uniform float _GI_Intensity;
 
 //v.2.0.4
+#if defined(_SHADINGGRADEMAP)
+
 #ifdef _IS_ANGELRING_OFF
 //
 #elif _IS_ANGELRING_ON
             uniform fixed _AngelRing;
+
             uniform sampler2D _AngelRing_Sampler; uniform float4 _AngelRing_Sampler_ST;
             uniform float4 _AngelRing_Color;
             uniform fixed _Is_LightColor_AR;
@@ -177,6 +180,7 @@
             uniform fixed _ARSampler_AlphaOn;
 
 #endif
+#endif     //#if defined(_SHADINGGRADEMP)
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;

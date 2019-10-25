@@ -105,6 +105,15 @@ Shader "Universal Render Pipeline/Toon" {
         [Toggle(_)] _Inverse_MatcapMask ("Inverse_MatcapMask", Float ) = 0
         //v.2.0.5
         [Toggle(_)] _Is_Ortho ("Orthographic Projection for MatCap", Float ) = 0
+        ////天使の輪追加プロパティ.
+        [Toggle(_)] _AngelRing("AngelRing", Float) = 0
+        _AngelRing_Sampler("AngelRing_Sampler", 2D) = "black" {}
+        _AngelRing_Color("AngelRing_Color", Color) = (1,1,1,1)
+        [Toggle(_)] _Is_LightColor_AR("Is_LightColor_AR", Float) = 1
+        _AR_OffsetU("AR_OffsetU", Range(0, 0.5)) = 0
+        _AR_OffsetV("AR_OffsetV", Range(0, 1)) = 0.3
+        [Toggle(_)] _ARSampler_AlphaOn("ARSampler_AlphaOn", Float) = 0
+        //ここまで.
         //v.2.0.7 Emissive
         [KeywordEnum(SIMPLE,ANIMATION)] _EMISSIVE("EMISSIVE MODE", Float) = 0
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}
