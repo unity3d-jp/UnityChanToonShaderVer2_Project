@@ -12,6 +12,8 @@ namespace UnityChan
     public class UniversalToonGUI : ShaderGUI {
 
         static readonly string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
+        static readonly string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
+        static readonly string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
         static readonly string ShaderPropAngelRing = "_AngelRing";
         public enum _UTS_Technique{
             DoubleShadeWithFeather, ShadingGradeMap, OutlineObject
@@ -160,7 +162,7 @@ namespace UnityChan
 
                 Material material = m_MaterialEditor.target as Material;
                 return material.GetInt("_utsTechnique") == (int)_UTS_Technique.ShadingGradeMap;
-                //return material.HasProperty("_AngelRing");
+
             }
         }
 
@@ -1472,13 +1474,20 @@ namespace UnityChan
                         if (GUILayout.Button("Off",shortButtonStyle))
                         {
                             material.SetFloat(ShaderPropAngelRing, 1);
+                            material.EnableKeyword(ShaderDefineANGELRING_ON);
+                            material.DisableKeyword(ShaderDefineANGELRING_OFF);
+
+
                         }
                     }else{
                         if (GUILayout.Button("Active",shortButtonStyle))
                         {
                             material.SetFloat(ShaderPropAngelRing, 0);
-                        }
-                    }
+                            material.DisableKeyword(ShaderDefineANGELRING_ON);
+                            material.EnableKeyword(ShaderDefineANGELRING_OFF);
+
+                }
+            }
             EditorGUILayout.EndHorizontal();
 
             if(material.GetFloat(ShaderPropAngelRing) == 1){

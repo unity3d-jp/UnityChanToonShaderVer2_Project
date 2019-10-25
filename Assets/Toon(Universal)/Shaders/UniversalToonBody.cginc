@@ -186,17 +186,12 @@
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
-//v.2.0.4
-#ifdef _IS_ANGELRING_OFF
-//
-#elif _IS_ANGELRING_ON
-                float2 texcoord1 : TEXCOORD1;
-#endif
 
 #if UCTS_LWRP
 #ifdef _IS_ANGELRING_OFF
 				float2 lightmapUV   : TEXCOORD1;
 #elif _IS_ANGELRING_ON
+                float2 texcoord1 : TEXCOORD1;
 				float2 lightmapUV   : TEXCOORD2;
 #endif
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -224,10 +219,10 @@
 # endif
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
-#else
+#else //#if UCTS_LWRP
                 LIGHTING_COORDS(6,7)
                 UNITY_FOG_COORDS(8)
-#endif
+#endif //#if UCTS_LWRP
                 //
 #elif _IS_ANGELRING_ON
                 float2 uv1 : TEXCOORD1;
