@@ -49,6 +49,11 @@ Shader "Universal Render Pipeline/Toon" {
         //
         _Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" {}
         _Set_2nd_ShadePosition ("Set_2nd_ShadePosition", 2D) = "white" {}
+        _ShadingGradeMap("ShadingGradeMap", 2D) = "white" {}
+        //v.2.0.6
+        _Tweak_ShadingGradeMapLevel("Tweak_ShadingGradeMapLevel", Range(-0.5, 0.5)) = 0
+        _BlurLevelSGM("Blur Level of ShadingGradeMap", Range(0, 10)) = 0
+
         //
         _HighColor ("HighColor", Color) = (0,0,0,1)
 //v.2.0.4 HighColor_Tex
@@ -209,7 +214,7 @@ Shader "Universal Render Pipeline/Toon" {
 			#pragma shader_feature  _ _SHADINGGRADEMAP
             //v.2.0.4
             // used in ShadingGradeMap
-            #pragma multi_compile _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
+            #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
             #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
             // used in ShadingGradeMap
 
