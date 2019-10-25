@@ -209,7 +209,7 @@ Shader "Universal Render Pipeline/Toon" {
 			#pragma shader_feature  _ _SHADINGGRADEMAP
             //v.2.0.4
             // used in ShadingGradeMap
-            #pragma multi_compile _IS_TRANSCLIPPING_OFF
+            #pragma multi_compile _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
             #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
             // used in ShadingGradeMap
 

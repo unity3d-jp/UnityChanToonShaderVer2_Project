@@ -1468,23 +1468,23 @@ namespace UnityChan
         void GUI_AngelRing(Material material)
         {
             EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PrefixLabel("AngelRing Projection");
-                //GUILayout.Space(60);
-                    if(material.GetFloat(ShaderPropAngelRing) == 0){
-                        if (GUILayout.Button("Off",shortButtonStyle))
-                        {
-                            material.SetFloat(ShaderPropAngelRing, 1);
-                            material.EnableKeyword(ShaderDefineANGELRING_ON);
-                            material.DisableKeyword(ShaderDefineANGELRING_OFF);
+            EditorGUILayout.PrefixLabel("AngelRing Projection");
+            //GUILayout.Space(60);
+            if(material.GetFloat(ShaderPropAngelRing) == 0){
+                if (GUILayout.Button("Off",shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropAngelRing, 1);
+                    material.EnableKeyword(ShaderDefineANGELRING_ON);
+                    material.DisableKeyword(ShaderDefineANGELRING_OFF);
 
 
-                        }
-                    }else{
-                        if (GUILayout.Button("Active",shortButtonStyle))
-                        {
-                            material.SetFloat(ShaderPropAngelRing, 0);
-                            material.DisableKeyword(ShaderDefineANGELRING_ON);
-                            material.EnableKeyword(ShaderDefineANGELRING_OFF);
+                }
+            }else{
+                if (GUILayout.Button("Active",shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropAngelRing, 0);
+                    material.DisableKeyword(ShaderDefineANGELRING_ON);
+                    material.EnableKeyword(ShaderDefineANGELRING_OFF);
 
                 }
             }
