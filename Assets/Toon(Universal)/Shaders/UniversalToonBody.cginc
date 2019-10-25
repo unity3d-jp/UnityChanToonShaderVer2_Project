@@ -1194,10 +1194,18 @@
             }
 #endif //#if defined(_SHADINGGRADEMAP)
 
+
+            float4 flagTest(VertexOutput i, fixed facing : VFACE) : SV_TARGET
+            {
+                return float4(1.0f,0.0f,0.0f,1.0f);
+            }
+
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET
             {
+
 #if defined(_SHADINGGRADEMAP)
                     return flagShadingGradeMap(i, facing);
+
 #else
 
                     return fragDoubleShadeFeather(i, facing);

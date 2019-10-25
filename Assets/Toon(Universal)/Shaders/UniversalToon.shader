@@ -197,16 +197,17 @@ Shader "Universal Render Pipeline/Toon" {
 #if 1
 
 
+			#pragma shader_feature  _ _SHADINGGRADEMAP
             //v.2.0.4
             // used in ShadingGradeMap
             #pragma multi_compile _IS_TRANSCLIPPING_OFF
-            #pragma multi_compile _IS_ANGELRING_OFF _IS_ANGELRING_ON
+            #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
             // used in ShadingGradeMap
 
-            #pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
             #pragma multi_compile _IS_PASS_FWDBASE
             //v.2.0.7
-            #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
+            #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
 
 #endif
             // -------------------------------------

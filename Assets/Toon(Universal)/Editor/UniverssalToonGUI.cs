@@ -11,6 +11,7 @@ namespace UnityChan
 {
     public class UniversalToonGUI : ShaderGUI {
 
+        static readonly string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         public enum _UTS_Technique{
             DoubleShadeWithFeather, ShadingGradeMap, OutlineObject
         }
@@ -403,6 +404,16 @@ namespace UnityChan
 
             // select UTS technique here.
             DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
+            switch ((_UTS_Technique)material.GetInt("_utsTechnique"))
+            {
+                case _UTS_Technique.DoubleShadeWithFeather:
+                    material.DisableKeyword(ShaderDefineSHADINGGRADEMAP);
+                    break;
+                case _UTS_Technique.ShadingGradeMap:
+                    material.EnableKeyword(ShaderDefineSHADINGGRADEMAP);
+                    break;
+            }
+
             EditorGUILayout.Space();
 
             _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
