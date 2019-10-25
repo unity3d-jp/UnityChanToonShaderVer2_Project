@@ -400,8 +400,7 @@ namespace UnityChan
 
             EditorGUILayout.Space();
 
-            DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
-            EditorGUILayout.Space();
+
 
             _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
             if(_BasicShaderSettings_Foldout)
@@ -1975,28 +1974,6 @@ namespace UnityChan
             EditorGUILayout.Space();
         }
 
-        public void DoPopup(GUIContent label, MaterialProperty property, string[] options)
-        {
-            DoPopup(label, property, options, m_MaterialEditor);
-        }
 
-        public static void DoPopup(GUIContent label, MaterialProperty property, string[] options, MaterialEditor materialEditor)
-        {
-            if (property == null)
-                throw new System.ArgumentNullException("property");
-
-            EditorGUI.showMixedValue = property.hasMixedValue;
-
-            var mode = property.floatValue;
-            EditorGUI.BeginChangeCheck();
-            mode = EditorGUILayout.Popup(label, (int)mode, options);
-            if (EditorGUI.EndChangeCheck())
-            {
-                materialEditor.RegisterPropertyChangeUndo(label.text);
-                property.floatValue = mode;
-            }
-
-            EditorGUI.showMixedValue = false;
-        }
     } // End of UTS2GUI2
 }// End of namespace UnityChan
