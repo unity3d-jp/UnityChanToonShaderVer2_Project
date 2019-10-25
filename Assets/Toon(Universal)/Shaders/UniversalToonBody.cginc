@@ -302,9 +302,10 @@
                 return o;
             }
 
-
+#if defined(_SHADINGGRADEMAP)
 	    float4 flagShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
+
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
@@ -774,7 +775,7 @@
 
 
         }
-
+#else //#if defined(_SHADINGGRADEMAP)
         float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
                 i.normalDir = normalize(i.normalDir);
@@ -1191,12 +1192,14 @@
 #endif	
                 return finalRGBA;
             }
+#endif //#if defined(_SHADINGGRADEMAP)
 
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET
             {
-                if (_utsTechnique == 0)
-                {
+#if defined(_SHADINGGRADEMAP)
+                    return flagShadingGradeMap(i, facing);
+#else
+
                     return fragDoubleShadeFeather(i, facing);
-                }
-                return flagShadingGradeMap(i, facing);
+#endif
             }

@@ -205,6 +205,9 @@ Shader "Universal Render Pipeline/Toon" {
 
             #pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
             #pragma multi_compile _IS_PASS_FWDBASE
+            //v.2.0.7
+            #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
+
 #endif
             // -------------------------------------
             // Material Keywords
