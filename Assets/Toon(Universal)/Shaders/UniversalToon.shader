@@ -10,6 +10,16 @@ Shader "Universal Render Pipeline/Toon" {
         [HideInInspector] _utsVersion ("Version", Float ) = 2.07
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
+
+        // ClippingMask paramaters from Here.
+        _ClippingMask("ClippingMask", 2D) = "white" {}
+        //v.2.0.4
+        [HideInInspector] _IsBaseMapAlphaAsClippingMask("IsBaseMapAlphaAsClippingMask", Float) = 0
+        //
+        [Toggle(_)] _Inverse_Clipping("Inverse_Clipping", Float) = 0
+        _Clipping_Level("Clipping_Level", Range(0, 1)) = 0
+        // ClippingMask paramaters to Here.
+
         _MainTex ("BaseMap", 2D) = "white" {}
         [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
@@ -144,6 +154,9 @@ Shader "Universal Render Pipeline/Toon" {
         _Outline_Color ("Outline_Color", Color) = (0.5,0.5,0.5,1)
         [Toggle(_)] _Is_BlendBaseColor ("Is_BlendBaseColor", Float ) = 0
         [Toggle(_)] _Is_LightColor_Outline ("Is_LightColor_Outline", Float ) = 1
+        // ClippingMask paramaters from Here.
+        [HideInInspector]_Cutoff("Alpha cutoff", Range(0, 1)) = 0.5
+        // ClippingMask paramaters to here.
         //v.2.0.4
         [Toggle(_)] _Is_OutlineTex ("Is_OutlineTex", Float ) = 0
         _OutlineTex ("OutlineTex", 2D) = "white" {}
