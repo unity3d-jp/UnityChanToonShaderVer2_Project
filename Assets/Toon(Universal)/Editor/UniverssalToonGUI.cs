@@ -15,6 +15,17 @@ namespace UnityChan
         static readonly string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
         static readonly string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
         static readonly string ShaderPropAngelRing = "_AngelRing";
+        static readonly string ShaderPropClippingMode = "_ClippingMode";
+
+
+        static readonly string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
+        static readonly string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
+        static readonly string ShaderDefineIS_CLIPPING_TRANSMODE = "_IS_CLIPPING_TRANSMODE";
+
+        static readonly string ShaderDefineIS_TRANSCLIPPING_OFF = "_IS_TRANSCLIPPING_OFF";
+        static readonly string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
+
+
         public enum _UTS_Technique{
             DoubleShadeWithFeather, ShadingGradeMap, OutlineObject
         }
@@ -1474,13 +1485,7 @@ namespace UnityChan
                 if (GUILayout.Button("Off",shortButtonStyle))
                 {
                     material.SetFloat(ShaderPropAngelRing, 1);
-                    material.EnableKeyword(ShaderDefineANGELRING_ON);
-                    material.DisableKeyword(ShaderDefineANGELRING_OFF);
-                    material.EnableKeyword("_IS_TRANSCLIPPING_OFF");
-                    material.DisableKeyword("_IS_TRANSCLIPPING_ON");
-                    material.DisableKeyword("_IS_CLIPPING_OFF");
-                    material.DisableKeyword("_IS_CLIPPING_MODE");
-                    material.DisableKeyword("_IS_CLIPPING_TRANSMODE");
+
 
 
                 }
@@ -1488,13 +1493,6 @@ namespace UnityChan
                 if (GUILayout.Button("Active",shortButtonStyle))
                 {
                     material.SetFloat(ShaderPropAngelRing, 0);
-                    material.DisableKeyword(ShaderDefineANGELRING_ON);
-                    material.EnableKeyword(ShaderDefineANGELRING_OFF);
-                    material.DisableKeyword("_IS_TRANSCLIPPING_OFF");
-                    material.DisableKeyword("_IS_TRANSCLIPPING_ON");
-                    material.EnableKeyword("_IS_CLIPPING_OFF");
-                    material.DisableKeyword("_IS_CLIPPING_MODE");
-                    material.DisableKeyword("_IS_CLIPPING_TRANSMODE");
                 }
             }
             EditorGUILayout.EndHorizontal();
@@ -1525,6 +1523,59 @@ namespace UnityChan
                 EditorGUI.indentLevel--;
 
             }
+
+            int angelRingEnabled = material.GetInt(ShaderPropAngelRing);
+            if (angelRingEnabled != 0)
+            {
+                material.DisableKeyword(ShaderDefineANGELRING_ON);
+                material.EnableKeyword(ShaderDefineANGELRING_OFF);
+
+                material.DisableKeyword(ShaderDefineIS_TRANSCLIPPING_OFF);
+                material.DisableKeyword(ShaderDefineIS_TRANSCLIPPING_ON);
+
+                switch (material.GetInt(ShaderPropClippingMode))
+                {
+                    case 0:
+                        material.EnableKeyword(ShaderDefineIS_CLIPPING_OFF);
+                        material.DisableKeyword(ShaderDefineIS_CLIPPING_MODE);
+                        material.DisableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
+                        break;
+                    case 1:
+                        material.DisableKeyword(ShaderDefineIS_CLIPPING_OFF);
+                        material.EnableKeyword(ShaderDefineIS_CLIPPING_MODE);
+                        material.DisableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
+                        break;
+                    default:
+                        material.DisableKeyword(ShaderDefineIS_CLIPPING_OFF);
+                        material.DisableKeyword(ShaderDefineIS_CLIPPING_MODE);
+                        material.EnableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
+                        break;
+                }
+            } 
+            else
+            {
+                material.EnableKeyword(ShaderDefineANGELRING_ON);
+                material.DisableKeyword(ShaderDefineANGELRING_OFF);
+
+                material.DisableKeyword(ShaderDefineIS_CLIPPING_OFF);
+                material.DisableKeyword(ShaderDefineIS_CLIPPING_MODE);
+                material.DisableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
+                switch (material.GetInt(ShaderPropClippingMode))
+                {
+                    case 0:
+                        material.EnableKeyword(ShaderDefineIS_TRANSCLIPPING_OFF);
+                        material.DisableKeyword(ShaderDefineIS_TRANSCLIPPING_ON);
+                        break;
+                    default:
+                        material.DisableKeyword(ShaderDefineIS_TRANSCLIPPING_OFF);
+                        material.EnableKeyword(ShaderDefineIS_TRANSCLIPPING_ON);
+                        break;
+
+                }
+
+            }
+
+            
         }
 
         void GUI_Emissive(Material material)
