@@ -15,6 +15,7 @@ namespace UnityChan
         static readonly string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
         static readonly string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
         static readonly string ShaderPropAngelRing = "_AngelRing";
+        static readonly string ShaderPropMatCap = "_MatCap";
         static readonly string ShaderPropClippingMode = "_ClippingMode";
 
 
@@ -639,6 +640,7 @@ namespace UnityChan
             }
 
             ApplyClippingMode(material);
+            ApplyMatCapMode(material);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -1370,20 +1372,20 @@ namespace UnityChan
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("MatCap");
             //GUILayout.Space(60);
-                if(material.GetFloat("_MatCap") == 0){
+                if(material.GetFloat(ShaderPropMatCap) == 0){
                     if (GUILayout.Button("Off",shortButtonStyle))
                     {
-                        material.SetFloat("_MatCap",1);
+                        material.SetFloat(ShaderPropMatCap, 1);
                     }
                 }else{
                     if (GUILayout.Button("Active",shortButtonStyle))
                     {
-                        material.SetFloat("_MatCap",0);
+                        material.SetFloat(ShaderPropMatCap, 0);
                     }
                 }
             EditorGUILayout.EndHorizontal();
 
-            if(material.GetFloat("_MatCap") == 1){
+            if(material.GetFloat(ShaderPropMatCap) == 1){
                 GUILayout.Label("    MatCap Settings", EditorStyles.boldLabel);
                 m_MaterialEditor.TexturePropertySingleLine(Styles.matCapSamplerText, matCap_Sampler, matCapColor);
                 EditorGUI.indentLevel++;
@@ -1571,6 +1573,13 @@ namespace UnityChan
 
         }
 
+        void ApplyMatCapMode(Material material)
+        {
+            if (material.GetFloat(ShaderPropMatCap) == 1)
+                material.EnableKeyword(ShaderPropMatCap);
+            else
+                material.DisableKeyword(ShaderPropMatCap);
+        }
         void ApplyClippingMode(Material material)
         {
             int angelRingEnabled = material.GetInt(ShaderPropAngelRing);

@@ -228,22 +228,11 @@ Shader "Universal Render Pipeline/Toon" {
 	    #pragma vertex vert
             #pragma fragment frag
 	    //#define UNITY_PASS_FORWARDBASE
-#if 1
 
 
-			#pragma shader_feature  _ _SHADINGGRADEMAP
-            //v.2.0.4
-            // used in ShadingGradeMap
-            #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
-            #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
-            // used in ShadingGradeMap
 
-            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
-            #pragma multi_compile _IS_PASS_FWDBASE
-            //v.2.0.7
-            #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
 
-#endif
+
             // -------------------------------------
             // Material Keywords
             // -------------------------------------
@@ -276,6 +265,21 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_fog
 
+            #pragma multi_compile   _IS_PASS_FWDBASE
+
+            // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
+            #pragma shader_feature _ _SHADINGGRADEMAP
+
+            // Different from legacy pipeline, MAT_CAP cant be used when CLIPPING_MODE is enabled.
+            #pragma shader_feature _ _MATCAP
+            // used in ShadingGradeMap
+            #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
+            #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
+
+            // used in DoubleShadeWithFeather
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+
+            #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
 	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 	    #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"

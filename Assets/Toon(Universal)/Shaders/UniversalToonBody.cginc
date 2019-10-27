@@ -39,7 +39,9 @@
             uniform sampler2D _Set_2nd_ShadePosition; uniform float4 _Set_2nd_ShadePosition_ST;
 
 // ShadingGradeMap
+#if defined(_SHADINGGRADEMAP)
             uniform sampler2D _ShadingGradeMap; uniform float4 _ShadingGradeMap_ST;
+#endif
             //v.2.0.6
             uniform float _Tweak_ShadingGradeMapLevel;
             uniform fixed _BlurLevelSGM;
@@ -78,7 +80,9 @@
             uniform sampler2D _Set_RimLightMask; uniform float4 _Set_RimLightMask_ST;
             uniform float _Tweak_RimLightMaskLevel;
             uniform fixed _MatCap;
+#if defined(_MATCAP)
             uniform sampler2D _MatCap_Sampler; uniform float4 _MatCap_Sampler_ST;
+#endif
             uniform float4 _MatCapColor;
             uniform fixed _Is_LightColor_MatCap;
             uniform fixed _Is_BlendAddToMatCap;
@@ -508,6 +512,7 @@
                 }else{
                     _Rot_MatCapUV_var = _Rot_MatCapUV_var;
                 }
+#if defined(_MATCAP)
                 //v.2.0.6 : LOD of Matcap
                 float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler,float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler),0.0,_BlurLevelMatcap));
                 //                
@@ -517,6 +522,10 @@
                 float3 _Is_LightColor_MatCap_var = lerp( (_MatCap_Sampler_var.rgb*_MatCapColor.rgb), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb)*Set_LightColor), _Is_LightColor_MatCap );
                 //v.2.0.6 : ShadowMask on Matcap in Blend mode : multiply
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakMatCapOnShadow)) + lerp(Set_HighColor*Set_FinalShadowMask*(1.0-_TweakMatCapOnShadow), float3(0.0, 0.0, 0.0), _Is_BlendAddToMatCap)), _Is_UseTweakMatCapOnShadow );
+#else
+                float3 Set_MatCap = float3(1.0f, 1.0f, 1.0f);
+                float _Tweak_MatcapMaskLevel_var = 1.0f;
+#endif
                 //
                 //v.2.0.6
                 //Composition: RimLight and MatCap as finalColor
@@ -861,6 +870,7 @@
 //DoubleShadeWithFeather
 #endif
 
+
 #ifdef UCTS_LWRP
 				half attenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
@@ -985,6 +995,7 @@
                 }else{
                     _Rot_MatCapUV_var = _Rot_MatCapUV_var;
                 }
+#if defined(_MATCAP)
                 //v.2.0.6 : LOD of Matcap
                 float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler,float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler),0.0,_BlurLevelMatcap));
                 //
@@ -995,6 +1006,10 @@
                 float3 _Is_LightColor_MatCap_var = lerp( (_MatCap_Sampler_var.rgb*_MatCapColor.rgb), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb)*Set_LightColor), _Is_LightColor_MatCap );
                 //v.2.0.6 : ShadowMask on Matcap in Blend mode : multiply
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakMatCapOnShadow)) + lerp(Set_HighColor*Set_FinalShadowMask*(1.0-_TweakMatCapOnShadow), float3(0.0, 0.0, 0.0), _Is_BlendAddToMatCap)), _Is_UseTweakMatCapOnShadow );
+#else
+                float3 Set_MatCap = float3(1.0f, 1.0f, 1.0f);
+                float _Tweak_MatcapMaskLevel_var = 1.0f;
+#endif
                 //
                 //Composition: RimLight and MatCap as finalColor
                 //Broke down finalColor composition
