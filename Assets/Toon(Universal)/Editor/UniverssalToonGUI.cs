@@ -29,6 +29,16 @@ namespace UnityChan
         public enum _UTS_Technique{
             DoubleShadeWithFeather, ShadingGradeMap, OutlineObject
         }
+
+        public enum _UTS_ClippingMode
+        {
+            Off, On, TransClippingMode
+        }
+
+        public enum _UTS_TransClippingMode
+        {
+            off, On, 
+        }
         public enum _OutlineMode{
             NormalDirection, PositionScaling
         }
@@ -69,6 +79,7 @@ namespace UnityChan
         static bool _StepAndFeather_Foldout = true;
             static bool _AdditionalLookdevs_Foldout = false;
         static bool _HighColor_Foldout = true;
+
         static bool _RimLight_Foldout = true;
         static bool _MatCap_Foldout = true;
         static bool _AngelRing_Foldout = true;
@@ -83,6 +94,7 @@ namespace UnityChan
         //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         // UTS2 materal properties -------------------------
         MaterialProperty utsTechnique = null;
+        MaterialProperty clippingMode = null;
         MaterialProperty clippingMask = null;
         MaterialProperty clipping_Level = null;
         MaterialProperty tweak_transparency = null;
@@ -165,6 +177,15 @@ namespace UnityChan
         //------------------------------------------------------
 
         MaterialEditor m_MaterialEditor;
+        private bool ClippingPropertyAvailable
+        {
+            get
+            {
+                //material.HasProperty("_ClippingMask")
+                Material material = m_MaterialEditor.target as Material;
+                return material.GetInt(ShaderPropClippingMode) != 0;
+            }
+        }
 
         private bool AngelRingPropertyAvailable
         {
@@ -180,13 +201,17 @@ namespace UnityChan
         public static GUIContent workflowModeText = new GUIContent("Workflow Mode",
             "Select a workflow that fits your textures. Choose between DoubleShadeWithFeather or ShadingGradeMap.");
         // -----------------------------------------------------
-
+        public static GUIContent clippingmodeModeText0 = new GUIContent("Clipping Mode",
+            "Select clipping mode that fits you. ");
+        public static GUIContent clippingmodeModeText1 = new GUIContent("Trans Clipping",
+            "Select clipping mode that fits you. ");
         //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         public void FindProperties(MaterialProperty[] props)
         {
             //シェーダーによって無い可能性があるプロパティはfalseを追加.
             utsTechnique = FindProperty("_utsTechnique", props);
             clippingMask = FindProperty("_ClippingMask", props, false);
+            clippingMode = FindProperty("_ClippingMode", props);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
             mainTex = FindProperty("_MainTex", props);
@@ -429,7 +454,8 @@ namespace UnityChan
 
             // select UTS technique here.
             DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
-            switch ((_UTS_Technique)material.GetInt("_utsTechnique"))
+            _UTS_Technique technique = (_UTS_Technique)material.GetInt("_utsTechnique");
+            switch (technique)
             {
                 case _UTS_Technique.DoubleShadeWithFeather:
                     material.DisableKeyword(ShaderDefineSHADINGGRADEMAP);
@@ -438,8 +464,8 @@ namespace UnityChan
                     material.EnableKeyword(ShaderDefineSHADINGGRADEMAP);
                     break;
             }
-
             EditorGUILayout.Space();
+
 
             _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
             if(_BasicShaderSettings_Foldout)
@@ -453,7 +479,19 @@ namespace UnityChan
                     GUI_SetStencilNo(material);
                 }
 
-                if(material.HasProperty("_ClippingMask")){
+                switch (technique)
+                {
+                    case _UTS_Technique.DoubleShadeWithFeather:
+                        DoPopup(clippingmodeModeText0, clippingMode, System.Enum.GetNames(typeof(_UTS_ClippingMode)));
+                        break;
+                    case _UTS_Technique.ShadingGradeMap:
+                        DoPopup(clippingmodeModeText1, clippingMode, System.Enum.GetNames(typeof(_UTS_TransClippingMode)));
+                        break;
+                }
+
+                EditorGUILayout.Space();
+                if (ClippingPropertyAvailable)
+                {
                     GUI_SetClippingMask(material);
                 }
 
@@ -498,6 +536,10 @@ namespace UnityChan
                 GUI_HighColor(material);
                 EditorGUI.indentLevel--;
             }
+
+            EditorGUILayout.Space();
+
+
 
             EditorGUILayout.Space();
 
@@ -595,6 +637,8 @@ namespace UnityChan
 
                 EditorGUILayout.Space();
             }
+
+            ApplyClippingMode(material);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -1113,6 +1157,7 @@ namespace UnityChan
             EditorGUILayout.Space();
         }
 
+
         void GUI_HighColor(Material material)
         {
             m_MaterialEditor.TexturePropertySingleLine(Styles.highColorText, highColor_Tex, highColor);
@@ -1524,6 +1569,10 @@ namespace UnityChan
 
             }
 
+        }
+
+        void ApplyClippingMode(Material material)
+        {
             int angelRingEnabled = material.GetInt(ShaderPropAngelRing);
             if (angelRingEnabled != 0)
             {
@@ -1551,7 +1600,7 @@ namespace UnityChan
                         material.EnableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
                         break;
                 }
-            } 
+            }
             else
             {
                 material.EnableKeyword(ShaderDefineANGELRING_ON);
@@ -1575,9 +1624,7 @@ namespace UnityChan
 
             }
 
-            
         }
-
         void GUI_Emissive(Material material)
         {
             GUILayout.Label("Emissive Tex × HDR Color", EditorStyles.boldLabel);
