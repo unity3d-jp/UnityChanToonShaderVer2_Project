@@ -10,11 +10,12 @@ Shader "Universal Render Pipeline/Toon" {
         [HideInInspector] _utsVersion ("Version", Float ) = 2.07
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
 
+        [Enum(OFF,0,StencilMask,1,StencilOut,2)] _StencilMode("StencilMode",int) = 0
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
         // ShadingGradeMap
         // 0:_IS_TRANSCLIPPING_OFF 1:_IS_TRANSCLIPPING_ON
-        [HideInInspector,Enum(OFF,0,ON,1,TRANSMODE,2)] _ClippingMode ("CliippingMode",int) =  0
+        [Enum(OFF,0,ON,1,TRANSMODE,2)] _ClippingMode ("CliippingMode",int) =  0
 
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
 

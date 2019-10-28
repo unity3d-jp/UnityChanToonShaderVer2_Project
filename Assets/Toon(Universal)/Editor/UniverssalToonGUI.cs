@@ -17,7 +17,8 @@ namespace UnityChan
         static readonly string ShaderPropAngelRing = "_AngelRing";
         static readonly string ShaderPropMatCap = "_MatCap";
         static readonly string ShaderPropClippingMode = "_ClippingMode";
-
+        static readonly string ShaderPropStencilMode = "_StencilMode";
+        static readonly string ShaderPropStencilNo = "_StencilNo";
 
         static readonly string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
         static readonly string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
@@ -38,8 +39,14 @@ namespace UnityChan
 
         public enum _UTS_TransClippingMode
         {
-            off, On, 
+            Off, On, 
         }
+
+        public enum _UTS_StencilMode
+        {
+            Off, StencilMask, StencilOut,
+        }
+
         public enum _OutlineMode{
             NormalDirection, PositionScaling
         }
@@ -99,6 +106,7 @@ namespace UnityChan
         MaterialProperty clippingMask = null;
         MaterialProperty clipping_Level = null;
         MaterialProperty tweak_transparency = null;
+        MaterialProperty stencilMode = null;
         MaterialProperty mainTex = null;
         MaterialProperty baseColor = null;
         MaterialProperty firstShadeMap = null;
@@ -182,12 +190,19 @@ namespace UnityChan
         {
             get
             {
-                //material.HasProperty("_ClippingMask")
                 Material material = m_MaterialEditor.target as Material;
                 return material.GetInt(ShaderPropClippingMode) != 0;
             }
         }
 
+        private bool StencilShaderPropertyAvailable
+        {
+            get
+            {
+                Material material = m_MaterialEditor.target as Material;
+                return (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) != _UTS_StencilMode.Off;
+            }
+        }
         private bool IsShadingGrademap
         {
             get
@@ -199,6 +214,8 @@ namespace UnityChan
             }
         }
 
+
+
         public static GUIContent workflowModeText = new GUIContent("Workflow Mode",
             "Select a workflow that fits your textures. Choose between DoubleShadeWithFeather or ShadingGradeMap.");
         // -----------------------------------------------------
@@ -206,6 +223,8 @@ namespace UnityChan
             "Select clipping mode that fits you. ");
         public static GUIContent clippingmodeModeText1 = new GUIContent("Trans Clipping",
             "Select clipping mode that fits you. ");
+        public static GUIContent stencilmodeModeText = new GUIContent("Stencil Mode",
+    "Select stencil mode that fits you. ");
         //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         public void FindProperties(MaterialProperty[] props)
         {
@@ -215,6 +234,7 @@ namespace UnityChan
             clippingMode = FindProperty("_ClippingMode", props);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
+            stencilMode = FindProperty("_StencilMode", props);
             mainTex = FindProperty("_MainTex", props);
             baseColor = FindProperty("_BaseColor", props);
             firstShadeMap = FindProperty("_1st_ShadeMap", props);
@@ -475,10 +495,7 @@ namespace UnityChan
                 //EditorGUILayout.Space(); 
                 GUI_SetCullingMode(material);
 
-                if(material.HasProperty("_StencilNo")){
-    
-                    GUI_SetStencilNo(material);
-                }
+
 
                 switch (technique)
                 {
@@ -496,6 +513,12 @@ namespace UnityChan
                     GUI_SetClippingMask(material);
                 }
 
+                if (StencilShaderPropertyAvailable)
+                {
+                    GUI_StencilMode(material);
+
+                }
+ 
                 if(material.HasProperty("_Tweak_transparency")){
                     GUI_SetTransparencySetting(material);
                 }
@@ -708,14 +731,19 @@ namespace UnityChan
             }
         }
 
-        void GUI_SetStencilNo(Material material){
+        void GUI_StencilMode(Material material)
+        {
             GUILayout.Label("For _StencilMask or _StencilOut Shader", EditorStyles.boldLabel);
-            _StencilNo_Setting = material.GetInt("_StencilNo");
+            DoPopup(stencilmodeModeText, stencilMode, System.Enum.GetNames(typeof(_UTS_StencilMode)));
+
+            _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
             int _Current_StencilNo = _StencilNo_Setting;
             _Current_StencilNo = (int)EditorGUILayout.IntField("Stencil No.", _Current_StencilNo);
-            if(_StencilNo_Setting != _Current_StencilNo){
-                material.SetInt("_StencilNo",_Current_StencilNo);
+            if (_StencilNo_Setting != _Current_StencilNo)
+            {
+                material.SetInt(ShaderPropStencilNo, _Current_StencilNo);
             }
+
         }
 
         void GUI_SetClippingMask(Material material){
