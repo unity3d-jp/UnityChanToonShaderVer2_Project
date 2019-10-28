@@ -1590,7 +1590,7 @@ namespace UnityChan
         void ApplyAngelRing(Material material)
         {
             int angelRingEnabled = material.GetInt(ShaderPropAngelRing);
-            if (angelRingEnabled != 0)
+            if (angelRingEnabled == 0)
             {
                 material.DisableKeyword(ShaderDefineANGELRING_ON);
                 material.EnableKeyword(ShaderDefineANGELRING_OFF);
