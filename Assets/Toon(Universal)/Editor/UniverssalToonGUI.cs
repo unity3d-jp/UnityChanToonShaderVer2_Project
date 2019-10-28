@@ -79,6 +79,8 @@ namespace UnityChan
             Always,//  Always pass depth or stencil test.
         }
 
+
+
         public enum _OutlineMode{
             NormalDirection, PositionScaling
         }
@@ -698,7 +700,7 @@ namespace UnityChan
             ApplyStencilMode(material);
             ApplyAngelRing(material);
             ApplyMatCapMode(material);
-
+            ApplyQueueAndRenderType(material);
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.PropertiesChanged();
@@ -1634,7 +1636,22 @@ namespace UnityChan
             }
 
         }
+        void ApplyQueueAndRenderType(Material material)
+        {
+            if ((_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) != _UTS_ClippingMode.Off)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                if ((_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) != _UTS_StencilMode.StencilMask)
+                {
+                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest-1;
+                }
+            }
+            else
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+            }
 
+        }
         void ApplyMatCapMode(Material material)
         {
             if (material.GetInt(ShaderPropClippingMode) == 0 )
