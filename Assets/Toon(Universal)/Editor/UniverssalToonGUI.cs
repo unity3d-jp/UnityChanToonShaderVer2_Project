@@ -19,6 +19,11 @@ namespace UnityChan
         static readonly string ShaderPropClippingMode = "_ClippingMode";
         static readonly string ShaderPropStencilMode = "_StencilMode";
         static readonly string ShaderPropStencilNo = "_StencilNo";
+        static readonly string ShaderPropStencilComp = "_StencilComp";
+        static readonly string ShaderPropStencilOpPass = "_StencilOpPass";
+        static readonly string ShaderPropStencilOpFail = "_StencilOpFail";
+        static readonly string ShaderPropStencilWriteMask = "_StencilWriteMask";
+        static readonly string ShaderPropStencilReadMask = "_StencilReadMask";
 
         static readonly string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
         static readonly string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
@@ -45,6 +50,33 @@ namespace UnityChan
         public enum _UTS_StencilMode
         {
             Off, StencilMask, StencilOut,
+        }
+
+        public enum _StencilOperation
+        {
+            //https://docs.unity3d.com/Manual/SL-Stencil.html
+            Keep, //    Keep the current contents of the buffer.
+            Zero, //    Write 0 into the buffer.
+            Replace, // Write the reference value into the buffer.
+            IncrSat, // Increment the current value in the buffer. If the value is 255 already, it stays at 255.
+            DecrSat, // Decrement the current value in the buffer. If the value is 0 already, it stays at 0.
+            Invert, //  Negate all the bits.
+            IncrWrap, //    Increment the current value in the buffer. If the value is 255 already, it becomes 0.
+            DecrWrap, //    Decrement the current value in the buffer. If the value is 0 already, it becomes 255.
+        }
+
+        public enum _StencilCompFunction
+        {
+            
+            Disabled,//    Depth or stencil test is disabled.
+            Never,   //   Never pass depth or stencil test.
+            Less ,   //   Pass depth or stencil test when new value is less than old one.
+            Equal ,  //  Pass depth or stencil test when values are equal.
+            LessEqual, // Pass depth or stencil test when new value is less or equal than old one.
+            Greater, // Pass depth or stencil test when new value is greater than old one.
+            NotEqual, //    Pass depth or stencil test when values are different.
+            GreaterEqual, // Pass depth or stencil test when new value is greater or equal than old one.
+            Always,//  Always pass depth or stencil test.
         }
 
         public enum _OutlineMode{
@@ -199,8 +231,9 @@ namespace UnityChan
         {
             get
             {
-                Material material = m_MaterialEditor.target as Material;
-                return (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) != _UTS_StencilMode.Off;
+                //     Material material = m_MaterialEditor.target as Material;
+                //     return (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) != _UTS_StencilMode.Off;
+                return true;
             }
         }
         private bool IsShadingGrademap
@@ -494,7 +527,11 @@ namespace UnityChan
                 EditorGUI.indentLevel++;
                 //EditorGUILayout.Space(); 
                 GUI_SetCullingMode(material);
+                if (StencilShaderPropertyAvailable)
+                {
+                    GUI_StencilMode(material);
 
+                }
 
 
                 switch (technique)
@@ -513,11 +550,7 @@ namespace UnityChan
                     GUI_SetClippingMask(material);
                 }
 
-                if (StencilShaderPropertyAvailable)
-                {
-                    GUI_StencilMode(material);
 
-                }
  
                 if(material.HasProperty("_Tweak_transparency")){
                     GUI_SetTransparencySetting(material);
@@ -662,6 +695,7 @@ namespace UnityChan
                 EditorGUILayout.Space();
             }
             ApplyClippingMode(material);
+            ApplyStencilMode(material);
             ApplyAngelRing(material);
             ApplyMatCapMode(material);
 
@@ -735,7 +769,7 @@ namespace UnityChan
         {
             GUILayout.Label("For _StencilMask or _StencilOut Shader", EditorStyles.boldLabel);
             DoPopup(stencilmodeModeText, stencilMode, System.Enum.GetNames(typeof(_UTS_StencilMode)));
-
+            
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
             int _Current_StencilNo = _StencilNo_Setting;
             _Current_StencilNo = (int)EditorGUILayout.IntField("Stencil No.", _Current_StencilNo);
@@ -1629,6 +1663,40 @@ namespace UnityChan
                 material.DisableKeyword(ShaderDefineANGELRING_OFF);
 
             }
+        }
+
+        void ApplyStencilMode(Material material)
+        {
+            _UTS_StencilMode mode = (_UTS_StencilMode)(material.GetInt(ShaderPropStencilMode));
+            switch (mode)
+            {
+                case _UTS_StencilMode.Off:
+                    //    material.SetInt(ShaderPropStencilNo,0);
+                    material.SetInt(ShaderPropStencilComp, (int)_StencilCompFunction.Disabled);
+                    material.SetInt(ShaderPropStencilOpPass, (int)_StencilOperation.Keep);
+                    material.SetInt(ShaderPropStencilOpFail, (int)_StencilOperation.Keep);
+                    break;
+                case _UTS_StencilMode.StencilMask:
+                    //    material.SetInt(ShaderPropStencilNo,0);
+                    material.SetInt(ShaderPropStencilComp, (int)_StencilCompFunction.Always);
+                    material.SetInt(ShaderPropStencilOpPass, (int)_StencilOperation.Replace);
+                    material.SetInt(ShaderPropStencilOpFail, (int)_StencilOperation.Replace);
+                    break;
+                case _UTS_StencilMode.StencilOut:
+                    //    material.SetInt(ShaderPropStencilNo,0);
+                    material.SetInt(ShaderPropStencilComp, (int)_StencilCompFunction.NotEqual);
+                    material.SetInt(ShaderPropStencilOpPass, (int)_StencilOperation.Keep);
+                    material.SetInt(ShaderPropStencilOpFail, (int)_StencilOperation.Keep);
+
+                    break;
+            }
+
+
+            //static readonly string ShaderPropStencilNo = "_StencilNo";
+            //static readonly string ShaderPropStencilComp = "_StencilComp";
+            //static readonly string ShaderPropStencilOp = "_StencilOp";
+            //static readonly string ShaderPropStencilWriteMask = "_StencilWriteMask";
+            //static readonly string ShaderPropStencilReadMask = "_StencilReadMask";
         }
         void ApplyClippingMode(Material material)
         {

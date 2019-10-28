@@ -11,6 +11,14 @@ Shader "Universal Render Pipeline/Toon" {
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
 
         [Enum(OFF,0,StencilMask,1,StencilOut,2)] _StencilMode("StencilMode",int) = 0
+        // these are set in UniversalToonGUI.cs in accordance with _StencilMode
+        _StencilComp("Stencil Comparison", Float) = 8
+        _StencilNo("Stencil No", Float) = 1
+        _StencilOpPass("Stencil Operation", Float) = 0
+        _StencilOpFail("Stencil Operation", Float) = 0
+//        _StencilWriteMask("Stencil Write Mask", Float) = 255
+//        _StencilReadMask("Stencil Read Mask", Float) = 255
+
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
         // ShadingGradeMap
@@ -212,6 +220,15 @@ Shader "Universal Render Pipeline/Toon" {
             #include "../../Toon/Shader/UCTS_Outline.cginc"
             ENDCG
         }
+        Stencil
+        {
+            Ref[_StencilNo]
+            Comp[_StencilComp]
+            Pass[_StencilOpPass]
+            Fail[_StencilOpFail]
+//            ReadMask[_StencilReadMask]
+//            WriteMask[_StencilWriteMask]
+        }
 //ToonCoreStart
         Pass {
             Name "FORWARD"
@@ -220,7 +237,16 @@ Shader "Universal Render Pipeline/Toon" {
             }
 
             Cull[_CullMode]
-            
+            Stencil {
+                Ref[_StencilNo]
+
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
+//                ReadMask[_StencilReadMask]
+//               WriteMask[_StencilWriteMask]
+            }
+
             HLSLPROGRAM
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
