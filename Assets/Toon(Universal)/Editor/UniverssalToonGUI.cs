@@ -188,7 +188,7 @@ namespace UnityChan
             }
         }
 
-        private bool AngelRingPropertyAvailable
+        private bool IsShadingGrademap
         {
             get
             {
@@ -566,7 +566,7 @@ namespace UnityChan
 
             EditorGUILayout.Space();
 
-            if(AngelRingPropertyAvailable){
+            if(IsShadingGrademap){
                 _AngelRing_Foldout = Foldout(_AngelRing_Foldout, "【AngelRing Projection Settings】");
                 if (_AngelRing_Foldout)
                 {
@@ -638,8 +638,8 @@ namespace UnityChan
 
                 EditorGUILayout.Space();
             }
-
             ApplyClippingMode(material);
+            ApplyAngelRing(material);
             ApplyMatCapMode(material);
 
             if (EditorGUI.EndChangeCheck())
@@ -1575,18 +1575,39 @@ namespace UnityChan
 
         void ApplyMatCapMode(Material material)
         {
-            if (material.GetFloat(ShaderPropMatCap) == 1)
-                material.EnableKeyword(ShaderPropMatCap);
+            if (material.GetInt(ShaderPropClippingMode) == 0 )
+            {
+                if (material.GetFloat(ShaderPropMatCap) == 1)
+                    material.EnableKeyword(ShaderPropMatCap);
+                else
+                    material.DisableKeyword(ShaderPropMatCap);
+            }
             else
+            {
                 material.DisableKeyword(ShaderPropMatCap);
+            }
         }
-        void ApplyClippingMode(Material material)
+        void ApplyAngelRing(Material material)
         {
             int angelRingEnabled = material.GetInt(ShaderPropAngelRing);
             if (angelRingEnabled != 0)
             {
                 material.DisableKeyword(ShaderDefineANGELRING_ON);
                 material.EnableKeyword(ShaderDefineANGELRING_OFF);
+            }
+            else
+            {
+                material.EnableKeyword(ShaderDefineANGELRING_ON);
+                material.DisableKeyword(ShaderDefineANGELRING_OFF);
+
+            }
+        }
+        void ApplyClippingMode(Material material)
+        {
+
+            if (! IsShadingGrademap)
+            {
+
 
                 material.DisableKeyword(ShaderDefineIS_TRANSCLIPPING_OFF);
                 material.DisableKeyword(ShaderDefineIS_TRANSCLIPPING_ON);
@@ -1612,8 +1633,7 @@ namespace UnityChan
             }
             else
             {
-                material.EnableKeyword(ShaderDefineANGELRING_ON);
-                material.DisableKeyword(ShaderDefineANGELRING_OFF);
+
 
                 material.DisableKeyword(ShaderDefineIS_CLIPPING_OFF);
                 material.DisableKeyword(ShaderDefineIS_CLIPPING_MODE);
@@ -2017,7 +2037,7 @@ namespace UnityChan
                 }
             EditorGUILayout.EndHorizontal();
 
-            if(AngelRingPropertyAvailable)//AngelRingがある場合.
+            if(IsShadingGrademap)//AngelRingがある場合.
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Angel Ring");
