@@ -314,9 +314,9 @@
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
                 float2 Set_UV0 = i.uv0;
                 //v.2.0.6
-//小林：LWRPにUnpackScaledNormalはない？
+
 #ifdef UCTS_LWRP
-				float3 _NormalMap_var = UnpackNormal(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)));
+                float3 _NormalMap_var = UnpackNormalScale(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
 #else
                 float3 _NormalMap_var = UnpackScaleNormal(tex2D(_NormalMap,TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
 #endif
@@ -493,7 +493,7 @@
                 float2 _Rot_MatCapNmUV_var = RotateUV(Set_UV0, (_Rotate_NormalMapForMatCapUV*3.141592654), float2(0.5, 0.5), 1.0);
                 //V.2.0.6
 #ifdef UCTS_LWRP	// Todo. not ready for 2.0.6
-				float3 _NormalMapForMatCap_var = UnpackNormal(tex2D(_NormalMapForMatCap, TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)));
+                float3 _NormalMapForMatCap_var = UnpackNormalScale(tex2D(_NormalMapForMatCap, TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)), _BumpScaleMatcap);
 #else
                 float3 _NormalMapForMatCap_var = UnpackScaleNormal(tex2D(_NormalMapForMatCap,TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)),_BumpScaleMatcap);
 #endif
@@ -799,7 +799,7 @@
                 //v.2.0.6
                 //float3 _NormalMap_var = UnpackNormal(tex2D(_NormalMap,TRANSFORM_TEX(Set_UV0, _NormalMap)));
 #ifdef UCTS_LWRP
-				float3 _NormalMap_var = UnpackNormal(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)));
+                float3 _NormalMap_var = UnpackNormalScale(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
 #else
 				float3 _NormalMap_var = UnpackScaleNormal(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
 #endif
@@ -978,7 +978,7 @@
                 float2 _Rot_MatCapNmUV_var = RotateUV(Set_UV0, (_Rotate_NormalMapForMatCapUV*3.141592654), float2(0.5, 0.5), 1.0);
                 //V.2.0.6
 #ifdef UCTS_LWRP	// Todo. not ready for 2.0.6
-				float3 _NormalMapForMatCap_var = UnpackNormal(tex2D(_NormalMapForMatCap, TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)));
+                float3 _NormalMapForMatCap_var = UnpackNormalScale(tex2D(_NormalMapForMatCap, TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)), _BumpScaleMatcap);
 #else
 				float3 _NormalMapForMatCap_var = UnpackScaleNormal(tex2D(_NormalMapForMatCap, TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)), _BumpScaleMatcap);
 #endif                //v.2.0.5: MatCap with camera skew correction
