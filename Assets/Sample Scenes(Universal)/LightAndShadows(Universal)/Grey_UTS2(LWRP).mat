@@ -8,15 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grey_UTS2(LWRP)
-  m_Shader: {fileID: 4800000, guid: 03179187b47f9894d989c74f0d5681ae, type: 3}
-  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _INVERSE_Z_AXIS_BLD_ON _IS_BLENDADDTOHICOLOR_ON
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
+  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _INVERSE_Z_AXIS_BLD_ON _IS_ANGELRING_OFF _IS_BLENDADDTOHICOLOR_ON
     _IS_BLENDADDTOMATCAP_ON _IS_BLENDBASECOLOR_ON _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON
     _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
-    _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _OUTLINE_NML _SET_SYSTEMSHADOWSTOBASE_ON
+    _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _IS_TRANSCLIPPING_OFF _OUTLINE_NML
+    _SET_SYSTEMSHADOWSTOBASE_ON _SHADINGGRADEMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -39,6 +40,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ClippingMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -119,14 +124,19 @@ Material:
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
+    - _ClippingMode: 0
+    - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _CullMode: 2
+    - _Cutoff: 0.5
     - _EMISSIVE: 0
     - _Farthest_Distance: 10
     - _GI_Intensity: 0
     - _HighColor_Power: 0.35
+    - _Inverse_Clipping: 0
     - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
+    - _IsBaseMapAlphaAsClippingMask: 0
     - _Is_BLD: 0
     - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
@@ -175,6 +185,11 @@ Material:
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0.5
+    - _StencilComp: 0
+    - _StencilMode: 0
+    - _StencilNo: 1
+    - _StencilOpFail: 0
+    - _StencilOpPass: 0
     - _StepOffset: 0
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0
