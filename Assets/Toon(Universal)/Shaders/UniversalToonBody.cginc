@@ -80,9 +80,9 @@
             uniform sampler2D _Set_RimLightMask; uniform float4 _Set_RimLightMask_ST;
             uniform float _Tweak_RimLightMaskLevel;
             uniform fixed _MatCap;
-#if defined(_MATCAP)
+
             uniform sampler2D _MatCap_Sampler; uniform float4 _MatCap_Sampler_ST;
-#endif
+
             uniform float4 _MatCapColor;
             uniform fixed _Is_LightColor_MatCap;
             uniform fixed _Is_BlendAddToMatCap;
@@ -165,7 +165,17 @@
             fixed3 DecodeLightProbe( fixed3 N ){
             return ShadeSH9(float4(N,1));
             }
-            
+
+            half3 GlobalIlluminationUTS(BRDFData brdfData, half3 bakedGI, half occlusion, half3 normalWS, half3 viewDirectionWS)
+            {
+                half3 reflectVector = reflect(-viewDirectionWS, normalWS);
+                half fresnelTerm = Pow4(1.0 - saturate(dot(normalWS, viewDirectionWS)));
+
+                half3 indirectDiffuse = bakedGI * occlusion;
+                half3 indirectSpecular = GlossyEnvironmentReflection(reflectVector, brdfData.perceptualRoughness, occlusion);
+
+                return EnvironmentBRDF(brdfData, indirectDiffuse, indirectSpecular, fresnelTerm);
+            }
             uniform float _GI_Intensity;
 
 //v.2.0.4
@@ -512,7 +522,7 @@
                 }else{
                     _Rot_MatCapUV_var = _Rot_MatCapUV_var;
                 }
-#if defined(_MATCAP)
+
                 //v.2.0.6 : LOD of Matcap
                 float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler,float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler),0.0,_BlurLevelMatcap));
                 //                
@@ -522,10 +532,7 @@
                 float3 _Is_LightColor_MatCap_var = lerp( (_MatCap_Sampler_var.rgb*_MatCapColor.rgb), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb)*Set_LightColor), _Is_LightColor_MatCap );
                 //v.2.0.6 : ShadowMask on Matcap in Blend mode : multiply
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakMatCapOnShadow)) + lerp(Set_HighColor*Set_FinalShadowMask*(1.0-_TweakMatCapOnShadow), float3(0.0, 0.0, 0.0), _Is_BlendAddToMatCap)), _Is_UseTweakMatCapOnShadow );
-#else
-                float3 Set_MatCap = float3(1.0f, 1.0f, 1.0f);
-                float _Tweak_MatcapMaskLevel_var = 1.0f;
-#endif
+
                 //
                 //v.2.0.6
                 //Composition: RimLight and MatCap as finalColor
@@ -995,7 +1002,7 @@
                 }else{
                     _Rot_MatCapUV_var = _Rot_MatCapUV_var;
                 }
-#if defined(_MATCAP)
+
                 //v.2.0.6 : LOD of Matcap
                 float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler,float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler),0.0,_BlurLevelMatcap));
                 //
@@ -1006,10 +1013,7 @@
                 float3 _Is_LightColor_MatCap_var = lerp( (_MatCap_Sampler_var.rgb*_MatCapColor.rgb), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb)*Set_LightColor), _Is_LightColor_MatCap );
                 //v.2.0.6 : ShadowMask on Matcap in Blend mode : multiply
                 float3 Set_MatCap = lerp( _Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakMatCapOnShadow)) + lerp(Set_HighColor*Set_FinalShadowMask*(1.0-_TweakMatCapOnShadow), float3(0.0, 0.0, 0.0), _Is_BlendAddToMatCap)), _Is_UseTweakMatCapOnShadow );
-#else
-                float3 Set_MatCap = float3(1.0f, 1.0f, 1.0f);
-                float _Tweak_MatcapMaskLevel_var = 1.0f;
-#endif
+
                 //
                 //Composition: RimLight and MatCap as finalColor
                 //Broke down finalColor composition

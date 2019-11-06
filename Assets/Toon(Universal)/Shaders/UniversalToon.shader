@@ -293,12 +293,11 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma multi_compile_fog
 
             #pragma multi_compile   _IS_PASS_FWDBASE
-
+            #pragma multi_compile   _ENVIRONMENTREFLECTIONS_OFF
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
 
-            // Different from legacy pipeline, MAT_CAP cant be used when CLIPPING_MODE is enabled.
-            #pragma shader_feature _ _MATCAP
+
             // used in ShadingGradeMap
             #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
             #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
