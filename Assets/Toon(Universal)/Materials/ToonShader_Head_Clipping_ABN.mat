@@ -121,7 +121,7 @@ Material:
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
     - _ClippingMode: 1
-    - _Clipping_Level: 0.269
+    - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _CullMode: 2
     - _Cutoff: 0.5
@@ -213,6 +213,6 @@ Material:
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
     - _MatCapColor: {r: 0.30147058, g: 0.30147058, b: 0.30147058, a: 1}
-    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Outline_Color: {r: 0.2264151, g: 0.22107512, b: 0.22107512, a: 1}
     - _RimLightColor: {r: 0.10980392, g: 0.09411765, b: 0.5294118, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
