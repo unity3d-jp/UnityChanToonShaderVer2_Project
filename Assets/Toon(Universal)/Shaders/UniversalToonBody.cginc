@@ -166,6 +166,30 @@
             return ShadeSH9(float4(N,1));
             }
 
+
+            inline void InitializeStandardLitSurfaceDataUTS(float2 uv, out SurfaceData outSurfaceData)
+            {
+                // half4 albedoAlpha = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
+                half4 albedoAlpha = half4(1.0,1.0,1.0,1.0);
+ 
+                outSurfaceData.alpha = Alpha(albedoAlpha.a, _BaseColor, _Cutoff);
+            
+                half4 specGloss = SampleMetallicSpecGloss(uv, albedoAlpha.a);
+                outSurfaceData.albedo = albedoAlpha.rgb * _BaseColor.rgb;
+            
+            #if _SPECULAR_SETUP
+                outSurfaceData.metallic = 1.0h;
+                outSurfaceData.specular = specGloss.rgb;
+            #else
+                outSurfaceData.metallic = specGloss.r;
+                outSurfaceData.specular = half3(0.0h, 0.0h, 0.0h);
+            #endif
+            
+                outSurfaceData.smoothness = specGloss.a;
+                outSurfaceData.normalTS = SampleNormal(uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
+                outSurfaceData.occlusion = SampleOcclusion(uv);
+                outSurfaceData.emission = SampleEmission(uv, _EmissionColor.rgb, TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
+            }
             half3 GlobalIlluminationUTS(BRDFData brdfData, half3 bakedGI, half occlusion, half3 normalWS, half3 viewDirectionWS)
             {
                 half3 reflectVector = reflect(-viewDirectionWS, normalWS);
@@ -336,7 +360,7 @@
 #ifdef UCTS_LWRP
 				// todo. not necessary to calc gi factor in  shadowcaster pass.
 				SurfaceData surfaceData;
-				InitializeStandardLitSurfaceData(i.uv0, surfaceData);
+				InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
 				InputData inputData;
 				Varyings  input;
@@ -362,7 +386,7 @@
 				input.normalWS  = half3(i.normalDir);
 				input.viewDirWS = half3(viewDirection);
 #  endif
-				InitializeInputData(input, surfaceData.normalTS, inputData);
+				InitializeInputDataUTS(input, surfaceData.normalTS, inputData);
 
 				BRDFData brdfData;
 				InitializeBRDFData(surfaceData.albedo, 
@@ -371,7 +395,7 @@
 					surfaceData.smoothness,
 					surfaceData.alpha, brdfData);
 
-				half3 envColor = GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
+				half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
 				envColor *= 1.8f;
 
 #endif //UCTS_LWRP
@@ -816,7 +840,7 @@
 #ifdef UCTS_LWRP
 				// todo. not necessary to calc gi factor in  shadowcaster pass.
 				SurfaceData surfaceData;
-				InitializeStandardLitSurfaceData(i.uv0, surfaceData);
+				InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
 				InputData inputData;
 				Varyings  input;
@@ -851,7 +875,7 @@
 					surfaceData.smoothness,
 					surfaceData.alpha, brdfData);
 
-				half3 envColor = GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
+				half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
 				envColor *= 1.8f;
 
 #endif //UCTS_LWRP
