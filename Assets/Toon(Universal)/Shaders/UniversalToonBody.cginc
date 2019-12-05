@@ -386,7 +386,7 @@
 				input.normalWS  = half3(i.normalDir);
 				input.viewDirWS = half3(viewDirection);
 #  endif
-				InitializeInputDataUTS(input, surfaceData.normalTS, inputData);
+				InitializeInputData(input, surfaceData.normalTS, inputData);
 
 				BRDFData brdfData;
 				InitializeBRDFData(surfaceData.albedo, 
