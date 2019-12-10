@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelUserStore">
+    <attachedFolders />
+    <explicitIncludes>
+      <Path>Library/PackageCache/com.unity.collab-proxy@1.2.16</Path>
+      <Path>Library/PackageCache/com.unity.ext.nunit@1.0.0</Path>
+      <Path>Library/PackageCache/com.unity.ide.rider@1.1.0</Path>
+      <Path>Library/PackageCache/com.unity.ide.visualstudio@1.0.11</Path>
+      <Path>Library/PackageCache/com.unity.ide.vscode@1.1.3</Path>
+      <Path>Library/PackageCache/com.unity.postprocessing@2.2.1</Path>
+      <Path>Library/PackageCache/com.unity.render-pipelines.core@7.1.5</Path>
+      <Path>Library/PackageCache/com.unity.render-pipelines.lightweight@7.1.5</Path>
+      <Path>Library/PackageCache/com.unity.render-pipelines.universal@7.1.5</Path>
+      <Path>Library/PackageCache/com.unity.shadergraph@7.1.5</Path>
+      <Path>Library/PackageCache/com.unity.test-framework@1.1.3</Path>
+      <Path>Library/PackageCache/com.unity.textmeshpro@2.0.1</Path>
+      <Path>Library/PackageCache/com.unity.timeline@1.2.6</Path>
+      <Path>Packages</Path>
+      <Path>ProjectSettings</Path>
+    </explicitIncludes>
+    <explicitExcludes>
+      <Path>.git</Path>
+      <Path>.idea</Path>
+      <Path>.vs</Path>
+      <Path>Library</Path>
+      <Path>Logs</Path>
+      <Path>Manual</Path>
+      <Path>UserSettings</Path>
+      <Path>obj</Path>
+    </explicitExcludes>
+  </component>
+</project>
