@@ -17,6 +17,7 @@ namespace UnityChan
         static readonly string ShaderPropAngelRing = "_AngelRing";
         static readonly string ShaderPropMatCap = "_MatCap";
         static readonly string ShaderPropClippingMode = "_ClippingMode";
+        static readonly string ShaderPropClippingMask = "_ClippingMask";
         static readonly string ShaderPropStencilMode = "_StencilMode";
         static readonly string ShaderPropStencilNo = "_StencilNo";
         static readonly string ShaderPropStencilComp = "_StencilComp";
@@ -119,10 +120,10 @@ namespace UnityChan
         //Foldoutの初期値.
         static bool _BasicShaderSettings_Foldout = false;
         static bool _BasicThreeColors_Foldout = true;
-            static bool _NormalMap_Foldout = false;
-            static bool _ShadowControlMaps_Foldout = false;
+        static bool _NormalMap_Foldout = false;
+        static bool _ShadowControlMaps_Foldout = false;
         static bool _StepAndFeather_Foldout = true;
-            static bool _AdditionalLookdevs_Foldout = false;
+        static bool _AdditionalLookdevs_Foldout = false;
         static bool _HighColor_Foldout = true;
 
         static bool _RimLight_Foldout = true;
@@ -130,7 +131,7 @@ namespace UnityChan
         static bool _AngelRing_Foldout = true;
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
-            static bool _AdvancedOutline_Foldout = false;
+        static bool _AdvancedOutline_Foldout = false;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
         static bool _AdditionalLightingSettings_Foldout = false;
@@ -223,7 +224,17 @@ namespace UnityChan
         //------------------------------------------------------
 
         MaterialEditor m_MaterialEditor;
-        private bool ClippingPropertyAvailable
+
+        private bool ClippingMaskPropertyAvailable
+        {
+            get
+            {
+                Material material = m_MaterialEditor.target as Material;
+                return material.HasProperty(ShaderPropClippingMask);
+            }
+        }
+
+        private bool ClippingModePropertyAvailable
         {
             get
             {
@@ -268,7 +279,7 @@ namespace UnityChan
         {
             //シェーダーによって無い可能性があるプロパティはfalseを追加.
             utsTechnique = FindProperty("_utsTechnique", props);
-            clippingMask = FindProperty("_ClippingMask", props, false);
+            clippingMask = FindProperty("_ClippingMask", props);
             clippingMode = FindProperty("_ClippingMode", props);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
@@ -550,7 +561,7 @@ namespace UnityChan
                 }
 
                 EditorGUILayout.Space();
-                if (ClippingPropertyAvailable)
+                if (ClippingMaskPropertyAvailable)
                 {
                     GUI_SetClippingMask(material);
                 }
