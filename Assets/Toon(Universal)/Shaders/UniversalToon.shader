@@ -203,7 +203,15 @@ Shader "Universal Render Pipeline/Toon" {
 				"LightMode" = "SRPDefaultUnlit"
             }
             Cull Front
-
+            Stencil
+            {
+                Ref[_StencilNo]
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
+                ReadMask[_StencilReadMask]
+                WriteMask[_StencilWriteMask]
+            }
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -214,21 +222,13 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 3.0
             //V.2.0.4
-            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
+            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             //アウトライン処理はUTS_Outline.cgincへ.
             #include "../../Toon/Shader/UCTS_Outline.cginc"
             ENDCG
         }
-        Stencil
-        {
-            Ref[_StencilNo]
-            Comp[_StencilComp]
-            Pass[_StencilOpPass]
-            Fail[_StencilOpFail]
-//            ReadMask[_StencilReadMask]
-//            WriteMask[_StencilWriteMask]
-        }
+
 //ToonCoreStart
         Pass {
             Name "FORWARD"
@@ -243,8 +243,8 @@ Shader "Universal Render Pipeline/Toon" {
                 Comp[_StencilComp]
                 Pass[_StencilOpPass]
                 Fail[_StencilOpFail]
-//                ReadMask[_StencilReadMask]
-//               WriteMask[_StencilWriteMask]
+                ReadMask[_StencilReadMask]
+                WriteMask[_StencilWriteMask]
             }
 
             HLSLPROGRAM
@@ -252,12 +252,8 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma exclude_renderers d3d11_9x
             #pragma target 3.0
 
-	    #pragma vertex vert
+	        #pragma vertex vert
             #pragma fragment frag
-	    //#define UNITY_PASS_FORWARDBASE
-
-
-
 
 
             // -------------------------------------
@@ -330,7 +326,7 @@ Shader "Universal Render Pipeline/Toon" {
             // Required to compile gles 2.0 with standard srp library
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
-            #pragma target 2.0
+            #pragma target 3.0
 
             // -------------------------------------
             // Material Keywords
@@ -362,7 +358,7 @@ Shader "Universal Render Pipeline/Toon" {
             // Required to compile gles 2.0 with standard srp library
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
-            #pragma target 2.0
+            #pragma target 3.0
 
             #pragma vertex DepthOnlyVertex
             #pragma fragment DepthOnlyFragment

@@ -25,6 +25,9 @@ namespace UnityChan
         static readonly string ShaderPropStencilWriteMask = "_StencilWriteMask";
         static readonly string ShaderPropStencilReadMask = "_StencilReadMask";
 
+        static readonly string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
+        static readonly string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
+        
         static readonly string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
         static readonly string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
         static readonly string ShaderDefineIS_CLIPPING_TRANSMODE = "_IS_CLIPPING_TRANSMODE";
@@ -1734,16 +1737,22 @@ namespace UnityChan
                         material.EnableKeyword(ShaderDefineIS_CLIPPING_OFF);
                         material.DisableKeyword(ShaderDefineIS_CLIPPING_MODE);
                         material.DisableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
+                        material.EnableKeyword(ShaderDefineIS_OUTLINE_CLIPPING_NO);
+                        material.DisableKeyword(ShaderDefineIS_OUTLINE_CLIPPING_YES);
                         break;
                     case 1:
                         material.DisableKeyword(ShaderDefineIS_CLIPPING_OFF);
                         material.EnableKeyword(ShaderDefineIS_CLIPPING_MODE);
                         material.DisableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
+                        material.DisableKeyword(ShaderDefineIS_OUTLINE_CLIPPING_NO);
+                        material.EnableKeyword(ShaderDefineIS_OUTLINE_CLIPPING_YES);
                         break;
                     default:
                         material.DisableKeyword(ShaderDefineIS_CLIPPING_OFF);
                         material.DisableKeyword(ShaderDefineIS_CLIPPING_MODE);
                         material.EnableKeyword(ShaderDefineIS_CLIPPING_TRANSMODE);
+                        material.DisableKeyword(ShaderDefineIS_OUTLINE_CLIPPING_NO);
+                        material.EnableKeyword(ShaderDefineIS_OUTLINE_CLIPPING_YES);
                         break;
                 }
             }
