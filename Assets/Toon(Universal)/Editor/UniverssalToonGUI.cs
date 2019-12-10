@@ -1638,10 +1638,13 @@ namespace UnityChan
         }
         void ApplyQueueAndRenderType(Material material)
         {
-            if ((_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) != _UTS_ClippingMode.Off)
+            if (
+                ((_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) != _UTS_ClippingMode.Off) ||
+                ((_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) != _UTS_StencilMode.Off) 
+                )
             {
                 material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-                if ((_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) != _UTS_StencilMode.StencilMask)
+                if ((_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) == _UTS_StencilMode.StencilMask)
                 {
                     material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest-1;
                 }
