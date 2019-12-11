@@ -34,6 +34,7 @@ Shader "Universal Render Pipeline/Toon" {
         //
         [Toggle(_)] _Inverse_Clipping("Inverse_Clipping", Float) = 0
         _Clipping_Level("Clipping_Level", Range(0, 1)) = 0
+        _Tweak_transparency("Tweak_transparency", Range(-1, 1)) = 0
         // ClippingMask paramaters to Here.
 
         _MainTex ("BaseMap", 2D) = "white" {}

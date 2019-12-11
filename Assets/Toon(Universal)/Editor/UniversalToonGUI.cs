@@ -225,13 +225,23 @@ namespace UnityChan
 
         MaterialEditor m_MaterialEditor;
 
-        private bool ClippingMaskPropertyAvailable
+        private bool IsClippingMaskPropertyAvailable(_UTS_Technique technique)
         {
-            get
+
+            Material material = m_MaterialEditor.target as Material;
+
+            switch (technique)
             {
-                Material material = m_MaterialEditor.target as Material;
-                return material.HasProperty(ShaderPropClippingMask) && ((_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) == _UTS_ClippingMode.TransClippingMode);
+                case _UTS_Technique.DoubleShadeWithFeather:
+                    return (_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) == _UTS_ClippingMode.TransClippingMode;
+                case _UTS_Technique.ShadingGradeMap:
+                    return (_UTS_TransClippingMode)material.GetInt(ShaderPropClippingMode) == _UTS_TransClippingMode.On;
+
+
             }
+
+            return false;
+ 
         }
 
         private bool ClippingModePropertyAvailable
@@ -561,16 +571,13 @@ namespace UnityChan
                 }
 
                 EditorGUILayout.Space();
-                if (ClippingMaskPropertyAvailable)
+                if (IsClippingMaskPropertyAvailable(technique))
                 {
                     GUI_SetClippingMask(material);
-                }
-
-
- 
-                if(material.HasProperty("_Tweak_transparency")){
                     GUI_SetTransparencySetting(material);
                 }
+
+
 
                 GUI_OptionMenu(material);
 
