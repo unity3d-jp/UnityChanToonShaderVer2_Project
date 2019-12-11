@@ -38,7 +38,7 @@ namespace UnityChan
 
 
         public enum _UTS_Technique{
-            DoubleShadeWithFeather, ShadingGradeMap, OutlineObject
+            DoubleShadeWithFeather, ShadingGradeMap
         }
 
         public enum _UTS_ClippingMode
