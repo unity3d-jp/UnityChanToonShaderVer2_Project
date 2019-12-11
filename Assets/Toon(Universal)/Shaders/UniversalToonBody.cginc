@@ -5,8 +5,6 @@
 //toshiyuki@unity3d.com (LWRP)  
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
-//#pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE  _IS_CLIPPING_TRANSMODE
-//#pragma multi_compile _IS_PASS_FWDBASE _IS_PASS_FWDDELTA
 //
 	    uniform float _utsTechnique;
 
@@ -415,7 +413,7 @@
 
 
 //v.2.0.4
-#ifdef _IS_PASS_FWDBASE
+
                 float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
                 //v.2.0.5
                 float3 defaultLightColor = saturate(max(half3(0.05,0.05,0.05)*_Unlit_Intensity,max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
@@ -429,13 +427,7 @@
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
 
-#elif _IS_PASS_FWDDELTA
-                float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
-                //v.2.0.5: 
-                float3 addPassLightColor = (0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ), lightDirection)+0.5) * _LightColor0.rgb * attenuation;
-                float pureIntencity = max(0.001,(0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b));
-                float3 lightColor = max(0, lerp(addPassLightColor, lerp(0,min(addPassLightColor,addPassLightColor/pureIntencity),_WorldSpaceLightPos0.w),_Is_Filter_LightColor));
-#endif
+
 ////// Lighting:
                 float3 halfDirection = normalize(viewDirection+lightDirection);
                 //v.2.0.5
@@ -738,18 +730,14 @@
 
 //v.2.0.4
 #ifdef _IS_TRANSCLIPPING_OFF
-	#ifdef _IS_PASS_FWDBASE
+
 	                fixed4 finalRGBA = fixed4(finalColor,1);
-	#elif _IS_PASS_FWDDELTA
-	                fixed4 finalRGBA = fixed4(finalColor,0);
-	#endif
+
 #elif _IS_TRANSCLIPPING_ON
 	                float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
-	#ifdef _IS_PASS_FWDBASE
+
 	                fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
-	#elif _IS_PASS_FWDDELTA
-	                fixed4 finalRGBA = fixed4(finalColor * Set_Opacity,0);
-	#endif
+
 #endif
 
 
@@ -1097,25 +1085,21 @@
 //v.2.0.4
 #ifdef _IS_CLIPPING_OFF
 //DoubleShadeWithFeather
-	#ifdef _IS_PASS_FWDBASE
+
 	                fixed4 finalRGBA = fixed4(finalColor,1);
-	#elif _IS_PASS_FWDDELTA
-	                fixed4 finalRGBA = fixed4(finalColor,0);
-	#endif
+
 #elif _IS_CLIPPING_MODE
 //DoubleShadeWithFeather_Clipping
-	#ifdef _IS_PASS_FWDBASE
+
 	                fixed4 finalRGBA = fixed4(finalColor,1);
-	#elif _IS_PASS_FWDDELTA
-	                fixed4 finalRGBA = fixed4(finalColor,0);
-	#endif
+
 #elif _IS_CLIPPING_TRANSMODE
 //DoubleShadeWithFeather_TransClipping
     				float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
-	#ifdef _IS_PASS_FWDBASE
+
                 	fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
 
-	#endif
+
 #endif
 
                 return finalRGBA;
