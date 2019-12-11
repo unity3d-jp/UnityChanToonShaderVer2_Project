@@ -16,8 +16,7 @@ Shader "Universal Render Pipeline/Toon" {
         _StencilNo("Stencil No", Float) = 1
         _StencilOpPass("Stencil Operation", Float) = 0
         _StencilOpFail("Stencil Operation", Float) = 0
-//        _StencilWriteMask("Stencil Write Mask", Float) = 255
-//        _StencilReadMask("Stencil Read Mask", Float) = 255
+
 
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
@@ -211,19 +210,16 @@ Shader "Universal Render Pipeline/Toon" {
                 Comp[_StencilComp]
                 Pass[_StencilOpPass]
                 Fail[_StencilOpFail]
-            //            ReadMask[_StencilReadMask]
-            //            WriteMask[_StencilWriteMask]
+
             }
 
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            //#pragma fragmentoption ARB_precision_hint_fastest
-            //#pragma multi_compile_shadowcaster
-            //#pragma multi_compile_fog
+
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
-            #pragma target 3.0
+            #pragma target 2.0
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
@@ -247,18 +243,17 @@ Shader "Universal Render Pipeline/Toon" {
                 Comp[_StencilComp]
                 Pass[_StencilOpPass]
                 Fail[_StencilOpFail]
-//                ReadMask[_StencilReadMask]
-//               WriteMask[_StencilWriteMask]
+
             }
 
             HLSLPROGRAM
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
-            #pragma target 3.0
+            #pragma target 2.0
 
-	    #pragma vertex vert
+	        #pragma vertex vert
             #pragma fragment frag
-	    //#define UNITY_PASS_FORWARDBASE
+
 
 
 
@@ -310,12 +305,12 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
 
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
-	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-	    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-	    #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-	    #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
-	    #include "UniversalToonHead.cginc"
-	    #include "UniversalToonBody.cginc"
+	        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+	        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+	        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+	        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
+	        #include "UniversalToonHead.cginc"
+	        #include "UniversalToonBody.cginc"
 
             ENDHLSL
             
