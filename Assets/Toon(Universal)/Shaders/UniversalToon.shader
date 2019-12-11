@@ -203,6 +203,7 @@ Shader "Universal Render Pipeline/Toon" {
 				"LightMode" = "SRPDefaultUnlit"
             }
             Cull Front
+            Blend SrcAlpha OneMinusSrcAlpha
             Stencil
             {
                 Ref[_StencilNo]
@@ -238,6 +239,7 @@ Shader "Universal Render Pipeline/Toon" {
             }
 
             Cull[_CullMode]
+            Blend SrcAlpha OneMinusSrcAlpha
             Stencil {
                 Ref[_StencilNo]
 
