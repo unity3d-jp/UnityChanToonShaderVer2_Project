@@ -1652,21 +1652,47 @@ namespace UnityChan
         }
         void ApplyQueueAndRenderType(Material material)
         {
-            if (
-                ((_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) != _UTS_ClippingMode.Off) ||
-                ((_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) != _UTS_StencilMode.Off) 
-                )
+            var clippingMode = (_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode);
+            var stencilMode = (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode);
+            material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+            var renderType = "Opaque";
+            const string TRANSPARENTCUTOUT = "TransparentCutOut";
+            const string RENDERTYPE = "RenderType";
+            switch (clippingMode)
             {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-                if ((_UTS_StencilMode)material.GetInt(ShaderPropStencilMode) == _UTS_StencilMode.StencilMask)
-                {
-                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest-1;
-                }
+                case _UTS_ClippingMode.Off:
+                    if (stencilMode != _UTS_StencilMode.Off)
+                    {
+                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                    }
+                    break;
+                case _UTS_ClippingMode.On:
+                    renderType = TRANSPARENTCUTOUT;
+
+                    if (stencilMode == _UTS_StencilMode.StencilMask)
+                    {
+                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                    }
+                    else
+                    {
+                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                    }
+                    break;
+                case _UTS_ClippingMode.TransClippingMode:
+                    renderType = TRANSPARENTCUTOUT;
+                    if (stencilMode == _UTS_StencilMode.StencilMask)
+                    {
+                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                    }
+                    else
+                    {
+                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                    }
+                    break;
+
             }
-            else
-            {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
-            }
+
+            material.SetOverrideTag(RENDERTYPE, renderType);
 
         }
         void ApplyMatCapMode(Material material)

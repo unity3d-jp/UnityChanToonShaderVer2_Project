@@ -209,9 +209,10 @@ Shader "Universal Render Pipeline/Toon" {
                 Comp[_StencilComp]
                 Pass[_StencilOpPass]
                 Fail[_StencilOpFail]
-                ReadMask[_StencilReadMask]
-                WriteMask[_StencilWriteMask]
+            //            ReadMask[_StencilReadMask]
+            //            WriteMask[_StencilWriteMask]
             }
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -243,8 +244,8 @@ Shader "Universal Render Pipeline/Toon" {
                 Comp[_StencilComp]
                 Pass[_StencilOpPass]
                 Fail[_StencilOpFail]
-                ReadMask[_StencilReadMask]
-                WriteMask[_StencilWriteMask]
+//                ReadMask[_StencilReadMask]
+//               WriteMask[_StencilWriteMask]
             }
 
             HLSLPROGRAM
@@ -252,8 +253,12 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma exclude_renderers d3d11_9x
             #pragma target 3.0
 
-	        #pragma vertex vert
+	    #pragma vertex vert
             #pragma fragment frag
+	    //#define UNITY_PASS_FORWARDBASE
+
+
+
 
 
             // -------------------------------------
@@ -326,7 +331,7 @@ Shader "Universal Render Pipeline/Toon" {
             // Required to compile gles 2.0 with standard srp library
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
-            #pragma target 3.0
+            #pragma target 2.0
 
             // -------------------------------------
             // Material Keywords
@@ -358,7 +363,7 @@ Shader "Universal Render Pipeline/Toon" {
             // Required to compile gles 2.0 with standard srp library
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
-            #pragma target 3.0
+            #pragma target 2.0
 
             #pragma vertex DepthOnlyVertex
             #pragma fragment DepthOnlyFragment
