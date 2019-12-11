@@ -230,7 +230,7 @@ namespace UnityChan
             get
             {
                 Material material = m_MaterialEditor.target as Material;
-                return material.HasProperty(ShaderPropClippingMask);
+                return material.HasProperty(ShaderPropClippingMask) && ((_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) == _UTS_ClippingMode.TransClippingMode);
             }
         }
 
