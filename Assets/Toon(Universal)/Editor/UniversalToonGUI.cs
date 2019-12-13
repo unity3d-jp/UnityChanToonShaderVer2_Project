@@ -721,7 +721,7 @@ namespace UnityChan
             ApplyStencilMode(material);
             ApplyAngelRing(material);
             ApplyMatCapMode(material);
-            ApplyQueueAndRenderType(material);
+            ApplyQueueAndRenderType(technique,material);
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.PropertiesChanged();
@@ -1657,47 +1657,70 @@ namespace UnityChan
             }
 
         }
-        void ApplyQueueAndRenderType(Material material)
+        void ApplyQueueAndRenderType(_UTS_Technique technique,Material material)
         {
-            var clippingMode = (_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode);
             var stencilMode = (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode);
             material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
             var renderType = "Opaque";
             const string TRANSPARENTCUTOUT = "TransparentCutOut";
             const string RENDERTYPE = "RenderType";
-            switch (clippingMode)
+
+            switch (technique)
             {
-                case _UTS_ClippingMode.Off:
-                    if (stencilMode != _UTS_StencilMode.Off)
+                case _UTS_Technique.DoubleShadeWithFeather:
                     {
-                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                        _UTS_ClippingMode clippingMode = (_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode);
+                        if (clippingMode == _UTS_ClippingMode.Off)
+                        {
+                            if (stencilMode == _UTS_StencilMode.StencilMask)
+                            {
+                                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                            }
+                            else
+                            {
+                                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                            }
+                        }
+                        else
+                        {
+                            renderType = TRANSPARENTCUTOUT;
+                            if (stencilMode == _UTS_StencilMode.StencilMask)
+                            {
+                                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                            }
+                            else
+                            {
+                                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                            }
+                        }
+                        break;
                     }
-                    break;
-                case _UTS_ClippingMode.On:
-                    renderType = TRANSPARENTCUTOUT;
-
-                    if (stencilMode == _UTS_StencilMode.StencilMask)
+                case _UTS_Technique.ShadingGradeMap:
                     {
-                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                        _UTS_TransClippingMode transClippingMode = (_UTS_TransClippingMode)material.GetInt(ShaderPropClippingMode);
+                        if (transClippingMode == _UTS_TransClippingMode.Off)
+                        {
+                            if (stencilMode != _UTS_StencilMode.Off)
+                            {
+                                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                            }
+                        }
+                        else
+                        {
+                            renderType = TRANSPARENTCUTOUT;
+                            if (stencilMode == _UTS_StencilMode.StencilMask)
+                            {
+                                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                            }
+                            else
+                            {
+                                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                            }
+                        }
+                        break;
                     }
-                    else
-                    {
-                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-                    }
-                    break;
-                case _UTS_ClippingMode.TransClippingMode:
-                    renderType = TRANSPARENTCUTOUT;
-                    if (stencilMode == _UTS_StencilMode.StencilMask)
-                    {
-                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
-                    }
-                    else
-                    {
-                        material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-                    }
-                    break;
-
             }
+
 
             material.SetOverrideTag(RENDERTYPE, renderType);
 
