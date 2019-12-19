@@ -1679,14 +1679,7 @@ namespace UnityChan
                             renderType = TRANSPARENTCUTOUT;
 
                         }
-                        if (stencilMode == _UTS_StencilMode.StencilMask)
-                        {
-                            material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
-                        }
-                        else
-                        {
-                            material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-                        }
+        
                         break;
                     }
                 case _UTS_Technique.ShadingGradeMap:
@@ -1700,18 +1693,18 @@ namespace UnityChan
                             renderType = TRANSPARENTCUTOUT;
 
                         }
-                        if (stencilMode == _UTS_StencilMode.StencilMask)
-                        {
-                            material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
-                        }
-                        else
-                        {
-                            material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-                        }
+
                         break;
                     }
             }
-
+            if (stencilMode == _UTS_StencilMode.StencilMask)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+            }
+            else if (stencilMode == _UTS_StencilMode.StencilOut)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+            }
 
             material.SetOverrideTag(RENDERTYPE, renderType);
 
