@@ -102,6 +102,10 @@ namespace UnityChan
         public _CullingMode cullingMode;
         public _EmissiveMode emissiveMode;
 
+        // RenderQueue は自動設定？
+        public int _autoRenderQueue = 1;
+        public int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+
         //ボタンサイズ.
         public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
         public GUILayoutOption[] middleButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
@@ -553,6 +557,7 @@ namespace UnityChan
                 EditorGUI.indentLevel++;
                 //EditorGUILayout.Space(); 
                 GUI_SetCullingMode(material);
+                GUI_SetRenderQueue(material);
                 if (StencilShaderPropertyAvailable)
                 {
                     GUI_StencilMode(material);
@@ -766,6 +771,31 @@ namespace UnityChan
             }
         }
 
+        void GUI_SetRenderQueue(Material material)
+        {
+            const string autoRenderQueue = "_AutoRenderQueue";
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Auto Queue");
+            _autoRenderQueue = material.GetInt(autoRenderQueue);
+            if (_autoRenderQueue == 0)
+            {
+                if (GUILayout.Button("Off", shortButtonStyle))
+                {
+                    material.SetInt(autoRenderQueue, _autoRenderQueue = 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", shortButtonStyle))
+                {
+                    material.SetInt(autoRenderQueue, _autoRenderQueue = 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUI.BeginDisabledGroup(_autoRenderQueue == 1);
+            _renderQueue = (int)EditorGUILayout.IntField("Render Queue", _renderQueue);
+            EditorGUI.EndDisabledGroup();
+        }
         void GUI_SetCullingMode(Material material){
             int _CullMode_Setting = material.GetInt("_CullMode");
             //Enum形式に変換して、outlineMode変数に保持しておく.
@@ -786,6 +816,7 @@ namespace UnityChan
             }else{
                 material.SetFloat("_CullMode",2);
             }
+
         }
 
         void GUI_StencilMode(Material material)
@@ -1660,7 +1691,10 @@ namespace UnityChan
         void ApplyQueueAndRenderType(_UTS_Technique technique,Material material)
         {
             var stencilMode = (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode);
-            material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+            if (_autoRenderQueue == 1)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+            }
             var renderType = "Opaque";
             const string TRANSPARENTCUTOUT = "TransparentCutOut";
             const string RENDERTYPE = "RenderType";
@@ -1697,14 +1731,18 @@ namespace UnityChan
                         break;
                     }
             }
-            if (stencilMode == _UTS_StencilMode.StencilMask)
+            if (_autoRenderQueue == 1)
             {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                if (stencilMode == _UTS_StencilMode.StencilMask)
+                {
+                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                }
+                else if (stencilMode == _UTS_StencilMode.StencilOut)
+                {
+                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                }
             }
-            else if (stencilMode == _UTS_StencilMode.StencilOut)
-            {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-            }
+
 
             material.SetOverrideTag(RENDERTYPE, renderType);
 
