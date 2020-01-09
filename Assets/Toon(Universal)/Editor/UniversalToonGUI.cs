@@ -235,18 +235,20 @@ namespace UnityChan
         {
 
             Material material = m_MaterialEditor.target as Material;
-
+            bool bRet = false;
             switch (technique)
             {
                 case _UTS_Technique.DoubleShadeWithFeather:
-                    return (_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) == _UTS_ClippingMode.TransClippingMode;
+                    bRet = ((_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode) != _UTS_ClippingMode.Off);
+                    break;
                 case _UTS_Technique.ShadingGradeMap:
-                    return (_UTS_TransClippingMode)material.GetInt(ShaderPropClippingMode) == _UTS_TransClippingMode.On;
+                    bRet = (_UTS_TransClippingMode)material.GetInt(ShaderPropClippingMode) != _UTS_TransClippingMode.Off;
+                    break;
 
 
             }
 
-            return false;
+            return bRet;
  
         }
 
