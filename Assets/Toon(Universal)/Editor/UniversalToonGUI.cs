@@ -59,7 +59,7 @@ namespace UnityChan
         }
         public enum _UTS_StencilMode
         {
-            Off, StencilMask, StencilOut,
+            Off,  StencilOut, StencilMask
         }
 
         public enum _StencilOperation
@@ -304,12 +304,12 @@ namespace UnityChan
         {
             //シェーダーによって無い可能性があるプロパティはfalseを追加.
             utsTechnique = FindProperty("_utsTechnique", props);
-            transparentMode = FindProperty("_TransparentEnabled", props);
+            transparentMode = FindProperty(ShaderPropTransparentEnabled, props);
             clippingMask = FindProperty("_ClippingMask", props);
             clippingMode = FindProperty("_ClippingMode", props);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
-            stencilMode = FindProperty("_StencilMode", props);
+            stencilMode = FindProperty(ShaderPropStencilMode, props);
             mainTex = FindProperty("_MainTex", props);
             baseColor = FindProperty("_BaseColor", props);
             firstShadeMap = FindProperty("_1st_ShadeMap", props);

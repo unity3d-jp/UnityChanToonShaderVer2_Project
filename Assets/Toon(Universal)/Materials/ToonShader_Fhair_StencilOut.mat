@@ -184,7 +184,7 @@ Material:
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0.727
     - _StencilComp: 6
-    - _StencilMode: 2
+    - _StencilMode: 1
     - _StencilNo: 1
     - _StencilOpFail: 0
     - _StencilOpPass: 0
