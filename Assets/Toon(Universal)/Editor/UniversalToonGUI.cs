@@ -20,6 +20,7 @@ namespace UnityChan
         static readonly string ShaderPropClippingMask = "_ClippingMask";
         static readonly string ShaderPropStencilMode = "_StencilMode";
         static readonly string ShaderPropStencilNo = "_StencilNo";
+        static readonly string ShaderPropTransparentEnabled = "_TransparentEnabled";
         static readonly string ShaderPropStencilComp = "_StencilComp";
         static readonly string ShaderPropStencilOpPass = "_StencilOpPass";
         static readonly string ShaderPropStencilOpFail = "_StencilOpFail";
@@ -52,7 +53,10 @@ namespace UnityChan
         {
             Off, On, 
         }
-
+        public enum _UTS_Transparent
+        {
+            Off, On,
+        }
         public enum _UTS_StencilMode
         {
             Off, StencilMask, StencilOut,
@@ -114,8 +118,9 @@ namespace UnityChan
 
         //各種設定保持用.
         //UTS2のバージョン.
-        static float _UTS2VersionNumber = 2.075f; 
+        static float _UTS2VersionNumber = 2.075f;
         //
+        static int _Transparent_Setting;
         static int _StencilNo_Setting;
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false; 
@@ -146,6 +151,7 @@ namespace UnityChan
         //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
         // UTS2 materal properties -------------------------
         MaterialProperty utsTechnique = null;
+        MaterialProperty transparentMode = null;
         MaterialProperty clippingMode = null;
         MaterialProperty clippingMask = null;
         MaterialProperty clipping_Level = null;
@@ -282,7 +288,8 @@ namespace UnityChan
         }
 
 
-
+        public static GUIContent transparentModeText = new GUIContent("Transparent Mode",
+            "Transparent  mode that fits you. ");
         public static GUIContent workflowModeText = new GUIContent("Workflow Mode",
             "Select a workflow that fits your textures. Choose between DoubleShadeWithFeather or ShadingGradeMap.");
         // -----------------------------------------------------
@@ -297,6 +304,7 @@ namespace UnityChan
         {
             //シェーダーによって無い可能性があるプロパティはfalseを追加.
             utsTechnique = FindProperty("_utsTechnique", props);
+            transparentMode = FindProperty("_TransparentEnabled", props);
             clippingMask = FindProperty("_ClippingMask", props);
             clippingMode = FindProperty("_ClippingMode", props);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
@@ -562,6 +570,7 @@ namespace UnityChan
                 //EditorGUILayout.Space(); 
                 GUI_SetCullingMode(material);
                 GUI_SetRenderQueue(material);
+                GUI_Tranparent(material);
                 if (StencilShaderPropertyAvailable)
                 {
                     GUI_StencilMode(material);
@@ -821,6 +830,12 @@ namespace UnityChan
                 material.SetFloat("_CullMode",2);
             }
 
+        }
+        void GUI_Tranparent(Material material)
+        {
+            GUILayout.Label("Transparent Shader", EditorStyles.boldLabel);
+            DoPopup(transparentModeText, transparentMode, System.Enum.GetNames(typeof(_UTS_Transparent)));
+            _Transparent_Setting = material.GetInt(ShaderPropTransparentEnabled);
         }
 
         void GUI_StencilMode(Material material)
