@@ -5,18 +5,18 @@
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "Universal Render Pipeline/Toon" {
-    Properties {
-        [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
-        [HideInInspector] _utsVersion ("Version", Float ) = 2.07
-        [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
-        [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
-        [Enum(OFF,0,StencilMask,1,StencilOut,2)] _StencilMode("StencilMode",int) = 0
-        // these are set in UniversalToonGUI.cs in accordance with _StencilMode
-        _StencilComp("Stencil Comparison", Float) = 8
-        _StencilNo("Stencil No", Float) = 1
-        _StencilOpPass("Stencil Operation", Float) = 0
-        _StencilOpFail("Stencil Operation", Float) = 0
-
+	Properties{
+		[HideInInspector] _simpleUI("SimpleUI", Int) = 0
+		[HideInInspector] _utsVersion("Version", Float) = 2.07
+		[HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
+		[HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
+		[Enum(OFF,0,StencilMask,1,StencilOut,2)] _StencilMode("StencilMode",int) = 0
+		// these are set in UniversalToonGUI.cs in accordance with _StencilMode
+		_StencilComp("Stencil Comparison", Float) = 8
+		_StencilNo("Stencil No", Float) = 1
+		_StencilOpPass("Stencil Operation", Float) = 0
+		_StencilOpFail("Stencil Operation", Float) = 0
+		[Enum(OFF,0,ON,1,] _TransparentEnabled("Transparent Mode", int) = 0
 
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
