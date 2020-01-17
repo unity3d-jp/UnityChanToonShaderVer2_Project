@@ -120,7 +120,7 @@ namespace UnityChan
         //UTS2のバージョン.
         static float _UTS2VersionNumber = 2.075f;
         //
-        static int _Transparent_Setting;
+        static _UTS_Transparent _Transparent_Setting;
         static int _StencilNo_Setting;
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false; 
@@ -835,7 +835,7 @@ namespace UnityChan
         {
             GUILayout.Label("Transparent Shader", EditorStyles.boldLabel);
             DoPopup(transparentModeText, transparentMode, System.Enum.GetNames(typeof(_UTS_Transparent)));
-            _Transparent_Setting = material.GetInt(ShaderPropTransparentEnabled);
+            _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
         }
 
         void GUI_StencilMode(Material material)
@@ -1714,13 +1714,23 @@ namespace UnityChan
             {
                 material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
             }
-            var renderType = "Opaque";
+
+            const string OPAQUE = "Opaque";
             const string TRANSPARENTCUTOUT = "TransparentCutOut";
+            const string TRANSPARENT = "Transparent";
             const string RENDERTYPE = "RenderType";
 
-            switch (technique)
+            var renderType = OPAQUE;
+
+            if ( _Transparent_Setting == _UTS_Transparent.On)
             {
-                case _UTS_Technique.DoubleShadeWithFeather:
+                renderType = TRANSPARENT;
+            }
+            else
+            {
+                switch (technique)
+                {
+                    case _UTS_Technique.DoubleShadeWithFeather:
                     {
                         _UTS_ClippingMode clippingMode = (_UTS_ClippingMode)material.GetInt(ShaderPropClippingMode);
                         if (clippingMode == _UTS_ClippingMode.Off)
@@ -1732,10 +1742,10 @@ namespace UnityChan
                             renderType = TRANSPARENTCUTOUT;
 
                         }
-        
+
                         break;
                     }
-                case _UTS_Technique.ShadingGradeMap:
+                    case _UTS_Technique.ShadingGradeMap:
                     {
                         _UTS_TransClippingMode transClippingMode = (_UTS_TransClippingMode)material.GetInt(ShaderPropClippingMode);
                         if (transClippingMode == _UTS_TransClippingMode.Off)
@@ -1749,10 +1759,16 @@ namespace UnityChan
 
                         break;
                     }
+                }
+
             }
             if (_autoRenderQueue == 1)
             {
-                if (stencilMode == _UTS_StencilMode.StencilMask)
+                if (_Transparent_Setting == _UTS_Transparent.On)
+                {
+                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+                }
+                else if (stencilMode == _UTS_StencilMode.StencilMask)
                 {
                     material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
                 }
@@ -1823,11 +1839,7 @@ namespace UnityChan
             }
 
 
-            //static readonly string ShaderPropStencilNo = "_StencilNo";
-            //static readonly string ShaderPropStencilComp = "_StencilComp";
-            //static readonly string ShaderPropStencilOp = "_StencilOp";
-            //static readonly string ShaderPropStencilWriteMask = "_StencilWriteMask";
-            //static readonly string ShaderPropStencilReadMask = "_StencilReadMask";
+
         }
         void ApplyClippingMode(Material material)
         {
