@@ -1719,12 +1719,16 @@ namespace UnityChan
             const string TRANSPARENTCUTOUT = "TransparentCutOut";
             const string TRANSPARENT = "Transparent";
             const string RENDERTYPE = "RenderType";
-
+            const string IGNOREPROJECTION = "IgnoreProjection";
+            const string DO_IGNOREPROJECTION = "True";
+            const string DONT_IGNOREPROJECTION = "False";
             var renderType = OPAQUE;
+            var ignoreProjection = DONT_IGNOREPROJECTION;
 
             if ( _Transparent_Setting == _UTS_Transparent.On)
             {
                 renderType = TRANSPARENT;
+                ignoreProjection = DO_IGNOREPROJECTION;
             }
             else
             {
@@ -1780,7 +1784,7 @@ namespace UnityChan
 
 
             material.SetOverrideTag(RENDERTYPE, renderType);
-
+            material.SetOverrideTag(IGNOREPROJECTION, ignoreProjection);
         }
         void ApplyMatCapMode(Material material)
         {
