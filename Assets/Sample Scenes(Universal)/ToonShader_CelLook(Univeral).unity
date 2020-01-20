@@ -407,6 +407,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1083778304470998, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143962290918434, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229443725375378, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1348741524522182, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
       propertyPath: m_Name
       value: ToonShader_SD_unitychan_humanoid_CelLook
@@ -415,9 +427,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1590974229819140, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673285163430804, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1973451554856924, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973451554856924, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
       propertyPath: m_LocalPosition.x
@@ -482,7 +506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &694067456
 Transform:
   m_ObjectHideFlags: 0
@@ -528,7 +552,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
@@ -1006,7 +1030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1382183770
 Light:
   m_ObjectHideFlags: 0
@@ -1210,7 +1234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1840857226
 Transform:
   m_ObjectHideFlags: 0
@@ -1243,7 +1267,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1

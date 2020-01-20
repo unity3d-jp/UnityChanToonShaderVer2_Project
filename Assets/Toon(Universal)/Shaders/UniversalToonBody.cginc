@@ -405,10 +405,13 @@
 
 
 				half attenuation = 1.0;
+
 # ifdef _MAIN_LIGHT_SHADOWS
 				Light mainLight = GetMainLight(i.shadowCoord);
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
+# else
+                attenuation *= unity_LightData.z;
 # endif
 
 
@@ -832,10 +835,13 @@
 
 
 				half attenuation = 1.0;
+                attenuation *= unity_LightData.z;
 # ifdef _MAIN_LIGHT_SHADOWS
 				Light mainLight = GetMainLight(i.shadowCoord);
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
+# else
+                attenuation *= unity_LightData.z;
 # endif
 
 
