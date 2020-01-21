@@ -2038,6 +2038,7 @@ namespace UnityChan
         void GUI_Outline(Material material)
         {
             const string lightModeName = "SRPDefaultUnlit";
+            const string sprDefaultColorMask = "_SPRDefaultUnlitColorMask";
             var tag = material.GetTag("LightMode", false, lightModeName);
             bool isOutlineEnabled = true;
             if ( tag == lightModeName)
@@ -2056,6 +2057,7 @@ namespace UnityChan
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
                         material.SetShaderPassEnabled(lightModeName, true);
+                        material.SetInt(sprDefaultColorMask,15);
                     }
                 }
                 EditorGUILayout.EndHorizontal();

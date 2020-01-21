@@ -26,6 +26,7 @@ Shader "Universal Render Pipeline/Toon" {
 
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
 
+		_SPRDefaultUnlitColorMask("SPRDefaultUnlit Path Color Mask", int) = 15
         // ClippingMask paramaters from Here.
         _ClippingMask("ClippingMask", 2D) = "white" {}
         //v.2.0.4
@@ -203,6 +204,7 @@ Shader "Universal Render Pipeline/Toon" {
 				"LightMode" = "SRPDefaultUnlit"
             }
             Cull Front
+			ColorMask [_SPRDefaultUnlitColorMask]
             Blend SrcAlpha OneMinusSrcAlpha
             Stencil
             {
@@ -323,7 +325,7 @@ Shader "Universal Render Pipeline/Toon" {
 
             ZWrite On
             ZTest LEqual
-            Cull[_Cull]
+            Cull[_CullMode]
 
             HLSLPROGRAM
             // Required to compile gles 2.0 with standard srp library
@@ -355,7 +357,7 @@ Shader "Universal Render Pipeline/Toon" {
 
             ZWrite On
             ColorMask 0
-            Cull[_Cull]
+            Cull[_CullMode]
 
             HLSLPROGRAM
             // Required to compile gles 2.0 with standard srp library
