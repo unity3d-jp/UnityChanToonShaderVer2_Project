@@ -19,6 +19,7 @@ namespace UnityChan
         const string ShaderPropClippingMode = "_ClippingMode";
         const string ShaderPropClippingMask = "_ClippingMask";
         const string ShaderPropUtsTechniqe = "_utsTechnique";
+        const string ShaderPropAutoRenderQueue = "_AutoRenderQueue";
         const string ShaderPropStencilMode = "_StencilMode";
         const string ShaderPropStencilNo = "_StencilNo";
         const string ShaderPropTransparentEnabled = "_TransparentEnabled";
@@ -41,7 +42,7 @@ namespace UnityChan
         const string STR_ONSTATE = "Active";
         const string STR_OFFSTATE = "Off";
 
-        const string STR_AUTORENDERQUEUE = "_AutoRenderQueue";
+
         public enum _UTS_Technique{
             DoubleShadeWithFeather, ShadingGradeMap
         }
@@ -552,7 +553,7 @@ namespace UnityChan
 
             // select UTS technique here.
             DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
-            _autoRenderQueue = material.GetInt(STR_AUTORENDERQUEUE);
+            _autoRenderQueue = material.GetInt(ShaderPropAutoRenderQueue);
             _renderQueue = material.renderQueue;
 
             _UTS_Technique technique = (_UTS_Technique)material.GetInt(ShaderPropUtsTechniqe);
@@ -802,14 +803,14 @@ namespace UnityChan
             {
                 if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
-                    material.SetInt(STR_AUTORENDERQUEUE, _autoRenderQueue = 1);
+                    material.SetInt(ShaderPropAutoRenderQueue, _autoRenderQueue = 1);
                 }
             }
             else
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetInt(STR_AUTORENDERQUEUE, _autoRenderQueue = 0);
+                    material.SetInt(ShaderPropAutoRenderQueue, _autoRenderQueue = 0);
                 }
             }
             EditorGUILayout.EndHorizontal();
