@@ -810,7 +810,8 @@ namespace UnityChan
             EditorGUI.EndDisabledGroup();
         }
         void GUI_SetCullingMode(Material material){
-            int _CullMode_Setting = material.GetInt("_CullMode");
+            const string _CullMode = "_CullMode";
+            int _CullMode_Setting = material.GetInt(_CullMode);
             //Enum形式に変換して、outlineMode変数に保持しておく.
             if ((int)_CullingMode.CullingOff == _CullMode_Setting){
                 cullingMode = _CullingMode.CullingOff;
@@ -823,19 +824,32 @@ namespace UnityChan
             cullingMode = (_CullingMode)EditorGUILayout.EnumPopup("Culling Mode", cullingMode);
             //値が変化したらマテリアルに書き込み.
             if(cullingMode == _CullingMode.CullingOff){
-                material.SetFloat("_CullMode",0);
+                material.SetInt(_CullMode, 0);
             }else if(cullingMode == _CullingMode.FrontCulling){
-                material.SetFloat("_CullMode",1);
+                material.SetInt(_CullMode, 1);
             }else{
-                material.SetFloat("_CullMode",2);
+                material.SetInt(_CullMode, 2);
             }
 
         }
         void GUI_Tranparent(Material material)
         {
             GUILayout.Label("Transparent Shader", EditorStyles.boldLabel);
+            const string _ZWriteMode = "_ZWriteMode";
             DoPopup(transparentModeText, transparentMode, System.Enum.GetNames(typeof(_UTS_Transparent)));
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
+
+            if (_Transparent_Setting == _UTS_Transparent.On)
+            {
+
+                material.SetInt(_ZWriteMode, 0);
+
+            }
+            else
+            {
+                material.SetInt(_ZWriteMode, 1);
+            }
+            
         }
 
         void GUI_StencilMode(Material material)
