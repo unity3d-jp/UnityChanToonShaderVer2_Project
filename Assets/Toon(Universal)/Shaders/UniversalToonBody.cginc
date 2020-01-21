@@ -302,7 +302,7 @@
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
-                float3 lightColor = _LightColor0.rgb;
+                float3 lightColor = _LightColor0.rgb  * unity_LightData.z;
                 o.pos = UnityObjectToClipPos( v.vertex );
                 //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
                 float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
@@ -425,7 +425,7 @@
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
 
-				half3 originalLightColor = _LightColor0.rgb;
+				half3 originalLightColor = _LightColor0.rgb  * unity_LightData.z;
 
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
@@ -721,6 +721,7 @@
 
 				//
                 //Final Composition
+
                 finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
 
 
@@ -856,7 +857,7 @@
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
 
-				half3 originalLightColor = _LightColor0.rgb;
+				half3 originalLightColor = _LightColor0.rgb  * unity_LightData.z;
 
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
