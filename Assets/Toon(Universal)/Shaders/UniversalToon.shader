@@ -224,7 +224,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             //アウトライン処理はUTS_Outline.cgincへ.
-            #include "../../Toon/Shader/UCTS_Outline.cginc"
+            #include "UCTS_Outline.cginc"
             ENDCG
         }
 
