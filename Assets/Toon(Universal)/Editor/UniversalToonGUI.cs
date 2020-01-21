@@ -687,7 +687,7 @@ namespace UnityChan
 
             EditorGUILayout.Space();
 
-            if(material.HasProperty("_OUTLINE")){
+            if(material.HasProperty("_OUTLINE") && _Transparent_Setting != _UTS_Transparent.On){
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -698,7 +698,10 @@ namespace UnityChan
                 }
                 EditorGUILayout.Space();
             }
-
+            else
+            {
+                SetupOverDrawTransparentObject(material);
+            }
             if(material.HasProperty("_TessEdgeLength")){
                 _Tessellation_Foldout = Foldout(_Tessellation_Foldout, "【DX11 Phong Tessellation Settings】");
                 if (_Tessellation_Foldout)
@@ -2048,30 +2051,44 @@ namespace UnityChan
             EditorGUILayout.Space();
         }
 
+        const string srpDefaultLightModeName = "SRPDefaultUnlit";
+        const string srpDefaultColorMask = "_SPRDefaultUnlitColorMask";
+        const string srpDefaultCullMode = "_SRPDefaultUnlitColMode";
+
+        void SetupOverDrawTransparentObject(Material material)
+        {
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
+            if (srpDefaultLightModeTag == srpDefaultLightModeName)
+            {
+                material.SetShaderPassEnabled(srpDefaultLightModeName, true);
+                material.SetInt(srpDefaultColorMask, 0);
+                material.SetInt(srpDefaultCullMode, (int)_CullingMode.BackCulling);
+            }
+        }
 
         void GUI_Outline(Material material)
         {
-            const string lightModeName = "SRPDefaultUnlit";
-            const string sprDefaultColorMask = "_SPRDefaultUnlitColorMask";
-            var tag = material.GetTag("LightMode", false, lightModeName);
+
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
             bool isOutlineEnabled = true;
-            if ( tag == lightModeName)
+            if ( srpDefaultLightModeTag == srpDefaultLightModeName)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Outline");
-                if (isOutlineEnabled = material.GetShaderPassEnabled(lightModeName) )
+                if (isOutlineEnabled = material.GetShaderPassEnabled(srpDefaultLightModeName) )
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
-                        material.SetShaderPassEnabled(lightModeName, false);
+                        material.SetShaderPassEnabled(srpDefaultLightModeName, false);
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
-                        material.SetShaderPassEnabled(lightModeName, true);
-                        material.SetInt(sprDefaultColorMask,15);
+                        material.SetShaderPassEnabled(srpDefaultLightModeName, true);
+                        material.SetInt(srpDefaultColorMask,15);
+                        material.SetInt(srpDefaultCullMode, (int)_CullingMode.FrontCulling);
                     }
                 }
                 EditorGUILayout.EndHorizontal();

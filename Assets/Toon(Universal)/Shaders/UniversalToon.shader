@@ -27,6 +27,7 @@ Shader "Universal Render Pipeline/Toon" {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
 		[Enum(OFF,0,ONT,1)]	_ZWriteMode("ZWrite Mode", int) = 1  //OFF/ON
 		_SPRDefaultUnlitColorMask("SPRDefaultUnlit Path Color Mask", int) = 15
+		[Enum(OFF,0,FRONT,1,BACK,2)] _SRPDefaultUnlitColMode("SPRDefaultUnlit  Cull Mode", int) = 1  //OFF/FRONT/BACK
         // ClippingMask paramaters from Here.
         _ClippingMask("ClippingMask", 2D) = "white" {}
         //v.2.0.4
@@ -203,7 +204,7 @@ Shader "Universal Render Pipeline/Toon" {
             Tags {
 				"LightMode" = "SRPDefaultUnlit"
             }
-            Cull Front
+            Cull [_SRPDefaultUnlitColMode]
 			ColorMask [_SPRDefaultUnlitColorMask]
             Blend SrcAlpha OneMinusSrcAlpha
             Stencil

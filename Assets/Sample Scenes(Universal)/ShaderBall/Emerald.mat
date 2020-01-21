@@ -18,8 +18,7 @@ Material:
   stringTagMap:
     IgnoreProjection: true
     RenderType: Transparent
-  disabledShaderPasses:
-  - SRPDEFAULTUNLIT
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -174,7 +173,7 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _Outline_Width: 0
+    - _Outline_Width: 10
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.093
@@ -182,6 +181,8 @@ Material:
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
+    - _SPRDefaultUnlitColorMask: 0
+    - _SRPDefaultUnlitColMode: 2
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
@@ -206,6 +207,7 @@ Material:
     - _Unlit_Intensity: 0.001
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
+    - _ZWriteMode: 0
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersion: 2.075
