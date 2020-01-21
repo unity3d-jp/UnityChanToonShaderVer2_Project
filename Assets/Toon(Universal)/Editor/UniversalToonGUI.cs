@@ -11,35 +11,36 @@ namespace UnityChan
 {
     public class UniversalToonGUI : ShaderGUI {
 
-        static readonly string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
-        static readonly string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
-        static readonly string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
-        static readonly string ShaderPropAngelRing = "_AngelRing";
-        static readonly string ShaderPropMatCap = "_MatCap";
-        static readonly string ShaderPropClippingMode = "_ClippingMode";
-        static readonly string ShaderPropClippingMask = "_ClippingMask";
-        static readonly string ShaderPropStencilMode = "_StencilMode";
-        static readonly string ShaderPropStencilNo = "_StencilNo";
-        static readonly string ShaderPropTransparentEnabled = "_TransparentEnabled";
-        static readonly string ShaderPropStencilComp = "_StencilComp";
-        static readonly string ShaderPropStencilOpPass = "_StencilOpPass";
-        static readonly string ShaderPropStencilOpFail = "_StencilOpFail";
-        static readonly string ShaderPropStencilWriteMask = "_StencilWriteMask";
-        static readonly string ShaderPropStencilReadMask = "_StencilReadMask";
+        const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
+        const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
+        const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
+        const string ShaderPropAngelRing = "_AngelRing";
+        const string ShaderPropMatCap = "_MatCap";
+        const string ShaderPropClippingMode = "_ClippingMode";
+        const string ShaderPropClippingMask = "_ClippingMask";
+        const string ShaderPropStencilMode = "_StencilMode";
+        const string ShaderPropStencilNo = "_StencilNo";
+        const string ShaderPropTransparentEnabled = "_TransparentEnabled";
+        const string ShaderPropStencilComp = "_StencilComp";
+        const string ShaderPropStencilOpPass = "_StencilOpPass";
+        const string ShaderPropStencilOpFail = "_StencilOpFail";
+        const string ShaderPropStencilWriteMask = "_StencilWriteMask";
+        const string ShaderPropStencilReadMask = "_StencilReadMask";
 
-        static readonly string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
-        static readonly string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
-        
-        static readonly string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
-        static readonly string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
-        static readonly string ShaderDefineIS_CLIPPING_TRANSMODE = "_IS_CLIPPING_TRANSMODE";
+        const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
+        const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
 
-        static readonly string ShaderDefineIS_TRANSCLIPPING_OFF = "_IS_TRANSCLIPPING_OFF";
-        static readonly string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
+        const string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
+        const string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
+        const string ShaderDefineIS_CLIPPING_TRANSMODE = "_IS_CLIPPING_TRANSMODE";
 
-        static readonly string STR_ONSTATE = "Active";
-        static readonly string STR_OFFSTATE = "Off";
+        const string ShaderDefineIS_TRANSCLIPPING_OFF = "_IS_TRANSCLIPPING_OFF";
+        const string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
 
+        const string STR_ONSTATE = "Active";
+        const string STR_OFFSTATE = "Off";
+
+        const string STR_AUTORENDERQUEUE = "_AutoRenderQueue";
         public enum _UTS_Technique{
             DoubleShadeWithFeather, ShadingGradeMap
         }
@@ -103,14 +104,14 @@ namespace UnityChan
             SimpleEmissive, EmissiveAnimation
         }
 
-        //enum _OutlineMode の状態を保持するための変数.
+        // variables which must be gotten from shader at the beggning of GUI
+        public int _autoRenderQueue = 1;
+        public int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+        // variables which just to be held.
         public _OutlineMode outlineMode;
         public _CullingMode cullingMode;
         public _EmissiveMode emissiveMode;
 
-        // RenderQueue は自動設定？
-        public int _autoRenderQueue = 1;
-        public int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
 
         //ボタンサイズ.
         public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
@@ -118,7 +119,7 @@ namespace UnityChan
 
         //各種設定保持用.
         //UTS2のバージョン.
-        static float _UTS2VersionNumber = 2.075f;
+        static float _UTS2VersionNumber = 2.075f;   // todo. 
         //
         static _UTS_Transparent _Transparent_Setting;
         static int _StencilNo_Setting;
@@ -550,6 +551,9 @@ namespace UnityChan
 
             // select UTS technique here.
             DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
+            _autoRenderQueue = material.GetInt(STR_AUTORENDERQUEUE);
+            _renderQueue = material.renderQueue;
+
             _UTS_Technique technique = (_UTS_Technique)material.GetInt("_utsTechnique");
             switch (technique)
             {
@@ -789,22 +793,22 @@ namespace UnityChan
 
         void GUI_SetRenderQueue(Material material)
         {
-            const string autoRenderQueue = "_AutoRenderQueue";
+
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Auto Queue");
-            _autoRenderQueue = material.GetInt(autoRenderQueue);
+
             if (_autoRenderQueue == 0)
             {
                 if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
-                    material.SetInt(autoRenderQueue, _autoRenderQueue = 1);
+                    material.SetInt(STR_AUTORENDERQUEUE, _autoRenderQueue = 1);
                 }
             }
             else
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetInt(autoRenderQueue, _autoRenderQueue = 0);
+                    material.SetInt(STR_AUTORENDERQUEUE, _autoRenderQueue = 0);
                 }
             }
             EditorGUILayout.EndHorizontal();
@@ -1798,7 +1802,10 @@ namespace UnityChan
                     material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
                 }
             }
-
+            else
+            {
+                material.renderQueue = _renderQueue;
+            }
 
             material.SetOverrideTag(RENDERTYPE, renderType);
             material.SetOverrideTag(IGNOREPROJECTION, ignoreProjection);
