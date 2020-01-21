@@ -18,6 +18,7 @@ namespace UnityChan
         const string ShaderPropMatCap = "_MatCap";
         const string ShaderPropClippingMode = "_ClippingMode";
         const string ShaderPropClippingMask = "_ClippingMask";
+        const string ShaderPropUtsTechniqe = "_utsTechnique";
         const string ShaderPropStencilMode = "_StencilMode";
         const string ShaderPropStencilNo = "_StencilNo";
         const string ShaderPropTransparentEnabled = "_TransparentEnabled";
@@ -283,7 +284,7 @@ namespace UnityChan
             {
 
                 Material material = m_MaterialEditor.target as Material;
-                return material.GetInt("_utsTechnique") == (int)_UTS_Technique.ShadingGradeMap;
+                return material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.ShadingGradeMap;
 
             }
         }
@@ -304,10 +305,10 @@ namespace UnityChan
         public void FindProperties(MaterialProperty[] props)
         {
             //シェーダーによって無い可能性があるプロパティはfalseを追加.
-            utsTechnique = FindProperty("_utsTechnique", props);
+            utsTechnique = FindProperty(ShaderPropUtsTechniqe, props);
             transparentMode = FindProperty(ShaderPropTransparentEnabled, props);
-            clippingMask = FindProperty("_ClippingMask", props);
-            clippingMode = FindProperty("_ClippingMode", props);
+            clippingMask = FindProperty(ShaderPropClippingMask, props);
+            clippingMode = FindProperty(ShaderPropClippingMode, props);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
             stencilMode = FindProperty(ShaderPropStencilMode, props);
@@ -554,7 +555,7 @@ namespace UnityChan
             _autoRenderQueue = material.GetInt(STR_AUTORENDERQUEUE);
             _renderQueue = material.renderQueue;
 
-            _UTS_Technique technique = (_UTS_Technique)material.GetInt("_utsTechnique");
+            _UTS_Technique technique = (_UTS_Technique)material.GetInt(ShaderPropUtsTechniqe);
             switch (technique)
             {
                 case _UTS_Technique.DoubleShadeWithFeather:
@@ -758,19 +759,19 @@ namespace UnityChan
     // --------------------------------
 
         void CheckUtsTechnique(Material material){
-            if (material.HasProperty("_utsTechnique"))//DoubleWithFeather==0 or ShadingGradeMap==1
+            if (material.HasProperty(ShaderPropUtsTechniqe))//DoubleWithFeather==0 or ShadingGradeMap==1
             {
-                if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
+                if(material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                 {
                     if(!material.HasProperty("_Set_1st_ShadePosition")){
                         //SGMに変更.
-                        material.SetInt("_utsTechnique", (int)_UTS_Technique.ShadingGradeMap);
+                        material.SetInt(ShaderPropUtsTechniqe, (int)_UTS_Technique.ShadingGradeMap);
                     }
-                }else if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.ShadingGradeMap){    //SGM
+                }else if(material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.ShadingGradeMap){    //SGM
                 //SGM
                     if(!material.HasProperty("_ShadingGradeMap")){
                         //DWFに変更.
-                        material.SetInt("_utsTechnique", (int)_UTS_Technique.DoubleShadeWithFeather);
+                        material.SetInt(ShaderPropUtsTechniqe, (int)_UTS_Technique.DoubleShadeWithFeather);
                     }
                 }else{
 
@@ -1192,14 +1193,14 @@ namespace UnityChan
 
         void GUI_ShadowControlMaps(Material material)
         {
-            if (material.HasProperty("_utsTechnique"))//DoubleWithFeather or ShadingGradeMap
+            if (material.HasProperty(ShaderPropUtsTechniqe))//DoubleWithFeather or ShadingGradeMap
             {
-                if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
+                if(material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                 {
                     GUILayout.Label("Technipue : Double Shade With Feather", EditorStyles.boldLabel);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.firstPositionMapText, set_1st_ShadePosition);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.secondPositionMapText, set_2nd_ShadePosition);
-                }else if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.ShadingGradeMap){    //SGM
+                }else if(material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.ShadingGradeMap){    //SGM
                     GUILayout.Label("Technipue : Shading Grade Map", EditorStyles.boldLabel);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.shadingGradeMapText, shadingGradeMap);
                     m_MaterialEditor.RangeProperty(tweak_ShadingGradeMapLevel, "ShadingGradeMap Level");
@@ -1257,9 +1258,9 @@ namespace UnityChan
         }
 
         void GUI_BasicLookdevs(Material material){
-                if (material.HasProperty("_utsTechnique"))//DoubleWithFeather or ShadingGradeMap
+                if (material.HasProperty(ShaderPropUtsTechniqe))//DoubleWithFeather or ShadingGradeMap
                 {
-                    if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
+                    if(material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                     {
                         GUILayout.Label("Technipue : Double Shade With Feather", EditorStyles.boldLabel);
                         m_MaterialEditor.RangeProperty(baseColor_Step, "BaseColor Step");
@@ -1271,7 +1272,7 @@ namespace UnityChan
                         material.SetFloat("_1st_ShadeColor_Feather", material.GetFloat("_BaseShade_Feather"));
                         material.SetFloat("_2nd_ShadeColor_Step", material.GetFloat("_ShadeColor_Step"));
                         material.SetFloat("_2nd_ShadeColor_Feather", material.GetFloat("_1st2nd_Shades_Feather"));
-                    }else if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.ShadingGradeMap){    //SGM
+                    }else if(material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.ShadingGradeMap){    //SGM
                         GUILayout.Label("Technipue : Shading Grade Map", EditorStyles.boldLabel);
                         m_MaterialEditor.RangeProperty(first_ShadeColor_Step, "1st ShaderColor Step");
                         m_MaterialEditor.RangeProperty(first_ShadeColor_Feather, "1st ShadeColor Feather");
