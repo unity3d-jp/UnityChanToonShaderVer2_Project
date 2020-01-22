@@ -845,6 +845,7 @@ namespace UnityChan
         {
             GUILayout.Label("Transparent Shader", EditorStyles.boldLabel);
             const string _ZWriteMode = "_ZWriteMode";
+            const string _ZOverDrawMode = "_ZOverDrawMode";
             DoPopup(transparentModeText, transparentMode, System.Enum.GetNames(typeof(_UTS_Transparent)));
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
 
@@ -852,11 +853,12 @@ namespace UnityChan
             {
 
                 material.SetInt(_ZWriteMode, 0);
-
+                material.SetInt(_ZOverDrawMode, 1);
             }
             else
             {
                 material.SetInt(_ZWriteMode, 1);
+                material.SetInt(_ZOverDrawMode, 0);
             }
             
         }
