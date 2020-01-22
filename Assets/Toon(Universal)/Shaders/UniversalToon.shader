@@ -26,7 +26,7 @@ Shader "Universal Render Pipeline/Toon" {
 
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
 		[Enum(OFF,0,ONT,1)]	_ZWriteMode("ZWrite Mode", int) = 1  //OFF/ON
-        [Enum(OFF,0,ONT,1)]	_ZOverDrawMode("ZOver Draw Mode", int) = 1  //OFF/ON
+        [Enum(OFF,0,ONT,1)]	_ZOverDrawMode("ZOver Draw Mode", Float) = 1  //OFF/ON
 		_SPRDefaultUnlitColorMask("SPRDefaultUnlit Path Color Mask", int) = 15
 		[Enum(OFF,0,FRONT,1,BACK,2)] _SRPDefaultUnlitColMode("SPRDefaultUnlit  Cull Mode", int) = 1  //OFF/FRONT/BACK
         // ClippingMask paramaters from Here.

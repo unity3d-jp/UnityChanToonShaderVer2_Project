@@ -853,12 +853,12 @@ namespace UnityChan
             {
 
                 material.SetInt(_ZWriteMode, 0);
-                material.SetInt(_ZOverDrawMode, 1);
+                material.SetFloat(_ZOverDrawMode, 1);
             }
             else
             {
                 material.SetInt(_ZWriteMode, 1);
-                material.SetInt(_ZOverDrawMode, 0);
+                material.SetFloat(_ZOverDrawMode, 0);
             }
             
         }

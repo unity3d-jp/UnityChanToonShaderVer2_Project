@@ -34,6 +34,8 @@
             //Baked Normal Texture for Outline
             uniform sampler2D _BakedNormal; uniform float4 _BakedNormal_ST;
             uniform fixed _Is_BakedNormal;
+
+            uniform float _ZOverDrawMode;
             //
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_YES
@@ -71,6 +73,7 @@
                 float3 _BakedNormalDir = normalize(mul(_BakedNormal_var.rgb, tangentTransform));
                 //ここまで.
                 float Set_Outline_Width = (_Outline_Width*0.001*smoothstep( _Farthest_Distance, _Nearest_Distance, distance(objPos.rgb,_WorldSpaceCameraPos) )*_Outline_Sampler_var.rgb).r;
+                Set_Outline_Width *= (1.0f - _ZOverDrawMode);
                 //v.2.0.7.5
                 float4 _ClipCameraPos = mul(UNITY_MATRIX_VP, float4(_WorldSpaceCameraPos.xyz, 1));
                 //v.2.0.7
@@ -96,6 +99,10 @@
             }
             float4 frag(VertexOutput i) : SV_Target{
                 //v.2.0.5
+                if (_ZOverDrawMode > 0.99f)
+                {
+                    return float4(1.0f, 1.0f, 1.0f, 1.0f);  // but nothing should be drawn except Z value as colormask is set to 0
+                }
                 _Color = _BaseColor;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
                 //v.2.0.7.5
