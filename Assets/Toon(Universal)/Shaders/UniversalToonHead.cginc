@@ -7,8 +7,6 @@
 #define fixed3 half3
 #define fixed4 half4
 
-#define _WorldSpaceLightPos0 _MainLightPosition
-#define _LightColor0 _MainLightColor
 
 
 

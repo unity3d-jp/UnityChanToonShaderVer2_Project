@@ -302,7 +302,7 @@
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
-                float3 lightColor = _LightColor0.rgb  * unity_LightData.z;
+                float3 lightColor = _MainLightColor.rgb  * unity_LightData.z;
                 o.pos = UnityObjectToClipPos( v.vertex );
                 //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
                 float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
@@ -410,8 +410,7 @@
 				Light mainLight = GetMainLight(i.shadowCoord);
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
-# else
-                attenuation *= unity_LightData.z;
+
 # endif
 
 
@@ -421,11 +420,11 @@
                 //v.2.0.5
                 float3 defaultLightColor = saturate(max(half3(0.05,0.05,0.05)*_Unlit_Intensity,max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
                 float3 customLightDirection = normalize(mul( unity_ObjectToWorld, float4(((float3(1.0,0.0,0.0)*_Offset_X_Axis_BLD*10)+(float3(0.0,1.0,0.0)*_Offset_Y_Axis_BLD*10)+(float3(0.0,0.0,-1.0)*lerp(-1.0,1.0,_Inverse_Z_Axis_BLD))),0)).xyz);
-                float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
+                float3 lightDirection = normalize(lerp(defaultLightDirection, _MainLightPosition.xyz,any(_MainLightPosition.xyz)));
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
 
-				half3 originalLightColor = _LightColor0.rgb  * unity_LightData.z;
+				half3 originalLightColor = _MainLightColor.rgb  * unity_LightData.z;
 
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
@@ -841,8 +840,7 @@
 				Light mainLight = GetMainLight(i.shadowCoord);
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
-# else
-                attenuation *= unity_LightData.z;
+
 # endif
 
 
@@ -853,11 +851,11 @@
                 //v.2.0.5
                 float3 defaultLightColor = saturate(max(half3(0.05,0.05,0.05)*_Unlit_Intensity,max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)),ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
                 float3 customLightDirection = normalize(mul( unity_ObjectToWorld, float4(((float3(1.0,0.0,0.0)*_Offset_X_Axis_BLD*10)+(float3(0.0,1.0,0.0)*_Offset_Y_Axis_BLD*10)+(float3(0.0,0.0,-1.0)*lerp(-1.0,1.0,_Inverse_Z_Axis_BLD))),0)).xyz);
-                float3 lightDirection = normalize(lerp(defaultLightDirection,_WorldSpaceLightPos0.xyz,any(_WorldSpaceLightPos0.xyz)));
+                float3 lightDirection = normalize(lerp(defaultLightDirection,_MainLightPosition.xyz,any(_MainLightPosition.xyz)));
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
 
-				half3 originalLightColor = _LightColor0.rgb  * unity_LightData.z;
+				half3 originalLightColor = _MainLightColor.rgb  * unity_LightData.z;
 
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
