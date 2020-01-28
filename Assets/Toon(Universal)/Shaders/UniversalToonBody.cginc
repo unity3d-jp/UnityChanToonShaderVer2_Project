@@ -334,6 +334,11 @@
 #if defined(_SHADINGGRADEMAP)
 	    float4 flagShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
+#if defined(_MAIN_LIGHT_SHADOWS)
+                Light mainLight = GetMainLight(i.shadowCoord);
+#else
+                Light mainLight = GetMainLight(0);
+#endif
 
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
@@ -407,7 +412,6 @@
 				half attenuation = 1.0;
 
 # ifdef _MAIN_LIGHT_SHADOWS
-				Light mainLight = GetMainLight(i.shadowCoord);
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
 
@@ -751,6 +755,11 @@
 #else //#if defined(_SHADINGGRADEMAP)
         float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
+#if defined(_MAIN_LIGHT_SHADOWS)
+                Light mainLight = GetMainLight(i.shadowCoord);
+#else
+                Light mainLight = GetMainLight(0);
+#endif
                 i.normalDir = normalize(i.normalDir);
 			    float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
 
@@ -837,7 +846,7 @@
 				half attenuation = 1.0;
                 attenuation *= unity_LightData.z;
 # ifdef _MAIN_LIGHT_SHADOWS
-				Light mainLight = GetMainLight(i.shadowCoord);
+
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
 
