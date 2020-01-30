@@ -413,14 +413,14 @@
 #endif
 
 
-				half attenuation = 1.0;
-#if 0
+				half shadowAttenuation = 1.0;
+
 # ifdef _MAIN_LIGHT_SHADOWS
-//				attenuation = mainLight.distanceAttenuation; 
-				attenuation = mainLight.shadowAttenuation;
+
+                shadowAttenuation = mainLight.shadowAttenuation;
 
 # endif
-#endif
+
 
 //v.2.0.4
 
@@ -759,14 +759,53 @@
 
 
 #else //#if defined(_SHADINGGRADEMAP)
+
+
+        int mainLightIndex = -1;
+        Light GetUTS_MainLight(float3 posW, float4 shadowCoord)
+        {
+
+            Light mainLight;
+            mainLight.direction = 0;
+            mainLight.color = 0;
+            mainLight.distanceAttenuation = 0;
+            mainLight.shadowAttenuation = 0;
+
+            mainLightIndex = -2;
+            Light nextLight = GetMainLight(shadowCoord);
+            if (nextLight.distanceAttenuation > mainLight.distanceAttenuation)
+            {
+                mainLight = nextLight;
+                mainLightIndex = -1;
+            }
+            int lightCount = GetAdditionalLightsCount();
+            for (int ii = 0; ii < lightCount; ++ii)
+            {
+                nextLight = GetAdditionalLight(ii, posW);
+                if (nextLight.distanceAttenuation > mainLight.distanceAttenuation)
+                {
+                    mainLight = nextLight;
+                    mainLightIndex = ii;
+                }
+            }
+
+            return mainLight;
+        }
+
+
         float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
-#if defined(_MAIN_LIGHT_SHADOWS)
-                Light mainLight = GetMainLight(i.shadowCoord);
-#else
-                Light mainLight = GetMainLight(0);
-#endif
-                half3 mainLightColor = GetLightColor(mainLight);
+            #  ifdef _MAIN_LIGHT_SHADOWS
+                Light mainLight = GetUTS_MainLight(i.posWorld.xyz, i.shadowCoord);
+            #  else
+                Light mainLight = GetUTS_MainLight(i.posWorld.xyz, 0);
+            #  endif
+
+
+                half3 mainLightColor = mainLight.color; // GetLightColor(mainLight);
+//                float4 retRGBA = float4(mainLightColor.r, mainLightColor.g, mainLightColor.b,1.0);
+//                return retRGBA;
+
                 i.normalDir = normalize(i.normalDir);
 			    float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
 
@@ -850,16 +889,13 @@
 
 
 
-				half attenuation = 1.0;
-//                attenuation *= unity_LightData.z;
-#if 0
+				half shadowAttenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
 
-//				attenuation = mainLight.distanceAttenuation; 
-				attenuation = mainLight.shadowAttenuation;
 
+//                shadowAttenuation = mainLight.shadowAttenuation;
 # endif
-#endif
+
 
 
 //v.2.0.4
@@ -899,7 +935,7 @@
                 float4 _Set_1st_ShadePosition_var = tex2D(_Set_1st_ShadePosition,TRANSFORM_TEX(Set_UV0, _Set_1st_ShadePosition));
                 //v.2.0.6
                 //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
-                float _SystemShadowsLevel_var = (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
+                float _SystemShadowsLevel_var = (shadowAttenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (shadowAttenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
                 float Set_FinalShadowMask = saturate((1.0 + ( (lerp( _HalfLambert_var, _HalfLambert_var*saturate(_SystemShadowsLevel_var), _Set_SystemShadowsToBase ) - (_BaseColor_Step-_BaseShade_Feather)) * ((1.0 - _Set_1st_ShadePosition_var.rgb).r - 1.0) ) / (_BaseColor_Step - (_BaseColor_Step-_BaseShade_Feather))));
                 //
                 //Composition: 3 Basic Colors as Set_FinalBaseColor
@@ -995,62 +1031,72 @@
   #ifdef _ADDITIONAL_LIGHTS
 
 				int pixelLightCount = GetAdditionalLightsCount();
-				for (int iLight = 0; iLight < pixelLightCount; ++iLight)
+                int mainLightIndex2 = mainLightIndex + 1;
+				for (int iLight = 0; iLight < pixelLightCount+1; ++iLight)
 				{
-
-					float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
-					
-					Light light = GetAdditionalLight(iLight, inputData.positionWS);
-					attenuation = light.distanceAttenuation; 
+                    if (iLight != mainLightIndex2)
+                    {
 
 
-					float3 lightDirection = light.direction;
-					//v.2.0.5: 
-					float3 addPassLightColor = (0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * light.color.rgb * attenuation;
-					float  pureIntencity = max(0.001, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b));
-					float3 lightColor = max(0, lerp(addPassLightColor, lerp(0, min(addPassLightColor, addPassLightColor / pureIntencity), notDirectional), _Is_Filter_LightColor));
-					float3 halfDirection = normalize(viewDirection + lightDirection); // has to be recalced here.
+                        float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
 
-					//v.2.0.5:
-					_BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
-					_ShadeColor_Step = saturate(_ShadeColor_Step + _StepOffset);
-					//
-					//v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
-					float _LightIntensity = lerp(0, (0.299*light.color.r + 0.587*light.color.g + 0.114*light.color.b)*attenuation, notDirectional);
-					//v.2.0.5: Filtering the high intensity zone of PointLights
-					float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, light.color.rgb*attenuation*_BaseColor_Step), notDirectional), _Is_Filter_HiCutPointLightColor);
-					//
-					float3 Set_BaseColor = lerp((_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base);
-					//v.2.0.5
-					float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
-					float3 Set_1st_ShadeColor = lerp((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb*_LightIntensity), ((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_1st_Shade);
-					//v.2.0.5
-					float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
-					float3 Set_2nd_ShadeColor = lerp((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb*_LightIntensity), ((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade);
-					float _HalfLambert_var = 0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5;
-					float4 _Set_2nd_ShadePosition_var = tex2D(_Set_2nd_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_2nd_ShadePosition));
-					float4 _Set_1st_ShadePosition_var = tex2D(_Set_1st_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_1st_ShadePosition));
-					//v.2.0.5:
-					float Set_FinalShadowMask = saturate((1.0 + ((lerp(_HalfLambert_var, (_HalfLambert_var*saturate(1.0 + _Tweak_SystemShadowsLevel)), _Set_SystemShadowsToBase) - (_BaseColor_Step - _BaseShade_Feather)) * ((1.0 - _Set_1st_ShadePosition_var.rgb).r - 1.0)) / (_BaseColor_Step - (_BaseColor_Step - _BaseShade_Feather))));
-					//Composition: 3 Basic Colors as finalColor
-					float3 finalColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _1st2nd_Shades_Feather)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _1st2nd_Shades_Feather))))), Set_FinalShadowMask); // Final Color
-
-					//v.2.0.6: Add HighColor if _Is_Filter_HiCutPointLightColor is False
+                        Light additionalLight = GetMainLight(0);
+                        if (iLight != 0)
+                        {
+                            additionalLight = GetAdditionalLight(iLight, inputData.positionWS);
+                        }
+                        half3 additionalLightColor = GetLightColor(additionalLight);
+                        //					attenuation = light.distanceAttenuation; 
 
 
-					float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
-					float _Specular_var =  0.5*dot(halfDirection, lerp(i.normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
-					float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
-					float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
-					float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb*_HighColor.rgb), ((_HighColor_Tex_var.rgb*_HighColor.rgb)*Set_LightColor), _Is_LightColor_HighColor)*_TweakHighColorMask_var);
+                        float3 lightDirection = additionalLight.direction;
+                        //v.2.0.5: 
+                        float3 addPassLightColor = (0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * additionalLightColor.rgb * shadowAttenuation;
+                        float  pureIntencity = max(0.001, (0.299*additionalLightColor.r + 0.587*additionalLightColor.g + 0.114*additionalLightColor.b));
+                        float3 lightColor = max(0, lerp(addPassLightColor, lerp(0, min(addPassLightColor, addPassLightColor / pureIntencity), notDirectional), _Is_Filter_LightColor));
+                        float3 halfDirection = normalize(viewDirection + lightDirection); // has to be recalced here.
 
-					finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
-					//
+                        //v.2.0.5:
+                        _BaseColor_Step = saturate(_BaseColor_Step + _StepOffset);
+                        _ShadeColor_Step = saturate(_ShadeColor_Step + _StepOffset);
+                        //
+                        //v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
+                        float _LightIntensity = lerp(0, (0.299*additionalLightColor.r + 0.587*additionalLightColor.g + 0.114*additionalLightColor.b)*shadowAttenuation, notDirectional);
+                        //v.2.0.5: Filtering the high intensity zone of PointLights
+                        float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, additionalLightColor.rgb*shadowAttenuation*_BaseColor_Step), notDirectional), _Is_Filter_HiCutPointLightColor);
+                        //
+                        float3 Set_BaseColor = lerp((_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base);
+                        //v.2.0.5
+                        float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
+                        float3 Set_1st_ShadeColor = lerp((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb*_LightIntensity), ((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_1st_Shade);
+                        //v.2.0.5
+                        float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
+                        float3 Set_2nd_ShadeColor = lerp((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb*_LightIntensity), ((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade);
+                        float _HalfLambert_var = 0.5*dot(lerp(i.normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5;
+                        float4 _Set_2nd_ShadePosition_var = tex2D(_Set_2nd_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_2nd_ShadePosition));
+                        float4 _Set_1st_ShadePosition_var = tex2D(_Set_1st_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_1st_ShadePosition));
+                        //v.2.0.5:
+                        float Set_FinalShadowMask = saturate((1.0 + ((lerp(_HalfLambert_var, (_HalfLambert_var*saturate(1.0 + _Tweak_SystemShadowsLevel)), _Set_SystemShadowsToBase) - (_BaseColor_Step - _BaseShade_Feather)) * ((1.0 - _Set_1st_ShadePosition_var.rgb).r - 1.0)) / (_BaseColor_Step - (_BaseColor_Step - _BaseShade_Feather))));
+                        //Composition: 3 Basic Colors as finalColor
+                        float3 finalColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _1st2nd_Shades_Feather)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _1st2nd_Shades_Feather))))), Set_FinalShadowMask); // Final Color
 
-					finalColor = saturate(finalColor);
+                        //v.2.0.6: Add HighColor if _Is_Filter_HiCutPointLightColor is False
 
-					pointLightColor += finalColor;
-					//	pointLightColor += lightColor;
+
+                        float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
+                        float _Specular_var = 0.5*dot(halfDirection, lerp(i.normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
+                        float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
+                        float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
+                        float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb*_HighColor.rgb), ((_HighColor_Tex_var.rgb*_HighColor.rgb)*Set_LightColor), _Is_LightColor_HighColor)*_TweakHighColorMask_var);
+
+                        finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
+                        //
+
+                        finalColor = saturate(finalColor);
+
+                        pointLightColor += finalColor;
+                        //	pointLightColor += lightColor;
+                    }
 				}
 
   #endif
