@@ -302,7 +302,7 @@
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
-                float3 lightColor = _MainLightColor.rgb  * unity_LightData.z;
+
                 o.pos = UnityObjectToClipPos( v.vertex );
                 //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
                 float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
@@ -331,6 +331,10 @@
                 return o;
             }
 
+            half3 GetLightColor(Light light)
+            {
+                return light.color * light.distanceAttenuation;
+            }
 #if defined(_SHADINGGRADEMAP)
 	    float4 flagShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
@@ -339,7 +343,7 @@
 #else
                 Light mainLight = GetMainLight(0);
 #endif
-
+                half3 mainLightColor = GetLightColor(mainLight);
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
@@ -410,13 +414,13 @@
 
 
 				half attenuation = 1.0;
-
+#if 0
 # ifdef _MAIN_LIGHT_SHADOWS
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
 
 # endif
-
+#endif
 
 //v.2.0.4
 
@@ -428,7 +432,7 @@
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
 
-				half3 originalLightColor = _MainLightColor.rgb  * unity_LightData.z;
+				half3 originalLightColor = mainLightColor.rgb;
 
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
@@ -752,6 +756,8 @@
 
 
         }
+
+
 #else //#if defined(_SHADINGGRADEMAP)
         float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
@@ -760,6 +766,7 @@
 #else
                 Light mainLight = GetMainLight(0);
 #endif
+                half3 mainLightColor = GetLightColor(mainLight);
                 i.normalDir = normalize(i.normalDir);
 			    float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
 
@@ -844,13 +851,15 @@
 
 
 				half attenuation = 1.0;
-                attenuation *= unity_LightData.z;
+//                attenuation *= unity_LightData.z;
+#if 0
 # ifdef _MAIN_LIGHT_SHADOWS
 
 //				attenuation = mainLight.distanceAttenuation; 
 				attenuation = mainLight.shadowAttenuation;
 
 # endif
+#endif
 
 
 //v.2.0.4
@@ -864,7 +873,7 @@
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
 
-				half3 originalLightColor = _MainLightColor.rgb  * unity_LightData.z;
+                half3 originalLightColor = mainLightColor.rgb;
 
 				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
