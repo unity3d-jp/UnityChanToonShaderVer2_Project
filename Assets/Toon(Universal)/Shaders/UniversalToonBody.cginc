@@ -755,7 +755,7 @@
                     if (iLight != mainLightIndex2)
                     {
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
-                        UtsLight additionalLight = GetMainLight(0);
+                        UtsLight additionalLight = GetMainUtsLight(0);
                         if (iLight != 0)
                         {
                             additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS);
