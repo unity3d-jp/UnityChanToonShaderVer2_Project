@@ -750,14 +750,15 @@
   #ifdef _ADDITIONAL_LIGHTS
 
 				int pixelLightCount = GetAdditionalLightsCount();
-                int mainLightIndex2 = mainLightIndex + 1;
-                for (int iLight = 0; iLight < pixelLightCount + 1; ++iLight)
+
+#if 1
+                for (int iLight = -1; iLight < pixelLightCount ; ++iLight)
 				{
-                    if (iLight != mainLightIndex2)
+                    if (iLight != mainLightIndex)
                     {
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
                         UtsLight additionalLight = GetMainUtsLight(0);
-                        if (iLight != 0)
+                        if (iLight != -1)
                         {
                             additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS);
                         }
@@ -858,7 +859,7 @@
                         //	pointLightColor += lightColor;
                     }
 				}
-
+#endif
   #endif
 
 				//
@@ -1138,9 +1139,9 @@
   #ifdef _ADDITIONAL_LIGHTS
 
 				int pixelLightCount = GetAdditionalLightsCount();
-                int mainLightIndex2 = mainLightIndex + 1;
+
 #if 1
-                for (int iLight = 0; iLight < pixelLightCount + 1; ++iLight)
+                for (int iLight = -1; iLight < pixelLightCount; ++iLight)
 				{
                     if (iLight != mainLightIndex2)
                     {
@@ -1149,7 +1150,7 @@
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
 
                         UtsLight additionalLight = GetMainUtsLight(0);
-                        if (iLight != 0)
+                        if (iLight != -1)
                         {
                             additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS);
                         }
