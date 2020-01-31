@@ -310,7 +310,7 @@
 #endif
                 light.shadowAttenuation = 1.0;
                 light.color = _MainLightColor.rgb;
-
+                light.type = _MainLightPosition.w;
                 return light;
             }
 
@@ -352,6 +352,7 @@
                 light.distanceAttenuation = attenuation;
                 light.shadowAttenuation = AdditionalLightRealtimeShadow(perObjectLightIndex, positionWS);
                 light.color = color;
+                light.type = lightPositionWS.w;
 
                 // In case we're using light probes, we can sample the attenuation from the `unity_ProbesOcclusion`
 #if defined(LIGHTMAP_ON) || defined(_MIXED_LIGHTING_SUBTRACTIVE)
@@ -443,7 +444,7 @@
                 mainLight.type = 0;
                 mainLightIndex = -2;
                 UtsLight nextLight = GetMainUtsLight(shadowCoord);
-                if (nextLight.distanceAttenuation > mainLight.distanceAttenuation)
+                if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0 )
                 {
                     mainLight = nextLight;
                     mainLightIndex = -1;
@@ -452,7 +453,7 @@
                 for (int ii = 0; ii < lightCount; ++ii)
                 {
                     nextLight = GetAdditionalUtsLight(ii, posW);
-                    if (nextLight.distanceAttenuation > mainLight.distanceAttenuation)
+                    if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                     {
                         mainLight = nextLight;
                         mainLightIndex = ii;
