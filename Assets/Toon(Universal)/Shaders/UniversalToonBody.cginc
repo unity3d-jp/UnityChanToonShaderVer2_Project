@@ -1143,7 +1143,7 @@
 #if 1
                 for (int iLight = -1; iLight < pixelLightCount; ++iLight)
 				{
-                    if (iLight != mainLightIndex2)
+                    if (iLight != mainLightIndex)
                     {
 
 
