@@ -421,14 +421,19 @@
                 return mainLight;
             }
 
+#define INIT_UTSLIGHT(utslight) \
+            utslight.direction = 0; \
+            utslight.color = 0; \
+            utslight.distanceAttenuation = 0; \
+            utslight.shadowAttenuation = 0; \
+            utslight.type = 0
+
+
             int DetermineUTS_MainLightIndex(float3 posW, float4 shadowCoord)
             {
                 UtsLight mainLight;
-                mainLight.direction = 0;
-                mainLight.color = 0;
-                mainLight.distanceAttenuation = 0;
-                mainLight.shadowAttenuation = 0;
-                mainLight.type = 0;
+                INIT_UTSLIGHT(mainLight);
+
                 mainLightIndex = -2;
                 UtsLight nextLight = GetMainUtsLight(shadowCoord);
                 if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
@@ -448,6 +453,21 @@
                 }
 
                 return mainLightIndex;
+            }
+
+            UtsLight GetMainUtsLightByID(int index,float3 posW, float4 shadowCoord)
+            {
+                UtsLight mainLight;
+                INIT_UTSLIGHT(mainLight);
+                if (index == -2)
+                {
+                    return mainLight;
+                }
+                if (index == -1)
+                {
+                    return GetMainUtsLight(shadowCoord);
+                }
+                return GetAdditionalUtsLight(index, posW);
             }
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
