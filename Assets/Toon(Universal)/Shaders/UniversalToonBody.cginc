@@ -248,10 +248,12 @@
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
 # ifndef _MAIN_LIGHT_SHADOWS
-				float4 positionCS               : TEXCORRD8;
+				float4 positionCS               : TEXCOORD8;
+                half   mainLightID              : TEXCOORD9;
 # else
 				float4 shadowCoord              : TEXCOORD8;
-				float4 positionCS               : TEXCORRD9;
+				float4 positionCS               : TEXCOORD9;
+                half   mainLightID              : TEXCOORD10;
 # endif
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -269,10 +271,12 @@
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 7);
 				half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
 # ifndef _MAIN_LIGHT_SHADOWS
-				float4 positionCS               : TEXCORRD9;
+				float4 positionCS               : TEXCOORD9;
+                half   mainLightID              : TEXCOORD10;
 # else
 				float4 shadowCoord              : TEXCOORD9;
-				float4 positionCS               : TEXCORRD10;
+				float4 positionCS               : TEXCOORD10;
+                half   mainLightID              : TEXCOORD11;
 # endif
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -403,6 +407,7 @@
                 //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
                 float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
                 o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
+                o.mainLightID = 0.0f;
                 //
 
 				float3 positionWS = TransformObjectToWorld(v.vertex);
