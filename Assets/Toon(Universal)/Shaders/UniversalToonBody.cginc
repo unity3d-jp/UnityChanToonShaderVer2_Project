@@ -384,53 +384,6 @@
                 int perObjectLightIndex = GetPerObjectLightIndex(i);
                 return GetAdditionalPerObjectUtsLight(perObjectLightIndex, positionWS);
             }
-            VertexOutput vert (VertexInput v) {
-                VertexOutput o = (VertexOutput)0;
-
-				UNITY_SETUP_INSTANCE_ID(v);
-				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
-                o.uv0 = v.texcoord0;
-//v.2.0.4
-#ifdef _IS_ANGELRING_OFF
-//
-#elif _IS_ANGELRING_ON
-                o.uv1 = v.texcoord1;
-#endif
-                o.normalDir = UnityObjectToWorldNormal(v.normal);
-                o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
-                o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
-                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
-
-                o.pos = UnityObjectToClipPos( v.vertex );
-                //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
-                float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
-                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
-                o.mainLightID = 0.0f;
-                //
-
-				float3 positionWS = TransformObjectToWorld(v.vertex);
-				float4 positionCS = TransformWorldToHClip(positionWS);
-				half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
-				half fogFactor = ComputeFogFactor(positionCS.z);
-
-				OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
-				OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
-
-				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
-				o.positionCS = positionCS;
-  #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
-   #if SHADOWS_SCREEN
-				o.shadowCoord = ComputeScreenPos(positionCS);
-    #else
-				o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
-    #endif
-  #endif
-
-		
-                return o;
-            }
 
             half3 GetLightColor(UtsLight light)
             {
@@ -449,7 +402,7 @@
                 mainLight.type = 0;
                 mainLightIndex = -2;
                 UtsLight nextLight = GetMainUtsLight(shadowCoord);
-                if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0 )
+                if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                 {
                     mainLight = nextLight;
                     mainLightIndex = -1;
@@ -496,6 +449,57 @@
 
                 return mainLightIndex;
             }
+            VertexOutput vert (VertexInput v) {
+                VertexOutput o = (VertexOutput)0;
+
+				UNITY_SETUP_INSTANCE_ID(v);
+				UNITY_TRANSFER_INSTANCE_ID(v, o);
+				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                o.uv0 = v.texcoord0;
+//v.2.0.4
+#ifdef _IS_ANGELRING_OFF
+//
+#elif _IS_ANGELRING_ON
+                o.uv1 = v.texcoord1;
+#endif
+                o.normalDir = UnityObjectToWorldNormal(v.normal);
+                o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
+                o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
+
+                o.pos = UnityObjectToClipPos( v.vertex );
+                //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
+                float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
+                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
+                //
+
+				float3 positionWS = TransformObjectToWorld(v.vertex);
+				float4 positionCS = TransformWorldToHClip(positionWS);
+				half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
+				half fogFactor = ComputeFogFactor(positionCS.z);
+
+				OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
+				OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
+
+				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+				o.positionCS = positionCS;
+  #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
+    #if SHADOWS_SCREEN
+				o.shadowCoord = ComputeScreenPos(positionCS);
+    #else
+				o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
+    #endif
+                o.mainLightID = DetermineUTS_MainLightIndex(positionCS, o.shadowCoord);
+  #else
+                o.mainLightID = DetermineUTS_MainLightIndex(positionCS, 0);
+  #endif
+
+		
+                return o;
+            }
+
+
 
 #if defined(_SHADINGGRADEMAP)
 	    float4 flagShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
