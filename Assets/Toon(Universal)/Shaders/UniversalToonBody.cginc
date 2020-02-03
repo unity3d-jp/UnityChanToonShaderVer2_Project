@@ -467,6 +467,36 @@
 
                 return mainLight;
             }
+
+            int DetermineUTS_MainLightIndex(float3 posW, float4 shadowCoord)
+            {
+                UtsLight mainLight;
+                mainLight.direction = 0;
+                mainLight.color = 0;
+                mainLight.distanceAttenuation = 0;
+                mainLight.shadowAttenuation = 0;
+                mainLight.type = 0;
+                mainLightIndex = -2;
+                UtsLight nextLight = GetMainUtsLight(shadowCoord);
+                if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
+                {
+                    mainLight = nextLight;
+                    mainLightIndex = -1;
+                }
+                int lightCount = GetAdditionalLightsCount();
+                for (int ii = 0; ii < lightCount; ++ii)
+                {
+                    nextLight = GetAdditionalUtsLight(ii, posW);
+                    if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
+                    {
+                        mainLight = nextLight;
+                        mainLightIndex = ii;
+                    }
+                }
+
+                return mainLightIndex;
+            }
+
 #if defined(_SHADINGGRADEMAP)
 	    float4 flagShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
