@@ -249,11 +249,11 @@
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
 # ifndef _MAIN_LIGHT_SHADOWS
 				float4 positionCS               : TEXCOORD8;
-                half   mainLightID              : TEXCOORD9;
+                int   mainLightID              : TEXCOORD9;
 # else
 				float4 shadowCoord              : TEXCOORD8;
 				float4 positionCS               : TEXCOORD9;
-                half   mainLightID              : TEXCOORD10;
+                int   mainLightID              : TEXCOORD10;
 # endif
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -272,11 +272,11 @@
 				half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
 # ifndef _MAIN_LIGHT_SHADOWS
 				float4 positionCS               : TEXCOORD9;
-                half   mainLightID              : TEXCOORD10;
+                int   mainLightID              : TEXCOORD10;
 # else
 				float4 shadowCoord              : TEXCOORD9;
 				float4 positionCS               : TEXCOORD10;
-                half   mainLightID              : TEXCOORD11;
+                int   mainLightID              : TEXCOORD11;
 # endif
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -434,7 +434,7 @@
                 UtsLight mainLight;
                 INIT_UTSLIGHT(mainLight);
 
-                mainLightIndex = -2;
+                int mainLightIndex = -2;
                 UtsLight nextLight = GetMainUtsLight(shadowCoord);
                 if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                 {
@@ -510,9 +510,9 @@
     #else
 				o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
     #endif
-                o.mainLightID = DetermineUTS_MainLightIndex(positionCS, o.shadowCoord);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, o.shadowCoord);
   #else
-                o.mainLightID = DetermineUTS_MainLightIndex(positionCS, 0);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, 0);
   #endif
 
 		
@@ -522,14 +522,13 @@
 
 
 #if defined(_SHADINGGRADEMAP)
-	    float4 flagShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
+	    float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
             #  ifdef _MAIN_LIGHT_SHADOWS
-                UtsLight mainLight = DetermineUTS_MainLight(i.posWorld.xyz, i.shadowCoord);
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, i.shadowCoord);
             #  else
-                UtsLight mainLight = DetermineUTS_MainLight(i.posWorld.xyz, 0);
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, 0);
             #  endif
-
                 half3 mainLightColor = GetLightColor(mainLight);
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
@@ -813,7 +812,7 @@
 #if 1
                 for (int iLight = -1; iLight < pixelLightCount ; ++iLight)
 				{
-                    if (iLight != mainLightIndex)
+                    if (iLight != i.mainLightID)
                     {
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
                         UtsLight additionalLight = GetMainUtsLight(0);
@@ -962,11 +961,10 @@
         float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
             #  ifdef _MAIN_LIGHT_SHADOWS
-                UtsLight mainLight = DetermineUTS_MainLight(i.posWorld.xyz, i.shadowCoord);
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, i.shadowCoord);
             #  else
-                UtsLight mainLight = DetermineUTS_MainLight(i.posWorld.xyz, 0);
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, 0);
             #  endif
-
 
                 half3 mainLightColor = GetLightColor(mainLight);
 
@@ -1202,7 +1200,7 @@
 #if 1
                 for (int iLight = -1; iLight < pixelLightCount; ++iLight)
 				{
-                    if (iLight != mainLightIndex)
+                    if (iLight != i.mainLightID)
                     {
 
 
@@ -1354,7 +1352,7 @@
             {
 
 #if defined(_SHADINGGRADEMAP)
-                    return flagShadingGradeMap(i, facing);
+                    return fragShadingGradeMap(i, facing);
 
 #else
 
