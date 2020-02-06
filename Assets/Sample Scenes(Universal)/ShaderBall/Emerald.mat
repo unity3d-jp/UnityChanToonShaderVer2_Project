@@ -207,6 +207,7 @@ Material:
     - _Unlit_Intensity: 0.001
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
+    - _ZOverDrawMode: 1
     - _ZWriteMode: 0
     - _simpleUI: 0
     - _utsTechnique: 1
