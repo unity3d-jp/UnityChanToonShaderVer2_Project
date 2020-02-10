@@ -832,13 +832,23 @@ namespace UnityChan
             //EnumPopupでGUI記述.
             cullingMode = (_CullingMode)EditorGUILayout.EnumPopup("Culling Mode", cullingMode);
             //値が変化したらマテリアルに書き込み.
-            if(cullingMode == _CullingMode.CullingOff){
-                material.SetInt(_CullMode, 0);
-            }else if(cullingMode == _CullingMode.FrontCulling){
-                material.SetInt(_CullMode, 1);
-            }else{
-                material.SetInt(_CullMode, 2);
+            if (_CullMode_Setting != (int)cullingMode)
+            {
+                switch (cullingMode)
+                {
+                    case _CullingMode.CullingOff:
+                        material.SetInt(_CullMode, 0);
+                        break;
+                    case _CullingMode.FrontCulling:
+                        material.SetInt(_CullMode, 1);
+                        break;
+                    default:
+                        material.SetInt(_CullMode, 2);
+                        break;
+                }
+
             }
+
 
         }
         void GUI_Tranparent(Material material)
