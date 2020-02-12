@@ -2,6 +2,7 @@
   "dependencies": {
     "com.unity.ide.vscode": "1.1.4",
     "com.unity.package-validation-suite": "0.7.2-preview",
+    "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
     "com.unity.test-framework": "1.1.9",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.ugui": "1.0.0",
@@ -37,5 +38,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.unity.raytracedhardshadow": {
+      "hash": "b3b504927a092b053a38aa9dec3786c78ae5513c",
+      "revision": "HEAD"
+    }
   }
 }
