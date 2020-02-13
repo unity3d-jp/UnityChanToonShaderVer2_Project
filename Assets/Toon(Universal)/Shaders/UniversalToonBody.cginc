@@ -378,7 +378,7 @@
             }
 
             // Fills a light struct given a loop i index. This will convert the i
-// index to a perObjectLightIndex
+		    // index to a perObjectLightIndex
             UtsLight GetAdditionalUtsLight(uint i, float3 positionWS)
             {
                 int perObjectLightIndex = GetPerObjectLightIndex(i);
