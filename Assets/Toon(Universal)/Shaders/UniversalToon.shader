@@ -348,7 +348,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma fragment ShadowPassFragment
 
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
+            #include "UniversalToonShadowCasterPass.hlsl"
             ENDHLSL
         }
 
