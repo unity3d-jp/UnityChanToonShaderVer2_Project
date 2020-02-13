@@ -4,7 +4,7 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 
-float3 _LightDirection;
+//float3 _LightDirection;
 
 struct UtsLight
 {
@@ -25,7 +25,6 @@ struct Varyings
 {
     float2 uv           : TEXCOORD0;
     float4 positionCS   : SV_POSITION;
-	int    mainLightID : TEXCOORD1;
 };
 
 #define INIT_UTSLIGHT(utslight) \
@@ -109,6 +108,36 @@ UtsLight GetAdditionalUtsLight(uint i, float3 positionWS)
 	return GetAdditionalPerObjectUtsLight(perObjectLightIndex, positionWS);
 }
 
+
+UtsLight DetermineUTS_MainLight(float3 posW)
+{
+
+	UtsLight mainLight;
+	mainLight.direction = 0;
+	mainLight.color = 0;
+	mainLight.distanceAttenuation = 0;
+
+	mainLight.type = 0;
+	int mainLightIndex = -2;
+	UtsLight nextLight = GetMainUtsLight();
+	if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
+	{
+		mainLight = nextLight;
+		mainLightIndex = -1;
+	}
+	int lightCount = GetAdditionalLightsCount();
+	for (int ii = 0; ii < lightCount; ++ii)
+	{
+		nextLight = GetAdditionalUtsLight(ii, posW);
+		if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
+		{
+			mainLight = nextLight;
+			mainLightIndex = ii;
+		}
+	}
+
+	return mainLight;
+}
 int DetermineUTS_MainLightIndex(float3 posW)
 {
 	UtsLight mainLight;
@@ -134,12 +163,12 @@ int DetermineUTS_MainLightIndex(float3 posW)
 
 	return mainLightIndex;
 }
-float4 GetShadowPositionHClip(Attributes input)
+float4 GetShadowPositionHClip(Attributes input, half3 lightDir)
 {
     float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
     float3 normalWS = TransformObjectToWorldNormal(input.normalOS);
 
-    float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, _LightDirection));
+    float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDir));
 
 #if UNITY_REVERSED_Z
     positionCS.z = min(positionCS.z, positionCS.w * UNITY_NEAR_CLIP_VALUE);
@@ -154,10 +183,12 @@ Varyings ShadowPassVertex(Attributes input)
 {
     Varyings output;
     UNITY_SETUP_INSTANCE_ID(input);
+	float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
+	UtsLight light = DetermineUTS_MainLight(positionWS);
 
     output.uv = TRANSFORM_TEX(input.texcoord, _BaseMap);
-    output.positionCS = GetShadowPositionHClip(input);
-	output.mainLightID = DetermineUTS_MainLightIndex(output.positionCS);
+    output.positionCS = GetShadowPositionHClip(input,light.direction);
+
     return output;
 }
 
