@@ -846,6 +846,7 @@ SubShader
 							#define USE_CLUSTERED_LIGHTLIST // There is not FPTL lighting when using transparent
 
 							#define SHADERPASS SHADERPASS_FORWARD
+
 							#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
 							#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 

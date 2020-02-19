@@ -167,13 +167,13 @@
                 return ShadeSH9(float4(N,1));
             }
 
-
+#if 0 // disable surfaceData temporarily
             inline void InitializeStandardLitSurfaceDataUTS(float2 uv, out SurfaceData outSurfaceData)
             {
                 // half4 albedoAlpha = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
                 half4 albedoAlpha = half4(1.0,1.0,1.0,1.0);
  
-                outSurfaceData.a = Alpha(albedoAlpha.a, _BaseColor, _Cutoff);
+                outSurfaceData.alpha = Alpha(albedoAlpha.a, _BaseColor, _Cutoff);
             
                 half4 specGloss = SampleMetallicSpecGloss(uv, albedoAlpha.a);
                 outSurfaceData.albedo = albedoAlpha.rgb * _BaseColor.rgb;
@@ -201,6 +201,7 @@
 
                 return EnvironmentBRDF(brdfData, indirectDiffuse, indirectSpecular, fresnelTerm);
             }
+#endif
             uniform float _GI_Intensity;
 
 //v.2.0.4
@@ -547,8 +548,10 @@
 
 
 				// todo. not necessary to calc gi factor in  shadowcaster pass.
+#if 0 // disable surface data temporarily
 				SurfaceData surfaceData;
 				InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
+#endif
 
 				InputData inputData;
 				Varyings  input;
@@ -576,6 +579,7 @@
 #  endif
 				InitializeInputData(input, surfaceData.normalTS, inputData);
 
+#if 0 // disable surface data temporarily
 				BRDFData brdfData;
 				InitializeBRDFData(surfaceData.albedo, 
 					surfaceData.metallic, 
@@ -585,7 +589,9 @@
 
 				half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
 				envColor *= 1.8f;
-
+#else
+				half3 envColor = half3(0.5, 0.5, 0.5);
+#endif				
 
 
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
@@ -993,9 +999,10 @@
 
 
 				// todo. not necessary to calc gi factor in  shadowcaster pass.
+#if 0 // disable surface data temporarily
 				SurfaceData surfaceData;
 				InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
-
+#endif
 				InputData inputData;
 				Varyings  input;
 
@@ -1020,17 +1027,22 @@
 				input.normalWS  = half3(i.normalDir);
 				input.viewDirWS = half3(viewDirection);
 #  endif
-				InitializeInputData(input, surfaceData.normalTS, inputData);
 
+
+#if 0 // disable surface data temporarily
+				InitializeInputData(input, surfaceData.normalTS, inputData);
 				BRDFData brdfData;
-				InitializeBRDFData(surfaceData.albedo, 
-					surfaceData.metallic, 
-					surfaceData.specular, 
+				InitializeBRDFData(surfaceData.albedo,
+					surfaceData.metallic,
+					surfaceData.specular,
 					surfaceData.smoothness,
 					surfaceData.alpha, brdfData);
 
 				half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
 				envColor *= 1.8f;
+#else
+				half3 envColor = half3(0.5, 0.5, 0.5);
+#endif	
 
 
 
