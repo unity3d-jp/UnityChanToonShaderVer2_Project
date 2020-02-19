@@ -9,7 +9,7 @@
 	    uniform float _utsTechnique;
 
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
-#if UCTS_LWRP
+#if UCTS_HDRP
 #else
             uniform float4 _BaseColor;
 #endif
@@ -25,7 +25,10 @@
             uniform sampler2D _2nd_ShadeMap; uniform float4 _2nd_ShadeMap_ST;
             uniform float4 _2nd_ShadeColor;
             uniform fixed _Is_LightColor_2nd_Shade;
+#if UCTS_HDRP
+#else
             uniform sampler2D _NormalMap; uniform float4 _NormalMap_ST;
+#endif
             uniform fixed _Is_NormalMapToBase;
             uniform fixed _Set_SystemShadowsToBase;
             uniform float _Tweak_SystemShadowsLevel;
@@ -100,7 +103,7 @@
             uniform float _CameraRolling_Stabilizer;
             uniform fixed _BlurLevelMatcap;
             uniform fixed _Inverse_MatcapMask;
-#if UCTS_LWRP
+#if UCTS_HDRP
 #else
             uniform float _BumpScale;
 #endif
@@ -170,7 +173,7 @@
                 // half4 albedoAlpha = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
                 half4 albedoAlpha = half4(1.0,1.0,1.0,1.0);
  
-                outSurfaceData.alpha = Alpha(albedoAlpha.a, _BaseColor, _Cutoff);
+                outSurfaceData.a = Alpha(albedoAlpha.a, _BaseColor, _Cutoff);
             
                 half4 specGloss = SampleMetallicSpecGloss(uv, albedoAlpha.a);
                 outSurfaceData.albedo = albedoAlpha.rgb * _BaseColor.rgb;

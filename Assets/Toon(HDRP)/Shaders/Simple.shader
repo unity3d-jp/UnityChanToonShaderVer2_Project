@@ -869,7 +869,8 @@ SubShader
 							#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
 							#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
 							#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPassForward.hlsl"
-
+							#include "HDRPToonHead.cginc"
+							#include "HDRPToonBody.cginc"
 							#pragma vertex Vert
 							#pragma fragment Frag
 
