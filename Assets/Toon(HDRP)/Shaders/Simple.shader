@@ -1154,5 +1154,5 @@ SubShader
 						}
 						}
 
-							CustomEditor "Rendering.HighDefinition.LitGUI"
+						CustomEditor "UnityChan.HDRP.HDRPToonGUI"
 }
