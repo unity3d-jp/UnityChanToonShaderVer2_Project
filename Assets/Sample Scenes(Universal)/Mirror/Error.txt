@@ -1,0 +1,10 @@
+2020/03/11
+現状、MirrorReflection.csがゲームビューの中では正常に動作しない。
+スクリプト中で使用している以下の行が、SRPでは正常に動作しないため。
+
+99行目：            reflectionCamera.Render();
+
+Recursive rendering is not supported in SRP (are you calling Camera.Render from within a render pipeline?).
+UnityEngine.Camera:Render()
+UnityChan.MirrorReflection:OnWillRenderObject() (at Assets/Sample Scenes(Universal)/Mirror/Scripts/MirrorReflection.cs:99)
+UnityEngine.GUIUtility:ProcessEvent(Int32, IntPtr)

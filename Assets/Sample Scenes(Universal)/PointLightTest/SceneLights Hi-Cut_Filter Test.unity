@@ -703,20 +703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101ac74223261194c952044eea3af2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opacity: 0
-  invert: 0
-  blur: 0
-  captureMode: 0
-  fullScreenTexture: {fileID: 0}
-  renderersEnabled: 1
-  globalRendererOptions:
-    opacity: 1
-    scale: {x: 1, y: 1, z: 1}
-    extrude: 0
-    texture: {fileID: 0}
-    depthTest: 1
-    cullMode: 0
-  serializedRenderers: []
 --- !u!1 &829328222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,7 +1285,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: d158fa686e9290d43b6242e73f510a9b, type: 2}
+  sharedProfile: {fileID: 11400000, guid: d5eab031ffd0ea742847fec91204243a, type: 2}
 --- !u!1 &1471963133
 GameObject:
   m_ObjectHideFlags: 0

@@ -703,20 +703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101ac74223261194c952044eea3af2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opacity: 0
-  invert: 0
-  blur: 0
-  captureMode: 0
-  fullScreenTexture: {fileID: 0}
-  renderersEnabled: 1
-  globalRendererOptions:
-    opacity: 1
-    scale: {x: 1, y: 1, z: 1}
-    extrude: 0
-    texture: {fileID: 0}
-    depthTest: 1
-    cullMode: 0
-  serializedRenderers: []
 --- !u!1 &829328222
 GameObject:
   m_ObjectHideFlags: 0

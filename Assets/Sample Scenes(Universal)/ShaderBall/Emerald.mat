@@ -16,8 +16,8 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
-    IgnoreProjection: true
-    RenderType: Transparent
+    IgnoreProjection: False
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -222,7 +222,7 @@ Material:
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0.39549094, g: 0.8574341, b: 0.97794116, a: 1}
-    - _MatCapColor: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
+    - _MatCapColor: {r: 0.7004717, g: 0.9339623, b: 0.897696, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _RimLightColor: {r: 0.9485294, g: 0.98722106, b: 1, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
