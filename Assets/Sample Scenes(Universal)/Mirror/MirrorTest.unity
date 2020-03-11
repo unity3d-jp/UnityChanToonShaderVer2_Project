@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1798405, g: 0.22517692, b: 0.30663395, a: 1}
+  m_IndirectSpecularColor: {r: 0.18386963, g: 0.2290158, b: 0.30310604, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -574,7 +574,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -659,7 +659,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540579316}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: f335f69915190804d81831af1bc90aeb, type: 3}
 --- !u!4 &1540579320
 Transform:
   m_ObjectHideFlags: 0
@@ -810,7 +810,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 2.5
-    m_NormalBias: 0
+    m_NormalBias: 2
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -855,13 +855,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924536754}
-  m_LocalRotation: {x: -0.009000261, y: 0.43607828, z: -0.8982578, w: -0.053738166}
+  m_LocalRotation: {x: -0.07916175, y: 0.28406364, z: -0.9348894, w: 0.19754303}
   m_LocalPosition: {x: -0.66, y: 1.989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 51.664, y: -362.837, z: -548.221}
+  m_LocalEulerAnglesHint: {x: 29.991001, y: -342.514, z: -511.42}
 --- !u!114 &1924536757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UsePipelineSettings: 1
+  m_UsePipelineSettings: 0
 --- !u!1 &2001365617
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,11 +921,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Mode: 0
+  _SetMirrorFor: 0
   m_DisablePixelLights: 0
-  m_TextureSize: 1024
+  m_TextureSize: 4096
   m_ClipPlaneOffset: 0.07
   m_ClipPlaneNear: 0.3
-  m_ClipPlaneFar: 1000
+  m_ClipPlaneFar: 30
   m_ReflectLayers:
     serializedVersion: 2
     m_Bits: 4294967295
