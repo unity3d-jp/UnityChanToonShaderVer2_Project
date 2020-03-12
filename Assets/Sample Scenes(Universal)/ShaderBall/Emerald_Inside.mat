@@ -14,12 +14,11 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2999
   stringTagMap:
     IgnoreProjection: False
     RenderType: TransparentCutout
-  disabledShaderPasses:
-  - SRPDEFAULTUNLIT
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -182,8 +181,8 @@ Material:
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
-    - _SPRDefaultUnlitColorMask: 15
-    - _SRPDefaultUnlitColMode: 1
+    - _SPRDefaultUnlitColorMask: 0
+    - _SRPDefaultUnlitColMode: 2
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
@@ -194,7 +193,7 @@ Material:
     - _StencilOpFail: 0
     - _StencilOpPass: 0
     - _StepOffset: 0
-    - _TransparentEnabled: 0
+    - _TransparentEnabled: 1
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0
     - _Tweak_HighColorMaskLevel: 0
@@ -208,7 +207,8 @@ Material:
     - _Unlit_Intensity: 0.001
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
-    - _ZWriteMode: 1
+    - _ZOverDrawMode: 1
+    - _ZWriteMode: 0
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersion: 2.075
