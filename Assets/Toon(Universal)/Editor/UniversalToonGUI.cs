@@ -512,6 +512,9 @@ namespace UnityChan
             //UTSのシェーダー方式の確認.
             //CheckUtsTechnique(material); // ??? tosh. check this is still neccessary?
 
+            _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
+            _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
+
             //1行目の横並び3ボタン.
             EditorGUILayout.BeginHorizontal();
                 //Original Inspectorの選択チェック.
@@ -857,7 +860,7 @@ namespace UnityChan
             const string _ZWriteMode = "_ZWriteMode";
             const string _ZOverDrawMode = "_ZOverDrawMode";
             DoPopup(transparentModeText, transparentMode, System.Enum.GetNames(typeof(_UTS_Transparent)));
-            _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
+
 
             if (_Transparent_Setting == _UTS_Transparent.On)
             {
@@ -878,7 +881,7 @@ namespace UnityChan
             GUILayout.Label("For _StencilMask or _StencilOut Shader", EditorStyles.boldLabel);
             DoPopup(stencilmodeModeText, stencilMode, System.Enum.GetNames(typeof(_UTS_StencilMode)));
             
-            _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
+
             int _Current_StencilNo = _StencilNo_Setting;
             _Current_StencilNo = (int)EditorGUILayout.IntField("Stencil No.", _Current_StencilNo);
             if (_StencilNo_Setting != _Current_StencilNo)
