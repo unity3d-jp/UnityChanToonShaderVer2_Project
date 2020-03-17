@@ -7,9 +7,9 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace UnityChan
+namespace  UnityEditor.Rendering.Universal.ShaderGUI
 {
-    public class UniversalToonGUI : ShaderGUI {
+    public class UniversalToonGUI : UnityEditor.ShaderGUI {
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
