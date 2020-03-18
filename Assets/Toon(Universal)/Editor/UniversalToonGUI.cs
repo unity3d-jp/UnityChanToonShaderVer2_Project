@@ -18,6 +18,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
         const string ShaderPropMatCap = "_MatCap";
         const string ShaderPropClippingMode = "_ClippingMode";
         const string ShaderPropClippingMask = "_ClippingMask";
+        const string ShaderPropSimpleUI = "_simpleUI";
         const string ShaderPropUtsTechniqe = "_utsTechnique";
         const string ShaderPropAutoRenderQueue = "_AutoRenderQueue";
         const string ShaderPropStencilMode = "_StencilMode";
@@ -28,6 +29,8 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
         const string ShaderPropStencilOpFail = "_StencilOpFail";
         const string ShaderPropStencilWriteMask = "_StencilWriteMask";
         const string ShaderPropStencilReadMask = "_StencilReadMask";
+        const string ShaderPropUtsVersion = "_utsVersion";
+        const string ShaderPropOutline = "_OUTLINE";
 
         const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
         const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
@@ -38,6 +41,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
 
         const string ShaderDefineIS_TRANSCLIPPING_OFF = "_IS_TRANSCLIPPING_OFF";
         const string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
+
 
         const string STR_ONSTATE = "Active";
         const string STR_OFFSTATE = "Off";
@@ -121,7 +125,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
 
         //各種設定保持用.
         //UTS2のバージョン.
-        static float _UTS2VersionNumber = 2.075f;   // todo. 
+        static float _UTS2VersionNumber = 8.0f;   // todo. 
         //
         static _UTS_Transparent _Transparent_Setting;
         static int _StencilNo_Setting;
@@ -493,7 +497,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
             //v.2.0.7.2 / v.2.0.7.4
             //v.2.0.4.3p1以前のBaseMap名との互換性対策、および_utsVersionの更新をおこなう.
             //shader側で新規設定されるのは、_utsVersion = 2.07fなので、CustomGUI側でサブバージョンを付ける.
-            if(material.GetFloat("_utsVersion") < _UTS2VersionNumber)
+            if(material.GetFloat(ShaderPropUtsVersion) < _UTS2VersionNumber)
             {
                 //_MainTexを使っている世代は、_BaseMapにはテクスチャ情報はない.
                 if(material.GetTexture("_BaseMap") != null)
@@ -501,10 +505,10 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
                     //v.2.0.4.3p1以前は_BaseMapにテクスチャ情報があるので、_MainTexにコピー.
                     material.SetTexture("_MainTex",material.GetTexture("_BaseMap"));
                     //処理が終わったので、_utsVersionを更新して設定.
-                    material.SetFloat("_utsVersion", _UTS2VersionNumber);
+                    material.SetFloat(ShaderPropUtsVersion, _UTS2VersionNumber);
                 }else{
                     //処理が不要な場合も、_utsVersionを更新して設定.
-                    material.SetFloat("_utsVersion", _UTS2VersionNumber);
+                    material.SetFloat(ShaderPropUtsVersion, _UTS2VersionNumber);
                 }
             }
             //ここまで.
@@ -518,8 +522,8 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
             //1行目の横並び3ボタン.
             EditorGUILayout.BeginHorizontal();
                 //Original Inspectorの選択チェック.
-                if(material.HasProperty("_simpleUI")){
-                    var selectedUI = material.GetInt("_simpleUI");
+                if(material.HasProperty(ShaderPropSimpleUI)){
+                    var selectedUI = material.GetInt(ShaderPropSimpleUI);
                     if(selectedUI==2){
                         _OriginalInspector = true;  //Original GUI
                     }else if(selectedUI == 1){
@@ -531,7 +535,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
                         if (GUILayout.Button("Change CustomUI",middleButtonStyle))
                         {
                             _OriginalInspector = false;
-                            material.SetInt("_simpleUI",0); //UTS2 Pro GUI
+                            material.SetInt(ShaderPropSimpleUI,0); //UTS2 Pro GUI
                         }
                         OpenManualLink();
                         //継承したレイアウトのクリア.
@@ -543,7 +547,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
                     if (GUILayout.Button("Show All properties",middleButtonStyle))
                     {
                         _OriginalInspector = true;
-                        material.SetInt("_simpleUI",2); //Original GUI
+                        material.SetInt(ShaderPropSimpleUI,2); //Original GUI
                     }        
                 }
                 //マニュアルを開く.
@@ -696,7 +700,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
 
             EditorGUILayout.Space();
 
-            if(material.HasProperty("_OUTLINE") && _Transparent_Setting != _UTS_Transparent.On){
+            if(material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On){
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -938,8 +942,8 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
 
         void GUI_OptionMenu(Material material){
             GUILayout.Label("Option Menu", EditorStyles.boldLabel);
-            if(material.HasProperty("_simpleUI")){
-                if(material.GetInt("_simpleUI") == 1){
+            if(material.HasProperty(ShaderPropSimpleUI)){
+                if(material.GetInt(ShaderPropSimpleUI) == 1){
                     _SimpleUI = true; //UTS2 Custom GUI Biginner
                 }
                 else{
@@ -953,12 +957,12 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
             if(_SimpleUI == false) {
                 if (GUILayout.Button("Pro / Full Control",middleButtonStyle))
                 {
-                    material.SetInt("_simpleUI",1); //UTS2 Custom GUI Biginner
+                    material.SetInt(ShaderPropSimpleUI,1); //UTS2 Custom GUI Biginner
                 }
             }else{
                 if (GUILayout.Button("Biginner",middleButtonStyle))
                 {
-                    material.SetInt("_simpleUI",0); //UTS2 Custom GUI Pro
+                    material.SetInt(ShaderPropSimpleUI,0); //UTS2 Custom GUI Pro
                 }
             }
             EditorGUILayout.EndHorizontal();
@@ -1012,8 +1016,8 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
 					shaderKeywords = shaderKeywords + "_EMISSIVE_ANIMATION";
 				}
 			}
-			if(material.HasProperty("_OUTLINE")){
-				float outlineMode = material.GetFloat("_OUTLINE");
+			if(material.HasProperty(ShaderPropOutline)){
+				float outlineMode = material.GetFloat(ShaderPropOutline);
 				if(outlineMode == 0)
 				{
 					shaderKeywords = shaderKeywords + " _OUTLINE_NML";
@@ -1078,7 +1082,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
             if(material.HasProperty(ShaderPropAngelRing)){//AngelRingがある場合.
                 material.SetFloat("_Is_LightColor_AR",1);
             }
-            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+            if(material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
             {
                 material.SetFloat("_Is_LightColor_Outline",1);
             }
@@ -2124,7 +2128,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
             //
             //Shaderプロパティ [KeywordEnum(NML,POS)] をEumPopupで表現する.
             //マテリアル内のアウトラインモードの設定を読み込み.
-            int _OutlineMode_Setting = material.GetInt("_OUTLINE");
+            int _OutlineMode_Setting = material.GetInt(ShaderPropOutline);
             //Enum形式に変換して、outlineMode変数に保持しておく.
             if ((int)_OutlineMode.NormalDirection == _OutlineMode_Setting){
                 outlineMode = _OutlineMode.NormalDirection;
@@ -2135,12 +2139,12 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
             outlineMode = (_OutlineMode)EditorGUILayout.EnumPopup("Outline Mode", outlineMode);
             //値が変化したらマテリアルに書き込み.
             if(outlineMode == _OutlineMode.NormalDirection){
-                material.SetFloat("_OUTLINE",0);
+                material.SetFloat(ShaderPropOutline,0);
                 //UTCS_Outline.cginc側のキーワードもトグル入れ替え.
                 material.EnableKeyword("_OUTLINE_NML");
                 material.DisableKeyword("_OUTLINE_POS");
             }else if(outlineMode == _OutlineMode.PositionScaling){
-                material.SetFloat("_OUTLINE",1);
+                material.SetFloat(ShaderPropOutline,1);
                 material.EnableKeyword("_OUTLINE_POS");
                 material.DisableKeyword("_OUTLINE_NML");
             }
@@ -2362,7 +2366,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
                 EditorGUILayout.EndHorizontal();
             }
 
-            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+            if(material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Outline");
@@ -2398,7 +2402,7 @@ namespace  UnityEditor.Rendering.Universal.ShaderGUI
                         material.SetFloat("_Is_LightColor_Base",1);
                         material.SetFloat("_Is_LightColor_1st_Shade",1);
                         material.SetFloat("_Is_LightColor_2nd_Shade",1);
-                        if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+                        if(material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
                         {
                             material.SetFloat("_Is_LightColor_Outline",1);
                         }
