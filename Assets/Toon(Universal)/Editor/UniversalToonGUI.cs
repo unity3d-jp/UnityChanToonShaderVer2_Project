@@ -32,7 +32,8 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         const string ShaderPropStencilReadMask = "_StencilReadMask";
         const string ShaderPropUtsVersion = "_utsVersion";
         const string ShaderPropOutline = "_OUTLINE";
-
+        const string ShaderPropNormalMapToHighColor = "_Is_NormalMapToHighColor";
+        const string ShaderPropIsNormalMapToRimLight = "_Is_NormalMapToRimLight";
         const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
         const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
 
@@ -1242,18 +1243,18 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("HighColor");
                 //GUILayout.Space(60);
-                if (material.GetFloat("_Is_NormalMapToHighColor") == 0)
+                if (material.GetFloat(ShaderPropNormalMapToHighColor) == 0)
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
-                        material.SetFloat("_Is_NormalMapToHighColor", 1);
+                        material.SetFloat(ShaderPropNormalMapToHighColor, 1);
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
-                        material.SetFloat("_Is_NormalMapToHighColor", 0);
+                        material.SetFloat(ShaderPropNormalMapToHighColor, 0);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
@@ -1261,18 +1262,18 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("RimLight");
                 //GUILayout.Space(60);
-                if (material.GetFloat("_Is_NormalMapToRimLight") == 0)
+                if (material.GetFloat(ShaderPropIsNormalMapToRimLight) == 0)
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
-                        material.SetFloat("_Is_NormalMapToRimLight", 1);
+                        material.SetFloat(ShaderPropIsNormalMapToRimLight, 1);
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
-                        material.SetFloat("_Is_NormalMapToRimLight", 0);
+                        material.SetFloat(ShaderPropIsNormalMapToRimLight, 0);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
