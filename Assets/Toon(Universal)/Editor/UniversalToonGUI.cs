@@ -75,6 +75,13 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         const string _Is_ViewCoord_Scroll = "_Is_ViewCoord_Scroll";
         const string _Is_PingPong_Base = "_Is_PingPong_Base";
 
+        const string _Is_ViewShift = "_Is_ViewShift";
+        const string _Is_BlendBaseColor = "_Is_BlendBaseColor";
+        const string _Is_OutlineTex = "_Is_OutlineTex";
+        const string _Is_BakedNormal = "_Is_BakedNormal";
+        const string _Is_BLD = "_Is_BLD";
+        const string _Inverse_Z_Axis_BLD = "_Inverse_Z_Axis_BLD";
+
         const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
         const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
 
@@ -2277,23 +2284,23 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("ViewShift of Color");
                     //GUILayout.Space(60);
-                    if (material.GetFloat("_Is_ViewShift") == 0)
+                    if (material.GetFloat(_Is_ViewShift) == 0)
                     {
                         if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                         {
-                            material.SetFloat("_Is_ViewShift", 1);
+                            material.SetFloat(_Is_ViewShift, 1);
                         }
                     }
                     else
                     {
                         if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                         {
-                            material.SetFloat("_Is_ViewShift", 0);
+                            material.SetFloat(_Is_ViewShift, 0);
                         }
                     }
                     EditorGUILayout.EndHorizontal();
                     EditorGUI.indentLevel++;
-                    if (material.GetFloat("_Is_ViewShift") == 1)
+                    if (material.GetFloat(_Is_ViewShift) == 1)
                     {
                         m_MaterialEditor.ColorProperty(viewShift, "ViewShift Color");
                     }
@@ -2385,18 +2392,18 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Blend BaseColor to Outline");
             //GUILayout.Space(60);
-            if (material.GetFloat("_Is_BlendBaseColor") == 0)
+            if (material.GetFloat(_Is_BlendBaseColor) == 0)
             {
                 if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Is_BlendBaseColor", 1);
+                    material.SetFloat(_Is_BlendBaseColor, 1);
                 }
             }
             else
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Is_BlendBaseColor", 0);
+                    material.SetFloat(_Is_BlendBaseColor, 0);
                 }
             }
             EditorGUILayout.EndHorizontal();
@@ -2419,11 +2426,11 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("Use Outline Texture");
                     //GUILayout.Space(60);
-                    if (material.GetFloat("_Is_OutlineTex") == 0)
+                    if (material.GetFloat(_Is_OutlineTex) == 0)
                     {
                         if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                         {
-                            material.SetFloat("_Is_OutlineTex", 1);
+                            material.SetFloat(_Is_OutlineTex, 1);
                         }
                         EditorGUILayout.EndHorizontal();
                     }
@@ -2431,7 +2438,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                     {
                         if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                         {
-                            material.SetFloat("_Is_OutlineTex", 0);
+                            material.SetFloat(_Is_OutlineTex, 0);
                         }
                         EditorGUILayout.EndHorizontal();
                         m_MaterialEditor.TexturePropertySingleLine(Styles.outlineTexText, outlineTex);
@@ -2442,11 +2449,11 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.PrefixLabel("Use Baked Normal for Outline");
                         //GUILayout.Space(60);
-                        if (material.GetFloat("_Is_BakedNormal") == 0)
+                        if (material.GetFloat(_Is_BakedNormal) == 0)
                         {
                             if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                             {
-                                material.SetFloat("_Is_BakedNormal", 1);
+                                material.SetFloat(_Is_BakedNormal, 1);
                             }
                             EditorGUILayout.EndHorizontal();
                         }
@@ -2454,7 +2461,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                         {
                             if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                             {
-                                material.SetFloat("_Is_BakedNormal", 0);
+                                material.SetFloat(_Is_BakedNormal, 0);
                             }
                             EditorGUILayout.EndHorizontal();
                             m_MaterialEditor.TexturePropertySingleLine(Styles.bakedNormalOutlineText, bakedNormal);
@@ -2690,22 +2697,22 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Built-in Light Direction");
             //GUILayout.Space(60);
-            if (material.GetFloat("_Is_BLD") == 0)
+            if (material.GetFloat(_Is_BLD) == 0)
             {
                 if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Is_BLD", 1);
+                    material.SetFloat(_Is_BLD, 1);
                 }
             }
             else
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Is_BLD", 0);
+                    material.SetFloat(_Is_BLD, 0);
                 }
             }
             EditorGUILayout.EndHorizontal();
-            if (material.GetFloat("_Is_BLD") == 1)
+            if (material.GetFloat(_Is_BLD) == 1)
             {
                 GUILayout.Label("    Built-in Light Direction Settings");
                 EditorGUI.indentLevel++;
@@ -2715,18 +2722,18 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("● Inverse Z-Axis Direction");
                 //GUILayout.Space(60);
-                if (material.GetFloat("_Inverse_Z_Axis_BLD") == 0)
+                if (material.GetFloat(_Inverse_Z_Axis_BLD) == 0)
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
-                        material.SetFloat("_Inverse_Z_Axis_BLD", 1);
+                        material.SetFloat(_Inverse_Z_Axis_BLD, 1);
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
-                        material.SetFloat("_Inverse_Z_Axis_BLD", 0);
+                        material.SetFloat(_Inverse_Z_Axis_BLD, 0);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
