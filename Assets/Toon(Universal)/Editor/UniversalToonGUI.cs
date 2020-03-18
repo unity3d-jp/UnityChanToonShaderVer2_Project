@@ -521,37 +521,43 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
             //1行目の横並び3ボタン.
             EditorGUILayout.BeginHorizontal();
-                //Original Inspectorの選択チェック.
-                if(material.HasProperty(ShaderPropSimpleUI)){
-                    var selectedUI = material.GetInt(ShaderPropSimpleUI);
-                    if(selectedUI==2){
-                        _OriginalInspector = true;  //Original GUI
-                    }else if(selectedUI == 1){
-                        _SimpleUI = true;   //UTS2 Biginner GUI
-                    }
-                    //Original/Custom GUI 切り替えボタン.
-                    if (_OriginalInspector)
-                    {
-                        if (GUILayout.Button("Change CustomUI",middleButtonStyle))
-                        {
-                            _OriginalInspector = false;
-                            material.SetInt(ShaderPropSimpleUI,0); //UTS2 Pro GUI
-                        }
-                        OpenManualLink();
-                        //継承したレイアウトのクリア.
-                        EditorGUILayout.EndHorizontal();
-                        //オリジナルのGUI表示
-                        m_MaterialEditor.PropertiesDefaultGUI(props);
-                        return;
-                    }
-                    if (GUILayout.Button("Show All properties",middleButtonStyle))
-                    {
-                        _OriginalInspector = true;
-                        material.SetInt(ShaderPropSimpleUI,2); //Original GUI
-                    }        
+#if true   // disabled SimpleUI
+            //Original Inspectorの選択チェック.
+            if (material.HasProperty(ShaderPropSimpleUI))
+            {
+                var selectedUI = material.GetInt(ShaderPropSimpleUI);
+                if (selectedUI == 2)
+                {
+                    _OriginalInspector = true;  //Original GUI
                 }
-                //マニュアルを開く.
-                OpenManualLink();
+                else if (selectedUI == 1)
+                {
+                    _SimpleUI = true;   //UTS2 Biginner GUI
+                }
+                //Original/Custom GUI 切り替えボタン.
+                if (_OriginalInspector)
+                {
+                    if (GUILayout.Button("Change CustomUI", middleButtonStyle))
+                    {
+                        _OriginalInspector = false;
+                        material.SetInt(ShaderPropSimpleUI, 0); //UTS2 Pro GUI
+                    }
+                    OpenManualLink();
+                    //継承したレイアウトのクリア.
+                    EditorGUILayout.EndHorizontal();
+                    //オリジナルのGUI表示
+                    m_MaterialEditor.PropertiesDefaultGUI(props);
+                    return;
+                }
+                if (GUILayout.Button("Show All properties", middleButtonStyle))
+                {
+                    _OriginalInspector = true;
+                    material.SetInt(ShaderPropSimpleUI, 2); //Original GUI
+                }
+            }
+#endif
+            //マニュアルを開く.
+            OpenManualLink();
             EditorGUILayout.EndHorizontal();
 
             EditorGUI.BeginChangeCheck();
@@ -979,7 +985,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             if(_Use_VrcRecommend){
                 EditorGUILayout.HelpBox("UTS2 : Applied VRChat Recommended Settings.",MessageType.Info);
             }
-
+#if false
             //v.2.0.7
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Remove Unused Keywords/Properties from Material");
@@ -993,6 +999,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             if(_RemovedUnusedKeywordsMessage){
                 EditorGUILayout.HelpBox("UTS2 : Unused Material Properties and ShaderKeywords are removed.",MessageType.Info);
             }
+#endif
             //
         }
 
