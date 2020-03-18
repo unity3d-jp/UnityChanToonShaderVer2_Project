@@ -7,7 +7,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace  UnityEditor.Rendering.Universal.ShaderGUI
+namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 {
     public class UniversalToonGUI : UnityEditor.ShaderGUI {
 
