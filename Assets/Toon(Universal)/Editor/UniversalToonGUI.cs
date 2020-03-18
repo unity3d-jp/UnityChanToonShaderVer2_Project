@@ -34,6 +34,8 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         const string ShaderPropOutline = "_OUTLINE";
         const string ShaderPropNormalMapToHighColor = "_Is_NormalMapToHighColor";
         const string ShaderPropIsNormalMapToRimLight = "_Is_NormalMapToRimLight";
+        const string ShaderPropSetSystemShadowsToBase = "_Set_SystemShadowsToBase";
+        const string ShaderPropIsFilterHiCutPointLightColor = "_Is_Filter_HiCutPointLightColor";
         const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
         const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
 
@@ -1150,8 +1152,8 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             {
                 material.SetFloat("_Is_LightColor_Outline", 1);
             }
-            material.SetFloat("_Set_SystemShadowsToBase", 1);
-            material.SetFloat("_Is_Filter_HiCutPointLightColor", 1);
+            material.SetFloat(ShaderPropSetSystemShadowsToBase, 1);
+            material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, 1);
             material.SetFloat("_CameraRolling_Stabilizer", 1);
             material.SetFloat("_Is_Ortho", 0);
             material.SetFloat("_GI_Intensity", 0);
@@ -1339,23 +1341,23 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Receive System Shadows");
             //GUILayout.Space(60);
-            if (material.GetFloat("_Set_SystemShadowsToBase") == 0)
+            if (material.GetFloat(ShaderPropSetSystemShadowsToBase) == 0)
             {
                 if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Set_SystemShadowsToBase", 1);
+                    material.SetFloat(ShaderPropSetSystemShadowsToBase, 1);
                 }
             }
             else
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Set_SystemShadowsToBase", 0);
+                    material.SetFloat(ShaderPropSetSystemShadowsToBase, 0);
                 }
             }
             EditorGUILayout.EndHorizontal();
 
-            if (material.GetFloat("_Set_SystemShadowsToBase") == 1)
+            if (material.GetFloat(ShaderPropSetSystemShadowsToBase) == 1)
             {
                 EditorGUI.indentLevel++;
                 m_MaterialEditor.RangeProperty(tweak_SystemShadowsLevel, "System Shadows Level");
@@ -1413,11 +1415,11 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("PointLights Hi-Cut Filter");
             //GUILayout.Space(60);
-            if (material.GetFloat("_Is_Filter_HiCutPointLightColor") == 0)
+            if (material.GetFloat(ShaderPropIsFilterHiCutPointLightColor) == 0)
             {
                 if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Is_Filter_HiCutPointLightColor", 1);
+                    material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, 1);
                 }
             }
             else
