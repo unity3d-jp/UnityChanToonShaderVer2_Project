@@ -6,7 +6,7 @@
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 //
-	    uniform float _utsTechnique;
+            uniform float _utsTechnique;
 
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
 #if UCTS_LWRP
@@ -268,18 +268,18 @@
                 //v.2.0.7
                 float mirrorFlag : TEXCOORD6;
 
-				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 7);
-				half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
+                DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 7);
+                half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
 # ifndef _MAIN_LIGHT_SHADOWS
-				float4 positionCS               : TEXCOORD9;
+                float4 positionCS               : TEXCOORD9;
                 int   mainLightID              : TEXCOORD10;
 # else
-				float4 shadowCoord              : TEXCOORD9;
-				float4 positionCS               : TEXCOORD10;
+                float4 shadowCoord              : TEXCOORD9;
+                float4 positionCS               : TEXCOORD10;
                 int   mainLightID              : TEXCOORD11;
 # endif
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-				UNITY_VERTEX_OUTPUT_STEREO
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+                UNITY_VERTEX_OUTPUT_STEREO
 #else
                 LIGHTING_COORDS(7,8)
                 UNITY_FOG_COORDS(9)
@@ -472,9 +472,9 @@
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
 
-				UNITY_SETUP_INSTANCE_ID(v);
-				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 o.uv0 = v.texcoord0;
 //v.2.0.4
@@ -494,21 +494,21 @@
                 o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
                 //
 
-				float3 positionWS = TransformObjectToWorld(v.vertex);
-				float4 positionCS = TransformWorldToHClip(positionWS);
-				half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
-				half fogFactor = ComputeFogFactor(positionCS.z);
+                float3 positionWS = TransformObjectToWorld(v.vertex);
+                float4 positionCS = TransformWorldToHClip(positionWS);
+                half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
+                half fogFactor = ComputeFogFactor(positionCS.z);
 
-				OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
-				OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
+                OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
+                OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
-				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
-				o.positionCS = positionCS;
+                o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+                o.positionCS = positionCS;
   #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
     #if SHADOWS_SCREEN
-				o.shadowCoord = ComputeScreenPos(positionCS);
+                o.shadowCoord = ComputeScreenPos(positionCS);
     #else
-				o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
+                o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
     #endif
                 o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, o.shadowCoord);
   #else
@@ -522,7 +522,7 @@
 
 
 #if defined(_SHADINGGRADEMAP)
-	    float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
+        float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
         {
             #  ifdef _MAIN_LIGHT_SHADOWS
                 UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, i.shadowCoord);
@@ -543,45 +543,45 @@
                 float3 normalDirection = normalize(mul( normalLocal, tangentTransform )); // Perturbed normals
 
 
-				// todo. not necessary to calc gi factor in  shadowcaster pass.
-				SurfaceData surfaceData;
-				InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
+                // todo. not necessary to calc gi factor in  shadowcaster pass.
+                SurfaceData surfaceData;
+                InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
-				InputData inputData;
-				Varyings  input;
+                InputData inputData;
+                Varyings  input;
 
-				// todo.  it has to be cared more.
-				UNITY_SETUP_INSTANCE_ID(input);
-				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
-				input.vertexSH = i.vertexSH;
-				input.uv = i.uv0;
-				input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
+                // todo.  it has to be cared more.
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+                input.vertexSH = i.vertexSH;
+                input.uv = i.uv0;
+                input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
 #  ifdef _MAIN_LIGHT_SHADOWS
-				input.shadowCoord = i.shadowCoord;
+                input.shadowCoord = i.shadowCoord;
 #  endif
 
 #  ifdef _ADDITIONAL_LIGHTS
-				input.positionWS = i.posWorld.xyz;
+                input.positionWS = i.posWorld.xyz;
 #  endif
 #  ifdef _NORMALMAP
-				input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
-				input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
-				input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
+                input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
+                input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
+                input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
 #  else
-				input.normalWS  = half3(i.normalDir);
-				input.viewDirWS = half3(viewDirection);
+                input.normalWS  = half3(i.normalDir);
+                input.viewDirWS = half3(viewDirection);
 #  endif
-				InitializeInputData(input, surfaceData.normalTS, inputData);
+                InitializeInputData(input, surfaceData.normalTS, inputData);
 
-				BRDFData brdfData;
-				InitializeBRDFData(surfaceData.albedo, 
-					surfaceData.metallic, 
-					surfaceData.specular, 
-					surfaceData.smoothness,
-					surfaceData.alpha, brdfData);
+                BRDFData brdfData;
+                InitializeBRDFData(surfaceData.albedo,
+                    surfaceData.metallic,
+                    surfaceData.specular,
+                    surfaceData.smoothness,
+                    surfaceData.alpha, brdfData);
 
-				half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
-				envColor *= 1.8f;
+                half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
+                envColor *= 1.8f;
 
 
 
@@ -599,7 +599,7 @@
 #endif
 
 
-				half shadowAttenuation = 1.0;
+                half shadowAttenuation = 1.0;
 
 # ifdef _MAIN_LIGHT_SHADOWS
 
@@ -618,9 +618,9 @@
                 lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
                 //v.2.0.5: 
 
-				half3 originalLightColor = mainLightColor.rgb;
+                half3 originalLightColor = mainLightColor.rgb;
 
-				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
+                float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
 
 
@@ -798,20 +798,20 @@
 //
                 //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
 
-				float3 envLightColor = envColor.rgb;
+                float3 envLightColor = envColor.rgb;
 
                 float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b <1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
 
 
-				float3 pointLightColor = 0;
+                float3 pointLightColor = 0;
   #ifdef _ADDITIONAL_LIGHTS
 
-				int pixelLightCount = GetAdditionalLightsCount();
+                int pixelLightCount = GetAdditionalLightsCount();
 
-#if 1
+  #if 1 // determine main light inorder to apply light culling properly
                 for (int iLight = -1; iLight < pixelLightCount ; ++iLight)
-				{
+                {
                     if (iLight != i.mainLightID)
                     {
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
@@ -916,17 +916,17 @@
                         pointLightColor += finalColor;
                         //	pointLightColor += lightColor;
                     }
-				}
-#endif
-  #endif
+                }
+  #endif // determine main light inorder to apply light culling properly
+  #endif // _ADDITIONAL_LIGHTS
 
-				//
+                //
                 //Final Composition
 
                 finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
 
 
-				finalColor += pointLightColor;
+                finalColor += pointLightColor;
 
 
 
@@ -936,12 +936,12 @@
 //v.2.0.4
 #ifdef _IS_TRANSCLIPPING_OFF
 
-	                fixed4 finalRGBA = fixed4(finalColor,1);
+                fixed4 finalRGBA = fixed4(finalColor,1);
 
 #elif _IS_TRANSCLIPPING_ON
-	                float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
+                float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
 
-	                fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
+                fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
 
 #endif
 
@@ -968,16 +968,10 @@
 
                 half3 mainLightColor = GetLightColor(mainLight);
 
-//                float4 retRGBA = float4(mainLightColor.r, mainLightColor.g, mainLightColor.b,1.0);
-//                return retRGBA;
-
                 i.normalDir = normalize(i.normalDir);
-			    float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
-
+                float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
 
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
-
-
 
                 float2 Set_UV0 = i.uv0;
                 //v.2.0.6
@@ -989,45 +983,44 @@
                 float3 normalDirection = normalize(mul( normalLocal, tangentTransform )); // Perturbed normals
 
 
-				// todo. not necessary to calc gi factor in  shadowcaster pass.
-				SurfaceData surfaceData;
-				InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
+                // todo. not necessary to calc gi factor in  shadowcaster pass.
+                SurfaceData surfaceData;
+                InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
-				InputData inputData;
-				Varyings  input;
+                InputData inputData;
+                Varyings  input;
 
-				// todo.  it has to be cared more.
-				UNITY_SETUP_INSTANCE_ID(input);
-				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
-				input.vertexSH = i.vertexSH;
-				input.uv = i.uv0;
-				input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+                input.vertexSH = i.vertexSH;
+                input.uv = i.uv0;
+                input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
 #  ifdef _MAIN_LIGHT_SHADOWS
-				input.shadowCoord = i.shadowCoord;
+                input.shadowCoord = i.shadowCoord;
 #  endif
 
 #  ifdef _ADDITIONAL_LIGHTS
-				input.positionWS = i.posWorld.xyz;
+                input.positionWS = i.posWorld.xyz;
 #  endif
 #  ifdef _NORMALMAP
-				input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
-				input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
-				input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
+                input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
+                input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
+                input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
 #  else
-				input.normalWS  = half3(i.normalDir);
-				input.viewDirWS = half3(viewDirection);
+                input.normalWS  = half3(i.normalDir);
+                input.viewDirWS = half3(viewDirection);
 #  endif
-				InitializeInputData(input, surfaceData.normalTS, inputData);
+                InitializeInputData(input, surfaceData.normalTS, inputData);
 
-				BRDFData brdfData;
-				InitializeBRDFData(surfaceData.albedo, 
-					surfaceData.metallic, 
-					surfaceData.specular, 
-					surfaceData.smoothness,
-					surfaceData.alpha, brdfData);
+                BRDFData brdfData;
+                InitializeBRDFData(surfaceData.albedo,
+                    surfaceData.metallic,
+                    surfaceData.specular,
+                    surfaceData.smoothness,
+                    surfaceData.alpha, brdfData);
 
-				half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
-				envColor *= 1.8f;
+                half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
+                envColor *= 1.8f;
 
 
 
@@ -1054,10 +1047,8 @@
 
 
 
-				half shadowAttenuation = 1.0;
+                half shadowAttenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
-
-
                 shadowAttenuation = mainLight.shadowAttenuation;
 # endif
 
@@ -1076,7 +1067,7 @@
 
                 half3 originalLightColor = mainLightColor.rgb;
 
-				float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
+                float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
 
 
 
@@ -1187,19 +1178,19 @@
                 //
                 //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
 
-				float3 envLightColor = envColor.rgb;
+                float3 envLightColor = envColor.rgb;
 
                 float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b <1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
 
-				float3 pointLightColor = 0;
+                float3 pointLightColor = 0;
   #ifdef _ADDITIONAL_LIGHTS
 
-				int pixelLightCount = GetAdditionalLightsCount();
+                int pixelLightCount = GetAdditionalLightsCount();
 
-#if 1
+  #if 1  // determine main light inorder to apply light culling
                 for (int iLight = -1; iLight < pixelLightCount; ++iLight)
-				{
+                {
                     if (iLight != i.mainLightID)
                     {
 
@@ -1263,12 +1254,10 @@
                         pointLightColor += finalColor;
                         //	pointLightColor += lightColor;
                     }
-				}
-#endif 
-
+                }
+  #endif // determine main light inorder to apply light culling
   #endif
 
-				//
 
 //v.2.0.7
 #ifdef _EMISSIVE_SIMPLE
@@ -1312,9 +1301,7 @@
                 finalColor =  saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1,0,envLightIntensity/2)) + emissive;
 
 
-				finalColor += pointLightColor;
-
-
+                finalColor += pointLightColor;
 #endif
 
 
@@ -1322,19 +1309,17 @@
 #ifdef _IS_CLIPPING_OFF
 //DoubleShadeWithFeather
 
-	                fixed4 finalRGBA = fixed4(finalColor,1);
+                fixed4 finalRGBA = fixed4(finalColor,1);
 
 #elif _IS_CLIPPING_MODE
 //DoubleShadeWithFeather_Clipping
 
-	                fixed4 finalRGBA = fixed4(finalColor,1);
+                fixed4 finalRGBA = fixed4(finalColor,1);
 
 #elif _IS_CLIPPING_TRANSMODE
 //DoubleShadeWithFeather_TransClipping
-    				float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
-
-                	fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
-
+                float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
+                fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
 
 #endif
 
@@ -1342,20 +1327,11 @@
             }
 #endif //#if defined(_SHADINGGRADEMAP)
 
-
-            float4 flagTest(VertexOutput i, fixed facing : VFACE) : SV_TARGET
-            {
-                return float4(1.0f,0.0f,0.0f,1.0f);
-            }
-
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET
             {
-
 #if defined(_SHADINGGRADEMAP)
                     return fragShadingGradeMap(i, facing);
-
 #else
-
                     return fragDoubleShadeFeather(i, facing);
 #endif
             }
