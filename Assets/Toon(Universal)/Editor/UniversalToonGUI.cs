@@ -1,7 +1,7 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//UniveraslToonGUI.cs based on UTS2GUI.cs for UTS2 v.2.0.7.5
+//v.2.9.9
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com
+//toshiyuki@unity3d.com (Univerasl RP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 using UnityEngine;
@@ -30,7 +30,9 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         const string ShaderPropStencilOpFail = "_StencilOpFail";
         const string ShaderPropStencilWriteMask = "_StencilWriteMask";
         const string ShaderPropStencilReadMask = "_StencilReadMask";
-        const string ShaderPropUtsVersion = "_utsVersion";
+        const string ShaderPropUtsVersionX = "_utsVersionX";
+        const string ShaderPropUtsVersionY = "_utsVersionY";
+        const string ShaderPropUtsVersionZ = "_utsVersionZ";
         const string ShaderPropOutline = "_OUTLINE";
         const string ShaderPropNormalMapToHighColor = "_Is_NormalMapToHighColor";
         const string ShaderPropIsNormalMapToRimLight = "_Is_NormalMapToRimLight";
@@ -547,11 +549,6 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             FindProperties(props);
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
-
-
-
-            //UTSのシェーダー方式の確認.
-            //CheckUtsTechnique(material); // ??? tosh. check this is still neccessary?
 
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
