@@ -1,8 +1,8 @@
 ﻿//UCTS_DoubleShadeWithFeather.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+//v.2.9.9
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (LWRP)  
+//toshiyuki@unity3d.com (Univerasl RP)  
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 //

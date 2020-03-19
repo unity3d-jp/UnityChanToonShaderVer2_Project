@@ -1,22 +1,25 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+//v.2.9.9
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (LWRP) 
+//toshiyuki@unity3d.com (Universal RP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "Universal Render Pipeline/Toon" {
-	Properties{
-		[HideInInspector] _simpleUI("SimpleUI", Int) = 0
-		[HideInInspector] _utsVersion("Version", Float) = 2.07
-		[HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
-		[HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
-		[Enum(OFF,0,StencilOut,1,StencilMask,2)] _StencilMode("StencilMode",int) = 0
-		// these are set in UniversalToonGUI.cs in accordance with _StencilMode
-		_StencilComp("Stencil Comparison", Float) = 8
-		_StencilNo("Stencil No", Float) = 1
-		_StencilOpPass("Stencil Operation", Float) = 0
-		_StencilOpFail("Stencil Operation", Float) = 0
-		[Enum(OFF,0,ON,1,] _TransparentEnabled("Transparent Mode", int) = 0
+    Properties{
+        [HideInInspector] _simpleUI("SimpleUI", Int) = 0
+        [HideInInspector] _utsVersionX("VersionX", Float) = 2
+        [HideInInspector] _utsVersionY("VersionY", Float) = 9
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 9
+
+        [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
+        [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
+        [Enum(OFF,0,StencilOut,1,StencilMask,2)] _StencilMode("StencilMode",int) = 0
+        // these are set in UniversalToonGUI.cs in accordance with _StencilMode
+        _StencilComp("Stencil Comparison", Float) = 8
+        _StencilNo("Stencil No", Float) = 1
+        _StencilOpPass("Stencil Operation", Float) = 0
+        _StencilOpFail("Stencil Operation", Float) = 0
+        [Enum(OFF,0,ON,1,] _TransparentEnabled("Transparent Mode", int) = 0
 
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
@@ -25,10 +28,10 @@ Shader "Universal Render Pipeline/Toon" {
         [Enum(OFF,0,ON,1,TRANSMODE,2)] _ClippingMode ("CliippingMode",int) =  0
 
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
-		[Enum(OFF,0,ONT,1)]	_ZWriteMode("ZWrite Mode", int) = 1  //OFF/ON
+        [Enum(OFF,0,ONT,1)]	_ZWriteMode("ZWrite Mode", int) = 1  //OFF/ON
         [Enum(OFF,0,ONT,1)]	_ZOverDrawMode("ZOver Draw Mode", Float) = 0  //OFF/ON
-		_SPRDefaultUnlitColorMask("SPRDefaultUnlit Path Color Mask", int) = 15
-		[Enum(OFF,0,FRONT,1,BACK,2)] _SRPDefaultUnlitColMode("SPRDefaultUnlit  Cull Mode", int) = 1  //OFF/FRONT/BACK
+        _SPRDefaultUnlitColorMask("SPRDefaultUnlit Path Color Mask", int) = 15
+        [Enum(OFF,0,FRONT,1,BACK,2)] _SRPDefaultUnlitColMode("SPRDefaultUnlit  Cull Mode", int) = 1  //OFF/FRONT/BACK
         // ClippingMask paramaters from Here.
         _ClippingMask("ClippingMask", 2D) = "white" {}
         //v.2.0.4
@@ -203,10 +206,10 @@ Shader "Universal Render Pipeline/Toon" {
         Pass {
             Name "Outline"
             Tags {
-				"LightMode" = "SRPDefaultUnlit"
+                "LightMode" = "SRPDefaultUnlit"
             }
             Cull [_SRPDefaultUnlitColMode]
-			ColorMask [_SPRDefaultUnlitColorMask]
+            ColorMask [_SPRDefaultUnlitColorMask]
             Blend SrcAlpha OneMinusSrcAlpha
             Stencil
             {
@@ -238,10 +241,11 @@ Shader "Universal Render Pipeline/Toon" {
             Tags {
                 "LightMode"="LightweightForward"
             }
-			ZWrite[_ZWriteMode]
+            ZWrite[_ZWriteMode]
             Cull[_CullMode]
             Blend SrcAlpha OneMinusSrcAlpha
             Stencil {
+
                 Ref[_StencilNo]
 
                 Comp[_StencilComp]
@@ -255,7 +259,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma exclude_renderers d3d11_9x
             #pragma target 2.0
 
-	        #pragma vertex vert
+            #pragma vertex vert
             #pragma fragment frag
 
 
@@ -309,12 +313,12 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
 
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
-	        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-	        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-	        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-	        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
-	        #include "UniversalToonHead.cginc"
-	        #include "UniversalToonBody.cginc"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
+            #include "UniversalToonHead.cginc"
+            #include "UniversalToonBody.cginc"
 
             ENDHLSL
             
