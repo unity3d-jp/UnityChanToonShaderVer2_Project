@@ -1,4 +1,4 @@
-Shader "UnityEditor.Rendering.HDRP.Toon.ShaderGUI/LitCopy"
+Shader "UnityChan/LitCopy"
 {
     Properties
     {

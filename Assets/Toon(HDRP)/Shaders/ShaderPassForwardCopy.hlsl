@@ -60,6 +60,8 @@ PackedVaryingsToPS VertTesselation(VaryingsToDS input)
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
 #endif
 
+sampler2D _MainTex; uniform float4 _MainTex_ST;
+
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
     out float4 outColor : SV_Target0,  // outSpecularLighting
@@ -225,7 +227,13 @@ void Frag(PackedVaryingsToPS packedInput,
     }
 #endif
 
-    outColor = _BaseColor;
+    // toshi.
+    float4 Set_UV0 = input.texCoord0;
+    float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+
+    float3 viewDirection = normalize(-input.positionRWS);
+
+    outColor = _MainTex_var;
 #ifdef _DEPTHOFFSET_ON
     outputDepth = posInput.deviceDepth;
 #endif
