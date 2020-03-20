@@ -285,7 +285,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
     DirectLighting lighting = EvaluateBSDF_Directional(context, V, posInput, preLightData, _DirectionalLightDatas[0], bsdfData, builtinData);
 
-    float3 mainLihgtDirection = _DirectionalLightDatas[0].forward;
+    float3 mainLihgtDirection = -_DirectionalLightDatas[0].forward;
     float3 mainLightColor = _DirectionalLightDatas[0].color;
     float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz); 
     float3 defaultLightColor = saturate(max(half3(0.05, 0.05, 0.05)*_Unlit_Intensity, max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)), ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
@@ -295,6 +295,8 @@ void Frag(PackedVaryingsToPS packedInput,
     half3 originalLightColor = mainLightColor;
 
     float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
+
+
     ////// Lighting:
     float3 halfDirection = normalize(viewDirection + lightDirection);
     //v.2.0.5
@@ -404,9 +406,9 @@ void Frag(PackedVaryingsToPS packedInput,
 
     float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
-//    finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
+    finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
     outColor = float4(finalColor, 1);
-    outColor = float4(Set_HighColor, 1);
+//    outColor = float4(Set_HighColor, 1);
 //     outColor = _MainTex_var;
 
  
