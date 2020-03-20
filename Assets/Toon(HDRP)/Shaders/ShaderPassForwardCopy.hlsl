@@ -81,6 +81,15 @@ half3 ShadeSH9(half4 normal)
 
 sampler2D _MainTex; uniform float4 _MainTex_ST;
 
+// UV回転をする関数：RotateUV()
+//float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
+float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
+{
+    float RotateUV_ang = _radian;
+    float RotateUV_cos = cos(_time*RotateUV_ang);
+    float RotateUV_sin = sin(_time*RotateUV_ang);
+    return (mul(_uv - _piv, float2x2(RotateUV_cos, -RotateUV_sin, RotateUV_sin, RotateUV_cos)) + _piv);
+}
 
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
@@ -323,6 +332,49 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g + _Tweak_RimLightMaskLevel))*lerp(_LightDirection_MaskOn_var, (_LightDirection_MaskOn_var + (lerp(_Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb*Set_LightColor), _Is_LightColor_Ap_RimLight)*saturate((lerp((0.0 + ((_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0)) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask, _ApRimLightPower_var), _Ap_RimLight_FeatherOff) - (saturate(_VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight));
     //Composition: HighColor and RimLight as _RimLight_var
     float3 _RimLight_var = lerp(Set_HighColor, (Set_HighColor + Set_RimLight), _RimLight);
+    //Matcap
+    //v.2.0.6 : CameraRolling Stabilizer
+    //鏡スクリプト判定：_sign_Mirror = -1 なら、鏡の中と判定.
+    //v.2.0.7
+    fixed _sign_Mirror = 0; //  todo. i.mirrorFlag;
+    float3 _Camera_Right = UNITY_MATRIX_V[0].xyz;
+    float3 _Camera_Front = UNITY_MATRIX_V[2].xyz;
+    float3 _Up_Unit = float3(0, 1, 0);
+    float3 _Right_Axis = cross(_Camera_Front, _Up_Unit);
+
+    //鏡の中なら反転.
+    if (_sign_Mirror < 0) {
+        _Right_Axis = -1 * _Right_Axis;
+        _Rotate_MatCapUV = -1 * _Rotate_MatCapUV;
+    }
+    else {
+        _Right_Axis = _Right_Axis;
+    }
+    float _Camera_Right_Magnitude = sqrt(_Camera_Right.x*_Camera_Right.x + _Camera_Right.y*_Camera_Right.y + _Camera_Right.z*_Camera_Right.z);
+    float _Right_Axis_Magnitude = sqrt(_Right_Axis.x*_Right_Axis.x + _Right_Axis.y*_Right_Axis.y + _Right_Axis.z*_Right_Axis.z);
+    float _Camera_Roll_Cos = dot(_Right_Axis, _Camera_Right) / (_Right_Axis_Magnitude * _Camera_Right_Magnitude);
+    float _Camera_Roll = acos(clamp(_Camera_Roll_Cos, -1, 1));
+    fixed _Camera_Dir = _Camera_Right.y < 0 ? -1 : 1;
+    float _Rot_MatCapUV_var_ang = (_Rotate_MatCapUV*3.141592654) - _Camera_Dir * _Camera_Roll*_CameraRolling_Stabilizer;
+    //v.2.0.7
+    float2 _Rot_MatCapNmUV_var = RotateUV(Set_UV0, (_Rotate_NormalMapForMatCapUV*3.141592654), float2(0.5, 0.5), 1.0);
+    //V.2.0.6
+    float3 _NormalMapForMatCap_var = UnpackNormalScale(tex2D(_NormalMapForMatCap, TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)), _BumpScaleMatcap);
+    //v.2.0.5: MatCap with camera skew correction
+    float3 viewNormal = (mul(UNITY_MATRIX_V, float4(lerp(i_normalDir, mul(_NormalMapForMatCap_var.rgb, tangentTransform).rgb, _Is_NormalMapForMatCap), 0))).rgb;
+    float3 NormalBlend_MatcapUV_Detail = viewNormal.rgb * float3(-1, -1, 1);
+    float3 NormalBlend_MatcapUV_Base = (mul(UNITY_MATRIX_V, float4(viewDirection, 0)).rgb*float3(-1, -1, 1)) + float3(0, 0, 1);
+    float3 noSknewViewNormal = NormalBlend_MatcapUV_Base * dot(NormalBlend_MatcapUV_Base, NormalBlend_MatcapUV_Detail) / NormalBlend_MatcapUV_Base.b - NormalBlend_MatcapUV_Detail;
+    float2 _ViewNormalAsMatCapUV = (lerp(noSknewViewNormal, viewNormal, _Is_Ortho).rg*0.5) + 0.5;
+    //v.2.0.7
+    float2 _Rot_MatCapUV_var = RotateUV((0.0 + ((_ViewNormalAsMatCapUV - (0.0 + _Tweak_MatCapUV)) * (1.0 - 0.0)) / ((1.0 - _Tweak_MatCapUV) - (0.0 + _Tweak_MatCapUV))), _Rot_MatCapUV_var_ang, float2(0.5, 0.5), 1.0);
+    //鏡の中ならUV左右反転.
+    if (_sign_Mirror < 0) {
+        _Rot_MatCapUV_var.x = 1 - _Rot_MatCapUV_var.x;
+    }
+    else {
+        _Rot_MatCapUV_var = _Rot_MatCapUV_var;
+    }
 
 
 #ifdef _DEPTHOFFSET_ON
