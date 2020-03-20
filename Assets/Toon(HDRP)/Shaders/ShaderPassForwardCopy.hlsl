@@ -80,6 +80,7 @@ half3 ShadeSH9(half4 normal)
 */
 
 sampler2D _MainTex; uniform float4 _MainTex_ST;
+uniform float _GI_Intensity;
 
 // UVâÒì]ÇÇ∑ÇÈä÷êîÅFRotateUV()
 //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
@@ -274,6 +275,8 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 normalLocal = _NormalMap_var.rgb;
     float3 normalDirection = normalize(mul(normalLocal, tangentTransform)); // Perturbed normals
 
+    half3 envColor = half3(0.5, 0.5, 0.5);
+
     float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
     float3 i_normalDir = surfaceData.normalWS;
     float3 viewDirection = V;
@@ -281,7 +284,7 @@ void Frag(PackedVaryingsToPS packedInput,
     half shadowAttenuation = 1.0;
 
     DirectLighting lighting = EvaluateBSDF_Directional(context, V, posInput, preLightData, _DirectionalLightDatas[0], bsdfData, builtinData);
-    outColor = _MainTex_var;
+
     float3 mainLihgtDirection = _DirectionalLightDatas[0].forward;
     float3 mainLightColor = _DirectionalLightDatas[0].color;
     float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz); 
@@ -375,8 +378,38 @@ void Frag(PackedVaryingsToPS packedInput,
     else {
         _Rot_MatCapUV_var = _Rot_MatCapUV_var;
     }
+    //v.2.0.6 : LOD of Matcap
+    float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler, float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler), 0.0, _BlurLevelMatcap));
+    //
+    //MatcapMask
+    float4 _Set_MatcapMask_var = tex2D(_Set_MatcapMask, TRANSFORM_TEX(Set_UV0, _Set_MatcapMask));
+    float _Tweak_MatcapMaskLevel_var = saturate(lerp(_Set_MatcapMask_var.g, (1.0 - _Set_MatcapMask_var.g), _Inverse_MatcapMask) + _Tweak_MatcapMaskLevel);
+    //
+    float3 _Is_LightColor_MatCap_var = lerp((_MatCap_Sampler_var.rgb*_MatCapColor.rgb), ((_MatCap_Sampler_var.rgb*_MatCapColor.rgb)*Set_LightColor), _Is_LightColor_MatCap);
+    //v.2.0.6 : ShadowMask on Matcap in Blend mode : multiply
+    float3 Set_MatCap = lerp(_Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakMatCapOnShadow)) + lerp(Set_HighColor*Set_FinalShadowMask*(1.0 - _TweakMatCapOnShadow), float3(0.0, 0.0, 0.0), _Is_BlendAddToMatCap)), _Is_UseTweakMatCapOnShadow);
 
+    //
+    //Composition: RimLight and MatCap as finalColor
+    //Broke down finalColor composition
+    float3 matCapColorOnAddMode = _RimLight_var + Set_MatCap * _Tweak_MatcapMaskLevel_var;
+    float _Tweak_MatcapMaskLevel_var_MultiplyMode = _Tweak_MatcapMaskLevel_var * lerp(1.0, (1.0 - (Set_FinalShadowMask)*(1.0 - _TweakMatCapOnShadow)), _Is_UseTweakMatCapOnShadow);
+    float3 matCapColorOnMultiplyMode = Set_HighColor * (1 - _Tweak_MatcapMaskLevel_var_MultiplyMode) + Set_HighColor * Set_MatCap*_Tweak_MatcapMaskLevel_var_MultiplyMode + lerp(float3(0, 0, 0), Set_RimLight, _RimLight);
+    float3 matCapColorFinal = lerp(matCapColorOnMultiplyMode, matCapColorOnAddMode, _Is_BlendAddToMatCap);
+    float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before Emissive
+    //
+    //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
 
+    float3 envLightColor = envColor.rgb;
+
+    float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
+
+//    finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
+    outColor = float4(finalColor, 1);
+    outColor = float4(Set_HighColor, 1);
+//     outColor = _MainTex_var;
+
+ 
 #ifdef _DEPTHOFFSET_ON
     outputDepth = posInput.deviceDepth;
 #endif
