@@ -60,7 +60,27 @@ PackedVaryingsToPS VertTesselation(VaryingsToDS input)
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
 #endif
 
+// normal should be normalized, w=1.0
+// output in active color space
+/*
+half3 ShadeSH9(half4 normal)
+{
+    // Linear + constant polynomial terms
+    half3 res = SHEvalLinearL0L1(normal);
+
+    // Quadratic polynomials
+    res += SHEvalLinearL2(normal);
+
+#   ifdef UNITY_COLORSPACE_GAMMA
+    res = LinearToGammaSpace(res);
+#   endif
+
+    return res;
+}
+*/
+
 sampler2D _MainTex; uniform float4 _MainTex_ST;
+
 
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
@@ -228,12 +248,53 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
 
     // toshi.
+    LightLoopContext context;
+
+    context.shadowContext = InitShadowContext();
+    context.shadowValue = 1;
+    context.sampleReflection = 0;
+
+    InitContactShadow(posInput, context);
+
     float4 Set_UV0 = input.texCoord0;
+    float3x3 tangentTransform = input.tangentToWorld;
+    //UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, texCoords))
+    float4 n = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, Set_UV0);
+//    float3 _NormalMap_var = UnpackNormalScale(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
+    float3 _NormalMap_var = UnpackNormalScale(n, _BumpScale);
+    float3 normalLocal = _NormalMap_var.rgb;
+    float3 normalDirection = normalize(mul(normalLocal, tangentTransform)); // Perturbed normals
+
     float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+    float3 i_normalDir = surfaceData.normalWS;
+    float3 viewDirection = V;
 
-    float3 viewDirection = normalize(-input.positionRWS);
-
+    DirectLighting lighting = EvaluateBSDF_Directional(context, V, posInput, preLightData, _DirectionalLightDatas[0], bsdfData, builtinData);
     outColor = _MainTex_var;
+    float3 mainLihgtDirection = _DirectionalLightDatas[0].forward;
+    float3 mainLightColor = _DirectionalLightDatas[0].color;
+    float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz); 
+    float3 defaultLightColor = saturate(max(half3(0.05, 0.05, 0.05)*_Unlit_Intensity, max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)), ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
+    float3 customLightDirection = normalize(mul(UNITY_MATRIX_M, float4(((float3(1.0, 0.0, 0.0)*_Offset_X_Axis_BLD * 10) + (float3(0.0, 1.0, 0.0)*_Offset_Y_Axis_BLD * 10) + (float3(0.0, 0.0, -1.0)*lerp(-1.0, 1.0, _Inverse_Z_Axis_BLD))), 0)).xyz);
+    float3 lightDirection = normalize(lerp(defaultLightDirection, mainLihgtDirection.xyz, any(mainLihgtDirection.xyz)));
+    lightDirection = lerp(lightDirection, customLightDirection, _Is_BLD);
+    half3 originalLightColor = mainLightColor;
+
+    float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor);
+    ////// Lighting:
+    float3 halfDirection = normalize(viewDirection + lightDirection);
+    //v.2.0.5
+    _Color = _BaseColor;
+    float3 Set_LightColor = lightColor.rgb;
+    float3 Set_BaseColor = lerp((_MainTex_var.rgb*_BaseColor.rgb), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base);
+    //v.2.0.5
+    float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
+    float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade);
+    float _HalfLambert_var = 0.5*dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5; // Half Lambert
+    //float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
+    //v.2.0.6
+
+
 #ifdef _DEPTHOFFSET_ON
     outputDepth = posInput.deviceDepth;
 #endif
