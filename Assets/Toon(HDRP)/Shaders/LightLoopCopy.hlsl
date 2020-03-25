@@ -243,6 +243,53 @@ void ApplyDebug(LightLoopContext context, PositionInputs posInput, BSDFData bsdf
 #endif
 }
 
+void UTS2LightLoop(float3 V, PositionInputs posInput, PreLightData preLightData, BSDFData bsdfData, BuiltinData builtinData, uint featureFlags,
+    out LightLoopContext context)
+{
+
+    context.shadowContext = InitShadowContext();
+    context.shadowValue = 1;
+    context.sampleReflection = 0;
+
+    // With XR single-pass and camera-relative: offset position to do lighting computations from the combined center view (original camera matrix).
+    // This is required because there is only one list of lights generated on the CPU. Shadows are also generated once and shared between the instanced views.
+    ApplyCameraRelativeXR(posInput.positionWS);
+
+    // Initialize the contactShadow and contactShadowFade fields
+    InitContactShadow(posInput, context);
+
+    // First of all we compute the shadow value of the directional light to reduce the VGPR pressure
+    if (featureFlags & LIGHTFEATUREFLAGS_DIRECTIONAL)
+    {
+        // Evaluate sun shadows.
+        if (_DirectionalShadowIndex >= 0)
+        {
+            DirectionalLightData light = _DirectionalLightDatas[_DirectionalShadowIndex];
+
+#if defined(SCREEN_SPACE_SHADOWS) && !defined(_SURFACE_TYPE_TRANSPARENT)
+            if (light.screenSpaceShadowIndex >= 0)
+            {
+                context.shadowValue = GetScreenSpaceShadow(posInput, light.screenSpaceShadowIndex);
+            }
+            else
+#endif
+            {
+                // TODO: this will cause us to load from the normal buffer first. Does this cause a performance problem?
+                float3 L = -light.forward;
+
+                // Is it worth sampling the shadow map?
+                if ((light.lightDimmer > 0) && (light.shadowDimmer > 0) && // Note: Volumetric can have different dimmer, thus why we test it here
+                    IsNonZeroBSDF(V, L, preLightData, bsdfData) &&
+                    !ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
+                {
+                    context.shadowValue = GetDirectionalShadowAttenuation(context.shadowContext,
+                        posInput.positionSS, posInput.positionWS, GetNormalForShadowBias(bsdfData),
+                        light.shadowIndex, L);
+                }
+            }
+        }
+    }
+}
 
 
 void LightLoop( float3 V, PositionInputs posInput, PreLightData preLightData, BSDFData bsdfData, BuiltinData builtinData, uint featureFlags,

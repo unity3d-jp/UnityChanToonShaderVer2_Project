@@ -99,3 +99,17 @@ The following packages were updated:
   com.unity.render-pipelines.lightweight from version 7.1.6 to 7.1.8
   com.unity.test-framework from version 1.1.3 to 1.1.9
   com.unity.timeline from version 1.2.6 to 1.2.10
+
+=== Wed Mar 25 18:39:59 2020
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.2.16 to 1.3.7
+  com.unity.ide.rider from version 1.1.4 to 1.2.1
+  com.unity.ide.visualstudio from version 1.0.11 to 2.0.0
+  com.unity.render-pipelines.high-definition from version 7.1.8 to 8.0.1
+  com.unity.render-pipelines.lightweight from version 7.1.8 to 8.0.1
+  com.unity.test-framework from version 1.1.9 to 1.1.11
+  com.unity.textmeshpro from version 2.0.1 to 3.0.0-preview.1

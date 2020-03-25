@@ -206,6 +206,7 @@ void Frag(PackedVaryingsToPS packedInput,
         }
         else
 #endif
+        LightLoopContext context; //toshi
         {
 #ifdef _SURFACE_TYPE_TRANSPARENT
             uint featureFlags = LIGHT_FEATURE_MASK_FLAGS_TRANSPARENT;
@@ -214,8 +215,8 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
             float3 diffuseLighting;
             float3 specularLighting;
-
             LightLoop(V, posInput, preLightData, bsdfData, builtinData, featureFlags, diffuseLighting, specularLighting);
+           // UTS2LightLoop(V, posInput, preLightData, bsdfData, builtinData, featureFlags, context);
 
             diffuseLighting *= GetCurrentExposureMultiplier();
             specularLighting *= GetCurrentExposureMultiplier();
@@ -258,13 +259,7 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
 
     // toshi.
-    LightLoopContext context;
 
-    context.shadowContext = InitShadowContext();
-    context.shadowValue = 1;
-    context.sampleReflection = 0;
-
-    InitContactShadow(posInput, context);
 
     float4 Set_UV0 = input.texCoord0;
     float3x3 tangentTransform = input.tangentToWorld;
@@ -281,12 +276,14 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 i_normalDir = surfaceData.normalWS;
     float3 viewDirection = V;
 
-    half shadowAttenuation = 1.0;
+    
+
+    half shadowAttenuation = 1.0f;
 
     DirectLighting lighting = EvaluateBSDF_Directional(context, V, posInput, preLightData, _DirectionalLightDatas[0], bsdfData, builtinData);
 
     float3 mainLihgtDirection = -_DirectionalLightDatas[0].forward;
-    float3 mainLightColor = _DirectionalLightDatas[0].color;
+    float3 mainLightColor =  _DirectionalLightDatas[0].color;
     float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz); 
     float3 defaultLightColor = saturate(max(half3(0.05, 0.05, 0.05)*_Unlit_Intensity, max(ShadeSH9(half4(0.0, 0.0, 0.0, 1.0)), ShadeSH9(half4(0.0, -1.0, 0.0, 1.0)).rgb)*_Unlit_Intensity));
     float3 customLightDirection = normalize(mul(UNITY_MATRIX_M, float4(((float3(1.0, 0.0, 0.0)*_Offset_X_Axis_BLD * 10) + (float3(0.0, 1.0, 0.0)*_Offset_Y_Axis_BLD * 10) + (float3(0.0, 0.0, -1.0)*lerp(-1.0, 1.0, _Inverse_Z_Axis_BLD))), 0)).xyz);
