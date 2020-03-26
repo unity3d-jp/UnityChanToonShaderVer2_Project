@@ -751,6 +751,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
             if (material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On)
             {
+                SetuOutline(material);
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -2310,7 +2311,15 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                 material.SetInt(srpDefaultCullMode, (int)_CullingMode.BackCulling);
             }
         }
-
+        void SetuOutline(Material material)
+        {
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
+            if (srpDefaultLightModeTag == srpDefaultLightModeName)
+            {
+                material.SetInt(srpDefaultColorMask, 15);
+                material.SetInt(srpDefaultCullMode, (int)_CullingMode.FrontCulling);
+            }
+        }
         void GUI_Outline(Material material)
         {
 
@@ -2332,8 +2341,6 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
                         material.SetShaderPassEnabled(srpDefaultLightModeName, true);
-                        material.SetInt(srpDefaultColorMask, 15);
-                        material.SetInt(srpDefaultCullMode, (int)_CullingMode.FrontCulling);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
