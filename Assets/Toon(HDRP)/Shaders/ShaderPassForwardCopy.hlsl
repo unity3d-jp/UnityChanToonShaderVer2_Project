@@ -79,18 +79,9 @@ half3 ShadeSH9(half4 normal)
 }
 */
 
-sampler2D _MainTex; uniform float4 _MainTex_ST;
-uniform float _GI_Intensity;
 
-// UVâÒì]ÇÇ∑ÇÈä÷êîÅFRotateUV()
-//float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
-float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
-{
-    float RotateUV_ang = _radian;
-    float RotateUV_cos = cos(_time*RotateUV_ang);
-    float RotateUV_sin = sin(_time*RotateUV_ang);
-    return (mul(_uv - _piv, float2x2(RotateUV_cos, -RotateUV_sin, RotateUV_sin, RotateUV_cos)) + _piv);
-}
+
+
 
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
@@ -206,7 +197,7 @@ void Frag(PackedVaryingsToPS packedInput,
         }
         else
 #endif
-        LightLoopContext context; //toshi
+        
         {
 #ifdef _SURFACE_TYPE_TRANSPARENT
             uint featureFlags = LIGHT_FEATURE_MASK_FLAGS_TRANSPARENT;
@@ -216,7 +207,6 @@ void Frag(PackedVaryingsToPS packedInput,
             float3 diffuseLighting;
             float3 specularLighting;
             LightLoop(V, posInput, preLightData, bsdfData, builtinData, featureFlags, diffuseLighting, specularLighting);
-           // UTS2LightLoop(V, posInput, preLightData, bsdfData, builtinData, featureFlags, context);
 
             diffuseLighting *= GetCurrentExposureMultiplier();
             specularLighting *= GetCurrentExposureMultiplier();
@@ -260,7 +250,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
     // toshi.
 
-
+    LightLoopContext context; //toshi
     float4 Set_UV0 = input.texCoord0;
     float3x3 tangentTransform = input.tangentToWorld;
     //UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, texCoords))
