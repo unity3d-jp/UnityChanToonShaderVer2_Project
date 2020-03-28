@@ -195,7 +195,7 @@ MonoBehaviour:
     supportVolumetrics: 1
     increaseResolutionOfVolumetrics: 0
     supportLightLayers: 1
-    lightLayerName0: ' Layer defaultfault'
+    lightLayerName0: Layer default
     lightLayerName1: Light Layer 1
     lightLayerName2: Light Layer 2
     lightLayerName3: Light Layer 3
