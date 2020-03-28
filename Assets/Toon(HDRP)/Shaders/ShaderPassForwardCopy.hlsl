@@ -249,8 +249,21 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
 
     // toshi.
-    int lightIndex  = GetUtsMainLightIndex(builtinData);
-    float3 finalColor = UTS_MainLight(input, lightIndex);
+    int mainLightIndex  = GetUtsMainLightIndex(builtinData);
+    int currentDirectionalLightIndex = -1;
+    float3 finalColor = UTS_MainLight(input, mainLightIndex);
+
+    while (1)
+    {
+        currentDirectionalLightIndex = GetNextDirectionalLightIndex(builtinData, currentDirectionalLightIndex, mainLightIndex);
+        if (currentDirectionalLightIndex < 0)
+        {
+            break;
+        }
+        float3 additionalLightColor = UTS_OtherDirectionalLights(input, currentDirectionalLightIndex);
+        finalColor += additionalLightColor;
+    }
+    
 
     half3 envColor = half3(0.2, 0.2, 0.2);
     float3 envLightColor = envColor.rgb;

@@ -164,6 +164,24 @@ float  GetLightAttenuation(float3 lightColor)
     return lightAttenuation;
 }
 
+int GetNextDirectionalLightIndex(BuiltinData builtinData, int current, int mainLightIndex)
+{
+    uint i = 0; // Declare once to avoid the D3D11 compiler warning.
+    for (i = 0; i < _DirectionalLightCount; ++i)
+    {
+        if (IsMatchingLightLayer(_DirectionalLightDatas[i].lightLayers, builtinData.renderingLayers))
+        {
+            if (mainLightIndex != i)
+            {
+                if (current < i)
+                {
+                    return i;
+                }
+            }
+        }
+    }
+    return -1; // not found
+}
 int GetUtsMainLightIndex(BuiltinData builtinData)
 {
     int mainLightIndex = -1;
@@ -195,9 +213,9 @@ int GetUtsMainLightIndex(BuiltinData builtinData)
     return mainLightIndex;
 }
 
-float4 UTS_OtherDirectionalLights(FragInputs input)
+float3 UTS_OtherDirectionalLights(FragInputs input, int directionalLightIndex)
 {
-    return float4(0.0f, 0.0f, 0.0f,1.0f);
+    return float3(0.0f, 0.0f, 0.0f);
 }
 
 float3 UTS_MainLight(FragInputs input, int mainLightIndex)
