@@ -197,13 +197,14 @@ void Frag(PackedVaryingsToPS packedInput,
         }
         else
 #endif
-        
-        {
+
 #ifdef _SURFACE_TYPE_TRANSPARENT
-            uint featureFlags = LIGHT_FEATURE_MASK_FLAGS_TRANSPARENT;
+        uint featureFlags = LIGHT_FEATURE_MASK_FLAGS_TRANSPARENT;
 #else
-            uint featureFlags = LIGHT_FEATURE_MASK_FLAGS_OPAQUE;
+        uint featureFlags = LIGHT_FEATURE_MASK_FLAGS_OPAQUE;
 #endif
+        {
+
             float3 diffuseLighting;
             float3 specularLighting;
             LightLoop(V, posInput, preLightData, bsdfData, builtinData, featureFlags, diffuseLighting, specularLighting);
@@ -249,45 +250,82 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
 
     // toshi.
-    int mainLightIndex  = GetUtsMainLightIndex(builtinData);
-    int currentDirectionalLightIndex = -1;
-    float3 finalColor = UTS_MainLight(input, mainLightIndex);
+    float3 finalColor = float3(0.0f, 0.0f, 0.0f);
+    if (featureFlags & LIGHTFEATUREFLAGS_DIRECTIONAL)
+    {
+        int mainLightIndex = GetUtsMainLightIndex(builtinData);
+        int currentDirectionalLightIndex = -1;
+        finalColor = UTS_MainLight(input, mainLightIndex);
 
 
-    float3 i_normalDir = surfaceData.normalWS;
-#if 0
-    int count = 0;
-    while (1)
-    {
-        
-        currentDirectionalLightIndex = GetNextDirectionalLightIndex(builtinData, currentDirectionalLightIndex, mainLightIndex);
-        if (currentDirectionalLightIndex < 0)
+        float3 i_normalDir = surfaceData.normalWS;
+
+        uint i = 0; // Declare once to avoid the D3D11 compiler warning.
+        for (i = 0; i < _DirectionalLightCount; ++i)
         {
-            if (count == 0)
+            if (IsMatchingLightLayer(_DirectionalLightDatas[i].lightLayers, builtinData.renderingLayers))
             {
-                // indicate the above is not working.
-                finalColor = float3(1.0f, 1.0f, 0.0f);
-            }
-            break;
-        }
-        float3 additionalLightColor = UTS_OtherDirectionalLights(input, currentDirectionalLightIndex, i_normalDir);
-        finalColor += additionalLightColor;
-        count++;
-    }
-#else
-    uint i = 0; // Declare once to avoid the D3D11 compiler warning.
-    for (i = 0; i < _DirectionalLightCount; ++i)
-    {
-        if (IsMatchingLightLayer(_DirectionalLightDatas[i].lightLayers, builtinData.renderingLayers))
-        {
-            if (mainLightIndex != i)
-            {
-                float3 additionalLightColor = UTS_OtherDirectionalLights(input, i, i_normalDir);
-                finalColor += additionalLightColor;
+                if (mainLightIndex != i)
+                {
+                    float3 additionalLightColor = UTS_OtherDirectionalLights(input, i, i_normalDir);
+                    finalColor += additionalLightColor;
+                }
             }
         }
     }
-#endif    
+    if (featureFlags & LIGHTFEATUREFLAGS_PUNCTUAL)
+    {
+        uint lightCount, lightStart;
+
+#ifndef LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+        GetCountAndStart(posInput, LIGHTCATEGORY_PUNCTUAL, lightStart, lightCount);
+#else   // LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+        lightCount = _PunctualLightCount;
+        lightStart = 0;
+#endif
+
+        bool fastPath = false;
+#if SCALARIZE_LIGHT_LOOP
+        uint lightStartLane0;
+        fastPath = IsFastPath(lightStart, lightStartLane0);
+
+        if (fastPath)
+        {
+            lightStart = lightStartLane0;
+        }
+#endif
+
+        // Scalarized loop. All lights that are in a tile/cluster touched by any pixel in the wave are loaded (scalar load), only the one relevant to current thread/pixel are processed.
+        // For clarity, the following code will follow the convention: variables starting with s_ are meant to be wave uniform (meant for scalar register),
+        // v_ are variables that might have different value for each thread in the wave (meant for vector registers).
+        // This will perform more loads than it is supposed to, however, the benefits should offset the downside, especially given that light data accessed should be largely coherent.
+        // Note that the above is valid only if wave intriniscs are supported.
+        uint v_lightListOffset = 0;
+        uint v_lightIdx = lightStart;
+
+        while (v_lightListOffset < lightCount)
+        {
+            v_lightIdx = FetchIndex(lightStart, v_lightListOffset);
+            uint s_lightIdx = ScalarizeElementIndex(v_lightIdx, fastPath);
+            if (s_lightIdx == -1)
+                break;
+
+            LightData s_lightData = FetchLight(s_lightIdx);
+
+            // If current scalar and vector light index match, we process the light. The v_lightListOffset for current thread is increased.
+            // Note that the following should really be ==, however, since helper lanes are not considered by WaveActiveMin, such helper lanes could
+            // end up with a unique v_lightIdx value that is smaller than s_lightIdx hence being stuck in a loop. All the active lanes will not have this problem.
+            if (s_lightIdx >= v_lightIdx)
+            {
+                v_lightListOffset++;
+                if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
+                {
+                //    DirectLighting lighting = EvaluateBSDF_Punctual(context, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
+                //    AccumulateDirectLighting(lighting, aggregateLighting);
+                }
+            }
+        }
+    }
 
     half3 envColor = half3(0.2, 0.2, 0.2);
     float3 envLightColor = envColor.rgb;
