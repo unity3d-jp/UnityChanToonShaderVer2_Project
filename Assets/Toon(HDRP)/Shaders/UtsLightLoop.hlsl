@@ -195,8 +195,12 @@ int GetUtsMainLightIndex(BuiltinData builtinData)
     return mainLightIndex;
 }
 
+float4 UTS_OtherDirectionalLights(FragInputs input)
+{
+    return float4(0.0f, 0.0f, 0.0f,1.0f);
+}
 
-float4 UTS_MainLight(FragInputs input, int mainLightIndex)
+float3 UTS_MainLight(FragInputs input, int mainLightIndex)
 {
 
     uint2 tileIndex = uint2(input.positionSS.xy) / GetTileSize();
@@ -228,8 +232,6 @@ float4 UTS_MainLight(FragInputs input, int mainLightIndex)
     float3 _NormalMap_var = UnpackNormalScale(n, _BumpScale);
     float3 normalLocal = _NormalMap_var.rgb;
     float3 normalDirection = normalize(mul(normalLocal, tangentTransform)); // Perturbed normals
-
-    half3 envColor = half3(0.5, 0.5, 0.5);
 
     float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
     float3 i_normalDir = surfaceData.normalWS;
@@ -360,15 +362,10 @@ float4 UTS_MainLight(FragInputs input, int mainLightIndex)
     //
     //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
 
-    float3 envLightColor = envColor.rgb;
-
-    float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
-
-    finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
-    float4 outColor = float4(finalColor, 1);
+ 
     //    outColor = float4(Set_HighColor, 1);
     //     outColor = _MainTex_var;
-    return outColor;
+    return finalColor;
 }
 
 

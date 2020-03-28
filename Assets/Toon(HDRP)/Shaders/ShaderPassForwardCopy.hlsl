@@ -250,8 +250,14 @@ void Frag(PackedVaryingsToPS packedInput,
 
     // toshi.
     int lightIndex  = GetUtsMainLightIndex(builtinData);
-    outColor = UTS_MainLight(input, lightIndex);
+    float3 finalColor = UTS_MainLight(input, lightIndex);
 
+    half3 envColor = half3(0.2, 0.2, 0.2);
+    float3 envLightColor = envColor.rgb;
+    float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
+
+    finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
+    outColor = float4(finalColor, 1.0f);
  
 #ifdef _DEPTHOFFSET_ON
     outputDepth = posInput.deviceDepth;
