@@ -607,7 +607,7 @@ Shader "UnityChan/LitCopy"
 
             ENDHLSL
         }
-
+/* // disable diffuse rendering.
         // Caution: The outline selection in the editor use the vertex shader/hull/domain shader of the first pass declare. So it should not bethe  meta pass.
         Pass
         {
@@ -658,6 +658,7 @@ Shader "UnityChan/LitCopy"
 
             ENDHLSL
         }
+*/ // disable diffuse rendering.
 
         // Extracts information for lightmapping, GI (emission, albedo, ...)
         // This pass it not used during regular rendering.
@@ -1097,7 +1098,7 @@ Shader "UnityChan/LitCopy"
 
             ENDHLSL
         }
-
+/* #if 0 // disable diffuse rendering.
         Pass
         {
             Name "GBufferDXR"
@@ -1132,7 +1133,7 @@ Shader "UnityChan/LitCopy"
 
             ENDHLSL
         }
-
+#endif */ // disable diffuse rendering.
         Pass
         {
             Name "VisibilityDXR"
