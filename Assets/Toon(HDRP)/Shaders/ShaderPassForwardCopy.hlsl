@@ -253,6 +253,9 @@ void Frag(PackedVaryingsToPS packedInput,
     int currentDirectionalLightIndex = -1;
     float3 finalColor = UTS_MainLight(input, mainLightIndex);
 
+
+    float3 i_normalDir = surfaceData.normalWS;
+#if 1
     while (1)
     {
         currentDirectionalLightIndex = GetNextDirectionalLightIndex(builtinData, currentDirectionalLightIndex, mainLightIndex);
@@ -260,10 +263,10 @@ void Frag(PackedVaryingsToPS packedInput,
         {
             break;
         }
-        float3 additionalLightColor = UTS_OtherDirectionalLights(input, currentDirectionalLightIndex);
+        float3 additionalLightColor = UTS_OtherDirectionalLights(input, currentDirectionalLightIndex, i_normalDir);
         finalColor += additionalLightColor;
     }
-    
+#endif    
 
     half3 envColor = half3(0.2, 0.2, 0.2);
     float3 envLightColor = envColor.rgb;
