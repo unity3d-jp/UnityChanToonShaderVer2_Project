@@ -164,7 +164,7 @@ float  GetLightAttenuation(float3 lightColor)
     return lightAttenuation;
 }
 
-int GetNextDirectionalLightIndex(BuiltinData builtinData, int current, int mainLightIndex)
+int GetNextDirectionalLightIndex(BuiltinData builtinData, int currentIndex, int mainLightIndex)
 {
     uint i = 0; // Declare once to avoid the D3D11 compiler warning.
     for (i = 0; i < _DirectionalLightCount; ++i)
@@ -173,7 +173,7 @@ int GetNextDirectionalLightIndex(BuiltinData builtinData, int current, int mainL
         {
             if (mainLightIndex != i)
             {
-                if (current < i)
+                if (currentIndex < i)
                 {
                     return i;
                 }
@@ -195,18 +195,12 @@ int GetUtsMainLightIndex(BuiltinData builtinData)
             float3 currentLightColor = _DirectionalLightDatas[i].color;
             float  currentLightAttenuation = GetLightAttenuation(currentLightColor);
 
-            if (mainLightIndex == -1)
+            if (mainLightIndex == -1 || (currentLightAttenuation > lightAttenuation))
             {
                 mainLightIndex = i;
                 lightAttenuation = currentLightAttenuation;
                 lightColor = currentLightColor;
-            } else if (currentLightAttenuation > lightAttenuation)
-            {
-                mainLightIndex = i;
-                lightAttenuation = currentLightAttenuation;
-                lightColor = currentLightColor;
-
-            }
+            } 
         }
     }
 
@@ -215,6 +209,7 @@ int GetUtsMainLightIndex(BuiltinData builtinData)
 
 float3 UTS_OtherDirectionalLights(FragInputs input, int directionalLightIndex, float3 i_normalDir)
 {
+
     /* todo. these should be put into struct */
 #ifdef VARYINGS_NEED_POSITION_WS
     float3 V = GetWorldSpaceNormalizeViewDir(input.positionRWS);

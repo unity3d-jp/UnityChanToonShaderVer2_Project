@@ -255,16 +255,37 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
     float3 i_normalDir = surfaceData.normalWS;
-#if 1
+#if 0
+    int count = 0;
     while (1)
     {
+        
         currentDirectionalLightIndex = GetNextDirectionalLightIndex(builtinData, currentDirectionalLightIndex, mainLightIndex);
         if (currentDirectionalLightIndex < 0)
         {
+            if (count == 0)
+            {
+                // indicate the above is not working.
+                finalColor = float3(1.0f, 1.0f, 0.0f);
+            }
             break;
         }
         float3 additionalLightColor = UTS_OtherDirectionalLights(input, currentDirectionalLightIndex, i_normalDir);
         finalColor += additionalLightColor;
+        count++;
+    }
+#else
+    uint i = 0; // Declare once to avoid the D3D11 compiler warning.
+    for (i = 0; i < _DirectionalLightCount; ++i)
+    {
+        if (IsMatchingLightLayer(_DirectionalLightDatas[i].lightLayers, builtinData.renderingLayers))
+        {
+            if (mainLightIndex != i)
+            {
+                float3 additionalLightColor = UTS_OtherDirectionalLights(input, i, i_normalDir);
+                finalColor += additionalLightColor;
+            }
+        }
     }
 #endif    
 
