@@ -147,6 +147,16 @@ uniform float _Tweak_transparency;
 sampler2D _MainTex; uniform float4 _MainTex_ST;
 uniform float _GI_Intensity;
 
+// just grafted from UTS/Universal RP
+struct UtsLight
+{
+    float4   direction;
+    float3   color;
+    float    distanceAttenuation;
+    float    shadowAttenuation;
+    int     type;
+};
+
 // UVâÒì]ÇÇ∑ÇÈä÷êîÅFRotateUV()
 //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
 float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
@@ -207,7 +217,8 @@ int GetUtsMainLightIndex(BuiltinData builtinData)
     return mainLightIndex;
 }
 
-float3 UTS_OtherDirectionalLights(FragInputs input, int directionalLightIndex, float3 i_normalDir)
+float3 UTS_OtherDirectionalLights(FragInputs input, int directionalLightIndex, float3 i_normalDir,
+    float3 additionalLightColor, float3 lightDirection, float notDirectional)
 {
 
     /* todo. these should be put into struct */
@@ -231,9 +242,7 @@ float3 UTS_OtherDirectionalLights(FragInputs input, int directionalLightIndex, f
     float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
     /* end of todo.*/
 
-    float notDirectional = 0.0f;
-    float3 additionalLightColor = _DirectionalLightDatas[directionalLightIndex].color;
-    float3 lightDirection = -_DirectionalLightDatas[directionalLightIndex].forward;
+
 
     //v.2.0.5: 
     float3 addPassLightColor = (0.5*dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5) * additionalLightColor.rgb;

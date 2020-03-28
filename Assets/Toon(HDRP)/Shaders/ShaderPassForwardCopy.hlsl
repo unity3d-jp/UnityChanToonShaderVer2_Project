@@ -267,7 +267,12 @@ void Frag(PackedVaryingsToPS packedInput,
             {
                 if (mainLightIndex != i)
                 {
-                    float3 additionalLightColor = UTS_OtherDirectionalLights(input, i, i_normalDir);
+                    
+                    float3 lightColor = _DirectionalLightDatas[i].color;
+                    float3 lightDirection = -_DirectionalLightDatas[i].forward;
+                    float notDirectional = 0.0f;
+
+                    float3 additionalLightColor = UTS_OtherDirectionalLights(input, i, i_normalDir, lightColor, lightDirection, notDirectional);
                     finalColor += additionalLightColor;
                 }
             }
@@ -320,6 +325,14 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
+                    float attenuation = 0.0;
+                    UtsLight utsLight;
+                    ZERO_INITIALIZE(UtsLight, utsLight);
+//                    utsLight.direction.x = s_lightData.spotDirection.x;
+                    utsLight.distanceAttenuation = attenuation;
+                    utsLight.shadowAttenuation = 1.0f;
+                    utsLight.color = s_lightData.color;
+                    utsLight.type = 1;
                 //    DirectLighting lighting = EvaluateBSDF_Punctual(context, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
                 //    AccumulateDirectLighting(lighting, aggregateLighting);
                 }
