@@ -249,7 +249,10 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
 
     // toshi.
-
+#if 1
+    int lightIndex  = GetUtsMainLightIndex(builtinData);
+    outColor = UTS_MainLight(input, lightIndex);
+#else
     LightLoopContext context; //toshi
     float4 Set_UV0 = input.texCoord0;
     float3x3 tangentTransform = input.tangentToWorld;
@@ -397,7 +400,7 @@ void Frag(PackedVaryingsToPS packedInput,
     outColor = float4(finalColor, 1);
 //    outColor = float4(Set_HighColor, 1);
 //     outColor = _MainTex_var;
-
+#endif // #if 1
  
 #ifdef _DEPTHOFFSET_ON
     outputDepth = posInput.deviceDepth;
