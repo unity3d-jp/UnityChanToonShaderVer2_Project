@@ -254,6 +254,9 @@ void Frag(PackedVaryingsToPS packedInput,
     lightLoopContext.shadowContext = InitShadowContext();
     lightLoopContext.shadowValue = 1;
     lightLoopContext.sampleReflection = 0;
+    // Initialize the contactShadow and contactShadowFade fields
+    InitContactShadow(posInput, lightLoopContext);
+
     float3 finalColor = float3(0.0f, 0.0f, 0.0f);
     if (featureFlags & LIGHTFEATUREFLAGS_DIRECTIONAL)
     {
@@ -329,8 +332,12 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
-
-                    float3 L;
+#if 1
+                    DirectLighting lighting = EvaluateBSDF_Punctual(lightLoopContext, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
+                    finalColor += lighting.diffuse;
+#endif
+#if 0
+                    float3 L; // lightToSample = positionWS - light.positionRWS;  unL = -lightToSample; L = unL * distRcp;
                     float4 distances; // {d, d^2, 1/d, d_proj}
                     GetPunctualLightVectors(input.positionRWS, s_lightData, L, distances);
                     if ((s_lightData.lightDimmer > 0) && IsNonZeroBSDF(V, L, preLightData, bsdfData))
@@ -340,7 +347,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
                         finalColor += lightColor.rgb; 
                     }
-
+#endif
                     /*
                     float4 distanceAndSpotAttenuation = 0; // todo.
                     float3 lightVector = s_lightData.positionRWS - input.positionRWS;
