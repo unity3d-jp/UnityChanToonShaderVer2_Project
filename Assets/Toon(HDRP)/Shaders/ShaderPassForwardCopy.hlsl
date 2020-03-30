@@ -329,13 +329,14 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
+
                     float3 L;
                     float4 distances; // {d, d^2, 1/d, d_proj}
-                    GetPunctualLightVectors(posInput.positionWS, s_lightData, L, distances);
+                    GetPunctualLightVectors(input.positionRWS, s_lightData, L, distances);
                     if ((s_lightData.lightDimmer > 0) && IsNonZeroBSDF(V, L, preLightData, bsdfData))
                     {
                         float4 lightColor = EvaluateLight_Punctual(lightLoopContext, posInput, s_lightData, L, distances);
-                        lightColor.rgb *= lightColor.a; // Composite
+                        lightColor.rgb *= 0.5f; // lightColor.a; // Composite
 
                         finalColor += lightColor.rgb; 
                     }
