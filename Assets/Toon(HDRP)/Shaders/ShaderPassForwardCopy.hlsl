@@ -250,6 +250,10 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
 
     // toshi.
+    LightLoopContext lightLoopContext;
+    lightLoopContext.shadowContext = InitShadowContext();
+    lightLoopContext.shadowValue = 1;
+    lightLoopContext.sampleReflection = 0;
     float3 finalColor = float3(0.0f, 0.0f, 0.0f);
     if (featureFlags & LIGHTFEATUREFLAGS_DIRECTIONAL)
     {
@@ -325,7 +329,25 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
-                    float attenuation = 0.0;
+                    float3 L;
+                    float4 distances; // {d, d^2, 1/d, d_proj}
+                    GetPunctualLightVectors(posInput.positionWS, s_lightData, L, distances);
+                    if ((s_lightData.lightDimmer > 0) && IsNonZeroBSDF(V, L, preLightData, bsdfData))
+                    {
+                        float4 lightColor = EvaluateLight_Punctual(lightLoopContext, posInput, s_lightData, L, distances);
+                        lightColor.rgb *= lightColor.a; // Composite
+
+                        finalColor += lightColor.rgb; 
+                    }
+
+                    /*
+                    float4 distanceAndSpotAttenuation = 0; // todo.
+                    float3 lightVector = s_lightData.positionRWS - input.positionRWS;
+                    float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
+
+                    float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
+                    float attenuation = DistanceAttenuation(distanceSqr, distanceAndSpotAttenuation.xy) * AngleAttenuation(s_lightData.spotDirection.xyz, lightDirection, distanceAndSpotAttenuation.zw);
+
                     UtsLight utsLight;
                     ZERO_INITIALIZE(UtsLight, utsLight);
 //                    utsLight.direction.x = s_lightData.spotDirection.x;
@@ -333,6 +355,7 @@ void Frag(PackedVaryingsToPS packedInput,
                     utsLight.shadowAttenuation = 1.0f;
                     utsLight.color = s_lightData.color;
                     utsLight.type = 1;
+                    */
                 //    DirectLighting lighting = EvaluateBSDF_Punctual(context, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
                 //    AccumulateDirectLighting(lighting, aggregateLighting);
                 }
