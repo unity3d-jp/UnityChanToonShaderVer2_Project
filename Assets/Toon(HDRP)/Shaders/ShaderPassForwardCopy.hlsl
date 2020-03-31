@@ -345,7 +345,25 @@ void Frag(PackedVaryingsToPS packedInput,
                         float4 lightColor = EvaluateLight_Punctual(lightLoopContext, posInput, s_lightData, L, distances);
                         lightColor.rgb *= 0.5f; // lightColor.a; // Composite
 
-                        finalColor += lightColor.rgb; 
+                        if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
+                        {
+                            CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
+
+#if defined(MATERIAL_INCLUDE_TRANSMISSION) || defined(MATERIAL_INCLUDE_PRECOMPUTED_TRANSMISSION)
+                            float3 transmittance = bsdfData.transmittance;
+#else
+                            float3 transmittance = float3(0.0, 0.0, 0.0);
+#endif
+                            // If transmittance or the CBSDF's transmission components are known to be 0,
+                            // the optimization pass of the compiler will remove all of the associated code.
+                            // However, this will take a lot more CPU time than doing the same thing using
+                            // the preprocessor.
+//                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
+//                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
+                            finalColor += (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * s_lightData.diffuseDimmer;
+                        }
+                        
+                        //finalColor += lightColor.rgb; 
                     }
 #endif
                     /*
