@@ -1,14 +1,17 @@
-﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.7】
+﻿# 【UTS2 / UniversalToon Ver.2.9.9】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README_ja.md)***  
+***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev-lwrp/dev-base/README_ja.md)***  
 
 ## 【Overview : What is UTS2?】
 
 <img width = "800" src="Manual/Images_jpg/TPK_04.jpg">
 
-**Unity-Chan Toon Shader 2.0 (UTS2)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of UTS2**.  
+**UTS2 (Unity-Chan Toon Shader 2.0)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of UTS2**.  
+
+**UniversalToon** is an UTS2 shader for Universal Render pipeline for Unity.  
+**UniversalToon** has all the feature of UTS2 v.2.0.7.5, and been implemented as an uber shader.  
 
 <img width = "800" src="Manual/Images_jpg/IllustSample_UTS2.jpg">
 
@@ -40,7 +43,7 @@ For this purpose, UTS2 also has 2 options for creating fixed shadows necessary t
 
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage07.jpg">
 
-These two images are comparison between **Standard Shader** and **UTS2 v.2.0.7.5** under the same lighting conditions.  
+These two images are comparison between **Standard Shader** and **UTS2** under the same lighting conditions.  
 
 Although there is a difference between Photo-realistic and Non-photo-realistic images, you can understand all surface reflections to real-time lights are seen in the same areas. **It means UTS2 can be used as same as Standard Shader under various lighting conditions.**  
 
@@ -59,10 +62,9 @@ The iteration cycle between reading the manual and using UTS2 actually is the be
 
 -----
 ## 【Target Environment】
-Requires Unity 5.6.x or higher.  
-The operation check from Unity 2018.2.21f1 to Unity 2019.2.0a9 has been completed.  
-It has been tested on Unity 2017.4.x LTS, including Unity 2017.4.15f1 LTS.  
-This pack was created in Unity 5.6.7f1.  
+Requires Unity 2019.3.4f1 or higher.  
+Requires Universal RP Version 7.1.8 or higher.  
+If you use PostProcess Effects, requires Post Procesing Version 2.3.0 or higher.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
@@ -71,29 +73,28 @@ This package uses a forward rendering environment. Using a linear color space is
 ## 【Target Platforms】
 Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch  
 
-* Tessellation version is only supported for environments where DX11 works properly.  
-
 -----
 ## 【License】
-Unity-Chan Toon Shader 2.0 is provided under the Unity-Chan License 2.0 terms.  
+UTS2 / UniversalToon is provided under the Unity-Chan License 2.0 terms.  
 Please refer to the following link for information regarding the Unity-Chan License.  
-http://unity-chan.com/contents/guideline_en/
+https://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【Download whole project】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/dev-lwrp/dev-base.zip)  
 
 The project comes with sample scenes where you can learn various setting examples of UTS2.  
 
 -----
 ## 【Shader Installation】
-### [UTS2_ShaderOnly_v2.0.7_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.7_Release.unitypackage)  
+### [UTS2URP_ShaderOnly_v2.9.9.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev-lwrp/dev-base/UTS2URP_ShaderOnly_v2.9.9.unitypackage)  
+
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
-When over-writing a previous version, there is no problem with the same process, but if you want to pay close attention, so please take the following precautions:  
+**You should install Universal RP from Package Manager before installation.**  
+
 1. Back-up all previous projects.  
 2. When opening a project in Unity, create a new scene beforehand.  
-3. Erase the folder containing previous versions of the toon shader (Assets/Toon/Shader) from within Unity.  
-4. Drag and drop this pack into Unity.  
+3. Drag and drop this pack into Unity.  
 
 Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) after installation.  
 The manual explains how to use UTS2 in detail.  
@@ -106,11 +107,11 @@ The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanTo
 
 -----
 ## 【Information】  
-Latest Version: 2.0.7 Release: Fixed release version 5  
-Update: 2019/05/25  
-Category: 3D  
-File format: zip/unitypackage  
+Latest Version: 2.9.9 for URP  
+Update: 2020/03/31  
+Category: 3D / Shader  
+File format: unitypackage  
 
 -----
-**README.md 2019/06/10**  
+**README.md 2020/03/31**  
 
