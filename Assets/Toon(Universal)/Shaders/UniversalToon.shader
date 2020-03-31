@@ -220,19 +220,20 @@ Shader "Universal Render Pipeline/Toon" {
 
             }
 
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #include "UnityCG.cginc"
 
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+
             #pragma target 2.0
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理はUTS_Outline.cgincへ.
-            #include "UCTS_Outline.cginc"
-            ENDCG
+            //アウトライン処理はUniversalToonOutline.hlslへ.
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "UniversalToonHead.hlsl"
+            #include "UniversalToonOutline.hlsl"
+            ENDHLSL
         }
 
 //ToonCoreStart
@@ -317,8 +318,8 @@ Shader "Universal Render Pipeline/Toon" {
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
-            #include "UniversalToonHead.cginc"
-            #include "UniversalToonBody.cginc"
+            #include "UniversalToonHead.hlsl"
+            #include "UniversalToonBody.hlsl"
 
             ENDHLSL
             
