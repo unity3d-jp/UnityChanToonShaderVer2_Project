@@ -6,7 +6,7 @@ README.md
 
 
 
-● **[日本語マニュアル（v.2.0.7版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+● **[日本語マニュアル（v.2.0.7版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 
 ## 【Unity-Chan Toon Shader Ver.2.9.9 / URP】
@@ -15,7 +15,7 @@ Unity-Chan Toon Shader is a toon shader for video and images that is designed to
 We have greatly enhanced the performance and features in Unity-Chan Toon Shader Ver. 2.0.  
 It still has the same rendering capabilities as Ver. 1.0, but now you can give your creations an even more sophisticated look.  
 
-● **[English manual for v.2.0.7](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) is available now.**  
+● **[English manual for v.2.0.7](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) is available now.**  
 
 
 -----

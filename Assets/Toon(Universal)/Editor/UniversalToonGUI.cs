@@ -855,11 +855,11 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         {
             if (GUILayout.Button("日本語マニュアル", middleButtonStyle))
             {
-                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md");
+                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md");
             }
             if (GUILayout.Button("English manual", middleButtonStyle))
             {
-                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md");
+                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md");
             }
         }
 

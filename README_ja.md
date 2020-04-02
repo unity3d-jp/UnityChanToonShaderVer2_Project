@@ -2,7 +2,7 @@
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev-lwrp/dev-base/README.md)***  
+***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/README.md)***  
 
 ## 【UTS2の概要】
 
@@ -55,7 +55,7 @@ UTS2では、アクセントカラーとして**2影色とAp(対蹠)リムライ
 
 -----
 ## 【ユーザーマニュアル】
-**[日本語マニュアル（v.2.0.7版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+**[日本語マニュアル（v.2.0.7版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 ユーザーマニュアルには、トゥーンスタイルに関する、豊富なナレッジが集まっています。  
 マニュアルを読みつつ、実際にUTS2を使ってみるを繰り返すことで、美しいトゥーンスタイルを作り上げるための方法論が自然に身につきます。  
@@ -83,13 +83,13 @@ https://unity-chan.com/contents/guideline/
 
 -----
 ## 【プロジェクト全体のダウンロード】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/dev-lwrp/dev-base.zip)  
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)  
 
 プロジェクトには、UTS2の様々な設定例が学べるサンプルシーンが付属します。  
 
 -----
 ## 【シェーダーのインストール】
-### [UTS2URP_ShaderOnly_v2.9.9.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev-lwrp/dev-base/UTS2URP_ShaderOnly_v2.9.9.unitypackage)  
+### [UTS2URP_ShaderOnly_v2.9.9.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v2.9.9.unitypackage)  
 
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 **事前にPackage ManagerからUniversal RPをインストールしておくことが必要です。**  
@@ -98,14 +98,14 @@ https://unity-chan.com/contents/guideline/
 2. Unityでプロジェクトを開き、新規シーンを作成して開いておく。  
 3. 本パッケージをUnityにD&Dする。  
 
-インストール後は、必ず[マニュアル](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)を確認するようにしてください。  
+インストール後は、必ず[マニュアル](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)を確認するようにしてください。  
 マニュアルには、UTS2の使い方が詳しく解説されています。  
 
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 -----
 ## 【リリース履歴】  
-UTS2のリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/HISTORY_ja.md)。  
+UTS2のリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/HISTORY_ja.md)。  
 
 -----
 ## 【インフォメーション】  

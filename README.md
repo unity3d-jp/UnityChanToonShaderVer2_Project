@@ -2,7 +2,7 @@
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev-lwrp/dev-base/README_ja.md)***  
+***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/README_ja.md)***  
 
 ## 【Overview : What is UTS2?】
 
@@ -55,7 +55,7 @@ Finally, several techniques have been implemented to beautifully display charact
 
 -----
 ## 【Users' Manual】
-**[English manual for v.2.0.7](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) is available now.**  
+**[English manual for v.2.0.7](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) is available now.**  
 
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using UTS2 actually is the best way to learn the beautiful toon style.  
@@ -81,13 +81,13 @@ https://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【Download whole project】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/dev-lwrp/dev-base.zip)  
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)  
 
 The project comes with sample scenes where you can learn various setting examples of UTS2.  
 
 -----
 ## 【Shader Installation】
-### [UTS2URP_ShaderOnly_v2.9.9.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/dev-lwrp/dev-base/UTS2URP_ShaderOnly_v2.9.9.unitypackage)  
+### [UTS2URP_ShaderOnly_v2.9.9.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v2.9.9.unitypackage)  
 
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 **You should install Universal RP from Package Manager before installation.**  
@@ -96,14 +96,14 @@ When installing for the first time, simply drag and drop this package into Unity
 2. When opening a project in Unity, create a new scene beforehand.  
 3. Drag and drop this pack into Unity.  
 
-Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) after installation.  
+Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) after installation.  
 The manual explains how to use UTS2 in detail.  
 
 Please contact us if you have any issues.  
 
 -----
 ## 【Release History】  
-The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/HISTORY_en.md)  
+The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/HISTORY_en.md)  
 
 -----
 ## 【Information】  
