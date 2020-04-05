@@ -257,7 +257,7 @@ void Frag(PackedVaryingsToPS packedInput,
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
-                    float3 additionalLightColor = UTS_OtherDirectionalLights(input, i, i_normalDir, lightColor, lightDirection, notDirectional);
+                    float3 additionalLightColor = UTS_OtherDirectionalLights(input, i_normalDir, lightColor, lightDirection, notDirectional);
                     finalColor += additionalLightColor;
                 }
             }
@@ -429,8 +429,10 @@ void Frag(PackedVaryingsToPS packedInput,
         // v_ are variables that might have different value for each thread in the wave (meant for vector registers).
         // This will perform more loads than it is supposed to, however, the benefits should offset the downside, especially given that light data accessed should be largely coherent.
         // Note that the above is valid only if wave intriniscs are supported.
+
         uint v_lightListOffset = 0;
         uint v_lightIdx = lightStart;
+
 
         while (v_lightListOffset < lightCount)
         {
@@ -439,7 +441,7 @@ void Frag(PackedVaryingsToPS packedInput,
             if (s_lightIdx == -1)
                 break;
 
-            LightData s_lightData = FetchLight(s_lightIdx);
+
 
             // If current scalar and vector light index match, we process the light. The v_lightListOffset for current thread is increased.
             // Note that the following should really be ==, however, since helper lanes are not considered by WaveActiveMin, such helper lanes could
@@ -447,10 +449,22 @@ void Frag(PackedVaryingsToPS packedInput,
             if (s_lightIdx >= v_lightIdx)
             {
                 v_lightListOffset++;
+
+                LightData s_lightData = FetchLight(s_lightIdx);
+                float3 lightColor = 0;
+                float3 lightDirection = 0;
+                float3 i_normalDir = 0;
+                float notDirectional = 1.0f;
+
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
-                    float3 pointLightColor = GetLightColor(context, input, posInput, V, builtinData, bsdfData, preLightData, s_lightData);
-                    finalColor += pointLightColor;
+                    float3 additionalLightColor = GetLightColor(context, input, posInput, V, builtinData, bsdfData, preLightData, s_lightData);
+
+
+                    // can't unroll this.
+                    // float3 additionalLightColor = UTS_OtherDirectionalLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+
+                    finalColor += additionalLightColor;
                 }
             }
         }

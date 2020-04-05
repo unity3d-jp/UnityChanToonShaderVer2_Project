@@ -217,7 +217,7 @@ int GetUtsMainLightIndex(BuiltinData builtinData)
     return mainLightIndex;
 }
 
-float3 UTS_OtherDirectionalLights(FragInputs input, int directionalLightIndex, float3 i_normalDir,
+float3 UTS_OtherDirectionalLights(FragInputs input, float3 i_normalDir,
     float3 additionalLightColor, float3 lightDirection, float notDirectional)
 {
 
