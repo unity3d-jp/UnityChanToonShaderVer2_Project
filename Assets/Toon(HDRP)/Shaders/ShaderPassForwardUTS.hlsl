@@ -387,11 +387,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
-#if 0
-                    DirectLighting lighting = EvaluateBSDF_Punctual(context, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
-                    finalColor += lighting.diffuse;
-                    finalColor += lighting.specular;
-#else
+
                     float3 L; // lightToSample = positionWS - light.positionRWS;  unL = -lightToSample; L = unL * distRcp;
                     float4 distances; // {d, d^2, 1/d, d_proj}
                     GetPunctualLightVectors(input.positionRWS, s_lightData, L, distances);
@@ -448,7 +444,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
                     }
-#endif
+
 
 
                 }
