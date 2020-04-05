@@ -113,3 +113,11 @@ The following packages were updated:
   com.unity.render-pipelines.lightweight from version 7.1.8 to 8.0.1
   com.unity.test-framework from version 1.1.9 to 1.1.11
   com.unity.textmeshpro from version 2.0.1 to 3.0.0-preview.1
+
+=== Sun Apr  5 11:33:39 2020
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.test-framework from version 1.1.11 to 1.1.13
