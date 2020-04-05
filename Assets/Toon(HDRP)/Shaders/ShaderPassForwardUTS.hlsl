@@ -387,11 +387,11 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
-#if 1
+#if 0
                     DirectLighting lighting = EvaluateBSDF_Punctual(context, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
                     finalColor += lighting.diffuse;
 #endif
-#if 0
+#if 1
                     float3 L; // lightToSample = positionWS - light.positionRWS;  unL = -lightToSample; L = unL * distRcp;
                     float4 distances; // {d, d^2, 1/d, d_proj}
                     GetPunctualLightVectors(input.positionRWS, s_lightData, L, distances);
@@ -399,47 +399,45 @@ void Frag(PackedVaryingsToPS packedInput,
                     {
                         float4 lightColor = EvaluateLight_Punctual(context, posInput, s_lightData, L, distances);
                         lightColor.rgb *= lightColor.a; // Composite
-#ifdef MATERIAL_INCLUDE_TRANSMISSION
-                        if (ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
+# ifdef MATERIAL_INCLUDE_TRANSMISSION
+                        if (ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, s_lightData.shadowIndex))
                         {
                             // Replace the 'baked' value using 'thickness from shadow'.
-                            bsdfData.transmittance = EvaluateTransmittance_Punctual(lightLoopContext, posInput,
-                                bsdfData, light, L, distances);
+                            bsdfData.transmittance = EvaluateTransmittance_Punctual(context, posInput,
+                                bsdfData, s_lightData, L, distances);
                         }
                         else
-#endif
+# endif
                         {
                             // This code works for both surface reflection and thin object transmission.
-                            float shadow = EvaluateShadow_Punctual(lightLoopContext, posInput, light, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
-                            lightColor.rgb *= ComputeShadowColor(shadow, light.shadowTint, light.penumbraTint);
+                            float shadow = EvaluateShadow_Punctual(context, posInput, s_lightData, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
+                            lightColor.rgb *= ComputeShadowColor(shadow, s_lightData.shadowTint, s_lightData.penumbraTint);
 
-#ifdef DEBUG_DISPLAY
+# ifdef DEBUG_DISPLAY
                             // The step with the attenuation is required to avoid seeing the screen tiles at the end of lights because the attenuation always falls to 0 before the tile ends.
                             // Note: g_DebugShadowAttenuation have been setup in EvaluateShadow_Punctual
                             if (_DebugShadowMapMode == SHADOWMAPDEBUGMODE_SINGLE_SHADOW && light.shadowIndex == _DebugSingleShadowIndex)
                                 g_DebugShadowAttenuation *= step(FLT_EPS, lightColor.a);
-#endif
+# endif
                         }
 
-                        // Simulate a sphere/disk light with this hack.
-                        // Note that it is not correct with our precomputation of PartLambdaV
-                        // (means if we disable the optimization it will not have the
-                        // same result) but we don't care as it is a hack anyway.
-                        ClampRoughness(preLightData, bsdfData, light.minRoughness);
 
-                        lighting = ShadeSurface_Infinitesimal(preLightData, bsdfData, V, L, lightColor.rgb,
-                            light.diffuseDimmer, light.specularDimmer);
-                        finalColor += lightColor.rgb;
+                        // this is not so important for UTS.
+                        //ClampRoughness(preLightData, bsdfData, light.minRoughness);
+
+                        DirectLighting lighting = ShadeSurface_Infinitesimal(preLightData, bsdfData, V, L, lightColor.rgb,
+                            s_lightData.diffuseDimmer, s_lightData.specularDimmer);
+                        finalColor += lighting.diffuse; // lightColor.rgb;
 #if 0
                         if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
                         {
                             CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
 
-#if defined(MATERIAL_INCLUDE_TRANSMISSION) || defined(MATERIAL_INCLUDE_PRECOMPUTED_TRANSMISSION)
+# if defined(MATERIAL_INCLUDE_TRANSMISSION) || defined(MATERIAL_INCLUDE_PRECOMPUTED_TRANSMISSION)
                             float3 transmittance = bsdfData.transmittance;
-#else
+# else
                             float3 transmittance = float3(0.0, 0.0, 0.0);
-#endif
+# endif
                             // If transmittance or the CBSDF's transmission components are known to be 0,
                             // the optimization pass of the compiler will remove all of the associated code.
                             // However, this will take a lot more CPU time than doing the same thing using
@@ -447,12 +445,13 @@ void Frag(PackedVaryingsToPS packedInput,
 //                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
 //                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
                             finalColor += (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * s_lightData.diffuseDimmer;
-#endif
+
                         }
-                        
+#endif
                         //finalColor += lightColor.rgb; 
                     }
 #endif
+
 
                 }
             }
@@ -460,9 +459,9 @@ void Frag(PackedVaryingsToPS packedInput,
     }
 
     //   float3 envColor = aggregateLighting.direct.diffuse; // ???
-    half3 envColor = half3(0.2f, 0.2f, 0.2f);
-    float3 envLightColor = envColor.rgb;
-    float envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
+    float3 envColor = float3(0.2f, 0.2f, 0.2f);
+    float3 envLightColor = envColor;
+    float3 envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
     finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
     outColor = float4(finalColor, 1.0f);
