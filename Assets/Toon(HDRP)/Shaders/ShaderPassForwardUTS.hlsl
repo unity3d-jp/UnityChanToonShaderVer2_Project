@@ -452,16 +452,15 @@ void Frag(PackedVaryingsToPS packedInput,
 
                 LightData s_lightData = FetchLight(s_lightIdx);
                 float3 lightColor = 0;
-                float3 lightDirection = 0;
+
                 float3 i_normalDir = 0;
                 float notDirectional = 1.0f;
 
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
                     float3 additionalLightColor = GetLightColor(context, input, posInput, V, builtinData, bsdfData, preLightData, s_lightData);
-
-
-                    // can't unroll this.
+                    additionalLightColor *= 15.0f;
+                    float3 lightDirection = 0;
                     float3 pointLightColor = UTS_OtherDirectionalLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
                     //float3 pointLightColor = float3(1.0f, 0.0, 0.0);
 
