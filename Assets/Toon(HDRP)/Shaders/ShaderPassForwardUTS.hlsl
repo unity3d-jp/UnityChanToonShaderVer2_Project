@@ -80,7 +80,69 @@ half3 ShadeSH9(half4 normal)
 */
 
 
+float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs posInput,
+    float3 V, BuiltinData builtinData,
+    BSDFData bsdfData, PreLightData preLightData, LightData light)
+{
+    float3 finalColor = float3(0, 0, 0);
+    float3 L; // lightToSample = positionWS - light.positionRWS;  unL = -lightToSample; L = unL * distRcp;
+    float4 distances; // {d, d^2, 1/d, d_proj}
+    GetPunctualLightVectors(input.positionRWS, light, L, distances);
+    if ((light.lightDimmer > 0) && IsNonZeroBSDF(V, L, preLightData, bsdfData))
+    {
+        float4 lightColor = EvaluateLight_Punctual(context, posInput, light, L, distances);
+        lightColor.rgb *= lightColor.a; // Composite
+# ifdef MATERIAL_INCLUDE_TRANSMISSION
+        if (ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
+        {
+            // Replace the 'baked' value using 'thickness from shadow'.
+            bsdfData.transmittance = EvaluateTransmittance_Punctual(context, posInput,
+                bsdfData, light, L, distances);
+        }
+        else
+# endif
+        {
+            // This code works for both surface reflection and thin object transmission.
+            float shadow = EvaluateShadow_Punctual(context, posInput, light, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
+            lightColor.rgb *= ComputeShadowColor(shadow, light.shadowTint, light.penumbraTint);
 
+# ifdef DEBUG_DISPLAY
+            // The step with the attenuation is required to avoid seeing the screen tiles at the end of lights because the attenuation always falls to 0 before the tile ends.
+            // Note: g_DebugShadowAttenuation have been setup in EvaluateShadow_Punctual
+            if (_DebugShadowMapMode == SHADOWMAPDEBUGMODE_SINGLE_SHADOW && light.shadowIndex == _DebugSingleShadowIndex)
+                g_DebugShadowAttenuation *= step(FLT_EPS, lightColor.a);
+# endif
+        }
+
+
+        // this is not so important for UTS.
+        ClampRoughness(preLightData, bsdfData, light.minRoughness);
+
+        // extracted ShadeSurface_Infinitesimal()
+        if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
+        {
+            CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
+
+# if defined(MATERIAL_INCLUDE_TRANSMISSION) || defined(MATERIAL_INCLUDE_PRECOMPUTED_TRANSMISSION)
+            float3 transmittance = bsdfData.transmittance;
+# else
+            float3 transmittance = float3(0.0, 0.0, 0.0);
+# endif
+
+            // If transmittance or the CBSDF's transmission components are known to be 0,
+            // the optimization pass of the compiler will remove all of the associated code.
+            // However, this will take a lot more CPU time than doing the same thing using
+            // the preprocessor.
+//                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
+//                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
+            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *light.diffuseDimmer;
+            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *light.specularDimmer;
+        }
+
+
+    }
+    return finalColor;
+}
 
 
 void Frag(PackedVaryingsToPS packedInput,
@@ -387,66 +449,8 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
-
-                    float3 L; // lightToSample = positionWS - light.positionRWS;  unL = -lightToSample; L = unL * distRcp;
-                    float4 distances; // {d, d^2, 1/d, d_proj}
-                    GetPunctualLightVectors(input.positionRWS, s_lightData, L, distances);
-                    if ((s_lightData.lightDimmer > 0) && IsNonZeroBSDF(V, L, preLightData, bsdfData))
-                    {
-                        float4 lightColor = EvaluateLight_Punctual(context, posInput, s_lightData, L, distances);
-                        lightColor.rgb *= lightColor.a; // Composite
-# ifdef MATERIAL_INCLUDE_TRANSMISSION
-                        if (ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, s_lightData.shadowIndex))
-                        {
-                            // Replace the 'baked' value using 'thickness from shadow'.
-                            bsdfData.transmittance = EvaluateTransmittance_Punctual(context, posInput,
-                                bsdfData, s_lightData, L, distances);
-                        }
-                        else
-# endif
-                        {
-                            // This code works for both surface reflection and thin object transmission.
-                            float shadow = EvaluateShadow_Punctual(context, posInput, s_lightData, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
-                            lightColor.rgb *= ComputeShadowColor(shadow, s_lightData.shadowTint, s_lightData.penumbraTint);
-
-# ifdef DEBUG_DISPLAY
-                            // The step with the attenuation is required to avoid seeing the screen tiles at the end of lights because the attenuation always falls to 0 before the tile ends.
-                            // Note: g_DebugShadowAttenuation have been setup in EvaluateShadow_Punctual
-                            if (_DebugShadowMapMode == SHADOWMAPDEBUGMODE_SINGLE_SHADOW && light.shadowIndex == _DebugSingleShadowIndex)
-                                g_DebugShadowAttenuation *= step(FLT_EPS, lightColor.a);
-# endif
-                        }
-
-
-                        // this is not so important for UTS.
-                        ClampRoughness(preLightData, bsdfData, s_lightData.minRoughness);
-
-                        // extracted ShadeSurface_Infinitesimal()
-                        if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
-                        {
-                            CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
-
-# if defined(MATERIAL_INCLUDE_TRANSMISSION) || defined(MATERIAL_INCLUDE_PRECOMPUTED_TRANSMISSION)
-                            float3 transmittance = bsdfData.transmittance;
-# else
-                            float3 transmittance = float3(0.0, 0.0, 0.0);
-# endif
-                            
-                            // If transmittance or the CBSDF's transmission components are known to be 0,
-                            // the optimization pass of the compiler will remove all of the associated code.
-                            // However, this will take a lot more CPU time than doing the same thing using
-                            // the preprocessor.
-//                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
-//                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
-                            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *s_lightData.diffuseDimmer;
-                            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *s_lightData.specularDimmer;
-                        }
-
-
-                    }
-
-
-
+                    float3 pointLightColor = GetLightColor(context, input, posInput, V, builtinData, bsdfData, preLightData, s_lightData);
+                    finalColor += pointLightColor;
                 }
             }
         }
