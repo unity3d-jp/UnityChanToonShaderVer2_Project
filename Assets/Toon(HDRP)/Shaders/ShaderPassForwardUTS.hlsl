@@ -433,7 +433,7 @@ void Frag(PackedVaryingsToPS packedInput,
         uint v_lightListOffset = 0;
         uint v_lightIdx = lightStart;
 
-
+        [loop]
         while (v_lightListOffset < lightCount)
         {
             v_lightIdx = FetchIndex(lightStart, v_lightListOffset);
@@ -462,9 +462,10 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
                     // can't unroll this.
-                    // float3 additionalLightColor = UTS_OtherDirectionalLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+                    float3 pointLightColor = UTS_OtherDirectionalLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+                    //float3 pointLightColor = float3(1.0f, 0.0, 0.0);
 
-                    finalColor += additionalLightColor;
+                    finalColor += pointLightColor;
                 }
             }
         }
