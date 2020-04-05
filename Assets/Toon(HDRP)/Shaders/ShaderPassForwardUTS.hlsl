@@ -390,8 +390,8 @@ void Frag(PackedVaryingsToPS packedInput,
 #if 0
                     DirectLighting lighting = EvaluateBSDF_Punctual(context, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
                     finalColor += lighting.diffuse;
-#endif
-#if 1
+                    finalColor += lighting.specular;
+#else
                     float3 L; // lightToSample = positionWS - light.positionRWS;  unL = -lightToSample; L = unL * distRcp;
                     float4 distances; // {d, d^2, 1/d, d_proj}
                     GetPunctualLightVectors(input.positionRWS, s_lightData, L, distances);
@@ -424,11 +424,12 @@ void Frag(PackedVaryingsToPS packedInput,
 
                         // this is not so important for UTS.
                         //ClampRoughness(preLightData, bsdfData, light.minRoughness);
-
+#if 0
                         DirectLighting lighting = ShadeSurface_Infinitesimal(preLightData, bsdfData, V, L, lightColor.rgb,
                             s_lightData.diffuseDimmer, s_lightData.specularDimmer);
                         finalColor += lighting.diffuse; // lightColor.rgb;
-#if 0
+
+#else
                         if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
                         {
                             CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
@@ -444,8 +445,8 @@ void Frag(PackedVaryingsToPS packedInput,
                             // the preprocessor.
 //                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
 //                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
-                            finalColor += (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * s_lightData.diffuseDimmer;
-
+                            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *s_lightData.diffuseDimmer;
+                            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *s_lightData.specularDimmer;
                         }
 #endif
                         //finalColor += lightColor.rgb; 
