@@ -398,8 +398,39 @@ void Frag(PackedVaryingsToPS packedInput,
                     if ((s_lightData.lightDimmer > 0) && IsNonZeroBSDF(V, L, preLightData, bsdfData))
                     {
                         float4 lightColor = EvaluateLight_Punctual(context, posInput, s_lightData, L, distances);
-                        lightColor.rgb *= 0.5f; // lightColor.a; // Composite
+                        lightColor.rgb *= lightColor.a; // Composite
+#ifdef MATERIAL_INCLUDE_TRANSMISSION
+                        if (ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
+                        {
+                            // Replace the 'baked' value using 'thickness from shadow'.
+                            bsdfData.transmittance = EvaluateTransmittance_Punctual(lightLoopContext, posInput,
+                                bsdfData, light, L, distances);
+                        }
+                        else
+#endif
+                        {
+                            // This code works for both surface reflection and thin object transmission.
+                            float shadow = EvaluateShadow_Punctual(lightLoopContext, posInput, light, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
+                            lightColor.rgb *= ComputeShadowColor(shadow, light.shadowTint, light.penumbraTint);
 
+#ifdef DEBUG_DISPLAY
+                            // The step with the attenuation is required to avoid seeing the screen tiles at the end of lights because the attenuation always falls to 0 before the tile ends.
+                            // Note: g_DebugShadowAttenuation have been setup in EvaluateShadow_Punctual
+                            if (_DebugShadowMapMode == SHADOWMAPDEBUGMODE_SINGLE_SHADOW && light.shadowIndex == _DebugSingleShadowIndex)
+                                g_DebugShadowAttenuation *= step(FLT_EPS, lightColor.a);
+#endif
+                        }
+
+                        // Simulate a sphere/disk light with this hack.
+                        // Note that it is not correct with our precomputation of PartLambdaV
+                        // (means if we disable the optimization it will not have the
+                        // same result) but we don't care as it is a hack anyway.
+                        ClampRoughness(preLightData, bsdfData, light.minRoughness);
+
+                        lighting = ShadeSurface_Infinitesimal(preLightData, bsdfData, V, L, lightColor.rgb,
+                            light.diffuseDimmer, light.specularDimmer);
+                        finalColor += lightColor.rgb;
+#if 0
                         if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
                         {
                             CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
@@ -416,29 +447,13 @@ void Frag(PackedVaryingsToPS packedInput,
 //                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
 //                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
                             finalColor += (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * s_lightData.diffuseDimmer;
+#endif
                         }
                         
                         //finalColor += lightColor.rgb; 
                     }
 #endif
-                    /*
-                    float4 distanceAndSpotAttenuation = 0; // todo.
-                    float3 lightVector = s_lightData.positionRWS - input.positionRWS;
-                    float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
 
-                    float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
-                    float attenuation = DistanceAttenuation(distanceSqr, distanceAndSpotAttenuation.xy) * AngleAttenuation(s_lightData.spotDirection.xyz, lightDirection, distanceAndSpotAttenuation.zw);
-
-                    UtsLight utsLight;
-                    ZERO_INITIALIZE(UtsLight, utsLight);
-//                    utsLight.direction.x = s_lightData.spotDirection.x;
-                    utsLight.distanceAttenuation = attenuation;
-                    utsLight.shadowAttenuation = 1.0f;
-                    utsLight.color = s_lightData.color;
-                    utsLight.type = 1;
-                    */
-                //    DirectLighting lighting = EvaluateBSDF_Punctual(context, V, posInput, preLightData, s_lightData, bsdfData, builtinData);
-                //    AccumulateDirectLighting(lighting, aggregateLighting);
                 }
             }
         }
