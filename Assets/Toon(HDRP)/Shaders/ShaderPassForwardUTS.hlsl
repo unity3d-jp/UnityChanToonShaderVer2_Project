@@ -423,13 +423,9 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
                         // this is not so important for UTS.
-                        //ClampRoughness(preLightData, bsdfData, light.minRoughness);
-#if 0
-                        DirectLighting lighting = ShadeSurface_Infinitesimal(preLightData, bsdfData, V, L, lightColor.rgb,
-                            s_lightData.diffuseDimmer, s_lightData.specularDimmer);
-                        finalColor += lighting.diffuse; // lightColor.rgb;
+                        ClampRoughness(preLightData, bsdfData, s_lightData.minRoughness);
 
-#else
+                        // extracted ShadeSurface_Infinitesimal()
                         if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
                         {
                             CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
@@ -439,6 +435,7 @@ void Frag(PackedVaryingsToPS packedInput,
 # else
                             float3 transmittance = float3(0.0, 0.0, 0.0);
 # endif
+                            
                             // If transmittance or the CBSDF's transmission components are known to be 0,
                             // the optimization pass of the compiler will remove all of the associated code.
                             // However, this will take a lot more CPU time than doing the same thing using
@@ -448,8 +445,8 @@ void Frag(PackedVaryingsToPS packedInput,
                             finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *s_lightData.diffuseDimmer;
                             finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *s_lightData.specularDimmer;
                         }
-#endif
-                        //finalColor += lightColor.rgb; 
+
+
                     }
 #endif
 
