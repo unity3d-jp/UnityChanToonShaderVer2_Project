@@ -295,7 +295,7 @@ float3 UTS_OtherDirectionalLights(FragInputs input, int directionalLightIndex, f
     return finalColor;
 }
 
-float3 UTS_MainLight(FragInputs input, int mainLightIndex)
+float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex)
 {
 
     uint2 tileIndex = uint2(input.positionSS.xy) / GetTileSize();
@@ -334,7 +334,7 @@ float3 UTS_MainLight(FragInputs input, int mainLightIndex)
     /* to here todo. these should be put int a struct */
 
 
-    half shadowAttenuation = 1.0f;
+    half shadowAttenuation =  lightLoopContext.shadowValue;
     LightLoopContext context;
     DirectLighting lighting = EvaluateBSDF_Directional(context, V, posInput, preLightData, _DirectionalLightDatas[mainLightIndex], bsdfData, builtinData);
 

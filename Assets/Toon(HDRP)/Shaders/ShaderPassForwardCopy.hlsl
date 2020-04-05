@@ -254,15 +254,47 @@ void Frag(PackedVaryingsToPS packedInput,
     lightLoopContext.shadowContext = InitShadowContext();
     lightLoopContext.shadowValue = 1;
     lightLoopContext.sampleReflection = 0;
+
+    // With XR single-pass and camera-relative: offset position to do lighting computations from the combined center view (original camera matrix).
+    // This is required because there is only one list of lights generated on the CPU. Shadows are also generated once and shared between the instanced views.
+    ApplyCameraRelativeXR(posInput.positionWS);
+
     // Initialize the contactShadow and contactShadowFade fields
     InitContactShadow(posInput, lightLoopContext);
 
     float3 finalColor = float3(0.0f, 0.0f, 0.0f);
     if (featureFlags & LIGHTFEATUREFLAGS_DIRECTIONAL)
     {
+        // Evaluate sun shadows.
+        if (_DirectionalShadowIndex >= 0)
+        {
+            DirectionalLightData light = _DirectionalLightDatas[_DirectionalShadowIndex];
+#if defined(SCREEN_SPACE_SHADOWS) && !defined(_SURFACE_TYPE_TRANSPARENT)
+            if ((light.screenSpaceShadowIndex & SCREEN_SPACE_SHADOW_INDEX_MASK) != INVALID_SCREEN_SPACE_SHADOW)
+            {
+                context.shadowValue = GetScreenSpaceColorShadow(posInput, light.screenSpaceShadowIndex);
+            }
+            else
+#endif
+            {
+                // TODO: this will cause us to load from the normal buffer first. Does this cause a performance problem?
+                float3 L = -light.forward;
+
+                // Is it worth sampling the shadow map?
+                if ((light.lightDimmer > 0) && (light.shadowDimmer > 0) && // Note: Volumetric can have different dimmer, thus why we test it here
+                    IsNonZeroBSDF(V, L, preLightData, bsdfData) &&
+                    !ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
+                {
+                    lightLoopContext.shadowValue = GetDirectionalShadowAttenuation(lightLoopContext.shadowContext,
+                        posInput.positionSS, posInput.positionWS, GetNormalForShadowBias(bsdfData),
+                        light.shadowIndex, L);
+                }
+            }
+        }
+
         int mainLightIndex = GetUtsMainLightIndex(builtinData);
         int currentDirectionalLightIndex = -1;
-        finalColor = UTS_MainLight(input, mainLightIndex);
+        finalColor = UTS_MainLight(lightLoopContext, input, mainLightIndex);
 
 
         float3 i_normalDir = surfaceData.normalWS;
@@ -284,6 +316,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 }
             }
         }
+
     }
     if (featureFlags & LIGHTFEATUREFLAGS_PUNCTUAL)
     {
