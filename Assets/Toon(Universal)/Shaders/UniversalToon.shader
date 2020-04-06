@@ -1,15 +1,15 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.9.9
+//v.8.0.0
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Universal RP) 
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "Universal Render Pipeline/Toon" {
     Properties{
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
-        [HideInInspector] _utsVersionX("VersionX", Float) = 2
-        [HideInInspector] _utsVersionY("VersionY", Float) = 9
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 9
+        [HideInInspector] _utsVersionX("VersionX", Float) = 8
+        [HideInInspector] _utsVersionY("VersionY", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
