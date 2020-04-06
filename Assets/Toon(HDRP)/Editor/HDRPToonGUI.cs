@@ -1,7 +1,7 @@
-﻿//Unitychan Toon Shader ver.2.0
-//v.2.9.9
+﻿//Unitychan Toon Shader ver.8.0
+//v.8.0.0
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Univerasl RP) 
+//toshiyuki@unity3d.com (Univerasl RP/HDRP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 using UnityEngine;
@@ -72,14 +72,14 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
         const string ShaderPropAdd_Antipodean_RimLight = "_Add_Antipodean_RimLight";
         const string ShaderPropLightDirection_MaskOn = "_LightDirection_MaskOn";
 
-        const string _1st_ShadeColor_Step = "_1st_ShadeColor_Step";
-        const string _BaseColor_Step = "_BaseColor_Step";
-        const string _1st_ShadeColor_Feather = "_1st_ShadeColor_Feather";
-        const string _BaseShade_Feather = "_BaseShade_Feather";
-        const string _2nd_ShadeColor_Step = "_2nd_ShadeColor_Step";
-        const string _ShadeColor_Step = "_ShadeColor_Step";
-        const string _2nd_ShadeColor_Feather = "_2nd_ShadeColor_Feather";
-        const string _1st2nd_Shades_Feather = "_1st2nd_Shades_Feather";
+        const string ShaderProp1st_ShadeColor_Step = "_1st_ShadeColor_Step";
+        const string ShaderPropBaseColor_Step = "_BaseColor_Step";
+        const string ShaderProp1st_ShadeColor_Feather = "_1st_ShadeColor_Feather";
+        const string ShaderPropBaseShade_Feather = "_BaseShade_Feather";
+        const string ShaderProp2nd_ShadeColor_Step = "_2nd_ShadeColor_Step";
+        const string ShaderPropShadeColor_Step = "_ShadeColor_Step";
+        const string ShaderProp2nd_ShadeColor_Feather = "_2nd_ShadeColor_Feather";
+        const string ShaderProp1st2nd_Shades_Feather = "_1st2nd_Shades_Feather";
         const string ShaderPropIs_NormalMapForMatCap = "_Is_NormalMapForMatCap";
         const string ShaderPropIs_UseTweakMatCapOnShadow = "_Is_UseTweakMatCapOnShadow";
         const string ShaderPropIs_ViewCoord_Scroll = "_Is_ViewCoord_Scroll";
@@ -395,14 +395,14 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
             tweak_ShadingGradeMapLevel = FindProperty("_Tweak_ShadingGradeMapLevel", props, false);
             blurLevelSGM = FindProperty("_BlurLevelSGM", props, false);
             tweak_SystemShadowsLevel = FindProperty("_Tweak_SystemShadowsLevel", props);
-            baseColor_Step = FindProperty(_BaseColor_Step, props);
-            baseShade_Feather = FindProperty(_BaseShade_Feather, props);
-            shadeColor_Step = FindProperty(_ShadeColor_Step, props);
-            first2nd_Shades_Feather = FindProperty(_1st2nd_Shades_Feather, props);
-            first_ShadeColor_Step = FindProperty(_1st_ShadeColor_Step, props);
-            first_ShadeColor_Feather = FindProperty(_1st_ShadeColor_Feather, props);
-            second_ShadeColor_Step = FindProperty(_2nd_ShadeColor_Step, props);
-            second_ShadeColor_Feather = FindProperty(_2nd_ShadeColor_Feather, props);
+            baseColor_Step = FindProperty(ShaderPropBaseColor_Step, props);
+            baseShade_Feather = FindProperty(ShaderPropBaseShade_Feather, props);
+            shadeColor_Step = FindProperty(ShaderPropShadeColor_Step, props);
+            first2nd_Shades_Feather = FindProperty(ShaderProp1st2nd_Shades_Feather, props);
+            first_ShadeColor_Step = FindProperty(ShaderProp1st_ShadeColor_Step, props);
+            first_ShadeColor_Feather = FindProperty(ShaderProp1st_ShadeColor_Feather, props);
+            second_ShadeColor_Step = FindProperty(ShaderProp2nd_ShadeColor_Step, props);
+            second_ShadeColor_Feather = FindProperty(ShaderProp2nd_ShadeColor_Feather, props);
             stepOffset = FindProperty("_StepOffset", props, false);
             highColor_Tex = FindProperty("_HighColor_Tex", props);
             highColor = FindProperty("_HighColor", props);
@@ -751,6 +751,7 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
 
             if (material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On)
             {
+                SetuOutline(material);
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -1411,10 +1412,10 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
                     m_MaterialEditor.RangeProperty(shadeColor_Step, "ShadeColor Step");
                     m_MaterialEditor.RangeProperty(first2nd_Shades_Feather, "1st/2nd_Shades Feather");
                     //ShadingGradeMap系と変数を共有.
-                    material.SetFloat(_1st_ShadeColor_Step, material.GetFloat(_BaseColor_Step));
-                    material.SetFloat(_1st_ShadeColor_Feather, material.GetFloat(_BaseShade_Feather));
-                    material.SetFloat(_2nd_ShadeColor_Step, material.GetFloat(_ShadeColor_Step));
-                    material.SetFloat(_2nd_ShadeColor_Feather, material.GetFloat(_1st2nd_Shades_Feather));
+                    material.SetFloat(ShaderProp1st_ShadeColor_Step, material.GetFloat(ShaderPropBaseColor_Step));
+                    material.SetFloat(ShaderProp1st_ShadeColor_Feather, material.GetFloat(ShaderPropBaseShade_Feather));
+                    material.SetFloat(ShaderProp2nd_ShadeColor_Step, material.GetFloat(ShaderPropShadeColor_Step));
+                    material.SetFloat(ShaderProp2nd_ShadeColor_Feather, material.GetFloat(ShaderProp1st2nd_Shades_Feather));
                 }
                 else if (material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.ShadingGradeMap)
                 {    //SGM
@@ -1424,10 +1425,10 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
                     m_MaterialEditor.RangeProperty(second_ShadeColor_Step, "2nd ShadeColor Step");
                     m_MaterialEditor.RangeProperty(second_ShadeColor_Feather, "2nd ShadeColor Feather");
                     //DoubleWithFeather系と変数を共有.
-                    material.SetFloat(_BaseColor_Step, material.GetFloat(_1st_ShadeColor_Step));
-                    material.SetFloat(_BaseShade_Feather, material.GetFloat(_1st_ShadeColor_Feather));
-                    material.SetFloat(_ShadeColor_Step, material.GetFloat(_2nd_ShadeColor_Step));
-                    material.SetFloat(_1st2nd_Shades_Feather, material.GetFloat(_2nd_ShadeColor_Feather));
+                    material.SetFloat(ShaderPropBaseColor_Step, material.GetFloat(ShaderProp1st_ShadeColor_Step));
+                    material.SetFloat(ShaderPropBaseShade_Feather, material.GetFloat(ShaderProp1st_ShadeColor_Feather));
+                    material.SetFloat(ShaderPropShadeColor_Step, material.GetFloat(ShaderProp2nd_ShadeColor_Step));
+                    material.SetFloat(ShaderProp1st2nd_Shades_Feather, material.GetFloat(ShaderProp2nd_ShadeColor_Feather));
                 }
                 else
                 {
@@ -2310,7 +2311,15 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
                 material.SetInt(srpDefaultCullMode, (int)_CullingMode.BackCulling);
             }
         }
-
+        void SetuOutline(Material material)
+        {
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
+            if (srpDefaultLightModeTag == srpDefaultLightModeName)
+            {
+                material.SetInt(srpDefaultColorMask, 15);
+                material.SetInt(srpDefaultCullMode, (int)_CullingMode.FrontCulling);
+            }
+        }
         void GUI_Outline(Material material)
         {
 
@@ -2332,8 +2341,6 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
                         material.SetShaderPassEnabled(srpDefaultLightModeName, true);
-                        material.SetInt(srpDefaultColorMask, 15);
-                        material.SetInt(srpDefaultCullMode, (int)_CullingMode.FrontCulling);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
