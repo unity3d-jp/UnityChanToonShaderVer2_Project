@@ -457,7 +457,9 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
                 float notDirectional = 1.0f;
-                float3 lightDirection = s_lightData.positionRWS;
+                float3 lightVector = s_lightData.positionRWS - posInput.positionWS * notDirectional;
+                float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
+                float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
                 float3 additionalLightColor = s_lightData.color;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
