@@ -1,7 +1,7 @@
-﻿//UCTS_Outline.cginc
-//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+﻿//Unitychan Toon Shader ver.8.0
+//v.8.0.0
 //nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP)
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 // 2018/08/23 N.Kobayashi (Unity Technologies Japan)

@@ -1,3 +1,7 @@
+//Unitychan Toon Shader ver.8.0
+//v.8.0.0
+//nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP)
 Shader "HDRP/Toon"
 {
     Properties
@@ -395,7 +399,7 @@ Shader "HDRP/Toon"
             _Farthest_Distance("Farthest_Distance", Float) = 100
             _Nearest_Distance("Nearest_Distance", Float) = 0.5
             _Outline_Sampler("Outline_Sampler", 2D) = "white" {}
-        _Outline_Color("Outline_Color", Color) = (0.5, 0.5, 0.5, 1)
+            _Outline_Color("Outline_Color", Color) = (0.5, 0.5, 0.5, 1)
             [Toggle(_)] _Is_BlendBaseColor("Is_BlendBaseColor", Float) = 0
             [Toggle(_)] _Is_LightColor_Outline("Is_LightColor_Outline", Float) = 1
             // ClippingMask paramaters from Here.
@@ -404,13 +408,13 @@ Shader "HDRP/Toon"
             //v.2.0.4
             [Toggle(_)] _Is_OutlineTex("Is_OutlineTex", Float) = 0
             _OutlineTex("OutlineTex", 2D) = "white" {}
-        //Offset parameter
-        _Offset_Z("Offset_Camera_Z", Float) = 0
+            //Offset parameter
+            _Offset_Z("Offset_Camera_Z", Float) = 0
             //v.2.0.4.3 Baked Nrmal Texture for Outline
             [Toggle(_)] _Is_BakedNormal("Is_BakedNormal", Float) = 0
             _BakedNormal("Baked Normal for Outline", 2D) = "white" {}
-        //GI Intensity
-        _GI_Intensity("GI_Intensity", Range(0, 1)) = 0
+            //GI Intensity
+            _GI_Intensity("GI_Intensity", Range(0, 1)) = 0
             //For VR Chat under No effective light objects
             _Unlit_Intensity("Unlit_Intensity", Range(0.001, 4)) = 1
             //v.2.0.5 
@@ -1001,15 +1005,16 @@ Shader "HDRP/Toon"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #include "UnityCG.cginc"
+
 
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
             #pragma target 2.0
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理はUTS_Outline.cgincへ.
-            #include "UCTS_Outline.cginc"
+            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+            #include "HDRPToonHead.hlsl"
+            #include "HDRPToonOutline.hlsl"
             ENDCG
         }
 

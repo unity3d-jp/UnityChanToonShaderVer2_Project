@@ -1,5 +1,5 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Macros.hlsl"
-#include "HDRPToonHead.cginc"
+#include "HDRPToonHead.hlsl"
 uniform float _utsTechnique;
 
 //uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
