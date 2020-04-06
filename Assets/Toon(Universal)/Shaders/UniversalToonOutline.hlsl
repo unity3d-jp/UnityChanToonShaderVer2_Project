@@ -1,5 +1,4 @@
-﻿//UCTS_Outline.cginc
-//Unitychan Toon Shader ver.2.0
+﻿//Unitychan Toon Shader ver.8.0
 //v.8.0.0
 //nobuyuki@unity3d.com
 //toshiyui@unity3d.com (universal RP)
