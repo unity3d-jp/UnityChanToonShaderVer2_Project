@@ -535,46 +535,8 @@ Shader "HDRP/Toon"
     // LitData.hlsl is included here, LitShading.hlsl is included below for shading passes only.
 
     ENDHLSL
-    /*
-    SubShader{
 
-        Tags {
-                "RenderType" = "Opaque"
-        }
-        Pass {
-            Name "Outline"
-            Tags {
-                "LightMode" = "SRPDefaultUnlit"
-            }
-            Cull[_SRPDefaultUnlitColMode]
-            ColorMask[_SPRDefaultUnlitColorMask]
-            Blend SrcAlpha OneMinusSrcAlpha
-            Stencil
-            {
-                Ref[_StencilNo]
-                Comp[_StencilComp]
-                Pass[_StencilOpPass]
-                Fail[_StencilOpFail]
 
-            }
-
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc"
-
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
-            #pragma target 2.0
-            //V.2.0.4
-            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
-            #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理はUTS_Outline.cgincへ.
-            #include "UCTS_Outline.cginc"
-            ENDCG
-        }
-        
-    }
-    */
     SubShader
     {
         // This tags allow to use the shader replacement features
@@ -918,6 +880,7 @@ Shader "HDRP/Toon"
 
         Pass
         {
+
             Name "Forward"
             Tags { "LightMode" = "Forward" } // This will be only for transparent object based on the RenderQueue index
 
@@ -1012,6 +975,42 @@ Shader "HDRP/Toon"
 
             ENDHLSL
         }
+
+        Tags{
+            "RenderType" = "Opaque"
+        }
+        Pass{
+            Name "Outline"
+            Tags {
+                "LightMode" = "SRPDefaultUnlit"
+            }
+            Cull[_SRPDefaultUnlitColMode]
+            ColorMask[_SPRDefaultUnlitColorMask]
+            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil
+            {
+                Ref[_StencilNo]
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
+
+            }
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
+
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
+            #pragma target 2.0
+            //V.2.0.4
+            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
+            #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+            //アウトライン処理はUTS_Outline.cgincへ.
+            #include "UCTS_Outline.cginc"
+            ENDCG
+        }
+
     }
 
     SubShader
