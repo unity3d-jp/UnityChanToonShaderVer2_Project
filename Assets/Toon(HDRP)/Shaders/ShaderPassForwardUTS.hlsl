@@ -242,7 +242,11 @@ void Frag(PackedVaryingsToPS packedInput,
 
         int mainLightIndex = GetUtsMainLightIndex(builtinData);
         int currentDirectionalLightIndex = -1;
+#if defined(_SHADINGGRADEMAP)
+        finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex);
+#else
         finalColor = UTS_MainLight(context, input, mainLightIndex);
+#endif
 
 
 
