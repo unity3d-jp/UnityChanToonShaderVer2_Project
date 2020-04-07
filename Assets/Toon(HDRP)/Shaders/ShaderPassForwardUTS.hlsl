@@ -262,8 +262,12 @@ void Frag(PackedVaryingsToPS packedInput,
                     float3 lightColor = _DirectionalLightDatas[i].color;
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
+#if defined(_SHADINGGRADEMAP)
+                    float3 additionalLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, lightColor, lightDirection, notDirectional);
 
+#else
                     float3 additionalLightColor = UTS_OtherLights(input, i_normalDir, lightColor, lightDirection, notDirectional);
+#endif
                     finalColor += additionalLightColor;
                 }
             }
@@ -467,8 +471,11 @@ void Frag(PackedVaryingsToPS packedInput,
                 float3 additionalLightColor = s_lightData.color;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
-
+#if defined(_SHADINGGRADEMAP)
+                    float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+#else
                     float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+#endif
                     finalColor += pointLightColor;
                 }
             }
