@@ -259,7 +259,7 @@ void Frag(PackedVaryingsToPS packedInput,
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
-                    float3 additionalLightColor = UTS_OtherDirectionalLights(input, i_normalDir, lightColor, lightDirection, notDirectional);
+                    float3 additionalLightColor = UTS_OtherLights(input, i_normalDir, lightColor, lightDirection, notDirectional);
                     finalColor += additionalLightColor;
                 }
             }
@@ -464,7 +464,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
 
-                    float3 pointLightColor = UTS_OtherDirectionalLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+                    float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
                     finalColor += pointLightColor;
                 }
             }
