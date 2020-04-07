@@ -926,6 +926,17 @@ Shader "HDRP/Toon"
             #if !defined(_SURFACE_TYPE_TRANSPARENT) && !defined(DEBUG_DISPLAY)
                 #define SHADERPASS_FORWARD_BYPASS_ALPHA_TEST
             #endif
+
+            #pragma shader_feature _ _SHADINGGRADEMAP
+            // used in ShadingGradeMap
+            #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
+            #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
+
+            // used in DoubleShadeWithFeather
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+
+            #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
+
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 
