@@ -432,12 +432,12 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
 
 
 #if defined(_SHADINGGRADEMAP)
-float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex)
+float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping)
 {
 
 
     uint2 tileIndex = uint2(input.positionSS.xy) / GetTileSize();
-
+    inverseClipping = 0;
     // input.positionSS is SV_Position
     PositionInputs posInput = GetPositionInput(input.positionSS.xy, _ScreenSize.zw, input.positionSS.z, input.positionSS.w, input.positionRWS.xyz, tileIndex);
 
@@ -480,6 +480,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float _Inverse_Clipping_var = lerp(_IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping);
     float Set_Clipping = saturate((_Inverse_Clipping_var + _Clipping_Level));
     clip(Set_Clipping - 0.5);
+    inverseClipping = _Inverse_Clipping_var;
 #endif
 
 
@@ -707,27 +708,16 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 #endif
 
 
-    //v.2.0.4
-#ifdef _IS_TRANSCLIPPING_OFF
-
-    fixed4 finalRGBA = fixed4(finalColor, 1);
-
-#elif _IS_TRANSCLIPPING_ON
-    float Set_Opacity = saturate((_Inverse_Clipping_var + _Tweak_transparency));
-
-    fixed4 finalRGBA = fixed4(finalColor, Set_Opacity);
-
-#endif
 
 
-    return finalRGBA;
+    return finalColor;
 }
 #else
-float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex)
+float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping)
 {
 
     uint2 tileIndex = uint2(input.positionSS.xy) / GetTileSize();
-
+    inverseClipping = 0;
     // input.positionSS is SV_Position
     PositionInputs posInput = GetPositionInput(input.positionSS.xy, _ScreenSize.zw, input.positionSS.z, input.positionSS.w, input.positionRWS.xyz, tileIndex);
 
@@ -775,7 +765,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float _Inverse_Clipping_var = lerp(_IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping);
     float Set_Clipping = saturate((_Inverse_Clipping_var + _Clipping_Level));
     clip(Set_Clipping - 0.5);
-
+    inverseClipping = _Inverse_Clipping_var;
   #elif defined(_IS_CLIPPING_OFF) || defined(_IS_TRANSCLIPPING_OFF)
 //DoubleShadeWithFeather
   #endif

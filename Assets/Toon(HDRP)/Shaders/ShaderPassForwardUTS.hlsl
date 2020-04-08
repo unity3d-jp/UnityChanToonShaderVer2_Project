@@ -196,6 +196,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
     // toshi.
+    float inverseClipping = 0;
     LightLoopContext context;
     context.shadowContext = InitShadowContext();
     context.shadowValue = 1;
@@ -243,9 +244,9 @@ void Frag(PackedVaryingsToPS packedInput,
         int mainLightIndex = GetUtsMainLightIndex(builtinData);
         int currentDirectionalLightIndex = -1;
 #if defined(_SHADINGGRADEMAP)
-        finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex);
+        finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex, inverseClipping);
 #else
-        finalColor = UTS_MainLight(context, input, mainLightIndex);
+        finalColor = UTS_MainLight(context, input, mainLightIndex, inverseClipping);
 #endif
 
 
@@ -488,8 +489,39 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
     finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
-    outColor = float4(finalColor, 1.0f);
- 
+
+#if defined(_SHADINGGRADEMAP)
+    //v.2.0.4
+  #ifdef _IS_TRANSCLIPPING_OFF
+
+    outColor = float4(finalColor, 1);
+
+  #elif _IS_TRANSCLIPPING_ON
+    float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
+
+    outColor = float4(finalColor, Set_Opacity);
+
+  #endif
+
+#else //#if defined(_SHADINGGRADEMAP)
+  #ifdef _IS_CLIPPING_OFF
+    //DoubleShadeWithFeather
+
+    outColor = float4(finalColor, 1);
+
+  #elif _IS_CLIPPING_MODE
+    //DoubleShadeWithFeather_Clipping
+
+    outColor = float4(finalColor, 1);
+
+  #elif _IS_CLIPPING_TRANSMODE
+    //DoubleShadeWithFeather_TransClipping
+    float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
+    outColor = float4(finalColor, Set_Opacity);
+
+  #endif
+
+#endif //#if defined(_SHADINGGRADEMAP)
 #ifdef _DEPTHOFFSET_ON
     outputDepth = posInput.deviceDepth;
 #endif
