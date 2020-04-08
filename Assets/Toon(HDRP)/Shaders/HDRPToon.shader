@@ -890,20 +890,20 @@ Shader "HDRP/Toon"
             Name "Forward"
             Tags { "LightMode" = "Forward" } // This will be only for transparent object based on the RenderQueue index
 
-            Stencil
-            {
-                WriteMask [_StencilWriteMask]
-                Ref [_StencilRef]
-                Comp Always
-                Pass Replace
+            ZWrite[_ZWriteMode]
+            Cull[_CullMode]
+            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil {
+
+                Ref[_StencilNo]
+
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
+
             }
 
-            Blend [_SrcBlend] [_DstBlend], [_AlphaSrcBlend] [_AlphaDstBlend]
-            // In case of forward we want to have depth equal for opaque mesh
-            ZTest [_ZTestDepthEqualForOpaque]
-            ZWrite [_ZWrite]
-            Cull [_CullModeForward]
-            ColorMask [_ColorMaskTransparentVel] 1
+
 
             HLSLPROGRAM
 
