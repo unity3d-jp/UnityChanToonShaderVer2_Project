@@ -1,0 +1,14 @@
+﻿{
+  "name": "UTJ.Experimental.UTS2LWRP",
+  "references": [
+        "GUID:be0903cd8e1546f498710afdc59db5eb",
+        "GUID:c579267770062bf448e75eb160330b7f",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:0c545e8ab6fae9048918f6fab23e3d90"
+  ],
+  "optionalUnityReferences": [],
+  "includePlatforms": [
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false
+}
