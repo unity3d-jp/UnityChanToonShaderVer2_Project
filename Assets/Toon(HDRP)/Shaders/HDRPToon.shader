@@ -888,7 +888,7 @@ Shader "HDRP/Toon"
         {
 
             Name "Forward"
-            Tags { "LightMode" = "Forward" } // This will be only for transparent object based on the RenderQueue index
+            Tags { "LightMode" = "ForwardOnly" } 
 
             ZWrite[_ZWriteMode]
             Cull[_CullMode]
