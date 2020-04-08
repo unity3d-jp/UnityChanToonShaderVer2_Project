@@ -518,7 +518,6 @@ void Frag(PackedVaryingsToPS packedInput,
     //DoubleShadeWithFeather_TransClipping
     float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
     outColor = float4(finalColor, Set_Opacity);
-
   #endif
 
 #endif //#if defined(_SHADINGGRADEMAP)

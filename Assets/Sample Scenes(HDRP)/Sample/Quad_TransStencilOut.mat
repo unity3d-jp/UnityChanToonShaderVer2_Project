@@ -216,7 +216,7 @@ Material:
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
     - _ClippingMode: 2
-    - _Clipping_Level: 0.938
+    - _Clipping_Level: 1
     - _CoatMask: 0
     - _ColorShift_Speed: 0
     - _CullMode: 2
