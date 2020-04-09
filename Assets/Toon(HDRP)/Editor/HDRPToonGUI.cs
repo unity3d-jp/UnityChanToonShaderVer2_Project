@@ -176,7 +176,7 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
 
         // variables which must be gotten from shader at the beggning of GUI
         public int _autoRenderQueue = 1;
-        public int _renderQueue = HDRPGeometryMin + 2;
+        public int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
         // variables which just to be held.
         public _OutlineMode outlineMode;
         public _CullingMode cullingMode;
@@ -1949,7 +1949,7 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
             var stencilMode = (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode);
             if (_autoRenderQueue == 1)
             {
-                material.renderQueue = HDRPGeometryMin+2;
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
             }
 
             const string OPAQUE = "Opaque";
@@ -2011,11 +2011,11 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
                 }
                 else if (stencilMode == _UTS_StencilMode.StencilMask)
                 {
-                    material.renderQueue = HDRPGeometryMin; //  (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
                 }
                 else if (stencilMode == _UTS_StencilMode.StencilOut)
                 {
-                    material.renderQueue = HDRPGeometryMin + 1; //  (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
                 }
             }
             else
