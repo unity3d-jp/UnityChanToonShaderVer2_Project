@@ -1018,8 +1018,7 @@ Shader "HDRP/Toon"
             #pragma fragment frag
 
 
-            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal xboxone ps4 switch
-            #pragma target 2.0
+
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
