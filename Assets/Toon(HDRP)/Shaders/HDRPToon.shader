@@ -575,7 +575,7 @@ Shader "HDRP/Toon"
 
             ENDHLSL
         }
-
+/*
         // Caution: The outline selection in the editor use the vertex shader/hull/domain shader of the first pass declare. So it should not bethe  meta pass.
         Pass
         {
@@ -626,7 +626,7 @@ Shader "HDRP/Toon"
 
             ENDHLSL
         }
-
+*/
 
         // Extracts information for lightmapping, GI (emission, albedo, ...)
         // This pass it not used during regular rendering.
@@ -728,6 +728,7 @@ Shader "HDRP/Toon"
             ENDHLSL
         }
 
+
         Pass
         {
             Name "MotionVectors"
@@ -744,7 +745,7 @@ Shader "HDRP/Toon"
 
             Cull[_CullMode]
 
-            ZWrite On
+            ZWrite Off
 
             HLSLPROGRAM
             #pragma multi_compile _ WRITE_NORMAL_BUFFER
