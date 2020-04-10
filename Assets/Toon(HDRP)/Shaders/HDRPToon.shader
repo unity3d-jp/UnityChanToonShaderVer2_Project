@@ -584,7 +584,9 @@ Shader "HDRP/Toon"
 
             Cull [_CullMode]
             ZTest [_ZTestGBuffer]
-            ZWrite Off
+
+//            ZWrite on
+            ZWrite off
             Stencil
             {
                 WriteMask [_StencilWriteMaskGBuffer]
@@ -728,7 +730,6 @@ Shader "HDRP/Toon"
             ENDHLSL
         }
 
-
         Pass
         {
             Name "MotionVectors"
@@ -745,6 +746,7 @@ Shader "HDRP/Toon"
 
             Cull[_CullMode]
 
+//            ZWrite On
             ZWrite Off
 
             HLSLPROGRAM

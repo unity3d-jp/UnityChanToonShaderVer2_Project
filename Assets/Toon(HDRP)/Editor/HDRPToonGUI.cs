@@ -2023,6 +2023,9 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
                 material.renderQueue = _renderQueue;
             }
 
+
+
+
             material.SetOverrideTag(RENDERTYPE, renderType);
             material.SetOverrideTag(IGNOREPROJECTION, ignoreProjection);
         }
@@ -2081,8 +2084,19 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
 
                     break;
             }
-
-
+#if false // not good enough yet.
+            if (mode == _UTS_StencilMode.Off)
+            {
+                material.SetShaderPassEnabled(hdrpMotionVectorsPassName, true);
+                material.SetShaderPassEnabled(hdrpGBufferPassName, true);
+            }
+            else
+            {
+                // when stencil buffer is enabled, the following passes are not rendered.
+                material.SetShaderPassEnabled(hdrpMotionVectorsPassName, false);
+                material.SetShaderPassEnabled(hdrpGBufferPassName, false);
+            }
+#endif
 
         }
         void ApplyClippingMode(Material material)
@@ -2297,24 +2311,27 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
             EditorGUILayout.Space();
         }
 
-        const string srpDefaultLightModeName = "SRPDefaultUnlit";
+        const string srpDefaultLightPassName = "SRPDefaultUnlit";
+        const string hdrpMotionVectorsPassName = "MotionVectors";
+        const string hdrpGBufferPassName = "GBuffer";
         const string srpDefaultColorMask = "_SPRDefaultUnlitColorMask";
         const string srpDefaultCullMode = "_SRPDefaultUnlitColMode";
 
         void SetupOverDrawTransparentObject(Material material)
         {
-            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
-            if (srpDefaultLightModeTag == srpDefaultLightModeName)
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightPassName);
+            if (srpDefaultLightModeTag == srpDefaultLightPassName)
             {
-                material.SetShaderPassEnabled(srpDefaultLightModeName, true);
+                material.SetShaderPassEnabled(srpDefaultLightPassName, true);
                 material.SetInt(srpDefaultColorMask, 0);
                 material.SetInt(srpDefaultCullMode, (int)_CullingMode.BackCulling);
             }
         }
+
         void SetuOutline(Material material)
         {
-            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
-            if (srpDefaultLightModeTag == srpDefaultLightModeName)
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightPassName);
+            if (srpDefaultLightModeTag == srpDefaultLightPassName)
             {
                 material.SetInt(srpDefaultColorMask, 15);
                 material.SetInt(srpDefaultCullMode, (int)_CullingMode.FrontCulling);
@@ -2323,24 +2340,24 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
         void GUI_Outline(Material material)
         {
 
-            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightPassName);
             bool isOutlineEnabled = true;
-            if (srpDefaultLightModeTag == srpDefaultLightModeName)
+            if (srpDefaultLightModeTag == srpDefaultLightPassName)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Outline");
-                if (isOutlineEnabled = material.GetShaderPassEnabled(srpDefaultLightModeName))
+                if (isOutlineEnabled = material.GetShaderPassEnabled(srpDefaultLightPassName))
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
-                        material.SetShaderPassEnabled(srpDefaultLightModeName, false);
+                        material.SetShaderPassEnabled(srpDefaultLightPassName, false);
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
-                        material.SetShaderPassEnabled(srpDefaultLightModeName, true);
+                        material.SetShaderPassEnabled(srpDefaultLightPassName, true);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
