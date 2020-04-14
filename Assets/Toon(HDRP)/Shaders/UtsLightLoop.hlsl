@@ -635,9 +635,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 _AR_OffsetU_var = lerp(mul(UNITY_MATRIX_V, float4(i_normalDir, 0)).xyz, float3(0, 0, 1), _AR_OffsetU);
     float2 AR_VN = _AR_OffsetU_var.xy*0.5 + float2(0.5, 0.5);
     float2 AR_VN_Rotate = RotateUV(AR_VN, -(_Camera_Dir*_Camera_Roll), float2(0.5, 0.5), 1.0);
-// todo.    
-//    float2 _AR_OffsetV_var = float2(AR_VN_Rotate.x, lerp(i.uv1.y, AR_VN_Rotate.y, _AR_OffsetV));
-    float2 _AR_OffsetV_var = float2(AR_VN_Rotate.x, lerp(Set_UV0.y, AR_VN_Rotate.y, _AR_OffsetV));
+    float2 _AR_OffsetV_var = float2(AR_VN_Rotate.x, lerp(input.texCoord1.y, AR_VN_Rotate.y, _AR_OffsetV));
     float4 _AngelRing_Sampler_var = tex2D(_AngelRing_Sampler, TRANSFORM_TEX(_AR_OffsetV_var, _AngelRing_Sampler));
     float3 _Is_LightColor_AR_var = lerp((_AngelRing_Sampler_var.rgb*_AngelRing_Color.rgb), ((_AngelRing_Sampler_var.rgb*_AngelRing_Color.rgb)*Set_LightColor), _Is_LightColor_AR);
     float3 Set_AngelRing = _Is_LightColor_AR_var;
