@@ -1100,7 +1100,7 @@ PrefabInstance:
     - target: {fileID: 108560918871008174, guid: d28274f69ac20ab4bad6943472930cd3,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.7957747
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 108560918871008174, guid: d28274f69ac20ab4bad6943472930cd3,
         type: 3}
@@ -1110,12 +1110,17 @@ PrefabInstance:
     - target: {fileID: 108618609874069182, guid: d28274f69ac20ab4bad6943472930cd3,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.7957747
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 108618609874069182, guid: d28274f69ac20ab4bad6943472930cd3,
         type: 3}
       propertyPath: m_LightShadowCasterMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 108618609874069182, guid: d28274f69ac20ab4bad6943472930cd3,
+        type: 3}
+      propertyPath: m_Range
+      value: 3.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d28274f69ac20ab4bad6943472930cd3, type: 3}
@@ -1151,13 +1156,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 10
+  m_Intensity: 1.5
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 0
+  m_LightUnit: 2
   m_FadeDistance: 10000
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
@@ -1259,13 +1264,13 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 10
+  m_Intensity: 4
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 0
+  m_LightUnit: 2
   m_FadeDistance: 10000
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
