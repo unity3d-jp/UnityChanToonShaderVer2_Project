@@ -6,6 +6,7 @@
     "com.unity.ide.visualstudio": "2.0.0",
     "com.unity.ide.vscode": "1.1.4",
     "com.unity.postprocessing": "2.3.0",
+    "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
     "com.unity.render-pipelines.high-definition": "8.0.1",
     "com.unity.render-pipelines.lightweight": "8.0.1",
     "com.unity.test-framework": "1.1.13",
@@ -43,5 +44,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.unity.raytracedhardshadow": {
+      "revision": "HEAD",
+      "hash": "b3b504927a092b053a38aa9dec3786c78ae5513c"
+    }
   }
 }
