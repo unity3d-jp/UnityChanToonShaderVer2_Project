@@ -108,4 +108,4 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
-  shader: {fileID: 4800000, guid: cd270bc83dc0ce644bf351c3f5b7f30f, type: 3}
+  shader: {fileID: 0}
