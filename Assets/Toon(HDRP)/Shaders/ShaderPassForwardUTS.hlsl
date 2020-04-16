@@ -144,6 +144,7 @@ float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs 
     return finalColor;
 }
 
+uniform sampler2D _RaytracedHardShadow;
 
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
@@ -196,6 +197,8 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
     // toshi.
+#define UNITY_PROJ_COORD(a) a
+#define UNITY_SAMPLE_SCREEN_SHADOW(tex, uv) tex2Dproj( tex, UNITY_PROJ_COORD(uv) ).r
     float inverseClipping = 0;
     LightLoopContext context;
     context.shadowContext = InitShadowContext();
@@ -234,9 +237,27 @@ void Frag(PackedVaryingsToPS packedInput,
                     IsNonZeroBSDF(V, L, preLightData, bsdfData) &&
                     !ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
                 {
+#if 1
+                    /*
+                    struct PositionInputs
+                    {
+                        float3 positionWS;  // World space position (could be camera-relative)
+                        float2 positionNDC; // Normalized screen coordinates within the viewport    : [0, 1) (with the half-pixel offset)
+                        uint2  positionSS;  // Screen space pixel coordinates                       : [0, NumPixels)
+                        uint2  tileCoord;   // Screen tile coordinates                              : [0, NumTiles)
+                        float  deviceDepth; // Depth from the depth buffer                          : [0, 1] (typically reversed)
+                        float  linearDepth; // View space Z coordinate                              : [Near, Far]
+                    };
+                    */
+                    float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.x, posInput.positionNDC.y, 0.0, 1));
+                    context.shadowValue = r * 2;
+#else
                     context.shadowValue = GetDirectionalShadowAttenuation(context.shadowContext,
                         posInput.positionSS, posInput.positionWS, GetNormalForShadowBias(bsdfData),
                         light.shadowIndex, L);
+#endif
+
+
                 }
             }
         }
