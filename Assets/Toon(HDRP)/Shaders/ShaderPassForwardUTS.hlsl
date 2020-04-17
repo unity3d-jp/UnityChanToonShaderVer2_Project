@@ -145,7 +145,9 @@ float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs 
 }
 
 uniform sampler2D _RaytracedHardShadow;
+float4 _RaytracedHardShadow_TexelSize;
 
+//TEXTURE2D_SAMPLER2D(_RaytracedHardShadow, sampler_RaytracedHardShadow);
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
     out float4 outColor : SV_Target0,  // outSpecularLighting
@@ -249,8 +251,11 @@ void Frag(PackedVaryingsToPS packedInput,
                         float  linearDepth; // View space Z coordinate                              : [Near, Far]
                     };
                     */
-                    float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.x, posInput.positionNDC.y, 0.0, 1));
-                    context.shadowValue = r * 2;
+                    float4 size = _RaytracedHardShadow_TexelSize; 
+                    float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
+                    //float r = LOAD_TEXTURE2D(_RaytracedHardShadow, posInput.positionSS);
+                    //if ( size.z > 3300)
+                    context.shadowValue = r;
 #else
                     context.shadowValue = GetDirectionalShadowAttenuation(context.shadowContext,
                         posInput.positionSS, posInput.positionWS, GetNormalForShadowBias(bsdfData),
