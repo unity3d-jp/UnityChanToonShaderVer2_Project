@@ -309,6 +309,41 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!84 &169406651
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RaytracedHardShadow
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 1175
+  m_Height: 1274
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 45
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &273752880
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,41 +390,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &380124335
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: RaytracedHardShadow
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1392
-  m_Height: 1220
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 45
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &414468249
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +472,10 @@ PrefabInstance:
     - target: {fileID: 1673285163430804, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673285163430804, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1973451554856924, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
       propertyPath: m_Layer
@@ -738,7 +742,7 @@ MonoBehaviour:
   m_LightAngle: 1
   m_MaxDepthBias: 0.001
   m_ShadowResolution:
-    m_Override: 512
+    m_Override: 4096
     m_UseOverride: 1
     m_Level: 0
   m_ShadowDimmer: 1
@@ -1090,21 +1094,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 794565941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21f82ee99238ee4eb21b9a59244893c, type: 3}
+  m_Script: {fileID: 11500000, guid: aac4b3897711dbb44a6c86c86884abc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_generateRenderTexture: 0
+  m_generateRenderTexture: 1
   m_outputType: 0
-  m_outputTexture: {fileID: 380124335}
+  m_outputTexture: {fileID: 169406651}
   m_assignGlobalTexture: 1
   m_globalTextureName: _RaytracedHardShadow
-  m_cullBackFaces: 0
+  m_cullBackFaces: 1
   m_flipCasterFaces: 0
   m_ignoreSelfShadow: 1
   m_keepSelfDropShadow: 1
   m_selfShadowThreshold: 0.0001
   m_shadowRayOffset: 0.0001
-  m_useCameraCullingMask: 0
+  m_useCameraCullingMask: 1
   m_useLightShadowSettings: 1
   m_useLightCullingMask: 0
   m_setLightIndexToAlpha: 0
@@ -1113,14 +1117,14 @@ MonoBehaviour:
   m_lightScenes: []
   m_lightScenePaths: []
   m_lightObjects: []
-  m_geometryScope: 2
-  m_geometryScenes: []
+  m_geometryScope: 0
+  m_geometryScenes:
+  - {fileID: 0}
   m_showPreviewInSceneView: 0
   m_geometryScenePaths: []
-  m_geometryObjects:
-  - {fileID: 1961911786}
+  m_geometryObjects: []
   m_GPUSkinning: 1
-  m_adaptiveSampling: 0
+  m_adaptiveSampling: 1
   m_antialiasing: 1
   m_clampBlendshapeWeights: 1
   m_dbgVerboseLog: 0
@@ -1654,9 +1658,3 @@ MonoBehaviour:
   useVolumetric: 1
   featuresFoldout: 1
   showAdditionalSettings: 1
---- !u!1 &1961911786 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1348741524522182, guid: 9286ffa17101b4e42ab990a709f7da17,
-    type: 3}
-  m_PrefabInstance: {fileID: 474156922}
-  m_PrefabAsset: {fileID: 0}

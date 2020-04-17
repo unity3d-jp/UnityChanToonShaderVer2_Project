@@ -324,6 +324,7 @@ Material:
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
+    - _RaytracingShadow: 0
     - _ReceivesSSR: 1
     - _RefractionModel: 0
     - _RimLight: 1
