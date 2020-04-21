@@ -146,7 +146,7 @@ float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs 
 
 uniform sampler2D _RaytracedHardShadow;
 float4 _RaytracedHardShadow_TexelSize;
-uniform int UTS_USE_RAYTRACING_SHADOW;
+uniform int UtsUseRaytracingShadow;
 //TEXTURE2D_SAMPLER2D(_RaytracedHardShadow, sampler_RaytracedHardShadow);
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
@@ -239,7 +239,8 @@ void Frag(PackedVaryingsToPS packedInput,
                     IsNonZeroBSDF(V, L, preLightData, bsdfData) &&
                     !ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
                 {
-                    if (UTS_USE_RAYTRACING_SHADOW != 0)
+#if 1 // UTS_USE_RAYTRACING_SHADOW
+                    if (UtsUseRaytracingShadow != 0)
                     {
                         /*
                         struct PositionInputs
@@ -258,6 +259,7 @@ void Frag(PackedVaryingsToPS packedInput,
                         context.shadowValue = r;
                     }
                     else
+#endif // UTS_USE_RAYTRACING_SHADOW
                     {
                         context.shadowValue = GetDirectionalShadowAttenuation(context.shadowContext,
                             posInput.positionSS, posInput.positionWS, GetNormalForShadowBias(bsdfData),

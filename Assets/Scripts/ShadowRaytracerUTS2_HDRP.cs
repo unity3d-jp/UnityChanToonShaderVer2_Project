@@ -1210,7 +1210,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             UpdateScenePaths();
         }
 #endif
-        const string EnablerVariableName = "UTS_USE_RAYTRACING_SHADOW";
+        const string EnablerVariableName = "UtsUseRaytracingShadow";
         void OnEnable()
         {
             m_camera = GetComponent<Camera>();

@@ -938,7 +938,7 @@ Shader "HDRP/Toon"
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
 
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
-
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 
