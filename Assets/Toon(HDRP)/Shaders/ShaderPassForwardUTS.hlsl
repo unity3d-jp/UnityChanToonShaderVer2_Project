@@ -256,7 +256,6 @@ void Frag(PackedVaryingsToPS packedInput,
                         */
 
                         float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
-
                         context.shadowValue = r;
                     }
                     else
@@ -289,7 +288,7 @@ void Frag(PackedVaryingsToPS packedInput,
         finalColor = UTS_MainLight(context, input, mainLightIndex, inverseClipping);
 #endif
 
-#if 0
+
 
 
         uint i = 0; // Declare once to avoid the D3D11 compiler warning.
@@ -313,7 +312,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 }
             }
         }
-#endif
+
     }
 
     AggregateLighting aggregateLighting;
