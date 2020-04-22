@@ -485,8 +485,8 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 
     half shadowAttenuation = lightLoopContext.shadowValue;
-    LightLoopContext context;
-    DirectLighting lighting = EvaluateBSDF_Directional(context, V, posInput, preLightData, _DirectionalLightDatas[mainLightIndex], bsdfData, builtinData);
+
+    DirectLighting lighting = EvaluateBSDF_Directional(lightLoopContext, V, posInput, preLightData, _DirectionalLightDatas[mainLightIndex], bsdfData, builtinData);
 
     float3 mainLihgtDirection = -_DirectionalLightDatas[mainLightIndex].forward;
     float3 mainLightColor = _DirectionalLightDatas[mainLightIndex].color; // *GetCurrentExposureMultiplier();
