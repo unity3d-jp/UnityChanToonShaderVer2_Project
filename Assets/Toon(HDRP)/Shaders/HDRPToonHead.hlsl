@@ -1,11 +1,9 @@
-#ifndef UCTS_LWRP_INCLUDED
-#define UCTS_LWRP_INCLUDED
+#ifndef UCTS_HDRP_INCLUDED
+#define UCTS_HDRP_INCLUDED
 
 #define UCTS_HDRP 1
-
 #define fixed  half
-#define fixed3 half3
-#define fixed4 half4
+
 
 
 
@@ -51,7 +49,7 @@ inline float GammaToLinearSpaceExact(float value)
 		return pow(value, 2.2F);
 }
 
-inline half3 GammaToLinearSpace(half3 sRGB)
+inline float3 GammaToLinearSpace(float3 sRGB)
 {
 	// Approximate version from http://chilliant.blogspot.com.au/2012/08/srgb-approximations-for-hlsl.html?m=1
 	return sRGB * (sRGB * (sRGB * 0.305306011h + 0.682171111h) + 0.012522878h);
@@ -72,9 +70,9 @@ inline float LinearToGammaSpaceExact(float value)
 		return pow(value, 0.45454545F);
 }
 
-inline half3 LinearToGammaSpace(half3 linRGB)
+inline float3 LinearToGammaSpace(float3 linRGB)
 {
-	linRGB = max(linRGB, half3(0.h, 0.h, 0.h));
+	linRGB = max(linRGB, float3(0.h, 0.h, 0.h));
 	// An almost-perfect approximation from http://chilliant.blogspot.com.au/2012/08/srgb-approximations-for-hlsl.html?m=1
 	return max(1.055h * pow(linRGB, 0.416666667h) - 0.055h, 0.h);
 
@@ -155,9 +153,9 @@ inline float3 UnityObjectToWorldNormal( in float3 norm )
 #endif
 }
 // normal should be normalized, w=1.0
-half3 SHEvalLinearL0L1 (half4 normal)
+float3 SHEvalLinearL0L1 (float4 normal)
 {
-    half3 x;
+    float3 x;
 
     // Linear (L1) + constant (L0) polynomial terms
     x.r = dot(unity_SHAr,normal);
@@ -168,11 +166,11 @@ half3 SHEvalLinearL0L1 (half4 normal)
 }
 
 // normal should be normalized, w=1.0
-half3 SHEvalLinearL2 (half4 normal)
+float3 SHEvalLinearL2 (float4 normal)
 {
-    half3 x1, x2;
+    float3 x1, x2;
     // 4 of the quadratic (L2) polynomials
-    half4 vB = normal.xyzz * normal.yzzx;
+    float4 vB = normal.xyzz * normal.yzzx;
     x1.r = dot(unity_SHBr,vB);
     x1.g = dot(unity_SHBg,vB);
     x1.b = dot(unity_SHBb,vB);
@@ -186,10 +184,10 @@ half3 SHEvalLinearL2 (half4 normal)
 
 // normal should be normalized, w=1.0
 // output in active color space
-half3 ShadeSH9 (half4 normal)
+float3 ShadeSH9 (float4 normal)
 {
     // Linear + constant polynomial terms
-    half3 res = SHEvalLinearL0L1 (normal);
+    float3 res = SHEvalLinearL0L1 (normal);
 
     // Quadratic polynomials
     res += SHEvalLinearL2 (normal);
