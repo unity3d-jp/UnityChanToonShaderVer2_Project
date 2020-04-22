@@ -271,7 +271,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
                 }
 #if 1 // UTS_USE_RAYTRACING_SHADOW
-                else if (_DirectionalShadowIndex >= 0)
+                else if (UtsUseRaytracingShadow != 0)
                 {
                     float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
                     context.shadowValue = r;
@@ -282,14 +282,14 @@ void Frag(PackedVaryingsToPS packedInput,
         }
 
         int mainLightIndex = GetUtsMainLightIndex(builtinData);
-        int currentDirectionalLightIndex = -1;
+
 #if defined(_SHADINGGRADEMAP)
         finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex, inverseClipping);
 #else
         finalColor = UTS_MainLight(context, input, mainLightIndex, inverseClipping);
 #endif
 
-
+#if 0
 
 
         uint i = 0; // Declare once to avoid the D3D11 compiler warning.
@@ -313,8 +313,9 @@ void Frag(PackedVaryingsToPS packedInput,
                 }
             }
         }
-
+#endif
     }
+
     AggregateLighting aggregateLighting;
     ZERO_INITIALIZE(AggregateLighting, aggregateLighting); // LightLoop is in charge of initializing the struct
 
@@ -529,7 +530,7 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
     finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
-    finalColor = float3(context.shadowValue, 0, 0);
+    //    finalColor = float3(context.shadowValue, 0, 0);
 #if defined(_SHADINGGRADEMAP)
     //v.2.0.4
   #ifdef _IS_TRANSCLIPPING_OFF
