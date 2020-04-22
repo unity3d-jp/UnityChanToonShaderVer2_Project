@@ -10,7 +10,7 @@ using UTJ.RaytracedHardShadow;
 using UnityEditor;
 #endif
 
-namespace UnityEditor.Rendering.HDRP.Toon
+namespace UTJ.RaytracedHardShadow
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(Camera))]
@@ -846,8 +846,11 @@ namespace UnityEditor.Rendering.HDRP.Toon
         //----------------------------------------------------------------------------------------------------------------------
 
 #if UNITY_EDITOR
-        internal bool IsPreviewShownInSceneView() { return m_showPreviewInSceneView; }
-        internal void ShowPreviewInSceneView(bool show) { m_showPreviewInSceneView = show; }
+// tentative
+//        internal bool IsPreviewShownInSceneView() { return m_showPreviewInSceneView; }
+//        internal void ShowPreviewInSceneView(bool show) { m_showPreviewInSceneView = show; }
+        public  bool IsPreviewShownInSceneView() { return m_showPreviewInSceneView; }
+        public void ShowPreviewInSceneView(bool show) { m_showPreviewInSceneView = show; }
 #endif
         //----------------------------------------------------------------------------------------------------------------------
 
