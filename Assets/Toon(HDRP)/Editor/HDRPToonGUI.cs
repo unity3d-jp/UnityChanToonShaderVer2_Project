@@ -7,9 +7,9 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
+namespace UnityEditor.Rendering.HDRP.Toon
 {
-    public class HDRPToonGUI : BaseShaderGUI
+    public class HDRPToonGUI : ShaderGUI
     {
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
@@ -2776,9 +2776,6 @@ namespace UnityEditor.Rendering.HDRP.Toon.ShaderGUI
             EditorGUI.showMixedValue = false;
         }
 
-        public override void MaterialChanged(Material material)
-        {
 
-        }
     } // End of UTS2GUI2
 }// End of namespace UnityChan
