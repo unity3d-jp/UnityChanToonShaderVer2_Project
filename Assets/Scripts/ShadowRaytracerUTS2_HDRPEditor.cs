@@ -178,6 +178,7 @@ namespace UTJ.RaytracedHardShadowEditor
 
             // lights
             EditorGUILayout.LabelField("Lights", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(so.FindProperty("m_DirectionalLightList"));
             EditorGUILayout.PropertyField(so.FindProperty("m_useLightShadowSettings"));
             EditorGUILayout.PropertyField(so.FindProperty("m_useLightCullingMask"));
             EditorGUILayout.PropertyField(so.FindProperty("m_setLightIndexToAlpha"));

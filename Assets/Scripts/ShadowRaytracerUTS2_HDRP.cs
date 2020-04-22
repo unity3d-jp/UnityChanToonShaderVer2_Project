@@ -284,7 +284,7 @@ namespace UTJ.RaytracedHardShadow
         [SerializeField] bool m_clampBlendshapeWeights = true;
 
         [SerializeField] bool m_dbgVerboseLog = false;
-
+        [SerializeField] List<Light> m_DirectionalLightList;
 #if UNITY_EDITOR
 #pragma warning disable CS0414
         [SerializeField] bool m_foldDebug = false;
@@ -723,7 +723,7 @@ namespace UTJ.RaytracedHardShadow
 
             int lightIndex = 0;
             Action<Light> processLight = (l) => {
-                if (l.enabled && (!m_useLightShadowSettings || l.shadows != LightShadows.None))
+                if (l.enabled && (!m_useLightShadowSettings || l.shadows != LightShadows.None || m_DirectionalLightList.Contains(l) ))
                 {
                     bodyL.Invoke(l, lightIndex);
                     if (m_setLightIndexToAlpha)
