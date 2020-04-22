@@ -8,7 +8,6 @@
     "com.unity.postprocessing": "2.3.0",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
     "com.unity.render-pipelines.high-definition": "8.0.1",
-    "com.unity.render-pipelines.lightweight": "8.0.1",
     "com.unity.test-framework": "1.1.13",
     "com.unity.textmeshpro": "3.0.0-preview.1",
     "com.unity.timeline": "1.2.10",
