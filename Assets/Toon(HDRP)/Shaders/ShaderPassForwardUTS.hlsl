@@ -252,8 +252,9 @@ void Frag(PackedVaryingsToPS packedInput,
                             float  deviceDepth; // Depth from the depth buffer                          : [0, 1] (typically reversed)
                             float  linearDepth; // View space Z coordinate                              : [Near, Far]
                         };
-                        */
                         float4 size = _RaytracedHardShadow_TexelSize;
+                        */
+
                         float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
 
                         context.shadowValue = r;
@@ -269,7 +270,15 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
                 }
+#if 1 // UTS_USE_RAYTRACING_SHADOW
+                else if (_DirectionalShadowIndex >= 0)
+                {
+                    float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
+                    context.shadowValue = r;
+                }
+#endif
             }
+
         }
 
         int mainLightIndex = GetUtsMainLightIndex(builtinData);
@@ -520,7 +529,7 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
     finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
-
+    finalColor = float3(context.shadowValue, 0, 0);
 #if defined(_SHADINGGRADEMAP)
     //v.2.0.4
   #ifdef _IS_TRANSCLIPPING_OFF
