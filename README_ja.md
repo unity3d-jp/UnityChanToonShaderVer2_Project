@@ -89,7 +89,7 @@ https://unity-chan.com/contents/guideline/
 
 -----
 ## 【シェーダーのインストール】
-### [UTS2URP_ShaderOnly_v2.9.9.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v2.9.9.unitypackage)  
+### [UTS2URP_ShaderOnly_v8.0.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v8.0.0.unitypackage)  
 
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 **事前にPackage ManagerからUniversal RPをインストールしておくことが必要です。**  

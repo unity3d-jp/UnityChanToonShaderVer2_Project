@@ -87,7 +87,7 @@ The project comes with sample scenes where you can learn various setting example
 
 -----
 ## 【Shader Installation】
-### [UTS2URP_ShaderOnly_v2.9.9.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v2.9.9.unitypackage)  
+### [UTS2URP_ShaderOnly_v8.0.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v8.0.0.unitypackage)  
 
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 **You should install Universal RP from Package Manager before installation.**  
