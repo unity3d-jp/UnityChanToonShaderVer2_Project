@@ -1,19 +1,17 @@
 README.md
 
-# 【ユニティちゃんトゥーンシェーダー Ver.2.9.9 / URP】
-「ユニティちゃんトゥーンシェーダー」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
-
-
-
+# 【UTS2 / UniversalToon Ver.8.0.0】
+「ユニティちゃんトゥーンシェーダー Ver.2.0（UTS2）」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
+**UniversalToon** は、Unityのユニバーサルレンダーパイプライン向けのUTS2です。  
+**UniversalToon** は、UTS2 v.2.0.7.5の全機能を実装した、ウーバーシェーダー（統合型シェーダー）として設計されています。  
 
 ● **[日本語マニュアル（v.2.0.7版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 
-## 【Unity-Chan Toon Shader Ver.2.9.9 / URP】
+## 【UTS2 / UniversalToon Ver.8.0.0】
 Unity-Chan Toon Shader is a toon shader for video and images that is designed to meet your needs when creating cel-shaded 3DCG animations.  
-
-We have greatly enhanced the performance and features in Unity-Chan Toon Shader Ver. 2.0.  
-It still has the same rendering capabilities as Ver. 1.0, but now you can give your creations an even more sophisticated look.  
+**UniversalToon** is an UTS2 shader for Universal Render pipeline for Unity.  
+**UniversalToon** has all the feature of UTS2 v.2.0.7.5, and been implemented as an uber shader.  
 
 ● **[English manual for v.2.0.7](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) is available now.**  
 
@@ -41,12 +39,12 @@ https://unity-chan.com/contents/guideline_en/
 
 
 -----
-最新バージョン：2.9.9 /URP  
+最新バージョン：8.0.0 /URP  
 最終リリース日：2020/03/31  
 カテゴリー：3D / Shader  
 形式：unitypackage  
 
-Latest Version: 2.9.9 /URP  
+Latest Version: 8.0.0 /URP  
 Update: 2019/03/31  
 Category: 3D / SHader  
 File format: unitypackage  

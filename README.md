@@ -1,4 +1,4 @@
-﻿# 【UTS2 / UniversalToon Ver.2.9.9】
+﻿# 【UTS2 / UniversalToon Ver.8.0.0】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
@@ -107,7 +107,7 @@ The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanTo
 
 -----
 ## 【Information】  
-Latest Version: 2.9.9 for URP  
+Latest Version: 8.0.0 for URP  
 Update: 2020/03/31  
 Category: 3D / Shader  
 File format: unitypackage  
