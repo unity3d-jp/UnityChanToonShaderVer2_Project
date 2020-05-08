@@ -939,7 +939,15 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
             if (_Transparent_Setting == _UTS_Transparent.On)
             {
-
+                if ( material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather )
+                {
+                    material.SetInt(ShaderPropClippingMode, (int)_UTS_ClippingMode.TransClippingMode);
+                }
+                else
+                {
+                    // ShadingGradeMap
+                    material.SetInt(ShaderPropClippingMode, (int)_UTS_TransClippingMode.On);
+                }
                 material.SetInt(_ZWriteMode, 0);
                 material.SetFloat(_ZOverDrawMode, 1);
             }
