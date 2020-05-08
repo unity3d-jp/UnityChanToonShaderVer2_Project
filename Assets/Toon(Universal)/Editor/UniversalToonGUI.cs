@@ -642,9 +642,11 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
                 switch (technique)
                 {
                     case _UTS_Technique.DoubleShadeWithFeather:
+                        GUILayout.Label("Clipping Shader", EditorStyles.boldLabel);
                         DoPopup(clippingmodeModeText0, clippingMode, System.Enum.GetNames(typeof(_UTS_ClippingMode)));
                         break;
                     case _UTS_Technique.ShadingGradeMap:
+                        GUILayout.Label("TransClipping Shader", EditorStyles.boldLabel);
                         DoPopup(clippingmodeModeText1, clippingMode, System.Enum.GetNames(typeof(_UTS_TransClippingMode)));
                         break;
                 }
@@ -951,7 +953,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
         void GUI_StencilMode(Material material)
         {
-            GUILayout.Label("For _StencilMask or _StencilOut Shader", EditorStyles.boldLabel);
+            GUILayout.Label("StencilMask or StencilOut Shader", EditorStyles.boldLabel);
             DoPopup(stencilmodeModeText, stencilMode, System.Enum.GetNames(typeof(_UTS_StencilMode)));
 
 
@@ -966,7 +968,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
         void GUI_SetClippingMask(Material material)
         {
-            GUILayout.Label("For _Clipping or _TransClipping Shader", EditorStyles.boldLabel);
+            GUILayout.Label("Options for Clipping or TransClipping features", EditorStyles.boldLabel);
             m_MaterialEditor.TexturePropertySingleLine(Styles.clippingMaskText, clippingMask);
 
             EditorGUILayout.BeginHorizontal();
@@ -994,7 +996,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         void GUI_SetTransparencySetting(Material material)
         {
 
-            GUILayout.Label("For _TransClipping Shader", EditorStyles.boldLabel);
+            GUILayout.Label("Options for TransClipping or Transparent features", EditorStyles.boldLabel);
             m_MaterialEditor.RangeProperty(tweak_transparency, "Transparency Level");
 
             EditorGUILayout.BeginHorizontal();
