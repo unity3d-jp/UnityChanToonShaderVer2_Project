@@ -5,8 +5,8 @@
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 //
-// this enables to work both 7.17 and 7.31
-#if SHADER_LIBRARY_VERSION_MAJOR ==7 && SHADER_LIBRARY_VERSION_MINOR == 3
+// this enables to work both 7.17 and 7.31 or higher
+#if (SHADER_LIBRARY_VERSION_MAJOR ==7 && SHADER_LIBRARY_VERSION_MINOR >= 3) || (SHADER_LIBRARY_VERSION_MAJOR >= 8)
 # ifdef _MAIN_LIGHT_SHADOWS
 #  if !defined(_MAIN_LIGHT_SHADOWS_CASCADE) 
 #   ifndef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
@@ -28,7 +28,6 @@
 #   endif
 //#  endif
 # endif
-
 # ifdef _ADDITIONAL_LIGHTS
 #  ifndef  REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
 #   define REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
