@@ -5,8 +5,19 @@
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 //
-            uniform float _utsTechnique;
+#ifdef _MAIN_LIGHT_SHADOWS
+# ifndef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
+# define REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
+# endif
+#endif
 
+#ifdef _ADDITIONAL_LIGHTS
+# ifndef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
+# define REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
+# endif
+#endif
+
+            uniform float _utsTechnique;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
 #if UCTS_LWRP
 #else
@@ -555,11 +566,11 @@
                 input.vertexSH = i.vertexSH;
                 input.uv = i.uv0;
                 input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
-#  ifdef _MAIN_LIGHT_SHADOWS
+#  ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
                 input.shadowCoord = i.shadowCoord;
 #  endif
 
-#  ifdef _ADDITIONAL_LIGHTS
+#  ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
                 input.positionWS = i.posWorld.xyz;
 #  endif
 #  ifdef _NORMALMAP
@@ -994,11 +1005,11 @@
                 input.vertexSH = i.vertexSH;
                 input.uv = i.uv0;
                 input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
-#  ifdef _MAIN_LIGHT_SHADOWS
+#  ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
                 input.shadowCoord = i.shadowCoord;
 #  endif
 
-#  ifdef _ADDITIONAL_LIGHTS
+#  ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
                 input.positionWS = i.posWorld.xyz;
 #  endif
 #  ifdef _NORMALMAP
