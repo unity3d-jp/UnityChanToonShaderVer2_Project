@@ -807,6 +807,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
                 EditorGUILayout.Space();
             }
+            ApplyRenderingPerChennelsSetting(material);
             ApplyClippingMode(material);
             ApplyStencilMode(material);
             ApplyAngelRing(material);

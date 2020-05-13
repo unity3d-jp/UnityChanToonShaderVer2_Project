@@ -47,6 +47,12 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 EditorGUI.indentLevel--;
             }
         }
+        void ApplyRenderingPerChennelsSetting(Material material)
+        {
+            Shader.SetGlobalVector("_BaseColor_Mixer_Color", Color.clear);
+            Shader.SetGlobalVector("_1st_ShadeColor_Mixer_Color", Color.clear);
+            Shader.SetGlobalVector("_2nd_ShadeColor_Mixer_Color", Color.clear);
+        }
 
     } // End of UTS2GUI2
 }// End of namespace UnityChan
