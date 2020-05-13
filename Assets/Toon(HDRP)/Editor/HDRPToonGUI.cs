@@ -9,7 +9,7 @@ using UnityEditor;
 
 namespace UnityEditor.Rendering.HDRP.Toon
 {
-    public class HDRPToonGUI : ShaderGUI
+    public partial class HDRPToonGUI : ShaderGUI
     {
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
@@ -623,6 +623,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             }
             EditorGUILayout.Space();
 
+            RenderingPerChennelsSetting();
 
             _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
             if (_BasicShaderSettings_Foldout)
