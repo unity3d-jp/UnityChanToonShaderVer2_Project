@@ -426,7 +426,7 @@ Shader "HDRP/Toon"
         [Toggle(_)] _Inverse_Z_Axis_BLD(" Inverse Z-Axis (Built-in Light Direction)", Float) = 1
 
         _VisibleRenderingPerChannelsMask("Channel mask", Int) = -1
-        _EnabledRenderingPerChannelsMask("Channel mask", Int) = -1
+        _OverriddenRenderingPerChannelsMask("Channel mask", Int) = -1
 
         // to here parameters for UTS>
     }

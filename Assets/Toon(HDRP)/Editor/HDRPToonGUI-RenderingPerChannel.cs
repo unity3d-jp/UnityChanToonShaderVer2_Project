@@ -16,13 +16,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
 {
     public partial class HDRPToonGUI : ShaderGUI
     {
-        ReorderableList m_ReorderableList;
-        GUIContent m_colorPickerContent;
-        Texture2D m_texIconVisible;
-        Texture2D m_texIconInvisible;
 
-
-        GUIStyle m_ToggleStyle;
         public enum _ChannelEnum
         {
             BaseColor,
@@ -31,6 +25,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             Highlight,
             AngleRing,
             Outline,
+            Max,
         };
 
         class ChannelSetting
@@ -41,11 +36,18 @@ namespace UnityEditor.Rendering.HDRP.Toon
             public string m_name;
         };
 
-        List<ChannelSetting> m_channelSettings; 
+        ReorderableList m_ReorderableList;
+        List<ChannelSetting> m_channelSettings;
+        GUIContent m_colorPickerContent;
+        Texture2D m_texIconVisible;
+        Texture2D m_texIconInvisible;
+
+        GUIStyle  m_ToggleStyle;
+
 
             
 
-        const string ShaderProp_EnabledRenderingPerChannelsMask = "_EnabledRenderingPerChannelsMask";
+        const string ShaderProp_OverriddenRenderingPerChannelsMask = "_OverriddenRenderingPerChannelsMask";
         const string ShaderProp_VisibleRenderingPerChannelsMask = "_VisibleRenderingPerChannelsMask";
         
         static bool _PerChanelShaderSettings_Foldout = false;
@@ -54,23 +56,26 @@ namespace UnityEditor.Rendering.HDRP.Toon
         {
             SetupChannelSettings();
 
-            int maskEnabled = material.GetInt(ShaderProp_EnabledRenderingPerChannelsMask);
+            int maskOverridden = material.GetInt(ShaderProp_OverriddenRenderingPerChannelsMask);
             int maskVisible = material.GetInt(ShaderProp_VisibleRenderingPerChannelsMask);
+            for ( int ii = 0; ii < (int)_ChannelEnum.Max; ii++ )
+            {
+                m_channelSettings[ii].m_drawEnabled = ((maskVisible & (1 << ii)) != 0 );
+                m_channelSettings[ii].m_drawEnabled = ((maskOverridden & (1 << ii)) != 0 );
+            }
             if (m_ReorderableList != null)
             {
                 m_ReorderableList.DoLayoutList();
             }
-            /*
-            _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, "Rendering per Channels Settings");
-            if (_PerChanelShaderSettings_Foldout)
+            maskOverridden = 0;
+            maskVisible = 0;
+            for (int ii = 0; ii < (int)_ChannelEnum.Max; ii++)
             {
-                EditorGUI.indentLevel++;
-                flags = EditorGUILayout.MaskField("Channels", flags, options);
-                
-                EditorGUI.indentLevel--;
+                maskVisible |= ((m_channelSettings[ii].m_drawEnabled ? 1: 0) << ii );
+                maskOverridden |= ((m_channelSettings[ii].m_drawEnabled ? 1:0) << ii);
             }
-            */
-            material.SetInt(ShaderProp_EnabledRenderingPerChannelsMask, maskEnabled);
+
+            material.SetInt(ShaderProp_OverriddenRenderingPerChannelsMask, maskOverridden);
             material.SetInt(ShaderProp_VisibleRenderingPerChannelsMask, maskVisible);
         }
 
@@ -163,7 +168,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             }
             if (m_colorPickerContent == null )
             {
-                m_colorPickerContent = new GUIContent("");
+                m_colorPickerContent = new GUIContent(string.Empty);
             }
             if (m_ReorderableList == null)
             {

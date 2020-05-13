@@ -191,7 +191,7 @@ uniform fixed _ARSampler_AlphaOn;
 #endif     //#if defined(_SHADINGGRADEMP)
 
 int _VisibleRenderingPerChannelsMask;
-int _EnabledRenderingPerChannelsMask;
+int _OverriddenRenderingPerChannelsMask;
 // just grafted from UTS/Universal RP
 struct UtsLight
 {
@@ -586,7 +586,12 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 #ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER 
     float3 Set_BaseColor = lerp((_MainTex_var.rgb * mixed_BaseColor.rgb), ((_MainTex_var.rgb * mixed_BaseColor.rgb) * Set_LightColor), _Is_LightColor_Base);    //ColorMixer
 #else
+
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
+    if (!(BIT(eBaseColor) & _VisibleRenderingPerChannelsMask))
+    {
+        Set_BaseColor = float3(0.0f, 0.0f, 0.0f);
+    }
 #endif
 
     //v.2.0.5
