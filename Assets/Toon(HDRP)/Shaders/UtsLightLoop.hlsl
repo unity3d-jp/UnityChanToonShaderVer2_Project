@@ -10,6 +10,7 @@ uniform float4 _2nd_ShadeColor_Mixer;
 uniform float4 _BaseColor_Mixer_Color;
 uniform float4 _1st_ShadeColor_Mixer_Color;
 uniform float4 _2nd_ShadeColor_Mixer_Color;
+uniform float _Is_1st_ShadeColorOnly = 0.0f; // test.
 float4 colorMixer(float4 x, float4 y, float4 z, float4 w, float4 mixer) {
     return (x * mixer.x) + (y * mixer.y) + (z * mixer.z) + (w * mixer.w);
 }
@@ -257,40 +258,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     float3 V = float3(1.0, 1.0, 1.0); // Avoid the division by 0
 #endif
 
-    // vvv ColorMier vvv
-    float4 mixed_BaseColor = _BaseColor;
-    float4 mixed_1st_ShadeColor = _1st_ShadeColor;
-    float4 mixed_2nd_ShadeColor = _2nd_ShadeColor;
-#ifdef _UTS_IS_COLOR_MIXER
-    if (any(_BaseColor_Mixer)) {
-        mixed_BaseColor = colorMixer(
-            _BaseColor                    // x
-            , _1st_ShadeColor               // y
-            , _2nd_ShadeColor               // z
-            , _BaseColor_Mixer_Color        // w
-            , _BaseColor_Mixer              // mixer
-        );
-    }
-    if (any(_1st_ShadeColor_Mixer)) {
-        mixed_1st_ShadeColor = colorMixer(
-            _BaseColor                    // x
-            , _1st_ShadeColor               // y
-            , _2nd_ShadeColor               // z
-            , _1st_ShadeColor_Mixer_Color   // w
-            , _1st_ShadeColor_Mixer         // mixer
-        );
-    }
-    if (any(_2nd_ShadeColor_Mixer)) {
-        mixed_2nd_ShadeColor = colorMixer(
-            _BaseColor                    // x
-            , _1st_ShadeColor               // y
-            , _2nd_ShadeColor               // z
-            , _2nd_ShadeColor_Mixer_Color   // w
-            , _2nd_ShadeColor_Mixer         // mixer
-        );
-    }
-#endif // ifdef _UTS_IS_COLOR_MIXER
-    // ^^^ ColorMier ^^^
+
 
     float4 Set_UV0 = input.texCoord0;
     float3x3 tangentTransform = input.tangentToWorld;
@@ -322,19 +290,10 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     //v.2.0.5: Filtering the high intensity zone of PointLights
     float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, additionalLightColor.rgb*_1st_ShadeColor_Step), notDirectional), _Is_Filter_HiCutPointLightColor);
     //
-#ifdef _UTS_IS_COLOR_MIXER 
-    float3 Set_BaseColor = lerp((_BaseMap_var.rgb * mixed_BaseColor.rgb), ((_BaseMap_var.rgb * mixed_BaseColor.rgb) * Set_LightColor), _Is_LightColor_Base);    //ColorMixer
-#else
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb * _LightIntensity), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
-#endif
+
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
-
-#ifdef _UTS_IS_COLOR_MIXER 
-    //ColorMixer    float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
-    float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb * mixed_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb * mixed_1st_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);    //ColorMixer
-#endif
-
     float3 Set_1st_ShadeColor = lerp((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb*_LightIntensity), ((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_1st_Shade);
     //v.2.0.5
     float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
@@ -508,7 +467,40 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     // Unused
     float3 V = float3(1.0, 1.0, 1.0); // Avoid the division by 0
 #endif
-
+        // vvv ColorMier vvv
+    float4 mixed_BaseColor = _BaseColor;
+    float4 mixed_1st_ShadeColor = _1st_ShadeColor;
+    float4 mixed_2nd_ShadeColor = _2nd_ShadeColor;
+#ifdef _UTS_IS_COLOR_MIXER
+    if (any(_BaseColor_Mixer)) {
+        mixed_BaseColor = colorMixer(
+            _BaseColor                    // x
+            , _1st_ShadeColor               // y
+            , _2nd_ShadeColor               // z
+            , _BaseColor_Mixer_Color        // w
+            , _BaseColor_Mixer              // mixer
+        );
+    }
+    if (any(_1st_ShadeColor_Mixer)) {
+        mixed_1st_ShadeColor = colorMixer(
+            _BaseColor                    // x
+            , _1st_ShadeColor               // y
+            , _2nd_ShadeColor               // z
+            , _1st_ShadeColor_Mixer_Color   // w
+            , _1st_ShadeColor_Mixer         // mixer
+        );
+    }
+    if (any(_2nd_ShadeColor_Mixer)) {
+        mixed_2nd_ShadeColor = colorMixer(
+            _BaseColor                    // x
+            , _1st_ShadeColor               // y
+            , _2nd_ShadeColor               // z
+            , _2nd_ShadeColor_Mixer_Color   // w
+            , _2nd_ShadeColor_Mixer         // mixer
+        );
+    }
+#endif // ifdef _UTS_IS_COLOR_MIXER
+    // ^^^ ColorMier ^^^
     SurfaceData surfaceData;
     BuiltinData builtinData;
     GetSurfaceAndBuiltinData(input, V, posInput, surfaceData, builtinData);
@@ -574,10 +566,20 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 
     float3 Set_LightColor = lightColor.rgb;
-    float3 Set_BaseColor = lerp((_MainTex_var.rgb*_BaseColor.rgb), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base);
+#ifdef _UTS_IS_COLOR_MIXER 
+    float3 Set_BaseColor = lerp((_MainTex_var.rgb * mixed_BaseColor.rgb), ((_MainTex_var.rgb * mixed_BaseColor.rgb) * Set_LightColor), _Is_LightColor_Base);    //ColorMixer
+#else
+    float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
+#endif
+
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
-    float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade);
+#ifdef _UTS_IS_COLOR_MIXER 
+    //ColorMixer    float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
+    float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb * mixed_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb * mixed_1st_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);    //ColorMixer
+#else
+    float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb * _1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb * _1st_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);
+#endif 
     float _HalfLambert_var = 0.5*dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5; // Half Lambert
     //float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
     //v.2.0.6
@@ -685,7 +687,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float Set_FinalCompOut_Alpha;
     {
         float Set_LightColor_Alpha = 1.0f;
-        float BaseColor_Alpha = _BaseMap_var.a * mixed_BaseColor.a;
+        float BaseColor_Alpha = _MainTex_var.a * mixed_BaseColor.a;
         float _1st_ShadeColor_Alpha = _1st_ShadeMap_var.a * mixed_1st_ShadeColor.a;
         float _2nd_ShadeColor_Alpha = _2nd_ShadeMap_var.a * mixed_2nd_ShadeColor.a;
         float Set_RimLight_Alpha = 0.0f;

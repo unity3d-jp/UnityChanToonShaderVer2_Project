@@ -13,7 +13,7 @@
 # define DIRECTIONAL
 #endif
 
-// #define _UTS_IS_COLOR_MIXER
+//#define _UTS_IS_COLOR_MIXER
 
 
 
@@ -26,7 +26,7 @@
 #undef FOG_EXP2
 #endif
 
-//#include "UCTS_AutoLight.cginc" 
+
 #if 1
 
 // Legacy for compatibility with existing shaders
