@@ -23,7 +23,9 @@ namespace UnityEditor.Rendering.HDRP.Toon
             Outline,
         }
 
-        static int flags = 0;
+        const string ShaderProp_RenderingPerChannelsMask = "_RenderingPerChannelsMask";
+
+        
         static bool _PerChanelShaderSettings_Foldout = false;
         static string[] options = new string[] { 
             "Base Color", 
@@ -33,15 +35,15 @@ namespace UnityEditor.Rendering.HDRP.Toon
             "Angel Ring",
             "Outline"
         };
-        void RenderingPerChennelsSetting()
+        void RenderingPerChennelsSetting(Material material)
         {
-
+            int flags = material.GetInt(ShaderProp_RenderingPerChannelsMask);
             _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, "Rendering per Channels Settings");
             if (_PerChanelShaderSettings_Foldout)
             {
                 EditorGUI.indentLevel++;
-                flags = EditorGUILayout.MaskField("Player Flags", flags, options);
-
+                flags = EditorGUILayout.MaskField("Channels", flags, options);
+                material.SetInt(ShaderProp_RenderingPerChannelsMask,flags);
                 EditorGUI.indentLevel--;
             }
         }

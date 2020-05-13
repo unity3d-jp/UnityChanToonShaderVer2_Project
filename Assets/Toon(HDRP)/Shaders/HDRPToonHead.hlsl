@@ -200,4 +200,4 @@ float3 ShadeSH9 (float4 normal)
 }
 
 
-#endif //#ifndef UCTS_LWRP_INCLUDED
+#endif //#ifndef UCTS_HDRP_INCLUDED

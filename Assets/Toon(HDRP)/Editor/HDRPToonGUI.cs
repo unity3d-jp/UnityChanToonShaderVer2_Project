@@ -622,8 +622,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
                     break;
             }
             EditorGUILayout.Space();
-
-            RenderingPerChennelsSetting();
+            
+            RenderingPerChennelsSetting(material);
 
             _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
             if (_BasicShaderSettings_Foldout)
