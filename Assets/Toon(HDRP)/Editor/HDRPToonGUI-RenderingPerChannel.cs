@@ -19,10 +19,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
         ReorderableList m_ReorderableList;
         GUIContent m_colorPickerContent;
         Texture2D m_texIconVisible;
-        GUIContent m_texIconVisibleContent;
-
         Texture2D m_texIconInvisible;
-        GUIContent m_texIconInvisibleContent;
+
 
         GUIStyle m_ToggleStyle;
         public enum _ChannelEnum
@@ -81,13 +79,13 @@ namespace UnityEditor.Rendering.HDRP.Toon
             {
                 m_texIconVisible = (Texture2D)EditorGUIUtility.Load("d_scenevis_visible_hover@2x");
 //                m_texIconVisible = ResizeThumbnailTexture(m_texIconVisible, 20, 20);
-                m_texIconVisibleContent = new GUIContent(m_texIconVisible);
+
             }
             if (m_texIconInvisible == null)
             {
                 m_texIconInvisible = (Texture2D)EditorGUIUtility.Load("d_SceneViewVisibility@2x");
 //                m_texIconInvisible = ResizeThumbnailTexture(m_texIconInvisible, 20, 20);
-                m_texIconInvisibleContent = new GUIContent(m_texIconInvisible);
+
             }
 
             if (m_ToggleStyle == null)

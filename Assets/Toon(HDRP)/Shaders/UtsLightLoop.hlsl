@@ -1,5 +1,16 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Macros.hlsl"
 #include "HDRPToonHead.hlsl"
+
+// this must be same to UI cs code
+// HDRPToonGUI._ChannelEnum
+int eBaseColor = 0;
+int eFirstShade = 1;
+int eSecondShade = 2;
+int eHighlight = 3;
+int eAngleRing = 4;
+int eOutline = 5;
+
+
 uniform float _utsTechnique;
 
 // vvv ColorMier vvv
