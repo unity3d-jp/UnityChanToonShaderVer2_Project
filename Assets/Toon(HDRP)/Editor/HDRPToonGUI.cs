@@ -642,9 +642,11 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 switch (technique)
                 {
                     case _UTS_Technique.DoubleShadeWithFeather:
+                        GUILayout.Label("Clipping Shader", EditorStyles.boldLabel);
                         DoPopup(clippingmodeModeText0, clippingMode, System.Enum.GetNames(typeof(_UTS_ClippingMode)));
                         break;
                     case _UTS_Technique.ShadingGradeMap:
+                        GUILayout.Label("TransClipping Shader", EditorStyles.boldLabel);
                         DoPopup(clippingmodeModeText1, clippingMode, System.Enum.GetNames(typeof(_UTS_TransClippingMode)));
                         break;
                 }
@@ -855,11 +857,11 @@ namespace UnityEditor.Rendering.HDRP.Toon
         {
             if (GUILayout.Button("日本語マニュアル", middleButtonStyle))
             {
-                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md");
+                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md");
             }
             if (GUILayout.Button("English manual", middleButtonStyle))
             {
-                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md");
+                Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md");
             }
         }
 
@@ -937,7 +939,15 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
             if (_Transparent_Setting == _UTS_Transparent.On)
             {
-
+                if ( material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather )
+                {
+                    material.SetInt(ShaderPropClippingMode, (int)_UTS_ClippingMode.TransClippingMode);
+                }
+                else
+                {
+                    // ShadingGradeMap
+                    material.SetInt(ShaderPropClippingMode, (int)_UTS_TransClippingMode.On);
+                }
                 material.SetInt(_ZWriteMode, 0);
                 material.SetFloat(_ZOverDrawMode, 1);
             }
@@ -951,7 +961,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
         void GUI_StencilMode(Material material)
         {
-            GUILayout.Label("For _StencilMask or _StencilOut Shader", EditorStyles.boldLabel);
+            GUILayout.Label("StencilMask or StencilOut Shader", EditorStyles.boldLabel);
             DoPopup(stencilmodeModeText, stencilMode, System.Enum.GetNames(typeof(_UTS_StencilMode)));
 
 
@@ -966,7 +976,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
         void GUI_SetClippingMask(Material material)
         {
-            GUILayout.Label("For _Clipping or _TransClipping Shader", EditorStyles.boldLabel);
+            GUILayout.Label("Options for Clipping or TransClipping features", EditorStyles.boldLabel);
             m_MaterialEditor.TexturePropertySingleLine(Styles.clippingMaskText, clippingMask);
 
             EditorGUILayout.BeginHorizontal();
@@ -994,7 +1004,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
         void GUI_SetTransparencySetting(Material material)
         {
 
-            GUILayout.Label("For _TransClipping Shader", EditorStyles.boldLabel);
+            GUILayout.Label("Options for TransClipping or Transparent features", EditorStyles.boldLabel);
             m_MaterialEditor.RangeProperty(tweak_transparency, "Transparency Level");
 
             EditorGUILayout.BeginHorizontal();
@@ -2023,9 +2033,6 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 material.renderQueue = _renderQueue;
             }
 
-
-
-
             material.SetOverrideTag(RENDERTYPE, renderType);
             material.SetOverrideTag(IGNOREPROJECTION, ignoreProjection);
         }
@@ -2084,19 +2091,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
                     break;
             }
-#if false // not good enough yet.
-            if (mode == _UTS_StencilMode.Off)
-            {
-                material.SetShaderPassEnabled(hdrpMotionVectorsPassName, true);
-                material.SetShaderPassEnabled(hdrpGBufferPassName, true);
-            }
-            else
-            {
-                // when stencil buffer is enabled, the following passes are not rendered.
-                material.SetShaderPassEnabled(hdrpMotionVectorsPassName, false);
-                material.SetShaderPassEnabled(hdrpGBufferPassName, false);
-            }
-#endif
+
+
 
         }
         void ApplyClippingMode(Material material)
@@ -2311,27 +2307,24 @@ namespace UnityEditor.Rendering.HDRP.Toon
             EditorGUILayout.Space();
         }
 
-        const string srpDefaultLightPassName = "SRPDefaultUnlit";
-        const string hdrpMotionVectorsPassName = "MotionVectors";
-        const string hdrpGBufferPassName = "GBuffer";
+        const string srpDefaultLightModeName = "SRPDefaultUnlit";
         const string srpDefaultColorMask = "_SPRDefaultUnlitColorMask";
         const string srpDefaultCullMode = "_SRPDefaultUnlitColMode";
 
         void SetupOverDrawTransparentObject(Material material)
         {
-            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightPassName);
-            if (srpDefaultLightModeTag == srpDefaultLightPassName)
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
+            if (srpDefaultLightModeTag == srpDefaultLightModeName)
             {
-                material.SetShaderPassEnabled(srpDefaultLightPassName, true);
+                material.SetShaderPassEnabled(srpDefaultLightModeName, true);
                 material.SetInt(srpDefaultColorMask, 0);
                 material.SetInt(srpDefaultCullMode, (int)_CullingMode.BackCulling);
             }
         }
-
         void SetuOutline(Material material)
         {
-            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightPassName);
-            if (srpDefaultLightModeTag == srpDefaultLightPassName)
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
+            if (srpDefaultLightModeTag == srpDefaultLightModeName)
             {
                 material.SetInt(srpDefaultColorMask, 15);
                 material.SetInt(srpDefaultCullMode, (int)_CullingMode.FrontCulling);
@@ -2340,24 +2333,24 @@ namespace UnityEditor.Rendering.HDRP.Toon
         void GUI_Outline(Material material)
         {
 
-            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightPassName);
+            var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
             bool isOutlineEnabled = true;
-            if (srpDefaultLightModeTag == srpDefaultLightPassName)
+            if (srpDefaultLightModeTag == srpDefaultLightModeName)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Outline");
-                if (isOutlineEnabled = material.GetShaderPassEnabled(srpDefaultLightPassName))
+                if (isOutlineEnabled = material.GetShaderPassEnabled(srpDefaultLightModeName))
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
-                        material.SetShaderPassEnabled(srpDefaultLightPassName, false);
+                        material.SetShaderPassEnabled(srpDefaultLightModeName, false);
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
-                        material.SetShaderPassEnabled(srpDefaultLightPassName, true);
+                        material.SetShaderPassEnabled(srpDefaultLightModeName, true);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
