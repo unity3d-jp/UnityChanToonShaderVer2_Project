@@ -45,8 +45,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
             
 
-        const string ShaderProp_RenderingPerChannelsMask = "_RenderingPerChannelsMask";
-
+        const string ShaderProp_EnabledRenderingPerChannelsMask = "_EnabledRenderingPerChannelsMask";
+        const string ShaderProp_VisibleRenderingPerChannelsMask = "_VisibleRenderingPerChannelsMask";
         
         static bool _PerChanelShaderSettings_Foldout = false;
 
@@ -54,7 +54,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
         {
             SetupChannelSettings();
 
-            int flags = material.GetInt(ShaderProp_RenderingPerChannelsMask);
+            int maskEnabled = material.GetInt(ShaderProp_EnabledRenderingPerChannelsMask);
+            int maskVisible = material.GetInt(ShaderProp_VisibleRenderingPerChannelsMask);
             if (m_ReorderableList != null)
             {
                 m_ReorderableList.DoLayoutList();
@@ -69,7 +70,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 EditorGUI.indentLevel--;
             }
             */
-            material.SetInt(ShaderProp_RenderingPerChannelsMask, flags);
+            material.SetInt(ShaderProp_EnabledRenderingPerChannelsMask, maskEnabled);
+            material.SetInt(ShaderProp_VisibleRenderingPerChannelsMask, maskVisible);
         }
 
         void SetupChannelSettings()

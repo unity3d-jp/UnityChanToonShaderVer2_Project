@@ -1,6 +1,7 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Macros.hlsl"
 #include "HDRPToonHead.hlsl"
 
+// Channel mask enum.
 // this must be same to UI cs code
 // HDRPToonGUI._ChannelEnum
 int eBaseColor = 0;
@@ -188,6 +189,9 @@ uniform fixed _ARSampler_AlphaOn;
 
 #endif
 #endif     //#if defined(_SHADINGGRADEMP)
+
+int _VisibleRenderingPerChannelsMask;
+int _EnabledRenderingPerChannelsMask;
 // just grafted from UTS/Universal RP
 struct UtsLight
 {

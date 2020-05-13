@@ -4,7 +4,7 @@
 #define UCTS_HDRP 1
 #define fixed  half
 
-
+#define BIT(x) (1<<x)
 
 
 
