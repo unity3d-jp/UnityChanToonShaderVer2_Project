@@ -7,6 +7,8 @@
 //Everything realated to Rendering per channel is controlled in this file.
 using UnityEngine;
 using UnityEditor;
+using System;
+using System.Collections.Specialized;
 
 namespace UnityEditor.Rendering.HDRP.Toon
 {
@@ -14,26 +16,19 @@ namespace UnityEditor.Rendering.HDRP.Toon
     {
         public enum _ChannelEnum
         {
-            Nothing,
-            Everyting,
+            BaseColor,
             FirstShade,
             SecondShade,
-            HighLight,
-            AngelRing,
-            Outline,
         }
 
         const string ShaderProp_RenderingPerChannelsMask = "_RenderingPerChannelsMask";
 
         
         static bool _PerChanelShaderSettings_Foldout = false;
-        static string[] options = new string[] { 
-            "Base Color", 
-            "1st Shade", 
-            "2nd Shade",
-            "Highlgiht",
-            "Angel Ring",
-            "Outline"
+        static string[] options = new string[] {
+            _ChannelEnum.BaseColor.ToString(),
+            _ChannelEnum.FirstShade.ToString(),
+            _ChannelEnum.SecondShade.ToString(),
         };
         void RenderingPerChennelsSetting(Material material)
         {
@@ -49,6 +44,11 @@ namespace UnityEditor.Rendering.HDRP.Toon
         }
         void ApplyRenderingPerChennelsSetting(Material material)
         {
+            Shader.SetGlobalVector("_BaseColor_Mixer", new Vector4(0.0f,0.0f,0.0f,1.0f));
+            Shader.SetGlobalVector("_1st_ShadeColor_Mixer", new Vector4(0.0f, 0.0f, 0.0f, 1.0f));
+            Shader.SetGlobalVector("_2nd_ShadeColor_Mixer", new Vector4(0.0f, 0.0f, 1.0f, 0.0f));
+
+            // set in according to above, need to reset by default.
             Shader.SetGlobalVector("_BaseColor_Mixer_Color", Color.clear);
             Shader.SetGlobalVector("_1st_ShadeColor_Mixer_Color", Color.clear);
             Shader.SetGlobalVector("_2nd_ShadeColor_Mixer_Color", Color.clear);

@@ -472,6 +472,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float4 mixed_1st_ShadeColor = _1st_ShadeColor;
     float4 mixed_2nd_ShadeColor = _2nd_ShadeColor;
 #ifdef _UTS_IS_COLOR_MIXER
+
     if (any(_BaseColor_Mixer)) {
         mixed_BaseColor = colorMixer(
             _BaseColor                    // x
@@ -480,6 +481,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
             , _BaseColor_Mixer_Color        // w
             , _BaseColor_Mixer              // mixer
         );
+        
     }
     if (any(_1st_ShadeColor_Mixer)) {
         mixed_1st_ShadeColor = colorMixer(
