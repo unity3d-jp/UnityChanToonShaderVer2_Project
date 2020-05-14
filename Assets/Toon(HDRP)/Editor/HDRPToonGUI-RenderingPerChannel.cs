@@ -165,7 +165,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                         y = rect_.y
                     };
                     string propNameVisible = "_" + m_channelNames[index].ToString() + "Visible";
-                    string propNameOverriden = "_" + m_channelNames[index].ToString() + "Overriden";
+                    string propNameOverriden = "_" + m_channelNames[index].ToString() + "Overridden";
                     string propNameColor = "_" + m_channelNames[index].ToString() + "MaskColor";
                     bool isVisible = material.GetFloat(propNameVisible) > 0.0f;
                     EditorGUI.BeginChangeCheck();
