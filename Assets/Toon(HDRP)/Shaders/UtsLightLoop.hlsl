@@ -185,11 +185,11 @@ uniform float4 _BaseColorMaskColor;
 
 uniform float  _FirstShadeVisible;
 uniform float  _FirstShadeOverridden;
-uniform float4 _FirstMaskColor;
+uniform float4 _FirstShadeMaskColor;
 
 uniform float  _SecondShadeVisible;
 uniform float  _SecondShadeOverridden;
-uniform float4 _SecondMaskColor;
+uniform float4 _SecondShadeMaskColor;
 
 uniform float  _HighlightVisible;
 uniform float  _HighlightOverridden;
@@ -562,6 +562,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
 #ifdef UTS_LAYER_VISIBILITY
     Set_BaseColor *= _BaseColorVisible;
+    Set_BaseColor = lerp(Set_BaseColor, _BaseColorMaskColor, _BaseColorOverridden);
 #endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
@@ -586,6 +587,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 #ifdef UTS_LAYER_VISIBILITY
     _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, Set_BaseColor, 1.0f-_FirstShadeVisible); 
+    _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, _FirstShadeMaskColor, _FirstShadeOverridden);
 #endif //#ifdef UTS_LAYER_VISIBILITY
     float3 _BaseColor_var = lerp(Set_BaseColor, _Is_LightColor_1st_Shade_var, Set_FinalShadowMask);
     //v.2.0.5
@@ -595,6 +597,8 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 #ifdef UTS_LAYER_VISIBILITY
     float3 _Is_LightColor_2nd_Shade_var = lerp((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
     _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, Set_BaseColor, 1.0f - _SecondShadeVisible);
+    _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, _SecondShadeMaskColor, _SecondShadeOverridden);
+
     float3 Set_FinalBaseColor = 
         lerp(_BaseColor_var, 
             lerp(_Is_LightColor_1st_Shade_var, _Is_LightColor_2nd_Shade_var, Set_ShadeShadowMask), 
