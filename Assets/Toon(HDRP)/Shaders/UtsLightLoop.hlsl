@@ -888,9 +888,17 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     _Color = _BaseColor;
     float3 Set_LightColor = lightColor.rgb;
     float3 Set_BaseColor = lerp((_MainTex_var.rgb*_BaseColor.rgb), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base);
+#ifdef UTS_LAYER_VISIBILITY
+    Set_BaseColor *= _BaseColorVisible;
+    Set_BaseColor = lerp(Set_BaseColor, _BaseColorMaskColor, _BaseColorOverridden);
+#endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
     float3 Set_1st_ShadeColor = lerp((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb), ((_1st_ShadeColor.rgb*_1st_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_1st_Shade);
+#ifdef UTS_LAYER_VISIBILITY
+    Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
+    Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, _FirstShadeMaskColor, _FirstShadeOverridden);
+#endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
     float3 Set_2nd_ShadeColor = lerp((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb), ((_2nd_ShadeColor.rgb*_2nd_ShadeMap_var.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade);
@@ -904,7 +912,12 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 
     //
     //Composition: 3 Basic Colors as Set_FinalBaseColor
+#ifdef UTS_LAYER_VISIBILITY
+    Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, Set_BaseColor, 1.0f - _SecondShadeVisible);
+    Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, _SecondShadeMaskColor, _SecondShadeOverridden);
+#endif //#ifdef UTS_LAYER_VISIBILITY
     float3 Set_FinalBaseColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _1st2nd_Shades_Feather)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _1st2nd_Shades_Feather))))), Set_FinalShadowMask); // Final Color
+
     float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
     float _Specular_var = 0.5*dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
     float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
@@ -913,7 +926,23 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 
 
     //Composition: 3 Basic Colors and HighColor as Set_HighColor
+#ifdef UTS_LAYER_VISIBILITY
+    _HighColor_var *= _HighlightVisible;
+    float3 Set_HighColor =
+        lerp(saturate(Set_FinalBaseColor - _TweakHighColorMask_var), Set_FinalBaseColor,
+            lerp(_Is_BlendAddToHiColor, 1.0
+                , _Is_SpecularToHighColor));
+    float3 addColor =
+        lerp(_HighColor_var, (_HighColor_var * ((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask * _TweakHighColorOnShadow)))
+            , _Is_UseTweakHighColorOnShadow);
+    Set_HighColor += addColor;
+    if (any(addColor))
+    {
+        Set_HighColor = lerp(Set_HighColor, _HighlightMaskColor, _HighlightOverridden);
+    }
+#else
     float3 Set_HighColor = (lerp(saturate((Set_FinalBaseColor - _TweakHighColorMask_var)), Set_FinalBaseColor, lerp(_Is_BlendAddToHiColor, 1.0, _Is_SpecularToHighColor)) + lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow));
+#endif
     float4 _Set_RimLightMask_var = tex2D(_Set_RimLightMask, TRANSFORM_TEX(Set_UV0, _Set_RimLightMask));
     float3 _Is_LightColor_RimLight_var = lerp(_RimLightColor.rgb, (_RimLightColor.rgb*Set_LightColor), _Is_LightColor_RimLight);
     float _RimArea_var = (1.0 - dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToRimLight), viewDirection));
