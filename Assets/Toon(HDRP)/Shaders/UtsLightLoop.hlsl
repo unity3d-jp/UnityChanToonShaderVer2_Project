@@ -732,11 +732,17 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float Set_ARtexAlpha = _AngelRing_Sampler_var.a;
     float3 Set_AngelRingWithAlpha = (_Is_LightColor_AR_var*_AngelRing_Sampler_var.a);
     //Composition: MatCap and AngelRing as finalColor
-#ifdef UTS_LAYER_VISIBILITY
+# ifdef UTS_LAYER_VISIBILITY
     _AngelRing *= _AngelRingVisible;
-#endif //#ifdef UTS_LAYER_VISIBILITY
-    finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor*(1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
-#endif
+    finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
+    if (any(Set_AngelRing) * _AngelRingOverridden)
+    {
+        finalColor = lerp(finalColor, lerp(_AngelRingMaskColor.xyz, ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
+    }
+# else
+    finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
+# endif //#ifdef UTS_LAYER_VISIBILITY
+#endif //#ifdef _IS_ANGELRING_OFF
 //v.2.0.7
 #ifdef _EMISSIVE_SIMPLE
     float4 _Emissive_Tex_var = tex2D(_Emissive_Tex, TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
