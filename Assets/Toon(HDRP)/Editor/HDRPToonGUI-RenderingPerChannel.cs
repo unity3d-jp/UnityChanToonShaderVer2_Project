@@ -189,9 +189,9 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
 
                         Color color = material.GetColor(propNameColor);
-                        color *= toggleOverride == false ? 0.5f : 1.0f;
+                        //color *= toggleOverride == false ? 0.5f : 1.0f;
                         EditorGUI.BeginChangeCheck();
-                        color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, false, false);
+                        color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
                         if (EditorGUI.EndChangeCheck())
                         {
                             Undo.RecordObject(material, "Layer mask color is changed");
