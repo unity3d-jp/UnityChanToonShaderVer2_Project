@@ -37,6 +37,10 @@
 
             uniform float _ZOverDrawMode;
             //
+
+            uniform float _OutlineVisible;
+            uniform float _OutlineOverridden;
+            uniform float4 _OutlineMaskColor;
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_YES
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
@@ -120,7 +124,14 @@
 //v.2.0.7.5
 #ifdef _IS_OUTLINE_CLIPPING_NO
                 float3 Set_Outline_Color = lerp(_Is_BlendBaseColor_var, _OutlineTex_var.rgb*_Outline_Color.rgb*lightColor, _Is_OutlineTex );
-                return float4(Set_Outline_Color,1.0);
+                if (_OutlineVisible < 0.1)
+                {
+                    // Todo. 
+                    // without this, something is drawn even if _OutlineVisible = 0, in AngelRing(HDRP)
+                    discard; 
+                }
+                return float4(Set_Outline_Color, _OutlineVisible);
+
 #elif _IS_OUTLINE_CLIPPING_YES
                 float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
                 float Set_MainTexAlpha = _MainTex_var.a;
@@ -129,6 +140,7 @@
                 float Set_Clipping = saturate((_Inverse_Clipping_var+_Clipping_Level));
                 clip(Set_Clipping - 0.5);
                 float4 Set_Outline_Color = lerp( float4(_Is_BlendBaseColor_var,Set_Clipping), float4((_OutlineTex_var.rgb*_Outline_Color.rgb*lightColor),Set_Clipping), _Is_OutlineTex );
+                Set_Outline_Color.w *= _OutlineVisible;
                 return Set_Outline_Color;
 #endif
             }
