@@ -13,7 +13,7 @@
 # define DIRECTIONAL
 #endif
 
-//#define _TAKAYUKI_UTS_IS_COLOR_MIXER
+
 
 
 

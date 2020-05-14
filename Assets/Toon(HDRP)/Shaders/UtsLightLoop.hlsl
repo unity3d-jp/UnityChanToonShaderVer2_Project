@@ -14,19 +14,7 @@ int eOutline = 5;
 
 uniform float _utsTechnique;
 
-// vvv ColorMier vvv
-#ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER
-uniform float4 _BaseColor_Mixer;
-uniform float4 _1st_ShadeColor_Mixer;
-uniform float4 _2nd_ShadeColor_Mixer;
-uniform float4 _BaseColor_Mixer_Color;
-uniform float4 _1st_ShadeColor_Mixer_Color;
-uniform float4 _2nd_ShadeColor_Mixer_Color;
-uniform float _Is_1st_ShadeColorOnly = 0.0f; // test.
-float4 colorMixer(float4 x, float4 y, float4 z, float4 w, float4 mixer) {
-    return (x * mixer.x) + (y * mixer.y) + (z * mixer.z) + (w * mixer.w);
-}
-#endif // ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER
+
 // ^^^ ColorMier ^^^
 
 //uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
@@ -482,42 +470,6 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     // Unused
     float3 V = float3(1.0, 1.0, 1.0); // Avoid the division by 0
 #endif
-        // vvv ColorMixer vvv
-    float4 mixed_BaseColor = _BaseColor;
-    float4 mixed_1st_ShadeColor = _1st_ShadeColor;
-    float4 mixed_2nd_ShadeColor = _2nd_ShadeColor;
-#ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER
-
-    if (any(_BaseColor_Mixer)) {
-        mixed_BaseColor = colorMixer(
-            _BaseColor                    // x
-            , _1st_ShadeColor               // y
-            , _2nd_ShadeColor               // z
-            , _BaseColor_Mixer_Color        // w
-            , _BaseColor_Mixer              // mixer
-        );
-        
-    }
-    if (any(_1st_ShadeColor_Mixer)) {
-        mixed_1st_ShadeColor = colorMixer(
-            _BaseColor                    // x
-            , _1st_ShadeColor               // y
-            , _2nd_ShadeColor               // z
-            , _1st_ShadeColor_Mixer_Color   // w
-            , _1st_ShadeColor_Mixer         // mixer
-        );
-    }
-    if (any(_2nd_ShadeColor_Mixer)) {
-        mixed_2nd_ShadeColor = colorMixer(
-            _BaseColor                    // x
-            , _1st_ShadeColor               // y
-            , _2nd_ShadeColor               // z
-            , _2nd_ShadeColor_Mixer_Color   // w
-            , _2nd_ShadeColor_Mixer         // mixer
-        );
-    }
-#endif // ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER
-    // ^^^ ColorMixer ^^^
     SurfaceData surfaceData;
     BuiltinData builtinData;
     GetSurfaceAndBuiltinData(input, V, posInput, surfaceData, builtinData);
@@ -583,25 +535,12 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 
     float3 Set_LightColor = lightColor.rgb;
-#ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER 
-    float3 Set_BaseColor = lerp((_MainTex_var.rgb * mixed_BaseColor.rgb), ((_MainTex_var.rgb * mixed_BaseColor.rgb) * Set_LightColor), _Is_LightColor_Base);    //ColorMixer
-#else
 
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
-    if (!(BIT(eBaseColor) & _VisibleRenderingPerChannelsMask))
-    {
-        Set_BaseColor = float3(0.0f, 0.0f, 0.0f);
-    }
-#endif
 
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
-#ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER 
-    //ColorMixer    float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
-    float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb * mixed_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb * mixed_1st_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);    //ColorMixer
-#else
     float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb * _1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb * _1st_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);
-#endif 
     float _HalfLambert_var = 0.5*dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5; // Half Lambert
     //float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
     //v.2.0.6
@@ -624,12 +563,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
     float Set_ShadeShadowMask = saturate((1.0 + ((Set_ShadingGrade - (_2nd_ShadeColor_Step - _2nd_ShadeColor_Feather)) * (0.0 - 1.0)) / (_2nd_ShadeColor_Step - (_2nd_ShadeColor_Step - _2nd_ShadeColor_Feather)))); // 1st and 2nd Shades Mask
     //Composition: 3 Basic Colors as Set_FinalBaseColor
-#ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER
-    //ColorMixer    float3 Set_FinalBaseColor = lerp( lerp(_BaseColor_var,lerp(_Is_LightColor_1st_Shade_var,lerp( (_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade ),Set_ShadeShadowMask),Set_FinalShadowMask), _BaseColor_var, _Is_1st_ShadeColorOnly );
-    float3 Set_FinalBaseColor = lerp(lerp(_BaseColor_var, lerp(_Is_LightColor_1st_Shade_var, lerp((_2nd_ShadeMap_var.rgb * mixed_2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * mixed_2nd_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade), Set_ShadeShadowMask), Set_FinalShadowMask), _BaseColor_var, _Is_1st_ShadeColorOnly);	//ColorMixer
-#else
     float3 Set_FinalBaseColor = lerp(_BaseColor_var, lerp(_Is_LightColor_1st_Shade_var, lerp((_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade), Set_ShadeShadowMask), Set_FinalShadowMask);
-#endif
     float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
     float _Specular_var = 0.5*dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; // Specular
     float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
@@ -705,57 +639,6 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     //v.2.0.6 : ShadowMask on Matcap in Blend mode : multiply
     float3 Set_MatCap = lerp(_Is_LightColor_MatCap_var, (_Is_LightColor_MatCap_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakMatCapOnShadow)) + lerp(Set_HighColor*Set_FinalShadowMask*(1.0 - _TweakMatCapOnShadow), float3(0.0, 0.0, 0.0), _Is_BlendAddToMatCap)), _Is_UseTweakMatCapOnShadow);
 
-#ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER
-    float Set_FinalCompOut_Alpha;
-    {
-        float Set_LightColor_Alpha = 1.0f;
-        float BaseColor_Alpha = _MainTex_var.a * mixed_BaseColor.a;
-        float _1st_ShadeColor_Alpha = _1st_ShadeMap_var.a * mixed_1st_ShadeColor.a;
-        float _2nd_ShadeColor_Alpha = _2nd_ShadeMap_var.a * mixed_2nd_ShadeColor.a;
-        float Set_RimLight_Alpha = 0.0f;
-        float Set_MatCap_Alpha = 0.0f;
-        float Emissive_Color_Alpha = 0.0f;
-        float _HighColor_var_Alpha = _HighColor_Tex_var.a;
-
-        float Set_BaseColor_Alpha =
-            lerp(
-                BaseColor_Alpha
-                , BaseColor_Alpha * Set_LightColor_Alpha
-                , _Is_LightColor_Base
-            );
-        float _Is_LightColor_1st_Shade_var_Alpha =
-            lerp(
-                _1st_ShadeColor_Alpha
-                , _1st_ShadeColor_Alpha * Set_LightColor_Alpha
-                , _Is_LightColor_1st_Shade
-            );
-        float _BaseColor_var_Alpha =
-            lerp(
-                Set_BaseColor_Alpha
-                , _Is_LightColor_1st_Shade_var_Alpha
-                , Set_FinalShadowMask
-            );
-        float Set_FinalBaseColor_Alpha =
-            lerp(
-                lerp(
-                    _BaseColor_var_Alpha
-                    , lerp(
-                        _Is_LightColor_1st_Shade_var_Alpha
-                        , lerp(
-                            _2nd_ShadeColor_Alpha
-                            , _2nd_ShadeColor_Alpha * Set_LightColor_Alpha
-                            , _Is_LightColor_2nd_Shade
-                        )
-                        , Set_ShadeShadowMask
-                    )
-                    , Set_FinalShadowMask
-                )
-                , _BaseColor_var_Alpha
-                , _Is_1st_ShadeColorOnly
-            );
-        Set_FinalCompOut_Alpha = Set_FinalBaseColor_Alpha;
-    }
-#endif // _TAKAYUKI_UTS_IS_COLOR_MIXER
 
     //
     //v.2.0.6
@@ -840,10 +723,6 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 
     finalColor += pointLightColor;
-#ifdef _TAKAYUKI_UTS_IS_COLOR_MIXER
-    finalColor.a = Set_FinalCompOut_Alpha;
-#endif
-
 
 #endif
 
