@@ -560,7 +560,9 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 Set_LightColor = lightColor.rgb;
 
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
-
+#ifdef UTS_LAYER_VISIBILITY
+    Set_BaseColor *= _BaseColorVisible;
+#endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
     float3 _Is_LightColor_1st_Shade_var = lerp((_1st_ShadeMap_var.rgb * _1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb * _1st_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);
@@ -585,7 +587,6 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 #ifdef UTS_LAYER_VISIBILITY
     _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, Set_BaseColor, 1.0f-_FirstShadeVisible); 
 #endif //#ifdef UTS_LAYER_VISIBILITY
-    //_Is_LightColor_1st_Shade_var *= _FirstShadeVisible;
     float3 _BaseColor_var = lerp(Set_BaseColor, _Is_LightColor_1st_Shade_var, Set_FinalShadowMask);
     //v.2.0.5
     float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
