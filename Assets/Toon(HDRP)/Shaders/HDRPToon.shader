@@ -431,23 +431,23 @@ Shader "HDRP/Toon"
 
         [Toggle(_)] _FirstShadeVisible("Channel mask", Float) = 1
         [Toggle(_)] _FirstShadeOverridden("Channel mask", Float) = 0
-        _FirstShadeMaskColor("chennel mask color", Color) = (1, 1, 1, 1)
+        _FirstShadeMaskColor("chennel mask color", Color) = (0, 1, 1, 1)
 
         [Toggle(_)] _SecondShadeVisible("Channel mask", Float) = 1
         [Toggle(_)] _SecondShadeOverridden("Channel mask", Float) = 0
-        _SecondShadeMaskColor("chennel mask color", Color) = (1, 1, 1, 1)
+        _SecondShadeMaskColor("chennel mask color", Color) = (0, 0, 1, 1)
 
         [Toggle(_)] _HighlightVisible("Channel mask", Float) = 1
         [Toggle(_)] _HighlightOverridden("Channel mask", Float) = 0
-        _HighlightMaskColor("chennel mask color", Color) = (1, 1, 1, 1)
+        _HighlightMaskColor("chennel mask color", Color) = (1, 1, 0, 1)
 
         [Toggle(_)] _AngelRingVisible("Channel mask", Float) = 1
         [Toggle(_)] _AngelRingOverridden("Channel mask", Float) = 0
-        _AngelRingMaskColor("chennel mask color", Color) = (1, 1, 1, 1)
+        _AngelRingMaskColor("chennel mask color", Color) = (0, 1, 0, 1)
 
         [Toggle(_)] _OutlineVisible("Channel mask", Float) = 1
         [Toggle(_)] _OutlineOverridden("Channel mask", Float) = 0
-        _OutlineMaskColor("chennel mask color", Color) = (1, 1, 1, 1)
+        _OutlineMaskColor("chennel mask color", Color) = (0, 0, 0, 1)
         // to here parameters for UTS>
     }
 
