@@ -8,7 +8,7 @@ int eBaseColor = 0;
 int eFirstShade = 1;
 int eSecondShade = 2;
 int eHighlight = 3;
-int eAngleRing = 4;
+int eAngelRing = 4;
 int eOutline = 5;
 
 
@@ -178,8 +178,25 @@ uniform fixed _ARSampler_AlphaOn;
 #endif
 #endif     //#if defined(_SHADINGGRADEMP)
 
-int _VisibleRenderingPerChannelsMask;
-int _OverriddenRenderingPerChannelsMask;
+
+uniform float _BaseColorVisible;
+uniform float _BaseColorOverridden;
+
+uniform float _FirstShadeVisible;
+uniform float _FirstShadeOverridden;
+
+uniform float _SecondShadeVisible;
+uniform float _SecondShadeOverridden;
+
+uniform float _HighlightVisible;
+uniform float _HighlightOverridden;
+
+uniform float _AngelRingVisible;
+uniform float _AngelRingOverridden;
+
+uniform float _OutlineVisible;
+uniform float _OutlineOverridden;
+
 // just grafted from UTS/Universal RP
 struct UtsLight
 {
@@ -362,7 +379,6 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel))*lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
     float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
     float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb*_HighColor.rgb), ((_HighColor_Tex_var.rgb*_HighColor.rgb)*Set_LightColor), _Is_LightColor_HighColor)*_TweakHighColorMask_var);
-
     finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
     //
 
@@ -665,6 +681,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float Set_ARtexAlpha = _AngelRing_Sampler_var.a;
     float3 Set_AngelRingWithAlpha = (_Is_LightColor_AR_var*_AngelRing_Sampler_var.a);
     //Composition: MatCap and AngelRing as finalColor
+    _AngelRing *= _AngelRingVisible;
     finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor*(1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
 #endif
 //v.2.0.7

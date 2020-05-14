@@ -23,21 +23,15 @@ namespace UnityEditor.Rendering.HDRP.Toon
             FirstShade,
             SecondShade,
             Highlight,
-            AngleRing,
+            AngelRing,
             Outline,
             Max,
         };
 
-        class ChannelSetting
-        {
-            public bool m_drawEnabled;
-            public bool m_drawOverride;
-            public Color m_maskColor;
-            public string m_name;
-        };
+
 
         ReorderableList m_ReorderableList;
-        List<ChannelSetting> m_channelSettings;
+        List<string> m_channelNames;
         GUIContent m_colorPickerContent;
         Texture2D m_texIconVisible;
         Texture2D m_texIconInvisible;
@@ -45,41 +39,40 @@ namespace UnityEditor.Rendering.HDRP.Toon
         GUIStyle  m_ToggleStyle;
 
 
-            
 
-        const string ShaderProp_OverriddenRenderingPerChannelsMask = "_OverriddenRenderingPerChannelsMask";
-        const string ShaderProp_VisibleRenderingPerChannelsMask = "_VisibleRenderingPerChannelsMask";
-        
+        const string ShaderProp_BaseColorVisible = "_BaseColorVisible";
+        const string ShaderProp_BaseColorOverridden = "_BaseColorOverridden";
+
+        const string ShaderProp_FirstShadeVisible = "_FirstShadeVisible";
+        const string ShaderProp_FirstShadeOverridden = "_FirstShadeOverridden";
+
+        const string ShaderProp_SecondShadeVisible = "_SecondShadeVisible";
+        const string ShaderProp_SecondShadeOverridden = "_SecondShadeOverridden";
+
+        const string ShaderProp_HighlightVisible = "_HighlightVisible";
+        const string ShaderProp_HighlightOverridden = "_HighlightOverridden";
+
+        const string ShaderProp_AngelRingVisible = "_AngelRingVisible";
+        const string ShaderProp_AngelRingOverridden = "_AngelRingOverridden";
+
+        const string ShaderProp_OutlineVisible = "_OutlineVisible";
+        const string ShaderProp_OutlineOverridden = "_OutlineOverridden";
+
         static bool _PerChanelShaderSettings_Foldout = false;
 
         void RenderingPerChennelsSetting(Material material)
         {
-            SetupChannelSettings();
+            SetupChannelSettings(material);
 
-            int maskOverridden = material.GetInt(ShaderProp_OverriddenRenderingPerChannelsMask);
-            int maskVisible = material.GetInt(ShaderProp_VisibleRenderingPerChannelsMask);
-            for ( int ii = 0; ii < (int)_ChannelEnum.Max; ii++ )
-            {
-                m_channelSettings[ii].m_drawEnabled = ((maskVisible & (1 << ii)) != 0 );
-                m_channelSettings[ii].m_drawEnabled = ((maskOverridden & (1 << ii)) != 0 );
-            }
+
             if (m_ReorderableList != null)
             {
                 m_ReorderableList.DoLayoutList();
             }
-            maskOverridden = 0;
-            maskVisible = 0;
-            for (int ii = 0; ii < (int)_ChannelEnum.Max; ii++)
-            {
-                maskVisible |= ((m_channelSettings[ii].m_drawEnabled ? 1: 0) << ii );
-                maskOverridden |= ((m_channelSettings[ii].m_drawEnabled ? 1:0) << ii);
-            }
 
-            material.SetInt(ShaderProp_OverriddenRenderingPerChannelsMask, maskOverridden);
-            material.SetInt(ShaderProp_VisibleRenderingPerChannelsMask, maskVisible);
         }
 
-        void SetupChannelSettings()
+        void SetupChannelSettings(Material material)
         {
 
             if ( m_texIconVisible == null )
@@ -120,51 +113,15 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_ToggleStyle.onHover.background = m_texIconVisible;
                 m_ToggleStyle.onHover.scaledBackgrounds = new Texture2D[] { m_texIconVisible };
             }
-            if (m_channelSettings == null)
+            if (m_channelNames == null)
             {
-                m_channelSettings = new List<ChannelSetting>();
-                m_channelSettings.Add(new ChannelSetting()
-                {   
-                    m_drawEnabled = true,
-                    m_drawOverride = false,
-                    m_maskColor = Color.gray,
-                    m_name = _ChannelEnum.BaseColor.ToString()
-                });
-                m_channelSettings.Add(new ChannelSetting()
-                {   
-                    m_drawEnabled = true,
-                    m_drawOverride = false,
-                    m_maskColor = Color.cyan,
-                    m_name = _ChannelEnum.FirstShade.ToString()
-                });
-                m_channelSettings.Add(new ChannelSetting()
-                {
-                    m_drawEnabled = true,
-                    m_drawOverride = false,
-                    m_maskColor = Color.blue,
-                    m_name = _ChannelEnum.SecondShade.ToString()
-                });
-                m_channelSettings.Add(new ChannelSetting()
-                {
-                    m_drawEnabled = true,
-                    m_drawOverride = false,
-                    m_maskColor = Color.yellow,
-                    m_name = _ChannelEnum.Highlight.ToString()
-                });
-                m_channelSettings.Add(new ChannelSetting()
-                {
-                    m_drawEnabled = true,
-                    m_drawOverride = false,
-                    m_maskColor = Color.green,
-                    m_name = _ChannelEnum.AngleRing.ToString()
-                });
-                m_channelSettings.Add(new ChannelSetting()
-                {
-                    m_drawEnabled = true,
-                    m_drawOverride = false,
-                    m_maskColor = Color.red,
-                    m_name = _ChannelEnum.Outline.ToString()
-                });
+                m_channelNames = new List<string>();
+                m_channelNames.Add(_ChannelEnum.BaseColor.ToString());
+                m_channelNames.Add(_ChannelEnum.FirstShade.ToString());
+                m_channelNames.Add(_ChannelEnum.SecondShade.ToString());
+                m_channelNames.Add(_ChannelEnum.Highlight.ToString());
+                m_channelNames.Add(_ChannelEnum.AngelRing.ToString());
+                m_channelNames.Add(_ChannelEnum.Outline.ToString());
             }
             if (m_colorPickerContent == null )
             {
@@ -172,7 +129,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             }
             if (m_ReorderableList == null)
             {
-                m_ReorderableList = new ReorderableList(m_channelSettings, typeof(ChannelSetting));
+                m_ReorderableList = new ReorderableList(m_channelNames, typeof(string));
                 m_ReorderableList.displayAdd = false;
                 m_ReorderableList.displayRemove = false;
                 m_ReorderableList.draggable = false;
@@ -207,20 +164,40 @@ namespace UnityEditor.Rendering.HDRP.Toon
                         x = rect_.x + 6 + 22 * 3,
                         y = rect_.y
                     };
-                    var isVisible = m_channelSettings[index].m_drawEnabled;
+                    string propNameVisible = "_" + m_channelNames[index].ToString() + "Visible";
+                    string propNameOverriden = "_" + m_channelNames[index].ToString() + "Overriden";
+                    string propNameColor = "_" + m_channelNames[index].ToString() + "MaskColor";
+                    bool isVisible = material.GetFloat(propNameVisible) > 0.0f;
+                    EditorGUI.BeginChangeCheck();
                     isVisible = EditorGUI.Toggle(toggleRectVislble, isVisible, m_ToggleStyle);
-                    m_channelSettings[index].m_drawEnabled = isVisible;
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        Undo.RecordObject(material, "Layer visiblity is changed");
+                        material.SetFloat(propNameVisible, isVisible ? 1.0f : 0.0f);
+                    }
+
                     using (new EditorGUI.DisabledScope(isVisible == false))
                     {
-                        var toggleOverride = EditorGUI.Toggle(toggleRectOverride, m_channelSettings[index].m_drawOverride);
-                        m_channelSettings[index].m_drawOverride = toggleOverride;
-                        using (new EditorGUI.DisabledScope(toggleOverride == false))
+                        EditorGUI.BeginChangeCheck();
+                        bool toggleOverride = material.GetFloat(propNameOverriden) > 0.0f;
+                        toggleOverride = EditorGUI.Toggle(toggleRectOverride, toggleOverride);
+                        if (EditorGUI.EndChangeCheck())
                         {
-                            var color = toggleOverride == false ? m_channelSettings[index].m_maskColor * 0.5f : m_channelSettings[index].m_maskColor;
-                            EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, false, false);
+                            Undo.RecordObject(material, "Layer mask is changed");
+                            material.SetFloat(propNameOverriden, toggleOverride ? 1.0f : 0.0f);
                         }
 
-                        EditorGUI.LabelField(nameRect, m_channelSettings[index].m_name);
+
+                        Color color = material.GetColor(propNameColor);
+                        color *= toggleOverride == false ? 0.5f : 1.0f;
+                        EditorGUI.BeginChangeCheck();
+                        color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, false, false);
+                        if (EditorGUI.EndChangeCheck())
+                        {
+                            Undo.RecordObject(material, "Layer mask color is changed");
+                            material.SetColor(propNameColor, color);
+                        }
+                        EditorGUI.LabelField(nameRect, m_channelNames[index]);
                     }
                 };
             }
