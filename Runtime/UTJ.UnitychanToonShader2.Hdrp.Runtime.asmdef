@@ -2,9 +2,16 @@
     "name": "UTJ.UnitychanToonShader2.Hdrp.Runtime",
     "references": [
         "GUID:457756d89b35d2941b3e7b37b4ece6f1",
-        "GUID:df380645f10b7bc4b97d4f5eb6303d95"
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:d2f2fdafbf2b25e46bd82c9abb25947d"
     ],
-    "includePlatforms": [
-    ],
-    "excludePlatforms": []
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
