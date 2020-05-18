@@ -5,7 +5,6 @@ node_modules/**
 Documentation/ApiDocs/**
 Documentation~/ApiDocs/**
 UTS2_Project~/**
-Tests/**
 .DS_Store
 .npmrc
 .npmignore
