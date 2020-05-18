@@ -121,3 +121,12 @@ Update Mode: updateDependencies
 
 The following packages were updated:
   com.unity.test-framework from version 1.1.11 to 1.1.13
+
+=== Mon May 18 12:23:22 2020
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.visualstudio from version 2.0.0 to 2.0.1
+  com.unity.ide.vscode from version 1.1.4 to 1.2.0
