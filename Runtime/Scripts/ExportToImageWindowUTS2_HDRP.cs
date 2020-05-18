@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEditor;
-using UTJ.RaytracedHardShadow;
+using Unity.RaytracedHardShadow;
 
-namespace UTJ.RaytracedHardShadowEditor
+namespace Unity.RaytracedHardShadowEditor
 {
     public class ExportToImageWindowUTS2_HDRP : EditorWindow
     {

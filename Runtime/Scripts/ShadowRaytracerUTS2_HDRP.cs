@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
-using UTJ.RaytracedHardShadow;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace UTJ.RaytracedHardShadow
+namespace Unity.RaytracedHardShadow
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(Camera))]

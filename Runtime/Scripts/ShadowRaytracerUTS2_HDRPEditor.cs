@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UTJ.RaytracedHardShadow;
+using Unity.RaytracedHardShadow;
 
-namespace UTJ.RaytracedHardShadowEditor
+namespace Unity.RaytracedHardShadowEditor
 {
-    [CustomEditor(typeof(UTJ.RaytracedHardShadow.ShadowRaytracerUTS2_HDRP))]
+    [CustomEditor(typeof(Unity.RaytracedHardShadow.ShadowRaytracerUTS2_HDRP))]
     public class ShadowRaytracerUTS2_HDRPEditor : Editor
     {
         // return drag & dropped scenes from *Hierarchy*.
