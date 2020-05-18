@@ -62,6 +62,12 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
         void RenderingPerChennelsSetting(Material material)
         {
+
+            _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, "【Rendering per Channels Settings】");
+            if (!_PerChanelShaderSettings_Foldout)
+            {
+                return;
+            }
             SetupChannelSettings(material);
 
 

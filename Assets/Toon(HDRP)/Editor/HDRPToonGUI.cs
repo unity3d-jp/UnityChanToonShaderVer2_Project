@@ -623,7 +623,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             }
             EditorGUILayout.Space();
             
-            RenderingPerChennelsSetting(material);
+
 
             _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
             if (_BasicShaderSettings_Foldout)
@@ -806,6 +806,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 }
 
                 EditorGUILayout.Space();
+                RenderingPerChennelsSetting(material);
             }
             ApplyRenderingPerChennelsSetting(material);
             ApplyClippingMode(material);
