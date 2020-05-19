@@ -497,11 +497,24 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
     float3 _HighColor_var = lerp((_HighColor_Tex_var.rgb*_HighColor.rgb), ((_HighColor_Tex_var.rgb*_HighColor.rgb)*Set_LightColor), _Is_LightColor_HighColor);
 #ifdef UTS_LAYER_VISIBILITY
+    _HighColor_var *= _TweakHighColorMask_var;
     _HighColor_var *= _HighlightVisible;
-    _HighColor_var = lerp(_HighColor_var, _HighlightMaskColor, _HighlightOverridden);
-#endif //#ifdef UTS_LAYER_VISIBILITY
+    finalColor =
+        lerp(saturate(finalColor - _TweakHighColorMask_var), finalColor,
+            lerp(_Is_BlendAddToHiColor, 1.0
+                , _Is_SpecularToHighColor));
+    float3 addColor =
+        lerp(_HighColor_var, (_HighColor_var * ((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask * _TweakHighColorOnShadow)))
+            , _Is_UseTweakHighColorOnShadow);
+    finalColor += addColor;
+    if (any(addColor))
+    {
+        finalColor = lerp(finalColor, _HighlightMaskColor, _HighlightOverridden);
+    }
+#else
     _HighColor_var *= _TweakHighColorMask_var;
     finalColor = finalColor + lerp(lerp(_HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow), float3(0, 0, 0), _Is_Filter_HiCutPointLightColor);
+#endif //#ifdef UTS_LAYER_VISIBILITY
     //
 
     finalColor = saturate(finalColor);
