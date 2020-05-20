@@ -273,11 +273,16 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 Set_AngelRingWithAlpha = (_Is_LightColor_AR_var * _AngelRing_Sampler_var.a);
     //Composition: MatCap and AngelRing as finalColor
 # ifdef UTS_LAYER_VISIBILITY
-    _AngelRing *= _AngelRingVisible;
-    finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
-    if (any(Set_AngelRing) * _AngelRingOverridden)
     {
-        finalColor = lerp(finalColor, lerp(_AngelRingMaskColor.xyz, ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
+        float4 overridingColor = lerp(_AngelRingMaskColor, float4(_AngelRingMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float  maskEnabled = max(_AngelRingOverridden, _ComposerMaskMode);
+
+        _AngelRing *= _AngelRingVisible;
+        finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
+        if (any(Set_AngelRing) * maskEnabled)
+        {
+            finalColor = lerp(finalColor, lerp(overridingColor.xyz, ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
+        }
     }
 # else
     finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
