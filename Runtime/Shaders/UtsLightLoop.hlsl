@@ -319,8 +319,12 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     //
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb * _LightIntensity), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
 #ifdef UTS_LAYER_VISIBILITY
-    Set_BaseColor = lerp(Set_BaseColor, _BaseColorMaskColor, _BaseColorOverridden);
-    Set_BaseColor *= _BaseColorVisible; 
+
+    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, 0.0f, 0.0f, _BaseColorMaskColor.w), _ComposerMaskMode);
+    float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
+    Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
+    Set_BaseColor *= _BaseColorVisible;
+
 #endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
@@ -613,8 +617,12 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
 #ifdef UTS_LAYER_VISIBILITY
-    Set_BaseColor = lerp(Set_BaseColor, _BaseColorMaskColor, _BaseColorOverridden);
+
+    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, 0.0f, 0.0f, _BaseColorMaskColor.w), _ComposerMaskMode);
+    float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
+    Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
+
 #endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
