@@ -445,6 +445,10 @@ Shader "HDRP/Toon"
         [Toggle(_)] _AngelRingOverridden("Channel mask", Float) = 0
         _AngelRingMaskColor("Channel mask color", Color) = (0, 1, 0, 1)
 
+        [Toggle(_)] _RimLightVisible("Channel mask", Float) = 1
+        [Toggle(_)] _RimLightOverridden("Channel mask", Float) = 0
+        _RimLightMaskColor("Channel mask color", Color) = (1, 0, 1, 1)
+
         [Toggle(_)] _OutlineVisible("Channel mask", Float) = 1
         [Toggle(_)] _OutlineOverridden("Channel mask", Float) = 0
         _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 1)

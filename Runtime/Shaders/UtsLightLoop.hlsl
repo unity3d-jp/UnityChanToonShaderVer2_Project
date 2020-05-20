@@ -9,7 +9,8 @@ int eFirstShade = 1;
 int eSecondShade = 2;
 int eHighlight = 3;
 int eAngelRing = 4;
-int eOutline = 5;
+int eRimLight = 5;
+int eOutline = 6;
 
 
 uniform float _utsTechnique;
@@ -196,6 +197,10 @@ uniform float4 _HighlightMaskColor;
 uniform float  _AngelRingVisible;
 uniform float  _AngelRingOverridden;
 uniform float4 _AngelRingMaskColor;
+
+uniform float  _RimLightVisible;
+uniform float  _RimLightOverridden;
+uniform float4 _RimLightMaskColor;
 
 uniform float _OutlineVisible;
 uniform float _OutlineOverridden;

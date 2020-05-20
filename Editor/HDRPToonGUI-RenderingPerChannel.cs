@@ -24,6 +24,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             SecondShade,
             Highlight,
             AngelRing,
+            RimLight,
             Outline,
             Max,
         };
@@ -111,6 +112,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_channelNames.Add(_ChannelEnum.SecondShade.ToString());
                 m_channelNames.Add(_ChannelEnum.Highlight.ToString());
                 m_channelNames.Add(_ChannelEnum.AngelRing.ToString());
+                m_channelNames.Add(_ChannelEnum.RimLight.ToString());
                 m_channelNames.Add(_ChannelEnum.Outline.ToString());
             }
             if (m_colorPickerContent == null )
