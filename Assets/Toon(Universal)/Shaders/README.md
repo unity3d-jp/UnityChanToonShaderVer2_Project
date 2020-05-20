@@ -5,7 +5,7 @@ README.md
 **UniversalToon** は、Unityのユニバーサルレンダーパイプライン向けのUTS2です。  
 **UniversalToon** は、UTS2 v.2.0.7.5の全機能を実装した、ウーバーシェーダー（統合型シェーダー）として設計されています。  
 
-● **[日本語マニュアル（v.2.0.7版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+● **[日本語マニュアル（v.8.0.0版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 
 ## 【UTS2 / UniversalToon Ver.8.0.0】
@@ -13,7 +13,7 @@ Unity-Chan Toon Shader is a toon shader for video and images that is designed to
 **UniversalToon** is an UTS2 shader for Universal Render pipeline for Unity.  
 **UniversalToon** has all the feature of UTS2 v.2.0.7.5, and been implemented as an uber shader.  
 
-● **[English manual for v.2.0.7](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) is available now.**  
+● **[English manual for v.8.0.0](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) is available now.**  
 
 
 -----
@@ -40,11 +40,11 @@ https://unity-chan.com/contents/guideline_en/
 
 -----
 最新バージョン：8.0.0 /URP  
-最終リリース日：2020/03/31  
+最終リリース日：2020/05/19  
 カテゴリー：3D / Shader  
 形式：unitypackage  
 
 Latest Version: 8.0.0 /URP  
-Update: 2019/03/31  
+Update: 2019/05/19  
 Category: 3D / SHader  
 File format: unitypackage  
