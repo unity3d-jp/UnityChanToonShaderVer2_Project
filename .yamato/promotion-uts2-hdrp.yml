@@ -1,5 +1,7 @@
-yamato_name: uts2-hdrp
+yamato_name: uts2
 test_editors:
+  - version: 2019.1
+  - version: 2019.2
   - version: 2019.3
 test_platforms:
   - name: win
