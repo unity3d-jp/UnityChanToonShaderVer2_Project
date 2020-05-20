@@ -439,15 +439,17 @@ Shader "HDRP/Toon"
 
         [Toggle(_)] _HighlightVisible("Channel mask", Float) = 1
         [Toggle(_)] _HighlightOverridden("Channel mask", Float) = 0
-        _HighlightMaskColor("chennel mask color", Color) = (1, 1, 0, 1)
+        _HighlightMaskColor("Channel mask color", Color) = (1, 1, 0, 1)
 
         [Toggle(_)] _AngelRingVisible("Channel mask", Float) = 1
         [Toggle(_)] _AngelRingOverridden("Channel mask", Float) = 0
-        _AngelRingMaskColor("chennel mask color", Color) = (0, 1, 0, 1)
+        _AngelRingMaskColor("Channel mask color", Color) = (0, 1, 0, 1)
 
         [Toggle(_)] _OutlineVisible("Channel mask", Float) = 1
         [Toggle(_)] _OutlineOverridden("Channel mask", Float) = 0
-        _OutlineMaskColor("chennel mask color", Color) = (0, 0, 0, 1)
+        _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 1)
+
+        [Toggle(_)] _ComposerMaskMode("", Float) = 0
         // to here parameters for UTS>
     }
 

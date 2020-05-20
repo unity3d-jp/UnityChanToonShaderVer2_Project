@@ -41,6 +41,7 @@
             uniform float _OutlineVisible;
             uniform float _OutlineOverridden;
             uniform float4 _OutlineMaskColor;
+            uniform float _ComposerMaskMode;
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_YES
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;

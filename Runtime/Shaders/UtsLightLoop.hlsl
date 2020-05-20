@@ -203,7 +203,7 @@ uniform float _OutlineVisible;
 uniform float _OutlineOverridden;
 uniform float4 _OutlineMaskColor;
 
-
+uniform float _ComposerMaskMode;
 // just grafted from UTS/Universal RP
 struct UtsLight
 {
