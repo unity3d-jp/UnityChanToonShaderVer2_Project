@@ -122,6 +122,10 @@
                 float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
                 //
                 float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));
+
+                float4 overridingColor = lerp(_OutlineMaskColor, float4(_OutlineMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+                float  maskEnabled = max(_OutlineOverridden, _ComposerMaskMode);
+
 //v.2.0.7.5
 #ifdef _IS_OUTLINE_CLIPPING_NO
                 float3 Set_Outline_Color = lerp(_Is_BlendBaseColor_var, _OutlineTex_var.rgb*_Outline_Color.rgb*lightColor, _Is_OutlineTex );
@@ -131,7 +135,7 @@
                     // without this, something is drawn even if _OutlineVisible = 0, in AngelRing(HDRP)
                     discard; 
                 }
-                Set_Outline_Color = lerp(Set_Outline_Color, _OutlineMaskColor.xyz, _OutlineOverridden);
+                Set_Outline_Color = lerp(Set_Outline_Color, overridingColor.xyz, maskEnabled);
                 return float4(Set_Outline_Color, _OutlineVisible );
 
 #elif _IS_OUTLINE_CLIPPING_YES
@@ -142,7 +146,7 @@
                 float Set_Clipping = saturate((_Inverse_Clipping_var+_Clipping_Level));
                 clip(Set_Clipping - 0.5);
                 float4 Set_Outline_Color = lerp( float4(_Is_BlendBaseColor_var,Set_Clipping), float4((_OutlineTex_var.rgb*_Outline_Color.rgb*lightColor),Set_Clipping), _Is_OutlineTex );
-                Set_Outline_Color = lerp(Set_Outline_Color, _OutlineMaskColor, _OutlineOverridden);
+                Set_Outline_Color = lerp(Set_Outline_Color, overridingColor, maskEnabled);
                 Set_Outline_Color.w *= _OutlineVisible;
                 return Set_Outline_Color;
 #endif
