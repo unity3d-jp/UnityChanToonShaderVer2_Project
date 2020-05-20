@@ -156,19 +156,24 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     //Composition: 3 Basic Colors and HighColor as Set_HighColor
     float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb * _HighColor.rgb), ((_HighColor_Tex_var.rgb * _HighColor.rgb) * Set_LightColor), _Is_LightColor_HighColor) * _TweakHighColorMask_var);
 #ifdef UTS_LAYER_VISIBILITY
-
-    _HighColor_var *= _HighlightVisible;
-    float3 Set_HighColor =
-        lerp(saturate(Set_FinalBaseColor - _TweakHighColorMask_var), Set_FinalBaseColor,
-            lerp(_Is_BlendAddToHiColor, 1.0
-                , _Is_SpecularToHighColor));
-    float3 addColor =
-        lerp(_HighColor_var, (_HighColor_var * ((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask * _TweakHighColorOnShadow)))
-            , _Is_UseTweakHighColorOnShadow);
-    Set_HighColor += addColor;
-    if (any(addColor))
+    float3 Set_HighColor;
     {
-        Set_HighColor = lerp(Set_HighColor, _HighlightMaskColor, _HighlightOverridden);
+        float4 overridingColor = lerp(_HighlightMaskColor, float4(_HighlightMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float  maskEnabled = max(_HighlightOverridden, _ComposerMaskMode);
+
+        _HighColor_var *= _HighlightVisible;
+        Set_HighColor =
+            lerp(saturate(Set_FinalBaseColor - _TweakHighColorMask_var), Set_FinalBaseColor,
+                lerp(_Is_BlendAddToHiColor, 1.0
+                    , _Is_SpecularToHighColor));
+        float3 addColor =
+            lerp(_HighColor_var, (_HighColor_var * ((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask * _TweakHighColorOnShadow)))
+                , _Is_UseTweakHighColorOnShadow);
+        Set_HighColor += addColor;
+        if (any(addColor))
+        {
+            Set_HighColor = lerp(Set_HighColor, overridingColor, maskEnabled);
+        }
     }
 #else
     float3 Set_HighColor = (lerp(saturate((Set_FinalBaseColor - _TweakHighColorMask_var)), Set_FinalBaseColor, lerp(_Is_BlendAddToHiColor, 1.0, _Is_SpecularToHighColor)) + lerp(_HighColor_var, (_HighColor_var * ((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask * _TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow));
