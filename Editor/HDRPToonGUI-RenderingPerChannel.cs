@@ -40,23 +40,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
 
 
-        const string ShaderProp_BaseColorVisible = "_BaseColorVisible";
-        const string ShaderProp_BaseColorOverridden = "_BaseColorOverridden";
 
-        const string ShaderProp_FirstShadeVisible = "_FirstShadeVisible";
-        const string ShaderProp_FirstShadeOverridden = "_FirstShadeOverridden";
-
-        const string ShaderProp_SecondShadeVisible = "_SecondShadeVisible";
-        const string ShaderProp_SecondShadeOverridden = "_SecondShadeOverridden";
-
-        const string ShaderProp_HighlightVisible = "_HighlightVisible";
-        const string ShaderProp_HighlightOverridden = "_HighlightOverridden";
-
-        const string ShaderProp_AngelRingVisible = "_AngelRingVisible";
-        const string ShaderProp_AngelRingOverridden = "_AngelRingOverridden";
-
-        const string ShaderProp_OutlineVisible = "_OutlineVisible";
-        const string ShaderProp_OutlineOverridden = "_OutlineOverridden";
 
         static bool _PerChanelShaderSettings_Foldout = false;
 
@@ -139,7 +123,30 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_ReorderableList.displayAdd = false;
                 m_ReorderableList.displayRemove = false;
                 m_ReorderableList.draggable = false;
-                m_ReorderableList.drawHeaderCallback = rect => EditorGUI.LabelField(rect, "Channel Mask Setting");
+                m_ReorderableList.drawHeaderCallback = rect =>
+                {
+                    const int toggleWholeWidth = 170;
+                    const int toggleWidth = 20;
+                    Rect fieldRect = rect;
+                    Rect toggleRect = rect;
+                    fieldRect.width = rect.width-toggleWholeWidth;
+                    EditorGUI.LabelField(fieldRect, "Channel Mask Setting");
+                    const string propComposerMaskMode = "_ComposerMaskMode";
+
+                    toggleRect.width = toggleWholeWidth;
+                    toggleRect.x += fieldRect.width;
+                    bool isVisible = material.GetFloat(propComposerMaskMode) > 0.0f;
+                    EditorGUI.BeginChangeCheck();
+                    var store = EditorGUIUtility.labelWidth;
+                    EditorGUIUtility.labelWidth = toggleWholeWidth- toggleWidth;
+                    isVisible = EditorGUI.Toggle(toggleRect, "Composer mask setting:", isVisible);
+                    EditorGUIUtility.labelWidth = store;
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        Undo.RecordObject(material, "Compose mask setting is changed.");
+                        material.SetFloat(propComposerMaskMode, isVisible ? 1.0f : 0.0f);
+                    }
+                };
                 m_ReorderableList.drawElementCallback = (rect_, index, isActive, isFocused) =>
                 {
                     Rect toggleRectVislble = new Rect(rect_)
