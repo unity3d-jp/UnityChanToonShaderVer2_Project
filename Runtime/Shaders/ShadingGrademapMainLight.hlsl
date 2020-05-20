@@ -83,7 +83,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
 #ifdef UTS_LAYER_VISIBILITY
 
-    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, 0.0f, 0.0f, _BaseColorMaskColor.w), _ComposerMaskMode);
+    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
     Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
@@ -111,8 +111,12 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float Set_FinalShadowMask = saturate((1.0 + ((Set_ShadingGrade - (_1st_ShadeColor_Step - _1st_ShadeColor_Feather)) * (0.0 - 1.0)) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step - _1st_ShadeColor_Feather)))); // Base and 1st Shade Mask
 
 #ifdef UTS_LAYER_VISIBILITY
-    _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, _FirstShadeMaskColor, _FirstShadeOverridden);
-    _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, Set_BaseColor, 1.0f - _FirstShadeVisible);
+    {
+        float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float  maskEnabled = max(_FirstShadeOverridden, _ComposerMaskMode);
+        _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, overridingColor, maskEnabled);
+        _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, Set_BaseColor, 1.0f - _FirstShadeVisible);
+    }
 #endif //#ifdef UTS_LAYER_VISIBILITY
     float3 _BaseColor_var = lerp(Set_BaseColor, _Is_LightColor_1st_Shade_var, Set_FinalShadowMask);
     //v.2.0.5
@@ -120,15 +124,21 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float Set_ShadeShadowMask = saturate((1.0 + ((Set_ShadingGrade - (_2nd_ShadeColor_Step - _2nd_ShadeColor_Feather)) * (0.0 - 1.0)) / (_2nd_ShadeColor_Step - (_2nd_ShadeColor_Step - _2nd_ShadeColor_Feather)))); // 1st and 2nd Shades Mask
     //Composition: 3 Basic Colors as Set_FinalBaseColor
 #ifdef UTS_LAYER_VISIBILITY
-    float3 _Is_LightColor_2nd_Shade_var = lerp((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
-    _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, _SecondShadeMaskColor, _SecondShadeOverridden);
-    _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, Set_BaseColor, 1.0f - _SecondShadeVisible);
+    float3 Set_FinalBaseColor;
+    {
+        float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float  maskEnabled = max(_SecondShadeOverridden, _ComposerMaskMode);
 
-    float3 Set_FinalBaseColor =
-        lerp(_BaseColor_var,
-            lerp(_Is_LightColor_1st_Shade_var, _Is_LightColor_2nd_Shade_var
-                , Set_ShadeShadowMask)
-            , Set_FinalShadowMask);
+        float3 _Is_LightColor_2nd_Shade_var = lerp((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
+        _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, overridingColor, maskEnabled);
+        _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, Set_BaseColor, 1.0f - _SecondShadeVisible);
+        Set_FinalBaseColor =
+            lerp(_BaseColor_var,
+                lerp(_Is_LightColor_1st_Shade_var, _Is_LightColor_2nd_Shade_var
+                    , Set_ShadeShadowMask)
+                , Set_FinalShadowMask);
+    }
+
 #else
     float3 Set_FinalBaseColor =
         lerp(_BaseColor_var,
