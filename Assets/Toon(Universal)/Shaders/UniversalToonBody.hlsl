@@ -1,19 +1,13 @@
-﻿//Unitychan Toon Shader ver.8.0
-//v.8.0.0
+﻿//Unitychan Toon Shader ver.7.1.8
+//v.7.1.8
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Univerasl RP/HDRP)  
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 //
-// this enables to work both 7.17 and 7.31 or higher
+
 #if (SHADER_LIBRARY_VERSION_MAJOR ==7 && SHADER_LIBRARY_VERSION_MINOR >= 3) || (SHADER_LIBRARY_VERSION_MAJOR >= 8)
-# ifdef _MAIN_LIGHT_SHADOWS
-#  if !defined(_MAIN_LIGHT_SHADOWS_CASCADE) 
-#   ifndef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
-#    define REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
-#   endif
-#  endif
-# endif
+
 
 # ifdef _ADDITIONAL_LIGHTS
 #  ifndef  REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
@@ -666,13 +660,13 @@
                 //v.2.0.6
                 //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
                 //Kobayashi:LWRPではターミネータにノイズが乗ることがあるのでコメントオフ
-                //float _SystemShadowsLevel_var = (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
+                float _SystemShadowsLevel_var = (shadowAttenuation *0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (shadowAttenuation *0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
 
                 float _ShadingGradeMapLevel_var = _ShadingGradeMap_var.r < 0.95 ? _ShadingGradeMap_var.r+_Tweak_ShadingGradeMapLevel : 1;
 
-                //float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var)*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(_SystemShadowsLevel_var)), _Set_SystemShadowsToBase );
+                float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var)*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(_SystemShadowsLevel_var)), _Set_SystemShadowsToBase );
 
-                float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var)*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(1.0+_Tweak_SystemShadowsLevel)), _Set_SystemShadowsToBase );
+                //float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var)*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(1.0+_Tweak_SystemShadowsLevel)), _Set_SystemShadowsToBase );
 
                 //
                 float Set_FinalShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)))); // Base and 1st Shade Mask
