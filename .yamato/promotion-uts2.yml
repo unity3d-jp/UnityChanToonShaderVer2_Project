@@ -18,7 +18,7 @@ promotion_test_{{ platform.name }}_{{ editor.version }}:
   variables:
     UPMCI_PROMOTION: 1
   commands:
-    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package test --unity-version {{ editor.version }}
   artifacts:
     {{ yamato_name }}_promotion_test_results:
@@ -38,7 +38,7 @@ promote:
   variables:
     UPMCI_PROMOTION: 1
   commands:
-    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package promote
   triggers:
     tags:
