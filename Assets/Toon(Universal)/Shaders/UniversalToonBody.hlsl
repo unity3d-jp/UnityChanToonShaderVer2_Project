@@ -552,12 +552,7 @@
 #if defined(_SHADINGGRADEMAP)
         float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
         {
-            #  ifdef _MAIN_LIGHT_SHADOWS
-                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, i.shadowCoord);
-            #  else
-                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, 0);
-            #  endif
-                half3 mainLightColor = GetLightColor(mainLight);
+
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
@@ -611,7 +606,8 @@
                 half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
                 envColor *= 1.8f;
 
-
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord);
+                half3 mainLightColor = GetLightColor(mainLight);
 
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
 //v.2.0.4
@@ -988,13 +984,7 @@
 
         float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
         {
-            #  ifdef _MAIN_LIGHT_SHADOWS
-                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, i.shadowCoord);
-            #  else
-                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, 0);
-            #  endif
 
-                half3 mainLightColor = GetLightColor(mainLight);
 
                 i.normalDir = normalize(i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
@@ -1050,7 +1040,8 @@
                 half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
                 envColor *= 1.8f;
 
-
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord);
+                half3 mainLightColor = GetLightColor(mainLight);
 
 
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
