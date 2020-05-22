@@ -1,6 +1,6 @@
 # UTS2/UniversalToon マニュアル もくじ
 
-### 2020/05/19 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_en.md)***  
 
 ---

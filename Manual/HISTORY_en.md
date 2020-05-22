@@ -1,4 +1,17 @@
-﻿# Release History of UTS2
+﻿# Release History of UTS2/UniversalToon
+## Version
+
+## 2020/05/22: Version 7.1.8
+* Changed the version number to the lowest version of Universal RP supported. (8.0.0⇒7.1.8)
+* Bug fix: Fixed a bug in ShadingGradeMap Workflow that did not work a receive shadow.  
+　With this fix, the shadow terminator part of ShadingGradeMap Workflow had the noise that may occur depending on the shadow map and light bias settings. If necessary, adjust the System Shadows Level slider.  
+* Bug fix: In Universal RP v.7.3.1 or later, the receive shadow could be broken when setting the shadow cascade.  
+
+### 2020/05/19 : 8.0.0 Release Candidate
+* The first release of UTS2 with Universal RP support.  
+
+---
+# Release History of UTS2
 ## Version
 ### 2019/05/22: 2.0.7 Release: Fixed release version 5
 * Fixed Version 4 has been discarded and a new "the problem of incorrect display of the image outline reflected in the mirror object when Z-Offset is specified in the outline" has been corrected.  

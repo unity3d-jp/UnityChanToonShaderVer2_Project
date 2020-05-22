@@ -1,4 +1,4 @@
-﻿//Unitychan Toon Shader ver.7.1.8
+﻿//UTS2/UniversalToon
 //v.7.1.8
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Univerasl RP/HDRP)  

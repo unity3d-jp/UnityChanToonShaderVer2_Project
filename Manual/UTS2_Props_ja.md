@@ -1,8 +1,8 @@
-﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
-***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Props_en.md)***  
+﻿# UTS2/UniversalToon マニュアル
+### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Props_en.md)***  
 
-# UTS2各シェーダーのプロパティ解説
+# UTS2/UniversalToon シェーダーのプロパティ解説
 
 ここからは、UTS2各シェーダーに含まれるプロパティについて、上から順に機能ブロックごとに解説します。  
 全てのUTS2シェーダーで、プロパティの名前が同じならば機能は同じです。  
@@ -252,13 +252,3 @@ UST2の標準シェーダーである、DoubleShadeWithFeather系シェーダー
 
 
 ---
-## 12.「テッセレーション」に関するプロパティ
-<img width = "500" src="Images_jpg/Property_UTS2_12.jpg">
-
-
-| `プロパティ`  | 機能解説 |
-|:-------------------|:-------------------|
-| `DX11 Tess : Edge Length` | カメラとの距離に基づいて、よりテッセレーションを分割します。同じ距離では、値が小さいほうが細分化されます。デフォルトは 5 です。 |
-| `DX11 Tess : Phong Strengh` | テッセレーションによって細分化された分割面の引っ張り強度を変化させます。デフォルトは 0.5 です。 |
-| `DX11 Tess : Extrusion Amount` | テッセレーションの結果として発生する、膨張分を全体としてスケーリングします。デフォルトは 0 です。 |
-

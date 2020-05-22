@@ -1,6 +1,6 @@
 # UTS2/UniversalToon Manual Index
 
-### 2020/05/19 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_ja.md)***  
 
 ---

@@ -1,4 +1,4 @@
-﻿# 【UTS2 / UniversalToon Ver.8.0.0】
+﻿# 【UTS2 / UniversalToon Ver.7.1.8】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
@@ -51,7 +51,7 @@ UTS2では、アクセントカラーとして**2影色とAp(対蹠)リムライ
 
 -----
 ## 【ユーザーマニュアル】
-**[日本語マニュアル（v.8.0.0版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+**[日本語マニュアル（v.7.1.8版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 ユーザーマニュアルには、トゥーンスタイルに関する、豊富なナレッジが集まっています。  
 マニュアルを読みつつ、実際にUTS2を使ってみるを繰り返すことで、美しいトゥーンスタイルを作り上げるための方法論が自然に身につきます。  
@@ -85,7 +85,7 @@ https://unity-chan.com/contents/guideline/
 
 -----
 ## 【シェーダーのインストール】
-### [UTS2URP_ShaderOnly_v8.0.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v8.0.0.unitypackage)  
+### [UTS2URP_ShaderOnly_v7.1.8.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v7.1.8.unitypackage)  
 
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 **事前にPackage ManagerからUniversal RPをインストールしておくことが必要です。**  
@@ -103,7 +103,7 @@ https://unity-chan.com/contents/guideline/
 ## 【不具合報告】
 不具合の報告は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues)からお願いします。  
 新規報告の際、以下の情報をお願いします。 
-* 使用している**UTS2のバージョン**　：例　UTS2/UniversalToon v.8.0.0
+* 使用している**UTS2のバージョン**　：例　UTS2/UniversalToon v.7.1.8
 * 使用している**Unityのバージョン**　：例　Unity 2019.3.4f1
 * Unityを使用している**OSの種類**　：例　Windows10
 * 使用している**Universal RPのバージョン**　：例　Version 7.1.8
@@ -112,14 +112,14 @@ https://unity-chan.com/contents/guideline/
 
 -----
 ## 【リリース履歴】  
-UTS2のリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/HISTORY_ja.md)。  
+UTS2/UniversalToonのリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/HISTORY_ja.md)。  
 
 -----
 ## 【インフォメーション】  
-最新バージョン：8.0.0 URP専用  
-最終リリース日：2020/05/19  
+最新バージョン：7.1.8 URP専用  
+最終リリース日：2020/05/22  
 カテゴリー：3D / Shader  
 形式：unitypackage  
 
 -----
-**README_ja.md 2020/05/19**  
+**README_ja.md 2020/05/22**  

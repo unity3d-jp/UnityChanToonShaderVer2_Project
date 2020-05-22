@@ -1,5 +1,5 @@
-# UTS2 / UniversalToon Ver.8.0.0 Manual
-### 2020/05/19 Nobuyuki Kobayashi (Unity Technologies Japan)
+# UTS2 / UniversalToon Ver.7.1.8 Manual
+### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)***  
 
  [***Index of this manual***](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_en.md)  
@@ -55,7 +55,7 @@ Several techniques have been implemented to beautifully display characters in a 
 See for yourself by coloring your best character model with UTS2/UniversalToon.  
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the latest version of UTS2/UniversalToon: **UTS2/UniversalToon v.8.0.0**.  
+This manual focuses on the latest version of UTS2/UniversalToon: **UTS2/UniversalToon v.7.1.8**.  
 
 ## 【Target Environment】
 Unity 2019.3.4f1 or later is required.  
@@ -74,7 +74,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 The project comes with a sample scene where you can learn various configuration examples for UTS2/UniversalToon.  
 
 ## 【Installation of the shader package】
-### [UTS2URP_ShaderOnly_v8.0.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v8.0.0.unitypackage)  
+### [UTS2URP_ShaderOnly_v7.1.8.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v7.1.8.unitypackage)  
 
 New installation can be done by D&D this package into Unity.  
 **You need to install Universal RP from Package Manager in advance.**  

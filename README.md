@@ -1,4 +1,4 @@
-﻿# 【UTS2 / UniversalToon Ver.8.0.0】
+﻿# 【UTS2 / UniversalToon Ver.7.1.8】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
@@ -50,7 +50,7 @@ Although there is a difference between Photo-realistic and Non-photo-realistic i
 UTS2 is very useful if you want to decorate your game scene with beautiful lightings.
 -----
 ## 【Users' Manual】
-**[English manual for v.8.0.0](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) is available now.**  
+**[English manual for v.7.1.8](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) is available now.**  
 
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using UTS2 actually is the best way to learn the beautiful toon style.  
@@ -82,7 +82,7 @@ The project comes with sample scenes where you can learn various setting example
 
 -----
 ## 【Shader Installation】
-### [UTS2URP_ShaderOnly_v8.0.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v8.0.0.unitypackage)  
+### [UTS2URP_ShaderOnly_v7.1.8.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v7.1.8unitypackage)  
 
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 **You should install Universal RP from Package Manager before installation.**  
@@ -100,7 +100,7 @@ Please contact us if you have any issues.
 ## 【How to report issues】
 Please report your issues from [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues).  
 When you make a new issue, please add the information below.  
-* **The version of UTS2** you are using :e.g. UTS2/UniversalToon v.8.0.0
+* **The version of UTS2** you are using :e.g. UTS2/UniversalToon v.7.1.8
 * **The version of Unity** you are using :e.g. Unity 2019.3.4f1
 * **Type of OS** using Unity :e.g. Windows 10
 * **The version of Universal RP** you are using :e.g. Version 7.1.8
@@ -109,14 +109,14 @@ When you make a new issue, please add the information below.
 
 -----
 ## 【Release History】  
-The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/HISTORY_en.md)  
+The release history of UTS2/UniversalToon is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/HISTORY_en.md)  
 
 -----
 ## 【Information】  
-Latest Version: 8.0.0 for URP  
-Update: 2020/05/19  
+Latest Version: 7.1.8 for URP  
+Update: 2020/05/22  
 Category: 3D / Shader  
 File format: unitypackage  
 
 -----
-**README.md 2020/05/19**  
+**README.md 2020/05/22**  

@@ -1,5 +1,5 @@
-﻿# UTS2 / UniversalToon Ver.8.0.0 マニュアル
-### 2020/05/19 Nobuyuki Kobayashi (Unity Technologies Japan)
+﻿# UTS2 / UniversalToon Ver.7.1.8 マニュアル
+### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md)***  
 
  [**本マニュアルのもくじ**](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_ja.md)  
@@ -54,7 +54,7 @@ UTS2/UniversalToon は、セルルック3DCGアニメーションの制作現場
 是非、貴方のご自慢のキャラクターモデルをUTS2/UniversalToonで彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、UTS2/UniversalToonの最新版 **UTS2/UniversalToon v.8.0.0** 向けに書かれています。  
+本マニュアルは、UTS2/UniversalToonの最新版 **UTS2/UniversalToon v.7.1.8** 向けに書かれています。  
 
 ## 【ターゲット環境】
 Unity 2019.3.4f1 もしくはそれ以降が必要です。  
@@ -75,7 +75,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 プロジェクトには、UTS2/UniversalToonの様々な設定例が学べるサンプルシーンが付属します。  
 
 ## 【シェーダーパッケージのインストール】
-### [UTS2URP_ShaderOnly_v8.0.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v8.0.0.unitypackage)  
+### [UTS2URP_ShaderOnly_v7.1.8.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v7.1.8.unitypackage)  
 
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 **事前にPackage ManagerからUniversal RPをインストールしておくことが必要です。**  

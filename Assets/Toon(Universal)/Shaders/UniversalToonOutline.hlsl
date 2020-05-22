@@ -1,5 +1,5 @@
-﻿//Unitychan Toon Shader ver.8.0
-//v.8.0.0
+﻿//UTS2/UniversalToon
+//v.7.1.8
 //nobuyuki@unity3d.com
 //toshiyui@unity3d.com (universal RP)
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project

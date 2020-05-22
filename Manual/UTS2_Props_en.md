@@ -1,8 +1,8 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Props_ja.md)***  
+# UTS2/UniversalToon Manual
+### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Props_ja.md)***  
 
-# The Various Properties of UTS2 Shader  
+# The Various Properties of UTS2/UniversalToon Shader  
 
 The following table is an explanation of the properties found in each UTS2 shader, in order by feature block.  
 For all UTS2 shaders, if the property name is the same, then they also function the same.  
@@ -264,15 +264,4 @@ These properties are common among UTS2’s high spec ShadingGradeMap shaders.
 | ` Inverse Z-Axis (Built-in Light Direction)`   | Moves the virtual lights that are spawned by the built-in light direction vector back and forwards. |
 
 ---
-
-## 12.Properties of Tessellation  
-
-<img width = "500" src="Images_jpg/Property_UTS2_12.jpg">
-
-
-| `Property`            | Function                                                     |
-| --------------------- | ------------------------------------------------------------ |
-| `DX11 Tess : Edge Length`    | Divides the tessellation according to the camera’s distance. The smaller the value, the smaller the tiles become. The default is 5. |
-| `DX11 Tess : Phong Strengh`  | Adjusts the pulling strength of the surfaces divided by tessellation. The default is 0.5. |
-| `DX11 Tess : Extrusion Amount` | Scale the expanded parts due to tessellation. The default is 0. |
 
