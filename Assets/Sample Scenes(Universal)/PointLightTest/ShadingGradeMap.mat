@@ -215,6 +215,9 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersion: 2.075
+    - _utsVersionX: 8
+    - _utsVersionY: 0
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.77205884, g: 0.8061203, b: 0.8061203, a: 1}
     - _2nd_ShadeColor: {r: 0.4705882, g: 0.4705882, b: 0.4705882, a: 1}

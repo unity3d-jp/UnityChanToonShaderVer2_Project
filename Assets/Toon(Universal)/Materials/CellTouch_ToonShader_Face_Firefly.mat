@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CellTouch_ToonShader_Face_Firefly
   m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
-  m_ShaderKeywords: _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
-    _OUTLINE_NML
+  m_ShaderKeywords: _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_OUTLINE_CLIPPING_NO _IS_TRANSCLIPPING_OFF
+    _OUTLINE_NML _SHADINGGRADEMAP
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -105,7 +105,7 @@ Material:
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
     - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0.519
+    - _1st_ShadeColor_Step: 0.429
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0
     - _ARSampler_AlphaOn: 0
@@ -116,7 +116,7 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BaseColor_Step: 0.519
+    - _BaseColor_Step: 0.429
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _BlurLevelMatcap: 0
@@ -202,7 +202,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: 0.139
+    - _Tweak_SystemShadowsLevel: -0.164
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 0.001
     - _Use_1stAs2nd: 1
@@ -210,8 +210,11 @@ Material:
     - _ZOverDrawMode: 0
     - _ZWriteMode: 1
     - _simpleUI: 0
-    - _utsTechnique: 0
+    - _utsTechnique: 1
     - _utsVersion: 2.075
+    - _utsVersionX: 8
+    - _utsVersionY: 0
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.8, g: 0.67058825, b: 0.7882353, a: 1}
     - _2nd_ShadeColor: {r: 0.8, g: 0.67058825, b: 0.7882353, a: 1}

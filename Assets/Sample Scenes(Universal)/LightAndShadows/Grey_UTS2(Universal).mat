@@ -12,8 +12,8 @@ Material:
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _INVERSE_Z_AXIS_BLD_ON _IS_ANGELRING_OFF _IS_BLENDADDTOHICOLOR_ON
     _IS_BLENDADDTOMATCAP_ON _IS_BLENDBASECOLOR_ON _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON
     _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
-    _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _IS_TRANSCLIPPING_OFF _OUTLINE_NML
-    _SET_SYSTEMSHADOWSTOBASE_ON _SHADINGGRADEMAP
+    _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _IS_OUTLINE_CLIPPING_NO _IS_TRANSCLIPPING_OFF
+    _OUTLINE_NML _SET_SYSTEMSHADOWSTOBASE_ON _SHADINGGRADEMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -205,7 +205,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: 0.01
+    - _Tweak_SystemShadowsLevel: 0
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 1
     - _Use_1stAs2nd: 0
@@ -215,6 +215,9 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersion: 2.075
+    - _utsVersionX: 8
+    - _utsVersionY: 0
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
     - _2nd_ShadeColor: {r: 0.375, g: 0.375, b: 0.375, a: 1}

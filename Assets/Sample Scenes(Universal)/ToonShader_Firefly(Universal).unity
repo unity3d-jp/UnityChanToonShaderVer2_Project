@@ -930,7 +930,6 @@ GameObject:
   - component: {fileID: 1382183771}
   - component: {fileID: 1382183770}
   - component: {fileID: 1382183772}
-  - component: {fileID: 1382183773}
   m_Layer: 0
   m_Name: Directional light
   m_TagString: Untagged
@@ -950,7 +949,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.25
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -959,9 +958,9 @@ Light:
     m_Type: 2
     m_Resolution: 3
     m_CustomResolution: -1
-    m_Strength: 0.8
-    m_Bias: 0.01
-    m_NormalBias: 0.01
+    m_Strength: 1
+    m_Bias: 2.81
+    m_NormalBias: 0.1
     m_NearPlane: 1
     m_CullingMatrixOverride:
       e00: 1
@@ -1006,27 +1005,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382183769}
-  m_LocalRotation: {x: 0.7354813, y: 0.65025973, z: -0.13226879, w: 0.13687429}
+  m_LocalRotation: {x: 0.7575495, y: 0.6172286, z: -0.19464917, w: 0.08520128}
   m_LocalPosition: {x: 0.17491254, y: 1.598, z: 0.3656137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1521128765}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 21.923, y: 181.023, z: 97.23601}
+  m_LocalEulerAnglesHint: {x: 21.677002, y: 191.78099, z: 103.91901}
 --- !u!114 &1382183772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382183769}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af0ff835c06f0944aba6806015663cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resolution: 4096
---- !u!114 &1382183773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1035,14 +1021,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1382183769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 445a7421b7057e444b450c9da1ddc721, type: 3}
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadowProjection: 0
-  shadowDistance: 20
-  cascadeMode: 4
-  twoCascadeSetting: 33.3
-  fourCascadeSetting: {x: 6.7, y: 13.3, z: 26.7}
+  m_UsePipelineSettings: 1
 --- !u!1 &1471963133
 GameObject:
   m_ObjectHideFlags: 0

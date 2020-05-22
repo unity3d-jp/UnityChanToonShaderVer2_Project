@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08079432, g: 0.11533526, b: 0.21634762, a: 1}
+  m_IndirectSpecularColor: {r: 0.08536148, g: 0.12082015, b: 0.21784851, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -528,13 +528,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694067455}
-  m_LocalRotation: {x: 0.6137145, y: 0.6210142, z: -0.34449723, w: 0.34498924}
+  m_LocalRotation: {x: 0.5999181, y: 0.7444758, z: -0.2767797, w: 0.09616159}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1521128765}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 58.356003, y: 179.384, z: 88.979004}
+  m_LocalEulerAnglesHint: {x: 31.836002, y: 192.84799, z: 81.40401}
 --- !u!114 &694067457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.95
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -597,7 +597,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7479
+    m_Bits: 4294967295
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -1095,13 +1095,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840857225}
-  m_LocalRotation: {x: 0.7232562, y: 0.6421113, z: -0.22956148, w: 0.10906517}
+  m_LocalRotation: {x: 0.73379296, y: 0.647291, z: -0.19510275, w: 0.067060895}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000002, y: 1.0000005, z: 1}
   m_Children: []
   m_Father: {fileID: 1521128765}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 26.909, y: 192.43399, z: 99.788}
+  m_LocalEulerAnglesHint: {x: 20.548, y: 192.30199, z: 99.406006}
 --- !u!108 &1840857227
 Light:
   m_ObjectHideFlags: 0
@@ -1109,7 +1109,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840857225}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
@@ -1120,7 +1120,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
