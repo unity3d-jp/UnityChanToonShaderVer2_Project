@@ -1,8 +1,7 @@
 {
     "name": "UTJ.UnitychanToonShader2.Hdrp.Editor",
     "references": [
-        "UTJ.UnitychanToonShader2.Hdrp.Runtime",
-        "Unity.RaytracedHardShadow"
+        "UTJ.UnitychanToonShader2.Hdrp.Runtime"
     ],
     "includePlatforms": [
         "Editor"
