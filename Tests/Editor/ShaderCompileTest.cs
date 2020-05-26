@@ -10,7 +10,7 @@ namespace Unity.UnityChanToonShader2.Hdrp.Tests {
         
         [Test]
         public void CompileAllToonShadersDefault() {
-            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2.hdrp/Runtime/Shader"});
+            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2.hdrp/Runtime/Shaders"});
             int numShaders = guids.Length;
             bool shaderHasError = false;
             for (int i=0;i<numShaders && !shaderHasError;++i) {
@@ -28,7 +28,7 @@ namespace Unity.UnityChanToonShader2.Hdrp.Tests {
 //---------------------------------------------------------------------------------------------------------------------
         [Test]        
         public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
-            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2.hdrp/Runtime/Shader"});
+            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2.hdrp/Runtime/Shaders"});
             int numShaders = guids.Length;
 
             List<Material> materials = new List<Material>();
