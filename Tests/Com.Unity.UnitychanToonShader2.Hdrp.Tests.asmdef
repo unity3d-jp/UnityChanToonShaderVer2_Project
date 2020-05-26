@@ -2,8 +2,7 @@
     "name": "UTJ.UnitychanToonShader2.Hdrp.Tests",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "UTJ.UnitychanToonShader2.Hdrp.Runtime"
+        "UnityEditor.TestRunner"
     ],
     "includePlatforms": [
         "Editor"
