@@ -8,6 +8,9 @@
     "type": "git",
     "url": "git://github.com/unity3d-jp/UnityChanToonShaderVer2_Project.git#package/hdrp"
   },
+  "dependencies": {
+    "com.unity.render-pipelines.high-definition": "7.3.1"
+  },
   "samples": [
     {
       "displayName": "Samples",
