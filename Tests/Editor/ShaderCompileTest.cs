@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine.TestTools;
 
 namespace Unity.UnityChanToonShader2.Tests {
     public class ShaderCompileTest
@@ -27,6 +28,7 @@ namespace Unity.UnityChanToonShader2.Tests {
 
 //---------------------------------------------------------------------------------------------------------------------
         [Test]        
+        [UnityPlatform(RuntimePlatform.WindowsEditor)]
         public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
             string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2/Runtime/Shader"});
             int numShaders = guids.Length;
