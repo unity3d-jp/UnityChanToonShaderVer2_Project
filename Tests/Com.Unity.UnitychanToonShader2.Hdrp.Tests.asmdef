@@ -1,7 +1,6 @@
 {
     "name": "UTJ.UnitychanToonShader2.Hdrp.Tests",
     "references": [
-        "Unity.RenderPipelines.HighDefinition.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
