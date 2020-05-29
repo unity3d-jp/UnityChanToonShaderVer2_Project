@@ -173,9 +173,10 @@
             // RaytracedHardShadow
 #define UNITY_PROJ_COORD(a) a
 #define UNITY_SAMPLE_SCREEN_SHADOW(tex, uv) tex2Dproj( tex, UNITY_PROJ_COORD(uv) ).r
-            TEXTURE2D_SHADOW(_RaytracedHardShadow);
-            SAMPLER_CMP(sampler__RaytracedHardShadow);
-
+//            TEXTURE2D_SHADOW(_RaytracedHardShadow);
+//            SAMPLER_CMP(sampler__RaytracedHardShadow);
+#define TEXTURE2D_SAMPLER2D(textureName, samplerName) Texture2D textureName; SamplerState samplerName
+            TEXTURE2D_SAMPLER2D(_RaytracedHardShadow, sampler_RaytracedHardShadow);
 //            uniform sampler2D _RaytracedHardShadow;
             float4 _RaytracedHardShadow_TexelSize;
             uniform int UtsUseRaytracingShadow;
@@ -331,7 +332,7 @@
             ///////////////////////////////////////////////////////////////////////////////
             //                      Light Abstraction                                    //
             /////////////////////////////////////////////////////////////////////////////
-            half MainLightRealtimeShadowUTS(float4 shadowCoord)
+            half MainLightRealtimeShadowUTS(float4 shadowCoord, float4 positionCS)
             {
 #if !defined(MAIN_LIGHT_CALCULATE_SHADOWS)
                 return 1.0h;
@@ -341,7 +342,9 @@
 #if 1 // UTS_USE_RAYTRACING_SHADOW
                 if (UtsUseRaytracingShadow)
                 {
-                    return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
+                    float4 screenPos = ComputeScreenPos(positionCS);
+                    return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos.xy);
+                    // return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
                 }
 #endif // UTS_USE_RAYTRACING_SHADOW
 
@@ -364,10 +367,10 @@
                 return light;
             }
 
-            UtsLight GetMainUtsLight(float4 shadowCoord)
+            UtsLight GetMainUtsLight(float4 shadowCoord, float4 positionCS)
             {
                 UtsLight light = GetMainUtsLight();
-                light.shadowAttenuation = MainLightRealtimeShadowUTS(shadowCoord);
+                light.shadowAttenuation = MainLightRealtimeShadowUTS(shadowCoord,  positionCS);
                 return light;
             }
 
@@ -435,9 +438,9 @@
             {
                 return light.color * light.distanceAttenuation;
             }
-
+#if 0 // disable tentatively.
             int mainLightIndex = -2;
-            UtsLight DetermineUTS_MainLight(float3 posW, float4 shadowCoord)
+            UtsLight DetermineUTS_MainLight(float3 posW, float4 shadowCoord, float4 positionCS)
             {
 
                 UtsLight mainLight;
@@ -447,7 +450,7 @@
                 mainLight.shadowAttenuation = 0;
                 mainLight.type = 0;
                 mainLightIndex = -2;
-                UtsLight nextLight = GetMainUtsLight(shadowCoord);
+                UtsLight nextLight = GetMainUtsLight(shadowCoord, positionCS);
                 if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                 {
                     mainLight = nextLight;
@@ -466,6 +469,7 @@
 
                 return mainLight;
             }
+#endif
 
 #define INIT_UTSLIGHT(utslight) \
             utslight.direction = 0; \
@@ -475,13 +479,13 @@
             utslight.type = 0
 
 
-            int DetermineUTS_MainLightIndex(float3 posW, float4 shadowCoord)
+            int DetermineUTS_MainLightIndex(float3 posW, float4 shadowCoord, float4 positionCS)
             {
                 UtsLight mainLight;
                 INIT_UTSLIGHT(mainLight);
 
                 int mainLightIndex = -2;
-                UtsLight nextLight = GetMainUtsLight(shadowCoord);
+                UtsLight nextLight = GetMainUtsLight(shadowCoord, positionCS);
                 if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                 {
                     mainLight = nextLight;
@@ -501,7 +505,7 @@
                 return mainLightIndex;
             }
 
-            UtsLight GetMainUtsLightByID(int index,float3 posW, float4 shadowCoord)
+            UtsLight GetMainUtsLightByID(int index,float3 posW, float4 shadowCoord, float4 positionCS)
             {
                 UtsLight mainLight;
                 INIT_UTSLIGHT(mainLight);
@@ -511,7 +515,7 @@
                 }
                 if (index == -1)
                 {
-                    return GetMainUtsLight(shadowCoord);
+                    return GetMainUtsLight(shadowCoord, positionCS);
                 }
                 return GetAdditionalUtsLight(index, posW);
             }
@@ -556,9 +560,9 @@
     #else
                 o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
     #endif
-                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, o.shadowCoord);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, o.shadowCoord, positionCS);
   #else
-                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, 0);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, 0, positionCS);
   #endif
 
 		
@@ -624,7 +628,7 @@
                 half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
                 envColor *= 1.8f;
 
-                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord);
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord, i.positionCS);
                 half3 mainLightColor = GetLightColor(mainLight);
 
                 float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
@@ -859,7 +863,7 @@
                     if (iLight != i.mainLightID)
                     {
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
-                        UtsLight additionalLight = GetMainUtsLight(0);
+                        UtsLight additionalLight = GetMainUtsLight(0,0);
                         if (iLight != -1)
                         {
                             additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS);
@@ -1060,7 +1064,7 @@
                 half3 envColor = GlobalIlluminationUTS(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
                 envColor *= 1.8f;
 
-                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord);
+                UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord, i.positionCS);
                 half3 mainLightColor = GetLightColor(mainLight);
 
 
@@ -1238,7 +1242,7 @@
 
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
 
-                        UtsLight additionalLight = GetMainUtsLight(0);
+                        UtsLight additionalLight = GetMainUtsLight(0,0);
                         if (iLight != -1)
                         {
                             additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS);
