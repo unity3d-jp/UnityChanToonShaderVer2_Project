@@ -173,12 +173,12 @@
             // RaytracedHardShadow
 #define UNITY_PROJ_COORD(a) a
 #define UNITY_SAMPLE_SCREEN_SHADOW(tex, uv) tex2Dproj( tex, UNITY_PROJ_COORD(uv) ).r
-            //uniform sampler2D _RaytracedHardShadow;
-            float4 _RaytracedHardShadow_TexelSize;
-            uniform int UtsUseRaytracingShadow;
-
             TEXTURE2D_SHADOW(_RaytracedHardShadow);
             SAMPLER_CMP(sampler__RaytracedHardShadow);
+
+//            uniform sampler2D _RaytracedHardShadow;
+            float4 _RaytracedHardShadow_TexelSize;
+            uniform int UtsUseRaytracingShadow;
 
             // UV回転をする関数：RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
@@ -342,7 +342,6 @@
                 if (UtsUseRaytracingShadow)
                 {
                     return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
-
                 }
 #endif // UTS_USE_RAYTRACING_SHADOW
 
@@ -647,7 +646,7 @@
 # ifdef _MAIN_LIGHT_SHADOWS
 
                 shadowAttenuation = mainLight.shadowAttenuation;
-
+                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
 # endif
 
 
@@ -1090,6 +1089,8 @@
                 half shadowAttenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
                 shadowAttenuation = mainLight.shadowAttenuation;
+                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
+
 # endif
 
 
