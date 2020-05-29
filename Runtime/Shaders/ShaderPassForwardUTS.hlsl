@@ -240,7 +240,7 @@ void Frag(PackedVaryingsToPS packedInput,
                     !ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
                 {
 #if 1 // UTS_USE_RAYTRACING_SHADOW
-                    if (1)
+                    if (UtsUseRaytracingShadow)
                     {
                         /*
                         struct PositionInputs
@@ -270,7 +270,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
                 }
 #if 1 // UTS_USE_RAYTRACING_SHADOW
-                else if (1)
+                else if (UtsUseRaytracingShadow)
                 {
                     float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
                     context.shadowValue = r;
