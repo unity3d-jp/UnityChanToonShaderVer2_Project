@@ -342,8 +342,8 @@
 #if 1 // UTS_USE_RAYTRACING_SHADOW
                 if (UtsUseRaytracingShadow)
                 {
-                    float4 screenPos = ComputeScreenPos(positionCS);
-                    return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos.xy);
+                    float4 screenPos =  ComputeScreenPos(positionCS/ positionCS.w);
+                    return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
                     // return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
                 }
 #endif // UTS_USE_RAYTRACING_SHADOW
