@@ -353,9 +353,6 @@
 
             half AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
             {
-#if !defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
-                return 1.0h;
-#endif
 #if 1 // UTS_USE_RAYTRACING_SHADOW
                 if (UtsUseRaytracingShadow)
                 {
@@ -364,6 +361,11 @@
                     // return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
                 }
 #endif // UTS_USE_RAYTRACING_SHADOW
+
+#if !defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
+                return 1.0h;
+#endif
+
                 ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData();
 
 #if USE_STRUCTURED_BUFFER_FOR_LIGHT_DATA
@@ -405,7 +407,7 @@
             UtsLight GetMainUtsLight(float4 shadowCoord, float4 positionCS)
             {
                 UtsLight light = GetMainUtsLight();
-                light.shadowAttenuation = MainLightRealtimeShadowUTS(shadowCoord,  positionCS);
+                light.shadowAttenuation = MainLightRealtimeShadowUTS(shadowCoord, positionCS);
                 return light;
             }
 
@@ -654,7 +656,7 @@
 # ifdef _MAIN_LIGHT_SHADOWS
 
                 shadowAttenuation = mainLight.shadowAttenuation;
-//                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
+
 # endif
 
 
@@ -1069,6 +1071,7 @@
                 envColor *= 1.8f;
 
                 UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord, i.positionCS);
+
                 half3 mainLightColor = GetLightColor(mainLight);
 
 
@@ -1092,12 +1095,9 @@
 //DoubleShadeWithFeather
 #endif
 
-
-
                 half shadowAttenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
                 shadowAttenuation = mainLight.shadowAttenuation;
-//                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
 
 # endif
 
