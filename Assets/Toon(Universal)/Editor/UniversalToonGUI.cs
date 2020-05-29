@@ -187,9 +187,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
         public GUILayoutOption[] middleButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
 
-        //各種設定保持用.
-        //UTS2のバージョン.
-        static float _UTS2VersionNumber = 8.0f;   // todo. 
+
         //
         static _UTS_Transparent _Transparent_Setting;
         static int _StencilNo_Setting;
@@ -197,7 +195,6 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         static bool _SimpleUI = false;
         //メッセージ表示用.
         bool _Use_VrcRecommend = false;
-        bool _RemovedUnusedKeywordsMessage = false;
 
         //Foldoutの初期値.
         static bool _BasicShaderSettings_Foldout = false;

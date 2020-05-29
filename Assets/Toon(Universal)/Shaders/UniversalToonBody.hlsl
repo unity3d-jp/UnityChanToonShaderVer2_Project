@@ -170,7 +170,15 @@
 #elif defined(_IS_CLIPPING_OFF) || defined(_IS_TRANSCLIPPING_OFF)
 //DoubleShadeWithFeather
 #endif
+            // RaytracedHardShadow
+#define UNITY_PROJ_COORD(a) a
+#define UNITY_SAMPLE_SCREEN_SHADOW(tex, uv) tex2Dproj( tex, UNITY_PROJ_COORD(uv) ).r
+            //uniform sampler2D _RaytracedHardShadow;
+            float4 _RaytracedHardShadow_TexelSize;
+            uniform int UtsUseRaytracingShadow;
 
+            TEXTURE2D_SHADOW(_RaytracedHardShadow);
+            SAMPLER_CMP(sampler__RaytracedHardShadow);
 
             // UV回転をする関数：RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
@@ -321,8 +329,25 @@
             };
 
             ///////////////////////////////////////////////////////////////////////////////
-//                      Light Abstraction                                    //
-//          /////////////////////////////////////////////////////////////////////////////
+            //                      Light Abstraction                                    //
+            /////////////////////////////////////////////////////////////////////////////
+            half MainLightRealtimeShadowUTS(float4 shadowCoord)
+            {
+#if !defined(MAIN_LIGHT_CALCULATE_SHADOWS)
+                return 1.0h;
+#endif
+                ShadowSamplingData shadowSamplingData = GetMainLightShadowSamplingData();
+                half4 shadowParams = GetMainLightShadowParams();
+#if 1 // UTS_USE_RAYTRACING_SHADOW
+                if (UtsUseRaytracingShadow)
+                {
+                    return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
+
+                }
+#endif // UTS_USE_RAYTRACING_SHADOW
+
+                return SampleShadowmap(TEXTURE2D_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, false);
+            }
 
             UtsLight GetMainUtsLight()
             {
@@ -343,7 +368,7 @@
             UtsLight GetMainUtsLight(float4 shadowCoord)
             {
                 UtsLight light = GetMainUtsLight();
-                light.shadowAttenuation = MainLightRealtimeShadow(shadowCoord);
+                light.shadowAttenuation = MainLightRealtimeShadowUTS(shadowCoord);
                 return light;
             }
 
