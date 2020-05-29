@@ -351,6 +351,41 @@
                 return SampleShadowmap(TEXTURE2D_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, false);
             }
 
+            half AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
+            {
+#if !defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
+                return 1.0h;
+#endif
+#if 1 // UTS_USE_RAYTRACING_SHADOW
+                if (UtsUseRaytracingShadow)
+                {
+                    float4 screenPos = ComputeScreenPos(positionCS / positionCS.w);
+                    return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
+                    // return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
+                }
+#endif // UTS_USE_RAYTRACING_SHADOW
+                ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData();
+
+#if USE_STRUCTURED_BUFFER_FOR_LIGHT_DATA
+                lightIndex = _AdditionalShadowsIndices[lightIndex];
+
+                // We have to branch here as otherwise we would sample buffer with lightIndex == -1.
+                // However this should be ok for platforms that store light in SSBO.
+                UNITY_BRANCH
+                    if (lightIndex < 0)
+                        return 1.0;
+
+                float4 shadowCoord = mul(_AdditionalShadowsBuffer[lightIndex].worldToShadowMatrix, float4(positionWS, 1.0));
+#else
+                float4 shadowCoord = mul(_AdditionalLightsWorldToShadow[lightIndex], float4(positionWS, 1.0));
+#endif
+
+                half4 shadowParams = GetAdditionalLightShadowParams(lightIndex);
+                return SampleShadowmap(TEXTURE2D_ARGS(_AdditionalLightsShadowmapTexture, sampler_AdditionalLightsShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, true);
+            }
+
+
+
             UtsLight GetMainUtsLight()
             {
                 UtsLight light;
@@ -375,7 +410,7 @@
             }
 
             // Fills a light struct given a perObjectLightIndex
-            UtsLight GetAdditionalPerObjectUtsLight(int perObjectLightIndex, float3 positionWS)
+            UtsLight GetAdditionalPerObjectUtsLight(int perObjectLightIndex, float3 positionWS,float4 positionCS)
             {
                 // Abstraction over Light input constants
 #if USE_STRUCTURED_BUFFER_FOR_LIGHT_DATA
@@ -403,7 +438,7 @@
                 UtsLight light;
                 light.direction = lightDirection;
                 light.distanceAttenuation = attenuation;
-                light.shadowAttenuation = AdditionalLightRealtimeShadow(perObjectLightIndex, positionWS);
+                light.shadowAttenuation = AdditionalLightRealtimeShadowUTS(perObjectLightIndex, positionWS, positionCS);
                 light.color = color;
                 light.type = lightPositionWS.w;
 
@@ -428,48 +463,17 @@
 
             // Fills a light struct given a loop i index. This will convert the i
 // index to a perObjectLightIndex
-            UtsLight GetAdditionalUtsLight(uint i, float3 positionWS)
+            UtsLight GetAdditionalUtsLight(uint i, float3 positionWS,float4 positionCS)
             {
                 int perObjectLightIndex = GetPerObjectLightIndex(i);
-                return GetAdditionalPerObjectUtsLight(perObjectLightIndex, positionWS);
+                return GetAdditionalPerObjectUtsLight(perObjectLightIndex, positionWS, positionCS);
             }
 
             half3 GetLightColor(UtsLight light)
             {
                 return light.color * light.distanceAttenuation;
             }
-#if 0 // disable tentatively.
-            int mainLightIndex = -2;
-            UtsLight DetermineUTS_MainLight(float3 posW, float4 shadowCoord, float4 positionCS)
-            {
 
-                UtsLight mainLight;
-                mainLight.direction = 0;
-                mainLight.color = 0;
-                mainLight.distanceAttenuation = 0;
-                mainLight.shadowAttenuation = 0;
-                mainLight.type = 0;
-                mainLightIndex = -2;
-                UtsLight nextLight = GetMainUtsLight(shadowCoord, positionCS);
-                if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
-                {
-                    mainLight = nextLight;
-                    mainLightIndex = -1;
-                }
-                int lightCount = GetAdditionalLightsCount();
-                for (int ii = 0; ii < lightCount; ++ii)
-                {
-                    nextLight = GetAdditionalUtsLight(ii, posW);
-                    if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
-                    {
-                        mainLight = nextLight;
-                        mainLightIndex = ii;
-                    }
-                }
-
-                return mainLight;
-            }
-#endif
 
 #define INIT_UTSLIGHT(utslight) \
             utslight.direction = 0; \
@@ -494,7 +498,7 @@
                 int lightCount = GetAdditionalLightsCount();
                 for (int ii = 0; ii < lightCount; ++ii)
                 {
-                    nextLight = GetAdditionalUtsLight(ii, posW);
+                    nextLight = GetAdditionalUtsLight(ii, posW, positionCS);
                     if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                     {
                         mainLight = nextLight;
@@ -517,7 +521,7 @@
                 {
                     return GetMainUtsLight(shadowCoord, positionCS);
                 }
-                return GetAdditionalUtsLight(index, posW);
+                return GetAdditionalUtsLight(index, posW, positionCS);
             }
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
@@ -650,7 +654,7 @@
 # ifdef _MAIN_LIGHT_SHADOWS
 
                 shadowAttenuation = mainLight.shadowAttenuation;
-                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
+//                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
 # endif
 
 
@@ -866,7 +870,7 @@
                         UtsLight additionalLight = GetMainUtsLight(0,0);
                         if (iLight != -1)
                         {
-                            additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS);
+                            additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS, i.positionCS);
                         }
                         half3 additionalLightColor = GetLightColor(additionalLight);
 
@@ -1093,7 +1097,7 @@
                 half shadowAttenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
                 shadowAttenuation = mainLight.shadowAttenuation;
-                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
+//                return float4(shadowAttenuation, 0.0f, 0.0f, 1.0f);
 
 # endif
 
@@ -1245,7 +1249,7 @@
                         UtsLight additionalLight = GetMainUtsLight(0,0);
                         if (iLight != -1)
                         {
-                            additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS);
+                            additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS,i.positionCS);
                         }
                         half3 additionalLightColor = GetLightColor(additionalLight);
                         //					attenuation = light.distanceAttenuation; 
