@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CellTouch_ToonShader_Face
   m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
-  m_ShaderKeywords: _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_OUTLINE_CLIPPING_NO _IS_TRANSCLIPPING_OFF
-    _OUTLINE_NML _SHADINGGRADEMAP
+  m_ShaderKeywords: _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
+    _OUTLINE_NML
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -210,7 +210,7 @@ Material:
     - _ZOverDrawMode: 0
     - _ZWriteMode: 1
     - _simpleUI: 0
-    - _utsTechnique: 1
+    - _utsTechnique: 0
     - _utsVersion: 2.075
     - _utsVersionX: 8
     - _utsVersionY: 0
