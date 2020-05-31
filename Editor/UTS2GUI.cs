@@ -589,9 +589,11 @@ namespace UTJ.UnitychanToonShader2
                     material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
                 }
             }
-
-
             EditorGUILayout.EndHorizontal();
+            if (isRTHSenabled)
+            {
+                EditorGUILayout.LabelField("ShadowRaytracer component must be attached to the camera when this feature is enabled.");
+            }
         }
         // --------------------------------
 
