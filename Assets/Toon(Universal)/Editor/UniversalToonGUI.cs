@@ -17,6 +17,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
         const string ShaderDefineUTS_USE_RAYTRACING_SHADOW = "UTS_USE_RAYTRACING_SHADOW";
         const string ShaderPropAngelRing = "_AngelRing";
+        const string ShaderPropRTHS = "_RTHS";
         const string ShaderPropMatCap = "_MatCap";
         const string ShaderPropClippingMode = "_ClippingMode";
         const string ShaderPropClippingMask = "_ClippingMask";
@@ -818,6 +819,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             ApplyClippingMode(material);
             ApplyStencilMode(material);
             ApplyAngelRing(material);
+            ApplyRTHS(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
             if (EditorGUI.EndChangeCheck())
@@ -879,22 +881,21 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Raytraced Hard Shadow");
-            var isRTHSenabled = material.IsKeywordEnabled(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+            var isRTHSenabled = material.GetInt(ShaderPropRTHS);
 
-            switch (isRTHSenabled)
+            if ( isRTHSenabled == 0 )
             {
-                case true:
-                    if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
-                    {
-                        material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
-                    }
-                    break;
-                case false:
-                    if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
-                    {
-                        material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
-                    }
-                    break;
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetInt(ShaderPropRTHS, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetInt(ShaderPropRTHS, 0);
+                }
             }
 
 
@@ -2084,6 +2085,21 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             else
             {
                 material.DisableKeyword(ShaderPropMatCap);
+            }
+        }
+
+
+        void ApplyRTHS(Material material)
+        {
+            var isRTHSenabled = material.GetInt(ShaderPropRTHS);
+            switch (isRTHSenabled)
+            {
+                case 0:
+                    material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                    break;
+                default:
+                    material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                    break;
             }
         }
         void ApplyAngelRing(Material material)

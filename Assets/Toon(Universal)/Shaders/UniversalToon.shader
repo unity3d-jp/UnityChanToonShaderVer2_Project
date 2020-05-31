@@ -167,6 +167,8 @@ Shader "Universal Render Pipeline/Toon" {
         [HDR]_ViewShift ("ViewSift", Color) = (0,0,0,1)
         [Toggle(_)] _Is_ViewCoord_Scroll ("Is_ViewCoord_Scroll", Float ) = 0
         //
+        [Toggle(_)] _RTHS("RTHS is enabled or not", Float) = 0
+            
 //Outline
         [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
         _Outline_Width ("Outline_Width", Float ) = 0
@@ -310,6 +312,8 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
             #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
 
+            // used in Shadow calculation 
+            #pragma shader_feature _ UTS_USE_RAYTRACING_SHADOW
             // used in DoubleShadeWithFeather
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
 
