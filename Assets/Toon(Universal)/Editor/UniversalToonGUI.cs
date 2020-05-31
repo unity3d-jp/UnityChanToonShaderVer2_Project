@@ -212,7 +212,6 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         static bool _AngelRing_Foldout = true;
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
-        static bool _Shadow_Foldout = true;
         static bool _AdvancedOutline_Foldout = false;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
@@ -751,15 +750,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
             EditorGUILayout.Space();
 
-            _Shadow_Foldout = Foldout(_Shadow_Foldout, "【Shadow Settings】");
-            if (_Shadow_Foldout)
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.Space();
-                GUI_SetRTHS(material);
-                EditorGUI.indentLevel--;
-            }
-            EditorGUILayout.Space();
+
 
             if (material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On)
             {
@@ -1441,10 +1432,13 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             {
                 EditorGUI.indentLevel++;
                 m_MaterialEditor.RangeProperty(tweak_SystemShadowsLevel, "System Shadows Level");
+                GUI_SetRTHS(material);
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
             }
             EditorGUILayout.Space();
+
+
         }
 
         void GUI_BasicLookdevs(Material material)
