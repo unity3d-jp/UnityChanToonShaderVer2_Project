@@ -15,6 +15,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
         const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
+        const string ShaderDefineUTS_USE_RAYTRACING_SHADOW = "UTS_USE_RAYTRACING_SHADOW";
         const string ShaderPropAngelRing = "_AngelRing";
         const string ShaderPropMatCap = "_MatCap";
         const string ShaderPropClippingMode = "_ClippingMode";
@@ -210,6 +211,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         static bool _AngelRing_Foldout = true;
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
+        static bool _Shadow_Foldout = true;
         static bool _AdvancedOutline_Foldout = false;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
@@ -748,6 +750,16 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
             EditorGUILayout.Space();
 
+            _Shadow_Foldout = Foldout(_Shadow_Foldout, "【Shadow Settings】");
+            if (_Shadow_Foldout)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.Space();
+                GUI_SetRTHS(material);
+                EditorGUI.indentLevel--;
+            }
+            EditorGUILayout.Space();
+
             if (material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On)
             {
                 SetuOutline(material);
@@ -860,6 +872,33 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             {
                 Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md");
             }
+        }
+
+        void GUI_SetRTHS(Material material)
+        {
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Raytraced Hard Shadow");
+            var isRTHSenabled = material.IsKeywordEnabled(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+
+            switch (isRTHSenabled)
+            {
+                case true:
+                    if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                    {
+                        material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                    }
+                    break;
+                case false:
+                    if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                    {
+                        material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                    }
+                    break;
+            }
+
+
+            EditorGUILayout.EndHorizontal();
         }
 
         void GUI_SetRenderQueue(Material material)

@@ -339,27 +339,19 @@
 #endif
                 ShadowSamplingData shadowSamplingData = GetMainLightShadowSamplingData();
                 half4 shadowParams = GetMainLightShadowParams();
-#if 1 // UTS_USE_RAYTRACING_SHADOW
-                if (UtsUseRaytracingShadow)
-                {
-                    float4 screenPos =  ComputeScreenPos(positionCS/ positionCS.w);
-                    return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
-                    // return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
-                }
-#endif // UTS_USE_RAYTRACING_SHADOW
+#if defined(UTS_USE_RAYTRACING_SHADOW)
+                float4 screenPos =  ComputeScreenPos(positionCS/ positionCS.w);
+                return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
+#endif 
 
                 return SampleShadowmap(TEXTURE2D_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, false);
             }
 
             half AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
             {
-#if 1 // UTS_USE_RAYTRACING_SHADOW
-                if (UtsUseRaytracingShadow)
-                {
-                    float4 screenPos = ComputeScreenPos(positionCS / positionCS.w);
-                    return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
-                    // return SampleShadowmap(TEXTURE2D_ARGS(_RaytracedHardShadow, sampler__RaytracedHardShadow), shadowCoord, shadowSamplingData, shadowParams, false);
-                }
+#if  defined(UTS_USE_RAYTRACING_SHADOW)
+                float4 screenPos = ComputeScreenPos(positionCS / positionCS.w);
+                return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
 #endif // UTS_USE_RAYTRACING_SHADOW
 
 #if !defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
