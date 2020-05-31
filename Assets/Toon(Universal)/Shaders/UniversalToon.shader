@@ -167,8 +167,6 @@ Shader "Universal Render Pipeline/Toon" {
         [HDR]_ViewShift ("ViewSift", Color) = (0,0,0,1)
         [Toggle(_)] _Is_ViewCoord_Scroll ("Is_ViewCoord_Scroll", Float ) = 0
         //
-        [Toggle(_)] _RTHS("RTHS is enabled or not", Float) = 0
-            
 //Outline
         [KeywordEnum(NML,POS)] _OUTLINE("OUTLINE MODE", Float) = 0
         _Outline_Width ("Outline_Width", Float ) = 0

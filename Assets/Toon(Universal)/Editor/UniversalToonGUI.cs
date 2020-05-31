@@ -819,7 +819,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             ApplyClippingMode(material);
             ApplyStencilMode(material);
             ApplyAngelRing(material);
-            ApplyRTHS(material);
+
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
             if (EditorGUI.EndChangeCheck())
@@ -881,20 +881,20 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Raytraced Hard Shadow");
-            var isRTHSenabled = material.GetInt(ShaderPropRTHS);
+            var isRTHSenabled = material.IsKeywordEnabled(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
 
-            if ( isRTHSenabled == 0 )
+            if (isRTHSenabled)
             {
-                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetInt(ShaderPropRTHS, 1);
+                    material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
                 }
             }
             else
             {
-                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
-                    material.SetInt(ShaderPropRTHS, 0);
+                    material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
                 }
             }
 
@@ -2089,19 +2089,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         }
 
 
-        void ApplyRTHS(Material material)
-        {
-            var isRTHSenabled = material.GetInt(ShaderPropRTHS);
-            switch (isRTHSenabled)
-            {
-                case 0:
-                    material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
-                    break;
-                default:
-                    material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
-                    break;
-            }
-        }
+
         void ApplyAngelRing(Material material)
         {
             int angelRingEnabled = material.GetInt(ShaderPropAngelRing);
