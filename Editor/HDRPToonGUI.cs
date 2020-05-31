@@ -17,7 +17,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
         const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
         const string ShaderDefineUTS_USE_RAYTRACING_SHADOW = "UTS_USE_RAYTRACING_SHADOW";
         const string ShaderPropAngelRing = "_AngelRing";
-        const string ShaderPropRTHS = "_RTHS";
+
         const string ShaderPropMatCap = "_MatCap";
         const string ShaderPropClippingMode = "_ClippingMode";
         const string ShaderPropClippingMask = "_ClippingMask";
@@ -213,7 +213,6 @@ namespace UnityEditor.Rendering.HDRP.Toon
         static bool _AngelRing_Foldout = true;
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
-        static bool _Shadow_Foldout = true;
         static bool _AdvancedOutline_Foldout = false;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
@@ -753,15 +752,6 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
             EditorGUILayout.Space();
 
-            _Shadow_Foldout = Foldout(_Shadow_Foldout, "【Shadow Settings】");
-            if (_Shadow_Foldout)
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.Space();
-                GUI_SetRTHS(material);
-                EditorGUI.indentLevel--;
-            }
-            EditorGUILayout.Space();
 
             if (material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On)
             {
@@ -1445,6 +1435,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             {
                 EditorGUI.indentLevel++;
                 m_MaterialEditor.RangeProperty(tweak_SystemShadowsLevel, "System Shadows Level");
+                GUI_SetRTHS(material);
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
             }
