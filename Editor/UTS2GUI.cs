@@ -589,14 +589,14 @@ namespace UTJ.UnitychanToonShader2
 
             if (isRTHSenabled)
             {
-                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
                     material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
                 }
             }
             else
             {
-                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                 {
                     material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
                 }
