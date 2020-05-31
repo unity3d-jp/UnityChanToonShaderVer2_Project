@@ -7,7 +7,7 @@
 Shader "Universal Render Pipeline/Toon" {
     Properties{
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
-        [HideInInspector] _utsVersionX("VersionX", Float) = 8
+        [HideInInspector] _utsVersionX("VersionX", Float) = 1
         [HideInInspector] _utsVersionY("VersionY", Float) = 0
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
