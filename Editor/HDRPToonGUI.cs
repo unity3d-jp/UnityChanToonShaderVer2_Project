@@ -892,8 +892,11 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 }
             }
 
-
             EditorGUILayout.EndHorizontal();
+            if (isRTHSenabled)
+            {
+                EditorGUILayout.LabelField("ShadowRaytracer component must be attached to the camera when this feature is enabled.");
+            }
         }
 
         void GUI_SetRenderQueue(Material material)
