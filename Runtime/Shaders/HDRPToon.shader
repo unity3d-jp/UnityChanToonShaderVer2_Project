@@ -1,5 +1,5 @@
-//Unitychan Toon Shader ver.8.0
-//v.8.0.0
+//Unitychan Toon Shader ver.1.0
+//v.1.0.0
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP)
 Shader "HDRP/Toon"
@@ -8,7 +8,7 @@ Shader "HDRP/Toon"
     {
         // Versioning of material to help for upgrading
 
-        [HideInInspector] _utsVersionX("VersionX", Float) = 8
+        [HideInInspector] _utsVersionX("VersionX", Float) = 1
         [HideInInspector] _utsVersionY("VersionY", Float) = 0
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
         // Following set of parameters represent the parameters node inside the MaterialGraph.
@@ -393,7 +393,8 @@ Shader "HDRP/Toon"
         [HDR]_ViewShift("ViewSift", Color) = (0, 0, 0, 1)
         [Toggle(_)] _Is_ViewCoord_Scroll("Is_ViewCoord_Scroll", Float) = 0
         //
-    //Outline
+        [Toggle(_)] _RTHS("RTHS is enabled or not", Float) = 0
+        //Outline
         [KeywordEnum(NML, POS)] _OUTLINE("OUTLINE MODE", Float) = 0
         _Outline_Width("Outline_Width", Float) = 0
         _Farthest_Distance("Farthest_Distance", Float) = 100
@@ -963,7 +964,8 @@ Shader "HDRP/Toon"
             // used in ShadingGradeMap
             #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
             #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
-
+            // used in Shadow calculation 
+            #pragma shader_feature _ UTS_USE_RAYTRACING_SHADOW
             // used in DoubleShadeWithFeather
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
 

@@ -239,8 +239,8 @@ void Frag(PackedVaryingsToPS packedInput,
                     IsNonZeroBSDF(V, L, preLightData, bsdfData) &&
                     !ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
                 {
-#if 1 // UTS_USE_RAYTRACING_SHADOW
-                    if (UtsUseRaytracingShadow)
+
+#if defined(UTS_USE_RAYTRACING_SHADOW)
                     {
                         /*
                         struct PositionInputs
@@ -258,24 +258,24 @@ void Frag(PackedVaryingsToPS packedInput,
                         float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
                         context.shadowValue = r;
                     }
-                    else
-#endif // UTS_USE_RAYTRACING_SHADOW
+#else
                     {
                         context.shadowValue = GetDirectionalShadowAttenuation(context.shadowContext,
                             posInput.positionSS, posInput.positionWS, GetNormalForShadowBias(bsdfData),
                             light.shadowIndex, L);
 
                     }
+#endif // UTS_USE_RAYTRACING_SHADOW
 
 
                 }
-#if 1 // UTS_USE_RAYTRACING_SHADOW
-                else if (UtsUseRaytracingShadow)
+#if defined (UTS_USE_RAYTRACING_SHADOW)
+                else 
                 {
                     float r = UNITY_SAMPLE_SCREEN_SHADOW(_RaytracedHardShadow, float4(posInput.positionNDC.xy, 0.0, 1));
                     context.shadowValue = r;
                 }
-#endif
+#endif // UTS_USE_RAYTRACING_SHADOW
             }
 
         }

@@ -15,7 +15,9 @@ namespace UnityEditor.Rendering.HDRP.Toon
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
         const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
+        const string ShaderDefineUTS_USE_RAYTRACING_SHADOW = "UTS_USE_RAYTRACING_SHADOW";
         const string ShaderPropAngelRing = "_AngelRing";
+        const string ShaderPropRTHS = "_RTHS";
         const string ShaderPropMatCap = "_MatCap";
         const string ShaderPropClippingMode = "_ClippingMode";
         const string ShaderPropClippingMask = "_ClippingMask";
@@ -211,6 +213,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
         static bool _AngelRing_Foldout = true;
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
+        static bool _Shadow_Foldout = true;
         static bool _AdvancedOutline_Foldout = false;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
@@ -750,6 +753,16 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
             EditorGUILayout.Space();
 
+            _Shadow_Foldout = Foldout(_Shadow_Foldout, "【Shadow Settings】");
+            if (_Shadow_Foldout)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.Space();
+                GUI_SetRTHS(material);
+                EditorGUI.indentLevel--;
+            }
+            EditorGUILayout.Space();
+
             if (material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On)
             {
                 SetuOutline(material);
@@ -810,6 +823,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             ApplyClippingMode(material);
             ApplyStencilMode(material);
             ApplyAngelRing(material);
+            ApplyRTHS(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
             if (EditorGUI.EndChangeCheck())
@@ -864,6 +878,32 @@ namespace UnityEditor.Rendering.HDRP.Toon
             {
                 Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md");
             }
+        }
+
+        void GUI_SetRTHS(Material material)
+        {
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Raytraced Hard Shadow");
+            var isRTHSenabled = material.GetInt(ShaderPropRTHS);
+
+            if ( isRTHSenabled == 0 )
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetInt(ShaderPropRTHS, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetInt(ShaderPropRTHS, 0);
+                }
+            }
+
+
+            EditorGUILayout.EndHorizontal();
         }
 
         void GUI_SetRenderQueue(Material material)
@@ -2049,6 +2089,21 @@ namespace UnityEditor.Rendering.HDRP.Toon
             else
             {
                 material.DisableKeyword(ShaderPropMatCap);
+            }
+        }
+
+
+        void ApplyRTHS(Material material)
+        {
+            var isRTHSenabled = material.GetInt(ShaderPropRTHS);
+            switch (isRTHSenabled)
+            {
+                case 0:
+                    material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                    break;
+                default:
+                    material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                    break;
             }
         }
         void ApplyAngelRing(Material material)
