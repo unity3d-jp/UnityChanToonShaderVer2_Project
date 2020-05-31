@@ -64,7 +64,6 @@ namespace UTJ.UnitychanToonShader2
         static bool _AngelRing_Foldout = true;
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
-        static bool _Shadow_Foldout = true;
         static bool _AdvancedOutline_Foldout = false;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
@@ -508,17 +507,6 @@ namespace UTJ.UnitychanToonShader2
             }
 
             EditorGUILayout.Space();
-
-            _Shadow_Foldout = Foldout(_Shadow_Foldout, "【Shadow Settings】");
-            if (_Shadow_Foldout)
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.Space();
-                GUI_SetRTHS(material);
-                EditorGUI.indentLevel--;
-            }
-            EditorGUILayout.Space();
-
 
             if (material.HasProperty("_OUTLINE")){
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
@@ -1049,6 +1037,7 @@ namespace UTJ.UnitychanToonShader2
                 if(material.GetFloat("_Set_SystemShadowsToBase") == 1){
                     EditorGUI.indentLevel++;
                     m_MaterialEditor.RangeProperty(tweak_SystemShadowsLevel, "System Shadows Level");
+                    GUI_SetRTHS(material);
                     EditorGUI.indentLevel--;
                     EditorGUILayout.Space();
                 }
