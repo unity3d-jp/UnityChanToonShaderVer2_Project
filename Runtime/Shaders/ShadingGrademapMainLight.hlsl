@@ -99,6 +99,8 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     //v.2.0.6
     //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
     //Kobayashi:LWRPではターミネータにノイズが乗ることがあるのでコメントオフ
+    shadowAttenuation *= 2.0f;
+    shadowAttenuation = saturate(shadowAttenuation);
     float _SystemShadowsLevel_var = (shadowAttenuation *0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (shadowAttenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
 
     float _ShadingGradeMapLevel_var = _ShadingGradeMap_var.r < 0.95 ? _ShadingGradeMap_var.r + _Tweak_ShadingGradeMapLevel : 1;
