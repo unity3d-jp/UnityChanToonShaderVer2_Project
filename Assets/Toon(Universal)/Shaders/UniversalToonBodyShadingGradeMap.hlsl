@@ -121,8 +121,10 @@
                 //v.2.0.6
                 float4 _ShadingGradeMap_var = tex2Dlod(_ShadingGradeMap,float4(TRANSFORM_TEX(Set_UV0, _ShadingGradeMap),0.0,_BlurLevelSGM));
                 //the value of shadowAttenuation is darker than legacy and it cuases noise in terminaters.
+#if !defined (UTS_USE_RAYTRACING_SHADOW)
                 shadowAttenuation *= 2.0f;
                 shadowAttenuation = saturate(shadowAttenuation);
+#endif
 
                 //v.2.0.6
                 //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
