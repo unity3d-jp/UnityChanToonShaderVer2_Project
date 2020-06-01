@@ -45,20 +45,26 @@ namespace UTJ.UnitychanToonShader2
         bool _Use_VrcRecommend = false;
         bool _RemovedUnusedKeywordsMessage = false;
 
+        const string ShaderPropRTHS = "_RTHS";
+        const string ShaderDefineUTS_USE_RAYTRACING_SHADOW = "UTS_USE_RAYTRACING_SHADOW";
+
+        const string STR_ONSTATE = "Active";
+        const string STR_OFFSTATE = "Off";
+
         //Foldoutの初期値.
         static bool _BasicShaderSettings_Foldout = false;
         static bool _BasicThreeColors_Foldout = true;
-            static bool _NormalMap_Foldout = false;
-            static bool _ShadowControlMaps_Foldout = false;
+        static bool _NormalMap_Foldout = false;
+        static bool _ShadowControlMaps_Foldout = false;
         static bool _StepAndFeather_Foldout = true;
-            static bool _AdditionalLookdevs_Foldout = false;
+        static bool _AdditionalLookdevs_Foldout = false;
         static bool _HighColor_Foldout = true;
         static bool _RimLight_Foldout = true;
         static bool _MatCap_Foldout = true;
         static bool _AngelRing_Foldout = true;
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
-            static bool _AdvancedOutline_Foldout = false;
+        static bool _AdvancedOutline_Foldout = false;
         static bool _Tessellation_Foldout = false;
         static bool _LightColorContribution_Foldout = false;
         static bool _AdditionalLightingSettings_Foldout = false;
@@ -502,7 +508,7 @@ namespace UTJ.UnitychanToonShader2
 
             EditorGUILayout.Space();
 
-            if(material.HasProperty("_OUTLINE")){
+            if (material.HasProperty("_OUTLINE")){
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -551,15 +557,45 @@ namespace UTJ.UnitychanToonShader2
                 EditorGUILayout.Space();
             }
 
+
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.PropertiesChanged();
             }
 
+
         }// End of OnGUI()
 
 
-    // --------------------------------
+
+        void GUI_SetRTHS(Material material)
+        {
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Raytraced Hard Shadow");
+            var isRTHSenabled = material.IsKeywordEnabled(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+
+            if (isRTHSenabled)
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.DisableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            if (isRTHSenabled)
+            {
+                EditorGUILayout.LabelField("ShadowRaytracer component must be attached to the camera when this feature is enabled.");
+            }
+        }
+        // --------------------------------
 
         void CheckUtsTechnique(Material material){
             if (material.HasProperty("_utsTechnique"))//DoubleWithFeather==0 or ShadingGradeMap==1
@@ -1003,6 +1039,7 @@ namespace UTJ.UnitychanToonShader2
                 if(material.GetFloat("_Set_SystemShadowsToBase") == 1){
                     EditorGUI.indentLevel++;
                     m_MaterialEditor.RangeProperty(tweak_SystemShadowsLevel, "System Shadows Level");
+                    GUI_SetRTHS(material);
                     EditorGUI.indentLevel--;
                     EditorGUILayout.Space();
                 }
