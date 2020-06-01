@@ -93,7 +93,7 @@
 //DoubleShadeWithFeather
 #endif
 
-                half shadowAttenuation = 1.0;
+                real shadowAttenuation = 1.0;
 # ifdef _MAIN_LIGHT_SHADOWS
                 shadowAttenuation = mainLight.shadowAttenuation;
 

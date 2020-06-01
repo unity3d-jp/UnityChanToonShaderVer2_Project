@@ -322,17 +322,17 @@
             // Abstraction over Light shading data.
             struct UtsLight
             {
-                half3   direction;
-                half3   color;
-                half    distanceAttenuation;
-                half    shadowAttenuation;
+                float3   direction;
+                float3   color;
+                float    distanceAttenuation;
+                real    shadowAttenuation;
                 int     type;
             };
 
             ///////////////////////////////////////////////////////////////////////////////
             //                      Light Abstraction                                    //
             /////////////////////////////////////////////////////////////////////////////
-            half MainLightRealtimeShadowUTS(float4 shadowCoord, float4 positionCS)
+            real MainLightRealtimeShadowUTS(float4 shadowCoord, float4 positionCS)
             {
 #if !defined(MAIN_LIGHT_CALCULATE_SHADOWS)
                 return 1.0h;
@@ -347,7 +347,7 @@
                 return SampleShadowmap(TEXTURE2D_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, false);
             }
 
-            half AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
+            real AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
             {
 #if  defined(UTS_USE_RAYTRACING_SHADOW)
                 float4 screenPos = ComputeScreenPos(positionCS / positionCS.w);
