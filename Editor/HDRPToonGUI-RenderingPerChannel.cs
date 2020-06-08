@@ -100,8 +100,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_ToggleStyle.onFocused.background = m_texIconVisible;
                 m_ToggleStyle.onFocused.scaledBackgrounds = new Texture2D[] { m_texIconVisible };
 
-//                m_ToggleStyle.hover.background = m_texIconInvisible;
-//                m_ToggleStyle.hover.scaledBackgrounds = new Texture2D[] { m_texIconInvisible };
+                m_ToggleStyle.hover.background = m_texIconInvisible;
+                m_ToggleStyle.hover.scaledBackgrounds = new Texture2D[] { m_texIconInvisible };
                 m_ToggleStyle.onHover.background = m_texIconVisible;
                 m_ToggleStyle.onHover.scaledBackgrounds = new Texture2D[] { m_texIconVisible };
             }
