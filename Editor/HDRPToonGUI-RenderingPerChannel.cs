@@ -68,17 +68,18 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
             if ( m_texIconVisible == null )
             {
-                m_texIconVisible = (Texture2D)EditorGUIUtility.Load("d_scenevis_visible_hover@2x");
-//                m_texIconVisible = ResizeThumbnailTexture(m_texIconVisible, 20, 20);
+                m_texIconVisible = (Texture2D)EditorGUIUtility.Load(
+                        EditorGUIUtility.isProSkin ? "d_scenevis_visible_hover@2x" : "scenevis_visible_hover@2x");
+
+
 
             }
             if (m_texIconInvisible == null)
             {
-                m_texIconInvisible = (Texture2D)EditorGUIUtility.Load("d_SceneViewVisibility@2x");
-//                m_texIconInvisible = ResizeThumbnailTexture(m_texIconInvisible, 20, 20);
-
+                m_texIconInvisible = (Texture2D)EditorGUIUtility.Load(
+                        EditorGUIUtility.isProSkin ? "d_SceneViewVisibility@2x" : "scenevis_hidden_hover@2x");
             }
-
+ 
             if (m_ToggleStyle == null)
             {
                 m_ToggleStyle = new GUIStyle(EditorStyles.toggle);
@@ -99,8 +100,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_ToggleStyle.onFocused.background = m_texIconVisible;
                 m_ToggleStyle.onFocused.scaledBackgrounds = new Texture2D[] { m_texIconVisible };
 
-                m_ToggleStyle.hover.background = m_texIconInvisible;
-                m_ToggleStyle.hover.scaledBackgrounds = new Texture2D[] { m_texIconInvisible };
+//                m_ToggleStyle.hover.background = m_texIconInvisible;
+//                m_ToggleStyle.hover.scaledBackgrounds = new Texture2D[] { m_texIconInvisible };
                 m_ToggleStyle.onHover.background = m_texIconVisible;
                 m_ToggleStyle.onHover.scaledBackgrounds = new Texture2D[] { m_texIconVisible };
             }
