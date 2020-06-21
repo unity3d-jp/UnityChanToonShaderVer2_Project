@@ -230,8 +230,9 @@ Shader "HDRP/Toon"
         [HideInInspector] _DiffusionProfile("Obsolete, kept for migration purpose", Int) = 0
         [HideInInspector] _DiffusionProfileAsset("Diffusion Profile Asset", Vector) = (0, 0, 0, 0)
         [HideInInspector] _DiffusionProfileHash("Diffusion Profile Hash", Float) = 0
-
+        // -----------------------------------------------------------------------------
         // parameters for UTS
+        // -----------------------------------------------------------------------------
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         [HideInInspector] _utsVersionX("VersionX", Float) = 8
         [HideInInspector] _utsVersionY("VersionY", Float) = 0

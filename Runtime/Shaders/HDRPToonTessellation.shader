@@ -462,8 +462,6 @@ Shader "HDRP/ToonTessellation"
 
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
         // to here parameters for UTS>
-
-
     }
 
     HLSLINCLUDE
