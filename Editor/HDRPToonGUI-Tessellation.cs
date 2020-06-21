@@ -42,7 +42,21 @@ namespace UnityEditor.Rendering.HDRP.Toon
         MaterialProperty tessellationBackFaceCullEpsilon = null;
         const string kTessellationBackFaceCullEpsilon = "_TessellationBackFaceCullEpsilon";
         MaterialProperty doubleSidedEnable = null;
+        const string kDoubleSidedEnable = "_DoubleSidedEnable";
+        void FindTessellationProperties(MaterialProperty[] props)
+        {
+            tessellationMode = FindProperty(kTessellationMode, props, false);
+            tessellationFactor = FindProperty(kTessellationFactor, props, false);
+            tessellationFactorMinDistance = FindProperty(kTessellationFactorMinDistance, props, false);
+            tessellationFactorMaxDistance = FindProperty(kTessellationFactorMaxDistance, props, false);
+            tessellationFactorTriangleSize = FindProperty(kTessellationFactorTriangleSize, props, false);
+            tessellationShapeFactor = FindProperty(kTessellationShapeFactor, props, false);
+            tessellationBackFaceCullEpsilon = FindProperty(kTessellationBackFaceCullEpsilon, props, false);
+            doubleSidedEnable = FindProperty(kDoubleSidedEnable, props, false);
 
-
+        }
+        void TessellationSetting(Material material)
+        {
+        }
     } // End of UTS2GUI2
 }// End of namespace UnityChan

@@ -457,6 +457,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
             unlit_Intensity = FindProperty(ShaderPropUnlit_Intensity, props);
             offset_X_Axis_BLD = FindProperty("_Offset_X_Axis_BLD", props);
             offset_Y_Axis_BLD = FindProperty("_Offset_Y_Axis_BLD", props);
+
+            FindTessellationProperties(props);
         }
         // --------------------------------
 
@@ -805,7 +807,8 @@ namespace UnityEditor.Rendering.HDRP.Toon
                     GUI_AdditionalLightingSettings(material);
                     EditorGUI.indentLevel--;
                 }
-
+                EditorGUILayout.Space();
+                TessellationSetting(material);
                 EditorGUILayout.Space();
                 RenderingPerChennelsSetting(material);
             }
