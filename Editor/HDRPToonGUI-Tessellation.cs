@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEditor;
 using System;
+using UnityEngine.Rendering;
 
 namespace UnityEditor.Rendering.HDRP.Toon
 {
@@ -70,6 +71,22 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
         }
 
+        static void SetKeyword(Material material, string keyword, bool state)
+        {
+            if (state)
+                material.EnableKeyword(keyword);
+            else
+                material.DisableKeyword(keyword);
+        }
+
+        void ApplyTessellation(Material material)
+        {
+            if (material.HasProperty(kTessellationMode))
+            {
+                TessellationMode tessMode = (TessellationMode)material.GetFloat(kTessellationMode);
+                SetKeyword(material, "_TESSELLATION_PHONG", tessMode == TessellationMode.Phong);
+            }
+        }
         void DrawDelayedFloatProperty(MaterialProperty prop, GUIContent content)
         {
             Rect position = EditorGUILayout.GetControlRect();

@@ -1042,7 +1042,7 @@ Shader "HDRP/ToonTessellation"
 
             ENDHLSL
         }
-
+/* We don't use this for now.
         Tags{
             "RenderType" = "Opaque"
         }
@@ -1073,11 +1073,8 @@ Shader "HDRP/ToonTessellation"
 
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-//            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
-//            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
-//            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
 
-
+            // Todo. Just want to use varyings...
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 
         #ifdef DEBUG_DISPLAY
@@ -1091,8 +1088,6 @@ Shader "HDRP/ToonTessellation"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPassForward.hlsl"
 
-
-
             #include "HDRPToonHead.hlsl"
             #include "HDRPToonOutline.hlsl"
 
@@ -1102,7 +1097,7 @@ Shader "HDRP/ToonTessellation"
             #pragma domain Domain
             ENDHLSL
         }
-
+    */
     }
 
     CustomEditor "UnityEditor.Rendering.HDRP.Toon.HDRPToonGUI"

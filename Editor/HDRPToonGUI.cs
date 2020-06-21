@@ -816,7 +816,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             ApplyClippingMode(material);
             ApplyStencilMode(material);
             ApplyAngelRing(material);
-
+            ApplyTessellation(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
             if (EditorGUI.EndChangeCheck())
