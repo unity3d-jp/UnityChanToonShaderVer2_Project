@@ -60,24 +60,6 @@ PackedVaryingsToPS VertTesselation(VaryingsToDS input)
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
 #endif
 
-// normal should be normalized, w=1.0
-// output in active color space
-/*
-half3 ShadeSH9(half4 normal)
-{
-    // Linear + constant polynomial terms
-    half3 res = SHEvalLinearL0L1(normal);
-
-    // Quadratic polynomials
-    res += SHEvalLinearL2(normal);
-
-#   ifdef UNITY_COLORSPACE_GAMMA
-    res = LinearToGammaSpace(res);
-#   endif
-
-    return res;
-}
-*/
 
 
 float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs posInput,
@@ -545,6 +527,7 @@ void Frag(PackedVaryingsToPS packedInput,
   #endif
 
 #else //#if defined(_SHADINGGRADEMAP)
+
   #ifdef _IS_CLIPPING_OFF
     //DoubleShadeWithFeather
 

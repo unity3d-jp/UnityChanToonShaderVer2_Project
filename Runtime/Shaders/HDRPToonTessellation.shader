@@ -616,6 +616,7 @@ Shader "HDRP/ToonTessellation"
         }
 
         // Caution: The outline selection in the editor use the vertex shader/hull/domain shader of the first pass declare. So it should not bethe  meta pass.
+
         Pass
         {
             Name "GBuffer"
@@ -934,7 +935,7 @@ Shader "HDRP/ToonTessellation"
         {
             Name "Forward"
             Tags { "LightMode" = "ForwardOnly" } 
-
+            ZTest[_ZTestDepthEqualForOpaque]
             ZWrite[_ZWriteMode]
             Cull[_CullMode]
             Blend SrcAlpha OneMinusSrcAlpha
