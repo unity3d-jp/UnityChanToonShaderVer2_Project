@@ -935,19 +935,18 @@ Shader "HDRP/ToonTessellation"
             Name "Forward"
             Tags { "LightMode" = "ForwardOnly" } 
 
-            Stencil
-            {
-                WriteMask [_StencilWriteMask]
-                Ref [_StencilRef]
-                Comp Always
-                Pass Replace
-            }
+            ZWrite[_ZWriteMode]
+            Cull[_CullMode]
+            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil {
 
-            Blend [_SrcBlend] [_DstBlend], [_AlphaSrcBlend] [_AlphaDstBlend]
-            // In case of forward we want to have depth equal for opaque mesh
-            ZTest [_ZTestDepthEqualForOpaque]
-            ZWrite [_ZWrite]
-            Cull [_CullModeForward]
+                Ref[_StencilNo]
+
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
+
+            }
 
             HLSLPROGRAM
 
@@ -992,6 +991,8 @@ Shader "HDRP/ToonTessellation"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPassForward.hlsl"
+//            #include "UtsLightLoop.hlsl"
+//            #include "ShaderPassForwardUTS.hlsl"
 
             #pragma vertex Vert
             #pragma fragment Frag
