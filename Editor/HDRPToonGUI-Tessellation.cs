@@ -6,6 +6,7 @@
 //(C)Unity Technologies Japan/UCL
 using UnityEngine;
 using UnityEditor;
+using System;
 
 namespace UnityEditor.Rendering.HDRP.Toon
 {
@@ -68,6 +69,17 @@ namespace UnityEditor.Rendering.HDRP.Toon
             doubleSidedEnable = FindProperty(kDoubleSidedEnable, props, false);
 
         }
+
+        void DrawDelayedFloatProperty(MaterialProperty prop, GUIContent content)
+        {
+            Rect position = EditorGUILayout.GetControlRect();
+            EditorGUI.BeginChangeCheck();
+            EditorGUI.showMixedValue = prop.hasMixedValue;
+            float newValue = EditorGUI.DelayedFloatField(position, content, prop.floatValue);
+            EditorGUI.showMixedValue = false;
+            if (EditorGUI.EndChangeCheck())
+                prop.floatValue = newValue;
+        }
         void TessellationModePopup()
         {
             EditorGUI.showMixedValue = tessellationMode.hasMixedValue;
@@ -83,13 +95,41 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
             EditorGUI.showMixedValue = false;
         }
+
+        static bool _TessellationSettings_Foldout = false;
         void TessellationSetting(Material material)
         {
+
+            _TessellationSettings_Foldout = Foldout(_TessellationSettings_Foldout, "【Tessellation Settings】");
+            if (!_TessellationSettings_Foldout)
+            {
+                return;
+            }
+
             if (tessellationMode == null)
             {
                 return;
             }
+            DrawTesselationGUI();
+        }
+
+        void DrawTesselationGUI()
+        {
             TessellationModePopup();
+            m_MaterialEditor.ShaderProperty(tessellationFactor, TessellationStyles.tessellationFactorText);
+            DrawDelayedFloatProperty(tessellationFactorMinDistance, TessellationStyles.tessellationFactorMinDistanceText);
+            DrawDelayedFloatProperty(tessellationFactorMaxDistance, TessellationStyles.tessellationFactorMaxDistanceText);
+            // clamp min distance to be below max distance
+            tessellationFactorMinDistance.floatValue = Math.Min(tessellationFactorMaxDistance.floatValue, tessellationFactorMinDistance.floatValue);
+            m_MaterialEditor.ShaderProperty(tessellationFactorTriangleSize, TessellationStyles.tessellationFactorTriangleSizeText);
+            if ((TessellationMode)tessellationMode.floatValue == TessellationMode.Phong)
+            {
+                m_MaterialEditor.ShaderProperty(tessellationShapeFactor, TessellationStyles.tessellationShapeFactorText);
+            }
+            if (doubleSidedEnable.floatValue == 0.0)
+            {
+                m_MaterialEditor.ShaderProperty(tessellationBackFaceCullEpsilon, TessellationStyles.tessellationBackFaceCullEpsilonText);
+            }
         }
     } // End of UTS2GUI2
 }// End of namespace UnityChan
