@@ -1047,19 +1047,23 @@ Shader "HDRP/Toon"
 
             }
 
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+            HLSLPROGRAM
+
 
 
 
             //V.2.0.4
+
+
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "HDRPToonHead.hlsl"
             #include "HDRPToonOutline.hlsl"
-            ENDCG
+
+            #pragma vertex vert
+            #pragma fragment frag
+            ENDHLSL
         }
 
     }

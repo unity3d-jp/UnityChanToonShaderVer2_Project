@@ -13,7 +13,7 @@
 // _IS_OUTLINE_CLIPPING_YESは、Clippigマスクを使用するシェーダーでのみ使用できる. OutlineのブレンドモードにBlend SrcAlpha OneMinusSrcAlphaを追加すること.
 //
             uniform float4 _LightColor0;
-            uniform float4 _BaseColor;
+//            uniform float4 _BaseColor;
             //v.2.0.7.5
             uniform float _Unlit_Intensity;
             uniform fixed _Is_Filter_LightColor;
@@ -62,6 +62,10 @@
                 float3 tangentDir : TEXCOORD2;
                 float3 bitangentDir : TEXCOORD3;
             };
+
+#undef unity_ObjectToWorld 
+#undef unity_WorldToObject 
+
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
@@ -109,8 +113,9 @@
                     return float4(1.0f, 1.0f, 1.0f, 1.0f);  // but nothing should be drawn except Z value as colormask is set to 0
                 }
                 _Color = _BaseColor;
-                float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                //v.2.0.7.5
+				float4 objPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
+					//v.2.0.7.5
+				float4 unity_AmbientSky = float4(0.1, 0.1, 0.1, 1.0f); //Todo.
                 half3 ambientSkyColor = unity_AmbientSky.rgb>0.05 ? unity_AmbientSky.rgb*_Unlit_Intensity : half3(0.05,0.05,0.05)*_Unlit_Intensity;
                 float3 lightColor = _LightColor0.rgb >0.05 ? _LightColor0.rgb : ambientSkyColor.rgb;
                 float lightColorIntensity = (0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b);

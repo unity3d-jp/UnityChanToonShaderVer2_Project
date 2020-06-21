@@ -986,8 +986,6 @@ Shader "HDRP/ToonTessellation"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 
 
-            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
-
         #ifdef DEBUG_DISPLAY
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Debug/DebugDisplay.hlsl"
         #endif
@@ -1044,6 +1042,67 @@ Shader "HDRP/ToonTessellation"
 
             ENDHLSL
         }
+
+        Tags{
+            "RenderType" = "Opaque"
+        }
+        Pass{
+            Name "Outline"
+            Tags {
+                "LightMode" = "SRPDefaultUnlit"
+            }
+            Cull[_SRPDefaultUnlitColMode]
+            ColorMask[_SPRDefaultUnlitColorMask]
+            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil
+            {
+                Ref[_StencilNo]
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
+
+            }
+
+            HLSLPROGRAM
+
+            #define TESSELLATION_ON
+            #define HAS_LIGHTLOOP
+            #define SHADERPASS SHADERPASS_FORWARD
+            #define SHADOW_LOW
+            #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+
+            #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
+            #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+//            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+//            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
+//            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
+
+
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
+
+        #ifdef DEBUG_DISPLAY
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Debug/DebugDisplay.hlsl"
+        #endif
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoopDef.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoop.hlsl"
+
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPassForward.hlsl"
+
+
+
+            #include "HDRPToonHead.hlsl"
+            #include "HDRPToonOutline.hlsl"
+
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma hull Hull
+            #pragma domain Domain
+            ENDHLSL
+        }
+
     }
 
     CustomEditor "UnityEditor.Rendering.HDRP.Toon.HDRPToonGUI"
