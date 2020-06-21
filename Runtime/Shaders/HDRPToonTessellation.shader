@@ -969,6 +969,22 @@ Shader "HDRP/ToonTessellation"
             #if !defined(_SURFACE_TYPE_TRANSPARENT) && !defined(DEBUG_DISPLAY)
                 #define SHADERPASS_FORWARD_BYPASS_ALPHA_TEST
             #endif
+
+            #pragma shader_feature _ _SHADINGGRADEMAP
+            // used in ShadingGradeMap
+            #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
+            #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
+            // used in Shadow calculation 
+            #pragma shader_feature _ UTS_USE_RAYTRACING_SHADOW
+            // used in DoubleShadeWithFeather
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+
+            #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
+
+
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 
         #ifdef DEBUG_DISPLAY
@@ -990,9 +1006,9 @@ Shader "HDRP/ToonTessellation"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoop.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
-            #include "ShaderPassForwardCopy.hlsl"
-//            #include "UtsLightLoop.hlsl"
-//            #include "ShaderPassForwardUTS.hlsl"
+//            #include "ShaderPassForwardCopy.hlsl"
+            #include "UtsLightLoop.hlsl"
+            #include "ShaderPassForwardUTS.hlsl"
 
             #pragma vertex Vert
             #pragma fragment Frag
