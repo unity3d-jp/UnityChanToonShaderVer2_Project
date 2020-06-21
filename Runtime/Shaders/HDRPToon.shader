@@ -234,7 +234,7 @@ Shader "HDRP/Toon"
         // parameters for UTS
         // -----------------------------------------------------------------------------
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
-        [HideInInspector] _utsVersionX("VersionX", Float) = 8
+        [HideInInspector] _utsVersionX("VersionX", Float) = 1
         [HideInInspector] _utsVersionY("VersionY", Float) = 0
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
