@@ -116,6 +116,10 @@ namespace UnityEditor.Rendering.HDRP.Toon
         static bool _TessellationSettings_Foldout = false;
         void TessellationSetting(Material material)
         {
+            if (tessellationMode == null)
+            {
+                return;
+            }
 
             _TessellationSettings_Foldout = Foldout(_TessellationSettings_Foldout, "【Tessellation Settings】");
             if (!_TessellationSettings_Foldout)
@@ -123,10 +127,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 return;
             }
 
-            if (tessellationMode == null)
-            {
-                return;
-            }
+
             DrawTesselationGUI();
         }
 
