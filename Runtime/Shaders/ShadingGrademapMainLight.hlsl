@@ -328,7 +328,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     else {
         _ViewCoord_UV = _ViewCoord_UV;
     }
-    float2 emissive_uv = lerp(i.uv0, _ViewCoord_UV, _Is_ViewCoord_Scroll);
+    float2 emissive_uv = lerp(Set_UV0, _ViewCoord_UV, _Is_ViewCoord_Scroll);
     //
     float4 _time_var = _Time;
     float _base_Speed_var = (_time_var.g * _Base_Speed);
@@ -348,27 +348,20 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
     //
                     //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
-
+#endif
+    // without gi yet.
+/*
     float3 envLightColor = envColor.rgb;
 
     float envLightIntensity = 0.299 * envLightColor.r + 0.587 * envLightColor.g + 0.114 * envLightColor.b < 1 ? (0.299 * envLightColor.r + 0.587 * envLightColor.g + 0.114 * envLightColor.b) : 1;
 
 
 
-    float3 pointLightColor = 0;
 
     //
     //Final Composition
 
     finalColor = saturate(finalColor) + (envLightColor * envLightIntensity * _GI_Intensity * smoothstep(1, 0, envLightIntensity / 2)) + emissive;
-
-
-    finalColor += pointLightColor;
-
-#endif
-
-
-
-
+*/
     return finalColor;
 }
