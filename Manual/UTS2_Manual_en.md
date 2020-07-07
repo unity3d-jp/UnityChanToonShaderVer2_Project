@@ -1,5 +1,5 @@
-# UTS2 / UniversalToon Ver.7.1.8 Manual
-### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+# UTS/UniversalToon Ver.2.2.0 Manual
+### 2020/07/07 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)***  
 
  [***Index of this manual***](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_en.md)  
@@ -11,16 +11,16 @@
 <img width = "800" src="Images_jpg/TPK_04.jpg">
 <img width = "800" src="Images_jpg/HiUni01.jpg">
 
-# What is UTS2/UniversalToon?  
+# What is UTS/UniversalToon?  
 UTS2(Unity-Chan Toon Shader 2.0) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of UTS2**..  
 
-**UniversalToon** is the UTS2 shader for Universal Render pipeline for Unity.  
-**UniversalToon** has all the feature of UTS2 v.2.0.7.5, and been implemented as an uber shader.  
+**UTS/UniversalToon** is the UTS2 shader for Universal Render pipeline for Unity.  
+**UTS/UniversalToon** has all the feature of UTS2 v.2.0.7.5, and been implemented as an uber shader.  
 For more information about **Universal Render Pipeline**, please refer to [here](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@9.0/manual/index.html).  
 
-# Introduction to UTS2/UniversalToon.  
+# Introduction to UTS/UniversalToon.  
 
-**UTS2/UniversalToon** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. 
+**UTS/UniversalToon** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. 
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_10.jpg">
 
@@ -42,24 +42,24 @@ The level of gradation between colors can also be adjusted in Unity in real-time
 This shader also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting.  
 There are several other convenient tools for things like **how visible eyes and eyebrows are through bangs**, which can further emphasize an anime-style look.  
 
-In short, UTS2/UniversalToon makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
+In short, UTS/UniversalToon makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
 Of course, it also supports Unity’s system shadow feature.  
 
 <img width = "800" src="Images_jpg/URP_image037.jpg">
 <img width = "800" src="Images_jpg/URP_image038.jpg">
 
-In addition, UTS2/UniversalToon allows for non-photorealistic rendering (NPR) to create any picture-like element that can be made with Universal Render Pipline/Lit shader that supports physical-based rendering (PBR).  
+In addition, UTS/UniversalToon allows for non-photorealistic rendering (NPR) to create any picture-like element that can be made with Universal Render Pipline/Lit shader that supports physical-based rendering (PBR).  
 
 Several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat users.  
 
-See for yourself by coloring your best character model with UTS2/UniversalToon.  
+See for yourself by coloring your best character model with UTS/UniversalToon.  
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the latest version of UTS2/UniversalToon: **UTS2/UniversalToon v.7.1.8**.  
+This manual focuses on the latest version of UTS/UniversalToon: **UTS/UniversalToon v.2.2.0**.  
 
 ## 【Target Environment】
 Unity 2019.3.4f1 or later is required.  
-Universal RP Version 7.1.8 or later is required.  
+Universal RP Version 7.3.1 or later is required.  
 If you want to use post-processing effects, you need Post Procesing Version 2.3.0 or later.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
@@ -71,10 +71,10 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 ## 【Download the whole project】
 ### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)  
 
-The project comes with a sample scene where you can learn various configuration examples for UTS2/UniversalToon.  
+The project comes with a sample scene where you can learn various configuration examples for UTS/UniversalToon.  
 
 ## 【Installation of the shader package】
-### [UTS2URP_ShaderOnly_v7.1.8.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v7.1.8.unitypackage)  
+### [UTSURP_ShaderOnly_v2.2.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage)  
 
 New installation can be done by D&D this package into Unity.  
 **You need to install Universal RP from Package Manager in advance.**  
@@ -83,8 +83,8 @@ New installation can be done by D&D this package into Unity.
 2. Open the project with Unity, create a new scene and keep it open.  
 3. D&D this package to Unity.
 
-## 【Start using UTS2/UniversalToon】
-You can start using UTS2/UniversalToon by assigning the **Toon** shader in the **Universal Render Pipeline** group to a new material in the **Shaders** menu of the Material Inspector. Here are the steps to take.  
+## 【Start using UTS/UniversalToon】
+You can start using UTS/UniversalToon by assigning the **Toon** shader in the **Universal Render Pipeline** group to a new material in the **Shaders** menu of the Material Inspector. Here are the steps to take.  
 
 1. Open the "+" menu in the Project window and select "Material" to create a new material.  
 
@@ -103,7 +103,7 @@ You can start using UTS2/UniversalToon by assigning the **Toon** shader in the *
 <center><img width = "300" src="Images_jpg/URP_image003.jpg"></center>
 
 
-## 【UTS2/UniversalToon as an Uber Shader】
+## 【UTS/UniversalToon as an Uber Shader】
 The legacy pipeline version of UTS2 was divided into multiple shaders by function.  
 
 <img width = "480" src="Images_jpg/UTS2_Standard.jpg">
@@ -115,7 +115,7 @@ UTS2/UinversalToon has been redesigned as an integrated shader (Uber shader), al
 All functions are able to be used by selecting what you need from the Material Inspector.  
 
 ### ● Switch Workflow mode
-Original UTS2 has two workflow modes, the "DoubleShadeWithFeather" shader and its more advanced version, the "ShadingGradeMap" shader. In UTS2/UniversalToon, you can switch between these two shaders by selecting "Workflow Mode", which is almost at the top of the Material Inspector.  
+Original UTS2 has two workflow modes, the "DoubleShadeWithFeather" shader and its more advanced version, the "ShadingGradeMap" shader. In UTS/UniversalToon, you can switch between these two shaders by selecting "Workflow Mode", which is almost at the top of the Material Inspector.  
 
 <img width = "400" src="Images_jpg/URP_image004.jpg">
 
@@ -131,7 +131,7 @@ Users can freely combine the functions they want by activating each operating mo
 Each operating mode will be explained later.  
 
 ### ● Compatibility with the UTS2 materials for legacy pipeline
-The UTS2 materials for Lecgacy pipeline are compatible with the UTS2/UniversalToon materials in terms of material property settings.  
+The UTS2 materials for Lecgacy pipeline are compatible with the UTS/UniversalToon materials in terms of material property settings.  
 Therefore, if you copy the UTS2 materials into the Universal Render Pipeline environment and switch the shader to "Universal Render Pipeline/Toon", the values of the workflow mode, texture name, blur stage, etc., will be reflected as they are.  
 
 For the special functions such as "Stencil" and "Cutoff" that were switched according to the shader file in the legacy pipeline, follow the above steps to activate each operating mode from the "Basic Shader Settings" menu.  
@@ -144,8 +144,8 @@ For the special functions such as "Stencil" and "Cutoff" that were switched acco
 
 <img width = "400" src="Images_jpg/URP_image008.jpg">
 
-UTS2/UniversalToon has two main workflow modes.  
-* `DoubleShadeWithFeather` : The standard workflow mode for UTS2/UniversalToon. Allows for 2 shade colors (Double Shade Colors) and  gradation between colors (Feathering).  
+UTS/UniversalToon has two main workflow modes.  
+* `DoubleShadeWithFeather` : The standard workflow mode for UTS/UniversalToon. Allows for 2 shade colors (Double Shade Colors) and  gradation between colors (Feathering).  
 * `ShadingGradeMap`: A more advanced workflow mode. In addition to the DoubleShadeWithFeather features, this shader can also hold a special map called a ShadingGradeMap.  
 
 <img width = "800" src="Images_jpg/URP_image035.jpg">
@@ -157,7 +157,7 @@ You can switch between the two workflow modes at any time from the "Workflow Mod
 
 ## 【How to activate the each Special Feature Mode】
 
-For the legacy UTS2, the shader-specific special features that were distinguished by suffix names such as `Transparent`, `StencilMask`, `StencilOut`, `Clipping`, or `TransClipping`, you can enable them from the settings of each special feature mode in the "Basic Shader Settings" for UTS2/UniversalToon.  
+For the legacy UTS2, the shader-specific special features that were distinguished by suffix names such as `Transparent`, `StencilMask`, `StencilOut`, `Clipping`, or `TransClipping`, you can enable them from the settings of each special feature mode in the "Basic Shader Settings" for UTS/UniversalToon.  
 
 <img width = "800" src="Images_jpg/URP_image009.jpg">
 
@@ -220,13 +220,13 @@ Most of them are integrated into the basic shader functionality.</small>
 
 #### ● Mobile shaders
 <small>In the Universal Render Pipeline, the Forward Add pass has been changed and merged with the standard render pass.  
-In UTS2/UniversalToon, Mobile shaders have been abolished accordingly</small>.  
+In UTS/UniversalToon, Mobile shaders have been abolished accordingly</small>.  
 
 #### ● Tessellation shaders
 <small>The universal render pipeline does not support DX11 Tesellation, so it has been deprecated</small>.  
 
 #### ● Helper shaders
-<small>It was deprecated in UTS2/UniversalToon</small>.  
+<small>It was deprecated in UTS/UniversalToon</small>.  
 
 ---
 # Sample Scenes
@@ -251,9 +251,9 @@ The following sample scenes can be found by opening the sample project and openi
 Each scene is intended as a reference for the relevant shader and lighting settings.  
 They should come in handy as an example when creating your own scenes.  
 
-# UTS2/UniversalToon Setting Menu：UTS2 Custom Inspector
+# UTS/UniversalToon Setting Menu：UTS2 Custom Inspector
 
-From here, you will know the function of the user interface **UTS 2 custom inspector** which sets each function of UTS2/UniversalToon.
+From here, you will know the function of the user interface **UTS 2 custom inspector** which sets each function of UTS/UniversalToon.
 
 "UTS2 Custom Inspector"(left below) can switch to the conventional "property list type inspector"(right below)  by clicking the `Show All Properties` button.
 
@@ -269,7 +269,7 @@ Some of the settings in the Inspector of property list type are validated by goi
 
 <img width = "400" src="Images_jpg/URP_image013.jpg">
 
-In this menu, you will make basic settings for UTS2/UniversalToon.  
+In this menu, you will make basic settings for UTS/UniversalToon.  
 In addition to selecting the two basic workflow modes, you can add a variety of special functions to the basic shaders by turning on and off various function modes.  
 
 | `Item` | Function | Property |
@@ -300,12 +300,12 @@ In addition to selecting the two basic workflow modes, you can add a variety of 
 <small>【**Caution**】As of May 2020, [VRChat](https://www.vrchat.com/) is not adopting the universal render pipeline. For the present (until the universal render pipeline were adopted in the future), please use [UTS2 for legacy pipeline](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project).</small>  
 
 
-UTS2/UniversalToon is a general purpose toon shader that can be used in various projects in Unity.  
-If you enjoy UTS2/UniversalToon on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of UTS2/UniversalToon's advanced features.  
+UTS/UniversalToon is a general purpose toon shader that can be used in various projects in Unity.  
+If you enjoy UTS/UniversalToon on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of UTS/UniversalToon's advanced features.  
 
-#### ● When setting up materials on UTS2/UniversalToon
-When you set up each material in UTS2/UniversalToon, please execute the `VRChat Recommendation` button in the Basic Shader Settings> Option Menu.  
-By executing this command, UTS2/UniversalToon will become familiar with various VRChat lighting environments.  
+#### ● When setting up materials on UTS/UniversalToon
+When you set up each material in UTS/UniversalToon, please execute the `VRChat Recommendation` button in the Basic Shader Settings> Option Menu.  
+By executing this command, UTS/UniversalToon will become familiar with various VRChat lighting environments.  
 If you upload your avatar on VRChat and it feels different from what you intended, you should try this command first.  
 
 #### ● If you want to brighten the appearance of characters in dark worlds
@@ -323,7 +323,7 @@ However, in a dark world, the post effect's bloom is often set to strong as well
 
 <img width = "400" src="Images_jpg/URP_image014.jpg">
 
-This Menu defines the basic colors used by UTS2/UniversalToon: the Base Color, 1st Shade Color, and 2nd Shade Color.  
+This Menu defines the basic colors used by UTS/UniversalToon: the Base Color, 1st Shade Color, and 2nd Shade Color.  
 These colors are arranged **in order from the light source’s direction, Base Color⇒ 1st Shade Color ⇒ 2nd Shade Color**.  
 Each color is determined by multiplying each pixel in the texture by each color, then multiplying by the light color.  
 
@@ -348,7 +348,7 @@ This block is where Normal Map settings are performed.
 
 <img width = "600" src="Images_jpg/Is_NormalToBase.jpg">
 
-**The Normal Map is generally used in UTS2/UniversalToon for Shade Color gradation.**.  
+**The Normal Map is generally used in UTS/UniversalToon for Shade Color gradation.**.  
 Using the Normal Map along with standard shading allows for more complex gradation effects. In the above image, **the left side reflects the normal map in color, the right does not reflect it**.  
 
 Besides, the normal map is used to adjust **skin texture** by using it together with the scale. Also, by preparing a normal map for MatCap, it is used to express **hair texture**.  
@@ -416,7 +416,7 @@ On the other hand, **for areas where the 2nd Shade Color doesn’t show** (areas
 | `Blur Level of ShadingGradeMap` | Blur the Shading Grade Map using the Mip Map function. To enable Mip Map, set Advanced> `Generate Mip Maps` to` ON` in the texture import settings. The default is 0 (no blur). | _BlurLevelSGM |
 
 #### 【What is the Shading Grade Map?】
-`DoubleShadeWithFeather` is the basic workflow in UTS2/UniversalToon, and `ShadingGradeMap` workflow is the expansion of this basic workflow using the shading grade map, which is a grayscale map to control shadows with the UV coordinate.  
+`DoubleShadeWithFeather` is the basic workflow in UTS/UniversalToon, and `ShadingGradeMap` workflow is the expansion of this basic workflow using the shading grade map, which is a grayscale map to control shadows with the UV coordinate.  
 
 <img width = "800" src="Images_jpg/0122-06_04.jpg">
 
@@ -488,6 +488,9 @@ Use this when you want to make further fine adjustments after deciding the color
 |:-------------------|:-------------------|:-------------------|
 | `Receive System Shadows` | When using Unity shadow system, set it to **Active**. This option must be sure to **Active** to use ReceiveShadow. (`ReceiveShadow` must also be selected under Mesh Renderer) | _Set_SystemShadowsToBase |
 | `System Shadows Level` | It controls Unity’s system shadow levels. The default is 0, and the levels can be adjusted to ±0.5. | _Tweak_SystemShadowsLevel |
+| `Raytraced Hard Shadow`| Enable the **Realtime raytraced Hard Shadow(RTHS) feature** for advanced users. Under the condition that DXR(DirectX Raytracing) is working properly and `ShadowRaytracer` component is attached to the main camera, the button turned in `Active` applies hard shadows with the Realtime raytracing feature as a shadow map. ||
+
+【NOTE】For more information about the RTHS feature and `ShadowRaytracer` component, see [here](https://github.com/unity3d-jp/RaytracedHardShadow/blob/dev/Documentation~/README_EN.md).  
 
 [![](https://img.youtube.com/vi/LXV37a1jhUE/0.jpg)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
@@ -510,7 +513,7 @@ These are adjustment items mainly for the real-time point light group.
 
 [![](https://img.youtube.com/vi/fJX8uQKzWhc/0.jpg)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
 
-With UTS2/UniversalToon, you can create a cel-shaded look with just point lighting.  
+With UTS/UniversalToon, you can create a cel-shaded look with just point lighting.  
 This is done by adjusting the Step slider of the Base Color /1st Shade Color, 1st Shade Color / 2nd Shade Color. With point lighting, the changes in shadows are more obvious when moving, compared to directional lighting.  
 To make it less obvious, use “Step_Offset” to make finer adjustments.  
 
@@ -528,7 +531,7 @@ If you want the highlights to be brighter, turn off “PointLights Hi-Cut Filter
 ## 4. “HighColor Settings” Menu
 
 **High Color** is also known as **Highlights or Speculum Lighting**.  
-It is used to reflect the main directional light. When the light moves the reflection also moves accordingly. In UTS2/UniversalToon, you can adjust the high color rendering.  
+It is used to reflect the main directional light. When the light moves the reflection also moves accordingly. In UTS/UniversalToon, you can adjust the high color rendering.  
 
 <img width = "400" src="Images_jpg/URP_image024.jpg">
 
@@ -562,7 +565,7 @@ As seen in Akatsuki Yuki’s (@AkatsukiWorks) work, by using HighColorMask and R
 
 In realistic styles, **RimLight**  is a technique in which light is set to shine on the rims of the object.  
 In non-photorealistic styles that includes Toon Shader, highlights are also placed on the edges of objects to make it more visible, and it is also called RimLight.  
-You can use these RimLight options in UTS2/UniversalToon.  
+You can use these RimLight options in UTS/UniversalToon.  
 
 <img width = "400" src="Images_jpg/URP_image025.jpg">
 
@@ -615,9 +618,9 @@ It is used for ZBrush texture rendering.
 
 When you google image search for Matcap, you can find a lot of examples. It was used to create metallic reflections before physics-based shaders were common.  
 You can use Matcap to create all kinds of textures in addition to metallic textures.  
-In UTS2/UniversalToon, you can enjoy MatCap with Adding mode, as well as Multiplication mode.  
+In UTS/UniversalToon, you can enjoy MatCap with Adding mode, as well as Multiplication mode.  
 
-<small>**※ HINT: In UTS2/UniversalToon, appropriate adjustments will be made to distortions caused by the camera. So the Matcap will not be distorted even when the object is on at the edge of the camera’s perspective. This setting is adjusted with the `MatCap Projection Camera`.**</small>  
+<small>**※ HINT: In UTS/UniversalToon, appropriate adjustments will be made to distortions caused by the camera. So the Matcap will not be distorted even when the object is on at the edge of the camera’s perspective. This setting is adjusted with the `MatCap Projection Camera`.**</small>  
 
 <img width = "400" src="Images_jpg/URP_image026.jpg">
 
@@ -781,7 +784,7 @@ In this way, when shifting colors with different luminance within the same hue t
 
 You can set up various outline-related settings. This menu is enabled when the `Transparent Mode` is `Off`. When the `Transparent Mode` is `On`, it will not be displayed (in this case, the outline function is also `Off`).  
 
-<small>【**Note**】UTS2/UniversalToon can display outlines when `Transparent Mode` is set to `Off` and `TransClipping Mode` is enabled. At this time, pre-depth processing is not performed in the translucent part, so the display may be different from `Transparent Mode`. This difference is a specification of UTS2/UniversalToon.</small>  
+<small>【**Note**】UTS/UniversalToon can display outlines when `Transparent Mode` is set to `Off` and `TransClipping Mode` is enabled. At this time, pre-depth processing is not performed in the translucent part, so the display may be different from `Transparent Mode`. This difference is a specification of UTS/UniversalToon.</small>  
 
 We are using the **inverted outline method for material-based objects** for the outline functions.  
 This method, to put it simply, spawns the inverted surface normal slightly bigger than the original object with a shader.  
@@ -968,12 +971,24 @@ Please watch this video about how to use Built-in Light Direction.
 
 # About Licensing  
 
-"UTS2/UniversalToon" is provided as **UCL2.0（Unity-chan License2.0）.**  
+"UTS/UniversalToon" is provided as **UCL2.0（Unity-chan License2.0）.**  
 For more details on Unity-chan’s license, see [here](https://unity-chan.com/contents/guideline_en/).  
 <center><img width = "140" src="Images_jpg/Light_Silhouette.jpg"></center>
 
-**HINT:** This is a frequently asked question, but you can redistribute your own 3D models (for both commercial use and non-commercial use) that includes the shader file (.shader), the included file (.hlsl) and the C# code (.cs) of UTS2/UniversalToon that is distributed by UCL2.0. You can do this regardless of the 3D model or content (including adult content).  
-For the convenience of users, we would like to ask you to state things such as “UTS2/UniversalToon v.8.0.0 was used” to make it easier for later versions but other than that, you are not required to state anything.  
+**HINT:** This is a frequently asked question, but you can redistribute your own 3D models (for both commercial use and non-commercial use) that includes the shader file (.shader), the included file (.hlsl) and the C# code (.cs) of UTS/UniversalToon that is distributed by UCL2.0. You can do this regardless of the 3D model or content (including adult content).  
+For the convenience of users, we would like to ask you to state things such as “UTS/UniversalToon v.2.2.0 was used” to make it easier for later versions but other than that, you are not required to state anything.  
 We would also like to ask you not to remove the header that states the  UCL2.0 license in each file.  
 
 **※If you decide to use it for your work** : When  you have finished your model or content that used UTS2, we would love to hear from you!!! Please tweet at  [Unity Technologies Japan](https://twitter.com/unity_japan) ! We look forward to hearing from you and seeing your amazing work!  
+
+
+# How to report issues
+
+Please report your issues from [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues).  
+When you make a new issue, please add the information below.  
+* **The version of UTS/UniversalToon** you are using :e.g. UTS/UniversalToon v.2.2.0
+* **The version of Unity** you are using :e.g. Unity 2019.3.4f1
+* **Type of OS** using Unity :e.g. Windows 10
+* **The version of Universal RP** you are using :e.g. Version 7.3.1
+
+【**Note**】Before reporting your issues, be sure to overwrite-install [the latest UTS/UniversalToon package](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage) to see if your problem still appears. Also, please check that the scenes in [the UTS/UniversalToon sample project](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip) work properly in your environment.  

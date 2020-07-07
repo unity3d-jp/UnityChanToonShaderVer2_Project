@@ -1,17 +1,17 @@
-# UTS2/UniversalToon マニュアル もくじ
+# UTS/UniversalToon マニュアル もくじ
 
-### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2020/07/07 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_en.md)***  
 
 ---
-- [UTS2/UniversalToon とは？](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#uts2universaltoon-%E3%81%A8%E3%81%AF)
-- [UTS2/UniversalToon の紹介](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#uts2universaltoon-%E3%81%AE%E7%B4%B9%E4%BB%8B)
+- [UTS/UniversalToon とは？](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#utsuniversaltoon-%E3%81%A8%E3%81%AF)
+- [UTS/UniversalToon の紹介](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#utsuniversaltoon-%E3%81%AE%E7%B4%B9%E4%BB%8B)
   - [【ターゲット環境】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E3%82%BF%E3%83%BC%E3%82%B2%E3%83%83%E3%83%88%E7%92%B0%E5%A2%83)
   - [【ターゲットプラットフォーム】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E3%82%BF%E3%83%BC%E3%82%B2%E3%83%83%E3%83%88%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0)
   - [【プロジェクト全体のダウンロード】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E5%85%A8%E4%BD%93%E3%81%AE%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89)
   - [【シェーダーパッケージのインストール】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-  - [【UTS2/UniversalToonを使い始める】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#uts2universaltoon%E3%82%92%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B)
-  - [【統合シェーダーとしての UTS2/UniversalToon】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E7%B5%B1%E5%90%88%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE-uts2universaltoon)
+  - [【UTS/UniversalToonを使い始める】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#utsuniversaltoon%E3%82%92%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B)
+  - [【統合シェーダーとしての UTS/UniversalToon】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E7%B5%B1%E5%90%88%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE-utsuniversaltoon)
     - [● ワークフローモードの切り替え](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E3%83%A2%E3%83%BC%E3%83%89%E3%81%AE%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88)
     - [● 「ステンシル機能」などの特殊機能を使用するには](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-%E3%82%B9%E3%83%86%E3%83%B3%E3%82%B7%E3%83%AB%E6%A9%9F%E8%83%BD%E3%81%AA%E3%81%A9%E3%81%AE%E7%89%B9%E6%AE%8A%E6%A9%9F%E8%83%BD%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF)
     - [● レガシーパイプライン版UTS2マテリアルとの互換性について](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-%E3%83%AC%E3%82%AC%E3%82%B7%E3%83%BC%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E7%89%88uts2%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E3%81%A8%E3%81%AE%E4%BA%92%E6%8F%9B%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
@@ -29,10 +29,10 @@
       - [● Tessellation系シェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-tessellation%E7%B3%BB%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
       - [● Helper系シェーダー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-helper%E7%B3%BB%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
 - [サンプルシーン](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B7%E3%83%BC%E3%83%B3)
-- [UTS2/UniversalToon 設定メニュー：UTS2カスタムインスペクター](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#uts2universaltoon-%E8%A8%AD%E5%AE%9A%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BCuts2%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC)
+- [UTS/UniversalToon 設定メニュー：UTS2カスタムインスペクター](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#utsuniversaltoon-%E8%A8%AD%E5%AE%9A%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BCuts2%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC)
   - [1. 「Basic Shader Settings」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#1-basic-shader-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
     - [【参考】VRChatユーザー向けの便利機能について](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#%E5%8F%82%E8%80%83vrchat%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E5%90%91%E3%81%91%E3%81%AE%E4%BE%BF%E5%88%A9%E6%A9%9F%E8%83%BD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
-      - [● UTS2/UniversalToonでマテリアル設定をはじめる時](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-uts2universaltoon%E3%81%A7%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B%E6%99%82)
+      - [● UTS/UniversalToonでマテリアル設定をはじめる時](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-utsuniversaltoon%E3%81%A7%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B%E6%99%82)
       - [● 暗いワールドでのキャラの見え方を明るくしたい場合](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#-%E6%9A%97%E3%81%84%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%81%A7%E3%81%AE%E3%82%AD%E3%83%A3%E3%83%A9%E3%81%AE%E8%A6%8B%E3%81%88%E6%96%B9%E3%82%92%E6%98%8E%E3%82%8B%E3%81%8F%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88)
   - [2.「Basic Three Colors and Control Maps Setups」メニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#2-basic-three-colors-and-control-maps-setups%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
     - [「NormalMap Settings」サブメニュー](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md#normalmap-settings%E3%82%B5%E3%83%96%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)

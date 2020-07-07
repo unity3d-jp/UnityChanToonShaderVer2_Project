@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0ebba9b1662f47b43bfb03aa0fc965b0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9286ffa17101b4e42ab990a709f7da17, type: 3}
---- !u!84 &605233698
+--- !u!84 &597181538
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -550,8 +550,8 @@ RenderTexture:
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 3
-  m_Width: 1397
-  m_Height: 786
+  m_Width: 1920
+  m_Height: 1080
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthFormat: 0
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_generateRenderTexture: 1
   m_outputType: 0
-  m_outputTexture: {fileID: 605233698}
+  m_outputTexture: {fileID: 597181538}
   m_assignGlobalTexture: 1
   m_globalTextureName: _RaytracedHardShadow
   m_cullBackFaces: 1
@@ -1062,7 +1062,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}

@@ -1,5 +1,5 @@
-﻿# UTS2 / UniversalToon Ver.7.1.8 マニュアル
-### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+﻿# UTS/UniversalToon Ver.2.2.0 マニュアル
+### 2020/07/07 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md)***  
 
  [**本マニュアルのもくじ**](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_ja.md)  
@@ -10,16 +10,16 @@
 <img width = "800" src="Images_jpg/TPK_04.jpg">
 <img width = "800" src="Images_jpg/HiUni01.jpg">
 
-# UTS2/UniversalToon とは？
+# UTS/UniversalToon とは？
 **UTS2 (ユニティちゃんトゥーンシェーダー 2.0)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、UTS2の最大の特長です**。  
 
-**UTS2/UniversalToon** は、Unityのユニバーサルレンダーパイプライン向けのUTS2です。  
-**UTS2/UniversalToon** は、UTS2 v.2.0.7.5の全機能を実装した、ウーバーシェーダー（統合型シェーダー）として設計されています。  
+**UTS/UniversalToon** は、Unityのユニバーサルレンダーパイプライン向けのUTS2です。  
+**UTS/UniversalToon** は、UTS2 v.2.0.7.5の全機能を実装した、ウーバーシェーダー（統合型シェーダー）として設計されています。  
 **ユニバーサルレンダーパイプライン（Universal Render Pipeline）** については、詳しくは[こちら](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@9.0/manual/index.html)を参照してください。  
 
 
-# UTS2/UniversalToon の紹介
-UTS2/UniversalToon は、セルルック3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
+# UTS/UniversalToon の紹介
+UTS/UniversalToon は、セルルック3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
 
 <img width = "800" src="Images_jpg/UT2018_UTS2_SuperTips_10.jpg">
 
@@ -40,25 +40,25 @@ UTS2/UniversalToon は、セルルック3DCGアニメーションの制作現場
 デザイン上必要となる固定影の配置も、各影色ごとに発生する位置を設定できる「**ポジションマップ**」に加え、ライティングによって影の出やすさを変えることのできる「**シェーディンググレードマップ**」と、２種類の手法を選べます。  
 さらに「**瞳や眉毛の前髪への透過**」などに使われる「**ステンシル機能**」のような、アニメ風キャラクター表現に便利な機能も搭載しています。  
 
-結果として、UTS2/UniversalToonでは、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
+結果として、UTS/UniversalToonでは、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
 もちろんUnityのシステムシャドウにも対応しています。  
 
 <img width = "800" src="Images_jpg/URP_image037.jpg">
 
 <img width = "800" src="Images_jpg/URP_image038.jpg">
 
-さらに物理ベースレンダリング（PBR）に対応するUniversal Render Pipline/Litシェーダーで表現できる絵的要素を、UTS2/UniversalToonでは、全てノンフォトリアリスティックレンダリング（NPR）で表現することが可能です。  
+さらに物理ベースレンダリング（PBR）に対応するUniversal Render Pipline/Litシェーダーで表現できる絵的要素を、UTS/UniversalToonでは、全てノンフォトリアリスティックレンダリング（NPR）で表現することが可能です。  
 
 また昨今のVRChatでのユーザーの声を反映し、様々なライティング設定の環境下でも、キャラクターが美しく表現されるように様々な工夫が実装されています。  
 
-是非、貴方のご自慢のキャラクターモデルをUTS2/UniversalToonで彩ってみてください。  
+是非、貴方のご自慢のキャラクターモデルをUTS/UniversalToonで彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、UTS2/UniversalToonの最新版 **UTS2/UniversalToon v.7.1.8** 向けに書かれています。  
+本マニュアルは、UTS/UniversalToonの最新版 **UTS/UniversalToon v.2.2.0** 向けに書かれています。  
 
 ## 【ターゲット環境】
 Unity 2019.3.4f1 もしくはそれ以降が必要です。  
-Universal RP Version 7.1.8 もしくはそれ以降が必要です。  
+Universal RP Version 7.3.1 もしくはそれ以降が必要です。  
 ポストプロセスエフェクトを使う場合には, Post Procesing Version 2.3.0 もしくはそれ以降が必要です。  
 
 Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
@@ -72,10 +72,10 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 ## 【プロジェクト全体のダウンロード】
 ### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)  
 
-プロジェクトには、UTS2/UniversalToonの様々な設定例が学べるサンプルシーンが付属します。  
+プロジェクトには、UTS/UniversalToonの様々な設定例が学べるサンプルシーンが付属します。  
 
 ## 【シェーダーパッケージのインストール】
-### [UTS2URP_ShaderOnly_v7.1.8.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTS2URP_ShaderOnly_v7.1.8.unitypackage)  
+### [UTSURP_ShaderOnly_v2.2.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage)  
 
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 **事前にPackage ManagerからUniversal RPをインストールしておくことが必要です。**  
@@ -84,8 +84,8 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 2. Unityでプロジェクトを開き、新規シーンを作成して開いておく。  
 3. 本パッケージをUnityにD&Dする。  
 
-## 【UTS2/UniversalToonを使い始める】
-UTS2/UniversalToonは、マテリアルインスペクターの**Shaders**メニューより、**Universal Render Pipeline**グループの中にある**Toon**シェーダーを新規マテリアルに割り当てることで、使用を開始できます。以下、その手順を示します。  
+## 【UTS/UniversalToonを使い始める】
+UTS/UniversalToonは、マテリアルインスペクターの**Shaders**メニューより、**Universal Render Pipeline**グループの中にある**Toon**シェーダーを新規マテリアルに割り当てることで、使用を開始できます。以下、その手順を示します。  
 
 1. Projectウィンドウの「＋」メニューを開き、「Material」を選択し、新規マテリアルを作成します。  
 
@@ -104,7 +104,7 @@ UTS2/UniversalToonは、マテリアルインスペクターの**Shaders**メニ
 <center><img width = "300" src="Images_jpg/URP_image003.jpg"></center>
 
 
-## 【統合シェーダーとしての UTS2/UniversalToon】
+## 【統合シェーダーとしての UTS/UniversalToon】
 レガシーパイプライン版のUTS2は、機能別に複数のシェーダーに別れていました。  
 
 <img width = "480" src="Images_jpg/UTS2_Standard.jpg">
@@ -116,7 +116,7 @@ UTS2/UinversalToonは統合型シェーダー（ウーバーシェーダー）�
 全ての機能は、マテリアルインスペクターより必要なものを呼び出して使用します。  
 
 ### ● ワークフローモードの切り替え
-UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シェーダーと、その高機能版である「ShadingGradeMap」シェーダーが存在します。この２つのシェーダーの切り替えは、UTS2/UniversalToonでは、マテリアルインスペクターのほぼトップにある「Workflow Mode」より選択します。  
+UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シェーダーと、その高機能版である「ShadingGradeMap」シェーダーが存在します。この２つのシェーダーの切り替えは、UTS/UniversalToonでは、マテリアルインスペクターのほぼトップにある「Workflow Mode」より選択します。  
 
 <img width = "400" src="Images_jpg/URP_image004.jpg">
 
@@ -144,8 +144,8 @@ UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シ
 
 <img width = "400" src="Images_jpg/URP_image008.jpg">
 
-UTS2/UniversalToonには、大きく分けて2つのワークフローモードがあります。  
-* `DoubleShadeWithFeather` : UTS2/UniversalToonの標準ワークフローモードです。2つの影色（Double Shade Colors）と、各々のカラーの境界にぼかし（Feather）を入れることができます。  
+UTS/UniversalToonには、大きく分けて2つのワークフローモードがあります。  
+* `DoubleShadeWithFeather` : UTS/UniversalToonの標準ワークフローモードです。2つの影色（Double Shade Colors）と、各々のカラーの境界にぼかし（Feather）を入れることができます。  
 * `ShadingGradeMap` : 高機能版のワークフローモードです。DoubleShadeWithFeatherの機能に加えて、ShadingGradeMapという強力なシャドウコントロールマップを持つことができます。  
 
 <img width = "800" src="Images_jpg/URP_image035.jpg">
@@ -159,7 +159,7 @@ UTS2/UniversalToonには、大きく分けて2つのワークフローモード�
 
 ## 【各特殊機能モードを有効にする】
 
-レガシーパイプライン版のUTS2において、`Transparent`、`StencilMask`、`StencilOut`、`Clipping`、`TransClipping`のようなサフィックス名で区別されていた各シェーダー別の特殊機能は、UTS2/UniversalToonでは「Basic Shder Settings」の各特殊機能の動作モードから有効にできます。  
+レガシーパイプライン版のUTS2において、`Transparent`、`StencilMask`、`StencilOut`、`Clipping`、`TransClipping`のようなサフィックス名で区別されていた各シェーダー別の特殊機能は、UTS/UniversalToonでは「Basic Shder Settings」の各特殊機能の動作モードから有効にできます。  
 
 <img width = "800" src="Images_jpg/URP_image009.jpg">
 
@@ -221,13 +221,13 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 #### ● Mobile系シェーダー
 <small>ユニバーサルレンダーパイプラインでは、Forward Addパスの扱いが変更になり、通常のレンダリングパスと統合されました。  
-それに合わせて、UTS2/UniversalToonでは、Mobile系シェーダーは廃止されました。</small>  
+それに合わせて、UTS/UniversalToonでは、Mobile系シェーダーは廃止されました。</small>  
 
 #### ● Tessellation系シェーダー
 <small>ユニバーサルレンダーパイプラインでは、DX11 Tesellationがサポートされていませんので、廃止されました。</small>  
 
 #### ● Helper系シェーダー
-<small>UTS2/UniversalToonでは廃止されました。</small>  
+<small>UTS/UniversalToonでは廃止されました。</small>  
 
 ---
 # サンプルシーン
@@ -252,9 +252,9 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 各シーンは、シェーダーやライティングの設定の参考用です。  
 作りたいルックやシーンの参考にしてください。  
 
-# UTS2/UniversalToon 設定メニュー：UTS2カスタムインスペクター
+# UTS/UniversalToon 設定メニュー：UTS2カスタムインスペクター
 
-ここからは、UTS2/UniversalToon の各機能を設定するユーザーインタフェース「**UTS2カスタムインスペクター**」の機能解説をします。  
+ここからは、UTS/UniversalToon の各機能を設定するユーザーインタフェース「**UTS2カスタムインスペクター**」の機能解説をします。  
 
 「UTS2カスタムインスペクター」（下図左）は、`Show All Properties` ボタンをクリックすることで、旧来の「プロパティリスト型インスペクター」（下図右）に切り替えることができます。  
 
@@ -270,7 +270,7 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 <img width = "400" src="Images_jpg/URP_image013.jpg">
 
-こちらのメニューでは、UTS2/UniversalToon の基本設定をおこないます。  
+こちらのメニューでは、UTS/UniversalToon の基本設定をおこないます。  
 基本となる2つのワークフローモードを選択する他にも、様々な動作モードをオン/オフにすることで、基本となるシェーダーに多彩な特殊機能を追加できます。  
 
 | `アイテム`  | 機能解説 | プロパティ |
@@ -300,11 +300,11 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 <small>【**注意**】2020年5月の段階では、[VRChat](https://www.vrchat.com/)はユニバーサルレンダーパイプラインを採用してはいません。ユニバーサルレンダーパイプラインが採用されるまでは、[レガシー版のUTS2](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project)を使うようにしてください。</small>  
 
-UTS2/UniversalToonは、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  
-VRChat上でUTS2/UniversalToonを楽しむ場合、以下の便利機能を使うことで、UTS2/UniversalToonの高機能を活かしつつ、VRChatの様々なライティング環境下でも安定して楽しむことができるようになります。  
+UTS/UniversalToonは、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  
+VRChat上でUTS/UniversalToonを楽しむ場合、以下の便利機能を使うことで、UTS/UniversalToonの高機能を活かしつつ、VRChatの様々なライティング環境下でも安定して楽しむことができるようになります。  
 
-#### ● UTS2/UniversalToonでマテリアル設定をはじめる時
-UTS2/UniversalToonで各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`VRChat Recommendation`ボタンを実行してください。  
+#### ● UTS/UniversalToonでマテリアル設定をはじめる時
+UTS/UniversalToonで各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`VRChat Recommendation`ボタンを実行してください。  
 このコマンドを実行することで、VRChatの様々なライティング環境にUTS2を馴染みやすくします。  
 VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
 
@@ -323,7 +323,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 
 <img width = "400" src="Images_jpg/URP_image014.jpg">
 
-このメニューでは、UTS2/UniversalToonの基本となる、基本色/１影色/２影色に用いるカラーを定義します。  
+このメニューでは、UTS/UniversalToonの基本となる、基本色/１影色/２影色に用いるカラーを定義します。  
 これらのカラーは、**光源方向から順に、基本色⇒１影色⇒２影色**のように配置されます。  
 おのおののカラーは、テクスチャの各ピクセルに対して各カラーを乗算し、さらにライトカラーを乗算することで決まります。  
 **※ヒント：各影色は、基本色よりも暗い必要はありませんし、２影色が１影色よりも明るくても問題ありません。特に２影色を１影色よりも明るくすると、環境からの照り返しのような表現ができます。**  
@@ -346,7 +346,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 
 <img width = "600" src="Images_jpg/Is_NormalToBase.jpg">
 
-**UTS2/UniversalToonでは、ノーマルマップは主に影色のぼかし表現に使います。**  
+**UTS/UniversalToonでは、ノーマルマップは主に影色のぼかし表現に使います。**  
 通常のシェーディング表現にノーマルマップを足してやることで、より複雑なぼかし表現をすることが可能となります。上の図で、**左側がノーマルマップをカラーに反映させたもの、右が反映させていないもの**です。  
 
 他にもノーマルマップは、スケールと共に使うことで**肌の質感**を調整したり、MatCap用のノーマルマップを別途用意することで、**髪の毛の質感**を表現するのに使われます。  
@@ -408,7 +408,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 | `Blur Level of ShadingGradeMap` | Mip Map機能を利用して、Shading Grade Mapをぼかします。Mip Mapを有効にするためには、テクスチャインポートセッティングで、Advanced > `Generate Mip Maps` を `ON` にしてください。デフォルトは0（ぼかさない）です。 | _BlurLevelSGM |
 
 #### 【シェーディンググレードマップとは？】
-UTS2/UniversalToonの標準ワークフローは、`DoubleShadeWithFeather`ですが、その標準ワークフローの機能を元にシェーディンググレードマップというグレースケールのマップを使うことで、さらに影の掛かり方をUV座標単位で制御できるように拡張したワークフローが、`ShadingGradeMap`ワークフローです。  
+UTS/UniversalToonの標準ワークフローは、`DoubleShadeWithFeather`ですが、その標準ワークフローの機能を元にシェーディンググレードマップというグレースケールのマップを使うことで、さらに影の掛かり方をUV座標単位で制御できるように拡張したワークフローが、`ShadingGradeMap`ワークフローです。  
 
 <img width = "800" src="Images_jpg/0122-06_04.jpg">
 
@@ -437,7 +437,7 @@ UTS2/UniversalToonの標準ワークフローは、`DoubleShadeWithFeather`で�
 ---
 ### ● DoubleShadeWithFeather ワークフロー
 
-UTS2/UniversalToonの標準ワークフローである、DoubleShadeWithFeatherのアイテムです。  
+UTS/UniversalToonの標準ワークフローである、DoubleShadeWithFeatherのアイテムです。  
 ライティングとは関係なく、モデルの指定位置に各々１影/２影色を配置できる、**ポジションマップ**を２枚持てるのが特徴です。  
 <img width = "400" src="Images_jpg/URP_image020.jpg">
 
@@ -470,12 +470,17 @@ UTS2/UniversalToonの標準ワークフローである、DoubleShadeWithFeather�
 Unityのシャドウシステムとトゥーンシェーディングを馴染ませるための調整アイテムです。  
 トゥーンシェードの場合、システムが提供する影は、キャラのセルフシャドウ（自身への落ち影）を表現するために必要なものです。  
 「Basic Lookdevs : Shading Step and Feather Settings」サブメニューアイテムで塗り分けレベルを決定した後で、さらに微調整をしたい時や、セルフシャドウ等のReceiveShadowの出方を微調整したい時に使用します。  
+
 <img width = "400" src="Images_jpg/URP_image022.jpg">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
 | `Receive System Shadows` | Unityのシャドウシステムを使う場合、**Active**にします。ReceiveShadowを使いたい場合には、必ず**Active**します。（同時にMesh Renderer側の`ReceiveShadow`もチェックされている必要があります。） | _Set_SystemShadowsToBase |
 | `System Shadows Level` | Unityのシステムシャドウのレベル調整をします。デフォルトは0で、±0.5の範囲で調整が可能です。` | _Tweak_SystemShadowsLevel |
+| `Raytraced Hard Shadow`| 上級者向け機能である**リアルタイムレイトレースハードシャドウ（RTHS）機能**を有効にします。DXR(DirectX Raytracing)が正常に稼働する環境で、かつメインカメラに`ShadowRaytracer`コンポーネントがアタッチされている場合、`Active`にすることで、リアルタイムレイトレースによるハードシャドウをシャドウマップとして適用することができます。||
+
+【NOTE】RTHS機能および`ShadowRaytracer`コンポーネントに関しては、詳しくは[こちら](https://github.com/unity3d-jp/RaytracedHardShadow/blob/dev/Documentation~/Readme.md)を参照してください。  
+
 
 [![](https://img.youtube.com/vi/LXV37a1jhUE/0.jpg)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
@@ -492,12 +497,13 @@ Unityのシャドウシステムとトゥーンシェーディングを馴染ま
 | `Step Offset for PointLights`| リアルタイムポイントライトのステップ（塗り分け段階）を微調整します。 | _StepOffset |
 | `PointLights Hi-Cut Filter` | リアルタイムポイントライトの基本色（明色）領域にかかる不要なハイライトをカットします。 特にぼかしのないセルルック時に、セルルック感を高めます。 | _Is_Filter_HiCutPointLightColor |
 
+
 ---
 ### ● ポイントライトによるカラー塗り分けを微調整する：Step Offset、PointLights Hi-Cut Filter
 
 [![](https://img.youtube.com/vi/fJX8uQKzWhc/0.jpg)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
 
-UTS2/UniversalToonは、ポイントライトだけでもセル風のルックが実現できます。  
+UTS/UniversalToonは、ポイントライトだけでもセル風のルックが実現できます。  
 セルルックは、基本色（明色）/１影色、１影色/２影色の各Stepスライダーを調整して設定しますが、ポイントライトの場合、ディレクショナルライト以上に移動に対する影の変化が顕著になります。  
 それらの変化ををある程度抑え込むための微調整用として、`Step Offset`スライダーを使います。  
 
@@ -516,7 +522,7 @@ UTS2/UniversalToonは、ポイントライトだけでもセル風のルック�
 
 **「ハイカラー」** は、**ハイライト、スペキュラ**とも呼ばれる表現です。  
 メインとなるディレクショナルライトからの「光」を照り返す表現として使われます。光の照り返し表現ですので、**ライトが動くと現れる位置も動きます**。  
-UTS2/UniversalToonでは、ハイカラー表現に対して様々な調整をすることが可能です。  
+UTS/UniversalToonでは、ハイカラー表現に対して様々な調整をすることが可能です。  
 
 <img width = "400" src="Images_jpg/URP_image024.jpg">
 
@@ -551,7 +557,7 @@ UTS2/UniversalToonでは、ハイカラー表現に対して様々な調整を�
 
 **「リムライト」** は、実写の世界では「ライトが被写体の周縁（リム）を照らすように配置する」テクニックを指しています。  
 トゥーンシェーダーを含むノンフォトリアリスティックな表現では、形状を強調するのに同じようにエッジにハイライトを置きますが、これもしばしば「リムライト」と呼ばれています。  
-UTS2/UniversalToonでは、リムライトに関しても様々なアイテムが利用できます。  
+UTS/UniversalToonでは、リムライトに関しても様々なアイテムが利用できます。  
 
 <img width = "400" src="Images_jpg/URP_image025.jpg">
 
@@ -600,9 +606,9 @@ UTS2では、リムライトマスクを設定することで、それらのテ�
 **「[マットキャップ（MatCap）](http://wiki.polycount.com/wiki/Matcap)」** とは、カメラベースでオブジェクトに貼り付けるスフィアマップのことです。ZBrushの質感表現で使われています。  
 Google画像検索で、「Matcap」で検索すると、様々なMatcapの例を見ることができます。物理ベースシェーダーが普及する以前は、金属的なテカリを表現する時によく使われました。  
 それらの金属的な質感表現だけでなく、Matcapは工夫次第で様々な質感を表現することが可能です。  
-UTS2/UniversalToonでは、Matcapテクスチャを乗算だけでなく加算でも合成できます。  
+UTS/UniversalToonでは、Matcapテクスチャを乗算だけでなく加算でも合成できます。  
 
-<small>**※ヒント：UTS2/UniversalToonでは、カメラパースによるMatCapの歪みに対して適切な補正がはいるので、オブジェクトがカメラの端に来てもMatCapが歪みません。この設定は、`MatCap Projection Camera`で調整します。**</small>  
+<small>**※ヒント：UTS/UniversalToonでは、カメラパースによるMatCapの歪みに対して適切な補正がはいるので、オブジェクトがカメラの端に来てもMatCapが歪みません。この設定は、`MatCap Projection Camera`で調整します。**</small>  
 
 <img width = "400" src="Images_jpg/URP_image026.jpg">
 
@@ -763,7 +769,7 @@ Unity上でαチャンネルを有効にするためには、各テクスチャ�
 
 アウトライン関連の様々な設定をおこないます。なお本メニューは、`Transparent Mode`が`Off`の時、有効になります。`Transparent Mode`が`On`の時は、表示されません（この時、アウトライン機能も`Off`になります）。  
 
-<small>【**参考**】UTS2/UniversalToonでは、`Transparent Mode`が`Off`で、かつ`TransClipping Mode`が有効の時、アウトラインを表示することができます。この時、半透明部分ではプレデプス処理がおこなわれませんので、`Transparent Mode`と表示が異なる場合がありますが、こちらは仕様といたします。</small>  
+<small>【**参考**】UTS/UniversalToonでは、`Transparent Mode`が`Off`で、かつ`TransClipping Mode`が有効の時、アウトラインを表示することができます。この時、半透明部分ではプレデプス処理がおこなわれませんので、`Transparent Mode`と表示が異なる場合がありますが、こちらは仕様といたします。</small>  
 
 UTS2では、アウトライン機能として、**マテリアルベースのオブジェクト反転方式のアウトライン**を採用しています。  
 この方式を簡単に説明すると、シェーダーで元のオブジェクトよりも少し大きめのオブジェクトを面法線だけ反転して生成します。  
@@ -948,12 +954,25 @@ Built-in Light Directionの使い方は、下のムービーを見てみてく�
 
 # ライセンスについて
 
-「UTS2/UniversalToon」は、 **UCL2.0（ユニティちゃんライセンス2.0）** で提供されます。  
+「UTS/UniversalToon」は、 **UCL2.0（ユニティちゃんライセンス2.0）** で提供されます。  
 ユニティちゃんライセンスについては、[こちら](https://unity-chan.com/contents/guideline/)を参照してください。  
 <center><img width = "140" src="Images_jpg/Light_Silhouette.jpg"></center>
 
-**※ヒント：** しばしば質問されることですが、UCL2.0で配布される「UTS2/UniversalToon シェーダーファイル（.shader）およびそのインクルードファイル（.hlsl）、C#コード（.cs）」は、これらのファイルを自作の3Dモデルなどに同梱し、商用/非商用を問わず再配布するのは自由です。また、どのようなタイプ/デザインの3Dモデルやコンテンツ（アダルト向けも含みます）に適用しても構いません。  
-再配布を受けるユーザーの便宜のために、「UTS2/UniversalToon v.8.0.0 を使用している」などの後のバージョンアップのために必要となる情報を記載することはお願いしたいですが、それ以外には特に掲示すべきものはありません。  
+**※ヒント：** しばしば質問されることですが、UCL2.0で配布される「UTS/UniversalToon シェーダーファイル（.shader）およびそのインクルードファイル（.hlsl）、C#コード（.cs）」は、これらのファイルを自作の3Dモデルなどに同梱し、商用/非商用を問わず再配布するのは自由です。また、どのようなタイプ/デザインの3Dモデルやコンテンツ（アダルト向けも含みます）に適用しても構いません。  
+再配布を受けるユーザーの便宜のために、「UTS/UniversalToon v.2.2.0 を使用している」などの後のバージョンアップのために必要となる情報を記載することはお願いしたいですが、それ以外には特に掲示すべきものはありません。  
 各ファイルのヘッダー部には、UCL2.0のライセンス表記がありますので、そちらは修正しないでそのまま同梱することをお願いします。  
 
-**※コンテンツに採用した場合** ：UTS2/UniversalToonを使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
+**※コンテンツに採用した場合** ：UTS/UniversalToonを使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
+
+
+-----
+# 不具合報告
+
+不具合の報告は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues)からお願いします。  
+新規報告の際、以下の情報をお願いします。 
+* 使用している**UTS/UniversalToonのバージョン**　：例　UTS/UniversalToon v.2.2.0
+* 使用している**Unityのバージョン**　：例　Unity 2019.3.4f1
+* Unityを使用している**OSの種類**　：例　Windows10
+* 使用している**Universal RPのバージョン**　：例　Version 7.3.1
+
+【**お願い**】不具合報告の前に、必ず[最新のUTS/UniversalToonパッケージ](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage)を上書きインストールしてみて、それでも不具合が出るか確認してください。また[サンプルプロジェクト](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)内のシーンがご自身の環境で正常に動作するかも、合わせてご確認をお願いします。

@@ -1,14 +1,11 @@
-﻿# Release History of UTS2/UniversalToon
+﻿# Release History of UTS/UniversalToon
 ## Version
+### 2020/07/07: 2.2.0 Release: UTS/UniversalToon for URP official release
+* The version number was inherited from UTS2 and changed to 2.2.0.  
+* Bug fix. Self-shadowing was not applied during the ShadingGradeMap workflow.  
+* RTHS (Realtime Raytraced Hard Shadow) support. Require the environment where DXR(DirectX Raytracing) works properly.  
 
-## 2020/05/22: Version 7.1.8
-* Changed the version number to the lowest version of Universal RP supported. (8.0.0⇒7.1.8)
-* Bug fix: Fixed a bug in ShadingGradeMap Workflow that did not work a receive shadow.  
-　With this fix, the shadow terminator part of ShadingGradeMap Workflow had the noise that may occur depending on the shadow map and light bias settings. If necessary, adjust the System Shadows Level slider.  
-* Bug fix: In Universal RP v.7.3.1 or later, the receive shadow could be broken when setting the shadow cascade.  
-
-### 2020/05/19 : 8.0.0 Release Candidate
-* The first release of UTS2 with Universal RP support.  
+### 2020/05/20：8.0.0 Pre Release：UTS/UniversalToon for URP Pre Release version
 
 ---
 # Release History of UTS2

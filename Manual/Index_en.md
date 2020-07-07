@@ -1,17 +1,17 @@
-# UTS2/UniversalToon Manual Index
+# UTS/UniversalToon Manual Index
 
-### 2020/05/22 Nobuyuki Kobayashi (Unity Technologies Japan)
+### 2020/07/07 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_ja.md)***  
 
 ---
-- [What is UTS2/UniversalToon?](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#what-is-uts2universaltoon)
-- [Introduction to UTS2/UniversalToon](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#introduction-to-uts2universaltoon)
+- [What is UTS/UniversalToon?](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#what-is-utsuniversaltoon)
+- [Introduction to UTS/UniversalToon](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#introduction-to-utsuniversaltoon)
   - [【Target Environment】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#target-environment)
   - [【Target Platforms】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#target-platforms)
   - [【Download the whole project】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#download-the-whole-project)
   - [【Installation of the shader package】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#installation-of-the-shader-package)
-  - [【Start usinh UTS2/UniversalToon】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#start-using-uts2universaltoon)
-  - [【UTS2/UniversalToon as an Uber Shader】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#uts2universaltoon-as-an-uber-shader)
+  - [【Start using UTS/UniversalToon】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#start-using-utsuniversaltoon)
+  - [【UTS/UniversalToon as an Uber Shader】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#utsuniversaltoon-as-an-uber-shader)
     - [● Switch Workflow mode](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-switch-workflow-mode)
     - [● To use special features as the "stencil function"](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-to-use-special-features-such-as-the-stencil-function)
     - [● Compatibility with the UTS2 materials for legacy pipeline](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-compatibility-with-the-uts2-materials-for-legacy-pipeline)
@@ -29,10 +29,10 @@
       - [● Tessellation shaders](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-tessellation-shaders)
       - [● Helper shaders](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-helper-shaders)
 - [Sample Scenes](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#sample-scenes)
-- [UTS2/UniversalToon Setting Menu：UTS2 Custom Inspector](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#uts2universaltoon-setting-menuuts2-custom-inspector)
+- [UTS/UniversalToon Setting Menu：UTS2 Custom Inspector](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#utsuniversaltoon-setting-menuuts2-custom-inspector)
   - [1.“Basic Shader Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#1-basic-shader-settings-menu)
     - [【Note】Useful functions for VRChat users](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#noteuseful-functions-for-vrchat-users)
-      - [● When setting up materials on UTS2/UniversalToon](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-when-setting-up-materials-on-uts2universaltoon)
+      - [● When setting up materials on UTS/UniversalToon](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-when-setting-up-materials-on-utsuniversaltoon)
       - [● If you want to brighten the appearance of characters in dark worlds](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#-if-you-want-to-brighten-the-appearance-of-characters-in-dark-worlds)
   - [2.“Basic Three Colors and Control Maps Setups” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#2-basic-three-colors-and-control-maps-setups-menu)
     - [“NormalMap Settings” Submenu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md#normalmap-settings-submenu)
