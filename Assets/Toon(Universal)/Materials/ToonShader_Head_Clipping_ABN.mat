@@ -211,7 +211,9 @@ Material:
     - _ZWriteMode: 1
     - _simpleUI: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.075
+    - _utsVersionX: 2
+    - _utsVersionY: 2
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
     - _2nd_ShadeColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
