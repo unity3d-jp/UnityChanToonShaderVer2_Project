@@ -9,7 +9,7 @@ using UnityEditor;
 
 namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 {
-    public class UniversalToonGUI : BaseShaderGUI
+    public class UniversalToonGUI : UnityEditor.ShaderGUI
     {
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
@@ -2807,9 +2807,6 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             EditorGUI.showMixedValue = false;
         }
 
-        public override void MaterialChanged(Material material)
-        {
-            
-        }
+
     } // End of UTS2GUI2
 }// End of namespace UnityChan
