@@ -2,7 +2,7 @@
 ---
 <img width = "800" src="Documentation~/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [English](README.md)***  
+***Read this document in [English](README.md)***  
 
 ## 【UTS/UniversalToonの概要】
 
@@ -51,7 +51,7 @@ UTS/UniversalToonでは、アクセントカラーとして**2影色とAp(対蹠
 
 -----
 ## 【ユーザーマニュアル】
-**[日本語マニュアル（v.2.2.0版）](Documentation~/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+**[日本語マニュアル（v.2.2.0版）](Documentation~/index_ja.md)が提供されています。合わせてご利用ください。**  
 
 ユーザーマニュアルには、トゥーンスタイルに関する、豊富なナレッジが集まっています。  
 マニュアルを読みつつ、実際にUTS/UniversalToonを使ってみるを繰り返すことで、美しいトゥーンスタイルを作り上げるための方法論が自然に身につきます。  
@@ -80,7 +80,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 3.  __+__ ボタンをクリックしてパッケージを追加する。ダウンロードしたパッケージは "add package from disk..." で追加出来ます。
 
 インストール前に元のプロジェクトのバックアップを取っておくことを推奨します。
-インストール後は、必ず[マニュアル](Documentation~/UTS2_Manual_ja.md)を確認するようにしてください。  
+インストール後は、必ず[マニュアル](Documentation~/index_ja.md)を確認するようにしてください。  
 マニュアルには、UTS/UniversalToonの使い方が詳しく解説されています。  
 
 -----

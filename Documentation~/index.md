@@ -1,9 +1,5 @@
 # UTS/UniversalToon Ver.2.2.0 Manual
-### 2020/07/07 Nobuyuki Kobayashi (Unity Technologies Japan)
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)***  
-
- [***Index of this manual***](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/Index_en.md)  
-
+***Read this document in [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)***  
 
 [![](Images_jpg/SDUnitychan_URP.jpg)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 <img width = "800" src="Images_jpg/CRS03.jpg">
@@ -968,16 +964,6 @@ The drop shadow of this part will be used for the directional light in the scene
 Please watch this video about how to use Built-in Light Direction.  
 
 [![](https://img.youtube.com/vi/IFAPrbAGfmw/0.jpg)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
-
-# About Licensing  
-
-"UTS/UniversalToon" is provided as **UCL2.0（Unity-chan License2.0）.**  
-For more details on Unity-chan’s license, see [here](https://unity-chan.com/contents/guideline_en/).  
-<center><img width = "140" src="Images_jpg/Light_Silhouette.jpg"></center>
-
-**HINT:** This is a frequently asked question, but you can redistribute your own 3D models (for both commercial use and non-commercial use) that includes the shader file (.shader), the included file (.hlsl) and the C# code (.cs) of UTS/UniversalToon that is distributed by UCL2.0. You can do this regardless of the 3D model or content (including adult content).  
-For the convenience of users, we would like to ask you to state things such as “UTS/UniversalToon v.2.2.0 was used” to make it easier for later versions but other than that, you are not required to state anything.  
-We would also like to ask you not to remove the header that states the  UCL2.0 license in each file.  
 
 **※If you decide to use it for your work** : When  you have finished your model or content that used UTS2, we would love to hear from you!!! Please tweet at  [Unity Technologies Japan](https://twitter.com/unity_japan) ! We look forward to hearing from you and seeing your amazing work!  
 

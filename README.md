@@ -2,7 +2,7 @@
 ---
 <img width = "800" src="Documentation~/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [日本語版](README_ja.md)***  
+***Read this document in [日本語版](README_ja.md)***  
 
 ## 【Overview : What is UTS/UniversalToon?】
 
@@ -51,7 +51,7 @@ UTS/UniversalToon is very useful if you want to decorate your game scene with be
 
 -----
 ## 【Users' Manual】
-**[English manual for v.2.2.0](Documentation~/UTS2_Manual_en.md) is available now.**  
+**[English manual for v.2.2.0](Documentation~/index.md) is available now.**  
 
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using UTS/UniversalToon actually is the best way to learn the beautiful toon style.  
@@ -78,7 +78,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 3. Add this package by clicking __+__ button. You can add downloaded package by selecting "add package from disk..."
 
 It is always recommended to backup your project before install.
-Also check the [documentation](Documentation~/UTS2_Manual_en.md). 
+Also check the [documentation](Documentation~/index.md). 
 The manual explains how to use UTS/UniversalToon in detail.  
 
 Please contact us if you have any issues.
