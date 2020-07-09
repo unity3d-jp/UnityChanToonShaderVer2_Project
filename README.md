@@ -85,7 +85,7 @@ Please contact us if you have any issues.
 
 -----
 ## 【How to report issues】
-Please report your issues from [here](issues).  
+Please report your issues from [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues).  
 When you make a new issue, please add the information below.  
 * **The version of UTS/UniversalToon** you are using :e.g. UTS/UniversalToon v.2.2.0
 * **The version of Unity** you are using :e.g. Unity 2019.3.4f1

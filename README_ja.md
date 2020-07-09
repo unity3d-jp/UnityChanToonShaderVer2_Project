@@ -74,9 +74,9 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 
 -----
 ## 【インストール】
-- UTS/UniversalToonは __Package Manager__からインストールします。 
+- UTS/UniversalToonは __Package Manager__ からインストールします。 
 1. githubからパッケージをダウンロードする。
-2. お使いのUnityからPackage Managerを開く。 （__メニュー＞Window>Package Manager__ ）
+2. お使いのUnityからPackage Managerを開く。 （ __メニュー＞Window>Package Manager__ ）
 3.  __+__ ボタンをクリックしてパッケージを追加する。ダウンロードしたパッケージは "add package from disk..." で追加出来ます。
 
 インストール前に元のプロジェクトのバックアップを取っておくことを推奨します。
@@ -85,7 +85,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 
 -----
 ## 【不具合報告】
-不具合の報告は[こちら](issues)からお願いします。  
+不具合の報告は[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues)からお願いします。  
 新規報告の際、以下の情報をお願いします。 
 * 使用している**UTS/UniversalToonのバージョン**　：例　UTS/UniversalToon v.2.2.0
 * 使用している**Unityのバージョン**　：例　Unity 2019.3.4f1
