@@ -1,5 +1,5 @@
 # UTS/UniversalToon Ver.2.2.0 Manual
-***Read this document in [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_ja.md)***  
+***Read this document in [日本語版](index_ja.md)***  
 
 [![](Images_jpg/SDUnitychan_URP.jpg)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 <img width = "800" src="Images_jpg/CRS03.jpg">
@@ -230,7 +230,7 @@ From here, you will know the function of the user interface **UTS 2 custom inspe
 <img width = "300" src="Images_jpg/URP_image033.jpg">
 <img width = "300" src="Images_jpg/URP_image034.jpg">
 
-Function description of the property list type is [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Props_en.md).  
+Function description of the property list type is [here](Props_en.md).  
 You can restore the UI style of Inspector with the `Change CustomUI` button.  
 Some of the settings in the Inspector of property list type are validated by going back to the UTS2 Custom Inspector. Therefore, it is strongly recommended that you **usually use the UTS2 Custom Inspector**.  
 
@@ -791,7 +791,7 @@ Items in this submenu can further enhance the outline function.
 | `Use Outline Texture` | Turn `Active` this, when you want to paste texture to the inverted-outline object. | _Is_OutlineTex |
 | `Outline Texture` | Use this when you want the outline to have special textures. By changing the textures, you can give the outlines patterns, or make the outline unique by changing the texture of the inverted object which will be front-face culled. | _OutlineTex |
 | `Use Baked Normal for Outline` | By turning `Active` this, you can turn on `Baked Normal for Outline`. | _Is_BakedNormal |
-| `Baked NormalMap for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline). | _BakedNormal |
+| `Baked NormalMap for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](index.md#tracing-baked-vertices-normals-baked-normal-for-outline). | _BakedNormal |
 
 ---
 ### ● Adjusting the strength of outlines：**Outline Sampler**
