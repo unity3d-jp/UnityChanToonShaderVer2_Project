@@ -1,4 +1,4 @@
-﻿# 【UTS/UniversalToon Ver.2.2.0】
+# 【UTS/UniversalToon Ver.2.2.0】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
@@ -69,11 +69,6 @@ This package uses a forward rendering environment. Using a linear color space is
 ## 【Target Platforms】
 Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch  
 
------
-## 【License】
-UTS/UniversalToon is provided under the Unity-Chan License 2.0 terms.  
-Please refer to the following link for information regarding the Unity-Chan License.  
-https://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【Download whole project】
@@ -82,20 +77,17 @@ https://unity-chan.com/contents/guideline_en/
 The project comes with sample scenes where you can learn various setting examples of UTS/UniversalToon.  
 
 -----
-## 【Shader Installation】
-### [UTSURP_ShaderOnly_v2.2.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage)  
+## 【Install】
+- You can add UTS/UniversalToon from __Package Manager__. 
+1. Download this package from github.
+2. Open Unity Package Manager in your Unity from __Window>Package Manager__ menu.
+3. Add this package by clicking __+__ button. You can add downloaded package by selecting "add package from disk..."
 
-When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
-**You should install Universal RP from Package Manager before installation.**  
-
-1. Back-up all previous projects.  
-2. When opening a project in Unity, create a new scene beforehand.  
-3. Drag and drop this pack into Unity.  
-
-Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md) after installation.  
+It is always recommended to backup your project before install.
+Also check the [documentation](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md). 
 The manual explains how to use UTS/UniversalToon in detail.  
 
-Please contact us if you have any issues.  
+Please contact us if you have any issues.
 
 -----
 ## 【How to report issues】
@@ -106,11 +98,12 @@ When you make a new issue, please add the information below.
 * **Type of OS** using Unity :e.g. Windows 10
 * **The version of Universal RP** you are using :e.g. Version 7.3.1
 
-【**Note**】Before reporting your issues, be sure to overwrite-install [the latest UTS/UniversalToon package](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage) to see if your problem still appears. Also, please check that the scenes in [the UTS/UniversalToon sample project](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip) work properly in your environment.  
+【**Note**】Before reporting your issues, make sure you are using the latest version and see if your problem still appears. 
+Also, please check that the scenes in [the UTS/UniversalToon sample project](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip) work properly in your environment.  
 
 -----
-## 【Release History】  
-The release history of UTS/UniversalToon is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/HISTORY_en.md)  
+## 【Changelog】  
+The changelog of UTS/UniversalToon is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/CHANGELOG.md)  
 
 -----
 ## 【Information】  

@@ -6,6 +6,7 @@
 [Uu]nityPackageManager/
 [Ll]ogs/
 Assets/AssetStoreTools*
+!Documentation~
 
 # Visual Studio cache directory
 /.vs/
