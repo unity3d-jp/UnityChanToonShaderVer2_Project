@@ -53,32 +53,6 @@ You may be surprised to see your character looking better than ever before.
 
 This manual focuses on the latest version of UTS/UniversalToon: **UTS/UniversalToon v.2.2.0**.  
 
-## 【Target Environment】
-Unity 2019.3.4f1 or later is required.  
-Universal RP Version 7.3.1 or later is required.  
-If you want to use post-processing effects, you need Post Procesing Version 2.3.0 or later.  
-
-This package uses a forward rendering environment. Using a linear color space is recommended.  
-(A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
-
-## 【Target Platforms】
-Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch  
-
-## 【Download the whole project】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)  
-
-The project comes with a sample scene where you can learn various configuration examples for UTS/UniversalToon.  
-
-## 【Installation of the shader package】
-### [UTSURP_ShaderOnly_v2.2.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage)  
-
-New installation can be done by D&D this package into Unity.  
-**You need to install Universal RP from Package Manager in advance.**  
-
-1. Make a backup of your original project  
-2. Open the project with Unity, create a new scene and keep it open.  
-3. D&D this package to Unity.
-
 ## 【Start using UTS/UniversalToon】
 You can start using UTS/UniversalToon by assigning the **Toon** shader in the **Universal Render Pipeline** group to a new material in the **Shaders** menu of the Material Inspector. Here are the steps to take.  
 
@@ -964,17 +938,3 @@ The drop shadow of this part will be used for the directional light in the scene
 Please watch this video about how to use Built-in Light Direction.  
 
 [![](https://img.youtube.com/vi/IFAPrbAGfmw/0.jpg)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
-
-**※If you decide to use it for your work** : When  you have finished your model or content that used UTS2, we would love to hear from you!!! Please tweet at  [Unity Technologies Japan](https://twitter.com/unity_japan) ! We look forward to hearing from you and seeing your amazing work!  
-
-
-# How to report issues
-
-Please report your issues from [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues).  
-When you make a new issue, please add the information below.  
-* **The version of UTS/UniversalToon** you are using :e.g. UTS/UniversalToon v.2.2.0
-* **The version of Unity** you are using :e.g. Unity 2019.3.4f1
-* **Type of OS** using Unity :e.g. Windows 10
-* **The version of Universal RP** you are using :e.g. Version 7.3.1
-
-【**Note**】Before reporting your issues, be sure to overwrite-install [the latest UTS/UniversalToon package](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage) to see if your problem still appears. Also, please check that the scenes in [the UTS/UniversalToon sample project](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip) work properly in your environment.  

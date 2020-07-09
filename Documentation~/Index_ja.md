@@ -53,34 +53,6 @@ UTS/UniversalToon は、セルルック3DCGアニメーションの制作現場�
 
 本マニュアルは、UTS/UniversalToonの最新版 **UTS/UniversalToon v.2.2.0** 向けに書かれています。  
 
-## 【ターゲット環境】
-Unity 2019.3.4f1 もしくはそれ以降が必要です。  
-Universal RP Version 7.3.1 もしくはそれ以降が必要です。  
-ポストプロセスエフェクトを使う場合には, Post Procesing Version 2.3.0 もしくはそれ以降が必要です。  
-
-Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
-（ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
-
-
-## 【ターゲットプラットフォーム】
-Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch  
-
-
-## 【プロジェクト全体のダウンロード】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)  
-
-プロジェクトには、UTS/UniversalToonの様々な設定例が学べるサンプルシーンが付属します。  
-
-## 【シェーダーパッケージのインストール】
-### [UTSURP_ShaderOnly_v2.2.0.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/UTSURP_ShaderOnly_v2.2.0.unitypackage)  
-
-新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
-**事前にPackage ManagerからUniversal RPをインストールしておくことが必要です。**  
-
-1. 元のプロジェクトのバックアップをとっておく  
-2. Unityでプロジェクトを開き、新規シーンを作成して開いておく。  
-3. 本パッケージをUnityにD&Dする。  
-
 ## 【UTS/UniversalToonを使い始める】
 UTS/UniversalToonは、マテリアルインスペクターの**Shaders**メニューより、**Universal Render Pipeline**グループの中にある**Toon**シェーダーを新規マテリアルに割り当てることで、使用を開始できます。以下、その手順を示します。  
 
@@ -948,18 +920,3 @@ Built-in Light Directionのライトカラーは、シーン中のメインと�
 Built-in Light Directionの使い方は、下のムービーを見てみてください。  
 
 [![](https://img.youtube.com/vi/IFAPrbAGfmw/0.jpg)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
-
-**※コンテンツに採用した場合** ：UTS/UniversalToonを使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
-
-
------
-# 不具合報告
-
-不具合の報告は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/issues)からお願いします。  
-新規報告の際、以下の情報をお願いします。 
-* 使用している**UTS/UniversalToonのバージョン**　：例　UTS/UniversalToon v.2.2.0
-* 使用している**Unityのバージョン**　：例　Unity 2019.3.4f1
-* Unityを使用している**OSの種類**　：例　Windows10
-* 使用している**Universal RPのバージョン**　：例　Version 7.3.1
-
-【**お願い**】不具合報告の前に、必ず最新版に更新してみて、それでも不具合が出るか確認してください。また[サンプルプロジェクト](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/urp/master.zip)内のシーンがご自身の環境で正常に動作するかも、合わせてご確認をお願いします。
