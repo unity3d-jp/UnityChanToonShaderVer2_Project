@@ -1,4 +1,4 @@
-﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.7】
+﻿# 【Universal Toon Shader (Unity-Chan Toon Shader 2)】
 ---
 <img width = "800" src="./Documentation~/images/UTS2_TopImage00.png?raw=true">
 
