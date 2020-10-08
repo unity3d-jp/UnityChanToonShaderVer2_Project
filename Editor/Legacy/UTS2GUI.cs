@@ -6,9 +6,10 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace UTJ.UnitychanToonShader2
+namespace UnityEditor.Rendering.Toon.ShaderGUI
 {
-    public class UTS2GUI : ShaderGUI {
+    public class UTS2GUI : UnityEditor.ShaderGUI
+    {
 
         public enum _UTS_Technique{
             DoubleSideWithFeather, ShadingGradeMap, OutlineObject
