@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using UnityEngine;
 using UnityEditor;
+using System.Text;
 
 namespace UnityGuidRegenerator {
     public class UnityGuidRegeneratorMenu {
@@ -123,7 +125,12 @@ namespace UnityGuidRegenerator {
 
                     contents = contents.Replace("guid: " + oldGuid, "guid: " + newGuid);
                 }
+                UnityEngine.Debug.Log("File.WriteAllText(" + filePath + ")");
+#if false
                 File.WriteAllText(filePath, contents);
+#else
+                using (FileStream fs = new FileStream(filePath, FileMode.Open)) { using (TextWriter tw = new StreamWriter(fs, Encoding.UTF8, 1024, true)) { tw.Write(contents); } fs.SetLength(fs.Position); }
+#endif
             }
 
             EditorUtility.ClearProgressBar();
