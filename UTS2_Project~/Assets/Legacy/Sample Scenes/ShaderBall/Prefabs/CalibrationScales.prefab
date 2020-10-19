@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &100000
 GameObject:
@@ -136,7 +136,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bec9587348cdff54e80d936f27665543, type: 2}
+  - {fileID: 2100000, guid: db101e0da71b47f4a5b8cdb85376821b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +168,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 552450ecb03314e42b43f5e518510ce9, type: 2}
+  - {fileID: 2100000, guid: c1890bf7b67449398a0e7dce2599790c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -200,7 +200,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9cda93786dd278643a8e5b38a1440c18, type: 2}
+  - {fileID: 2100000, guid: d9cc6cdcb3694e8286e1eba3054cf23d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,7 +239,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_Mesh: {fileID: 4300002, guid: 414b7da4757ec644f99c083c95b9434d, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 363752abf99140439c12e588964879d0, type: 3}
 --- !u!64 &6400000
 MeshCollider:
   m_ObjectHideFlags: 1

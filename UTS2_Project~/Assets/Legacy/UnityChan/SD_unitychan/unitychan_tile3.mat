@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
@@ -35,11 +35,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: e03d9cf24087ffd428f67d9a1fe5dda2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 309cb66bbb2f4c588f4d9c48f4709362, type: 3}
         m_Scale: {x: 25, y: 25}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e03d9cf24087ffd428f67d9a1fe5dda2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 309cb66bbb2f4c588f4d9c48f4709362, type: 3}
         m_Scale: {x: 25, y: 25}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

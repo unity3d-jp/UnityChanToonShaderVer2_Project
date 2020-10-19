@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: e22da664ebab32d4ca5bea4d43b0ff43, type: 3}
+        m_Texture: {fileID: 2800000, guid: 137fcc7db1b84b7dbb1848c49ce53f8e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
@@ -35,11 +35,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HighColor_Tex:
-        m_Texture: {fileID: 2800000, guid: 38b0fd74fd3c31140bf78e39b7db1534, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7f482ad3e26c453a99b72526c0d3584b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 38b0fd74fd3c31140bf78e39b7db1534, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7f482ad3e26c453a99b72526c0d3584b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
@@ -63,7 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_HighColorMask:
-        m_Texture: {fileID: 2800000, guid: 9a609919cd2c72a46ae34a50bf6cfe52, type: 3}
+        m_Texture: {fileID: 2800000, guid: 332c02a3aa1e4d039e0d5ff306f6e97c, type: 3}
         m_Scale: {x: 12.25, y: 10}
         m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:

@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mirror
-  m_Shader: {fileID: 4800000, guid: 5cf6158d82e0d294eb15c22705f40686, type: 3}
+  m_Shader: {fileID: 4800000, guid: bf97ced88a8d48d2a4b7c36ef68c6a52, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

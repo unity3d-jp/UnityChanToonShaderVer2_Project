@@ -1,11 +1,11 @@
-fileFormatVersion: 2
-guid: 6a6f0b0773f6fbe4ebaaa0eff2d31199
+﻿fileFormatVersion: 2
+guid: 60e02dec75df475c98eb462e80614daa
 timeCreated: 1519479456
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - edgeDetectShader: {fileID: 4800000, guid: 25f3ae0d0271490419a188afd866a647, type: 3}
+  - edgeDetectShader: {fileID: 4800000, guid: 289c5792437d4359a232b753e7b507c6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
