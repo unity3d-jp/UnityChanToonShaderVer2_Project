@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4bd157dffa3942418aeb1c17083168c, type: 2}
+  - {fileID: 2100000, guid: c178d670bef3445191268f1c9a98fa9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 145015722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598daa855b333224491c526ad4a58a9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 731e4dc487df4cffb4515bdb94b5168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
@@ -358,7 +358,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4bd157dffa3942418aeb1c17083168c, type: 2}
+  - {fileID: 2100000, guid: c178d670bef3445191268f1c9a98fa9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 578891318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598daa855b333224491c526ad4a58a9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 731e4dc487df4cffb4515bdb94b5168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
@@ -520,7 +520,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 82fccc6b9c97cc146907948422fe2e80, type: 2}
+  sharedProfile: {fileID: 11400000, guid: ab08810358b84943a1c7adf8073e1771, type: 2}
 --- !u!4 &1247007094
 Transform:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2111549245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd026706e81db0440add962177d87b23, type: 3}
+  m_Script: {fileID: 11500000, guid: be54599c856141aea9ea2aeaaecd3646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   focus: {x: 0, y: 0, z: 0}

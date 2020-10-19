@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: e22da664ebab32d4ca5bea4d43b0ff43, type: 3}
+        m_Texture: {fileID: 2800000, guid: fd32538ac50e4d84b1310c2359c59eb5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
@@ -55,19 +55,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 38b0fd74fd3c31140bf78e39b7db1534, type: 3}
+        m_Texture: {fileID: 2800000, guid: 500f1789591a4bdc8e3151f3864e6850, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: 2a97ca8db51c5d347968b667f0fbfde0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7fc5cad50079488eb27cd58fbcd0ccd4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 0acd5974827369042b71efa22a9a1947, type: 3}
+        m_Texture: {fileID: 2800000, guid: 19cc874186ca44d0a000ed319cf4fbf9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapForMatCap:
-        m_Texture: {fileID: 2800000, guid: 966eac91234ebbf4fad5eed15f63fa78, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6be797768bdd420e922944fbd3b15eaa, type: 3}
         m_Scale: {x: 50, y: 0.001}
         m_Offset: {x: 0, y: 0.5}
     - _OutlineTex:
@@ -75,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Outline_Sampler:
-        m_Texture: {fileID: 2800000, guid: 134966e3fbedc674ea419707cf30151f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 575b3744f9024ff69bce4848afd8b970, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_1st_ShadePosition:
@@ -91,7 +91,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:
-        m_Texture: {fileID: 2800000, guid: 8d32fa3851e3600479a39e382b059b0d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 25bd26c3b9f1428089002e1eed23173e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:

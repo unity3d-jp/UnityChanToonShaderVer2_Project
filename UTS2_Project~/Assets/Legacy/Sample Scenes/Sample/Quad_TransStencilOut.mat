@@ -31,7 +31,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ClippingMask:
-        m_Texture: {fileID: 2800000, guid: fd80a5ae56ca4e90b7b8763d98186053, type: 3}
+        m_Texture: {fileID: 2800000, guid: 277e4094f99140e78414b8c002808112, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive_Tex:
