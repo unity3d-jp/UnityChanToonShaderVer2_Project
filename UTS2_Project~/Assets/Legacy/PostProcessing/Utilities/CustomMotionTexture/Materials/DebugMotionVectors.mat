@@ -1,13 +1,14 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: DebugMotionVectors
-  m_Shader: {fileID: 4800000, guid: f79b2a7852db44d29ff0698189f5102f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3414b708183346f9a2579f0c0b5c3138, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -39,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bf4aa02d6ef74a6d963a0a6a568ef084, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94fc195b57d643edadc3a8096c2897d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -47,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MotionTex:
-        m_Texture: {fileID: 2800000, guid: bf4aa02d6ef74a6d963a0a6a568ef084, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94fc195b57d643edadc3a8096c2897d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

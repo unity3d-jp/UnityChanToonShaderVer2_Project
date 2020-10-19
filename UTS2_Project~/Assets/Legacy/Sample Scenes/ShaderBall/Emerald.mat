@@ -1,11 +1,12 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Emerald
   m_Shader: {fileID: 4800000, guid: 7737ca8c4e3939f4086a6e08f93c2ebd, type: 3}
   m_ShaderKeywords: _EMISSIVE_SIMPLE
@@ -47,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: 501fe08b2f534f1dab11e5333ed3ac86, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7cc87d77df97469c8fb66ae5dc86ed4f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -63,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:
-        m_Texture: {fileID: 2800000, guid: a41285115fac4c4f9f3e0f5fedd9078c, type: 3}
+        m_Texture: {fileID: 2800000, guid: fbfb0191a01447168e4ab2a749444ff8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:

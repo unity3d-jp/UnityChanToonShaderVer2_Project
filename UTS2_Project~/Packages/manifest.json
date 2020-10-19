@@ -4,7 +4,7 @@
     "com.unity.ide.vscode": "1.1.4",
     "com.unity.package-validation-suite": "0.10.0-preview",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
-    "com.unity.test-framework": "1.1.9",
+    "com.unity.test-framework": "1.1.11",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.ugui": "1.0.0",
     "com.unity.universaltoonshader": "0.0.2-preview",
@@ -42,8 +42,8 @@
   },
   "lock": {
     "com.unity.raytracedhardshadow": {
-      "hash": "1a2bee4ad3597752862b1dc0a0e99e07087d933b",
-      "revision": "HEAD"
+      "revision": "HEAD",
+      "hash": "1a2bee4ad3597752862b1dc0a0e99e07087d933b"
     }
   }
 }
