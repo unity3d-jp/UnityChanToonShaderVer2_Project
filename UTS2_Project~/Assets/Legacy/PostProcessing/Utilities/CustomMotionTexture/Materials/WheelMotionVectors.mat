@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WheelMotionVectors
-  m_Shader: {fileID: 4800000, guid: 3414b708183346f9a2579f0c0b5c3138, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3a5953b5d1b947839a3126a97b997c20, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MotionTex:
-        m_Texture: {fileID: 2800000, guid: aaf811e59ad94d9988d9a3d9affa25c9, type: 3}
+        m_Texture: {fileID: 2800000, guid: f400bf47f6a0416cb145bef6e72303ab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
