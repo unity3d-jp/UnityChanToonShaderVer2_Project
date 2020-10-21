@@ -32,8 +32,8 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
         public _EmissiveMode emissiveMode;
 
         //ボタンサイズ.
-        public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
-        public GUILayoutOption[] middleButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
+        static internal GUILayoutOption[] shortButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) };
+        static internal GUILayoutOption[] middleButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
 
         //各種設定保持用.
         //UTS2のバージョン.
