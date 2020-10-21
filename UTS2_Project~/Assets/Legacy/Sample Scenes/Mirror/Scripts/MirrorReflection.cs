@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // This is in fact just the Water script from Pro Standard Assets,
 // just with refraction stuff removed.
 
-namespace UnityChan
+namespace UnityEngine.Rendering.Toon.Samples
 {
     [ExecuteInEditMode] // Make mirror live-update even when not in play mode
     public class MirrorReflection : MonoBehaviour

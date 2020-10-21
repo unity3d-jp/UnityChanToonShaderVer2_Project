@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace UnityChan
+namespace UnityEngine.Rendering.Toon.Samples
 {
 //
 // ↑↓キーでループアニメーションを切り替えるスクリプト（ランダム切り替え付き）Ver.3

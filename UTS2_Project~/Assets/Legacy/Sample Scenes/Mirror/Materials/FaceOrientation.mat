@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FaceOrientation
-  m_Shader: {fileID: 4800000, guid: 1c3754492dae4e498fdae025fc5c274e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8b0b55bab0a74479a807bc24d26e0376, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

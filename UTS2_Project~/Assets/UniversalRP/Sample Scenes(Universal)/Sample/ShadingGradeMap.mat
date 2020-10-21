@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: 701f464883d64160b70d137728bb205c, type: 3}
+        m_Texture: {fileID: 2800000, guid: c2fc09a7f49b46fe952f42dab202495e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapForMatCap:
-        m_Texture: {fileID: 2800000, guid: 30e20b4901424089bbe69880a0613b71, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7c228c6d6f5343639f1a3c6fd7f85ec4, type: 3}
         m_Scale: {x: 50, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
@@ -99,7 +99,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadingGradeMap:
-        m_Texture: {fileID: 2800000, guid: e6420867ae8e4db3996febba6acb3cbf, type: 3}
+        m_Texture: {fileID: 2800000, guid: bc83fbaf705c4419a2be5efbfd8ade3f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:

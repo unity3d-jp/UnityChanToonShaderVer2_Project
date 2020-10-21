@@ -9,7 +9,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityChan
+namespace UnityEngine.Rendering.Toon.Samples
 {
 	public class SpringCollider : MonoBehaviour
 	{

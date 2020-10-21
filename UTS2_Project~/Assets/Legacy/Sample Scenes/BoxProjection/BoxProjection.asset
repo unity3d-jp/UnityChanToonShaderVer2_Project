@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3054543cd3c34926b38fb933f43fd196, type: 3}
+  m_Script: {fileID: 11500000, guid: 035811ed6540455084b722865f6fa535, type: 3}
   m_Name: BoxProjection
   m_EditorClassIdentifier: 
   debugViews:

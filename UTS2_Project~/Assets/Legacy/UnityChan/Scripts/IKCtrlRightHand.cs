@@ -8,7 +8,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityChan
+namespace UnityEngine.Rendering.Toon.Samples
 {
 	[RequireComponent(typeof(Animator))]
 	public class IKCtrlRightHand : MonoBehaviour

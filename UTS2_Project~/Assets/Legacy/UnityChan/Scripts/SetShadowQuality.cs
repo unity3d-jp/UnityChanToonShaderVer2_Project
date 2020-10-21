@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityChan
+namespace UnityEngine.Rendering.Toon.Samples
 {
 	[ExecuteInEditMode]
 	public class SetShadowQuality : MonoBehaviour {

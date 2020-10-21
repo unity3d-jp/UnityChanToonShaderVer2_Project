@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: fe8f0de177b148dbb2c8aa4363f4dfae, type: 3}
+        m_Texture: {fileID: 2800000, guid: d7caa76adfc247939f82ee8b3bf47f69, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:

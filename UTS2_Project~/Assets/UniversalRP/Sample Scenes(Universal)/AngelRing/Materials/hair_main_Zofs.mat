@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: a394b7cbf2044dd28919b0fa2a150872, type: 3}
+        m_Texture: {fileID: 2800000, guid: bcff0bffbf8b4abe841aade5a5711236, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AngelRing_Sampler:
-        m_Texture: {fileID: 2800000, guid: 563b4803692b4c378b2b8b33b7dde80b, type: 3}
+        m_Texture: {fileID: 2800000, guid: ee295562cb494e62a46fe7fd7ade3490, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BakedNormal:
@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 85b9822830ba4e7086d2f5024fe989fb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 625625460dea4bd196d7999203348a53, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
@@ -101,7 +101,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadingGradeMap:
-        m_Texture: {fileID: 2800000, guid: d6d660bba14a4cc18af627ca8bb893cd, type: 3}
+        m_Texture: {fileID: 2800000, guid: e47eaaf4a64942e99fec11ef5f064f3b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -117,6 +117,7 @@ Material:
     - _AngelRing: 1
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
+    - _AutoRenderQueue: 1
     - _BaseColor_Step: 0.052
     - _BaseShade_Feather: 0.019
     - _Base_Speed: 0
@@ -182,6 +183,8 @@ Material:
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
+    - _SPRDefaultUnlitColorMask: 15
+    - _SRPDefaultUnlitColMode: 1
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
@@ -195,6 +198,7 @@ Material:
     - _TessEdgeLength: 5
     - _TessExtrusionAmount: 0
     - _TessPhongStrength: 0.5
+    - _TransparentEnabled: 0
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0
     - _Tweak_HighColorMaskLevel: 0
@@ -204,9 +208,12 @@ Material:
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: -0.088
     - _Tweak_SystemShadowsLevel: -0.02
+    - _Tweak_transparency: 0
     - _Unlit_Intensity: 1
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
+    - _ZOverDrawMode: 0
+    - _ZWriteMode: 1
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersionX: 2

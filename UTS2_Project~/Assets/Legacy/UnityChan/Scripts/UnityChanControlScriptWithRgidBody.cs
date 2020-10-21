@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityChan
+namespace UnityEngine.Rendering.Toon.Samples
 {
 // 必要なコンポーネントの列記
 	[RequireComponent(typeof(Animator))]
