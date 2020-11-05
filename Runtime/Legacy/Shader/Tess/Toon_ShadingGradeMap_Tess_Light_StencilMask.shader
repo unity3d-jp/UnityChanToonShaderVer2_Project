@@ -165,5 +165,5 @@ Shader "UnityChanToonShader/Tessellation/Light/Toon_ShadingGradeMap_StencilMask"
 
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }

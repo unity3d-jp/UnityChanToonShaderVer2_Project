@@ -148,5 +148,5 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_DoubleShadeWithFeather_Clipping_
         UsePass "UnityChanToonShader/Toon_DoubleShadeWithFeather_Clipping_StencilOut/SHADOWCASTER"
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }

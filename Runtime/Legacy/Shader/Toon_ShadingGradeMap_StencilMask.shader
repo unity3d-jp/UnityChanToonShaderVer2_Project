@@ -289,5 +289,5 @@ Shader "UnityChanToonShader/Toon_ShadingGradeMap_StencilMask" {
 //ToonCoreEnd
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }

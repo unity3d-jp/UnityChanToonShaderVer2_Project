@@ -152,5 +152,5 @@ Shader "UnityChanToonShader/NoOutline/ToonColor_ShadingGradeMap_TransClipping_St
         UsePass "UnityChanToonShader/Toon_ShadingGradeMap_TransClipping_StencilOut/SHADOWCASTER"
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }

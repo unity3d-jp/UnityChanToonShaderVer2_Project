@@ -164,5 +164,5 @@ Shader "UnityChanToonShader/Mobile/Toon_ShadingGradeMap_TransClipping" {
         UsePass "UnityChanToonShader/Toon_ShadingGradeMap_TransClipping/SHADOWCASTER"
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }

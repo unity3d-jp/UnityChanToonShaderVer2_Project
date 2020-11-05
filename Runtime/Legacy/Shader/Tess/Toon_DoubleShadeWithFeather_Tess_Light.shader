@@ -160,5 +160,5 @@ Shader "UnityChanToonShader/Tessellation/Light/Toon_DoubleShadeWithFeather" {
         UsePass "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather/SHADOWCASTER"
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }

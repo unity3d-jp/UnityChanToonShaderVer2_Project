@@ -172,5 +172,5 @@ Shader "UnityChanToonShader/Tessellation/Light/AngelRing/Toon_ShadingGradeMap" {
 
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }

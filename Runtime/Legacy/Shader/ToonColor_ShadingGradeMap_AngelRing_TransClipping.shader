@@ -161,5 +161,5 @@ Shader "UnityChanToonShader/NoOutline/AngelRing/ToonColor_ShadingGradeMap_TransC
         UsePass "UnityChanToonShader/AngelRing/Toon_ShadingGradeMap_TransClipping/SHADOWCASTER"
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UTJ.UnitychanToonShader2.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
 }
