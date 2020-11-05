@@ -3,6 +3,26 @@ using UnityEditor;
 
 namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 {
+    struct GameRecommendation
+    {
+        public float ShaderPropIsLightColor_Base;
+        public float ShaderPropIs_LightColor_1st_Shade;
+        public float ShaderPropIs_LightColor_2nd_Shade;
+        public float ShaderPropIs_LightColor_HighColor;
+        public float ShaderPropIs_LightColor_RimLight;
+        public float ShaderPropIs_LightColor_Ap_RimLight;
+        public float ShaderPropIs_LightColor_MatCap;
+        public float ShaderPropIs_LightColor_AR;
+        public float ShaderPropIs_LightColor_Outline;
+        public float ShaderPropSetSystemShadowsToBase;
+        public float ShaderPropIsFilterHiCutPointLightColor;
+        public float ShaderPropCameraRolling_Stabilizer;
+        public float ShaderPropIs_Ortho;
+        public float ShaderPropGI_Intensity;
+        public float ShaderPropUnlit_Intensity;
+        public float ShaderPropIs_Filter_LightColor;
+    };
+
     public class UniversalToonGUI : UnityEditor.ShaderGUI
     {
 
@@ -180,9 +200,10 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
 
         //ボタンサイズ.
+        static internal GUILayoutOption[] longButtonStyle = new GUILayoutOption[] { GUILayout.Width(180) };
         static internal GUILayoutOption[] shortButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
         static internal GUILayoutOption[] middleButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
-
+        static internal GUILayoutOption[] toggleStyle = new GUILayoutOption[] { GUILayout.Width(130) };
 
         //
         static _UTS_Transparent _Transparent_Setting;
@@ -190,8 +211,9 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false;
         //メッセージ表示用.
-        bool _Use_VrcRecommend = false;
+        bool _Use_GameRecommend = false;
 
+        GameRecommendation _GameRecommendationStore;
         //Foldoutの初期値.
         static bool _BasicShaderSettings_Foldout = false;
         static bool _BasicThreeColors_Foldout = true;
@@ -1088,17 +1110,17 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("VRChat Recommendation");
+            EditorGUILayout.PrefixLabel("Game Recommendation");
             //GUILayout.Space(60);
-            if (GUILayout.Button("Apply Settings", middleButtonStyle))
+            if (GUILayout.Button("Check Settings", middleButtonStyle))
             {
-                Set_Vrchat_Recommendation(material);
-                _Use_VrcRecommend = true;
+                OpenOptimizationForGameWindow(material);
+                _Use_GameRecommend = true;
             }
             EditorGUILayout.EndHorizontal();
-            if (_Use_VrcRecommend)
+            if (_Use_GameRecommend)
             {
-                EditorGUILayout.HelpBox("UTS2 : Applied VRChat Recommended Settings.", MessageType.Info);
+                EditorGUILayout.HelpBox("UTS : Applying Game Recommended Settings.", MessageType.Info);
             }
 #if false
             //v.2.0.7
@@ -1203,8 +1225,58 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             sourceProps.ApplyModifiedProperties();
         }
         //
+        void OpenOptimizationForGameWindow(Material material)
+        {
+            StoreGameRecommendation(material);
+            GameRecommendationWindow.OpenWindow(this, material);
+        }
 
-        void Set_Vrchat_Recommendation(Material material)
+        void StoreGameRecommendation(Material material)
+        {
+            _GameRecommendationStore.ShaderPropIsLightColor_Base = material.GetFloat(ShaderPropIsLightColor_Base);
+            _GameRecommendationStore.ShaderPropIs_LightColor_1st_Shade = material.GetFloat(ShaderPropIs_LightColor_1st_Shade);
+            _GameRecommendationStore.ShaderPropIs_LightColor_2nd_Shade = material.GetFloat(ShaderPropIs_LightColor_2nd_Shade);
+            _GameRecommendationStore.ShaderPropIs_LightColor_HighColor = material.GetFloat(ShaderPropIs_LightColor_HighColor);
+            _GameRecommendationStore.ShaderPropIs_LightColor_RimLight = material.GetFloat(ShaderPropIs_LightColor_RimLight);
+            _GameRecommendationStore.ShaderPropIs_LightColor_Ap_RimLight = material.GetFloat(ShaderPropIs_LightColor_Ap_RimLight);
+            _GameRecommendationStore.ShaderPropIs_LightColor_MatCap = material.GetFloat(ShaderPropIs_LightColor_MatCap);
+            _GameRecommendationStore.ShaderPropIs_LightColor_AR = material.GetFloat(ShaderPropIs_LightColor_AR);
+            _GameRecommendationStore.ShaderPropIs_LightColor_Outline = material.GetFloat(ShaderPropIs_LightColor_Outline);
+            _GameRecommendationStore.ShaderPropSetSystemShadowsToBase = material.GetFloat(ShaderPropSetSystemShadowsToBase);
+            _GameRecommendationStore.ShaderPropIsFilterHiCutPointLightColor = material.GetFloat(ShaderPropIsFilterHiCutPointLightColor);
+            _GameRecommendationStore.ShaderPropCameraRolling_Stabilizer = material.GetFloat(ShaderPropCameraRolling_Stabilizer);
+            _GameRecommendationStore.ShaderPropIs_Ortho = material.GetFloat(ShaderPropIs_Ortho);
+            _GameRecommendationStore.ShaderPropGI_Intensity = material.GetFloat(ShaderPropGI_Intensity);
+            _GameRecommendationStore.ShaderPropUnlit_Intensity = material.GetFloat(ShaderPropUnlit_Intensity);
+            _GameRecommendationStore.ShaderPropIs_Filter_LightColor = material.GetFloat(ShaderPropIs_Filter_LightColor);
+        }
+
+        void RestoreGameRecommendation(Material material)
+        {
+            material.SetFloat(ShaderPropIsLightColor_Base, _GameRecommendationStore.ShaderPropIsLightColor_Base);
+            material.SetFloat(ShaderPropIs_LightColor_1st_Shade, _GameRecommendationStore.ShaderPropIs_LightColor_1st_Shade);
+            material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, _GameRecommendationStore.ShaderPropIs_LightColor_2nd_Shade);
+            material.SetFloat(ShaderPropIs_LightColor_HighColor, _GameRecommendationStore.ShaderPropIs_LightColor_HighColor);
+            material.SetFloat(ShaderPropIs_LightColor_RimLight, _GameRecommendationStore.ShaderPropIs_LightColor_RimLight);
+            material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, _GameRecommendationStore.ShaderPropIs_LightColor_Ap_RimLight);
+            material.SetFloat(ShaderPropIs_LightColor_MatCap, _GameRecommendationStore.ShaderPropIs_LightColor_MatCap);
+            if (material.HasProperty(ShaderPropAngelRing))
+            {//AngelRingがある場合.
+                material.SetFloat(ShaderPropIs_LightColor_AR, _GameRecommendationStore.ShaderPropIs_LightColor_AR);
+            }
+            if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+            {
+                material.SetFloat(ShaderPropIs_LightColor_Outline, _GameRecommendationStore.ShaderPropIs_LightColor_Outline);
+            }
+            material.SetFloat(ShaderPropSetSystemShadowsToBase, _GameRecommendationStore.ShaderPropSetSystemShadowsToBase);
+            material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, _GameRecommendationStore.ShaderPropIsFilterHiCutPointLightColor);
+            material.SetFloat(ShaderPropCameraRolling_Stabilizer, _GameRecommendationStore.ShaderPropCameraRolling_Stabilizer);
+            material.SetFloat(ShaderPropIs_Ortho, _GameRecommendationStore.ShaderPropIs_Ortho);
+            material.SetFloat(ShaderPropGI_Intensity, _GameRecommendationStore.ShaderPropGI_Intensity);
+            material.SetFloat(ShaderPropUnlit_Intensity, _GameRecommendationStore.ShaderPropUnlit_Intensity);
+            material.SetFloat(ShaderPropIs_Filter_LightColor, _GameRecommendationStore.ShaderPropIs_Filter_LightColor);
+        }
+        void SetGameRecommendation(Material material)
         {
             material.SetFloat(ShaderPropIsLightColor_Base, 1);
             material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 1);
@@ -2516,6 +2588,363 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             EditorGUILayout.Space();
         }
 
+        void UnrecommendableGUIColor()
+        {
+            GUI.color = Color.red;
+        }
+
+        void RestoreGUIColor()
+        {
+            GUI.color = Color.white;
+        }
+        internal void GUI_GameRecommendation(Material material, EditorWindow window)
+        {
+
+
+            var labelWidthStore = EditorGUIUtility.labelWidth;
+            EditorGUIUtility.labelWidth = 200;
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Recommendable Setting", longButtonStyle))
+            {
+                SetGameRecommendation(material);
+            }
+
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+            EditorGUILayout.EndHorizontal();
+
+
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Base Color");
+            //GUILayout.Space(60);
+            RestoreGUIColor();
+            if (material.GetFloat(ShaderPropIsLightColor_Base) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIsLightColor_Base, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIsLightColor_Base, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("1st ShadeColor");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_1st_Shade) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("2nd ShadeColor");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_2nd_Shade) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("HighColor");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_HighColor) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_HighColor, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_HighColor, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("RimLight");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_RimLight) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_RimLight, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_RimLight, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Ap_RimLight");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_Ap_RimLight) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("MatCap");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_LightColor_MatCap) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_MatCap, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_LightColor_MatCap, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            if (IsShadingGrademap)//AngelRingがある場合.
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Angel Ring");
+                //GUILayout.Space(60);
+                if (material.GetFloat(ShaderPropIs_LightColor_AR) == 0)
+                {
+                    UnrecommendableGUIColor();
+                    if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_AR, 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_AR, 0);
+                    }
+                }
+                RestoreGUIColor();
+                EditorGUILayout.EndHorizontal();
+            }
+
+            if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Outline");
+                //GUILayout.Space(60);
+                if (material.GetFloat(ShaderPropIs_LightColor_Outline) == 0)
+                {
+                    if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_Outline, 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_Outline, 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Receive System Shadows");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropSetSystemShadowsToBase) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropSetSystemShadowsToBase, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropSetSystemShadowsToBase, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("PointLights Hi-Cut Filter");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIsFilterHiCutPointLightColor) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat("_Is_Filter_HiCutPointLightColor", 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("MatCap Projection Camera");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_Ortho) == 0)
+            {
+
+                if (GUILayout.Button("Perspective", middleButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Ortho, 1);
+                }
+            }
+            else
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button("Orthographic", middleButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Ortho, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
+
+
+            if (material.GetFloat(ShaderPropGI_Intensity) != 0.0f)
+            {
+                UnrecommendableGUIColor();
+            }
+            m_MaterialEditor.RangeProperty(gi_Intensity, "GI Intensity");
+            RestoreGUIColor();
+            if (material.GetFloat(ShaderPropUnlit_Intensity) != 1.0f)
+            {
+                UnrecommendableGUIColor();
+            }
+            m_MaterialEditor.RangeProperty(unlit_Intensity, "Unlit Intensity");
+            RestoreGUIColor();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("SceneLights Hi-Cut Filter");
+            //GUILayout.Space(60);
+            if (material.GetFloat(ShaderPropIs_Filter_LightColor) == 0)
+            {
+                UnrecommendableGUIColor();
+                if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Filter_LightColor, 1);
+                    material.SetFloat(ShaderPropIsLightColor_Base, 1);
+                    material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 1);
+                    material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, 1);
+                    if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+                    {
+                        material.SetFloat(ShaderPropIs_LightColor_Outline, 1);
+                    }
+                }
+            }
+            else
+            {
+                if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
+                {
+                    material.SetFloat(ShaderPropIs_Filter_LightColor, 0);
+                }
+            }
+            RestoreGUIColor();
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
+
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.Space();
+            if (GUILayout.Button("OK", shortButtonStyle))
+            {
+                EditorGUIUtility.labelWidth = labelWidthStore;
+                window.Close();
+            }
+            if (GUILayout.Button("Discard", shortButtonStyle))
+            {
+                RestoreGameRecommendation(material);
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUIUtility.labelWidth = labelWidthStore;
+        }
         void GUI_LightColorContribution(Material material)
         {
             GUILayout.Label("Realtime LightColor Contribution to each colors", EditorStyles.boldLabel);
