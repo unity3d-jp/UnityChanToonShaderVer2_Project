@@ -6,15 +6,15 @@ using UnityEngine;
 namespace UnityEditor.Rendering.HDRP.Toon
 {
 
-    internal class GameLightRecommendationWindow : EditorWindow
+    internal class GameRecommendationWindow : EditorWindow
     {
         private const float WINDOWSIZE_W = 340.0f; 
-        private const float WINDOWSIZE_H = 400.0f; 
+        private const float WINDOWSIZE_H = 420.0f; 
         Material m_material;
         HDRPToonGUI m_gui;
         internal static void OpenWindow(HDRPToonGUI gui, Material material)
         {
-            var window = GetWindow<GameLightRecommendationWindow>("Game Light Recommendation");
+            var window = GetWindow<GameRecommendationWindow>("Game Recommendation");
             window.m_material = material;
             window.m_gui = gui;
 
@@ -27,7 +27,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             {
                 Close();
             }
-            m_gui.GUI_GameLightRecommendation(m_material, this);
+            m_gui.GUI_GameRecommendation(m_material, this);
         }
 
     }

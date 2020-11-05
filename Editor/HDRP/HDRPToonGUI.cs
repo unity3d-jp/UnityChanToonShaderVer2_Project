@@ -9,7 +9,7 @@ using UnityEditor;
 
 namespace UnityEditor.Rendering.HDRP.Toon
 {
-    struct GameLightRecommendation
+    struct GameRecommendation
     {
         public float ShaderPropIsLightColor_Base;
         public float ShaderPropIs_LightColor_1st_Shade;
@@ -206,6 +206,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
 
         //ボタンサイズ.
+        static internal GUILayoutOption[] longButtonStyle = new GUILayoutOption[] { GUILayout.Width(180) };
         static internal GUILayoutOption[] shortButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
         static internal GUILayoutOption[] middleButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
         static internal GUILayoutOption[] toggleStyle = new GUILayoutOption[] { GUILayout.Width(130) };
@@ -221,7 +222,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
         //メッセージ表示用.
         bool _Use_GameRecommend = false;
 
-        GameLightRecommendation _GameLightRecommendationStore;
+        GameRecommendation _GameRecommendationStore;
         //Foldoutの初期値.
         static bool _BasicShaderSettings_Foldout = false;
         static bool _BasicThreeColors_Foldout = true;
@@ -1122,7 +1123,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Game Light Recommendation");
+            EditorGUILayout.PrefixLabel("Game Recommendation");
             //GUILayout.Space(60);
             if (GUILayout.Button("Check Settings", middleButtonStyle))
             {
@@ -1132,7 +1133,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             EditorGUILayout.EndHorizontal();
             if (_Use_GameRecommend)
             {
-                EditorGUILayout.HelpBox("UTS2 : Applying Game light Recommended Settings.", MessageType.Info);
+                EditorGUILayout.HelpBox("UTS : Applying Game Recommended Settings.", MessageType.Info);
             }
 #if false
             //v.2.0.7
@@ -1239,56 +1240,56 @@ namespace UnityEditor.Rendering.HDRP.Toon
         //
         void OpenOptimizationForGameWindow(Material material)
         {
-            StoreGameLightRecommendation(material);
-            GameLightRecommendationWindow.OpenWindow(this, material);
+            StoreGameRecommendation(material);
+            GameRecommendationWindow.OpenWindow(this, material);
         }
 
-        void StoreGameLightRecommendation(Material material)
+        void StoreGameRecommendation(Material material)
         {
-            _GameLightRecommendationStore.ShaderPropIsLightColor_Base = material.GetFloat(ShaderPropIsLightColor_Base);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_1st_Shade = material.GetFloat(ShaderPropIs_LightColor_1st_Shade);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_2nd_Shade = material.GetFloat(ShaderPropIs_LightColor_2nd_Shade);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_HighColor = material.GetFloat(ShaderPropIs_LightColor_HighColor);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_RimLight = material.GetFloat(ShaderPropIs_LightColor_RimLight);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_Ap_RimLight = material.GetFloat(ShaderPropIs_LightColor_Ap_RimLight);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_MatCap = material.GetFloat(ShaderPropIs_LightColor_MatCap);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_AR = material.GetFloat(ShaderPropIs_LightColor_AR);
-            _GameLightRecommendationStore.ShaderPropIs_LightColor_Outline = material.GetFloat(ShaderPropIs_LightColor_Outline);
-            _GameLightRecommendationStore.ShaderPropSetSystemShadowsToBase = material.GetFloat(ShaderPropSetSystemShadowsToBase);
-            _GameLightRecommendationStore.ShaderPropIsFilterHiCutPointLightColor = material.GetFloat(ShaderPropIsFilterHiCutPointLightColor);
-            _GameLightRecommendationStore.ShaderPropCameraRolling_Stabilizer = material.GetFloat(ShaderPropCameraRolling_Stabilizer);
-            _GameLightRecommendationStore.ShaderPropIs_Ortho = material.GetFloat(ShaderPropIs_Ortho);
-            _GameLightRecommendationStore.ShaderPropGI_Intensity = material.GetFloat(ShaderPropGI_Intensity);
-            _GameLightRecommendationStore.ShaderPropUnlit_Intensity = material.GetFloat(ShaderPropUnlit_Intensity);
-            _GameLightRecommendationStore.ShaderPropIs_Filter_LightColor = material.GetFloat(ShaderPropIs_Filter_LightColor);
+            _GameRecommendationStore.ShaderPropIsLightColor_Base = material.GetFloat(ShaderPropIsLightColor_Base);
+            _GameRecommendationStore.ShaderPropIs_LightColor_1st_Shade = material.GetFloat(ShaderPropIs_LightColor_1st_Shade);
+            _GameRecommendationStore.ShaderPropIs_LightColor_2nd_Shade = material.GetFloat(ShaderPropIs_LightColor_2nd_Shade);
+            _GameRecommendationStore.ShaderPropIs_LightColor_HighColor = material.GetFloat(ShaderPropIs_LightColor_HighColor);
+            _GameRecommendationStore.ShaderPropIs_LightColor_RimLight = material.GetFloat(ShaderPropIs_LightColor_RimLight);
+            _GameRecommendationStore.ShaderPropIs_LightColor_Ap_RimLight = material.GetFloat(ShaderPropIs_LightColor_Ap_RimLight);
+            _GameRecommendationStore.ShaderPropIs_LightColor_MatCap = material.GetFloat(ShaderPropIs_LightColor_MatCap);
+            _GameRecommendationStore.ShaderPropIs_LightColor_AR = material.GetFloat(ShaderPropIs_LightColor_AR);
+            _GameRecommendationStore.ShaderPropIs_LightColor_Outline = material.GetFloat(ShaderPropIs_LightColor_Outline);
+            _GameRecommendationStore.ShaderPropSetSystemShadowsToBase = material.GetFloat(ShaderPropSetSystemShadowsToBase);
+            _GameRecommendationStore.ShaderPropIsFilterHiCutPointLightColor = material.GetFloat(ShaderPropIsFilterHiCutPointLightColor);
+            _GameRecommendationStore.ShaderPropCameraRolling_Stabilizer = material.GetFloat(ShaderPropCameraRolling_Stabilizer);
+            _GameRecommendationStore.ShaderPropIs_Ortho = material.GetFloat(ShaderPropIs_Ortho);
+            _GameRecommendationStore.ShaderPropGI_Intensity = material.GetFloat(ShaderPropGI_Intensity);
+            _GameRecommendationStore.ShaderPropUnlit_Intensity = material.GetFloat(ShaderPropUnlit_Intensity);
+            _GameRecommendationStore.ShaderPropIs_Filter_LightColor = material.GetFloat(ShaderPropIs_Filter_LightColor);
         }
 
-        void RestoreGameLightRecommendation(Material material)
+        void RestoreGameRecommendation(Material material)
         {
-            material.SetFloat(ShaderPropIsLightColor_Base, _GameLightRecommendationStore.ShaderPropIsLightColor_Base);
-            material.SetFloat(ShaderPropIs_LightColor_1st_Shade, _GameLightRecommendationStore.ShaderPropIs_LightColor_1st_Shade);
-            material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, _GameLightRecommendationStore.ShaderPropIs_LightColor_2nd_Shade);
-            material.SetFloat(ShaderPropIs_LightColor_HighColor, _GameLightRecommendationStore.ShaderPropIs_LightColor_HighColor);
-            material.SetFloat(ShaderPropIs_LightColor_RimLight, _GameLightRecommendationStore.ShaderPropIs_LightColor_RimLight);
-            material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, _GameLightRecommendationStore.ShaderPropIs_LightColor_Ap_RimLight);
-            material.SetFloat(ShaderPropIs_LightColor_MatCap, _GameLightRecommendationStore.ShaderPropIs_LightColor_MatCap);
+            material.SetFloat(ShaderPropIsLightColor_Base, _GameRecommendationStore.ShaderPropIsLightColor_Base);
+            material.SetFloat(ShaderPropIs_LightColor_1st_Shade, _GameRecommendationStore.ShaderPropIs_LightColor_1st_Shade);
+            material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, _GameRecommendationStore.ShaderPropIs_LightColor_2nd_Shade);
+            material.SetFloat(ShaderPropIs_LightColor_HighColor, _GameRecommendationStore.ShaderPropIs_LightColor_HighColor);
+            material.SetFloat(ShaderPropIs_LightColor_RimLight, _GameRecommendationStore.ShaderPropIs_LightColor_RimLight);
+            material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, _GameRecommendationStore.ShaderPropIs_LightColor_Ap_RimLight);
+            material.SetFloat(ShaderPropIs_LightColor_MatCap, _GameRecommendationStore.ShaderPropIs_LightColor_MatCap);
             if (material.HasProperty(ShaderPropAngelRing))
             {//AngelRingがある場合.
-                material.SetFloat(ShaderPropIs_LightColor_AR, _GameLightRecommendationStore.ShaderPropIs_LightColor_AR);
+                material.SetFloat(ShaderPropIs_LightColor_AR, _GameRecommendationStore.ShaderPropIs_LightColor_AR);
             }
             if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
             {
-                material.SetFloat(ShaderPropIs_LightColor_Outline, _GameLightRecommendationStore.ShaderPropIs_LightColor_Outline);
+                material.SetFloat(ShaderPropIs_LightColor_Outline, _GameRecommendationStore.ShaderPropIs_LightColor_Outline);
             }
-            material.SetFloat(ShaderPropSetSystemShadowsToBase, _GameLightRecommendationStore.ShaderPropSetSystemShadowsToBase);
-            material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, _GameLightRecommendationStore.ShaderPropIsFilterHiCutPointLightColor);
-            material.SetFloat(ShaderPropCameraRolling_Stabilizer, _GameLightRecommendationStore.ShaderPropCameraRolling_Stabilizer);
-            material.SetFloat(ShaderPropIs_Ortho, _GameLightRecommendationStore.ShaderPropIs_Ortho);
-            material.SetFloat(ShaderPropGI_Intensity, _GameLightRecommendationStore.ShaderPropGI_Intensity);
-            material.SetFloat(ShaderPropUnlit_Intensity, _GameLightRecommendationStore.ShaderPropUnlit_Intensity);
-            material.SetFloat(ShaderPropIs_Filter_LightColor, _GameLightRecommendationStore.ShaderPropIs_Filter_LightColor);
+            material.SetFloat(ShaderPropSetSystemShadowsToBase, _GameRecommendationStore.ShaderPropSetSystemShadowsToBase);
+            material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, _GameRecommendationStore.ShaderPropIsFilterHiCutPointLightColor);
+            material.SetFloat(ShaderPropCameraRolling_Stabilizer, _GameRecommendationStore.ShaderPropCameraRolling_Stabilizer);
+            material.SetFloat(ShaderPropIs_Ortho, _GameRecommendationStore.ShaderPropIs_Ortho);
+            material.SetFloat(ShaderPropGI_Intensity, _GameRecommendationStore.ShaderPropGI_Intensity);
+            material.SetFloat(ShaderPropUnlit_Intensity, _GameRecommendationStore.ShaderPropUnlit_Intensity);
+            material.SetFloat(ShaderPropIs_Filter_LightColor, _GameRecommendationStore.ShaderPropIs_Filter_LightColor);
         }
-        void SetGameLightRecommendation(Material material)
+        void SetGameRecommendation(Material material)
         {
             material.SetFloat(ShaderPropIsLightColor_Base, 1);
             material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 1);
@@ -2606,18 +2607,19 @@ namespace UnityEditor.Rendering.HDRP.Toon
         {
             GUI.color = Color.white;
         }
-        internal void GUI_GameLightRecommendation(Material material, EditorWindow window)
+        internal void GUI_GameRecommendation(Material material, EditorWindow window)
         {
 
 
             var labelWidthStore = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = 200;
-            EditorGUILayout.BeginHorizontal();
-//            GUILayout.Label("Game Light Recommendation", EditorStyles.boldLabel);
             EditorGUILayout.Space();
-            if (GUILayout.Button("Automatic Fix",  shortButtonStyle))
+            EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Recommendable Setting", longButtonStyle))
             {
-                SetGameLightRecommendation(material);
+                SetGameRecommendation(material);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -2948,7 +2950,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             }
             if (GUILayout.Button("Discard", shortButtonStyle))
             {
-                RestoreGameLightRecommendation(material);
+                RestoreGameRecommendation(material);
             }
             EditorGUILayout.EndHorizontal();
             EditorGUIUtility.labelWidth = labelWidthStore;
