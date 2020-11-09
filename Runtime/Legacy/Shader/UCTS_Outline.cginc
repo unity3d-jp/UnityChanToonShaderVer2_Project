@@ -5,12 +5,11 @@
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 // 2018/08/23 N.Kobayashi (Unity Technologies Japan)
-// カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版）
-// 2017/06/05 PS4対応版
+// Outlines with camera offset (modified to reflect BaseColor light color)
 // Ver.2.0.4.3
-// 2018/02/05 Outline Tex対応版
+// 2018/02/05 Outline Tex
 // #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
-// _IS_OUTLINE_CLIPPING_YESは、Clippigマスクを使用するシェーダーでのみ使用できる. OutlineのブレンドモードにBlend SrcAlpha OneMinusSrcAlphaを追加すること.
+// _IS_OUTLINE_CLIPPING_YES is only available for shaders that use the Clippig mask. By adding Blend SrcAlpha OneMinusSrcAlpha to Outline's blend mode.
 //
             uniform float4 _LightColor0;
             uniform float4 _BaseColor;
@@ -66,10 +65,10 @@
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 float3x3 tangentTransform = float3x3( o.tangentDir, o.bitangentDir, o.normalDir);
-                //UnpackNormal()が使えないので、以下で展開。使うテクスチャはBump指定をしないこと.
+                //UnpackNormal() can't be used, and so as follows. Do not specify a bump for the texture to be used.
                 float4 _BakedNormal_var = (tex2Dlod(_BakedNormal,float4(TRANSFORM_TEX(Set_UV0, _BakedNormal),0.0,0)) * 2 - 1);
                 float3 _BakedNormalDir = normalize(mul(_BakedNormal_var.rgb, tangentTransform));
-                //ここまで.
+                //end
                 float Set_Outline_Width = (_Outline_Width*0.001*smoothstep( _Farthest_Distance, _Nearest_Distance, distance(objPos.rgb,_WorldSpaceCameraPos) )*_Outline_Sampler_var.rgb).r;
                 //v.2.0.7.5
                 float4 _ClipCameraPos = mul(UNITY_MATRIX_VP, float4(_WorldSpaceCameraPos.xyz, 1));
@@ -125,4 +124,4 @@
                 return Set_Outline_Color;
 #endif
             }
-// UCTS_Outline.cginc ここまで.
+// End of UCTS_Outline.cginc

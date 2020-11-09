@@ -56,7 +56,7 @@ Shader "UnityChanToonShader/Mobile/Toon_DoubleShadeWithFeather_StencilMask" {
         [Toggle(_)] _Is_BlendAddToHiColor ("Is_BlendAddToHiColor", Float ) = 0
         [Toggle(_)] _Is_UseTweakHighColorOnShadow ("Is_UseTweakHighColorOnShadow", Float ) = 0
         _TweakHighColorOnShadow ("TweakHighColorOnShadow", Range(0, 1)) = 0
-//ハイカラーマスク.
+//HiColorMask
         _Set_HighColorMask ("Set_HighColorMask", 2D) = "white" {}
         _Tweak_HighColorMaskLevel ("Tweak_HighColorMaskLevel", Range(-1, 1)) = 0
         [Toggle(_)] _RimLight ("RimLight", Float ) = 0
@@ -66,7 +66,7 @@ Shader "UnityChanToonShader/Mobile/Toon_DoubleShadeWithFeather_StencilMask" {
         _RimLight_Power ("RimLight_Power", Range(0, 1)) = 0.1
         _RimLight_InsideMask ("RimLight_InsideMask", Range(0.0001, 1)) = 0.0001
         [Toggle(_)] _RimLight_FeatherOff ("RimLight_FeatherOff", Float ) = 0
-//リムライト追加プロパティ.
+//RimLight
         [Toggle(_)] _LightDirection_MaskOn ("LightDirection_MaskOn", Float ) = 0
         _Tweak_LightDirection_MaskLevel ("Tweak_LightDirection_MaskLevel", Range(0, 0.5)) = 0
         [Toggle(_)] _Add_Antipodean_RimLight ("Add_Antipodean_RimLight", Float ) = 0
@@ -74,10 +74,10 @@ Shader "UnityChanToonShader/Mobile/Toon_DoubleShadeWithFeather_StencilMask" {
         [Toggle(_)] _Is_LightColor_Ap_RimLight ("Is_LightColor_Ap_RimLight", Float ) = 1
         _Ap_RimLight_Power ("Ap_RimLight_Power", Range(0, 1)) = 0.1
         [Toggle(_)] _Ap_RimLight_FeatherOff ("Ap_RimLight_FeatherOff", Float ) = 0
-//リムライトマスク.
+//RimLightMask
         _Set_RimLightMask ("Set_RimLightMask", 2D) = "white" {}
         _Tweak_RimLightMaskLevel ("Tweak_RimLightMaskLevel", Range(-1, 1)) = 0
-//ここまで.
+//
         [Toggle(_)] _MatCap ("MatCap", Float ) = 0
         _MatCap_Sampler ("MatCap_Sampler", 2D) = "black" {}
         //v.2.0.6
@@ -131,7 +131,7 @@ Shader "UnityChanToonShader/Mobile/Toon_DoubleShadeWithFeather_StencilMask" {
         _OutlineTex ("OutlineTex", 2D) = "white" {}
         //Offset parameter
         _Offset_Z ("Offset_Camera_Z", Float) = 0
-        //v.2.0.4.3 Baked Nrmal Texture for Outline
+        //v.2.0.4.3 Baked Normal Texture for Outline
         [Toggle(_)] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
         _BakedNormal ("Baked Normal for Outline", 2D) = "white" {}
         //GI Intensity

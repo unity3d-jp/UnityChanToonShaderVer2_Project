@@ -140,32 +140,32 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             SimpleEmissive, EmissiveAnimation
         }
 
-        //enum _OutlineMode の状態を保持するための変数.
+        //enum variables to hold the state of _OutlineMode.
         public _OutlineMode outlineMode;
         public _CullingMode cullingMode;
         public _EmissiveMode emissiveMode;
 
-        //ボタンサイズ.
+        //Button sizes
         static internal GUILayoutOption[] longButtonStyle = new GUILayoutOption[] { GUILayout.Width(180) };
         static internal GUILayoutOption[] shortButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) };
         static internal GUILayoutOption[] middleButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) };
         static internal GUILayoutOption[] toggleStyle = new GUILayoutOption[] { GUILayout.Width(130) };
 
-        //各種設定保持用.
-        //UTS2のバージョン.
+        //Variables to keep each settings
+        //UTS2 versions.
         static float _UTS2VersionNumber = 2.075f; 
         //
         static int _StencilNo_Setting;
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false;
-        //メッセージ表示用.
+        //For display messages
         bool _Use_GameRecommend = false;
 
         GameRecommendation _GameRecommendationStore;
         bool _RemovedUnusedKeywordsMessage = false;
 
 
-        //Foldoutの初期値.
+        //Initial values of Foldout.
         static bool _BasicShaderSettings_Foldout = false;
         static bool _BasicThreeColors_Foldout = true;
         static bool _NormalMap_Foldout = false;
@@ -184,7 +184,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
         static bool _AdditionalLightingSettings_Foldout = false;
 
     // -----------------------------------------------------
-        //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
+        //Specify only those that use the m_MaterialEditor method as their UI.
         // UTS2 materal properties -------------------------
         MaterialProperty clippingMask = null;
         MaterialProperty clipping_Level = null;
@@ -280,10 +280,10 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
 
             }
         }
-        //m_MaterialEditorのメソッドをUIとして使うもののみを指定する.
+        //Specify only those that use the m_MaterialEditor method as their UI.
         public void FindProperties(MaterialProperty[] props)
         {
-            //シェーダーによって無い可能性があるプロパティはfalseを追加.
+            //Add "false" for properties that may not exist in each shader.
             clippingMask = FindProperty("_ClippingMask", props, false);
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
@@ -433,7 +433,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
 
 
     // --------------------------------
-        //m_MaterialEditorのメソッドをUIとして使うもののみを指定する. 1行表示のテクスチャ＆カラー指定用.
+        //Specify only those that use the m_MaterialEditor method as their UI. For specifying textures and colors on a single line.
         private static class Styles
         {
             public static GUIContent baseColorText = new GUIContent("BaseMap","Base Color : Texture(sRGB) × Color(RGB) Default:White");
@@ -447,12 +447,12 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             public static GUIContent matCapMaskText = new GUIContent("MatCap Mask","MatCap Mask : Texture(linear)");
             public static GUIContent angelRingText = new GUIContent("AngelRing","AngelRing : Texture(sRGB) × Color(RGB) Default:Black");
             public static GUIContent emissiveTexText = new GUIContent("Emissive","Emissive : Texture(sRGB)× EmissiveMask(alpha) × Color(HDR) Default:Black");
-            public static GUIContent shadingGradeMapText = new GUIContent("Shading Grade Map","影のかかり方マップ。UV座標で影のかかりやすい場所を指定する。Shading Grade Map : Texture(linear)");
-            public static GUIContent firstPositionMapText = new GUIContent("1st Shade Position Map","1影色領域に落ちる固定影の位置を、UV座標で指定する。1st Position Map : Texture(linear)");
-            public static GUIContent secondPositionMapText = new GUIContent("2nd Shade Position Map","2影色領域に落ちる固定影の位置を、UV座標で指定する。2nd Position Map : Texture(linear)");
+            public static GUIContent shadingGradeMapText = new GUIContent("Shading Grade Map","Specify shadow-prone areas in UV coordinates. Shading Grade Map : Texture(linear)");
+            public static GUIContent firstPositionMapText = new GUIContent("1st Shade Position Map","Specify the position of fixed shadows that fall in 1st shade color areas in UV coordinates. 1st Position Map : Texture(linear)");
+            public static GUIContent secondPositionMapText = new GUIContent("2nd Shade Position Map","Specify the position of fixed shadows that fall in 2nd shade color areas in UV coordinates. 2nd Position Map : Texture(linear)");
             public static GUIContent outlineSamplerText = new GUIContent("Outline Sampler","Outline Sampler : Texture(linear)");
             public static GUIContent outlineTexText = new GUIContent("Outline tex","Outline Tex : Texture(sRGB) Default:White");
-            public static GUIContent bakedNormalOutlineText = new GUIContent("Baked NormalMap for Outline","Unpacked Normal Map : Texture(linear) ※通常のノーマルマップではないので注意");
+            public static GUIContent bakedNormalOutlineText = new GUIContent("Baked NormalMap for Outline","Unpacked Normal Map : Texture(linear) Note that this is not a standard NORMAL MAP.");
             public static GUIContent clippingMaskText = new GUIContent("Clipping Mask","Clipping Mask : Texture(linear)");
         }
     // --------------------------------
@@ -465,30 +465,30 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             Material material = materialEditor.target as Material;
 
             //v.2.0.7.2 / v.2.0.7.4
-            //v.2.0.4.3p1以前のBaseMap名との互換性対策、および_utsVersionの更新をおこなう.
-            //shader側で新規設定されるのは、_utsVersion = 2.07fなので、CustomGUI側でサブバージョンを付ける.
+            //For compatibility with BaseMap names before v.2.0.4.3p1 and update _utsVersion.
+            //The new version of _utsVersion = 2.07f is set on the shader side, so a subversion is added on the CustomGUI side.
             if(material.GetFloat("_utsVersion") < _UTS2VersionNumber)
             {
-                //_MainTexを使っている世代は、_BaseMapにはテクスチャ情報はない.
+                //Generations using _MainTex have no texture information in _BaseMap.
                 if(material.GetTexture("_BaseMap") != null)
                 {
-                    //v.2.0.4.3p1以前は_BaseMapにテクスチャ情報があるので、_MainTexにコピー.
+                    //Prior to v.2.0.4.3p1, the texture information was in _BaseMap, so it was copied to _MainTex.
                     material.SetTexture("_MainTex",material.GetTexture("_BaseMap"));
-                    //処理が終わったので、_utsVersionを更新して設定.
+                    //Now that the process is over, update _utsVersion and configure it.
                     material.SetFloat("_utsVersion", _UTS2VersionNumber);
                 }else{
-                    //処理が不要な場合も、_utsVersionを更新して設定.
+                    //If there is no need to do this, update _utsVersion and set it up.
                     material.SetFloat("_utsVersion", _UTS2VersionNumber);
                 }
             }
-            //ここまで.
+            //end
 
-            //UTSのシェーダー方式の確認.
+            //Checking the UTS shader scheme.
             CheckUtsTechnique(material);
 
-            //1行目の横並び3ボタン.
+            //Line 1 horizontal 3 buttons.
             EditorGUILayout.BeginHorizontal();
-                //Original Inspectorの選択チェック.
+                //Original Inspector Selection Check.
                 if(material.HasProperty("_simpleUI")){
                     var selectedUI = material.GetInt("_simpleUI");
                     if(selectedUI==2){
@@ -496,7 +496,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                     }else if(selectedUI == 1){
                         _SimpleUI = true;   //UTS2 Biginner GUI
                     }
-                    //Original/Custom GUI 切り替えボタン.
+                    //Original/Custom GUI toggle button.
                     if (_OriginalInspector)
                     {
                         if (GUILayout.Button("Change CustomUI",middleButtonStyle))
@@ -505,9 +505,9 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                             material.SetInt("_simpleUI",0); //UTS2 Pro GUI
                         }
                         OpenManualLink();
-                        //継承したレイアウトのクリア.
+                        //Clear inherited layouts.
                         EditorGUILayout.EndHorizontal();
-                        //オリジナルのGUI表示
+                        //Show Original GUI.
                         m_MaterialEditor.PropertiesDefaultGUI(props);
                         return;
                     }
@@ -517,7 +517,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                         material.SetInt("_simpleUI",2); //Original GUI
                     }        
                 }
-                //マニュアルを開く.
+                //Open the manual link.
                 OpenManualLink();
             EditorGUILayout.EndHorizontal();
 
@@ -756,7 +756,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
 
         void GUI_SetCullingMode(Material material){
             int _CullMode_Setting = material.GetInt("_CullMode");
-            //Enum形式に変換して、outlineMode変数に保持しておく.
+            //Convert it to Enum format and store it in the offlineMode variable.
             if ((int)_CullingMode.CullingOff == _CullMode_Setting){
                 cullingMode = _CullingMode.CullingOff;
             }else if((int)_CullingMode.FrontCulling == _CullMode_Setting){
@@ -764,9 +764,9 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             }else{
                 cullingMode = _CullingMode.BackCulling;
             }
-            //EnumPopupでGUI記述.
+            //GUI description with EnumPopup.
             cullingMode = (_CullingMode)EditorGUILayout.EnumPopup("Culling Mode", cullingMode);
-            //値が変化したらマテリアルに書き込み.
+            //If the value changes, write to the material.
             if(cullingMode == _CullingMode.CullingOff){
                 material.SetFloat("_CullMode",0);
             }else if(cullingMode == _CullingMode.FrontCulling){
@@ -1003,10 +1003,10 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, _GameRecommendationStore.ShaderPropIs_LightColor_Ap_RimLight);
             material.SetFloat(ShaderPropIs_LightColor_MatCap, _GameRecommendationStore.ShaderPropIs_LightColor_MatCap);
             if (material.HasProperty(ShaderPropAngelRing))
-            {//AngelRingがある場合.
+            {//If AngelRing is available.
                 material.SetFloat(ShaderPropIs_LightColor_AR, _GameRecommendationStore.ShaderPropIs_LightColor_AR);
             }
-            if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+            if (material.HasProperty(ShaderPropOutline))//If OUTLINE is available.
             {
                 material.SetFloat(ShaderPropIs_LightColor_Outline, _GameRecommendationStore.ShaderPropIs_LightColor_Outline);
             }
@@ -1028,10 +1028,10 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, 1);
             material.SetFloat(ShaderPropIs_LightColor_MatCap, 1);
             if (material.HasProperty(ShaderPropAngelRing))
-            {//AngelRingがある場合.
+            {//If AngelRing is available.
                 material.SetFloat(ShaderPropIs_LightColor_AR, 1);
             }
-            if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+            if (material.HasProperty(ShaderPropOutline))//If OUTLINE is available.
             {
                 material.SetFloat(ShaderPropIs_LightColor_Outline, 1);
             }
@@ -1185,7 +1185,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             if(!_SimpleUI){
                     GUI_SystemShadows(material);
 
-                if (material.HasProperty("_StepOffset"))//Mobile & Light Modeにはない項目.
+                if (material.HasProperty("_StepOffset"))//Items not in Mobile & Light Mode.
                 {
                     //Line();
                     //EditorGUILayout.Space();
@@ -1237,7 +1237,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                         m_MaterialEditor.RangeProperty(baseShade_Feather, "Base/Shade Feather");
                         m_MaterialEditor.RangeProperty(shadeColor_Step, "ShadeColor Step");
                         m_MaterialEditor.RangeProperty(first2nd_Shades_Feather, "1st/2nd_Shades Feather");
-                        //ShadingGradeMap系と変数を共有.
+                        //Sharing variables with ShadingGradeMap method.
                         material.SetFloat("_1st_ShadeColor_Step", material.GetFloat("_BaseColor_Step"));
                         material.SetFloat("_1st_ShadeColor_Feather", material.GetFloat("_BaseShade_Feather"));
                         material.SetFloat("_2nd_ShadeColor_Step", material.GetFloat("_ShadeColor_Step"));
@@ -1248,7 +1248,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                         m_MaterialEditor.RangeProperty(first_ShadeColor_Feather, "1st ShadeColor Feather");
                         m_MaterialEditor.RangeProperty(second_ShadeColor_Step, "2nd ShadeColor Step");
                         m_MaterialEditor.RangeProperty(second_ShadeColor_Feather, "2nd ShadeColor Feather");
-                        //DoubleWithFeather系と変数を共有.
+                        //Share variables with DoubleWithFeather method.
                         material.SetFloat("_BaseColor_Step", material.GetFloat("_1st_ShadeColor_Step"));
                         material.SetFloat("_BaseShade_Feather", material.GetFloat("_1st_ShadeColor_Feather"));
                         material.SetFloat("_ShadeColor_Step", material.GetFloat("_2nd_ShadeColor_Step"));
@@ -1320,7 +1320,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                     }else{
                         if (GUILayout.Button("Additive",shortButtonStyle))
                         {
-                            //加算モードはスペキュラオフでしか使えない.
+                            //The additive mode is only available in specular off.
                             if(material.GetFloat("_Is_SpecularToHighColor") == 1)
                             {
                                 material.SetFloat("_Is_BlendAddToHiColor",1);
@@ -1828,21 +1828,21 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
 
         void GUI_Outline(Material material)
         {
-            //Shaderプロパティ [KeywordEnum(NML,POS)] をEumPopupで表現する.
-            //マテリアル内のアウトラインモードの設定を読み込み.
+            //Express Shader property [KeywordEnum(NML,POS)] by EumPopup.
+            //Load the outline mode settings in the material.
             int _OutlineMode_Setting = material.GetInt("_OUTLINE");
-            //Enum形式に変換して、outlineMode変数に保持しておく.
+            //Convert it to Enum format and store it in the offlineMode variable.
             if ((int)_OutlineMode.NormalDirection == _OutlineMode_Setting){
                 outlineMode = _OutlineMode.NormalDirection;
             }else if((int)_OutlineMode.PositionScaling == _OutlineMode_Setting){
                 outlineMode = _OutlineMode.PositionScaling;
             }
-            //EnumPopupでGUI記述.
+            //GUI description with EnumPopup.
             outlineMode = (_OutlineMode)EditorGUILayout.EnumPopup("Outline Mode", outlineMode);
-            //値が変化したらマテリアルに書き込み.
+            //If the value changes, write to the material.
             if(outlineMode == _OutlineMode.NormalDirection){
                 material.SetFloat("_OUTLINE",0);
-                //UTCS_Outline.cginc側のキーワードもトグル入れ替え.
+                //The keywords on the UTCS_Outline.cginc side are also toggled around.
                 material.EnableKeyword("_OUTLINE_NML");
                 material.DisableKeyword("_OUTLINE_POS");
             }else if(outlineMode == _OutlineMode.PositionScaling){
@@ -2113,7 +2113,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
             RestoreGUIColor();
             EditorGUILayout.EndHorizontal();
 
-            if (IsShadingGrademap && material.HasProperty(ShaderPropIs_LightColor_AR))//AngelRingがある場合.
+            if (IsShadingGrademap && material.HasProperty(ShaderPropIs_LightColor_AR))//If AngelRing is available.
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Angel Ring");
@@ -2137,7 +2137,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                 EditorGUILayout.EndHorizontal();
             }
 
-            if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+            if (material.HasProperty(ShaderPropOutline))//If OUTLINE is available.
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Outline");
@@ -2253,7 +2253,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                     material.SetFloat(ShaderPropIsLightColor_Base, 1);
                     material.SetFloat(ShaderPropIs_LightColor_1st_Shade, 1);
                     material.SetFloat(ShaderPropIs_LightColor_2nd_Shade, 1);
-                    if (material.HasProperty(ShaderPropOutline))//OUTLINEがある場合.
+                    if (material.HasProperty(ShaderPropOutline))//If OUTLINE is available.
                     {
                         material.SetFloat(ShaderPropIs_LightColor_Outline, 1);
                     }
@@ -2405,7 +2405,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                 }
             EditorGUILayout.EndHorizontal();
 
-            if(material.HasProperty("_AngelRing"))//AngelRingがある場合.
+            if(material.HasProperty("_AngelRing"))//If AngelRing is available.
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Angel Ring");
@@ -2424,7 +2424,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                 EditorGUILayout.EndHorizontal();
             }
 
-            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+            if(material.HasProperty("_OUTLINE"))//If OUTLINE is available.
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Outline");
@@ -2460,7 +2460,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                         material.SetFloat("_Is_LightColor_Base",1);
                         material.SetFloat("_Is_LightColor_1st_Shade",1);
                         material.SetFloat("_Is_LightColor_2nd_Shade",1);
-                        if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+                        if(material.HasProperty("_OUTLINE"))//If OUTLINE is available.
                         {
                             material.SetFloat("_Is_LightColor_Outline",1);
                         }

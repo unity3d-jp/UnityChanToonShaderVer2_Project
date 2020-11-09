@@ -31,7 +31,7 @@ Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject_StencilOut" {
         _OutlineTex ("OutlineTex", 2D) = "white" {}
         //Offset parameter
         _Offset_Z ("Offset_Camera_Z", Float) = 0
-        //v.2.0.4.3 Baked Nrmal Texture for Outline
+        //v.2.0.4.3 Baked Normal Texture for Outline
         [Toggle(_)] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
         _BakedNormal ("Baked Normal for Outline", 2D) = "white" {}
         //Tessellation
@@ -79,7 +79,7 @@ Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject_StencilOut" {
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             //Tessellation
-            //アウトライン処理は以下のUCTS_Outline_Tess.cgincへ.
+            //The outline process goes to UTS_Outline_Tess.cginc.
             #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "UCTS_Outline_Tess.cginc"
             ENDCG

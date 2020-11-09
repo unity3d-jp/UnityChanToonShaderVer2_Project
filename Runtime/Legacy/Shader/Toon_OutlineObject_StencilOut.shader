@@ -31,7 +31,7 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject_StencilOut" {
         _OutlineTex ("OutlineTex", 2D) = "white" {}
         //Offset parameter
         _Offset_Z ("Offset_Camera_Z", Float) = 0
-        //v.2.0.4.3 Baked Nrmal Texture for Outline
+        //v.2.0.4.3 Baked Normal Texture for Outline
         [Toggle(_)] _Is_BakedNormal ("Is_BakedNormal", Float ) = 0
         _BakedNormal ("Baked Normal for Outline", 2D) = "white" {}
     }
@@ -65,7 +65,7 @@ Shader "UnityChanToonShader/Helper/Toon_OutlineObject_StencilOut" {
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理は以下のUCTS_Outline.cgincへ.
+            //The outline process goes to UTS_Outline.cginc.
             #include "UCTS_Outline.cginc"
             ENDCG
         }
