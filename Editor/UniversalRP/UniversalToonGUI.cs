@@ -388,7 +388,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         //Specify only those that use the m_MaterialEditor method as their UI.
         public void FindProperties(MaterialProperty[] props)
         {
-            //シェーダーによって無い可能性があるプロパティはfalseを追加.
+            // false is added if theare are possiblities the properties are not aveialable
             utsTechnique = FindProperty(ShaderPropUtsTechniqe, props);
             transparentMode = FindProperty(ShaderPropTransparentEnabled, props);
             clippingMask = FindProperty(ShaderPropClippingMask, props);
@@ -1285,7 +1285,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             material.SetFloat(ShaderPropIs_LightColor_Ap_RimLight, 1);
             material.SetFloat(ShaderPropIs_LightColor_MatCap, 1);
             if (material.HasProperty(ShaderPropAngelRing))
-            {//When AngelRing is not available
+            {//When AngelRing is available
                 material.SetFloat(ShaderPropIs_LightColor_AR, 1);
             }
             if (material.HasProperty(ShaderPropOutline))// when outline is availbe
