@@ -5,12 +5,11 @@
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 // 2018/08/23 N.Kobayashi (Unity Technologies Japan)
-// カメラオフセット付きアウトライン（BaseColorライトカラー反映修正版）
-// 2017/06/05 PS4対応版
+// Outlines with camera offset (modified to reflect BaseColor light color)
 // Ver.2.0.4.3
-// 2018/02/05 Outline Tex対応版
+// 2018/02/05 Outline Tex
 // #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
-// _IS_OUTLINE_CLIPPING_YESは、Clippigマスクを使用するシェーダーでのみ使用できる. OutlineのブレンドモードにBlend SrcAlpha OneMinusSrcAlphaを追加すること.
+// _IS_OUTLINE_CLIPPING_YES is only available for shaders that use the Clippig mask. By adding Blend SrcAlpha OneMinusSrcAlpha
 //
             uniform float4 _LightColor0;
             uniform float4 _BaseColor;
@@ -132,4 +131,5 @@
                 return Set_Outline_Color;
 #endif
             }
-// UCTS_Outline.cginc ここまで.
+// End of File
+

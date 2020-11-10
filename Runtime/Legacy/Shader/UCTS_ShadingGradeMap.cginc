@@ -341,7 +341,7 @@ struct VertexOutput {
                 //
                 //v.2.0.7
                 float2 _Rot_MatCapUV_var = RotateUV((0.0 + ((_ViewNormalAsMatCapUV - (0.0+_Tweak_MatCapUV)) * (1.0 - 0.0) ) / ((1.0-_Tweak_MatCapUV) - (0.0+_Tweak_MatCapUV))), _Rot_MatCapUV_var_ang, float2(0.5, 0.5), 1.0);
-                //鏡の中ならUV左右反転.
+                //If it is "inside the mirror", flip the UV left and right.
                 if(_sign_Mirror < 0){
                     _Rot_MatCapUV_var.x = 1-_Rot_MatCapUV_var.x;
                 }else{

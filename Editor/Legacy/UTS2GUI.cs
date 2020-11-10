@@ -726,13 +726,13 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
                 if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.DoubleSideWithFeather)   //DWF
                 {
                     if(!material.HasProperty("_Set_1st_ShadePosition")){
-                        //SGMに変更.
+                        //Change to SGM
                         material.SetInt("_utsTechnique", (int)_UTS_Technique.ShadingGradeMap);
                     }
                 }else if(material.GetInt("_utsTechnique") == (int)_UTS_Technique.ShadingGradeMap){    //SGM
                 //SGM
                     if(!material.HasProperty("_ShadingGradeMap")){
-                        //DWFに変更.
+			//Change to DWF
                         material.SetInt("_utsTechnique", (int)_UTS_Technique.DoubleSideWithFeather);
                     }
                 }else{

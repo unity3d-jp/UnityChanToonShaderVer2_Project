@@ -181,7 +181,7 @@
             float4 _RaytracedHardShadow_TexelSize;
             uniform int UtsUseRaytracingShadow;
 
-            // UV回転をする関数：RotateUV()
+            //function to rotate the UV: RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
             float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
             {
@@ -537,7 +537,8 @@
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
 
                 o.pos = UnityObjectToClipPos( v.vertex );
-                //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
+                //v.2.0.7 Detection of the inside the mirror (right or left-handed) o.mirrorFlag = -1 then "inside the mirror".
+
                 float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
                 o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
                 //
