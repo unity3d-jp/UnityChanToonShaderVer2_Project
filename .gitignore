@@ -6,6 +6,9 @@
 [Uu]nityPackageManager/
 Assets/AssetStoreTools*
 
+# Mac
+.DS_Store
+
 # Visual Studio cache directory
 .vs/
 .vscode/
