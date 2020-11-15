@@ -24,8 +24,8 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 1
   tonemapper:
-    overrideState: 1
-    value: 2
+    overrideState: 0
+    value: 0
   toneCurveToeStrength:
     overrideState: 0
     value: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: 1
+    value: 1.08
   brightness:
     overrideState: 0
     value: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
     value: 0
   contrast:
     overrideState: 1
-    value: 1
+    value: 1.08
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -1349,7 +1349,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: ToonShader_Firefly
+  m_Name: ToonShader_Emmisive
   m_EditorClassIdentifier: 
   settings:
   - {fileID: -3246501213341835198}
@@ -1367,19 +1367,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 1.3
+    value: 7
   threshold:
     overrideState: 1
     value: 0.8
   softKnee:
     overrideState: 1
-    value: 0
+    value: 0.14
   clamp:
     overrideState: 0
     value: 65472
