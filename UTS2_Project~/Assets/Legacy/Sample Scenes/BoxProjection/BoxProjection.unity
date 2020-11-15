@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: 794565942}
   - component: {fileID: 794565947}
   - component: {fileID: 794565948}
+  - component: {fileID: 794565949}
   - component: {fileID: 794565944}
   m_Layer: 0
   m_Name: Main Camera
@@ -666,7 +667,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 794565946}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1073741824
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 3
@@ -805,6 +806,32 @@ MonoBehaviour:
   threshold: 0.3
   edgesOnly: 0
   edgeDetectShader: {fileID: 4800000, guid: ef1aa3b40650426ab8438eb18486079f, type: 3}
+--- !u!114 &794565949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794565941}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101ac74223261194c952044eea3af2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opacity: 0
+  invert: 0
+  blur: 0
+  captureMode: 0
+  fullScreenTexture: {fileID: 0}
+  renderersEnabled: 1
+  globalRendererOptions:
+    opacity: 1
+    scale: {x: 1, y: 1, z: 1}
+    extrude: 0
+    texture: {fileID: 0}
+    depthTest: 1
+    cullMode: 0
+  serializedRenderers: []
 --- !u!1 &1036948364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1618416153455038, guid: a3fac7f48e944146acb3559dee01e2d8,
@@ -1481,7 +1508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1898608775}
   - component: {fileID: 1898608774}
-  m_Layer: 8
+  m_Layer: 30
   m_Name: Postprocessing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
