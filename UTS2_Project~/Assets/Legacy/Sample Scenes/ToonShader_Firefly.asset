@@ -1355,6 +1355,29 @@ MonoBehaviour:
   - {fileID: -3246501213341835198}
   - {fileID: 5668114225859109499}
   - {fileID: -7724519682797452924}
+  - {fileID: 548115763953989661}
+--- !u!114 &548115763953989661
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 285
+  sampleCount:
+    overrideState: 1
+    value: 13
 --- !u!114 &5668114225859109499
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1367,16 +1390,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 1.3
+    value: 2
   threshold:
     overrideState: 1
-    value: 0.8
+    value: 0.6
   softKnee:
     overrideState: 1
     value: 0
