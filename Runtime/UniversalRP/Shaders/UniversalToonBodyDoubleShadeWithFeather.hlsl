@@ -235,16 +235,19 @@
 
                 int pixelLightCount = GetAdditionalLightsCount();
 
-  #if 1  // determine main light inorder to apply light culling
-                for (int iLight = -1; iLight < pixelLightCount; ++iLight)
+                // determine main light inorder to apply light culling
+                // when the loop counter start from negative value, MAINLIGHT_IS_MAINLIGHT = -1, some compiler doesn't work well.
+                // for (int iLight = MAINLIGHT_IS_MAINLIGHT; iLight < pixelLightCount ; ++iLight)
+                for (int loopCounter = 0; loopCounter < pixelLightCount - MAINLIGHT_IS_MAINLIGHT; ++loopCounter)
                 {
+                    int iLight = loopCounter + MAINLIGHT_IS_MAINLIGHT;
                     if (iLight != i.mainLightID)
                     {
 
 
                         float notDirectional = 1.0f; //_WorldSpaceLightPos0.w of the legacy code.
 
-                        UtsLight additionalLight = GetMainUtsLight(0,0);
+                        UtsLight additionalLight = GetUrpMainUtsLight(0,0);
                         if (iLight != -1)
                         {
                             additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS,i.positionCS);
@@ -302,7 +305,7 @@
                         //	pointLightColor += lightColor;
                     }
                 }
-  #endif // determine main light inorder to apply light culling
+  
   #endif
 
 

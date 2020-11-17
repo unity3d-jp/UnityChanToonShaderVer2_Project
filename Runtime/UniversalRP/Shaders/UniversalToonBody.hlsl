@@ -380,7 +380,7 @@
 
 
 
-            UtsLight GetMainUtsLight()
+            UtsLight GetUrpMainUtsLight()
             {
                 UtsLight light;
                 light.direction = _MainLightPosition.xyz;
@@ -396,9 +396,9 @@
                 return light;
             }
 
-            UtsLight GetMainUtsLight(float4 shadowCoord, float4 positionCS)
+            UtsLight GetUrpMainUtsLight(float4 shadowCoord, float4 positionCS)
             {
-                UtsLight light = GetMainUtsLight();
+                UtsLight light = GetUrpMainUtsLight();
                 light.shadowAttenuation = MainLightRealtimeShadowUTS(shadowCoord, positionCS);
                 return light;
             }
@@ -482,12 +482,12 @@
                 UtsLight mainLight;
                 INIT_UTSLIGHT(mainLight);
 
-                int mainLightIndex = -2;
-                UtsLight nextLight = GetMainUtsLight(shadowCoord, positionCS);
+                int mainLightIndex = MAINLIGHT_NOT_FOUND;
+                UtsLight nextLight = GetUrpMainUtsLight(shadowCoord, positionCS);
                 if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                 {
                     mainLight = nextLight;
-                    mainLightIndex = -1;
+                    mainLightIndex = MAINLIGHT_IS_MAINLIGHT;
                 }
                 int lightCount = GetAdditionalLightsCount();
                 for (int ii = 0; ii < lightCount; ++ii)
@@ -507,13 +507,13 @@
             {
                 UtsLight mainLight;
                 INIT_UTSLIGHT(mainLight);
-                if (index == -2)
+                if (index == MAINLIGHT_NOT_FOUND)
                 {
                     return mainLight;
                 }
-                if (index == -1)
+                if (index == MAINLIGHT_IS_MAINLIGHT)
                 {
-                    return GetMainUtsLight(shadowCoord, positionCS);
+                    return GetUrpMainUtsLight(shadowCoord, positionCS);
                 }
                 return GetAdditionalUtsLight(index, posW, positionCS);
             }

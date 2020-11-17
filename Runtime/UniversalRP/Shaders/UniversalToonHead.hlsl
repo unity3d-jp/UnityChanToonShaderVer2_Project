@@ -8,7 +8,8 @@
 #define fixed4 half4
 
 
-
+#define MAINLIGHT_NOT_FOUND -2
+#define MAINLIGHT_IS_MAINLIGHT -1
 
 
 #ifndef DIRECTIONAL
