@@ -13,7 +13,7 @@ namespace UnityEngine.Rendering.Toon.Samples
 {
 	public class SpringCollider : MonoBehaviour
 	{
-		//半径
+		//Radius
 		public float radius = 0.5f;
 
 		private void OnDrawGizmosSelected ()

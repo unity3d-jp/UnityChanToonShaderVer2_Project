@@ -49,7 +49,7 @@ namespace UnityEngine.Rendering.Toon.Samples
 		}
 	 
 
-		//アニメーションEvents側につける表情切り替え用イベントコール
+		//Event calls for expression switching on the animation events side
 		public void OnCallChangeFace (string str)
 		{   
 			int ichecked = 0;
@@ -60,7 +60,7 @@ namespace UnityEngine.Rendering.Toon.Samples
 				} else if (ichecked <= animations.Length) {
 					ichecked++;
 				} else {
-					//str指定が間違っている時にはデフォルトで
+					//Set default value to str in the case of incorrect specification
 					str = "default@unitychan";
 					ChangeFace (str);
 				}

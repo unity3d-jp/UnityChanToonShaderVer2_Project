@@ -1,6 +1,6 @@
 ﻿//
-// Mecanimのアニメーションデータが、原点で移動しない場合の Rigidbody付きコントローラ
-// サンプル
+// Controller sample with Rigidbody when the animation data of Mecanim does not move at the origin.
+// 
 // 2014/03/13 N.Kobyasahi
 //
 using UnityEngine;
@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace UnityEngine.Rendering.Toon.Samples
 {
-// 必要なコンポーネントの列記
+// List of required components
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Rigidbody))]
@@ -16,162 +16,162 @@ namespace UnityEngine.Rendering.Toon.Samples
 	public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 	{
 
-		public float animSpeed = 1.5f;				// アニメーション再生速度設定
+		public float animSpeed = 1.5f;				// Animation Playback Speed Settings
 		public float lookSmoother = 3.0f;			// a smoothing setting for camera motion
-		public bool useCurves = true;				// Mecanimでカーブ調整を使うか設定する
-		// このスイッチが入っていないとカーブは使われない
-		public float useCurvesHeight = 0.5f;		// カーブ補正の有効高さ（地面をすり抜けやすい時には大きくする）
+		public bool useCurves = true;				// Using or setting the curve adjustment in Mecanim
+		// If this switch is not turned on, the curve will not be used
+		public float useCurvesHeight = 0.5f;		// The effective height of the curve correction (to increase when it is easier to slip through the ground)
 
-		// 以下キャラクターコントローラ用パラメタ
-		// 前進速度
+		// Parameters for character controllers below
+		// Forward Speed
 		public float forwardSpeed = 7.0f;
-		// 後退速度
+		// Backward Speed
 		public float backwardSpeed = 2.0f;
-		// 旋回速度
+		// Spin Speed
 		public float rotateSpeed = 2.0f;
-		// ジャンプ威力
+		// Jump power
 		public float jumpPower = 3.0f; 
-		// キャラクターコントローラ（カプセルコライダ）の参照
+		// Character Controller (Capsule Collider) references
 		private CapsuleCollider col;
 		private Rigidbody rb;
-		// キャラクターコントローラ（カプセルコライダ）の移動量
+		// The amount of movement of the character controller (capsule collider)
 		private Vector3 velocity;
-		// CapsuleColliderで設定されているコライダのHeiht、Centerの初期値を収める変数
+		// The variables that keep the initial value of the collider Heiht, Center, which is set in CapsuleCollider
 		private float orgColHight;
 		private Vector3 orgVectColCenter;
-		private Animator anim;							// キャラにアタッチされるアニメーターへの参照
-		private AnimatorStateInfo currentBaseState;			// base layerで使われる、アニメーターの現在の状態の参照
+		private Animator anim;							// Reference to the animator to be attached to the character
+		private AnimatorStateInfo currentBaseState;			// Reference to the current state of the animator, used in the base layer
 
-		private GameObject cameraObject;	// メインカメラへの参照
+		private GameObject cameraObject;	// Reference to the main camera
 		
-		// アニメーター各ステートへの参照
+		// Animator reference to each state
 		static int idleState = Animator.StringToHash ("Base Layer.Idle");
 		static int locoState = Animator.StringToHash ("Base Layer.Locomotion");
 		static int jumpState = Animator.StringToHash ("Base Layer.Jump");
 		static int restState = Animator.StringToHash ("Base Layer.Rest");
 
-		// 初期化
+		// Initialization
 		void Start ()
 		{
-			// Animatorコンポーネントを取得する
+			// Get the Animator component
 			anim = GetComponent<Animator> ();
-			// CapsuleColliderコンポーネントを取得する（カプセル型コリジョン）
+			// Get the CapsuleCollider component (capsule collision)
 			col = GetComponent<CapsuleCollider> ();
 			rb = GetComponent<Rigidbody> ();
-			//メインカメラを取得する
+			// Get the Main Camera
 			cameraObject = GameObject.FindWithTag ("MainCamera");
-			// CapsuleColliderコンポーネントのHeight、Centerの初期値を保存する
+			// Save the initial value of the CapsuleCollider component's Height and Center
 			orgColHight = col.height;
 			orgVectColCenter = col.center;
 		}
 	
 	
-		// 以下、メイン処理.リジッドボディと絡めるので、FixedUpdate内で処理を行う.
+		// The following is the main process. Handling within FixedUpdate as it involves rigid bodies.
 		void FixedUpdate ()
 		{
-			float h = Input.GetAxis ("Horizontal");				// 入力デバイスの水平軸をhで定義
-			float v = Input.GetAxis ("Vertical");				// 入力デバイスの垂直軸をvで定義
-			anim.SetFloat ("Speed", v);							// Animator側で設定している"Speed"パラメタにvを渡す
-			anim.SetFloat ("Direction", h); 						// Animator側で設定している"Direction"パラメタにhを渡す
-			anim.speed = animSpeed;								// Animatorのモーション再生速度に animSpeedを設定する
-			currentBaseState = anim.GetCurrentAnimatorStateInfo (0);	// 参照用のステート変数にBase Layer (0)の現在のステートを設定する
-			rb.useGravity = true;//ジャンプ中に重力を切るので、それ以外は重力の影響を受けるようにする
+			float h = Input.GetAxis ("Horizontal");				// Define the horizontal axis of the input device with h
+			float v = Input.GetAxis ("Vertical");				// Define the vertical axis of the input device in v
+			anim.SetFloat ("Speed", v);							// Pass v to the "Speed" parameter set in the Animator side.
+			anim.SetFloat ("Direction", h); 						// Pass "h" to the "Direction" parameter set in the Animator side.
+			anim.speed = animSpeed;								// Set animSpeed to Animator motion playback speed
+			currentBaseState = anim.GetCurrentAnimatorStateInfo (0);	// Set the current state of Base Layer (0) in a state variable for reference
+			rb.useGravity = true;// Cutting gravity during a jump, so that it is otherwise subject to the effects of gravity
 		
 		
 		
-			// 以下、キャラクターの移動処理
-			velocity = new Vector3 (0, 0, v);		// 上下のキー入力からZ軸方向の移動量を取得
-			// キャラクターのローカル空間での方向に変換
+			// The following character movement process
+			velocity = new Vector3 (0, 0, v);		// Get the amount of movement in the Z-axis direction from up and down key input
+			// Transformation in the direction of the character's local space
 			velocity = transform.TransformDirection (velocity);
-			//以下のvの閾値は、Mecanim側のトランジションと一緒に調整する
+			//The following v thresholds to adjust together with transitions on the Mecanim side
 			if (v > 0.1) {
-				velocity *= forwardSpeed;		// 移動速度を掛ける
+				velocity *= forwardSpeed;		// Multiply the movement speed
 			} else if (v < -0.1) {
-				velocity *= backwardSpeed;	// 移動速度を掛ける
+				velocity *= backwardSpeed;	// Multiply the movement speed
 			}
 		
-			if (Input.GetButtonDown ("Jump")) {	// スペースキーを入力したら
+			if (Input.GetButtonDown ("Jump")) {	// After entering the spacebar
 
-				//アニメーションのステートがLocomotionの最中のみジャンプできる
+				//Animation states can only jump during Locomotion
 				if (currentBaseState.fullPathHash == locoState) {
-					//ステート遷移中でなかったらジャンプできる
+					//You can jump if you are not in state transition
 					if (!anim.IsInTransition (0)) {
 						rb.AddForce (Vector3.up * jumpPower, ForceMode.VelocityChange);
-						anim.SetBool ("Jump", true);		// Animatorにジャンプに切り替えるフラグを送る
+						anim.SetBool ("Jump", true);		// Send the flag to switch to jump to Animator
 					}
 				}
 			}
 		
 
-			// 上下のキー入力でキャラクターを移動させる
+			// Up and down keystrokes to move the character
 			transform.localPosition += velocity * Time.fixedDeltaTime;
 
-			// 左右のキー入力でキャラクタをY軸で旋回させる
+			// Left and right keystrokes make the character swivel in the Y-axis
 			transform.Rotate (0, h * rotateSpeed, 0);	
 	
 
-			// 以下、Animatorの各ステート中での処理
-			// Locomotion中
-			// 現在のベースレイヤーがlocoStateの時
+			// The following is the process in each state of Animator
+			// in Locomotion
+			// When the current base layer is in the locoState
 			if (currentBaseState.fullPathHash == locoState) {
-				//カーブでコライダ調整をしている時は、念のためにリセットする
+				//When you're making a collider adjustment on a curve, reset it just in case
 				if (useCurves) {
 					resetCollider ();
 				}
 			}
-		// JUMP中の処理
-		// 現在のベースレイヤーがjumpStateの時
+		// Process during JUMP
+		// When the current base layer is a jumpState
 		else if (currentBaseState.fullPathHash == jumpState) {
-				cameraObject.SendMessage ("setCameraPositionJumpView");	// ジャンプ中のカメラに変更
-				// ステートがトランジション中でない場合
+				cameraObject.SendMessage ("setCameraPositionJumpView");	// Change the camera for during the jump
+				// If the state is not in transition
 				if (!anim.IsInTransition (0)) {
 				
-					// 以下、カーブ調整をする場合の処理
+					// Process if you want to adjust the curve below
 					if (useCurves) {
-						// 以下JUMP00アニメーションについているカーブJumpHeightとGravityControl
-						// JumpHeight:JUMP00でのジャンプの高さ（0〜1）
-						// GravityControl:1⇒ジャンプ中（重力無効）、0⇒重力有効
+						// Curve JumpHeight and GravityControl on the following JUMP00 animation
+						// JumpHeight:Jump height at JUMP00 (0 to 1)
+						// GravityControl:1⇒During the jump (gravity disabled), 0⇒Gravity Effective
 						float jumpHeight = anim.GetFloat ("JumpHeight");
 						float gravityControl = anim.GetFloat ("GravityControl"); 
 						if (gravityControl > 0)
-							rb.useGravity = false;	//ジャンプ中の重力の影響を切る
+							rb.useGravity = false;	//Cut the effect of gravity during a jump
 										
-						// レイキャストをキャラクターのセンターから落とす
+						// Drop the ray cast from the center of the character
 						Ray ray = new Ray (transform.position + Vector3.up, -Vector3.up);
 						RaycastHit hitInfo = new RaycastHit ();
-						// 高さが useCurvesHeight 以上ある時のみ、コライダーの高さと中心をJUMP00アニメーションについているカーブで調整する
+						// Adjust the collider height and center with the curve attached to the JUMP00 animation only when the height is greater than useCurvesHeight
 						if (Physics.Raycast (ray, out hitInfo)) {
 							if (hitInfo.distance > useCurvesHeight) {
-								col.height = orgColHight - jumpHeight;			// 調整されたコライダーの高さ
+								col.height = orgColHight - jumpHeight;			// Adjusted collider height
 								float adjCenterY = orgVectColCenter.y + jumpHeight;
-								col.center = new Vector3 (0, adjCenterY, 0);	// 調整されたコライダーのセンター
+								col.center = new Vector3 (0, adjCenterY, 0);	// Adjusted the center of collider
 							} else {
-								// 閾値よりも低い時には初期値に戻す（念のため）					
+								// Restore the initial value when it is lower than the threshold (just in case)					
 								resetCollider ();
 							}
 						}
 					}
-					// Jump bool値をリセットする（ループしないようにする）				
+					// Reset the jump bool value (to prevent looping)				
 					anim.SetBool ("Jump", false);
 				}
 			}
-		// IDLE中の処理
-		// 現在のベースレイヤーがidleStateの時
+		// Process during IDLE
+		// When the current base layer is idleState
 		else if (currentBaseState.fullPathHash == idleState) {
-				//カーブでコライダ調整をしている時は、念のためにリセットする
+				//When you're making a collider adjustment on a curve, reset it just in case
 				if (useCurves) {
 					resetCollider ();
 				}
-				// スペースキーを入力したらRest状態になる
+				// Enter the spacebar and you will be in the Rest state
 				if (Input.GetButtonDown ("Jump")) {
 					anim.SetBool ("Rest", true);
 				}
 			}
-		// REST中の処理
-		// 現在のベースレイヤーがrestStateの時
+		// Process during REST
+		// When the current base layer is restState
 		else if (currentBaseState.fullPathHash == restState) {
-				//cameraObject.SendMessage("setCameraPositionFrontView");		// カメラを正面に切り替える
-				// ステートが遷移中でない場合、Rest bool値をリセットする（ループしないようにする）
+				//cameraObject.SendMessage("setCameraPositionFrontView");		// Switch the camera to the front
+				// If the state is not in transition, reset the Rest bool value (to prevent looping)
 				if (!anim.IsInTransition (0)) {
 					anim.SetBool ("Rest", false);
 				}
@@ -190,10 +190,10 @@ namespace UnityEngine.Rendering.Toon.Samples
 		}
 
 
-		// キャラクターのコライダーサイズのリセット関数
+		// Reset function for the character's collider size
 		void resetCollider ()
 		{
-			// コンポーネントのHeight、Centerの初期値を戻す
+			// Restore the initial value of the component Height and Center
 			col.height = orgColHight;
 			col.center = orgVectColCenter;
 		}
