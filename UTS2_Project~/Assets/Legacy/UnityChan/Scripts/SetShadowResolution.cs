@@ -1,7 +1,7 @@
 //
 // SetShadowResolution.cs
-// シャドウマップにカスタムレゾリューションを設定するスクリプト.
-// メインライトにアタッチすること. 
+// This script to set up a custom resolution to the shadow map.
+// Attaching to the main light. 
 //
 using UnityEngine;
 
