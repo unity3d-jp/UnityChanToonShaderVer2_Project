@@ -104,13 +104,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    value: {x: 0.6793541, y: 0.7242188, z: 1, w: 0}
   gamma:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 0.9509906, z: 0.86817014, w: 0}
   gain:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 0.7145188, z: 0.9126118, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1376,10 +1376,10 @@ MonoBehaviour:
     value: 15
   threshold:
     overrideState: 1
-    value: 0.7
+    value: 0.67
   softKnee:
-    overrideState: 0
-    value: 0.5
+    overrideState: 1
+    value: 0.67
   clamp:
     overrideState: 0
     value: 65472

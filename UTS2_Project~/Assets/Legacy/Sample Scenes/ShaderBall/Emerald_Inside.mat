@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:
-        m_Texture: {fileID: 2800000, guid: 96fc6944926342e6a410b7254e8ce703, type: 3}
+        m_Texture: {fileID: 2800000, guid: cbf41c7986a444d1ab6da63131ea001b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:

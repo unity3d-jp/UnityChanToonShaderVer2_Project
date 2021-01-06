@@ -125,6 +125,7 @@ Material:
     - _Is_LightColor_Base: 1
     - _Is_LightColor_HighColor: 1
     - _Is_LightColor_MatCap: 1
+    - _Is_LightColor_Outline: 1
     - _Is_LightColor_RimLight: 1
     - _Is_NormalMapForMatCap: 0
     - _Is_NormalMapToBase: 0

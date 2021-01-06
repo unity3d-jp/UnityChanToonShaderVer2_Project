@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0006848241, g: 0.00086206244, b: 0.0009227452, a: 1}
+  m_IndirectSpecularColor: {r: 0.00068482605, g: 0.0008620641, b: 0.000922746, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -166,7 +166,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.953, g: 0.7724138, b: 0.047, a: 1}
-  m_Intensity: 8
+  m_Intensity: 80
   m_Range: 2.08
   m_SpotAngle: 9.1
   m_InnerSpotAngle: 6.547275
@@ -259,7 +259,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.047, g: 0.46206903, b: 0.916, a: 1}
-  m_Intensity: 8
+  m_Intensity: 80
   m_Range: 3.26
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -589,7 +589,6 @@ GameObject:
   - component: {fileID: 794565942}
   - component: {fileID: 794565947}
   - component: {fileID: 794565948}
-  - component: {fileID: 794565952}
   - component: {fileID: 794565944}
   m_Layer: 0
   m_Name: Main Camera
@@ -753,7 +752,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794565941}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e7538ce60604f89923766e98abe7673, type: 3}
   m_Name: 
@@ -768,32 +767,6 @@ MonoBehaviour:
   threshold: 0.3
   edgesOnly: 0
   edgeDetectShader: {fileID: 4800000, guid: ef1aa3b40650426ab8438eb18486079f, type: 3}
---- !u!114 &794565952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794565941}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101ac74223261194c952044eea3af2fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  opacity: 0
-  invert: 0
-  blur: 0
-  captureMode: 0
-  fullScreenTexture: {fileID: 0}
-  renderersEnabled: 1
-  globalRendererOptions:
-    opacity: 1
-    scale: {x: 1, y: 1, z: 1}
-    extrude: 0
-    texture: {fileID: 0}
-    depthTest: 1
-    cullMode: 0
-  serializedRenderers: []
 --- !u!1 &829328222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,7 +1627,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9117647, g: 0.06116068, b: 0.053633213, a: 1}
-  m_Intensity: 8
+  m_Intensity: 80
   m_Range: 2.42
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
