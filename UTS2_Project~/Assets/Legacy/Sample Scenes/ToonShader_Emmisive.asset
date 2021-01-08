@@ -1335,7 +1335,7 @@ MonoBehaviour:
     value: 2
   focalLength:
     overrideState: 1
-    value: 51.8
+    value: 15
   kernelSize:
     overrideState: 1
     value: 3
@@ -1376,7 +1376,7 @@ MonoBehaviour:
     value: 7
   threshold:
     overrideState: 1
-    value: 0.8
+    value: 1
   softKnee:
     overrideState: 1
     value: 0.14
@@ -1384,8 +1384,8 @@ MonoBehaviour:
     overrideState: 0
     value: 65472
   diffusion:
-    overrideState: 0
-    value: 7
+    overrideState: 1
+    value: 5
   anamorphicRatio:
     overrideState: 0
     value: 0
