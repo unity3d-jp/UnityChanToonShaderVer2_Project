@@ -38,7 +38,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
         Texture2D m_texIconInvisible;
 
         GUIStyle  m_ToggleStyle;
-
+        bool m_enableSolidColorMask = true;
 
 
 
@@ -48,11 +48,12 @@ namespace UnityEditor.Rendering.HDRP.Toon
         void RenderingPerChennelsSetting(Material material)
         {
 
-            _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, "【Rendering per Channel Settings】");
+            _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, "【Mask Rendering Settings】");
             if (!_PerChanelShaderSettings_Foldout)
             {
                 return;
             }
+            SetupSolidColorMaskSettings(material);
             SetupChannelSettings(material);
 
 
@@ -63,10 +64,14 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
         }
 
+        void SetupSolidColorMaskSettings(Material material)
+        {
+
+        }
         void SetupChannelSettings(Material material)
         {
 
-            if ( m_texIconVisible == null )
+            if (m_texIconVisible == null)
             {
                 m_texIconVisible = (Texture2D)EditorGUIUtility.Load(
                         EditorGUIUtility.isProSkin ? "d_scenevis_visible_hover@2x" : "scenevis_visible_hover@2x");
@@ -79,7 +84,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_texIconInvisible = (Texture2D)EditorGUIUtility.Load(
                         EditorGUIUtility.isProSkin ? "d_SceneViewVisibility@2x" : "scenevis_hidden_hover@2x");
             }
- 
+
             if (m_ToggleStyle == null)
             {
                 m_ToggleStyle = new GUIStyle(EditorStyles.toggle);
@@ -94,7 +99,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_ToggleStyle.active.scaledBackgrounds = new Texture2D[] { m_texIconInvisible };
                 m_ToggleStyle.onActive.background = m_texIconVisible;
                 m_ToggleStyle.onActive.scaledBackgrounds = new Texture2D[] { m_texIconVisible };
-              
+
                 m_ToggleStyle.focused.background = m_texIconInvisible;
                 m_ToggleStyle.focused.scaledBackgrounds = new Texture2D[] { m_texIconInvisible };
                 m_ToggleStyle.onFocused.background = m_texIconVisible;
@@ -116,7 +121,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_channelNames.Add(_ChannelEnum.RimLight.ToString());
                 m_channelNames.Add(_ChannelEnum.Outline.ToString());
             }
-            if (m_colorPickerContent == null )
+            if (m_colorPickerContent == null)
             {
                 m_colorPickerContent = new GUIContent(string.Empty);
             }
@@ -128,26 +133,29 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_ReorderableList.draggable = false;
                 m_ReorderableList.drawHeaderCallback = rect =>
                 {
-                    const int toggleWholeWidth = 170;
-                    const int toggleWidth = 20;
-                    Rect fieldRect = rect;
-                    Rect toggleRect = rect;
-                    fieldRect.width = rect.width-toggleWholeWidth;
-                    EditorGUI.LabelField(fieldRect, "Channel Mask Setting");
-                    const string propComposerMaskMode = "_ComposerMaskMode";
-
-                    toggleRect.width = toggleWholeWidth;
-                    toggleRect.x += fieldRect.width;
-                    bool isVisible = material.GetFloat(propComposerMaskMode) > 0.0f;
-                    EditorGUI.BeginChangeCheck();
-                    var store = EditorGUIUtility.labelWidth;
-                    EditorGUIUtility.labelWidth = toggleWholeWidth- toggleWidth;
-                    isVisible = EditorGUI.Toggle(toggleRect, "Composer mask setting:", isVisible);
-                    EditorGUIUtility.labelWidth = store;
-                    if (EditorGUI.EndChangeCheck())
+                    using (new EditorGUI.DisabledScope(m_enableSolidColorMask))
                     {
-                        Undo.RecordObject(material, "Compose mask setting is changed.");
-                        material.SetFloat(propComposerMaskMode, isVisible ? 1.0f : 0.0f);
+                        const int toggleWholeWidth = 170;
+                        const int toggleWidth = 20;
+                        Rect fieldRect = rect;
+                        Rect toggleRect = rect;
+                        fieldRect.width = rect.width - toggleWholeWidth;
+                        EditorGUI.LabelField(fieldRect, "Channel Mask Setting");
+                        const string propComposerMaskMode = "_ComposerMaskMode";
+
+                        toggleRect.width = toggleWholeWidth;
+                        toggleRect.x += fieldRect.width;
+                        bool isVisible = material.GetFloat(propComposerMaskMode) > 0.0f;
+                        EditorGUI.BeginChangeCheck();
+                        var store = EditorGUIUtility.labelWidth;
+                        EditorGUIUtility.labelWidth = toggleWholeWidth - toggleWidth;
+                        isVisible = EditorGUI.Toggle(toggleRect, "Composer mask setting:", isVisible);
+                        EditorGUIUtility.labelWidth = store;
+                        if (EditorGUI.EndChangeCheck())
+                        {
+                            Undo.RecordObject(material, "Compose mask setting is changed.");
+                            material.SetFloat(propComposerMaskMode, isVisible ? 1.0f : 0.0f);
+                        }
                     }
                 };
                 m_ReorderableList.drawElementCallback = (rect_, index, isActive, isFocused) =>
@@ -157,7 +165,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                         height = 16,
                         width = 16,
                         x = rect_.x + 6,
-                        y = rect_.y 
+                        y = rect_.y
                     };
                     Rect toggleRectOverride = new Rect(rect_)
                     {
@@ -180,43 +188,58 @@ namespace UnityEditor.Rendering.HDRP.Toon
                         x = rect_.x + 6 + 22 * 3,
                         y = rect_.y
                     };
-                    string propNameVisible = "_" + m_channelNames[index].ToString() + "Visible";
-                    string propNameOverriden = "_" + m_channelNames[index].ToString() + "Overridden";
-                    string propNameColor = "_" + m_channelNames[index].ToString() + "MaskColor";
-                    bool isVisible = material.GetFloat(propNameVisible) > 0.0f;
-                    EditorGUI.BeginChangeCheck();
-                    isVisible = EditorGUI.Toggle(toggleRectVislble, isVisible, m_ToggleStyle);
-                    if (EditorGUI.EndChangeCheck())
-                    {
-                        Undo.RecordObject(material, "Layer visiblity is changed");
-                        material.SetFloat(propNameVisible, isVisible ? 1.0f : 0.0f);
-                    }
 
-                    using (new EditorGUI.DisabledScope(isVisible == false))
+                    using (new EditorGUI.DisabledScope(m_enableSolidColorMask))
                     {
+                        string propNameVisible = "_" + m_channelNames[index].ToString() + "Visible";
+                        string propNameOverriden = "_" + m_channelNames[index].ToString() + "Overridden";
+                        string propNameColor = "_" + m_channelNames[index].ToString() + "MaskColor";
+                        bool isVisible = material.GetFloat(propNameVisible) > 0.0f;
                         EditorGUI.BeginChangeCheck();
-                        bool toggleOverride = material.GetFloat(propNameOverriden) > 0.0f;
-                        toggleOverride = EditorGUI.Toggle(toggleRectOverride, toggleOverride);
+                        isVisible = EditorGUI.Toggle(toggleRectVislble, isVisible, m_ToggleStyle);
                         if (EditorGUI.EndChangeCheck())
                         {
-                            Undo.RecordObject(material, "Layer mask is changed");
-                            material.SetFloat(propNameOverriden, toggleOverride ? 1.0f : 0.0f);
+                            Undo.RecordObject(material, "Layer visiblity is changed");
+                            material.SetFloat(propNameVisible, isVisible ? 1.0f : 0.0f);
                         }
 
-
-                        Color color = material.GetColor(propNameColor);
-                        //color *= toggleOverride == false ? 0.5f : 1.0f;
-                        EditorGUI.BeginChangeCheck();
-                        color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
-                        if (EditorGUI.EndChangeCheck())
+                        using (new EditorGUI.DisabledScope(isVisible == false))
                         {
-                            Undo.RecordObject(material, "Layer mask color is changed");
-                            material.SetColor(propNameColor, color);
+                            EditorGUI.BeginChangeCheck();
+                            bool toggleOverride = material.GetFloat(propNameOverriden) > 0.0f;
+                            toggleOverride = EditorGUI.Toggle(toggleRectOverride, toggleOverride);
+                            if (EditorGUI.EndChangeCheck())
+                            {
+                                Undo.RecordObject(material, "Layer mask is changed");
+                                material.SetFloat(propNameOverriden, toggleOverride ? 1.0f : 0.0f);
+                            }
+
+
+                            Color color = material.GetColor(propNameColor);
+                            //color *= toggleOverride == false ? 0.5f : 1.0f;
+                            EditorGUI.BeginChangeCheck();
+                            if (m_enableSolidColorMask)
+                            {
+                                color.r *= 0.5f;
+                                color.g *= 0.5f;
+                                color.b *= 0.5f;
+                                EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
+                            }
+                            else
+                            {
+                                color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
+                            }
+                            if (EditorGUI.EndChangeCheck())
+                            {
+                                Undo.RecordObject(material, "Layer mask color is changed");
+                                material.SetColor(propNameColor, color);
+                            }
+                            EditorGUI.LabelField(nameRect, m_channelNames[index]);
                         }
-                        EditorGUI.LabelField(nameRect, m_channelNames[index]);
                     }
                 };
             }
+
         }
         void ApplyRenderingPerChennelsSetting(Material material)
         {

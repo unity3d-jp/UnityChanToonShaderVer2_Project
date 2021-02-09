@@ -834,8 +834,10 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 EditorGUILayout.Space();
                 TessellationSetting(material);
                 EditorGUILayout.Space();
+
                 RenderingPerChennelsSetting(material);
             }
+
             ApplyRenderingPerChennelsSetting(material);
             ApplyClippingMode(material);
             ApplyStencilMode(material);
