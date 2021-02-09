@@ -455,6 +455,8 @@ Shader "HDRP/Toon"
         _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 0.5)
 
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
+        [Toggle(_)] _SolidColorMaskMode("", Float) = 0
+        _SolidMaskColor("Solid mask color", Color) = (1, 1, 1, 1)
         // to here parameters for UTS>
     }
 

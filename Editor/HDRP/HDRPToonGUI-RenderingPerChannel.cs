@@ -31,13 +31,19 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
 
 
-        ReorderableList m_ReorderableList;
+
+        ReorderableList m_channelMaskReorderableList;
+
         List<string> m_channelNames;
         GUIContent m_colorPickerContent;
         Texture2D m_texIconVisible;
         Texture2D m_texIconInvisible;
 
         GUIStyle  m_ToggleStyle;
+
+        ReorderableList m_SolidColorMaskReorderableList;
+        List<string> m_solidColors;
+
         bool m_enableSolidColorMask = true;
 
 
@@ -57,11 +63,14 @@ namespace UnityEditor.Rendering.HDRP.Toon
             SetupChannelSettings(material);
 
 
-            if (m_ReorderableList != null)
+            if (m_channelMaskReorderableList != null)
             {
-                m_ReorderableList.DoLayoutList();
+                m_channelMaskReorderableList.DoLayoutList();
             }
-
+            if (m_SolidColorMaskReorderableList != null)
+            {
+                m_SolidColorMaskReorderableList.DoLayoutList();
+            }
         }
 
         void SetupSolidColorMaskSettings(Material material)
@@ -75,9 +84,6 @@ namespace UnityEditor.Rendering.HDRP.Toon
             {
                 m_texIconVisible = (Texture2D)EditorGUIUtility.Load(
                         EditorGUIUtility.isProSkin ? "d_scenevis_visible_hover@2x" : "scenevis_visible_hover@2x");
-
-
-
             }
             if (m_texIconInvisible == null)
             {
@@ -121,22 +127,86 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_channelNames.Add(_ChannelEnum.RimLight.ToString());
                 m_channelNames.Add(_ChannelEnum.Outline.ToString());
             }
+            if (m_solidColors == null)
+            {
+                m_solidColors = new List<string>();
+                m_solidColors.Add("Mask Color");
+
+            }
             if (m_colorPickerContent == null)
             {
                 m_colorPickerContent = new GUIContent(string.Empty);
             }
-            if (m_ReorderableList == null)
+
+             if (m_SolidColorMaskReorderableList == null)
             {
-                m_ReorderableList = new ReorderableList(m_channelNames, typeof(string));
-                m_ReorderableList.displayAdd = false;
-                m_ReorderableList.displayRemove = false;
-                m_ReorderableList.draggable = false;
-                m_ReorderableList.drawHeaderCallback = rect =>
+                m_SolidColorMaskReorderableList = new ReorderableList(m_solidColors, typeof(string));
+                m_SolidColorMaskReorderableList.displayAdd = false;
+                m_SolidColorMaskReorderableList.displayRemove = false;
+                m_SolidColorMaskReorderableList.draggable = false;
+                m_SolidColorMaskReorderableList.drawHeaderCallback = rect =>
+                {
+                    using (new EditorGUI.DisabledScope(false))
+                    {
+                        const int toggleWholeWidth = 32;
+                        const int toggleWidth = 20;
+                        Rect fieldRect = rect;
+                        Rect toggleRect = rect;
+                        fieldRect.width = rect.width - toggleWholeWidth;
+                        EditorGUI.LabelField(fieldRect, " Solid Color Rendering for Clipping Mask");
+                        const string propSolidColorMaskMode = "_SolidColorMaskMode";
+
+                        toggleRect.width = toggleWholeWidth;
+                        toggleRect.x += fieldRect.width;
+                        bool isVisible = material.GetFloat(propSolidColorMaskMode) > 0.0f;
+                        EditorGUI.BeginChangeCheck();
+                        var store = EditorGUIUtility.labelWidth;
+                        EditorGUIUtility.labelWidth = toggleWholeWidth - toggleWidth;
+                        isVisible = EditorGUI.Toggle(toggleRect, ":", isVisible);
+                        EditorGUIUtility.labelWidth = store;
+                        if (EditorGUI.EndChangeCheck())
+                        {
+                            Undo.RecordObject(material, "Solid Color Rendering mask is changed.");
+                            material.SetFloat(propSolidColorMaskMode, isVisible ? 1.0f : 0.0f);
+                        }
+                    }
+                };
+                m_SolidColorMaskReorderableList.drawElementCallback = (rect_, index, isActive, isFocused) =>
+                {
+
+                    const string propNameColor = "_SolidMaskColor";
+                    Color color = material.GetColor(propNameColor);
+                    Rect colorPickerRect = new Rect(rect_)
+                    {
+                        height = 16,
+                        width = 16,
+                        x = rect_.x + 6 + 22 * 2,
+                        y = rect_.y
+                    };
+                    EditorGUI.BeginChangeCheck();
+                    color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
+
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        Undo.RecordObject(material, "Layer mask color is changed");
+                        material.SetColor(propNameColor, color);
+                    }
+                };
+            }
+
+            if (m_channelMaskReorderableList == null)
+            {
+                m_channelMaskReorderableList = new ReorderableList(m_channelNames, typeof(string));
+                m_channelMaskReorderableList.displayAdd = false;
+                m_channelMaskReorderableList.displayRemove = false;
+                m_channelMaskReorderableList.draggable = false;
+                m_channelMaskReorderableList.drawHeaderCallback = rect =>
                 {
                     using (new EditorGUI.DisabledScope(m_enableSolidColorMask))
                     {
                         const int toggleWholeWidth = 170;
                         const int toggleWidth = 20;
+
                         Rect fieldRect = rect;
                         Rect toggleRect = rect;
                         fieldRect.width = rect.width - toggleWholeWidth;
@@ -158,7 +228,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                         }
                     }
                 };
-                m_ReorderableList.drawElementCallback = (rect_, index, isActive, isFocused) =>
+                m_channelMaskReorderableList.drawElementCallback = (rect_, index, isActive, isFocused) =>
                 {
                     Rect toggleRectVislble = new Rect(rect_)
                     {
@@ -218,17 +288,9 @@ namespace UnityEditor.Rendering.HDRP.Toon
                             Color color = material.GetColor(propNameColor);
                             //color *= toggleOverride == false ? 0.5f : 1.0f;
                             EditorGUI.BeginChangeCheck();
-                            if (m_enableSolidColorMask)
-                            {
-                                color.r *= 0.5f;
-                                color.g *= 0.5f;
-                                color.b *= 0.5f;
-                                EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
-                            }
-                            else
-                            {
-                                color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
-                            }
+
+                            color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
+
                             if (EditorGUI.EndChangeCheck())
                             {
                                 Undo.RecordObject(material, "Layer mask color is changed");
