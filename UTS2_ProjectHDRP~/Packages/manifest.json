@@ -5,7 +5,6 @@
     "com.unity.package-validation-suite": "0.10.0-preview",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
     "com.unity.render-pipelines.high-definition": "7.4.3",
-    "com.unity.render-pipelines.universal": "7.4.3",
     "com.unity.test-framework": "1.1.13",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.ugui": "1.0.0",
