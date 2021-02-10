@@ -5,6 +5,8 @@ node_modules/**
 Documentation/ApiDocs/**
 Documentation~/ApiDocs/**
 UTS2_Project~/**
+UTS2_ProjectHDRP~/**
+UTS2_ProjectURP~/**
 .DS_Store
 .npmrc
 .npmignore
