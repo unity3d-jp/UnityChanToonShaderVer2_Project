@@ -195,9 +195,10 @@
                 return ShadeSH9(float4(N,1));
             }
 
-
             inline void InitializeStandardLitSurfaceDataUTS(float2 uv, out SurfaceData outSurfaceData)
+
             {
+                outSurfaceData = (SurfaceData)0;
                 // half4 albedoAlpha = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
                 half4 albedoAlpha = half4(1.0,1.0,1.0,1.0);
  

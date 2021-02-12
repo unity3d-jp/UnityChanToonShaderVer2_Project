@@ -1,5 +1,8 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
+## [2.2.1] - 2020/02/12
+### Fixed
+- A compile error on Unity 2020.2.
 
 ## [2.2.0] - 2020/07/07
 The first UTS/UniversalToon for URP official release.
