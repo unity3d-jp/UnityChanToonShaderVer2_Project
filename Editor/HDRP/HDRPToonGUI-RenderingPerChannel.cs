@@ -30,7 +30,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
         };
 
 
-
+        const string m_strCompositoerMaskSetting = "Compositor mask setting:";
 
         ReorderableList m_channelMaskReorderableList;
 
@@ -41,11 +41,11 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
         GUIStyle  m_ToggleStyle;
 
-        ReorderableList m_SolidColorMaskReorderableList;
+        ReorderableList m_clippingMaskReorderbleList;
         List<string> m_solidColors;
 
-        bool m_enableSolidColorMask = true;
-
+        bool m_enableClippingMask = false;
+        bool m_enableCompositerClippingMask = false;
 
 
 
@@ -62,15 +62,15 @@ namespace UnityEditor.Rendering.HDRP.Toon
             SetupSolidColorMaskSettings(material);
             SetupChannelSettings(material);
 
-
+            if (m_clippingMaskReorderbleList != null)
+            {
+                m_clippingMaskReorderbleList.DoLayoutList();
+            }
             if (m_channelMaskReorderableList != null)
             {
                 m_channelMaskReorderableList.DoLayoutList();
             }
-            if (m_SolidColorMaskReorderableList != null)
-            {
-                m_SolidColorMaskReorderableList.DoLayoutList();
-            }
+
         }
 
         void SetupSolidColorMaskSettings(Material material)
@@ -138,44 +138,53 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_colorPickerContent = new GUIContent(string.Empty);
             }
 
-             if (m_SolidColorMaskReorderableList == null)
+            const int toggleWholeWidth = 170;
+            const int toggleWidth = 20;
+
+            if (m_clippingMaskReorderbleList == null)
             {
-                m_SolidColorMaskReorderableList = new ReorderableList(m_solidColors, typeof(string));
-                m_SolidColorMaskReorderableList.displayAdd = false;
-                m_SolidColorMaskReorderableList.displayRemove = false;
-                m_SolidColorMaskReorderableList.draggable = false;
-                m_SolidColorMaskReorderableList.drawHeaderCallback = rect =>
+                m_clippingMaskReorderbleList = new ReorderableList(m_solidColors, typeof(string));
+                m_clippingMaskReorderbleList.displayAdd = false;
+                m_clippingMaskReorderbleList.displayRemove = false;
+                m_clippingMaskReorderbleList.draggable = false;
+                m_clippingMaskReorderbleList.drawHeaderCallback = rect =>
                 {
                     using (new EditorGUI.DisabledScope(false))
                     {
-                        const int toggleWholeWidth = 32;
-                        const int toggleWidth = 20;
+
                         Rect fieldRect = rect;
                         Rect toggleRect = rect;
                         fieldRect.width = rect.width - toggleWholeWidth;
-                        EditorGUI.LabelField(fieldRect, " Solid Color Rendering for Clipping Mask");
-                        const string propSolidColorMaskMode = "_SolidColorMaskMode";
+                        EditorGUI.LabelField(fieldRect, " Clipping Mask");
+                        const string propClippingMask = "_ComposerClippingMaskMode";
 
                         toggleRect.width = toggleWholeWidth;
                         toggleRect.x += fieldRect.width;
-                        bool isVisible = material.GetFloat(propSolidColorMaskMode) > 0.0f;
+                        m_enableCompositerClippingMask = material.GetFloat(propClippingMask) > 0.0f;
                         EditorGUI.BeginChangeCheck();
                         var store = EditorGUIUtility.labelWidth;
                         EditorGUIUtility.labelWidth = toggleWholeWidth - toggleWidth;
-                        isVisible = EditorGUI.Toggle(toggleRect, ":", isVisible);
+                        m_enableCompositerClippingMask = EditorGUI.Toggle(toggleRect, m_strCompositoerMaskSetting, m_enableCompositerClippingMask); 
                         EditorGUIUtility.labelWidth = store;
                         if (EditorGUI.EndChangeCheck())
                         {
                             Undo.RecordObject(material, "Solid Color Rendering mask is changed.");
-                            material.SetFloat(propSolidColorMaskMode, isVisible ? 1.0f : 0.0f);
+                            material.SetFloat(propClippingMask, m_enableCompositerClippingMask ? 1.0f : 0.0f);
                         }
                     }
                 };
-                m_SolidColorMaskReorderableList.drawElementCallback = (rect_, index, isActive, isFocused) =>
+                m_clippingMaskReorderbleList.drawElementCallback = (rect_, index, isActive, isFocused) =>
                 {
-
-                    const string propNameColor = "_SolidMaskColor";
+                    const string propClippingMaskMode = "_ClippingMaskMode";
+                    const string propNameColor = "_ClippingMaskColor";
                     Color color = material.GetColor(propNameColor);
+                    Rect toggleRectOverride = new Rect(rect_)
+                    {
+                        height = 16,
+                        width = 16,
+                        x = rect_.x + 6 + 22,
+                        y = rect_.y
+                    };
                     Rect colorPickerRect = new Rect(rect_)
                     {
                         height = 16,
@@ -183,14 +192,31 @@ namespace UnityEditor.Rendering.HDRP.Toon
                         x = rect_.x + 6 + 22 * 2,
                         y = rect_.y
                     };
+
+                    Rect nameRect = new Rect(rect_)
+                    {
+                        height = 16,
+                        width = 120,
+                        x = rect_.x + 6 + 22 * 3,
+                        y = rect_.y
+                    };
+                    EditorGUI.BeginChangeCheck();
+                    m_enableClippingMask= material.GetFloat(propClippingMaskMode) > 0.0f;
+                    m_enableClippingMask = EditorGUI.Toggle(toggleRectOverride, m_enableClippingMask);
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        Undo.RecordObject(material, "Clipping mask is changed");
+                        material.SetFloat(propClippingMaskMode, m_enableClippingMask ? 1.0f : 0.0f);
+                    }
                     EditorGUI.BeginChangeCheck();
                     color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
 
                     if (EditorGUI.EndChangeCheck())
                     {
-                        Undo.RecordObject(material, "Layer mask color is changed");
+                        Undo.RecordObject(material, "Clipping mask color is changed");
                         material.SetColor(propNameColor, color);
                     }
+                    EditorGUI.LabelField(nameRect, m_solidColors[index]);
                 };
             }
 
@@ -202,29 +228,28 @@ namespace UnityEditor.Rendering.HDRP.Toon
                 m_channelMaskReorderableList.draggable = false;
                 m_channelMaskReorderableList.drawHeaderCallback = rect =>
                 {
-                    using (new EditorGUI.DisabledScope(m_enableSolidColorMask))
+                    using (new EditorGUI.DisabledScope(m_enableClippingMask || m_enableCompositerClippingMask))
                     {
-                        const int toggleWholeWidth = 170;
-                        const int toggleWidth = 20;
+
 
                         Rect fieldRect = rect;
                         Rect toggleRect = rect;
                         fieldRect.width = rect.width - toggleWholeWidth;
                         EditorGUI.LabelField(fieldRect, "Channel Mask Setting");
-                        const string propComposerMaskMode = "_ComposerMaskMode";
+                        const string propCompositorMaskMode = "_ComposerMaskMode";
 
                         toggleRect.width = toggleWholeWidth;
                         toggleRect.x += fieldRect.width;
-                        bool isVisible = material.GetFloat(propComposerMaskMode) > 0.0f;
+                        bool isVisible = material.GetFloat(propCompositorMaskMode) > 0.0f;
                         EditorGUI.BeginChangeCheck();
                         var store = EditorGUIUtility.labelWidth;
                         EditorGUIUtility.labelWidth = toggleWholeWidth - toggleWidth;
-                        isVisible = EditorGUI.Toggle(toggleRect, "Composer mask setting:", isVisible);
+                        isVisible = EditorGUI.Toggle(toggleRect, m_strCompositoerMaskSetting, isVisible);
                         EditorGUIUtility.labelWidth = store;
                         if (EditorGUI.EndChangeCheck())
                         {
-                            Undo.RecordObject(material, "Compose mask setting is changed.");
-                            material.SetFloat(propComposerMaskMode, isVisible ? 1.0f : 0.0f);
+                            Undo.RecordObject(material, "Compositor mask setting is changed.");
+                            material.SetFloat(propCompositorMaskMode, isVisible ? 1.0f : 0.0f);
                         }
                     }
                 };
@@ -259,7 +284,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
                         y = rect_.y
                     };
 
-                    using (new EditorGUI.DisabledScope(m_enableSolidColorMask))
+                    using (new EditorGUI.DisabledScope(m_enableClippingMask || m_enableCompositerClippingMask))
                     {
                         string propNameVisible = "_" + m_channelNames[index].ToString() + "Visible";
                         string propNameOverriden = "_" + m_channelNames[index].ToString() + "Overridden";
