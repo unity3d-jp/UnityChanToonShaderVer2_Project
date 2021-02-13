@@ -461,6 +461,9 @@ Shader "HDRP/ToonTessellation"
         _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 0.5)
 
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
+        [Toggle(_)] _ClippingMaskMode("", Float) = 0
+        [Toggle(_)] _ComposerClippingMaskMode("", Float) = 0
+        _ClippingMaskColor("Clipping mask color", Color) = (1, 1, 1, 1)
         // to here parameters for UTS>
     }
 

@@ -149,6 +149,22 @@ void Frag(PackedVaryingsToPS packedInput,
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(packedInput);
     FragInputs input = UnpackVaryingsMeshToFragInputs(packedInput.vmesh);
 
+    if (_ClippingMaskMode > 0.1 )
+    {
+		outColor = _ClippingMaskColor;
+#ifdef _DEPTHOFFSET_ON
+		outputDepth = posInput.deviceDepth;
+#endif
+		return;
+    }
+    if (_ComposerClippingMaskMode > 0.1)
+    {
+		outColor = float4(1.0f, 0.0f, 0.0f, 1.0f);
+#ifdef _DEPTHOFFSET_ON
+		outputDepth = posInput.deviceDepth;
+#endif
+		return;
+    }
     // We need to readapt the SS position as our screen space positions are for a low res buffer, but we try to access a full res buffer.
     input.positionSS.xy = _OffScreenRendering > 0 ? (input.positionSS.xy * _OffScreenDownsampleFactor) : input.positionSS.xy;
 

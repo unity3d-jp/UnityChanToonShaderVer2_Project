@@ -35,10 +35,14 @@
             uniform float _ZOverDrawMode;
             //
 
+            // masking
             uniform float _OutlineVisible;
             uniform float _OutlineOverridden;
             uniform float4 _OutlineMaskColor;
             uniform float _ComposerMaskMode;
+            uniform float _ClippingMaskMode;
+            uniform float _ComposerClippingMaskMode;
+            uniform float4 _ClippingMaskColor;
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_YES
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
@@ -46,6 +50,9 @@
             uniform fixed _Inverse_Clipping;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
 #endif
+
+
+
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
@@ -64,6 +71,7 @@
 #undef unity_WorldToObject 
 
             VertexOutput vert (VertexInput v) {
+
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
@@ -104,6 +112,11 @@
                 return o;
             }
             float4 frag(VertexOutput i) : SV_Target{
+                if (_ClippingMaskMode > 0.1 || _ComposerClippingMaskMode > 0.1)
+                {
+                    discard;
+                }
+
                 //v.2.0.5
                 if (_ZOverDrawMode > 0.99f)
                 {
