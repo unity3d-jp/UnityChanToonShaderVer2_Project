@@ -112,11 +112,12 @@
                 return o;
             }
             float4 frag(VertexOutput i) : SV_Target{
+#ifdef _IS_CLIPPING_MASK
                 if (_ClippingMaskMode > 0.1 || _ComposerClippingMaskMode > 0.1)
                 {
                     discard;
                 }
-
+#endif
                 //v.2.0.5
                 if (_ZOverDrawMode > 0.99f)
                 {

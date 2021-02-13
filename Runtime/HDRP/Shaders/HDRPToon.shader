@@ -971,7 +971,8 @@ Shader "HDRP/Toon"
             #pragma shader_feature _ UTS_USE_RAYTRACING_SHADOW
             // used in DoubleShadeWithFeather
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
-
+            // controlling mask rendering
+            #pragma shader_feature _ _IS_CLIPPING_MASK
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
@@ -1060,6 +1061,7 @@ Shader "HDRP/Toon"
 
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+            #pragma shader_feature _ _IS_CLIPPING_MASK
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "HDRPToonHead.hlsl"
             #include "HDRPToonOutline.hlsl"

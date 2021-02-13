@@ -59,8 +59,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
             {
                 return;
             }
-            SetupSolidColorMaskSettings(material);
-            SetupChannelSettings(material);
+
 
             if (m_clippingMaskReorderbleList != null)
             {
@@ -70,13 +69,21 @@ namespace UnityEditor.Rendering.HDRP.Toon
             {
                 m_channelMaskReorderableList.DoLayoutList();
             }
-
+            SetupSolidColorMaskSettings(material);
+            SetupChannelSettings(material);
         }
 
         void SetupSolidColorMaskSettings(Material material)
         {
 
+            material.DisableKeyword(ShaderDefineIS_CLIPPING_MASK);
+            if (m_enableCompositerClippingMask || m_enableClippingMask )
+            {
+
+                material.EnableKeyword(ShaderDefineIS_CLIPPING_MASK);
+            }
         }
+
         void SetupChannelSettings(Material material)
         {
 

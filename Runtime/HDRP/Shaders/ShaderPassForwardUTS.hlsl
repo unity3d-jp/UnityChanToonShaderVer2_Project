@@ -148,7 +148,7 @@ void Frag(PackedVaryingsToPS packedInput,
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(packedInput);
     FragInputs input = UnpackVaryingsMeshToFragInputs(packedInput.vmesh);
-
+#ifdef _IS_CLIPPING_MASK
     if (_ClippingMaskMode > 0.1 )
     {
 		outColor = _ClippingMaskColor;
@@ -165,6 +165,8 @@ void Frag(PackedVaryingsToPS packedInput,
 #endif
 		return;
     }
+#endif // _IS_CLIPPING_MASK
+
     // We need to readapt the SS position as our screen space positions are for a low res buffer, but we try to access a full res buffer.
     input.positionSS.xy = _OffScreenRendering > 0 ? (input.positionSS.xy * _OffScreenDownsampleFactor) : input.positionSS.xy;
 
