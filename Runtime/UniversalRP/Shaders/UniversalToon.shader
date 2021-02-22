@@ -4,9 +4,9 @@
 
 Shader "Universal Render Pipeline/Toon" {
     Properties{
-        [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
-
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
+        // Versioning of material to help for upgrading
+        [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
         [HideInInspector] _utsVersionY("VersionY", Float) = 0
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
@@ -19,7 +19,7 @@ Shader "Universal Render Pipeline/Toon" {
         _StencilNo("Stencil No", Float) = 1
         _StencilOpPass("Stencil Operation", Float) = 0
         _StencilOpFail("Stencil Operation", Float) = 0
-        [Enum(OFF,0,ON,1,] _TransparentEnabled("Transparent Mode", int) = 0
+        [Enum(OFF,0,ON,1)] _TransparentEnabled("Transparent Mode", int) = 0
 
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
@@ -272,13 +272,13 @@ Shader "Universal Render Pipeline/Toon" {
             // Material Keywords
             // -------------------------------------
             // Material Keywords
-            #pragma shader_feature _NORMALMAP
+//            #pragma shader_feature _NORMALMAP
             #pragma shader_feature _ALPHATEST_ON
             #pragma shader_feature _ALPHAPREMULTIPLY_ON
             #pragma shader_feature _EMISSION
             #pragma shader_feature _METALLICSPECGLOSSMAP
             #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-            #pragma shader_feature _OCCLUSIONMAP
+//            #pragma shader_feature _OCCLUSIONMAP
 
             #pragma shader_feature _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature _ENVIRONMENTREFLECTIONS_OFF

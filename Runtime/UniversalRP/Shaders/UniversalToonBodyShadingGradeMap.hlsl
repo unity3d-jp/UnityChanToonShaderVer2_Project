@@ -25,7 +25,7 @@
                 InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
                 InputData inputData;
-                Varyings  input;
+                Varyings  input = (Varyings)0;
 
                 // todo.  it has to be cared more.
                 UNITY_SETUP_INSTANCE_ID(input);
@@ -43,7 +43,9 @@
 #  ifdef _NORMALMAP
                 input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
                 input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
+#  if (SHADER_LIBRARY_VERSION_MAJOR <10 )
                 input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
+#  endif
 #  else
                 input.normalWS  = half3(i.normalDir);
                 input.viewDirWS = half3(viewDirection);

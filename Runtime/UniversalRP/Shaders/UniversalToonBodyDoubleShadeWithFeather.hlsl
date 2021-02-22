@@ -30,7 +30,7 @@
                 InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
                 InputData inputData;
-                Varyings  input;
+                Varyings  input = (Varyings)0;
 
                 UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
@@ -45,7 +45,9 @@
                 input.positionWS = i.posWorld.xyz;
 #  endif
 #  ifdef _NORMALMAP
-                input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
+#  if (SHADER_LIBRARY_VERSION_MAJOR <10 )
+                input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
+#  endif
                 input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
                 input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
 #  else
