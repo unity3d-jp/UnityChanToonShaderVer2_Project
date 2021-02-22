@@ -1,5 +1,9 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
+## [2.2.2] - 2020/02/22
+### Fixed
+- A compile error on Unity 2020.2 on some materials which are converted from Universal RP/Lit.
+
 ## [2.2.1] - 2020/02/12
 ### Fixed
 - A compile error on Unity 2020.2.
