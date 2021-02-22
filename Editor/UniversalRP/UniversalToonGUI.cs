@@ -3231,4 +3231,4 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 
 
     } // End of UTS2GUI2
-}// End of namespace UnityChan
+}

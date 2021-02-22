@@ -1,7 +1,6 @@
-//Unitychan Toon Shader ver.1.0
-//v.1.0.0
+//Unity Toon Shader/HDRP
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Universal RP/HDRP)
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
 
 Shader "HDRP/ToonTessellation"
 {
@@ -461,9 +460,8 @@ Shader "HDRP/ToonTessellation"
         _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 0.5)
 
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
-        [Toggle(_)] _ClippingMaskMode("", Float) = 0
-        [Toggle(_)] _ComposerClippingMaskMode("", Float) = 0
-        _ClippingMaskColor("Clipping mask color", Color) = (1, 1, 1, 1)
+        [Enum(None, 0, BaseColor, 1, FirstShade, 2, SecondShade, 3, Highlight, 4, AngelRing, 5, RimLight, 6)] _ClippingMaskMode("Clipping Mask Mode", int) = 0
+
         // to here parameters for UTS>
     }
 
@@ -1103,5 +1101,5 @@ Shader "HDRP/ToonTessellation"
     */
     }
 
-    CustomEditor "UnityEditor.Rendering.HDRP.Toon.HDRPToonGUI"
+    CustomEditor "UnityEditor.Rendering.HighDefinition.Toon.HDRPToonGUI"
 }

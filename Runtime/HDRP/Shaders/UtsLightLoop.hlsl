@@ -1,3 +1,7 @@
+//Unity Toon Shader/HDRP
+//nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Macros.hlsl"
 #include "HDRPToonHead.hlsl"
 
@@ -207,9 +211,8 @@ uniform float _OutlineOverridden;
 uniform float4 _OutlineMaskColor;
 
 uniform float _ComposerMaskMode;
-uniform float _ClippingMaskMode;
-uniform float _ComposerClippingMaskMode;
-uniform float4 _ClippingMaskColor;
+uniform int _ClippingMaskMode;
+
 // just grafted from UTS/Universal RP
 struct UtsLight
 {

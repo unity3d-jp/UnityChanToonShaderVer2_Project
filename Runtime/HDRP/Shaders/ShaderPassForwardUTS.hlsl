@@ -1,3 +1,7 @@
+//Unity Toon Shader/HDRP
+//nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 #if SHADERPASS != SHADERPASS_FORWARD
 #error SHADERPASS_is_not_correctly_define
 #endif
@@ -148,24 +152,7 @@ void Frag(PackedVaryingsToPS packedInput,
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(packedInput);
     FragInputs input = UnpackVaryingsMeshToFragInputs(packedInput.vmesh);
-#ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode > 0.1 )
-    {
-		outColor = _ClippingMaskColor;
-#ifdef _DEPTHOFFSET_ON
-		outputDepth = posInput.deviceDepth;
-#endif
-		return;
-    }
-    if (_ComposerClippingMaskMode > 0.1)
-    {
-		outColor = float4(1.0f, 0.0f, 0.0f, 1.0f);
-#ifdef _DEPTHOFFSET_ON
-		outputDepth = posInput.deviceDepth;
-#endif
-		return;
-    }
-#endif // _IS_CLIPPING_MASK
+
 
     // We need to readapt the SS position as our screen space positions are for a low res buffer, but we try to access a full res buffer.
     input.positionSS.xy = _OffScreenRendering > 0 ? (input.positionSS.xy * _OffScreenDownsampleFactor) : input.positionSS.xy;
@@ -189,6 +176,8 @@ void Frag(PackedVaryingsToPS packedInput,
     SurfaceData surfaceData;
     BuiltinData builtinData;
     GetSurfaceAndBuiltinData(input, V, posInput, surfaceData, builtinData);
+
+
 
     BSDFData bsdfData = ConvertSurfaceDataToBSDFData(input.positionSS.xy, surfaceData);
 
@@ -215,6 +204,8 @@ void Frag(PackedVaryingsToPS packedInput,
     InitContactShadow(posInput, context);
 
     float3 i_normalDir = surfaceData.normalWS;
+
+
 
     float3 finalColor = float3(0.0f, 0.0f, 0.0f);
     if (featureFlags & LIGHTFEATUREFLAGS_DIRECTIONAL)

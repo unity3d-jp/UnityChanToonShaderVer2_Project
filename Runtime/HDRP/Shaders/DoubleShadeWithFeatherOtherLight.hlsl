@@ -1,3 +1,7 @@
+//Unity Toon Shader/HDRP
+//nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     float3 additionalLightColor, float3 lightDirection, float notDirectional)
 {

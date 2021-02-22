@@ -1,15 +1,13 @@
-﻿//Unitychan Toon Shader ver.8.0
-//v.8.0.0
+﻿//Unity Toon Shader/HDRP
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Univerasl RP/HDRP) 
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 using UnityEngine;
 using UnityEditor;
 using System;
 using UnityEngine.Rendering;
 
-namespace UnityEditor.Rendering.HDRP.Toon
+namespace UnityEditor.Rendering.HighDefinition.Toon
 {
     public partial class HDRPToonGUI : ShaderGUI
     {

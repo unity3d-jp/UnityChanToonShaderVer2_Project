@@ -1,10 +1,7 @@
-﻿//UTS2/UniversalToon
-//v.2.2.2
+﻿//Unity Toon Shader/Universal
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Univerasl RP/HDRP)  
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-//
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 
 
         float4 fragShadingGradeMap(VertexOutput i, fixed facing : VFACE) : SV_TARGET
@@ -28,7 +25,7 @@
                 InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
                 InputData inputData;
-                Varyings  input = (Varyings)0;
+                Varyings  input;
 
                 // todo.  it has to be cared more.
                 UNITY_SETUP_INSTANCE_ID(input);
@@ -46,9 +43,7 @@
 #  ifdef _NORMALMAP
                 input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
                 input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
-#  if (SHADER_LIBRARY_VERSION_MAJOR <10 )
                 input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
-#  endif
 #  else
                 input.normalWS  = half3(i.normalDir);
                 input.viewDirWS = half3(viewDirection);

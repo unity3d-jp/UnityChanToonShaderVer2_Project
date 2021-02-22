@@ -7,7 +7,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace UnityEditor.Rendering.HDRP.Toon
+namespace UnityEditor.Rendering.HighDefinition.Toon
 {
     struct GameRecommendation
     {
@@ -3246,4 +3246,4 @@ namespace UnityEditor.Rendering.HDRP.Toon
 
 
     } // End of UTS2GUI2
-}// End of namespace UnityChan
+}

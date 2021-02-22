@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-namespace UnityEditor.Rendering.HDRP.Toon
+namespace UnityEditor.Rendering.HighDefinition.Toon
 {
     public class LegacyUTStoHDRP : EditorWindow
     {
@@ -129,7 +129,7 @@ namespace UnityEditor.Rendering.HDRP.Toon
         [MenuItem("Assets/Universal Toon/Convert Legacy materials to HDRP materials", false, 0)]
         static private void OpenWindow()
         {
-            var window = GetWindow<LegacyUTStoHDRP>();
+            var window = GetWindow<LegacyUTStoHDRP>(true, "LegacyUTStoHDRP");
             window.Show();
         }
 

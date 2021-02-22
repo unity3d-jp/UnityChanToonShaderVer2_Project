@@ -1,15 +1,15 @@
-﻿//UTS2/UniversalToon
-//v.2.2.2
+﻿//Unity Toon Shader/Universal
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
+
 Shader "Universal Render Pipeline/Toon" {
     Properties{
+        [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
+
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
-        [HideInInspector] _utsVersionX("VersionX", Float) = 2
-        [HideInInspector] _utsVersionY("VersionY", Float) = 2
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 2
+        [HideInInspector] _utsVersionX("VersionX", Float) = 0
+        [HideInInspector] _utsVersionY("VersionY", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
@@ -19,7 +19,7 @@ Shader "Universal Render Pipeline/Toon" {
         _StencilNo("Stencil No", Float) = 1
         _StencilOpPass("Stencil Operation", Float) = 0
         _StencilOpFail("Stencil Operation", Float) = 0
-        [Enum(OFF,0,ON,1)] _TransparentEnabled("Transparent Mode", int) = 0
+        [Enum(OFF,0,ON,1,] _TransparentEnabled("Transparent Mode", int) = 0
 
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE

@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine.TestTools;
 
-namespace Unity.UnityChanToonShader2.Tests {
+namespace Unity.Rendering.ToonShader.Tests {
     public class ShaderCompileTest
     {
         
         [Test]
         public void CompileAllToonShadersDefault() {
-            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2/Runtime/Shader"});
+            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.toonshader/Runtime/Shader"});
             int numShaders = guids.Length;
             bool shaderHasError = false;
             for (int i=0;i<numShaders && !shaderHasError;++i) {
@@ -30,7 +30,7 @@ namespace Unity.UnityChanToonShader2.Tests {
         [Test]        
         [UnityPlatform(RuntimePlatform.WindowsEditor)]
         public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
-            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.unitychantoonshader2/Runtime/Shader"});
+            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.toonshader/Runtime/Shader"});
             int numShaders = guids.Length;
 
             List<Material> materials = new List<Material>();

@@ -1,3 +1,7 @@
+//Unity Toon Shader/HDRP
+//nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping)
 {
 

@@ -1,14 +1,7 @@
-﻿//Unitychan Toon Shader ver.8.0
-//v.8.0.0
+﻿//Unity Toon Shader/HDRP
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Universal RP/HDRP)
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-// Outlines with camera offset (modified to reflect BaseColor light color / Tessellation compatible)
-// 2018/02/05 Outline Tex
-// #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
-// _IS_OUTLINE_CLIPPING_YES is only available for shaders that use the Clippig mask. By adding Blend SrcAlpha OneMinusSrcAlpha to Outline's blend mode.
-//
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
             uniform float4 _LightColor0;
 //            uniform float4 _BaseColor;
             //v.2.0.7.5
@@ -40,9 +33,9 @@
             uniform float _OutlineOverridden;
             uniform float4 _OutlineMaskColor;
             uniform float _ComposerMaskMode;
-            uniform float _ClippingMaskMode;
-            uniform float _ComposerClippingMaskMode;
-            uniform float4 _ClippingMaskColor;
+            uniform int _ClippingMaskMode;
+
+
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_YES
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
@@ -113,7 +106,7 @@
             }
             float4 frag(VertexOutput i) : SV_Target{
 #ifdef _IS_CLIPPING_MASK
-                if (_ClippingMaskMode > 0.1 || _ComposerClippingMaskMode > 0.1)
+                if (_ClippingMaskMode != 0)
                 {
                     discard;
                 }

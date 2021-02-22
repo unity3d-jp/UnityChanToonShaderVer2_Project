@@ -1,3 +1,7 @@
+//Unity Toon Shader/Universal
+//nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 #ifndef UCTS_LWRP_INCLUDED
 #define UCTS_LWRP_INCLUDED
 

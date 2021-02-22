@@ -1,8 +1,7 @@
-﻿//Unitychan Toon Shader ver.2.0
-//UTS2GUI.cs for UTS2 v.2.0.7.5
+﻿//Unity Toon Shader
 //nobuyuki@unity3d.com
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 using UnityEngine;
 using UnityEditor;
 
@@ -2515,4 +2514,4 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
         }
 
     } // End of UTS2GUI2
-}// End of namespace UnityChan
+}

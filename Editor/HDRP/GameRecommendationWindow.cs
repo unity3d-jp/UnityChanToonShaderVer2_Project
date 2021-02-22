@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor.Rendering.HDRP.Toon
+namespace UnityEditor.Rendering.HighDefinition.Toon
 {
 
     internal class GameRecommendationWindow : EditorWindow

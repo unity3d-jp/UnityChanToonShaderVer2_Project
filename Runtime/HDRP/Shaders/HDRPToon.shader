@@ -1,16 +1,16 @@
-//Unitychan Toon Shader ver.1.0
-//v.1.0.0
+//Unity Toon Shader/HDRP
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Universal RP/HDRP)
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 Shader "HDRP/Toon"
 {
     Properties
     {
         // Versioning of material to help for upgrading
-
-        [HideInInspector] _utsVersionX("VersionX", Float) = 1
+        [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
+        [HideInInspector] _utsVersionX("VersionX", Float) = 0
         [HideInInspector] _utsVersionY("VersionY", Float) = 0
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
         // Following set of parameters represent the parameters node inside the MaterialGraph.
         // They are use to fill a SurfaceData. With a MaterialGraph this should not exist.
 
@@ -455,9 +455,8 @@ Shader "HDRP/Toon"
         _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 0.5)
 
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
-        [Toggle(_)] _ClippingMaskMode("", Float) = 0
-        [Toggle(_)] _ComposerClippingMaskMode("", Float) = 0
-        _ClippingMaskColor("Clipping mask color", Color) = (1, 1, 1, 1)
+        [Enum(None, 0, BaseColor, 1, FirstShade, 2, SecondShade,3, Highlight, 4, AngelRing, 5, RimLight, 6)] _ClippingMaskMode("Clipping Mask Mode", int) = 0
+
         // to here parameters for UTS>
     }
 
@@ -1075,5 +1074,5 @@ Shader "HDRP/Toon"
 
 
 
-    CustomEditor "UnityEditor.Rendering.HDRP.Toon.HDRPToonGUI"
+    CustomEditor "UnityEditor.Rendering.HighDefinition.Toon.HDRPToonGUI"
 }
