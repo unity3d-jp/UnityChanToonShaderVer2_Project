@@ -1,4 +1,4 @@
-# UTS/UniversalToon Ver.2.2.0 マニュアル
+# UTS/UniversalToon Ver.2.2.2 マニュアル
 ***Read this document in [English](index.md)***  
 
 [![](Images_jpg/SDUnitychan_URP.jpg)](https://www.youtube.com/watch?v=TfZ8B409uqM)
@@ -51,7 +51,7 @@ UTS/UniversalToon は、セルルック3DCGアニメーションの制作現場�
 是非、貴方のご自慢のキャラクターモデルをUTS/UniversalToonで彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、UTS/UniversalToonの最新版 **UTS/UniversalToon v.2.2.0** 向けに書かれています。  
+本マニュアルは、UTS/UniversalToonの最新版 **UTS/UniversalToon v.2.2.2** 向けに書かれています。  
 
 ## 【UTS/UniversalToonを使い始める】
 UTS/UniversalToonは、マテリアルインスペクターの**Shaders**メニューより、**Universal Render Pipeline**グループの中にある**Toon**シェーダーを新規マテリアルに割り当てることで、使用を開始できます。以下、その手順を示します。  

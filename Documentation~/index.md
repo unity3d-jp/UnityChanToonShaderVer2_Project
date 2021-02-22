@@ -1,4 +1,4 @@
-# UTS/UniversalToon Ver.2.2.0 Manual
+# UTS/UniversalToon Ver.2.2.2 Manual
 ***Read this document in [日本語版](index_ja.md)***  
 
 [![](Images_jpg/SDUnitychan_URP.jpg)](https://www.youtube.com/watch?v=TfZ8B409uqM)
@@ -51,7 +51,7 @@ Several techniques have been implemented to beautifully display characters in a 
 See for yourself by coloring your best character model with UTS/UniversalToon.  
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the latest version of UTS/UniversalToon: **UTS/UniversalToon v.2.2.0**.  
+This manual focuses on the latest version of UTS/UniversalToon: **UTS/UniversalToon v.2.2.2**.  
 
 ## 【Start using UTS/UniversalToon】
 You can start using UTS/UniversalToon by assigning the **Toon** shader in the **Universal Render Pipeline** group to a new material in the **Shaders** menu of the Material Inspector. Here are the steps to take.  
