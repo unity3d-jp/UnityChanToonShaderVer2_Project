@@ -1,5 +1,5 @@
 ﻿//UTS2/UniversalToon
-//v.2.2.0
+//v.2.2.2
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
@@ -9,7 +9,7 @@ Shader "Universal Render Pipeline/Toon" {
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         [HideInInspector] _utsVersionX("VersionX", Float) = 2
         [HideInInspector] _utsVersionY("VersionY", Float) = 2
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 2
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
