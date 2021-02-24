@@ -130,7 +130,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 #ifdef _IS_CLIPPING_MASK
     if (_ClippingMaskMode == 2)
     {
-        clippingColor = _1stColorFeatherForMask;
+        clippingColor = _Is_LightColor_1st_Shade_var;
         return clippingColor;
     }
 #endif // _IS_CLIPPING_MASK
@@ -149,13 +149,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float _2ndColorFeatherForMask = lerp(_2nd_ShadeColor_Feather, 0.0f, max(_SecondShadeOverridden, _ComposerMaskMode));
     float Set_ShadeShadowMask = saturate((1.0 + ((Set_ShadingGrade - (_2nd_ShadeColor_Step - _2ndColorFeatherForMask)) * (0.0 - 1.0)) / (_2nd_ShadeColor_Step - (_2nd_ShadeColor_Step - _2ndColorFeatherForMask)))); // 1st and 2nd Shades Mask
     //Composition: 3 Basic Colors as Set_FinalBaseColor
-#ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode == 3)
-    {
-        clippingColor = _2ndColorFeatherForMask;
-        return clippingColor;
-    }
-#endif // _IS_CLIPPING_MASK
+
 #ifdef UTS_LAYER_VISIBILITY
     float3 Set_FinalBaseColor;
     {
@@ -182,12 +176,21 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
             , Set_FinalShadowMask);
 #endif //#ifdef UTS_LAYER_VISIBILITY
 
+#ifdef _IS_CLIPPING_MASK
+    if (_ClippingMaskMode == 3)
+    {
+        clippingColor = Set_FinalBaseColor;
+        return clippingColor;
+    }
+#endif // _IS_CLIPPING_MASK
+
     float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
     float _Specular_var = 0.5 * dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; // Specular
     float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel)) * lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
     float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
     //Composition: 3 Basic Colors and HighColor as Set_HighColor
-    float3 _HighColor_var = (lerp((_HighColor_Tex_var.rgb * _HighColor.rgb), ((_HighColor_Tex_var.rgb * _HighColor.rgb) * Set_LightColor), _Is_LightColor_HighColor) * _TweakHighColorMask_var);
+    float3 _HighColorWithOutTweak_var = lerp((_HighColor_Tex_var.rgb * _HighColor.rgb), ((_HighColor_Tex_var.rgb * _HighColor.rgb) * Set_LightColor), _Is_LightColor_HighColor);
+    float3 _HighColor_var = _HighColorWithOutTweak_var * _TweakHighColorMask_var;
 #ifdef _IS_CLIPPING_MASK
     if (_ClippingMaskMode == 4)
     {
@@ -345,9 +348,9 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
 # endif //#ifdef UTS_LAYER_VISIBILITY
 #ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode == 6)
+    if (_ClippingMaskMode == 5)
     {
-        clippingColor = Set_AngelRingWithAlpha;
+        clippingColor = _Is_LightColor_AR_var;
         return clippingColor;
     }
 #endif // _IS_CLIPPING_MASK
