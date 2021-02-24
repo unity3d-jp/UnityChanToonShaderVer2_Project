@@ -44,14 +44,15 @@
 #  ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
                 input.positionWS = i.posWorld.xyz;
 #  endif
+
 #  ifdef _NORMALMAP
-#  if (SHADER_LIBRARY_VERSION_MAJOR <10 )
-                input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
-#  endif
+                input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
                 input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
+#if (SHADER_LIBRARY_VERSION_MAJOR <10 )
                 input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
+#endif
 #  else
-                input.normalWS  = half3(i.normalDir);
+                input.normalWS = half3(i.normalDir);
                 input.viewDirWS = half3(viewDirection);
 #  endif
                 InitializeInputData(input, surfaceData.normalTS, inputData);
