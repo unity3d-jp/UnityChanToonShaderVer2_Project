@@ -9,7 +9,7 @@
     "com.unity.test-framework": "1.1.13",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.ugui": "1.0.0",
-    "com.unity.universaltoonshader": "0.0.3-preview",
+    "com.unity.toonshader": "0.0.1-preview",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
