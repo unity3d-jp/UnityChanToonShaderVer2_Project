@@ -164,7 +164,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
                 m_channelMaskReorderableList.draggable = false;
                 m_channelMaskReorderableList.drawHeaderCallback = rect =>
                 {
-                    //using (new EditorGUI.DisabledScope(m_enableClippingMask || m_enableCompositerClippingMask))
+                    using (new EditorGUI.DisabledScope(m_selectedIndex != 0))
                     {
 
 
@@ -220,7 +220,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
                         y = rect_.y
                     };
 
-                    //using (new EditorGUI.DisabledScope(m_enableClippingMask || m_enableCompositerClippingMask))
+                    using (new EditorGUI.DisabledScope(m_selectedIndex != 0))
                     {
                         string propNameVisible = "_" + m_channelNames[index].ToString() + "Visible";
                         string propNameOverriden = "_" + m_channelNames[index].ToString() + "Overridden";
@@ -248,14 +248,17 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 
                             Color color = material.GetColor(propNameColor);
                             //color *= toggleOverride == false ? 0.5f : 1.0f;
-                            EditorGUI.BeginChangeCheck();
-
-                            color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
-
-                            if (EditorGUI.EndChangeCheck())
+                            if (m_selectedIndex == 0)
                             {
-                                Undo.RecordObject(material, "Layer mask color is changed");
-                                material.SetColor(propNameColor, color);
+                                EditorGUI.BeginChangeCheck();
+
+                                color = EditorGUI.ColorField(colorPickerRect, m_colorPickerContent, color, false, true, false);
+
+                                if (EditorGUI.EndChangeCheck())
+                                {
+                                    Undo.RecordObject(material, "Layer mask color is changed");
+                                    material.SetColor(propNameColor, color);
+                                }
                             }
                             EditorGUI.LabelField(nameRect, m_channelNames[index]);
                         }
