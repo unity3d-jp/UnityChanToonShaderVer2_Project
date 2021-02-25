@@ -52,7 +52,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
                 return;
             }
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("  Clipping Mask");
+            EditorGUILayout.LabelField("  Clipping Matte");
             if (m_clippingMatteStringArray == null && m_clippingMatte != null)
             {
                 m_clippingMatteStringArray = m_clippingMatte.ToArray();
