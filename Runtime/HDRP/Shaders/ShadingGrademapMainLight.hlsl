@@ -87,13 +87,13 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
     float3 clippingColor = float3(1.0f, 1.0f, 1.0f);
-#ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode == 1)
+#ifdef _IS_CLIPPING_MATTE
+    if (_ClippingMatteMode == 1)
     {
         clippingColor = Set_BaseColor;
         return clippingColor;
     }
-#endif // _IS_CLIPPING_MASK
+#endif // _IS_CLIPPING_MATTE
 
 #ifdef UTS_LAYER_VISIBILITY
 
@@ -127,13 +127,13 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float _1stColorFeatherForMask = lerp(_1st_ShadeColor_Feather, 0.0f, max(_ComposerMaskMode, _FirstShadeOverridden));
     //
     float Set_FinalShadowMask = saturate((1.0 + ((Set_ShadingGrade - (_1st_ShadeColor_Step - _1stColorFeatherForMask)) * (0.0 - 1.0)) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step - _1stColorFeatherForMask)))); // Base and 1st Shade Mask
-#ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode == 2)
+#ifdef _IS_CLIPPING_MATTE
+    if (_ClippingMatteMode == 2)
     {
         clippingColor = _Is_LightColor_1st_Shade_var;
         return clippingColor;
     }
-#endif // _IS_CLIPPING_MASK
+#endif // _IS_CLIPPING_MATTE
 
 #ifdef UTS_LAYER_VISIBILITY
     {
@@ -176,13 +176,14 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
             , Set_FinalShadowMask);
 #endif //#ifdef UTS_LAYER_VISIBILITY
 
-#ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode == 3)
+#ifdef _IS_CLIPPING_MATTE
+    if (_ClippingMatteMode == 3)
     {
-        clippingColor = Set_FinalBaseColor;
+        clippingColor = lerp((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb) * Set_LightColor)
+            , _Is_LightColor_2nd_Shade);
         return clippingColor;
     }
-#endif // _IS_CLIPPING_MASK
+#endif // _IS_CLIPPING_MATTE
 
     float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
     float _Specular_var = 0.5 * dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; // Specular
@@ -191,13 +192,13 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     //Composition: 3 Basic Colors and HighColor as Set_HighColor
     float3 _HighColorWithOutTweak_var = lerp((_HighColor_Tex_var.rgb * _HighColor.rgb), ((_HighColor_Tex_var.rgb * _HighColor.rgb) * Set_LightColor), _Is_LightColor_HighColor);
     float3 _HighColor_var = _HighColorWithOutTweak_var * _TweakHighColorMask_var;
-#ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode == 4)
+#ifdef _IS_CLIPPING_MATTE
+    if (_ClippingMatteMode == 4)
     {
-        clippingColor = _HighColor_var;
+        clippingColor = _HighColorWithOutTweak_var;
         return clippingColor;
     }
-#endif // _IS_CLIPPING_MASK
+#endif // _IS_CLIPPING_MATTE
 #ifdef UTS_LAYER_VISIBILITY
     float3 Set_HighColor;
     {
@@ -317,6 +318,13 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 matCapColorFinal = lerp(matCapColorOnMultiplyMode, matCapColorOnAddMode, _Is_BlendAddToMatCap);
     //v.2.0.4
 #ifdef _IS_ANGELRING_OFF
+#ifdef _IS_CLIPPING_MATTE
+    if (_ClippingMatteMode == 5)
+    {
+        clippingColor = float3(0.0f,0.0f,0.0f);
+        return clippingColor;
+    }
+#endif // _IS_CLIPPING_MATTE
     float3 finalColor = lerp(_RimLight_var, matCapColorFinal, _MatCap);// Final Composition before Emissive
     //
 #elif _IS_ANGELRING_ON
@@ -347,13 +355,13 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 # else
     finalColor = lerp(finalColor, lerp((finalColor + Set_AngelRing), ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
 # endif //#ifdef UTS_LAYER_VISIBILITY
-#ifdef _IS_CLIPPING_MASK
-    if (_ClippingMaskMode == 5)
+#ifdef _IS_CLIPPING_MATTE
+    if (_ClippingMatteMode == 5)
     {
         clippingColor = _Is_LightColor_AR_var;
         return clippingColor;
     }
-#endif // _IS_CLIPPING_MASK
+#endif // _IS_CLIPPING_MATTE
 #endif //#ifdef _IS_ANGELRING_OFF
 
 

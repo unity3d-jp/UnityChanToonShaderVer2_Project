@@ -456,7 +456,7 @@ Shader "HDRP/Toon"
         _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 0.5)
 
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
-        [Enum(None, 0, BaseColor, 1, FirstShade, 2, SecondShade,3, Highlight, 4, AngelRing, 5, RimLight, 6)] _ClippingMaskMode("Clipping Mask Mode", int) = 0
+        [Enum(None, 0, BaseColor, 1, FirstShade, 2, SecondShade,3, Highlight, 4, AngelRing, 5, RimLight, 6)] _ClippingMatteMode("Clipping Matte Mode", int) = 0
 
         // to here parameters for UTS>
     }
@@ -972,7 +972,7 @@ Shader "HDRP/Toon"
             // used in DoubleShadeWithFeather
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
             // controlling mask rendering
-            #pragma shader_feature _ _IS_CLIPPING_MASK
+            #pragma shader_feature _ _IS_CLIPPING_MATTE
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
@@ -1061,7 +1061,7 @@ Shader "HDRP/Toon"
 
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            #pragma shader_feature _ _IS_CLIPPING_MASK
+            #pragma shader_feature _ _IS_CLIPPING_MATTE
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "HDRPToonHead.hlsl"
             #include "HDRPToonOutline.hlsl"

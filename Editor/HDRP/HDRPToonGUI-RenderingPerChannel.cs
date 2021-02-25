@@ -2,12 +2,9 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
-using UnityEngine;
-using UnityEditor;
-using UnityEditorInternal;
-using System;
-using System.Collections.Specialized;
 using System.Collections.Generic;
+using UnityEditorInternal;
+using UnityEngine;
 
 namespace UnityEditor.Rendering.HighDefinition.Toon
 {
@@ -39,8 +36,8 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
         GUIStyle  m_ToggleStyle;
 
 
-        List<string> m_clippingMask;
-        string[] m_clippingMaskStringArray;
+        List<string> m_clippingMatte;
+        string[] m_clippingMatteStringArray;
 
 
 
@@ -56,13 +53,13 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
             }
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("  Clipping Mask");
-            if (m_clippingMaskStringArray == null && m_clippingMask != null)
+            if (m_clippingMatteStringArray == null && m_clippingMatte != null)
             {
-                m_clippingMaskStringArray = m_clippingMask.ToArray();
+                m_clippingMatteStringArray = m_clippingMatte.ToArray();
             }
-            if (m_clippingMaskStringArray != null)
+            if (m_clippingMatteStringArray != null)
             {
-                m_selectedIndex = EditorGUILayout.Popup(m_selectedIndex, m_clippingMaskStringArray);
+                m_selectedIndex = EditorGUILayout.Popup(m_selectedIndex, m_clippingMatteStringArray);
             }
             EditorGUILayout.EndHorizontal();
 
@@ -70,20 +67,20 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
             {
                 m_channelMaskReorderableList.DoLayoutList();
             }
-            SetuClippingMask(material);
+            SetuClippingMatte(material);
             SetupChannelSettings(material);
         }
 
-        void SetuClippingMask(Material material)
+        void SetuClippingMatte(Material material)
         {
 
-            material.DisableKeyword(ShaderDefineIS_CLIPPING_MASK);
+            material.DisableKeyword(ShaderDefineIS_CLIPPING_MATTE);
             if (m_selectedIndex != 0 )
             {
 
-                material.EnableKeyword(ShaderDefineIS_CLIPPING_MASK);
+                material.EnableKeyword(ShaderDefineIS_CLIPPING_MATTE);
             }
-            material.SetInt("_ClippingMaskMode", m_selectedIndex);
+            material.SetInt("_ClippingMatteMode", m_selectedIndex);
         }
 
         void SetupChannelSettings(Material material)
@@ -136,15 +133,15 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
                 m_channelNames.Add(_ChannelEnum.RimLight.ToString());
                 m_channelNames.Add(_ChannelEnum.Outline.ToString());
             }
-            if (m_clippingMask == null)
+            if (m_clippingMatte == null)
             {
-                m_clippingMask = new List<string>();
-                m_clippingMask.Add("None");
-                m_clippingMask.Add(_ChannelEnum.BaseColor.ToString());
-                m_clippingMask.Add(_ChannelEnum.FirstShade.ToString());
-                m_clippingMask.Add(_ChannelEnum.SecondShade.ToString());
-                m_clippingMask.Add(_ChannelEnum.Highlight.ToString());
-                m_clippingMask.Add(_ChannelEnum.AngelRing.ToString());
+                m_clippingMatte = new List<string>();
+                m_clippingMatte.Add("None");
+                m_clippingMatte.Add(_ChannelEnum.BaseColor.ToString());
+                m_clippingMatte.Add(_ChannelEnum.FirstShade.ToString());
+                m_clippingMatte.Add(_ChannelEnum.SecondShade.ToString());
+                m_clippingMatte.Add(_ChannelEnum.Highlight.ToString());
+                m_clippingMatte.Add(_ChannelEnum.AngelRing.ToString());
 
 
             }

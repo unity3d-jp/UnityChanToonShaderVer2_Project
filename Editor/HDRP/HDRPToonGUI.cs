@@ -124,7 +124,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
         const string ShaderDefineIS_TRANSCLIPPING_OFF = "_IS_TRANSCLIPPING_OFF";
         const string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
 
-        const string ShaderDefineIS_CLIPPING_MASK = "_IS_CLIPPING_MASK";
+        const string ShaderDefineIS_CLIPPING_MATTE = "_IS_CLIPPING_MATTE";
 
         const string STR_ONSTATE = "Active";
         const string STR_OFFSTATE = "Off";

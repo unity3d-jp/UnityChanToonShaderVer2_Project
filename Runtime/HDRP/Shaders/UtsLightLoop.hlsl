@@ -211,7 +211,7 @@ uniform float _OutlineOverridden;
 uniform float4 _OutlineMaskColor;
 
 uniform float _ComposerMaskMode;
-uniform int _ClippingMaskMode;
+uniform int _ClippingMatteMode;
 
 // just grafted from UTS/Universal RP
 struct UtsLight
