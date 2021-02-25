@@ -220,7 +220,7 @@ Material:
     - _AlphaSrcBlend: 1
     - _AngelRing: 0
     - _AngelRingOverridden: 0
-    - _AngelRingVisible: 0
+    - _AngelRingVisible: 1
     - _Anisotropy: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
@@ -237,11 +237,12 @@ Material:
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
     - _ClippingMaskMode: 0
+    - _ClippingMatteMode: 0
     - _ClippingMode: 0
     - _Clipping_Level: 0
     - _CoatMask: 0
     - _ColorShift_Speed: 0
-    - _ComposerMaskMode: 1
+    - _ComposerMaskMode: 0
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
@@ -295,7 +296,7 @@ Material:
     - _HeightTessCenter: 0.5
     - _HighColor_Power: 0.423
     - _HighlightOverridden: 0
-    - _HighlightVisible: 0
+    - _HighlightVisible: 1
     - _InvTilingScale: 1
     - _Inverse_Clipping: 0
     - _Inverse_MatcapMask: 0
@@ -346,7 +347,7 @@ Material:
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
     - _OutlineOverridden: 0
-    - _OutlineVisible: 0
+    - _OutlineVisible: 1
     - _Outline_Width: 0
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -357,7 +358,7 @@ Material:
     - _RefractionModel: 0
     - _RimLight: 0
     - _RimLightOverridden: 0
-    - _RimLightVisible: 0
+    - _RimLightVisible: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
