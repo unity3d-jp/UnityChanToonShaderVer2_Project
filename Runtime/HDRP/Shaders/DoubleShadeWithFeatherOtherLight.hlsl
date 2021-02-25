@@ -5,6 +5,13 @@
 float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     float3 additionalLightColor, float3 lightDirection, float notDirectional)
 {
+#ifdef _IS_CLIPPING_MATTE
+    if (_ClippingMatteMode != 0)
+    {
+
+        return float3(0.0f, 0.0f, 0.0f);
+    }
+#endif // _IS_CLIPPING_MATTE
 
     /* todo. these should be put into struct */
 #ifdef VARYINGS_NEED_POSITION_WS
