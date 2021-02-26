@@ -6,6 +6,7 @@
     "com.unity.test-framework": "1.1.14",
     "com.unity.test-framework.build": "0.0.1-preview.12",
     "com.unity.test-framework.utp-reporter": "1.0.2-preview",
+    "com.unity.testframework.graphics": "7.8.5-preview",
     "com.unity.textmeshpro": "2.1.1",
     "com.unity.timeline": "1.2.18",
     "com.unity.toonshader": "file:../../../com.unity.toonshader",

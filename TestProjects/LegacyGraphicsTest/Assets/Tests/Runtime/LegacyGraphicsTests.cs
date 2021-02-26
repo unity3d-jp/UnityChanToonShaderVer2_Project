@@ -1,8 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using NUnit.Framework;
+using UnityEngine.XR;
+using UnityEngine.TestTools.Graphics;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.IO;
+
 public class LegacyGraphicsTests 
 {
     [UnityTest, Category("UnityToonLegacy")]
