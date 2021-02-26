@@ -19,7 +19,7 @@ pack:
     flavor: b1.large
   commands:
     - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-    - upm-ci package pack --package-path "com.unity.toonshader"
+    - upm-ci package pack --package-path com.unity.toonshader
   artifacts:
     {{ yamato_name }}_pack_artifacts:
       paths:
@@ -35,7 +35,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     flavor: {{ platform.flavor}}
   commands:
     - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-    - upm-ci package test --unity-version {{ editor.version }}
+    - upm-ci package test --unity-version {{ editor.version }} --package-path com.unity.toonshader
   triggers:
     branches:
       only:
@@ -57,7 +57,7 @@ publish:
     flavor: b1.large
   commands:
     - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-    - upm-ci package publish
+    - upm-ci package publish --package-path com.unity.toonshader
   triggers:
     tags:
       only:
