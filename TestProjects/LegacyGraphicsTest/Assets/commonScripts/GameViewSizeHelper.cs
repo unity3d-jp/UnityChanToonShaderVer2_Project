@@ -7,7 +7,7 @@ using UnityEngine;
 // GameViewSizeHelper
 // https://github.com/anchan828/unity-GameViewSizeHelper
 
-namespace Unity.Toonshader.EditorTests
+namespace Unity.Toonshader.LegacyGraphicsTests
 {
     public class GameViewSizeHelper
     {

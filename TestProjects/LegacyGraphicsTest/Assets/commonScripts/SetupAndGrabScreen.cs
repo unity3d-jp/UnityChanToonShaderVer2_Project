@@ -9,13 +9,13 @@ using UnityEngine.SceneManagement;
 // GameViewSizeHelper
 // https://github.com/anchan828/unity-GameViewSizeHelper
 
-namespace Unity.Toonshader.EditorTests
+namespace Unity.Toonshader.LegacyGraphicsTests
 {
     public class SetupAndGrabScreen
     {
         const string filenameExtenstion = ".png";
-        const string testReferenceFilaneme = "LightAndShadows";
-        const string testTargetFilename = "UtsTestImage";
+
+
         static Texture2D s_refereceTexure2D;
         static Texture2D s_capturedTexture2D;
 
@@ -31,8 +31,8 @@ namespace Unity.Toonshader.EditorTests
         private static void SetupGameViewSize()
         {
 
-            int width = 1920;
-            int height = 1080;
+            int width = 960;
+            int height = 540;
             string viewSizeName = string.Format("{0} * {1}", width, height);
             GameViewSizeHelper.AddCustomSize(GameViewSizeGroupType.Standalone, GameViewSizeHelper.GameViewSizeType.FixedResolution, width, height, viewSizeName);
             GameViewSizeHelper.ChangeGameViewSize(GameViewSizeGroupType.Standalone, GameViewSizeHelper.GameViewSizeType.FixedResolution, width, height, viewSizeName);
@@ -40,13 +40,16 @@ namespace Unity.Toonshader.EditorTests
         [MenuItem("Edit/Unity Toon shader test/Capture Screen and Test Iamge")]
         private static void CreateTestImage()
         {
-            ScreenCapture.CaptureScreenshot(testTargetFilename + filenameExtenstion);
+            Debug.Assert(false);
+//            ScreenCapture.CaptureScreenshot(testReferenceFilaneme + filenameExtenstion);
         }
 
         [MenuItem("Edit/Unity Toon shader test/Create Reference Iamge")]
         private static void CreateRenferenceImage()
         {
-            ScreenCapture.CaptureScreenshot(testReferenceFilaneme + filenameExtenstion);
+            Scene scene = SceneManager.GetActiveScene();
+            string testReferenceFilaneme = scene.name;
+            ScreenCapture.CaptureScreenshot(CommonSettings.legacyPackagePath + testReferenceFilaneme + filenameExtenstion);
         }
 
         [MenuItem("Edit/Unity Toon shader test/Execute test")]

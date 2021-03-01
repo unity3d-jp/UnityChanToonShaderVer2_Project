@@ -1,5 +1,5 @@
 {
-    "name": "LegacyTests",
+    "name": "Unity.Toonshader.LegacyGraphicsTests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
