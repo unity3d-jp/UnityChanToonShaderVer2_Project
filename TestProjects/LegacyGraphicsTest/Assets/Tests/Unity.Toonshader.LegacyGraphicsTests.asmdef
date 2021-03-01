@@ -7,16 +7,7 @@
         "UnityEngine.TestTools.Graphics.Tests"
     ],
     "includePlatforms": [
-        "LinuxStandalone64",
-        "macOSStandalone",
-        "PS4",
-        "Stadia",
-        "Switch",
-        "tvOS",
-        "WSA",
-        "WindowsStandalone32",
-        "WindowsStandalone64",
-        "XboxOne"
+        "WindowsStandalone64"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

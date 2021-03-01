@@ -16,8 +16,15 @@ namespace Unity.Toonshader.LegacyGraphicsTests
 
         [UnityTest, Category("UnityToonLegacy")]
         [UseGraphicsTestCases(legacyPackagePath)]
-        public IEnumerator Run(GraphicsTestCase testCase)
+//        public IEnumerator Run(GraphicsTestCase testCase)
+        public IEnumerator Run()
         {
+            GraphicsTestCase testCase;
+            testCase.scenePath = "Assets/Scenes/LightAndShadows/LightAndShadows.unity"; // todo.
+            strint testReferenceFilaneme = "LightAndShadows";
+            var path = CommonSettings.legacyPackagePath + testReferenceFilaneme + CommonSettings.filenameExtenstion;
+            testCase.ReferenceImage = LoadPNG(path);
+
             SceneManager.LoadScene(testCase.ScenePath);
 
             // Always wait one frame for scene load
@@ -89,6 +96,21 @@ namespace Unity.Toonshader.LegacyGraphicsTests
                 if (allocatesMemory)
                     Assert.Fail("Allocated memory when rendering what is on main camera");
             }
+        }
+
+        public static Texture2D LoadPNG(string filePath)
+        {
+
+            Texture2D tex2D = null;
+            byte[] fileData;
+
+            if (File.Exists(filePath))
+            {
+                fileData = File.ReadAllBytes(filePath);
+                tex2D = new Texture2D(2, 2);
+                tex2D.LoadImage(fileData);
+            }
+            return tex2D;
         }
     }
 }
