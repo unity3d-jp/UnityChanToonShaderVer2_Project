@@ -8,30 +8,37 @@ using UnityEngine.TestTools.Graphics;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.IO;
-namespace Unity.Toonshader.LegacyGraphicsTests
+
+namespace Tests
 {
     public class LegacyGraphicsTests
     {
-
-
-        [UnityTest, Category("UnityToonLegacy")]
-        [UseGraphicsTestCases(legacyPackagePath)]
-//        public IEnumerator Run(GraphicsTestCase testCase)
-        public IEnumerator Run()
+        // A Test behaves as an ordinary method
+        [Test]
+        public void LegacyGraphicsTestsSimplePasses()
         {
-            GraphicsTestCase testCase;
-            testCase.scenePath = "Assets/Scenes/LightAndShadows/LightAndShadows.unity"; // todo.
-            strint testReferenceFilaneme = "LightAndShadows";
-            var path = CommonSettings.legacyPackagePath + testReferenceFilaneme + CommonSettings.filenameExtenstion;
-            testCase.ReferenceImage = LoadPNG(path);
+            // Use the Assert class to test conditions
+        }
 
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator LegacyGraphicsTestsWithEnumeratorPasses()
+        {
+            string testReferenceFilaneme = "LightAndShadows";
+            var path = CommonSettings.legacyPackagePath + testReferenceFilaneme + CommonSettings.filenameExtenstion;
+            GraphicsTestCase testCase = new GraphicsTestCase(
+                "Assets/Scenes/LightAndShadows/LightAndShadows.unity",
+                LoadPNG(path)
+                );
+            Debug.Log("path:" + path);
             SceneManager.LoadScene(testCase.ScenePath);
 
             // Always wait one frame for scene load
             yield return null;
 
             var cameras = GameObject.FindGameObjectsWithTag("MainCamera").Select(x => x.GetComponent<Camera>());
-            var settings = Object.FindObjectOfType<UniversalGraphicsTestSettings>();
+            var settings = Object.FindObjectOfType<LegacyGraphicsTestSettings>();
             Assert.IsNotNull(settings, "Invalid test scene, couldn't find UniversalGraphicsTestSettings");
 
             Scene scene = SceneManager.GetActiveScene();
@@ -80,8 +87,8 @@ namespace Unity.Toonshader.LegacyGraphicsTests
             var mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
             // 2D Renderer is currently allocating memory, skip it as it will always fail GC alloc tests.
-            var additionalCameraData = mainCamera.GetUniversalAdditionalCameraData();
-            bool is2DRenderer = additionalCameraData.scriptableRenderer is Renderer2D;
+            //var additionalCameraData = mainCamera.GetUniversalAdditionalCameraData();
+            bool is2DRenderer = true; // additionalCameraData.scriptableRenderer is Renderer2D;
 
             if (!is2DRenderer)
             {
@@ -113,4 +120,6 @@ namespace Unity.Toonshader.LegacyGraphicsTests
             return tex2D;
         }
     }
+
+
 }

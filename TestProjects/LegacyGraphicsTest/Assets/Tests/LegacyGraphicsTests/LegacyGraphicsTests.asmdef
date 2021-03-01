@@ -1,14 +1,11 @@
 {
-    "name": "Unity.Toonshader.LegacyGraphicsTests",
+    "name": "LegacyGraphicsTests",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
         "UnityEngine.TestTools.Graphics",
-        "UnityEngine.TestTools.Graphics.Tests"
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
     ],
-    "includePlatforms": [
-        "WindowsStandalone64"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

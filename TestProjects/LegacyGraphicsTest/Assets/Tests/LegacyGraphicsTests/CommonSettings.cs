@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Unity.Toonshader.LegacyGraphicsTests
+namespace Tests
 { 
     public class CommonSettings 
     {

@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 // GameViewSizeHelper
 // https://github.com/anchan828/unity-GameViewSizeHelper
 
-namespace Unity.Toonshader.LegacyGraphicsTests
+namespace Tests
 {
     public class SetupSceneAndCaptureScreen
     {
