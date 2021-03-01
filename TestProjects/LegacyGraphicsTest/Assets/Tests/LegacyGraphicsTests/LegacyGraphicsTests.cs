@@ -38,8 +38,8 @@ namespace Tests
             yield return null;
 
             var cameras = GameObject.FindGameObjectsWithTag("MainCamera").Select(x => x.GetComponent<Camera>());
-            var settings = Object.FindObjectOfType<LegacyGraphicsTestSettings>();
-            Assert.IsNotNull(settings, "Invalid test scene, couldn't find UniversalGraphicsTestSettings");
+            //            var settings = Object.FindObjectOfType<LegacyGraphicsTestSettings>();
+            //            Assert.IsNotNull(settings, "Invalid test scene, couldn't find LegacyGraphicsTestSettings");
 
             Scene scene = SceneManager.GetActiveScene();
 
@@ -70,17 +70,21 @@ namespace Tests
 #endif
                 yield return null;
             }
-
+/*
             int waitFrames = settings.WaitFrames;
 
             if (settings.ImageComparisonSettings.UseBackBuffer && settings.WaitFrames < 1)
             {
                 waitFrames = 1;
             }
+*/
+            int waitFrames = 1;
             for (int i = 0; i < waitFrames; i++)
                 yield return new WaitForEndOfFrame();
-
-            ImageAssert.AreEqual(testCase.ReferenceImage, cameras.Where(x => x != null), settings.ImageComparisonSettings);
+            ImageComparisonSettings settings = new ImageComparisonSettings();
+            settings.TargetWidth = 960;
+            settings.TargetHeight = 540;
+            ImageAssert.AreEqual(testCase.ReferenceImage, cameras.Where(x => x != null), settings);
 
             // Does it allocate memory when it renders what's on the main camera?
             bool allocatesMemory = false;
@@ -94,7 +98,7 @@ namespace Tests
             {
                 try
                 {
-                    ImageAssert.AllocatesMemory(mainCamera, settings?.ImageComparisonSettings);
+                    ImageAssert.AllocatesMemory(mainCamera, settings);
                 }
                 catch (AssertionException)
                 {
