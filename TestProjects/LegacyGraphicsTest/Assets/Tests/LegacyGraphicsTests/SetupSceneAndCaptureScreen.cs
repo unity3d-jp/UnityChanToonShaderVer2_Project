@@ -77,6 +77,8 @@ namespace Tests
                     );
 
                 mainCamera.targetTexture = null;
+
+                // save texture.
                 Texture2D savingTexture = new Texture2D(rt.width, rt.height, TextureFormat.RGB24, false);
                 RenderTexture.active = rt;
                 savingTexture.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
