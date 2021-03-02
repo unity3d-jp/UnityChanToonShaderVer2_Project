@@ -75,7 +75,7 @@ publish:
     {% endfor %}
 
 
----
+
 Legacy_Win_DX11_playmode_2019.4:
     name: Legacy on Win_DX11_playmode on version 2019.4
     agent:
@@ -96,3 +96,4 @@ Legacy_Win_DX11_playmode_2019.4:
         logs:
             paths:
               -  "**/test-results/**"
+
