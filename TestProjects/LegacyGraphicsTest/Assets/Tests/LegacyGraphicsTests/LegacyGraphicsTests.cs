@@ -84,6 +84,7 @@ namespace Tests
             ImageComparisonSettings settings = new ImageComparisonSettings();
             settings.TargetWidth = 960;
             settings.TargetHeight = 540;
+            settings.AverageCorrectnessThreshold = 0.01f;
             ImageAssert.AreEqual(testCase.ReferenceImage, cameras.Where(x => x != null), settings);
 
             // Does it allocate memory when it renders what's on the main camera?
