@@ -17,10 +17,10 @@ Legacy_Win_DX11_playmode_2019.4:
       -  pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple --upgrade
       -  cd TestProjects/LegacyGraphicsTest && unity-downloader-cli --source-file ../../unity_revision.txt -c editor -c il2cpp  --wait --published-only
       -  cd TestProjects/LegacyGraphicsTest && utr --suite=playmode --testproject=. --editor-location=.Editor --artifacts_path=test-results --extra-editor-arg="-force-d3d11"
-  triggers:
-    branches:
-      only:
-      - "/.*/"
+    triggers:
+        branches:
+          only:
+          - "/.*/"
     artifacts:
         logs:
             paths:
