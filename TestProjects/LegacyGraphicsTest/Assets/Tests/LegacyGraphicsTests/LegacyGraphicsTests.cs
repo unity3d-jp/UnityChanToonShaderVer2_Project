@@ -42,6 +42,11 @@ namespace Tests
             //            Assert.IsNotNull(settings, "Invalid test scene, couldn't find LegacyGraphicsTestSettings");
 
             Scene scene = SceneManager.GetActiveScene();
+            ImageComparisonSettings settings = new ImageComparisonSettings();
+            settings.TargetWidth = 960;
+            settings.TargetHeight = 540;
+            settings.AverageCorrectnessThreshold = 0.01f;
+
 
             if (scene.name.Substring(3, 4).Equals("_xr_"))
             {
@@ -70,21 +75,18 @@ namespace Tests
 #endif
                 yield return null;
             }
-/*
+            /*
             int waitFrames = settings.WaitFrames;
 
             if (settings.ImageComparisonSettings.UseBackBuffer && settings.WaitFrames < 1)
             {
                 waitFrames = 1;
             }
-*/
-            int waitFrames = 1;
+            */
+            int waitFrames = 120; // the color would be cyan at the first test.
             for (int i = 0; i < waitFrames; i++)
                 yield return new WaitForEndOfFrame();
-            ImageComparisonSettings settings = new ImageComparisonSettings();
-            settings.TargetWidth = 960;
-            settings.TargetHeight = 540;
-            settings.AverageCorrectnessThreshold = 0.01f;
+
             ImageAssert.AreEqual(testCase.ReferenceImage, cameras.Where(x => x != null), settings);
 
             // Does it allocate memory when it renders what's on the main camera?

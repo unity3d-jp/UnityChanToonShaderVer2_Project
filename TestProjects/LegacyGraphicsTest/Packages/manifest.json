@@ -1,10 +1,11 @@
 {
+  "disableProjectUpdate": true,
   "dependencies": {
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.1.4",
     "com.unity.ide.vscode": "1.2.3",
     "com.unity.test-framework": "1.1.14",
-    "com.unity.testframework.graphics": "7.2.1-preview",
+    "com.unity.testframework.graphics": "7.8.5-preview",
     "com.unity.textmeshpro": "2.1.1",
     "com.unity.timeline": "1.2.18",
     "com.unity.toonshader": "file:../../../com.unity.toonshader",
