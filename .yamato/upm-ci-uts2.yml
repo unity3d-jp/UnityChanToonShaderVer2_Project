@@ -73,3 +73,26 @@ publish:
     - .yamato/upm-ci-{{ yamato_name }}.yml#test_{{ platform.name }}_{{ editor.version }}
     {% endfor %}
     {% endfor %}
+
+
+---
+Legacy_Win_DX11_playmode_2019.4:
+    name: Legacy on Win_DX11_playmode on version 2019.4
+    agent:
+        type: Unity::VM::GPU
+        image: sdet/gamecode_win10:stable
+        flavor: b1.large
+    variables:
+        UPM_REGISTRY: https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates
+    dependencies:
+      -  path: .yamato/_editor.yml#editor:priming:2019.4:windows
+         rerun: on-new-revision
+    commands:
+      -  curl -s https://artifactory.internal.unity3d.com/core-automation/tools/utr-standalone/utr.bat --output TestProjects/LegacyGraphicsTest/utr.bat
+      -  pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple --upgrade
+      -  cd TestProjects/LegacyGraphicsTest && unity-downloader-cli --source-file ../../unity_revision.txt -c editor -c il2cpp  --wait --published-only
+      -  cd TestProjects/LegacyGraphicsTest && utr --suite=playmode --testproject=. --editor-location=.Editor --artifacts_path=test-results --extra-editor-arg="-force-d3d11"
+    artifacts:
+        logs:
+            paths:
+              -  "**/test-results/**"
