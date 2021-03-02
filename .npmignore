@@ -4,9 +4,9 @@ build/**
 node_modules/**
 Documentation/ApiDocs/**
 Documentation~/ApiDocs/**
-UTS2_Project~/**
-UTS2_ProjectHDRP~/**
-UTS2_ProjectURP~/**
+UnityToonshader_Project~/**
+UnityToonshader_ProjectHDRP~/**
+UnityToonshader_ProjectURP~/**
 .DS_Store
 .npmrc
 .npmignore
