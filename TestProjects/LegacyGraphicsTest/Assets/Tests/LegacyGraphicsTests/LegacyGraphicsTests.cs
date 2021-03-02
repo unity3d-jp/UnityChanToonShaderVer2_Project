@@ -43,8 +43,8 @@ namespace Tests
 
             Scene scene = SceneManager.GetActiveScene();
             ImageComparisonSettings settings = new ImageComparisonSettings();
-            settings.TargetWidth = 960;
-            settings.TargetHeight = 540;
+            settings.TargetWidth = 320;
+            settings.TargetHeight = 240;
             settings.AverageCorrectnessThreshold = 0.01f;
 
 
