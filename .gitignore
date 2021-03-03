@@ -34,9 +34,11 @@ ExportedObj/
 .bin/
 .download/
 .Editor/
-
-
 utr.bat
+
+# TESTS
+ActualImages/
+
 
 
 # Unity3D generated meta files
