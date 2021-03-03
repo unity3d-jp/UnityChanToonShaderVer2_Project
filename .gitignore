@@ -38,7 +38,7 @@ utr.bat
 
 # TESTS
 ActualImages/
-
+test-results/
 
 
 # Unity3D generated meta files
