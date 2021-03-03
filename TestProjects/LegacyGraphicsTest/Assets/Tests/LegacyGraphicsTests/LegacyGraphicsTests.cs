@@ -13,39 +13,23 @@ namespace Tests
 {
     public class LegacyGraphicsTests
     {
-        // A Test behaves as an ordinary method
-        [Test]
-        public void LegacyGraphicsTestsSimplePasses()
+        public const string legacyReferenceImagePath = "Assets/ReferenceImages";
+        [UnityTest, Category("LegacyRP")]
+        [PrebuildSetup("SetupGraphicsTestCases")]
+        [UseGraphicsTestCases(legacyReferenceImagePath)]
+        public IEnumerator Run(GraphicsTestCase testCase)
         {
-            // Use the Assert class to test conditions
-        }
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator LegacyGraphicsTestsWithEnumeratorPasses()
-        {
-            string testReferenceFilaneme = "LightAndShadows";
-            var path = CommonSettings.legacyPackagePath + testReferenceFilaneme + CommonSettings.filenameExtenstion;
-            GraphicsTestCase testCase = new GraphicsTestCase(
-                "Assets/Scenes/LightAndShadows/LightAndShadows.unity",
-                LoadPNG(path)
-                );
-            Debug.Log("path:" + path);
             SceneManager.LoadScene(testCase.ScenePath);
 
             // Always wait one frame for scene load
             yield return null;
 
             var cameras = GameObject.FindGameObjectsWithTag("MainCamera").Select(x => x.GetComponent<Camera>());
-            //            var settings = Object.FindObjectOfType<LegacyGraphicsTestSettings>();
-            //            Assert.IsNotNull(settings, "Invalid test scene, couldn't find LegacyGraphicsTestSettings");
+            var settings = Object.FindObjectOfType<LegacyGraphicsTestSettings>();
+            Assert.IsNotNull(settings, "Invalid test scene, couldn't find LegacyGraphicsTestSettings");
 
             Scene scene = SceneManager.GetActiveScene();
-            ImageComparisonSettings settings = new ImageComparisonSettings();
-            settings.TargetWidth = 320;
-            settings.TargetHeight = 240;
-            settings.AverageCorrectnessThreshold = 0.01f;
 
 
             if (scene.name.Substring(3, 4).Equals("_xr_"))
@@ -75,19 +59,19 @@ namespace Tests
 #endif
                 yield return null;
             }
-            /*
+
             int waitFrames = settings.WaitFrames;
 
             if (settings.ImageComparisonSettings.UseBackBuffer && settings.WaitFrames < 1)
             {
                 waitFrames = 1;
             }
-            */
-            int waitFrames = 120; // the color would be cyan at the first test.
+
+
             for (int i = 0; i < waitFrames; i++)
                 yield return new WaitForEndOfFrame();
 
-            ImageAssert.AreEqual(testCase.ReferenceImage, cameras.Where(x => x != null), settings);
+            ImageAssert.AreEqual(testCase.ReferenceImage, cameras.Where(x => x != null), settings.ImageComparisonSettings);
 
             // Does it allocate memory when it renders what's on the main camera?
             bool allocatesMemory = false;
@@ -95,13 +79,13 @@ namespace Tests
 
             // 2D Renderer is currently allocating memory, skip it as it will always fail GC alloc tests.
             //var additionalCameraData = mainCamera.GetUniversalAdditionalCameraData();
-            bool is2DRenderer = true; // additionalCameraData.scriptableRenderer is Renderer2D;
+            bool is2DRenderer = false; // additionalCameraData.scriptableRenderer is Renderer2D;
 
             if (!is2DRenderer)
             {
                 try
                 {
-                    ImageAssert.AllocatesMemory(mainCamera, settings);
+                    ImageAssert.AllocatesMemory(mainCamera, settings.ImageComparisonSettings);
                 }
                 catch (AssertionException)
                 {

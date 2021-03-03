@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LightAndShadows/LightAndShadows.unity
+    path: Assets/Scenes/LightAndShadows/004_LightAndShadows.unity
     guid: 2ea8be28e0954509bcc77335130735a6
   m_configObjects: {}
