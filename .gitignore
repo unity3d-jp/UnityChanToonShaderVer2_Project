@@ -27,7 +27,17 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
-UTS2_Project~/.idea/**
+
+# 
+.idea
+# UTR
+.bin/
+.download/
+.Editor/
+
+
+utr.bat
+
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -42,5 +52,3 @@ sysinfo.txt
 # Unity Logs
 Logs/
 
-# Imported Samples
-UTS2_Project~/Assets/Samples**

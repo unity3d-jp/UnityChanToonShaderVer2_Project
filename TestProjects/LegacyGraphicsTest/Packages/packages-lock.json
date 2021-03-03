@@ -27,7 +27,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.external.test-protocol": {
-      "version": "1.0.0-preview",
+      "version": "1.0.1-preview",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -83,8 +83,27 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.test-framework.build": {
+      "version": "0.0.1-preview.12",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.0.17"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.test-framework.utp-reporter": {
+      "version": "1.0.2-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.1",
+        "com.unity.external.test-protocol": "1.0.1-preview"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.testframework.graphics": {
-      "version": "7.8.5-preview",
+      "version": "7.8.0-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
