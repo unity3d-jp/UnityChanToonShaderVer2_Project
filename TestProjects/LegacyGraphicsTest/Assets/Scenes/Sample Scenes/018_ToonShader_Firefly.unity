@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 794565947}
   - component: {fileID: 794565948}
   - component: {fileID: 794565944}
+  - component: {fileID: 794565949}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -626,6 +627,32 @@ MonoBehaviour:
   threshold: 0.3
   edgesOnly: 0
   edgeDetectShader: {fileID: 4800000, guid: ef1aa3b40650426ab8438eb18486079f, type: 3}
+--- !u!114 &794565949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794565941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8136a6dd5232dcf4c97a865ee5916cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageComparisonSettings:
+    TargetWidth: 960
+    TargetHeight: 540
+    PerPixelCorrectnessThreshold: 0.001
+    PerPixelGammaThreshold: 0.003921569
+    PerPixelAlphaThreshold: 0.003921569
+    AverageCorrectnessThreshold: 0.005
+    IncorrectPixelsThreshold: 0.0000038146973
+    UseHDR: 0
+    UseBackBuffer: 0
+    ImageResolution: 3
+    ActiveImageTests: 1
+    ActivePixelTests: 7
+  WaitFrames: 120
 --- !u!1 &882377317
 GameObject:
   m_ObjectHideFlags: 0

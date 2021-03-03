@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.1798405, g: 0.22517692, b: 0.30663395, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -685,6 +685,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.11
       objectReference: {fileID: 0}
@@ -697,6 +701,10 @@ PrefabInstance:
       value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.04004459
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -707,14 +715,6 @@ PrefabInstance:
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.04004459
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1013,6 +1013,7 @@ GameObject:
   - component: {fileID: 1193052246}
   - component: {fileID: 1193052245}
   - component: {fileID: 1193052244}
+  - component: {fileID: 1193052248}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1093,6 +1094,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 6.512, y: -221.15999, z: -20.315}
+--- !u!114 &1193052248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193052243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8136a6dd5232dcf4c97a865ee5916cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageComparisonSettings:
+    TargetWidth: 960
+    TargetHeight: 540
+    PerPixelCorrectnessThreshold: 0.001
+    PerPixelGammaThreshold: 0.003921569
+    PerPixelAlphaThreshold: 0.003921569
+    AverageCorrectnessThreshold: 0.005
+    IncorrectPixelsThreshold: 0.0000038146973
+    UseHDR: 0
+    UseBackBuffer: 0
+    ImageResolution: 3
+    ActiveImageTests: 1
+    ActivePixelTests: 7
+  WaitFrames: 120
 --- !u!1 &1540579316
 GameObject:
   m_ObjectHideFlags: 0
