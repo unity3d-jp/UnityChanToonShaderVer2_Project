@@ -23,6 +23,10 @@ Universal_OSX_Metal_Standalone_mono_Linear_2019.4:
                  mkdir -p TestProjects/UniversalGraphicsTest/test-results/
                  scp -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" -r bokken@$BOKKEN_DEVICE_IP:/Users/bokken/Graphics/TestProjects/UniversalGraphicsTest/test-results/ TestProjects/UniversalGraphicsTest/test-results/
                  exit $UTR_RESULT
+    triggers:
+        branches:
+          only:
+          - "/.*/"
     artifacts:
         logs:
             paths:
