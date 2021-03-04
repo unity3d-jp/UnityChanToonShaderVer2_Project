@@ -33,5 +33,5 @@ Legacy_OSX_Metal_playmode_mono_Linear_2019.4:
               -  "**/test-results/**"
               -  "TestProjects/LegacyGraphicsTest/Logs/*.log"
     dependencies:
-      -  path: .yamato/_editor_priming.yml#editor:priming:2019.4:macos
+      -  path: .yamato/_editor.yml#editor:priming:2019.4:macos
          rerun: on-new-revision
