@@ -30,6 +30,15 @@ ExportedObj/
 
 # 
 .idea
+
+# Emacs
+.\#*
+# Backup files
+#---------------------------
+*~
+*.orig
+*.bak
+
 # UTR
 .bin/
 .download/
