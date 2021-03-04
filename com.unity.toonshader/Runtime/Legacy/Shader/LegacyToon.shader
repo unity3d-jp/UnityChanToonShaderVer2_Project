@@ -206,7 +206,16 @@ Shader "Toon (Built-in)" {
             Tags {
             }
             Cull Front
+            ColorMask[_SPRDefaultUnlitColorMask]
+            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil
+            {
+                Ref[_StencilNo]
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
 
+            }
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
