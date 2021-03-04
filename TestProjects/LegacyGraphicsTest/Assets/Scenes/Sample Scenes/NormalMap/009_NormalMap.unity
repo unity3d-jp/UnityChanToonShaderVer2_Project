@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17730093, g: 0.22196184, b: 0.30420077, a: 1}
+  m_IndirectSpecularColor: {r: 0.17730068, g: 0.22196144, b: 0.3042, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -760,7 +760,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 600
+  WaitFrames: 480
 --- !u!4 &785544187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: da4e4b9f03184759b19a08cbcc19a80e,
