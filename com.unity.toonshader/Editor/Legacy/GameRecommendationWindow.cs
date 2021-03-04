@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor.Rendering.Toon.ShaderGUI
+namespace UnityEditor.Rendering.Toon
 {
 
     internal class GameRecommendationWindow : EditorWindow
