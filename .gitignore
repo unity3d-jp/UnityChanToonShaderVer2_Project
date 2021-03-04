@@ -48,6 +48,7 @@ utr.bat
 # TESTS
 ActualImages/
 test-results/
+TestProjects/LegacyGraphicsTest/Assets/ActualImages.meta
 
 
 # Unity3D generated meta files
