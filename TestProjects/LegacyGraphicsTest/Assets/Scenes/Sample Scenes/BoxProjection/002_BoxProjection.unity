@@ -831,7 +831,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 120
+  WaitFrames: 240
 --- !u!1 &1036948364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1618416153455038, guid: a3fac7f48e944146acb3559dee01e2d8,
