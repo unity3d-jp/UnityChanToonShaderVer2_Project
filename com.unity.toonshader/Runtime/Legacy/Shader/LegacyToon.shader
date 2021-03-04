@@ -321,7 +321,7 @@ Shader "Toon (Built-in)" {
             //v.2.0.4
 
             #pragma multi_compile _IS_PASS_FWDDELTA
-            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
 #if defined(_SHADINGGRADEMAP)
 
 #include "UCTS_ShadingGradeMap.cginc"
@@ -356,7 +356,7 @@ Shader "Toon (Built-in)" {
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
             //v.2.0.4
-            #pragma multi_compile _IS_CLIPPING_OFF
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
             #include "UCTS_ShadowCaster.cginc"
             ENDCG
         }
