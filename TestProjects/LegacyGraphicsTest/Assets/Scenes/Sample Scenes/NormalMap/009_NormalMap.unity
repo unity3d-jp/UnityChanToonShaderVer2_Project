@@ -760,7 +760,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 120
+  WaitFrames: 240
 --- !u!4 &785544187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: da4e4b9f03184759b19a08cbcc19a80e,

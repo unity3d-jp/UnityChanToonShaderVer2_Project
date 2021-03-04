@@ -200,7 +200,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 120
+  WaitFrames: 240
 --- !u!20 &327574814
 Camera:
   m_ObjectHideFlags: 0
