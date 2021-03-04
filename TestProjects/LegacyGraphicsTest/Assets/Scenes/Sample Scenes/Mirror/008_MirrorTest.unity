@@ -720,6 +720,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -175.41
       objectReference: {fileID: 0}
+    - target: {fileID: 95883473384962064, guid: fa8b7e5cd70f4a16aeac19899779d43a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114055486772545932, guid: fa8b7e5cd70f4a16aeac19899779d43a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733876629818134, guid: fa8b7e5cd70f4a16aeac19899779d43a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114868247278837488, guid: fa8b7e5cd70f4a16aeac19899779d43a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114908668597406430, guid: fa8b7e5cd70f4a16aeac19899779d43a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114972122099090148, guid: fa8b7e5cd70f4a16aeac19899779d43a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
 --- !u!1 &947718463
@@ -1440,7 +1470,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001365617}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ca8783c2ccf43af939f7e9502072304, type: 3}
   m_Name: 
