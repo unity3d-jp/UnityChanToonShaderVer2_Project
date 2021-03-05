@@ -2422,7 +2422,7 @@ namespace UnityEditor.Rendering.Toon
             EditorGUILayout.Space();
         }
 
-        const string srpDefaultLightModeName = "SRPDefaultUnlit";
+        const string srpDefaultLightModeName = "Always";
         const string srpDefaultColorMask = "_SPRDefaultUnlitColorMask";
         const string srpDefaultCullMode = "_SRPDefaultUnlitColMode";
 

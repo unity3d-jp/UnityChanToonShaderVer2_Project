@@ -209,8 +209,9 @@ Shader "ToonTessellation (Built-in)" {
         Pass {
             Name "Outline"
             Tags {
+                "LightMode" = "Always"
             }
-            Cull Front
+            Cull[_SRPDefaultUnlitColMode]
             ColorMask[_SPRDefaultUnlitColorMask]
             Blend SrcAlpha OneMinusSrcAlpha
             Stencil

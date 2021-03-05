@@ -1,13 +1,6 @@
-﻿//UCTS_Outline_tess.cginc
-//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+﻿//Unity Toon Shader/Legacy
 //nobuyuki@unity3d.com
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-// Outlines with camera offset (modified to reflect BaseColor light color / Tessellation compatible)
-// 2018/02/05 Outline Tex
-// #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
-// _IS_OUTLINE_CLIPPING_YES is only available for shaders that use the Clippig mask. By adding Blend SrcAlpha OneMinusSrcAlpha to Outline's blend mode.
+//toshiyuki@unity3d.com (Intengrated) 
 // ※Tessellation support
 //   The corresponding code was adapted from Nora's https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess.
 //

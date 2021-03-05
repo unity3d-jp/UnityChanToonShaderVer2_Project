@@ -1,15 +1,6 @@
-﻿//UCTS_Outline.cginc
-//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+﻿//Unity Toon Shader/Legacy
 //nobuyuki@unity3d.com
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-// 2018/08/23 N.Kobayashi (Unity Technologies Japan)
-// Outlines with camera offset (modified to reflect BaseColor light color)
-// Ver.2.0.4.3
-// 2018/02/05 Outline Tex
-// #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES 
-// _IS_OUTLINE_CLIPPING_YES is only available for shaders that use the Clippig mask. By adding Blend SrcAlpha OneMinusSrcAlpha to Outline's blend mode.
+//toshiyuki@unity3d.com (Intengrated) 
 //
             uniform float4 _LightColor0;
             uniform float4 _BaseColor;
