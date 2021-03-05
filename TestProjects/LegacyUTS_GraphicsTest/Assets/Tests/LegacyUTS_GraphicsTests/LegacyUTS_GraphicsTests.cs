@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Tests
 {
-    public class LegacyGraphicsTests
+    public class LegacyUTS_GraphicsTests
     {
         public const string legacyReferenceImagePath = "Assets/ReferenceImages";
         [UnityTest, Category("LegacyRP")]
@@ -26,7 +26,7 @@ namespace Tests
             yield return null;
 
             var cameras = GameObject.FindGameObjectsWithTag("MainCamera").Select(x => x.GetComponent<Camera>());
-            var settings = Object.FindObjectOfType<LegacyGraphicsTestSettings>();
+            var settings = Object.FindObjectOfType<LegacyUTS_GraphicsTestSettings>();
             Assert.IsNotNull(settings, "Invalid test scene, couldn't find LegacyGraphicsTestSettings");
 
             Scene scene = SceneManager.GetActiveScene();

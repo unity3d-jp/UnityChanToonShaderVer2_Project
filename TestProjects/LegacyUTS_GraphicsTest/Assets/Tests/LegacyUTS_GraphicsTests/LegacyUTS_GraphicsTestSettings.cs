@@ -2,11 +2,11 @@
 
 namespace Tests
 {
-    public class LegacyGraphicsTestSettings : GraphicsTestSettings
+    public class LegacyUTS_GraphicsTestSettings : GraphicsTestSettings
     {
         public int WaitFrames = 0;
 
-        public LegacyGraphicsTestSettings()
+        public LegacyUTS_GraphicsTestSettings()
         {
             ImageComparisonSettings.TargetWidth = 512;
             ImageComparisonSettings.TargetHeight = 512;
