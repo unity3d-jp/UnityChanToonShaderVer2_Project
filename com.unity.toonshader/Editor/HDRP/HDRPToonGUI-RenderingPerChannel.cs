@@ -5,10 +5,10 @@
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
-
+using UnityEditor.Rendering.Toon;
 namespace UnityEditor.Rendering.HighDefinition.Toon
 {
-    public partial class HDRPToonGUI : ShaderGUI
+    public partial class HDRPToonGUI : UTS_GUIBase
     {
 
         public enum _ChannelEnum

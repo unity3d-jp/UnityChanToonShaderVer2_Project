@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using UnityEngine.Rendering;
-
+using UnityEditor.Rendering.Toon;
 namespace UnityEditor.Rendering.HighDefinition.Toon
 {
-    public partial class HDRPToonGUI : ShaderGUI
+    public partial class HDRPToonGUI : UTS_GUIBase
     {
         enum TessellationMode
         {

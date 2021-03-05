@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
-namespace UnityEditor.Rendering.Toon
+using UnityEditor.Rendering.Toon;
+namespace UnityEditor.Rendering.Builtin.Toon
 {
 
     internal class GameRecommendationWindow : EditorWindow
