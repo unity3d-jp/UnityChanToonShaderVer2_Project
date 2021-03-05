@@ -97,16 +97,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.render-pipelines.universal": {
-      "version": "7.4.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.render-pipelines.core": "7.4.3",
-        "com.unity.shadergraph": "7.4.3"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.scriptablebuildpipeline": {
       "version": "1.15.1",
       "depth": 2,

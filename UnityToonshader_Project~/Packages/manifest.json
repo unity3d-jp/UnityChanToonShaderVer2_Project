@@ -6,8 +6,6 @@
     "com.unity.package-validation-suite": "0.10.0-preview",
     "com.unity.postprocessing": "2.3.0",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
-    "com.unity.render-pipelines.high-definition": "7.4.3",
-    "com.unity.render-pipelines.universal": "7.4.3",
     "com.unity.test-framework": "1.1.14",
     "com.unity.test-framework.build": "0.0.1-preview.12",
     "com.unity.test-framework.utp-reporter": "1.0.2-preview",
