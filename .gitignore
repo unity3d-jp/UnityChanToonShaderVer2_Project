@@ -50,6 +50,7 @@ ActualImages/
 test-results/
 TestProjects/LegacyUTS_GraphicsTest/Assets/ActualImages.meta
 TestProjects/UniversalUTS_GraphicsTest/Assets/ActualImages.meta
+TestProjects/HDRPUTS_GraphicsTest/Assets/ActualImages.meta
 
 # Unity3D generated meta files
 *.pidb.meta
