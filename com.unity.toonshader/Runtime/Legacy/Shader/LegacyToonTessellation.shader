@@ -1,13 +1,48 @@
-﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+﻿//Unity Toon Shader/Legacy
 //nobuyuki@unity3d.com
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
+//toshiyuki@unity3d.com (Intengrated) 
+
+Shader "ToonTessellation (Built-in)" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
-        [HideInInspector] _utsVersion ("Version", Float ) = 2.07
+        [HideInInspector][Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
+        [HideInInspector] _utsVersionX("VersionX", Float) = 0
+        [HideInInspector] _utsVersionY("VersionY", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
+        [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
+
+        [Enum(OFF, 0, StencilOut, 1, StencilMask, 2)] _StencilMode("StencilMode", int) = 0
+        // these are set in UniversalToonGUI.cs in accordance with _StencilMode
+        _StencilComp("Stencil Comparison", Float) = 8
+        _StencilNo("Stencil No", Float) = 1
+        _StencilOpPass("Stencil Operation", Float) = 0
+        _StencilOpFail("Stencil Operation", Float) = 0
+        [Enum(OFF, 0, ON, 1,] _TransparentEnabled("Transparent Mode", int) = 0
+
+        // DoubleShadeWithFeather
+        // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
+        // ShadingGradeMap
+        // 0:_IS_TRANSCLIPPING_OFF 1:_IS_TRANSCLIPPING_ON
+        [Enum(OFF, 0, ON, 1, TRANSMODE, 2)] _ClippingMode("CliippingMode", int) = 0
+
+ 
+        [Enum(OFF, 0, FRONT, 1, BACK, 2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
+        [Enum(OFF, 0, ONT, 1)]	_ZWriteMode("ZWrite Mode", int) = 1  //OFF/ON
+        [Enum(OFF, 0, ONT, 1)]	_ZOverDrawMode("ZOver Draw Mode", Float) = 0  //OFF/ON
+        _SPRDefaultUnlitColorMask("SPRDefaultUnlit Path Color Mask", int) = 15
+        [Enum(OFF, 0, FRONT, 1, BACK, 2)] _SRPDefaultUnlitColMode("SPRDefaultUnlit  Cull Mode", int) = 1  //OFF/FRONT/BACK
+        // ClippingMask paramaters from Here.
+        _ClippingMask("ClippingMask", 2D) = "white" {}
+
+        [HideInInspector] _IsBaseMapAlphaAsClippingMask("IsBaseMapAlphaAsClippingMask", Float) = 0
+        //
+        [Toggle(_)] _Inverse_Clipping("Inverse_Clipping", Float) = 0
+        _Clipping_Level("Clipping_Level", Range(0, 1)) = 0
+        _Tweak_transparency("Tweak_transparency", Range(-1, 1)) = 0
+        // ClippingMask paramaters to Here.
+
+
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _MainTex ("BaseMap", 2D) = "white" {}
         [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
@@ -48,6 +83,10 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
         //
         _Set_1st_ShadePosition ("Set_1st_ShadePosition", 2D) = "white" {}
         _Set_2nd_ShadePosition ("Set_2nd_ShadePosition", 2D) = "white" {}
+        _ShadingGradeMap("ShadingGradeMap", 2D) = "white" {}
+        //v.2.0.6
+        _Tweak_ShadingGradeMapLevel("Tweak_ShadingGradeMapLevel", Range(-0.5, 0.5)) = 0
+        _BlurLevelSGM("Blur Level of ShadingGradeMap", Range(0, 10)) = 0
         //
         _HighColor ("HighColor", Color) = (0,0,0,1)
 //v.2.0.4 HighColor_Tex
@@ -104,6 +143,15 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
         [Toggle(_)] _Inverse_MatcapMask ("Inverse_MatcapMask", Float ) = 0
         //v.2.0.5
         [Toggle(_)] _Is_Ortho ("Orthographic Projection for MatCap", Float ) = 0
+        //// Angel Rings
+        [Toggle(_)] _AngelRing("AngelRing", Float) = 0
+        _AngelRing_Sampler("AngelRing_Sampler", 2D) = "black" {}
+        _AngelRing_Color("AngelRing_Color", Color) = (1, 1, 1, 1)
+        [Toggle(_)] _Is_LightColor_AR("Is_LightColor_AR", Float) = 1
+        _AR_OffsetU("AR_OffsetU", Range(0, 0.5)) = 0
+        _AR_OffsetV("AR_OffsetV", Range(0, 1)) = 0.3
+        [Toggle(_)] _ARSampler_AlphaOn("ARSampler_AlphaOn", Float) = 0
+        //
         //v.2.0.7 Emissive
         [KeywordEnum(SIMPLE,ANIMATION)] _EMISSIVE("EMISSIVE MODE", Float) = 0
         _Emissive_Tex ("Emissive_Tex", 2D) = "white" {}
@@ -148,11 +196,11 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
         _Offset_X_Axis_BLD (" Offset X-Axis (Built-in Light Direction)", Range(-1, 1)) = -0.05
         _Offset_Y_Axis_BLD (" Offset Y-Axis (Built-in Light Direction)", Range(-1, 1)) = 0.09
         [Toggle(_)] _Inverse_Z_Axis_BLD (" Inverse Z-Axis (Built-in Light Direction)", Float ) = 1
+
         //Tessellation
         _TessEdgeLength("DX11 Tess : Edge length", Range(2, 50)) = 5
         _TessPhongStrength("DX11 Tess : Phong Strength", Range(0, 1)) = 0.5
         _TessExtrusionAmount("DX11 Tess : Extrusion Amount", Range(-0.005, 0.005)) = 0.0
-
     }
     SubShader {
         Tags {
@@ -163,33 +211,35 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
             Tags {
             }
             Cull Front
+            ColorMask[_SPRDefaultUnlitColorMask]
+            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil
+            {
+                Ref[_StencilNo]
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
 
-
-
+            }
             CGPROGRAM
-            //Tessellation
             #define TESSELLATION_ON
             #pragma target 5.0
             #pragma vertex tess_VertexInput
             #pragma hull hs_VertexInput
             #pragma domain ds_surf
-            //#pragma vertex vert
-
+        //#pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
-            #pragma only_renderers d3d11 xboxone ps4 switch
-            //Tessellation
-            //#pragma target 3.0
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //Tessellation
-            //The outline process goes to UTS_Outline_Tess.cginc.
-            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
-            #include "UCTS_Outline_Tess.cginc"
+            //The outline process goes to UTS_Outline.cginc.
+            #include "UCTS_Outline_tess.cginc"
             ENDCG
         }
 //ToonCoreStart
@@ -198,44 +248,61 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
             Tags {
                 "LightMode"="ForwardBase"
             }
-
+            ZWrite[_ZWriteMode]
             Cull[_CullMode]
-            
-            
+            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil {
+
+                Ref[_StencilNo]
+
+                Comp[_StencilComp]
+                Pass[_StencilOpPass]
+                Fail[_StencilOpFail]
+
+            }
             CGPROGRAM
-            //Tessellation
             #define TESSELLATION_ON
             #pragma target 5.0
             #pragma vertex tess_VertexInput
             #pragma hull hs_VertexInput
             #pragma domain ds_surf
-            //#pragma vertex vert
- 
             #pragma fragment frag
+
+            #ifdef TESSELLATION_ON
+            #include "UCTS_Tess.cginc"
+            #endif
             //#define UNITY_PASS_FORWARDBASE
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
-            //Tessellation
-            #ifdef TESSELLATION_ON
-            #include "UCTS_Tess.cginc"
-            #endif
-
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d11 xboxone ps4 switch
-            //Tessellation
-            //#pragma target 3.0
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
 
-            //v.2.0.4
-            #pragma multi_compile _IS_CLIPPING_OFF
+
+            // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
+            #pragma shader_feature _ _SHADINGGRADEMAP
+            // used in ShadingGradeMap
+            #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
+            #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
+            // used in DoubleShadeWithFeather
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+            #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             #pragma multi_compile _IS_PASS_FWDBASE
-            //v.2.0.7
-            #pragma multi_compile _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
+
             //
-            //Tessellation
             #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
-            #include "UCTS_DoubleShadeWithFeather_Tess.cginc"
+#if defined(_SHADINGGRADEMAP)
+
+#include "UCTS_ShadingGradeMap_tess.cginc"
+
+
+#else //#if defined(_SHADINGGRADEMAP)
+
+#include "UCTS_DoubleShadeWithFeather_tess.cginc"
+
+
+#endif //#if defined(_SHADINGGRADEMAP)
 
             ENDCG
         }
@@ -247,41 +314,51 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
 
             Blend One One
             Cull[_CullMode]
-
             
             
             CGPROGRAM
-            //Tessellation
             #define TESSELLATION_ON
             #pragma target 5.0
             #pragma vertex tess_VertexInput
             #pragma hull hs_VertexInput
             #pragma domain ds_surf
-            //#pragma vertex vert
-
             #pragma fragment frag
+
+            #ifdef TESSELLATION_ON
+            #include "UCTS_Tess.cginc"
+            #endif
             //#define UNITY_PASS_FORWARDADD
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #include "Lighting.cginc"
-            //Tessellation
-            #ifdef TESSELLATION_ON
-            #include "UCTS_Tess.cginc"
-            #endif
-
             //for Unity2018.x
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d11 xboxone ps4 switch
-            //Tessellation
-            //#pragma target 3.0
-
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+            // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
+            #pragma shader_feature _ _SHADINGGRADEMAP
+            // used in ShadingGradeMap
+            #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
+            #pragma shader_feature _IS_ANGELRING_OFF _IS_ANGELRING_ON
+            // used in DoubleShadeWithFeather
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+            #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             //v.2.0.4
-            #pragma multi_compile _IS_CLIPPING_OFF
+
             #pragma multi_compile _IS_PASS_FWDDELTA
-            //Tessellation            
             #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
-            #include "UCTS_DoubleShadeWithFeather_Tess.cginc"
+
+#if defined(_SHADINGGRADEMAP)
+
+#include "UCTS_ShadingGradeMap_tess.cginc"
+
+
+#else //#if defined(_SHADINGGRADEMAP)
+
+#include "UCTS_DoubleShadeWithFeather_tess.cginc"
+
+
+#endif //#if defined(_SHADINGGRADEMAP)
 
             ENDCG
         }
@@ -294,37 +371,30 @@ Shader "UnityChanToonShader/Tessellation/Toon_DoubleShadeWithFeather" {
             Cull Off
             
             CGPROGRAM
-            //Tessellation
             #define TESSELLATION_ON
             #pragma target 5.0
             #pragma vertex tess_VertexInput
             #pragma hull hs_VertexInput
             #pragma domain ds_surf
-            //#pragma vertex vert
-
             #pragma fragment frag
-            //#define UNITY_PASS_SHADOWCASTER
-            #include "UnityCG.cginc"
-            #include "Lighting.cginc"
-            //Tessellation
             #ifdef TESSELLATION_ON
             #include "UCTS_Tess.cginc"
             #endif
-
+            //#define UNITY_PASS_SHADOWCASTER
+            #include "UnityCG.cginc"
+            #include "Lighting.cginc"
             #pragma fragmentoption ARB_precision_hint_fastest
             #pragma multi_compile_shadowcaster
             #pragma multi_compile_fog
-            #pragma only_renderers d3d11 xboxone ps4 switch
-            //Tessellation
-            //#pragma target 3.0
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+
             //v.2.0.4
-            #pragma multi_compile _IS_CLIPPING_OFF
-            //Tessellation
-            #include "UCTS_ShadowCaster_Tess.cginc"
+            #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+            #include "UCTS_ShadowCaster_tess.cginc"
             ENDCG
         }
 //ToonCoreEnd
     }
     FallBack "Legacy Shaders/VertexLit"
-    CustomEditor "UnityEditor.Rendering.Toon.ShaderGUI.UTS2GUI"
+    CustomEditor "UnityEditor.Rendering.Toon.UTS2GUI"
 }
