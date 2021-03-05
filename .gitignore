@@ -48,8 +48,8 @@ utr.bat
 # TESTS
 ActualImages/
 test-results/
-TestProjects/LegacyGraphicsTest/Assets/ActualImages.meta
-
+TestProjects/LegacyUTS_GraphicsTest/Assets/ActualImages.meta
+TestProjects/UniversalUTS_GraphicsTest/Assets/ActualImages.meta
 
 # Unity3D generated meta files
 *.pidb.meta
