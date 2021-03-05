@@ -47,7 +47,7 @@
 #  ifdef _NORMALMAP
                 input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
                 input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
-#if (SHADER_LIBRARY_VERSION_MAJOR <10 )
+#  if (VERSION_LOWER(7, 5))
                 input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
 #endif //
 #  else

@@ -18,10 +18,10 @@ Legacy_OSX_Metal_playmode_mono_Linear_2019.4:
       -  ssh -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" bokken@$BOKKEN_DEVICE_IP '$(python3 -m site --user-base)/bin/unity-downloader-cli --source-file ~/Graphics/unity_revision.txt -c editor -c il2cpp  --wait --published-only'
       -  |5-
 
-                 ssh -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" bokken@$BOKKEN_DEVICE_IP "export UPM_REGISTRY=https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates; echo \$UPM_REGISTRY; cd ~/Graphics/TestProjects/LegacyGraphicsTest && ~/Graphics/TestProjects/LegacyGraphicsTest/utr --artifacts_path=/Users/bokken/Graphics/TestProjects/LegacyGraphicsTest/test-results --editor-location=/Users/bokken/.Editor --extra-editor-arg="-colorspace=Linear" --reruncount=2 --scripting-backend=Mono2x --suite=playmode --testproject=/Users/bokken/Graphics/TestProjects/LegacyGraphicsTest"
+                 ssh -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" bokken@$BOKKEN_DEVICE_IP "export UPM_REGISTRY=https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates; echo \$UPM_REGISTRY; cd ~/Graphics/TestProjects/LegacyUTS_GraphicsTest && ~/Graphics/TestProjects/LegacyUTS_GraphicsTest/utr --artifacts_path=/Users/bokken/Graphics/TestProjects/LegacyUTS_GraphicsTest/test-results --editor-location=/Users/bokken/.Editor --extra-editor-arg="-colorspace=Linear" --reruncount=2 --scripting-backend=Mono2x --suite=playmode --testproject=/Users/bokken/Graphics/TestProjects/LegacyUTS_GraphicsTest"
                  UTR_RESULT=$? 
                  mkdir -p TestProjects/LegacyUTS_GraphicsTest/test-results/
-                 scp -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" -r bokken@$BOKKEN_DEVICE_IP:/Users/bokken/Graphics/TestProjects/LegacyUTS_GraphicsTest/test-results/ TestProjects/LegacyGraphicsTest/test-results/
+                 scp -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" -r bokken@$BOKKEN_DEVICE_IP:/Users/bokken/Graphics/TestProjects/LegacyUTS_GraphicsTest/test-results/ TestProjects/LegacyUTS_GraphicsTest/test-results/
                  exit $UTR_RESULT
     triggers:
         branches:
