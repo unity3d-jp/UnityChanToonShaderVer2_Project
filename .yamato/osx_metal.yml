@@ -7,7 +7,7 @@ test_projects:
   - name: HDRPUTS_GraphicsTest
 ---
 {% for test_project in test_projects %}
-Legacy_OSX_Metal_{{ test_project.name }}_playmode_mono_Linear_2019.4:
+{{ test_project.name }}_OSX_Metal_playmode_mono_Linear_2019.4:
     name: Legacy on OSX_Metal_playmode_mono_Linear on version 2019.4
     agent:
         type: Unity::metal::macmini
