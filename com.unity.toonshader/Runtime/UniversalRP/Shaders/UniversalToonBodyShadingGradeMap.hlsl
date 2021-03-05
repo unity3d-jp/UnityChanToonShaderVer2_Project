@@ -30,7 +30,11 @@
                 // todo.  it has to be cared more.
                 UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+# ifdef LIGHTMAP_ON
+
+# else
                 input.vertexSH = i.vertexSH;
+# endif
                 input.uv = i.uv0;
                 input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
 #  ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
