@@ -43,7 +43,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 
         static bool _PerChanelShaderSettings_Foldout = false;
 
-        void RenderingPerChennelsSetting(Material material)
+        internal override void RenderingPerChennelsSetting(Material material)
         {
 
             _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, "【Mask Rendering Settings】");

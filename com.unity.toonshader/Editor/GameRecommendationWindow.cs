@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
+namespace UnityEditor.Rendering.Toon
 {
 
     internal class GameRecommendationWindow : EditorWindow
@@ -11,8 +11,8 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         private const float WINDOWSIZE_W = 340.0f; 
         private const float WINDOWSIZE_H = 420.0f; 
         Material m_material;
-        UniversalToonGUI m_gui;
-        internal static void OpenWindow(UniversalToonGUI gui, Material material)
+        UTS_GUIBase m_gui;
+        internal static void OpenWindow(UTS_GUIBase gui, Material material)
         {
             var window = GetWindow<GameRecommendationWindow>("Game Recommendation");
             window.m_material = material;

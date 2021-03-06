@@ -56,7 +56,8 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
     "Transparent  mode that fits you. ");
 
 
-        void FindTessellationProperties(MaterialProperty[] props)
+
+        internal override  void FindTessellationProperties(MaterialProperty[] props)
         {
             tessellationMode = FindProperty(kTessellationMode, props, false);
             tessellationFactor = FindProperty(kTessellationFactor, props, false);
@@ -77,7 +78,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
                 material.DisableKeyword(keyword);
         }
 
-        void ApplyTessellation(Material material)
+        internal override void ApplyTessellation(Material material)
         {
             if (material.HasProperty(kTessellationMode))
             {
