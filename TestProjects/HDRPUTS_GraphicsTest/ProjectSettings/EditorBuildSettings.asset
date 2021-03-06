@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HDRP/AngelRing/001_AngelRing(HDRP).unity
     guid: 7322b3e7d62c46eb9cac67ecf8a3be6d
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: dfd6c05210671a449908d498f8ea1c8f,
+      type: 2}
