@@ -68,21 +68,22 @@
       "hash": "1a2bee4ad3597752862b1dc0a0e99e07087d933b"
     },
     "com.unity.render-pipelines.core": {
-      "version": "7.4.3",
+      "version": "7.5.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.ugui": "1.0.0"
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.physics": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.universal": {
-      "version": "7.4.3",
+      "version": "7.5.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.4.3",
-        "com.unity.shadergraph": "7.4.3"
+        "com.unity.render-pipelines.core": "7.5.3",
+        "com.unity.shadergraph": "7.5.3"
       },
       "url": "https://packages.unity.com"
     },
@@ -94,11 +95,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "7.4.3",
+      "version": "7.5.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.4.3"
+        "com.unity.render-pipelines.core": "7.5.3"
       },
       "url": "https://packages.unity.com"
     },

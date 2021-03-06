@@ -44,11 +44,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "lock": {
-    "com.unity.raytracedhardshadow": {
-      "revision": "HEAD",
-      "hash": "1a2bee4ad3597752862b1dc0a0e99e07087d933b"
-    }
   }
 }
