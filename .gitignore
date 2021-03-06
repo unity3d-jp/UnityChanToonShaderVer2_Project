@@ -35,7 +35,7 @@ ExportedObj/
 .\#*
 # Backup files
 #---------------------------
-*~
+
 *.orig
 *.bak
 
