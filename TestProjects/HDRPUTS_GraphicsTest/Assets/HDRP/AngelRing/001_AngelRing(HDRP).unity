@@ -535,7 +535,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 240
+  WaitFrames: 480
 --- !u!81 &759218315
 AudioListener:
   m_ObjectHideFlags: 0
