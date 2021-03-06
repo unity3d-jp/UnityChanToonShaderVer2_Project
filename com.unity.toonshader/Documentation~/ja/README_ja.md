@@ -62,6 +62,7 @@ Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠
 
 -----
 ## 【ターゲット環境】
+* **Unity 2019.4.21f1 もしくはそれ以降が必要です。** 
 Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
 
