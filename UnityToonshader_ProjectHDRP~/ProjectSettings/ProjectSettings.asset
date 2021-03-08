@@ -111,8 +111,13 @@ PlayerSettings:
   switchNVNShaderPoolsGranularity: 33554432
   switchNVNDefaultPoolsGranularity: 16777216
   switchNVNOtherPoolsGranularity: 16777216
+  switchNVNMaxPublicTextureIDCount: 0
+  switchNVNMaxPublicSamplerIDCount: 0
+  stadiaPresentMode: 0
+  stadiaTargetFramerate: 0
   vulkanNumSwapchainBuffers: 2
   vulkanEnableSetSRGBWrite: 0
+  vulkanEnableLateAcquireNextImage: 0
   m_SupportedAspectRatios:
     4:3: 1
     5:4: 1
@@ -196,22 +201,6 @@ PlayerSettings:
   uIStatusBarHidden: 1
   uIExitOnSuspend: 0
   uIStatusBarStyle: 0
-  iPhoneSplashScreen: {fileID: 0}
-  iPhoneHighResSplashScreen: {fileID: 0}
-  iPhoneTallHighResSplashScreen: {fileID: 0}
-  iPhone47inSplashScreen: {fileID: 0}
-  iPhone55inPortraitSplashScreen: {fileID: 0}
-  iPhone55inLandscapeSplashScreen: {fileID: 0}
-  iPhone58inPortraitSplashScreen: {fileID: 0}
-  iPhone58inLandscapeSplashScreen: {fileID: 0}
-  iPadPortraitSplashScreen: {fileID: 0}
-  iPadHighResPortraitSplashScreen: {fileID: 0}
-  iPadLandscapeSplashScreen: {fileID: 0}
-  iPadHighResLandscapeSplashScreen: {fileID: 0}
-  iPhone65inPortraitSplashScreen: {fileID: 0}
-  iPhone65inLandscapeSplashScreen: {fileID: 0}
-  iPhone61inPortraitSplashScreen: {fileID: 0}
-  iPhone61inLandscapeSplashScreen: {fileID: 0}
   appleTVSplashScreen: {fileID: 0}
   appleTVSplashScreen2x: {fileID: 0}
   tvOSSmallIconLayers: []
@@ -248,6 +237,7 @@ PlayerSettings:
   metalEditorSupport: 1
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 1
+  iosCopyPluginsCodeInsteadOfSymlink: 0
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
@@ -288,7 +278,10 @@ PlayerSettings:
       m_Height: 128
       m_Kind: 0
   m_BuildTargetPlatformIcons: []
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Standalone
+    m_StaticBatching: 0
+    m_DynamicBatching: 1
   m_BuildTargetGraphicsJobs:
   - m_BuildTarget: MacStandaloneSupport
     m_GraphicsJobs: 0
@@ -326,7 +319,7 @@ PlayerSettings:
     m_APIs: 1000000011000000
     m_Automatic: 1
   - m_BuildTarget: WindowsStandaloneSupport
-    m_APIs: 0200000015000000
+    m_APIs: 120000000200000015000000
     m_Automatic: 0
   m_BuildTargetVRSettings:
   - m_BuildTarget: Android
@@ -392,11 +385,17 @@ PlayerSettings:
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality:
   - m_BuildTarget: Standalone
-    m_EncodingQuality: 1
+    m_EncodingQuality: 2
   - m_BuildTarget: XboxOne
     m_EncodingQuality: 1
   - m_BuildTarget: PS4
     m_EncodingQuality: 1
+  - m_BuildTarget: Android
+    m_EncodingQuality: 2
+  - m_BuildTarget: Lumin
+    m_EncodingQuality: 2
+  - m_BuildTarget: Windows Store Apps
+    m_EncodingQuality: 2
   m_BuildTargetGroupLightmapSettings: []
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
@@ -563,6 +562,7 @@ PlayerSettings:
   ps4ShareFilePath: 
   ps4ShareOverlayImagePath: 
   ps4PrivacyGuardImagePath: 
+  ps4ExtraSceSysFile: 
   ps4NPtitleDatPath: 
   ps4RemotePlayKeyAssignment: -1
   ps4RemotePlayKeyMappingDir: 
@@ -605,6 +605,8 @@ PlayerSettings:
   ps4disableAutoHideSplash: 0
   ps4videoRecordingFeaturesUsed: 0
   ps4contentSearchFeaturesUsed: 0
+  ps4CompatibilityPS5: 0
+  ps4GPU800MHz: 1
   ps4attribEyeToEyeDistanceSettingVR: 0
   ps4IncludedModules: []
   ps4attribVROutputEnabled: 0
@@ -628,7 +630,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: UNITY_POST_PROCESSING_STACK_V2
+    1: UNITY_POST_PROCESSING_STACK_V2;ENABLE_RAYTRACING
     7: UNITY_POST_PROCESSING_STACK_V2
     13: UNITY_POST_PROCESSING_STACK_V2
     19: UNITY_POST_PROCESSING_STACK_V2
@@ -653,6 +655,7 @@ PlayerSettings:
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0
+  assemblyVersionValidation: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
@@ -702,6 +705,7 @@ PlayerSettings:
   XboxOneCapability: []
   XboxOneGameRating: {}
   XboxOneIsContentPackage: 0
+  XboxOneEnhancedXboxCompatibilityMode: 0
   XboxOneEnableGPUVariability: 0
   XboxOneSockets: {}
   XboxOneSplashScreen: {fileID: 0}

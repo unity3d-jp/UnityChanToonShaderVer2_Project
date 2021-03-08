@@ -150,7 +150,8 @@ MonoBehaviour:
       isFptlEnabled: 0
   m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7,
     type: 2}
-  m_RenderPipelineRayTracingResources: {fileID: 0}
+  m_RenderPipelineRayTracingResources: {fileID: 11400000, guid: ba6e7f30e5cffc249a8bf7ee5756c196,
+    type: 2}
   m_DefaultVolumeProfile: {fileID: 11400000, guid: 6d2823d5274f0064a90eea3fc344b36b,
     type: 2}
   m_DefaultLookDevProfile: {fileID: 11400000, guid: 6d2823d5274f0064a90eea3fc344b36b,
@@ -190,7 +191,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 0
+    supportSSR: 1
     supportSSAO: 1
     supportSubsurfaceScattering: 1
     increaseSssSampleCount: 0
@@ -219,7 +220,7 @@ MonoBehaviour:
     supportRuntimeDebugDisplay: 1
     supportDitheringCrossFade: 1
     supportTerrainHole: 0
-    supportRayTracing: 0
+    supportRayTracing: 1
     lightLoopSettings:
       cookieAtlasSize: 2048
       cookieFormat: 74
@@ -270,7 +271,7 @@ MonoBehaviour:
       maxDirectionalShadowMapResolution: 2048
       maxPunctualShadowMapResolution: 2048
       maxAreaShadowMapResolution: 2048
-      supportScreenSpaceShadows: 0
+      supportScreenSpaceShadows: 1
       maxScreenSpaceShadowSlots: 4
       screenSpaceShadowBufferFormat: 48
     decalSettings:
@@ -345,7 +346,9 @@ MonoBehaviour:
   availableMaterialQualityLevels: -1
   m_DefaultMaterialQualityLevel: 4
   diffusionProfileSettings: {fileID: 0}
-  diffusionProfileSettingsList: []
+  diffusionProfileSettingsList:
+  - {fileID: 11400000, guid: 3a73185dd4bd239479dec09307e9f452, type: 2}
+  - {fileID: 11400000, guid: bc1ab4792ed693a408b799550f6e2694, type: 2}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
   afterPostProcessCustomPostProcesses: []
