@@ -99,7 +99,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #endif // _IS_CLIPPING_MATTE
 
 #ifdef UTS_LAYER_VISIBILITY
-    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, _BaseColorMaskColor.w, _BaseColorMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
     Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
@@ -116,7 +116,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #endif // _IS_CLIPPING_MATTE
 #ifdef UTS_LAYER_VISIBILITY
     {
-        float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, _FirstShadeMaskColor.w, _FirstShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_FirstShadeOverridden, _ComposerMaskMode);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor, maskEnabled);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
@@ -148,7 +148,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #endif // _IS_CLIPPING_MATTE
 #ifdef UTS_LAYER_VISIBILITY
     {
-        float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, _SecondShadeMaskColor.w, _SecondShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_SecondShadeOverridden, _ComposerMaskMode);
         Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor, maskEnabled);
         Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, Set_BaseColor, 1.0f - _SecondShadeVisible);
@@ -174,7 +174,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #ifdef UTS_LAYER_VISIBILITY
     float3 Set_HighColor;
     {
-        float4 overridingColor = lerp(_HighlightMaskColor, float4(_HighlightMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float4 overridingColor = lerp(_HighlightMaskColor, float4(_HighlightMaskColor.w, _HighlightMaskColor.w, _HighlightMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_HighlightOverridden, _ComposerMaskMode);
 
         _HighColor_var *= _HighlightVisible;
@@ -204,7 +204,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float3 _LightDirection_MaskOn_var = lerp((_Is_LightColor_RimLight_var * _Rimlight_InsideMask_var), (_Is_LightColor_RimLight_var * saturate((_Rimlight_InsideMask_var - ((1.0 - _VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel)))), _LightDirection_MaskOn);
     float _ApRimLightPower_var = pow(_RimArea_var, exp2(lerp(3, 0, _Ap_RimLight_Power)));
 #ifdef UTS_LAYER_VISIBILITY
-    float4 overridingRimColor = lerp(_RimLightMaskColor, float4(_RimLightMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+    float4 overridingRimColor = lerp(_RimLightMaskColor, float4(_RimLightMaskColor.w, _RimLightMaskColor.w, _RimLightMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskRimEnabled = max(_RimLightOverridden, _ComposerMaskMode);
 
     float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g + _Tweak_RimLightMaskLevel)) * lerp(_LightDirection_MaskOn_var, (_LightDirection_MaskOn_var + (lerp(_Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb * Set_LightColor), _Is_LightColor_Ap_RimLight) * saturate((lerp((0.0 + ((_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0)) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask, _ApRimLightPower_var), _Ap_RimLight_FeatherOff) - (saturate(_VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight));

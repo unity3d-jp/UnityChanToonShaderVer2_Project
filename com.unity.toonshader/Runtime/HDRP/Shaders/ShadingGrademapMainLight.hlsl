@@ -97,7 +97,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 #ifdef UTS_LAYER_VISIBILITY
 
-    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, _BaseColorMaskColor.w, _BaseColorMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
     Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
@@ -137,7 +137,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 #ifdef UTS_LAYER_VISIBILITY
     {
-        float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, _FirstShadeMaskColor.w, _FirstShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_FirstShadeOverridden, _ComposerMaskMode);
         _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, overridingColor, maskEnabled);
         _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, Set_BaseColor, 1.0f - _FirstShadeVisible);
@@ -153,7 +153,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 #ifdef UTS_LAYER_VISIBILITY
     float3 Set_FinalBaseColor;
     {
-        float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, _SecondShadeMaskColor.w, _SecondShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_SecondShadeOverridden, _ComposerMaskMode);
 
         float3 _Is_LightColor_2nd_Shade_var = lerp((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
@@ -202,7 +202,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 #ifdef UTS_LAYER_VISIBILITY
     float3 Set_HighColor;
     {
-        float4 overridingColor = lerp(_HighlightMaskColor, float4(_HighlightMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float4 overridingColor = lerp(_HighlightMaskColor, float4(_HighlightMaskColor.w, _HighlightMaskColor.w, _HighlightMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_HighlightOverridden, _ComposerMaskMode);
 
         _HighColor_var *= _HighlightVisible;
@@ -234,7 +234,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 #ifdef UTS_LAYER_VISIBILITY
 
-    float4 overridingRimColor = lerp(_RimLightMaskColor, float4(_RimLightMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+    float4 overridingRimColor = lerp(_RimLightMaskColor, float4(_RimLightMaskColor.w, _RimLightMaskColor.w, _RimLightMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskRimEnabled = max(_RimLightOverridden, _ComposerMaskMode);
 
     float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g + _Tweak_RimLightMaskLevel)) * lerp(_LightDirection_MaskOn_var, (_LightDirection_MaskOn_var + (lerp(_Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb * Set_LightColor), _Is_LightColor_Ap_RimLight) * saturate((lerp((0.0 + ((_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0)) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask, _ApRimLightPower_var), _Ap_RimLight_FeatherOff) - (saturate(_VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight));
@@ -342,7 +342,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     //Composition: MatCap and AngelRing as finalColor
 # ifdef UTS_LAYER_VISIBILITY
     {
-        float4 overridingColor = lerp(_AngelRingMaskColor, float4(_AngelRingMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+        float4 overridingColor = lerp(_AngelRingMaskColor, float4(_AngelRingMaskColor.w, _AngelRingMaskColor.w, _AngelRingMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_AngelRingOverridden, _ComposerMaskMode);
 
         _AngelRing *= _AngelRingVisible;
