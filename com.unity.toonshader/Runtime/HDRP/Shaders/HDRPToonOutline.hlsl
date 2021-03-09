@@ -132,7 +132,7 @@
                 //
                 float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));
 
-                float4 overridingColor = lerp(_OutlineMaskColor, float4(_OutlineMaskColor.w, 0.0f, 0.0f, 1.0f), _ComposerMaskMode);
+                float4 overridingColor = lerp(_OutlineMaskColor, float4(_OutlineMaskColor.w, _OutlineMaskColor.w, _OutlineMaskColor.w, 1.0f), _ComposerMaskMode);
                 float  maskEnabled = max(_OutlineOverridden, _ComposerMaskMode);
 
 //v.2.0.7.5
