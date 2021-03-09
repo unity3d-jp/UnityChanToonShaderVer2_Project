@@ -74,7 +74,7 @@ namespace Unity.Rendering.ToonShader.Tests {
 
 //---------------------------------------------------------------------------------------------------------------------
 
-        private const string LEGACY_SHADERS_PATH = "Packages/com.unity.toonshader/Runtime/Legacy/Shader";
+        private const string LEGACY_SHADERS_PATH = "Packages/com.unity.toonshader/Runtime/Legacy/Shaders";
 
     }
 } //end namespace
