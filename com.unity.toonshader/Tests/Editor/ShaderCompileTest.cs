@@ -10,7 +10,7 @@ namespace Unity.Rendering.ToonShader.Tests {
     {
         
         [Test]
-        public void CompileAllToonShadersDefault() {
+        public void CompileLegacyToonShadersDefault() {
             string[] guids      = AssetDatabase.FindAssets("t:Shader", new[] { LEGACY_SHADERS_PATH});
             int      numShaders = guids.Length;
             Assert.Greater(numShaders,0);
@@ -30,7 +30,7 @@ namespace Unity.Rendering.ToonShader.Tests {
 //---------------------------------------------------------------------------------------------------------------------
         [Test]        
         [UnityPlatform(RuntimePlatform.WindowsEditor)]
-        public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
+        public void CompileLegacyToonShadersWithRTHS() { //RaytracedHardShadow
             string[] guids      = AssetDatabase.FindAssets("t:Shader", new[] {LEGACY_SHADERS_PATH});
             int      numShaders = guids.Length;
             Assert.Greater(numShaders,0);
@@ -71,7 +71,7 @@ namespace Unity.Rendering.ToonShader.Tests {
             }
 
         }
-
+        
 //---------------------------------------------------------------------------------------------------------------------
 
         private const string LEGACY_SHADERS_PATH = "Packages/com.unity.toonshader/Runtime/Legacy/Shaders";
