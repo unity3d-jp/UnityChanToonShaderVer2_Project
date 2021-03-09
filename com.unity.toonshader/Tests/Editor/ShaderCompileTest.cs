@@ -10,9 +10,10 @@ namespace Unity.Rendering.ToonShader.Tests {
     {
         
         [Test]
-        public void CompileAllToonShadersDefault() {
-            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.toonshader/Runtime/Shader"});
-            int numShaders = guids.Length;
+        public void CompileLegacyToonShadersDefault() {
+            string[] guids      = AssetDatabase.FindAssets("t:Shader", new[] { LEGACY_SHADERS_PATH});
+            int      numShaders = guids.Length;
+            Assert.Greater(numShaders,0);
             bool shaderHasError = false;
             for (int i=0;i<numShaders && !shaderHasError;++i) {
                 string curAssetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
@@ -29,9 +30,10 @@ namespace Unity.Rendering.ToonShader.Tests {
 //---------------------------------------------------------------------------------------------------------------------
         [Test]        
         [UnityPlatform(RuntimePlatform.WindowsEditor)]
-        public void CompileAllToonShadersWithRTHS() { //RaytracedHardShadow
-            string[] guids = AssetDatabase.FindAssets("t:Shader", new[] {"Packages/com.unity.toonshader/Runtime/Shader"});
-            int numShaders = guids.Length;
+        public void CompileLegacyToonShadersWithRTHS() { //RaytracedHardShadow
+            string[] guids      = AssetDatabase.FindAssets("t:Shader", new[] {LEGACY_SHADERS_PATH});
+            int      numShaders = guids.Length;
+            Assert.Greater(numShaders,0);
 
             List<Material> materials = new List<Material>();
 
@@ -69,8 +71,10 @@ namespace Unity.Rendering.ToonShader.Tests {
             }
 
         }
-
+        
 //---------------------------------------------------------------------------------------------------------------------
 
+        private const string LEGACY_SHADERS_PATH = "Packages/com.unity.toonshader/Runtime/Legacy/Shaders";
+
     }
-}
+} //end namespace
