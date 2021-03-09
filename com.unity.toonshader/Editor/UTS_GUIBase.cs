@@ -197,14 +197,16 @@ namespace UnityEditor.Rendering.Toon
             SimpleEmissive, EmissiveAnimation
         }
 
-        // variables which must be gotten from shader at the beggning of GUI
-        public int _autoRenderQueue = 1;
-        public int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
-        // variables which just to be held.
-        public _OutlineMode outlineMode;
-        public _CullingMode cullingMode;
-        public _EmissiveMode emissiveMode;
+        // Texture synthesizing
 
+        internal UTS_TextureSynthesizer m_textureSynthesizer;
+        // variables which must be gotten from shader at the beggning of GUI
+        internal int _autoRenderQueue = 1;
+        internal int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+        // variables which just to be held.
+        internal _OutlineMode outlineMode;
+        internal _CullingMode cullingMode;
+        internal _EmissiveMode emissiveMode;
 
         //Button sizes
         static internal GUILayoutOption[] longButtonStyle = new GUILayoutOption[] { GUILayout.Width(180) };
@@ -566,18 +568,38 @@ namespace UnityEditor.Rendering.Toon
             public static GUIContent matCapMaskText = new GUIContent("MatCap Mask", "MatCap Mask : Texture(linear)");
             public static GUIContent angelRingText = new GUIContent("AngelRing", "AngelRing : Texture(sRGB) × Color(RGB) Default:Black");
             public static GUIContent emissiveTexText = new GUIContent("Emissive", "Emissive : Texture(sRGB)× EmissiveMask(alpha) × Color(HDR) Default:Black");
-            public static GUIContent shadingGradeMapText = new GUIContent("Shading Grade Map", "影のかかり方マップ。UV座標で影のかかりやすい場所を指定する。Shading Grade Map : Texture(linear)");
-            public static GUIContent firstPositionMapText = new GUIContent("1st Shade Position Map", "1影色領域に落ちる固定影の位置を、UV座標で指定する。1st Position Map : Texture(linear)");
-            public static GUIContent secondPositionMapText = new GUIContent("2nd Shade Position Map", "2影色領域に落ちる固定影の位置を、UV座標で指定する。2nd Position Map : Texture(linear)");
+            public static GUIContent shadingGradeMapText = new GUIContent("Shading Grade Map", "Specify shadow-prone areas in UV coordinates. Shading Grade Map : Texture(linear)");
+            public static GUIContent firstPositionMapText = new GUIContent("Specify the position of fixed shadows that fall in 1st shade color areas in UV coordinates. 1st Position Map : Texture(linear)");
+            public static GUIContent secondPositionMapText = new GUIContent("2nd Shade Position Map", "Specify the position of fixed shadows that fall in 2nd shade color areas in UV coordinates. 2nd Position Map : Texture(linear)");
             public static GUIContent outlineSamplerText = new GUIContent("Outline Sampler", "Outline Sampler : Texture(linear)");
             public static GUIContent outlineTexText = new GUIContent("Outline tex", "Outline Tex : Texture(sRGB) Default:White");
-            public static GUIContent bakedNormalOutlineText = new GUIContent("Baked NormalMap for Outline", "Unpacked Normal Map : Texture(linear) ※通常のノーマルマップではないので注意");
+            public static GUIContent bakedNormalOutlineText = new GUIContent("Baked NormalMap for Outline", "Unpacked Normal Map : Texture(linear) Note that this is not a standard NORMAL MAP.");
             public static GUIContent clippingMaskText = new GUIContent("Clipping Mask", "Clipping Mask : Texture(linear)");
         }
         // --------------------------------
 
+        public UTS_GUIBase()
+        {
+            if (m_textureSynthesizer == null)
+            {
+                m_textureSynthesizer = new UTS_TextureSynthesizer();
+
+            }
+        }
+
+        // never called from the system??
+        public override void OnClosed(Material material)
+        { 
+
+            base.OnClosed(material);
+        }
+
+        
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
         {
+            base.OnGUI(materialEditor, props);
+            UTS_TextureSynthesizer.Init();
+            UTS_TextureSynthesizer.Proc();
             EditorGUIUtility.fieldWidth = 0;
             FindProperties(props);
             m_MaterialEditor = materialEditor;
