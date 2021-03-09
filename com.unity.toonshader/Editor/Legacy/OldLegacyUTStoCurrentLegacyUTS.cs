@@ -35,7 +35,7 @@ namespace UnityEditor.Rendering.Toon
 
         void ConvertMaterials()
         {
-            const string propName = "_Unlit_Intensity";
+
             const string legacyShaderPrefix = "UnityChanToonShader/";
             var guids = AssetDatabase.FindAssets("t:Material", null);
             foreach (var guid in guids)

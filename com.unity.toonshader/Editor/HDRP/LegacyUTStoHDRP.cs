@@ -124,8 +124,8 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
         public int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
         static _UTS_Transparent _Transparent_Setting;
         static int _StencilNo_Setting;
-        static bool _OriginalInspector = false;
-        static bool _SimpleUI = false;
+//        static bool _OriginalInspector = false;
+//        static bool _SimpleUI = false;
         [MenuItem("Assets/Universal Toon/Convert Legacy materials to HDRP materials", false, 0)]
         static private void OpenWindow()
         {

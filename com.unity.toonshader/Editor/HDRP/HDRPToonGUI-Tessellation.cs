@@ -113,7 +113,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
         }
 
         static bool _TessellationSettings_Foldout = false;
-        void TessellationSetting(Material material)
+        internal override void TessellationSetting(Material material)
         {
             if (tessellationMode == null)
             {

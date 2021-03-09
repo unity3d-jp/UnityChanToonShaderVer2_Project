@@ -264,10 +264,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
             }
 
         }
-        void ApplyRenderingPerChennelsSetting(Material material)
-        {
 
-        }
 
         Texture2D ResizeThumbnailTexture(Texture2D tex, int sizX, int sizY)
         {
