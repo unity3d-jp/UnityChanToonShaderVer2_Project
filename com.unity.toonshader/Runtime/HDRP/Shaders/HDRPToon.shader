@@ -6,12 +6,23 @@ Shader "HDRP/Toon"
 {
     Properties
     {
+
+
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         // Versioning of material to help for upgrading
         [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
         [HideInInspector] _utsVersionY("VersionY", Float) = 0
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
+
+        // Syntesized Textures
+        [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "white"
+        [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white"
+        [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white"
+        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white"
+        [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white"
+
+
         // Following set of parameters represent the parameters node inside the MaterialGraph.
         // They are use to fill a SurfaceData. With a MaterialGraph this should not exist.
 

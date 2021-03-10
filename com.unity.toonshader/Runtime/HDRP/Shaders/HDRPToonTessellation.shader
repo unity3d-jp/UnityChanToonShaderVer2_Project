@@ -6,6 +6,19 @@ Shader "HDRP/ToonTessellation"
 {
     Properties
     {
+        // -----------------------------------------------------------------------------
+        // parameters for UTS
+        // -----------------------------------------------------------------------------
+        [HideInInspector] _simpleUI("SimpleUI", Int) = 0
+        [HideInInspector] _utsVersionX("VersionX", Float) = 1
+        [HideInInspector] _utsVersionY("VersionY", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
+        // Syntesized Textures
+        [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "white"
+        [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white"
+        [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white"
+        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white"
+        [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white"
         // Following set of parameters represent the parameters node inside the MaterialGraph.
         // They are use to fill a SurfaceData. With a MaterialGraph this should not exist.
 
@@ -235,13 +248,7 @@ Shader "HDRP/ToonTessellation"
         [ToggleUI] _ReceivesSSR("Receives SSR", Float) = 1.0
         [ToggleUI] _AddPrecomputedVelocity("AddPrecomputedVelocity", Float) = 0.0
 
-        // -----------------------------------------------------------------------------
-        // parameters for UTS
-        // -----------------------------------------------------------------------------
-        [HideInInspector] _simpleUI("SimpleUI", Int) = 0
-        [HideInInspector] _utsVersionX("VersionX", Float) = 1
-        [HideInInspector] _utsVersionY("VersionY", Float) = 0
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
+
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1

@@ -41,9 +41,15 @@ Shader "ToonTessellation (Built-in)" {
         _Clipping_Level("Clipping_Level", Range(0, 1)) = 0
         _Tweak_transparency("Tweak_transparency", Range(-1, 1)) = 0
         // ClippingMask paramaters to Here.
-
-
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
+
+        // Syntesized Textures
+        [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "white"
+        [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white"
+        [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white"
+        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white"
+        [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white"
+
         _MainTex ("BaseMap", 2D) = "white" {}
         [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace UnityEditor.Rendering.Toon
@@ -20,7 +15,9 @@ namespace UnityEditor.Rendering.Toon
         static GameObject s_UTSController;
         static CommandBuffer s_CommandBuffer;
         static RenderTexture s_RenderTexture;
-
+        static Material s_MaterialCombine3_1;
+        static Material s_MaterialCombine4;
+ 
         internal static eSynthesizerMode SynthesizerMode
         {
             get;set;
@@ -64,24 +61,46 @@ namespace UnityEditor.Rendering.Toon
         {
             int resoX = 1024;
             int resoY = 1024;
+
+            if (s_MaterialCombine3_1 == null)
+            {
+                s_MaterialCombine3_1 = new Material(Shader.Find("Hidden/UnityToonShader/Synth3_1")) { hideFlags = HideFlags.HideAndDontSave };
+            }
+            if (s_MaterialCombine4 == null)
+            {
+                s_MaterialCombine4 = new Material(Shader.Find("Hidden/UnityToonShader/Synth4")) { hideFlags = HideFlags.HideAndDontSave };
+            }
             if (s_RenderTexture == null)
             {
                 s_RenderTexture = new RenderTexture(resoX, resoY, 24, RenderTextureFormat.ARGB32);
                 s_RenderTexture.name = "UTS_TextureSynthesizer RenderTexture";
                 s_RenderTexture.Create();
             }
-            Matrix4x4 worldToCameraMatrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(2f / resoX, 2f / resoY, 1f));
-            Matrix4x4 projectionMatrix = Matrix4x4.identity;
-            Color col = Color.red;
-            s_CommandBuffer.Clear();
-            s_CommandBuffer.SetRenderTarget(s_RenderTexture);
-            s_CommandBuffer.SetViewProjectionMatrices(worldToCameraMatrix, projectionMatrix);
-            s_CommandBuffer.ClearRenderTarget(true, true, col);
+            Material material;
+            if (SynthesizerMode == eSynthesizerMode.Combine3_1)
+            {
+                material = s_MaterialCombine3_1;
+                material.SetTexture("Source0", Source0);
+                material.SetTexture("Source1", Source1);
+            }
+            else
+            {
+                material = s_MaterialCombine4;
+                material.SetTexture("Source0", Source0);
+                material.SetTexture("Source1", Source1);
+                material.SetTexture("Source2", Source2);
+                material.SetTexture("Source3", Source3);
+            }
 
+ 
+            s_CommandBuffer.Clear();
+
+
+            //            s_CommandBuffer.DrawMesh(s_Mesh, Matrix4x4.identity, material , 0);
+            s_CommandBuffer.Blit(Source0, s_RenderTexture, material);
             Graphics.ExecuteCommandBuffer(s_CommandBuffer);
 
         }
-
 
 
 

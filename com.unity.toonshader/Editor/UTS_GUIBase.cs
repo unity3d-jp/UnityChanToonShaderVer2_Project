@@ -116,6 +116,7 @@ namespace UnityEditor.Rendering.Toon
         protected const string ShaderPropIs_BLD = "_Is_BLD";
         protected const string ShaderPropInverse_Z_Axis_BLD = "_Inverse_Z_Axis_BLD";
 
+
         protected const string ShaderProp_MainTexSynthesized = "_MainTexSynthesized";
         protected const string ShaderProp_ShadowControlSynthesized = "_ShadowControlSynthesized";
         protected const string ShaderProp_HighColor_TexSynthesized = "_HighColor_TexSynthesized";
@@ -605,7 +606,7 @@ namespace UnityEditor.Rendering.Toon
         
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
         {
-            base.OnGUI(materialEditor, props);
+//            base.OnGUI(materialEditor, props);
             UTS_TextureSynthesizer.Init();
 
             EditorGUIUtility.fieldWidth = 0;
@@ -887,6 +888,15 @@ namespace UnityEditor.Rendering.Toon
         void SynthesizeMainTexture(Material material)
         {
             UTS_TextureSynthesizer.SynthesizerMode = UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1;
+            var mainTex = material.GetTexture(ShaderPropMainTex);
+/*
+            if (mainTex != null)
+            {
+                var aa = AssetDatabase.GetAssetPath(mainTex);
+                var guid = AssetDatabase.AssetPathToGUID(aa);
+                Debug.Log(guid);
+            }
+*/
             UTS_TextureSynthesizer.Source0 = material.GetTexture(ShaderPropMainTex);
             UTS_TextureSynthesizer.Source1 = material.GetTexture(ShaderPropClippingMask);
             UTS_TextureSynthesizer.Proc();

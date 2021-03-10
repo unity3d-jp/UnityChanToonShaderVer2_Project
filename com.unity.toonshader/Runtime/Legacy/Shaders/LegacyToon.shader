@@ -44,6 +44,16 @@ Shader "Toon (Built-in)" {
 
 
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
+
+
+        // Syntesized Textures
+        [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "white"
+        [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white"
+        [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white"
+        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white"
+        [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white"
+
+
         _MainTex ("BaseMap", 2D) = "white" {}
         [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
@@ -322,7 +332,8 @@ Shader "Toon (Built-in)" {
             //v.2.0.4
 
             #pragma multi_compile _IS_PASS_FWDDELTA
-            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
+            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
+
 #if defined(_SHADINGGRADEMAP)
 
 #include "UCTS_ShadingGradeMap.cginc"
