@@ -44,7 +44,7 @@ namespace UnityEditor.Rendering.Toon
             textureRect.height /= 2;
             for ( int ii = 0; ii < cloumn; ii++)
             {
-                textureRect.x += rect.width / (float)cloumn;
+
 
                 switch (ii)
                 {
@@ -73,7 +73,7 @@ namespace UnityEditor.Rendering.Toon
                         }
                         break;
                 }
-
+                textureRect.x += rect.width / (float)cloumn;
             }
             textureRect.x = 0;
             textureRect.y = textureRect.height;

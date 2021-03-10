@@ -40,6 +40,7 @@ namespace UnityEditor.Rendering.Toon
         protected const string ShaderPropAngelRing = "_AngelRing";
         protected const string ShaderPropRTHS = "_RTHS";
         protected const string ShaderPropMatCap = "_MatCap";
+        protected const string ShaderPropMainTex = "_MainTex";
         protected const string ShaderPropClippingMode = "_ClippingMode";
         protected const string ShaderPropClippingMask = "_ClippingMask";
         protected const string ShaderPropSimpleUI = "_simpleUI";
@@ -114,6 +115,13 @@ namespace UnityEditor.Rendering.Toon
         protected const string ShaderPropIs_BakedNormal = "_Is_BakedNormal";
         protected const string ShaderPropIs_BLD = "_Is_BLD";
         protected const string ShaderPropInverse_Z_Axis_BLD = "_Inverse_Z_Axis_BLD";
+
+        protected const string ShaderProp_MainTexSynthesized = "_MainTexSynthesized";
+        protected const string ShaderProp_ShadowControlSynthesized = "_ShadowControlSynthesized";
+        protected const string ShaderProp_HighColor_TexSynthesized = "_HighColor_TexSynthesized";
+        protected const string ShaderProp_MatCap_SamplerSynthesized = "_MatCap_SamplerSynthesized";
+        protected const string ShaderProp_Outline_SamplerSynthesized = "_Outline_SamplerSynthesized";
+        
 
         protected const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
         protected const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
@@ -406,7 +414,7 @@ namespace UnityEditor.Rendering.Toon
             clipping_Level = FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
             stencilMode = FindProperty(ShaderPropStencilMode, props);
-            mainTex = FindProperty("_MainTex", props);
+            mainTex = FindProperty(ShaderPropMainTex, props);
             baseColor = FindProperty("_BaseColor", props);
             firstShadeMap = FindProperty("_1st_ShadeMap", props);
             firstShadeColor = FindProperty("_1st_ShadeColor", props);
@@ -599,7 +607,7 @@ namespace UnityEditor.Rendering.Toon
         {
             base.OnGUI(materialEditor, props);
             UTS_TextureSynthesizer.Init();
-            UTS_TextureSynthesizer.Proc();
+
             EditorGUIUtility.fieldWidth = 0;
             FindProperties(props);
             m_MaterialEditor = materialEditor;
@@ -866,6 +874,8 @@ namespace UnityEditor.Rendering.Toon
             ApplyTessellation(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
+
+            SynthesizeMainTexture(material);
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.PropertiesChanged();
@@ -874,6 +884,13 @@ namespace UnityEditor.Rendering.Toon
         }// End of OnGUI()
 
 
+        void SynthesizeMainTexture(Material material)
+        {
+            UTS_TextureSynthesizer.SynthesizerMode = UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1;
+            UTS_TextureSynthesizer.Source0 = material.GetTexture(ShaderPropMainTex);
+            UTS_TextureSynthesizer.Source1 = material.GetTexture(ShaderPropClippingMask);
+            UTS_TextureSynthesizer.Proc();
+        }
         // --------------------------------
 
         void CheckUtsTechnique(Material material)

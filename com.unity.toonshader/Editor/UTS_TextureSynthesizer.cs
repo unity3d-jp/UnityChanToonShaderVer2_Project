@@ -33,19 +33,19 @@ namespace UnityEditor.Rendering.Toon
                 return s_RenderTexture;
             }
         }
-        internal static Texture2D Source0
+        internal static Texture Source0
         {
             get;set;
         }
-        internal static Texture2D Source1
+        internal static Texture Source1
         {
             get; set;
         }
-        internal static Texture2D Source2
+        internal static Texture Source2
         {
             get; set;
         }
-        internal static Texture2D Source3
+        internal static Texture Source3
         {
             get; set;
         }
