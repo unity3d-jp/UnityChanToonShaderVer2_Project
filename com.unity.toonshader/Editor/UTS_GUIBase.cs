@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace UnityEditor.Rendering.Toon
@@ -43,6 +44,17 @@ namespace UnityEditor.Rendering.Toon
         protected const string ShaderPropMainTex = "_MainTex";
         protected const string ShaderPropClippingMode = "_ClippingMode";
         protected const string ShaderPropClippingMask = "_ClippingMask";
+        protected const string ShaderProp_Set_1st_ShadePosition = "_Set_1st_ShadePosition";
+        protected const string ShaderProp_Set_2nd_ShadePosition = "_Set_2nd_ShadePosition";
+        protected const string ShaderProp_ShadingGradeMap = "_ShadingGradeMap";
+        protected const string ShaderProp_Set_RimLightMask = "_Set_RimLightMask";
+        protected const string ShaderProp_HighColor_Tex = "_HighColor_Tex";
+        protected const string ShaderProp_Set_HighColorMask = "_Set_HighColorMask";
+        protected const string ShaderProp_MatCap_Sampler = "_MatCap_Sampler";
+        protected const string ShaderProp_Set_MatcapMask = "_Set_MatcapMask";
+        protected const string ShaderProp_OutlineTex = "_OutlineTex";
+        protected const string ShaderProp_Outline_Sampler = "_Outline_Sampler";
+
         protected const string ShaderPropSimpleUI = "_simpleUI";
         protected const string ShaderPropUtsTechniqe = "_utsTechnique";
         protected const string ShaderPropAutoRenderQueue = "_AutoRenderQueue";
@@ -378,37 +390,231 @@ namespace UnityEditor.Rendering.Toon
 
         protected MaterialEditor m_MaterialEditor;
 
-        protected Hash128 MainTexHash128Store;
-        protected GUID MainTexGUIDStore;
+        protected Hash128 MainTexHash128Store = new Hash128();
+        protected string MainTexGUIDStore;
 
-        protected Hash128 ClippingMaskHash128Store;
-        protected GUID ClippingMaskGUIDStore;
+        protected Hash128 ClippingMaskHash128Store = new Hash128();
+        protected string ClippingMaskGUIDStore;
 
-        protected Hash128 Set_1st_ShadePositionHash128Store;
-        protected GUID Set_1st_ShadePositionGUIDStore;
+        protected Hash128 Set_1st_ShadePositionHash128Store = new Hash128();
+        protected string Set_1st_ShadePositionGUIDStore;
 
-        protected Hash128 Set_2nd_ShadePositionHash128Store;
-        protected GUID Set_2nd_ShadePositionGUIDStore;
+        protected Hash128 Set_2nd_ShadePositionHash128Store = new Hash128();
+        protected string Set_2nd_ShadePositionGUIDStore;
 
-        protected Hash128 ShadingGradeMapHash128Store;
-        protected GUID ShadingGradeMapGUIDGUIDStore;
+        protected Hash128 ShadingGradeMapHash128Store = new Hash128();
+        protected string ShadingGradeMapGUIDStore;
 
-        protected Hash128 Set_RimLightMaskHash128Store;
-        protected GUID Set_RimLightMaskGUIDStore;
+        protected Hash128 Set_RimLightMaskHash128Store = new Hash128();
+        protected string Set_RimLightMaskGUIDStore;
 
-        protected Hash128 Set_HighColorMaskHash128Store;
-        protected GUID Set_HighColorMaskGUIDStore;
+        protected Hash128 HighColor_TexHash128Store = new Hash128();
+        protected string HighColor_TexGUIDStore;
 
-        protected Hash128 MatCap_SamplerHash128Store;
-        protected GUID MatCap_SamplerGUIDStore;
+        protected Hash128 Set_HighColorMaskHash128Store = new Hash128();
+        protected string Set_HighColorMaskGUIDStore;
 
-        protected Hash128 Outline_SamplerHash128Store;
-        protected GUID Outline_SamplerGUIDStore;
+        protected Hash128 MatCap_SamplerHash128Store = new Hash128();
+        protected string MatCap_SamplerGUIDStore;
 
-        protected Hash128 OOutlineTexHash128Store;
-        protected GUID OutlineTexGUIDStore;
+        protected Hash128 Set_MatcapMaskHash128Store = new Hash128();
+        protected string Set_MatcapMaskGUIDStore;
+
+        protected Hash128 Outline_SamplerHash128Store = new Hash128();
+        protected string Outline_SamplerGUIDStore;
+
+        protected Hash128 OutlineTexHash128Store = new Hash128();
+        protected string OutlineTexGUIDStore;
+
+
+        protected Texture mainTexStore = null;
+        protected Texture clippingMaskStore = null;
+        protected Texture set1stShadePositionStore = null;
+        protected Texture set2ndShadePositionStore = null;
+        protected Texture shadingGradeMapStore = null;
+        protected Texture rimLightMaskStore = null;
+        protected Texture highColorTexStore = null;
+        protected Texture highColorMaskStore = null;
+        protected Texture matcapSamplerStore = null;
+        protected Texture setMatcapMaskStore = null;
+        protected Texture outlineTexStore = null;
+        protected Texture outlineSamplerStore = null;
 
         const int HDRPGeometryMin = 2650; // UnityEngine.Rendering.RenderQueue.Geometry;
+
+        private void StoreHashAndGUID(Material material)
+        {
+            mainTexStore = material.GetTexture(ShaderPropMainTex);
+            if (mainTexStore != null )
+            {
+                MainTexHash128Store = mainTexStore.imageContentsHash;
+                var path  = AssetDatabase.GetAssetPath(mainTexStore);
+                MainTexGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                MainTexHash128Store = new Hash128();
+                MainTexGUIDStore = null;
+            }
+
+            clippingMaskStore =  material.GetTexture(ShaderPropClippingMask);
+            if (clippingMaskStore != null)
+            {
+
+                ClippingMaskHash128Store = clippingMaskStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(clippingMaskStore);
+                ClippingMaskGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                ClippingMaskHash128Store = new Hash128();
+                ClippingMaskGUIDStore = null;
+            }
+
+            set1stShadePositionStore = material.GetTexture(ShaderProp_Set_1st_ShadePosition);
+            if (set1stShadePositionStore != null)
+            {
+                Set_1st_ShadePositionHash128Store = set1stShadePositionStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(set1stShadePositionStore);
+                Set_1st_ShadePositionGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                Set_1st_ShadePositionHash128Store = new Hash128();
+                Set_1st_ShadePositionGUIDStore = null;
+            }
+
+            set2ndShadePositionStore = material.GetTexture(ShaderProp_Set_2nd_ShadePosition);
+            if (set2ndShadePositionStore != null)
+            {
+                Set_2nd_ShadePositionHash128Store = set2ndShadePositionStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(set2ndShadePositionStore);
+                Set_2nd_ShadePositionGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                Set_2nd_ShadePositionHash128Store = new Hash128();
+                Set_2nd_ShadePositionGUIDStore = null;
+            }
+
+            shadingGradeMapStore = material.GetTexture(ShaderProp_ShadingGradeMap);
+            if (shadingGradeMapStore != null)
+            {
+                ShadingGradeMapHash128Store = shadingGradeMapStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(shadingGradeMapStore);
+                ShadingGradeMapGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                ShadingGradeMapHash128Store = new Hash128();
+                ShadingGradeMapGUIDStore = null;
+            }
+
+            rimLightMaskStore = material.GetTexture(ShaderProp_Set_RimLightMask);
+            if (rimLightMaskStore != null)
+            {
+                Set_RimLightMaskHash128Store = rimLightMaskStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(rimLightMaskStore);
+                Set_RimLightMaskGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                Set_RimLightMaskHash128Store = new Hash128();
+                Set_RimLightMaskGUIDStore = null;
+            }
+
+
+            highColorTexStore = material.GetTexture(ShaderProp_HighColor_Tex);
+            if (highColorTexStore != null)
+            {
+                HighColor_TexHash128Store = highColorTexStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(highColorTexStore);
+                HighColor_TexGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                HighColor_TexHash128Store = new Hash128();
+                HighColor_TexGUIDStore = null;
+            }
+
+
+            highColorMaskStore = material.GetTexture(ShaderProp_Set_HighColorMask);
+            if (highColorMaskStore != null)
+            {
+                Set_HighColorMaskHash128Store = highColorMaskStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(highColorMaskStore);
+                Set_HighColorMaskGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                Set_HighColorMaskHash128Store = new Hash128();
+                Set_HighColorMaskGUIDStore = null;
+            }
+
+
+            matcapSamplerStore = material.GetTexture(ShaderProp_MatCap_Sampler);
+            if (matcapSamplerStore != null)
+            {
+                MatCap_SamplerHash128Store = matcapSamplerStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(matcapSamplerStore);
+                MatCap_SamplerGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                MatCap_SamplerHash128Store = new Hash128();
+                MatCap_SamplerGUIDStore = null;
+            }
+
+            setMatcapMaskStore = material.GetTexture(ShaderProp_Set_MatcapMask);
+            if (setMatcapMaskStore != null)
+            {
+                Set_MatcapMaskHash128Store = setMatcapMaskStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(setMatcapMaskStore);
+                Set_MatcapMaskGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                Set_MatcapMaskHash128Store = new Hash128();
+                Set_MatcapMaskGUIDStore = null;
+            }
+
+            outlineTexStore = material.GetTexture(ShaderProp_OutlineTex);
+            if (outlineTexStore != null)
+            {
+                OutlineTexHash128Store = outlineTexStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(outlineTexStore);
+                OutlineTexGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                OutlineTexHash128Store = new Hash128();
+                OutlineTexGUIDStore = null;
+            }
+
+            outlineSamplerStore = material.GetTexture(ShaderProp_Outline_Sampler);
+            if (outlineSamplerStore != null)
+            {
+                Outline_SamplerHash128Store = outlineSamplerStore.imageContentsHash;
+                var path = AssetDatabase.GetAssetPath(outlineSamplerStore);
+                Outline_SamplerGUIDStore = AssetDatabase.AssetPathToGUID(path);
+            }
+            else
+            {
+                Outline_SamplerHash128Store = new Hash128();
+                Outline_SamplerGUIDStore = null;
+            }
+
+        }
+
+        private void ApplyHashAndGUID(Material material)
+        {
+            Proc_MainTexSynthesized(material);
+            Proc_ShadowControlSynthesized(material);
+            Proc_HighColor_TexSynthesized(material);
+            Proc_MatCap_SamplerSynthesized(material);
+            Proc_Outline_SamplerSynthesized(material);
+        }
+
         private bool IsClippingMaskPropertyAvailable(_UTS_Technique technique)
         {
 
@@ -490,9 +696,9 @@ namespace UnityEditor.Rendering.Toon
             secondShadeColor = FindProperty("_2nd_ShadeColor", props);
             normalMap = FindProperty("_NormalMap", props);
             bumpScale = FindProperty("_BumpScale", props);
-            set_1st_ShadePosition = FindProperty("_Set_1st_ShadePosition", props, false);
-            set_2nd_ShadePosition = FindProperty("_Set_2nd_ShadePosition", props, false);
-            shadingGradeMap = FindProperty("_ShadingGradeMap", props, false);
+            set_1st_ShadePosition = FindProperty(ShaderProp_Set_1st_ShadePosition, props, false);
+            set_2nd_ShadePosition = FindProperty(ShaderProp_Set_2nd_ShadePosition, props, false);
+            shadingGradeMap = FindProperty(ShaderProp_ShadingGradeMap, props, false);
             tweak_ShadingGradeMapLevel = FindProperty("_Tweak_ShadingGradeMapLevel", props, false);
             blurLevelSGM = FindProperty("_BlurLevelSGM", props, false);
             tweak_SystemShadowsLevel = FindProperty("_Tweak_SystemShadowsLevel", props);
@@ -505,11 +711,11 @@ namespace UnityEditor.Rendering.Toon
             second_ShadeColor_Step = FindProperty(ShaderProp2nd_ShadeColor_Step, props);
             second_ShadeColor_Feather = FindProperty(ShaderProp2nd_ShadeColor_Feather, props);
             stepOffset = FindProperty("_StepOffset", props, false);
-            highColor_Tex = FindProperty("_HighColor_Tex", props);
+            highColor_Tex = FindProperty(ShaderProp_HighColor_Tex, props);
             highColor = FindProperty("_HighColor", props);
             highColor_Power = FindProperty("_HighColor_Power", props);
             tweakHighColorOnShadow = FindProperty("_TweakHighColorOnShadow", props);
-            set_HighColorMask = FindProperty("_Set_HighColorMask", props);
+            set_HighColorMask = FindProperty(ShaderProp_Set_HighColorMask, props);
             tweak_HighColorMaskLevel = FindProperty("_Tweak_HighColorMaskLevel", props);
             rimLightColor = FindProperty("_RimLightColor", props);
             rimLight_Power = FindProperty("_RimLight_Power", props);
@@ -517,9 +723,9 @@ namespace UnityEditor.Rendering.Toon
             tweak_LightDirection_MaskLevel = FindProperty("_Tweak_LightDirection_MaskLevel", props);
             ap_RimLightColor = FindProperty("_Ap_RimLightColor", props);
             ap_RimLight_Power = FindProperty("_Ap_RimLight_Power", props);
-            set_RimLightMask = FindProperty("_Set_RimLightMask", props);
+            set_RimLightMask = FindProperty(ShaderProp_Set_RimLightMask, props);
             tweak_RimLightMaskLevel = FindProperty("_Tweak_RimLightMaskLevel", props);
-            matCap_Sampler = FindProperty("_MatCap_Sampler", props);
+            matCap_Sampler = FindProperty(ShaderProp_MatCap_Sampler, props);
             matCapColor = FindProperty("_MatCapColor", props);
             blurLevelMatcap = FindProperty("_BlurLevelMatcap", props);
             tweak_MatCapUV = FindProperty("_Tweak_MatCapUV", props);
@@ -528,7 +734,7 @@ namespace UnityEditor.Rendering.Toon
             bumpScaleMatcap = FindProperty("_BumpScaleMatcap", props);
             rotate_NormalMapForMatCapUV = FindProperty("_Rotate_NormalMapForMatCapUV", props);
             tweakMatCapOnShadow = FindProperty("_TweakMatCapOnShadow", props);
-            set_MatcapMask = FindProperty("_Set_MatcapMask", props);
+            set_MatcapMask = FindProperty(ShaderProp_Set_MatcapMask, props);
             tweak_MatcapMaskLevel = FindProperty("_Tweak_MatcapMaskLevel", props);
             angelRing_Sampler = FindProperty("_AngelRing_Sampler", props, false);
             angelRing_Color = FindProperty("_AngelRing_Color", props, false);
@@ -545,11 +751,11 @@ namespace UnityEditor.Rendering.Toon
             viewShift = FindProperty("_ViewShift", props);
             outline_Width = FindProperty("_Outline_Width", props, false);
             outline_Color = FindProperty("_Outline_Color", props, false);
-            outline_Sampler = FindProperty("_Outline_Sampler", props, false);
+            outline_Sampler = FindProperty(ShaderProp_Outline_Sampler, props, false);
             offset_Z = FindProperty("_Offset_Z", props, false);
             farthest_Distance = FindProperty("_Farthest_Distance", props, false);
             nearest_Distance = FindProperty("_Nearest_Distance", props, false);
-            outlineTex = FindProperty("_OutlineTex", props, false);
+            outlineTex = FindProperty(ShaderProp_OutlineTex, props, false);
             bakedNormal = FindProperty("_BakedNormal", props, false);
             tessEdgeLength = FindProperty("_TessEdgeLength", props, false);
             tessPhongStrength = FindProperty("_TessPhongStrength", props, false);
@@ -680,7 +886,7 @@ namespace UnityEditor.Rendering.Toon
             FindProperties(props);
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
-
+            StoreHashAndGUID(material);
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
 
@@ -942,8 +1148,8 @@ namespace UnityEditor.Rendering.Toon
             ApplyTessellation(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
+ //           ApplyHashAndGUID(material);
 
-            SynthesizeMainTexture(material);
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.PropertiesChanged();
@@ -952,21 +1158,134 @@ namespace UnityEditor.Rendering.Toon
         }// End of OnGUI()
 
 
-        void SynthesizeMainTexture(Material material)
+        void Proc_MainTexSynthesized(Material material)
         {
+            /*
             UTS_TextureSynthesizer.SynthesizerMode = UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1;
             var mainTex = material.GetTexture(ShaderPropMainTex);
-/*
-            if (mainTex != null)
+            var clippingMask = material.GetTexture(ShaderPropClippingMask);
+            Texture2D outputTexture = material.GetTexture();
+            UTS_TextureSynthesizer.Source0 = mainTex;
+            UTS_TextureSynthesizer.Source1 = clippingMask;
+            UTS_TextureSynthesizer.Proc(ref outputTexture);
+            */
+        }
+
+        bool  IsDifferentTexture(Texture tex0, Texture tex1)
+        {
+            if ( tex0 != tex1)
             {
-                var aa = AssetDatabase.GetAssetPath(mainTex);
-                var guid = AssetDatabase.AssetPathToGUID(aa);
-                Debug.Log(guid);
+                return true;
             }
-*/
-            UTS_TextureSynthesizer.Source0 = material.GetTexture(ShaderPropMainTex);
-            UTS_TextureSynthesizer.Source1 = material.GetTexture(ShaderPropClippingMask);
-            UTS_TextureSynthesizer.Proc();
+            if (tex0 != null && tex1 != null )
+            {
+                if ( tex0.imageContentsHash != tex1.imageContentsHash )
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        string GetValidFileName(Texture source0, Texture source1, Texture source2, Texture source3)
+        {
+            if ( source0 != null )
+            {
+                return AssetDatabase.GetAssetPath(source0);
+            }
+            if (source1 != null)
+            {
+                return AssetDatabase.GetAssetPath(source1);
+            }
+            if (source2 != null)
+            {
+                return AssetDatabase.GetAssetPath(source2);
+            }
+            if (source3 != null)
+            {
+                return AssetDatabase.GetAssetPath(source3);
+            }
+            Debug.Assert(false);
+            return null;
+        }
+
+        const string uts_tmp = "uts_tmp";
+        const string uts_sysnthesized_prefix = "uts_sysnthesized_";
+        void Proc_ShadowControlSynthesized(Material material)
+        {
+            UTS_TextureSynthesizer.SynthesizerMode = UTS_TextureSynthesizer.eSynthesizerMode.Combine4;
+            var _Set_1st_ShadePosition = material.GetTexture(ShaderProp_Set_1st_ShadePosition);
+            var _Set_2nd_ShadePosition = material.GetTexture(ShaderProp_Set_2nd_ShadePosition);
+            var _ShadingGradeMap = material.GetTexture(ShaderProp_ShadingGradeMap);
+            var _Set_RimLightMask = material.GetTexture(ShaderProp_Set_RimLightMask);
+
+            var outputTextureOrg = material.GetTexture(ShaderProp_ShadowControlSynthesized);
+            var outputTexture = outputTextureOrg;
+            if (outputTextureOrg == null
+                || IsDifferentTexture(_Set_1st_ShadePosition, set1stShadePositionStore)
+                || IsDifferentTexture(_Set_2nd_ShadePosition, set2ndShadePositionStore)
+                || IsDifferentTexture(_ShadingGradeMap, shadingGradeMapStore)
+                || IsDifferentTexture(_Set_RimLightMask, rimLightMaskStore) )
+            {
+
+                UTS_TextureSynthesizer.Source0 = _Set_1st_ShadePosition;
+                UTS_TextureSynthesizer.Source1 = _Set_2nd_ShadePosition;
+                UTS_TextureSynthesizer.Source2 = _ShadingGradeMap;
+                UTS_TextureSynthesizer.Source3 = _Set_RimLightMask;
+                UTS_TextureSynthesizer.Proc(ref outputTexture);
+                if (outputTextureOrg != outputTexture)
+                {
+                    Debug.Assert(outputTexture != null);
+                    if ( outputTextureOrg !=  null  )
+                    {
+                        var originalPath = AssetDatabase.GetAssetPath(outputTextureOrg);
+                        var fileName = Path.GetFileName(originalPath);
+                        var tmpFolderPath = Path.Combine(originalPath.Replace(fileName, ""), uts_tmp);
+                        Directory.CreateDirectory(tmpFolderPath);
+
+                        var tmpFilePath = Path.Combine(tmpFolderPath, fileName);
+                        byte[] byteData = (outputTexture as Texture2D).EncodeToPNG();
+                        File.WriteAllBytes(tmpFilePath, byteData);
+                        FileUtil.ReplaceFile(tmpFilePath, originalPath);
+                        AssetDatabase.DeleteAsset(tmpFolderPath);
+                        Object.DestroyImmediate(outputTexture);
+                        AssetDatabase.ImportAsset(originalPath);
+                        outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(originalPath, typeof(Texture2D));
+                        material.SetTexture(ShaderProp_ShadowControlSynthesized, outputTexture);
+
+                    }
+                    else
+                    {
+                        var outputPath = GetValidFileName(UTS_TextureSynthesizer.Source0, UTS_TextureSynthesizer.Source1, UTS_TextureSynthesizer.Source2, UTS_TextureSynthesizer.Source3);
+                        var fileName = Path.GetFileName(outputPath);
+                        var folderName = Path.GetDirectoryName(outputPath);
+                        outputPath = Path.Combine(folderName, uts_sysnthesized_prefix + fileName);
+                        byte[] byteData = (outputTexture as Texture2D).EncodeToPNG();
+                        File.WriteAllBytes(outputPath, byteData);
+
+
+                        AssetDatabase.ImportAsset(outputPath);
+                        Object.DestroyImmediate(outputTexture);
+                        outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(outputPath, typeof(Texture2D));
+                        material.SetTexture(ShaderProp_ShadowControlSynthesized, outputTexture);
+                    }
+                }
+            }
+
+        }
+
+        void Proc_HighColor_TexSynthesized(Material material)
+        {
+
+        }
+
+        void Proc_MatCap_SamplerSynthesized(Material material)
+        {
+
+        }
+
+        void Proc_Outline_SamplerSynthesized(Material material)
+        {
+
         }
         // --------------------------------
 
@@ -976,7 +1295,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                 {
-                    if (!material.HasProperty("_Set_1st_ShadePosition"))
+                    if (!material.HasProperty(ShaderProp_Set_1st_ShadePosition))
                     {
                         //Change to SGM
                         material.SetInt(ShaderPropUtsTechniqe, (int)_UTS_Technique.ShadingGradeMap);

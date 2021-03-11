@@ -47,11 +47,11 @@ Shader "Toon (Built-in)" {
 
 
         // Syntesized Textures
-        [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
-        [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
-        [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white" {}
-        [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
+        [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "clear" {}
+        [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "clear" {}
+        [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "clear" {}
+        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "clear" {}
+        [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "clear" {}
 
         _MainTexHash128_0("",int) = 0
         _MainTexHash128_1("",int) = 0
