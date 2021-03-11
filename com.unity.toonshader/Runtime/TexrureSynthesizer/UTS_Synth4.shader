@@ -65,8 +65,8 @@ Shader "Hidden/UnityToonShader/Synth4" {
 			{
 				fixed4 col = tex2D(Source0, i.uv);
 				col.g = tex2D(Source1, i.uv).r;
-				col.b = tex2D(Source1, i.uv).r;
-				col.a = tex2D(Source1, i.uv).r;
+				col.b = tex2D(Source2, i.uv).r;
+				col.a = tex2D(Source3, i.uv).r;
 
 				return col;
 			}

@@ -1148,7 +1148,7 @@ namespace UnityEditor.Rendering.Toon
             ApplyTessellation(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
- //           ApplyHashAndGUID(material);
+            ApplyHashAndGUID(material);
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -1243,7 +1243,8 @@ namespace UnityEditor.Rendering.Toon
                         Directory.CreateDirectory(tmpFolderPath);
 
                         var tmpFilePath = Path.Combine(tmpFolderPath, fileName);
-                        byte[] byteData = (outputTexture as Texture2D).EncodeToPNG();
+                        var outputTexture2D = outputTexture as Texture2D;
+                        byte[] byteData = outputTexture2D.EncodeToPNG();
                         File.WriteAllBytes(tmpFilePath, byteData);
                         FileUtil.ReplaceFile(tmpFilePath, originalPath);
                         AssetDatabase.DeleteAsset(tmpFolderPath);
@@ -1259,7 +1260,8 @@ namespace UnityEditor.Rendering.Toon
                         var fileName = Path.GetFileName(outputPath);
                         var folderName = Path.GetDirectoryName(outputPath);
                         outputPath = Path.Combine(folderName, uts_sysnthesized_prefix + fileName);
-                        byte[] byteData = (outputTexture as Texture2D).EncodeToPNG();
+                        var outputTexture2D = outputTexture as Texture2D;
+                        byte[] byteData = outputTexture2D.EncodeToPNG();
                         File.WriteAllBytes(outputPath, byteData);
 
 
