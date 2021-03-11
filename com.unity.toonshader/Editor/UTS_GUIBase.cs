@@ -378,6 +378,36 @@ namespace UnityEditor.Rendering.Toon
 
         protected MaterialEditor m_MaterialEditor;
 
+        protected Hash128 MainTexHash128Store;
+        protected GUID MainTexGUIDStore;
+
+        protected Hash128 ClippingMaskHash128Store;
+        protected GUID ClippingMaskGUIDStore;
+
+        protected Hash128 Set_1st_ShadePositionHash128Store;
+        protected GUID Set_1st_ShadePositionGUIDStore;
+
+        protected Hash128 Set_2nd_ShadePositionHash128Store;
+        protected GUID Set_2nd_ShadePositionGUIDStore;
+
+        protected Hash128 ShadingGradeMapHash128Store;
+        protected GUID ShadingGradeMapGUIDGUIDStore;
+
+        protected Hash128 Set_RimLightMaskHash128Store;
+        protected GUID Set_RimLightMaskGUIDStore;
+
+        protected Hash128 Set_HighColorMaskHash128Store;
+        protected GUID Set_HighColorMaskGUIDStore;
+
+        protected Hash128 MatCap_SamplerHash128Store;
+        protected GUID MatCap_SamplerGUIDStore;
+
+        protected Hash128 Outline_SamplerHash128Store;
+        protected GUID Outline_SamplerGUIDStore;
+
+        protected Hash128 OOutlineTexHash128Store;
+        protected GUID OutlineTexGUIDStore;
+
         const int HDRPGeometryMin = 2650; // UnityEngine.Rendering.RenderQueue.Geometry;
         private bool IsClippingMaskPropertyAvailable(_UTS_Technique technique)
         {
