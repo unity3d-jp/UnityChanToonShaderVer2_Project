@@ -11,10 +11,13 @@ namespace UnityEditor.Rendering.Toon
             Combine4, 
         };
 
-        
+        const string strS0 = "Source0";
+        const string strS1 = "Source1";
+        const string strS2 = "Source2";
+        const string strS3 = "Source3";
         static GameObject s_UTSController;
         static CommandBuffer s_CommandBuffer;
-        static RenderTexture s_RenderTexture;   // Debug.
+        static RenderTexture s_DebugRenderTexture;   // Debug.
         static Material s_MaterialCombine3_1;
         static Material s_MaterialCombine4;
  
@@ -23,11 +26,11 @@ namespace UnityEditor.Rendering.Toon
             get; private set;
         }
 
-        internal static RenderTexture RenderTexture
+        internal static RenderTexture DebugRenderTexture
         {
             get
             {
-                return s_RenderTexture;
+                return s_DebugRenderTexture;
             }
         }
         internal static Texture Source0
@@ -125,37 +128,53 @@ namespace UnityEditor.Rendering.Toon
             }
             if (outTexture == null || outTexture.width != resoX || outTexture.height != resoY )
             {
+                if (outTexture != null )
+                {
+                    Object.DestroyImmediate(outTexture);
+                }
                 outTexture = new Texture2D(resoX, resoY, TextureFormat.ARGB32, false, false);
             }
-            if (s_RenderTexture == null)
+            if (!outTexture.isReadable)
             {
-                s_RenderTexture = new RenderTexture(resoX, resoY, 24, RenderTextureFormat.ARGB32);
-                s_RenderTexture.name = "UTS_TextureSynthesizer RenderTexture";
-                s_RenderTexture.Create();
+                Debug.LogError("Unable to read Texture:" + outTexture);
+            }
+            Debug.Assert(outTexture != null);
+            Debug.Assert(outTexture.isReadable);
+            if (s_DebugRenderTexture == null)
+            {
+                s_DebugRenderTexture = new RenderTexture(1024, 1024, 24, RenderTextureFormat.ARGB32);
+                s_DebugRenderTexture.name = "UTS_TextureSynthesizer RenderTexture";
+                s_DebugRenderTexture.Create();
             }
             Material material;
+
+
             if (SynthesizerMode == eSynthesizerMode.Combine3_1)
             {
                 material = s_MaterialCombine3_1;
-                material.SetTexture("Source0", Source0);
-                material.SetTexture("Source1", Source1);
+                material.SetTexture(strS0, Source0);
+                material.SetTexture(strS1, Source1);
+                material.SetTexture(strS2, null);
+                material.SetTexture(strS3, null);
             }
             else
             {
                 material = s_MaterialCombine4;
-                material.SetTexture("Source0", Source0);
-                material.SetTexture("Source1", Source1);
-                material.SetTexture("Source2", Source2);
-                material.SetTexture("Source3", Source3);
+                material.SetTexture(strS0, Source0);
+                material.SetTexture(strS1, Source1);
+                material.SetTexture(strS2, Source2);
+                material.SetTexture(strS3, Source3);
             }
 
- 
+            int tempTextureIdentifier = Shader.PropertyToID("TmpTexture");
             s_CommandBuffer.Clear();
 
+            s_CommandBuffer.GetTemporaryRT(tempTextureIdentifier, resoX, resoY);
 
-            //            s_CommandBuffer.DrawMesh(s_Mesh, Matrix4x4.identity, material , 0);
-            s_CommandBuffer.Blit(Source0, s_RenderTexture, material);
-            s_CommandBuffer.Blit(Source0, outTexture, material);
+            s_CommandBuffer.Blit(Source0, tempTextureIdentifier, material);
+            s_CommandBuffer.Blit(Source0, s_DebugRenderTexture, material);
+            s_CommandBuffer.CopyTexture(tempTextureIdentifier, 0, outTexture,0);
+            s_CommandBuffer.ReleaseTemporaryRT(tempTextureIdentifier);
             Graphics.ExecuteCommandBuffer(s_CommandBuffer);
 
         }

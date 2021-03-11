@@ -162,6 +162,13 @@ struct VertexOutput {
             uniform float _Tweak_transparency;
 #endif
 
+#ifdef _SYNTHESIZED_TEXTURE
+            uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
+            uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
+            uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthesized_ST;
+            uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
+#endif
+
             //function to rotate the UV: RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
             float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
@@ -265,13 +272,17 @@ struct VertexOutput {
                 float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert
-                //float4 _ShadingGradeMap_var = tex2D(_ShadingGradeMap,TRANSFORM_TEX(Set_UV0, _ShadingGradeMap));
+#ifdef _SYNTHESIZED_TEXTURE
+
+                float _ShadingGradeMap_var = tex2Dlod(_ShadowControlSynthesized, float4(TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized), 0.0, _BlurLevelSGM)).b;
+#else
                 //v.2.0.6
                 float4 _ShadingGradeMap_var = tex2Dlod(_ShadingGradeMap,float4(TRANSFORM_TEX(Set_UV0, _ShadingGradeMap),0.0,_BlurLevelSGM));
+#endif
                 //v.2.0.6
                 //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
                 float _SystemShadowsLevel_var = (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
-                float _ShadingGradeMapLevel_var = _ShadingGradeMap_var.r < 0.95 ? _ShadingGradeMap_var.r+_Tweak_ShadingGradeMapLevel : 1;
+                float _ShadingGradeMapLevel_var = _ShadingGradeMap_var.r < 0.95 ? _ShadingGradeMap_var.r +_Tweak_ShadingGradeMapLevel : 1;
                 float Set_ShadingGrade = saturate(_ShadingGradeMapLevel_var)*lerp( _HalfLambert_var, (_HalfLambert_var*saturate(_SystemShadowsLevel_var)), _Set_SystemShadowsToBase );
                 //
                 float Set_FinalShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)))); // Base and 1st Shade Mask

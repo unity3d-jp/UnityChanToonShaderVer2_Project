@@ -213,6 +213,13 @@ uniform float4 _OutlineMaskColor;
 uniform float _ComposerMaskMode;
 uniform int _ClippingMatteMode;
 
+#ifdef _SYNTHESIZED_TEXTURE
+uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
+uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
+uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthesized_ST;
+uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
+#endif
+
 // just grafted from UTS/Universal RP
 struct UtsLight
 {

@@ -889,7 +889,7 @@ namespace UnityEditor.Rendering.Toon
             Material material = materialEditor.target as Material;
 
             // this feature is still in test.
-            // material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
+ //           material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
             if ( material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
             {
                 StoreHashAndGUID(material);
@@ -1210,7 +1210,7 @@ namespace UnityEditor.Rendering.Toon
 
         const string uts_tmp = "uts_tmp";
         const string uts_sysnthesized_prefix = "uts_sysnthesized_";
-        void UpdateTextureAsset(Material material, Texture outputTextureOrg, Texture outputTexture)
+        void UpdateTextureAsset(Material material, string shaderProp, Texture outputTextureOrg, Texture outputTexture)
         {
             if (outputTextureOrg == outputTexture)
             {
@@ -1233,7 +1233,7 @@ namespace UnityEditor.Rendering.Toon
                 Object.DestroyImmediate(outputTexture);
                 AssetDatabase.ImportAsset(originalPath);
                 outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(originalPath, typeof(Texture2D));
-                material.SetTexture(ShaderProp_ShadowControlSynthesized, outputTexture);
+                material.SetTexture(shaderProp, outputTexture);
 
             }
             else
@@ -1250,7 +1250,7 @@ namespace UnityEditor.Rendering.Toon
                 AssetDatabase.ImportAsset(outputPath);
                 Object.DestroyImmediate(outputTexture);
                 outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(outputPath, typeof(Texture2D));
-                material.SetTexture(ShaderProp_ShadowControlSynthesized, outputTexture);
+                material.SetTexture(shaderProp, outputTexture);
             }
         }
 
@@ -1259,6 +1259,12 @@ namespace UnityEditor.Rendering.Toon
             
             var _MainTex = material.GetTexture(ShaderPropMainTex);
             var _ClippingMask = material.GetTexture(ShaderPropClippingMask);
+            if (_MainTex == null && _ClippingMask == null)
+            {
+                material.SetTexture(ShaderProp_MainTexSynthesized, null);
+                // ?? thiynsesized texture should be deleted?
+                return;
+            }
             var outputTextureOrg = material.GetTexture(ShaderProp_MainTexSynthesized);
             var outputTexture = outputTextureOrg;
             if (outputTextureOrg == null
@@ -1267,7 +1273,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _MainTex, _ClippingMask);
                 UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, outputTextureOrg, outputTexture);
+                UpdateTextureAsset(material, ShaderProp_MainTexSynthesized, outputTextureOrg, outputTexture);
             }
 
         }
@@ -1279,7 +1285,12 @@ namespace UnityEditor.Rendering.Toon
             var _Set_2nd_ShadePosition = material.GetTexture(ShaderProp_Set_2nd_ShadePosition);
             var _ShadingGradeMap = material.GetTexture(ShaderProp_ShadingGradeMap);
             var _Set_RimLightMask = material.GetTexture(ShaderProp_Set_RimLightMask);
-
+            if (_Set_1st_ShadePosition == null && _Set_2nd_ShadePosition == null && _ShadingGradeMap == null && _Set_RimLightMask == null )
+            {
+                material.SetTexture(ShaderProp_ShadowControlSynthesized, null);
+                // ?? thiynsesized texture should be deleted?
+                return;
+            }
             var outputTextureOrg = material.GetTexture(ShaderProp_ShadowControlSynthesized);
             var outputTexture = outputTextureOrg;
             if (outputTextureOrg == null
@@ -1290,7 +1301,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine4, _Set_1st_ShadePosition, _Set_2nd_ShadePosition, _ShadingGradeMap, _Set_RimLightMask);
                 UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, outputTextureOrg, outputTexture);
+                UpdateTextureAsset(material, ShaderProp_ShadowControlSynthesized, outputTextureOrg, outputTexture);
             }
 
         }
@@ -1299,6 +1310,12 @@ namespace UnityEditor.Rendering.Toon
         {
             var _HighColor_Tex = material.GetTexture(ShaderProp_HighColor_Tex);
             var _Set_HighColorMask = material.GetTexture(ShaderProp_Set_HighColorMask);
+            if ( _HighColor_Tex == null && _Set_HighColorMask == null )
+            {
+                material.SetTexture(ShaderProp_HighColor_TexSynthesized, null );
+                // ?? thiynsesized texture should be deleted?
+                return;
+            }
             var outputTextureOrg = material.GetTexture(ShaderProp_HighColor_TexSynthesized);
             var outputTexture = outputTextureOrg;
             if (outputTextureOrg == null
@@ -1307,7 +1324,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _HighColor_Tex, _Set_HighColorMask);
                 UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, outputTextureOrg, outputTexture);
+                UpdateTextureAsset(material, ShaderProp_HighColor_TexSynthesized, outputTextureOrg, outputTexture);
             }
         }
 
@@ -1315,7 +1332,14 @@ namespace UnityEditor.Rendering.Toon
         {
             var _MatCap_Sampler = material.GetTexture(ShaderProp_MatCap_Sampler);
             var _Set_MatcapMask = material.GetTexture(ShaderProp_Set_MatcapMask);
-            var outputTextureOrg = material.GetTexture(ShaderProp_HighColor_TexSynthesized);
+            if (_MatCap_Sampler == null && _Set_MatcapMask == null)
+            {
+                material.SetTexture(ShaderProp_MatCap_SamplerSynthesized, null);
+                // ?? thiynsesized texture should be deleted?
+                return;
+            }
+
+            var outputTextureOrg = material.GetTexture(ShaderProp_MatCap_SamplerSynthesized);
             var outputTexture = outputTextureOrg;
             if (outputTextureOrg == null
                 || IsDifferentTexture(_MatCap_Sampler, matcapSamplerStore)
@@ -1323,7 +1347,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _MatCap_Sampler, _Set_MatcapMask);
                 UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, outputTextureOrg, outputTexture);
+                UpdateTextureAsset(material, ShaderProp_MatCap_SamplerSynthesized, outputTextureOrg, outputTexture);
             }
         }
 
@@ -1331,6 +1355,12 @@ namespace UnityEditor.Rendering.Toon
         {
             var _Outline_Sampler = material.GetTexture(ShaderProp_Outline_Sampler);
             var _OutlineTex = material.GetTexture(ShaderProp_OutlineTex);
+            if (_Outline_Sampler == null && _OutlineTex == null)
+            {
+                material.SetTexture(ShaderProp_HighColor_TexSynthesized, null);
+                // ?? thiynsesized texture should be deleted?
+                return;
+            }
             var outputTextureOrg = material.GetTexture(ShaderProp_HighColor_TexSynthesized);
             var outputTexture = outputTextureOrg;
             if (outputTextureOrg == null
@@ -1339,7 +1369,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _Outline_Sampler, _OutlineTex);
                 UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, outputTextureOrg, outputTexture);
+                UpdateTextureAsset(material, ShaderProp_HighColor_TexSynthesized, outputTextureOrg, outputTexture);
             }
         }
         // --------------------------------

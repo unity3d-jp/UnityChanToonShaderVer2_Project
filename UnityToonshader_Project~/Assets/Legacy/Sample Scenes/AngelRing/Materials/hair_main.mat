@@ -10,7 +10,7 @@ Material:
   m_Name: hair_main
   m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_ON _IS_TRANSCLIPPING_OFF _OUTLINE_NML
-    _SHADINGGRADEMAP
+    _SHADINGGRADEMAP _SYNTHESIZED_TEXTURE
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -58,11 +58,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HighColor_TexSynthesized:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 97c65dbc524e415594157aff9dc47cc0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexSynthesized:
+        m_Texture: {fileID: 2800000, guid: 4d9bf763a67f05047b9d8d71fff3aa67, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap_SamplerSynthesized:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -79,6 +91,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Outline_Sampler:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Outline_SamplerSynthesized:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -106,6 +122,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 618c49a447c045d0ad3362776954d22b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShadowControlSynthesized:
+        m_Texture: {fileID: 2800000, guid: bc594550c861a154e8d88500da97b4cf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
     - _1st_ShadeColor_Feather: 0.179
@@ -128,6 +148,14 @@ Material:
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
+    - _ClippingMaskGUID_0: 0
+    - _ClippingMaskGUID_1: 0
+    - _ClippingMaskGUID_2: 0
+    - _ClippingMaskGUID_3: 0
+    - _ClippingMaskHash128_0: 0
+    - _ClippingMaskHash128_1: 0
+    - _ClippingMaskHash128_2: 0
+    - _ClippingMaskHash128_3: 0
     - _ClippingMode: 0
     - _Clipping_Level: 0
     - _ColorShift_Speed: 0
@@ -136,6 +164,14 @@ Material:
     - _Farthest_Distance: 30
     - _GI_Intensity: 0
     - _HighColor_Power: 0
+    - _HighColor_TexGUID_0: 0
+    - _HighColor_TexGUID_1: 0
+    - _HighColor_TexGUID_2: 0
+    - _HighColor_TexGUID_3: 0
+    - _HighColor_TexHash128_0: 0
+    - _HighColor_TexHash128_1: 0
+    - _HighColor_TexHash128_2: 0
+    - _HighColor_TexHash128_3: 0
     - _Inverse_Clipping: 0
     - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
@@ -170,12 +206,44 @@ Material:
     - _Is_ViewCoord_Scroll: 0
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
+    - _MainTexGUID_0: 0
+    - _MainTexGUID_1: 0
+    - _MainTexGUID_2: 0
+    - _MainTexGUID_3: 0
+    - _MainTexHash128_0: 0
+    - _MainTexHash128_1: 0
+    - _MainTexHash128_2: 0
+    - _MainTexHash128_3: 0
     - _MatCap: 0
+    - _MatCap_SamplerGUID_0: 0
+    - _MatCap_SamplerGUID_1: 0
+    - _MatCap_SamplerGUID_2: 0
+    - _MatCap_SamplerGUID_3: 0
+    - _MatCap_SamplerHash128_0: 0
+    - _MatCap_SamplerHash128_1: 0
+    - _MatCap_SamplerHash128_2: 0
+    - _MatCap_SamplerHash128_3: 0
     - _Nearest_Distance: 0.5
     - _OUTLINE: 0
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
+    - _OutlineTexGUID_0: 0
+    - _OutlineTexGUID_1: 0
+    - _OutlineTexGUID_2: 0
+    - _OutlineTexGUID_3: 0
+    - _OutlineTexHash128_0: 0
+    - _OutlineTexHash128_1: 0
+    - _OutlineTexHash128_2: 0
+    - _OutlineTexHash128_3: 0
+    - _Outline_SamplerGUID_0: 0
+    - _Outline_SamplerGUID_1: 0
+    - _Outline_SamplerGUID_2: 0
+    - _Outline_SamplerGUID_3: 0
+    - _Outline_SamplerHash128_0: 0
+    - _Outline_SamplerHash128_1: 0
+    - _Outline_SamplerHash128_2: 0
+    - _Outline_SamplerHash128_3: 0
     - _Outline_Width: 10
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
@@ -188,8 +256,56 @@ Material:
     - _SRPDefaultUnlitColMode: 1
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
+    - _Set_1st_ShadePositionGUID_0: 0
+    - _Set_1st_ShadePositionGUID_1: 0
+    - _Set_1st_ShadePositionGUID_2: 0
+    - _Set_1st_ShadePositionGUID_3: 0
+    - _Set_1st_ShadePositionHash128_0: 0
+    - _Set_1st_ShadePositionHash128_1: 0
+    - _Set_1st_ShadePositionHash128_2: 0
+    - _Set_1st_ShadePositionHash128_3: 0
+    - _Set_2nd_ShadePositionGUID_0: 0
+    - _Set_2nd_ShadePositionGUID_1: 0
+    - _Set_2nd_ShadePositionGUID_2: 0
+    - _Set_2nd_ShadePositionGUID_3: 0
+    - _Set_2nd_ShadePositionHash128_0: 0
+    - _Set_2nd_ShadePositionHash128_1: 0
+    - _Set_2nd_ShadePositionHash128_2: 0
+    - _Set_2nd_ShadePositionHash128_3: 0
+    - _Set_HighColorMaskGUID_0: 0
+    - _Set_HighColorMaskGUID_1: 0
+    - _Set_HighColorMaskGUID_2: 0
+    - _Set_HighColorMaskGUID_3: 0
+    - _Set_HighColorMaskHash128_0: 0
+    - _Set_HighColorMaskHash128_1: 0
+    - _Set_HighColorMaskHash128_2: 0
+    - _Set_HighColorMaskHash128_3: 0
+    - _Set_MatcapMaskGUID_0: 0
+    - _Set_MatcapMaskGUID_1: 0
+    - _Set_MatcapMaskGUID_2: 0
+    - _Set_MatcapMaskGUID_3: 0
+    - _Set_MatcapMaskHash128_0: 0
+    - _Set_MatcapMaskHash128_1: 0
+    - _Set_MatcapMaskHash128_2: 0
+    - _Set_MatcapMaskHash128_3: 0
+    - _Set_RimLightMaskGUID_0: 0
+    - _Set_RimLightMaskGUID_1: 0
+    - _Set_RimLightMaskGUID_2: 0
+    - _Set_RimLightMaskGUID_3: 0
+    - _Set_RimLightMaskHash128_0: 0
+    - _Set_RimLightMaskHash128_1: 0
+    - _Set_RimLightMaskHash128_2: 0
+    - _Set_RimLightMaskHash128_3: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0
+    - _ShadingGradeMapGUID_0: 0
+    - _ShadingGradeMapGUID_1: 0
+    - _ShadingGradeMapGUID_2: 0
+    - _ShadingGradeMapGUID_3: 0
+    - _ShadingGradeMapHash128_0: 0
+    - _ShadingGradeMapHash128_1: 0
+    - _ShadingGradeMapHash128_2: 0
+    - _ShadingGradeMapHash128_3: 0
     - _StencilComp: 0
     - _StencilMode: 0
     - _StencilNo: 1
