@@ -14,13 +14,13 @@ namespace UnityEditor.Rendering.Toon
         
         static GameObject s_UTSController;
         static CommandBuffer s_CommandBuffer;
-        static RenderTexture s_RenderTexture;
+        static RenderTexture s_RenderTexture;   // Debug.
         static Material s_MaterialCombine3_1;
         static Material s_MaterialCombine4;
  
         internal static eSynthesizerMode SynthesizerMode
         {
-            get;set;
+            get; private set;
         }
 
         internal static RenderTexture RenderTexture
@@ -32,21 +32,29 @@ namespace UnityEditor.Rendering.Toon
         }
         internal static Texture Source0
         {
-            get;set;
+            get; private set;
         }
         internal static Texture Source1
         {
-            get; set;
+            get; private set;
         }
         internal static Texture Source2
         {
-            get; set;
+            get; private set;
         }
         internal static Texture Source3
         {
-            get; set;
+            get; private set;
         }
 
+        internal static void SetMode(eSynthesizerMode mode, Texture s0, Texture s1, Texture s2 = null, Texture s3 = null )
+        {
+            SynthesizerMode = mode;
+            Source0 = s0;
+            Source1 = s1;
+            Source2 = s2;
+            Source3 = s3;
+        }
         static internal void Init()
         {
 
