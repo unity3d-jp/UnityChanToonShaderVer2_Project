@@ -6,6 +6,7 @@
 //   The corresponding code was adapted from Nora's https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess.
 //
 
+
 //Tessellation OFF
 #ifndef TESSELLATION_ON
 struct VertexInput {

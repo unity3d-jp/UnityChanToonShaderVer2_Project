@@ -34,6 +34,7 @@ namespace UnityEditor.Rendering.Toon
         internal virtual void ApplyRenderingPerChennelsSetting(Material materal) { }
         internal virtual void FindTessellationProperties(MaterialProperty[] props) { }
         internal virtual bool handleTessellation { get; }
+        protected const string ShaderDefineSYNTEHSIZEDTEXTURE = "_SYNTHESIZED_TEXTURE";
         protected const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         protected const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
         protected const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
@@ -886,7 +887,13 @@ namespace UnityEditor.Rendering.Toon
             FindProperties(props);
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
-            StoreHashAndGUID(material);
+
+            // this feature is still in test.
+            // material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
+            if ( material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
+            {
+                StoreHashAndGUID(material);
+            }
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
 
@@ -1148,7 +1155,11 @@ namespace UnityEditor.Rendering.Toon
             ApplyTessellation(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
-            ApplyHashAndGUID(material);
+            if (material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
+            {
+                ApplyHashAndGUID(material);
+            }
+
 
             if (EditorGUI.EndChangeCheck())
             {

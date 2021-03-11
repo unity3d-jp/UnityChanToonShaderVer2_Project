@@ -418,7 +418,7 @@ Shader "ToonTessellation (Built-in)" {
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
 
-
+            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap
@@ -474,6 +474,7 @@ Shader "ToonTessellation (Built-in)" {
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap

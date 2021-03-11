@@ -1109,7 +1109,7 @@ Shader "HDRP/ToonTessellation"
             #if !defined(_SURFACE_TYPE_TRANSPARENT) && !defined(DEBUG_DISPLAY)
                 #define SHADERPASS_FORWARD_BYPASS_ALPHA_TEST
             #endif
-
+            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap
             #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON

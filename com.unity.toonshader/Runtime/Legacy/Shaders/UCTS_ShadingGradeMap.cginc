@@ -1,12 +1,6 @@
-﻿//UCTS_ShadingGradeMap.cginc
-//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+﻿//Unity Toon Shader/Legacy
 //nobuyuki@unity3d.com
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-//#pragma multi_compile _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON
-//#pragma multi_compile _IS_ANGELRING_OFF _IS_ANGELRING_ON
-//#pragma multi_compile _IS_PASS_FWDBASE _IS_PASS_FWDDELTA
+//toshiyuki@unity3d.com (Intengrated) 
 
 struct VertexInput {
     float4 vertex : POSITION;
