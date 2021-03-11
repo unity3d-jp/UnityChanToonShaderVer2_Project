@@ -2,9 +2,7 @@
 **Unity Toon Shader**
 
 
-## [0.0.1-preview] - 2021-02-19
+## [0.0.1-preview] - 2021-03-11
 
-### Started to reorganize Unitychan/Universal Toon Shader as Unity Toon shader.
-
-
+* Reorganized Unitychan/Universal Toon Shader as Unity Toon shader.
 
