@@ -80,7 +80,7 @@ namespace UnityEditor.Rendering.Toon
             textureRect.width = rect.width;
 
 
-            SynthesizedTexture = UTS_TextureSynthesizer.DebugRenderTexture;
+            SynthesizedTexture = UTS_TextureSynthesizer.DebugTexture;
             if (SynthesizedTexture != null)
             {
                 Graphics.DrawTexture(textureRect, SynthesizedTexture);

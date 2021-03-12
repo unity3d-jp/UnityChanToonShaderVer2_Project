@@ -609,11 +609,11 @@ namespace UnityEditor.Rendering.Toon
 
         private void ApplyHashAndGUID(Material material)
         {
-            Proc_MainTexSynthesized(material);
+//            Proc_MainTexSynthesized(material);
             Proc_ShadowControlSynthesized(material);
-            Proc_HighColor_TexSynthesized(material);
-            Proc_MatCap_SamplerSynthesized(material);
-            Proc_Outline_SamplerSynthesized(material);
+            //            Proc_HighColor_TexSynthesized(material);
+            //Proc_MatCap_SamplerSynthesized(material);
+            //Proc_Outline_SamplerSynthesized(material);
         }
 
         private bool IsClippingMaskPropertyAvailable(_UTS_Technique technique)
@@ -889,7 +889,7 @@ namespace UnityEditor.Rendering.Toon
             Material material = materialEditor.target as Material;
 
             // this feature is still in test.
- //           material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
+            material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
             if ( material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
             {
                 StoreHashAndGUID(material);
@@ -1226,14 +1226,18 @@ namespace UnityEditor.Rendering.Toon
 
                 var tmpFilePath = Path.Combine(tmpFolderPath, fileName);
                 var outputTexture2D = outputTexture as Texture2D;
-                byte[] byteData = outputTexture2D.EncodeToPNG();
-                File.WriteAllBytes(tmpFilePath, byteData);
+
+
+                //                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
+                //                File.WriteAllBytes(tmpFilePath, byteData);
+
+                SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, tmpFilePath );
                 FileUtil.ReplaceFile(tmpFilePath, originalPath);
                 AssetDatabase.DeleteAsset(tmpFolderPath);
-                Object.DestroyImmediate(outputTexture);
-                AssetDatabase.ImportAsset(originalPath);
-                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(originalPath, typeof(Texture2D));
-                material.SetTexture(shaderProp, outputTexture);
+//                Object.DestroyImmediate(outputTexture);
+//                AssetDatabase.ImportAsset(originalPath);
+//                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(originalPath, typeof(Texture2D));
+                material.SetTexture(shaderProp, outputTexture2D);
 
             }
             else
@@ -1243,17 +1247,41 @@ namespace UnityEditor.Rendering.Toon
                 var folderName = Path.GetDirectoryName(outputPath);
                 outputPath = Path.Combine(folderName, uts_sysnthesized_prefix + fileName);
                 var outputTexture2D = outputTexture as Texture2D;
-                byte[] byteData = outputTexture2D.EncodeToPNG();
-                File.WriteAllBytes(outputPath, byteData);
+                //                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
+                //                File.WriteAllBytes(outputPath, byteData);
 
+                SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, outputPath);
 
                 AssetDatabase.ImportAsset(outputPath);
-                Object.DestroyImmediate(outputTexture);
-                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(outputPath, typeof(Texture2D));
-                material.SetTexture(shaderProp, outputTexture);
+//                Object.DestroyImmediate(outputTexture);
+//                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(outputPath, typeof(Texture2D));
+                material.SetTexture(shaderProp, outputTexture2D);
             }
         }
 
+
+        public void SaveRenderTextureNow(RenderTexture targetRenderTexture, string filePath)
+        {
+            var store = RenderTexture.active;
+
+            Debug.Assert(targetRenderTexture != null);
+            RenderTexture.active = targetRenderTexture;
+
+            var tex = new Texture2D(targetRenderTexture.width, targetRenderTexture.height);
+
+            tex.ReadPixels(new Rect(0, 0, targetRenderTexture.width, targetRenderTexture.height), 0, 0);
+            tex.Apply();
+            RenderTexture.active = store;
+            SaveTexture2DNow(tex, filePath);
+
+        }
+
+        void SaveTexture2DNow(Texture2D savingTexture, string filePath)
+        {
+            var buffer = ImageConversion.EncodeToPNG(savingTexture);
+            File.WriteAllBytes(filePath, buffer);
+
+        }
         void Proc_MainTexSynthesized(Material material)
         {
             
@@ -1301,7 +1329,17 @@ namespace UnityEditor.Rendering.Toon
             {
                 UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine4, _Set_1st_ShadePosition, _Set_2nd_ShadePosition, _ShadingGradeMap, _Set_RimLightMask);
                 UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, ShaderProp_ShadowControlSynthesized, outputTextureOrg, outputTexture);
+                EditorApplication.delayCall += () =>
+                {
+                    EditorApplication.delayCall += () =>
+                    {
+                        EditorApplication.delayCall += () =>
+                        {
+                            UpdateTextureAsset(material, ShaderProp_ShadowControlSynthesized, outputTextureOrg, outputTexture);
+                        };
+                    };
+                };
+
             }
 
         }

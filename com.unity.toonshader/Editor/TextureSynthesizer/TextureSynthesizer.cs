@@ -18,6 +18,7 @@ namespace UnityEditor.Rendering.Toon
         static GameObject s_UTSController;
         static CommandBuffer s_CommandBuffer;
         static RenderTexture s_DebugRenderTexture;   // Debug.
+        static Texture2D s_DebugTexture;
         static Material s_MaterialCombine3_1;
         static Material s_MaterialCombine4;
  
@@ -26,6 +27,13 @@ namespace UnityEditor.Rendering.Toon
             get; private set;
         }
 
+        internal static Texture2D DebugTexture
+        {
+            get
+            {
+                return s_DebugTexture;
+            }
+        }
         internal static RenderTexture DebugRenderTexture
         {
             get
@@ -168,12 +176,13 @@ namespace UnityEditor.Rendering.Toon
 
             int tempTextureIdentifier = Shader.PropertyToID("TmpTexture");
             s_CommandBuffer.Clear();
-
+            s_CommandBuffer.SetExecutionFlags(CommandBufferExecutionFlags.None);
             s_CommandBuffer.GetTemporaryRT(tempTextureIdentifier, resoX, resoY);
 
             s_CommandBuffer.Blit(Source0, tempTextureIdentifier, material);
             s_CommandBuffer.Blit(Source0, s_DebugRenderTexture, material);
-            s_CommandBuffer.CopyTexture(tempTextureIdentifier, 0, outTexture,0);
+            s_CommandBuffer.CopyTexture(s_DebugRenderTexture, 0, outTexture,0);
+            s_DebugTexture = outTexture as Texture2D;
             s_CommandBuffer.ReleaseTemporaryRT(tempTextureIdentifier);
             Graphics.ExecuteCommandBuffer(s_CommandBuffer);
 
