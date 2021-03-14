@@ -1225,19 +1225,21 @@ namespace UnityEditor.Rendering.Toon
                 Directory.CreateDirectory(tmpFolderPath);
 
                 var tmpFilePath = Path.Combine(tmpFolderPath, fileName);
+                // doesn't work
+#if false
                 var outputTexture2D = outputTexture as Texture2D;
-
-
-                //                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
-                //                File.WriteAllBytes(tmpFilePath, byteData);
-
+                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
+                File.WriteAllBytes(tmpFilePath, byteData);
+#else // use this for saving instaed.
                 SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, tmpFilePath );
+#endif
+
                 FileUtil.ReplaceFile(tmpFilePath, originalPath);
                 AssetDatabase.DeleteAsset(tmpFolderPath);
-//                Object.DestroyImmediate(outputTexture);
-//                AssetDatabase.ImportAsset(originalPath);
-//                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(originalPath, typeof(Texture2D));
-                material.SetTexture(shaderProp, outputTexture2D);
+                Object.DestroyImmediate(outputTexture);
+                AssetDatabase.ImportAsset(originalPath);
+                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(originalPath, typeof(Texture2D));
+                material.SetTexture(shaderProp, outputTexture);
 
             }
             else
@@ -1246,16 +1248,17 @@ namespace UnityEditor.Rendering.Toon
                 var fileName = Path.GetFileName(outputPath);
                 var folderName = Path.GetDirectoryName(outputPath);
                 outputPath = Path.Combine(folderName, uts_sysnthesized_prefix + fileName);
+#if false
                 var outputTexture2D = outputTexture as Texture2D;
-                //                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
-                //                File.WriteAllBytes(outputPath, byteData);
-
-                SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, outputPath);
-
+                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
+                File.WriteAllBytes(outputPath, byteData);
+#else //
+                 SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, outputPath);
+#endif
                 AssetDatabase.ImportAsset(outputPath);
-//                Object.DestroyImmediate(outputTexture);
-//                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(outputPath, typeof(Texture2D));
-                material.SetTexture(shaderProp, outputTexture2D);
+                Object.DestroyImmediate(outputTexture);
+                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(outputPath, typeof(Texture2D));
+                material.SetTexture(shaderProp, outputTexture);
             }
         }
 

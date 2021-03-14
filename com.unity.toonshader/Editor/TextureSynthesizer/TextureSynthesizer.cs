@@ -18,10 +18,13 @@ namespace UnityEditor.Rendering.Toon
         static GameObject s_UTSController;
         static CommandBuffer s_CommandBuffer;
         static RenderTexture s_DebugRenderTexture;   // Debug.
+    
         static Texture2D s_DebugTexture;
         static Material s_MaterialCombine3_1;
         static Material s_MaterialCombine4;
- 
+
+        static RenderTexture s_DummyRenderTexture;   // to test gpu sync.
+        static Texture2D s_DummyTexture2D;
         internal static eSynthesizerMode SynthesizerMode
         {
             get; private set;
@@ -122,7 +125,7 @@ namespace UnityEditor.Rendering.Toon
         }
         internal static void Proc(ref Texture outTexture)
         {
-            
+
             int resoX;
             int resoY;
             GetTextureSize(out resoX, out resoY);
@@ -134,9 +137,9 @@ namespace UnityEditor.Rendering.Toon
             {
                 s_MaterialCombine4 = new Material(Shader.Find("Hidden/UnityToonShader/Synth4")) { hideFlags = HideFlags.HideAndDontSave };
             }
-            if (outTexture == null || outTexture.width != resoX || outTexture.height != resoY )
+            if (outTexture == null || outTexture.width != resoX || outTexture.height != resoY)
             {
-                if (outTexture != null )
+                if (outTexture != null)
                 {
                     Object.DestroyImmediate(outTexture);
                 }
@@ -153,6 +156,17 @@ namespace UnityEditor.Rendering.Toon
                 s_DebugRenderTexture = new RenderTexture(1024, 1024, 24, RenderTextureFormat.ARGB32);
                 s_DebugRenderTexture.name = "UTS_TextureSynthesizer RenderTexture";
                 s_DebugRenderTexture.Create();
+            }
+
+            if (s_DummyRenderTexture == null)
+            {
+                s_DummyRenderTexture = new RenderTexture(2, 2, 24, RenderTextureFormat.ARGB32);
+                s_DummyRenderTexture.name = "Dummy Sync RenderTexture";
+                s_DummyRenderTexture.Create();
+            }
+            if (s_DummyTexture2D == null)
+            {
+                s_DummyTexture2D = new Texture2D(s_DummyRenderTexture.width, s_DummyRenderTexture.height, TextureFormat.ARGB32, false);
             }
             Material material;
 
@@ -173,7 +187,7 @@ namespace UnityEditor.Rendering.Toon
                 material.SetTexture(strS2, Source2);
                 material.SetTexture(strS3, Source3);
             }
-
+#if true
             int tempTextureIdentifier = Shader.PropertyToID("TmpTexture");
             s_CommandBuffer.Clear();
             s_CommandBuffer.SetExecutionFlags(CommandBufferExecutionFlags.None);
@@ -181,13 +195,29 @@ namespace UnityEditor.Rendering.Toon
 
             s_CommandBuffer.Blit(Source0, tempTextureIdentifier, material);
             s_CommandBuffer.Blit(Source0, s_DebugRenderTexture, material);
+            s_CommandBuffer.Blit(Source0, s_DebugRenderTexture, material);
             s_CommandBuffer.CopyTexture(s_DebugRenderTexture, 0, outTexture,0);
             s_DebugTexture = outTexture as Texture2D;
             s_CommandBuffer.ReleaseTemporaryRT(tempTextureIdentifier);
             Graphics.ExecuteCommandBuffer(s_CommandBuffer);
-
+#else
+            Graphics.Blit(Source0, s_DebugRenderTexture);
+#endif
+            SyncGPU();
         }
 
+        internal static void SyncGPU()
+        {
+            var store = RenderTexture.active;
+
+
+            RenderTexture.active = s_DummyRenderTexture;
+
+
+            s_DummyTexture2D.ReadPixels(new Rect(0, 0, s_DummyRenderTexture.width, s_DummyRenderTexture.height), 0, 0);
+            s_DummyTexture2D.Apply();
+            RenderTexture.active = store;
+        }
 
 
 
