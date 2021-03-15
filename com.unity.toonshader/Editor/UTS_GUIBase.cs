@@ -609,10 +609,10 @@ namespace UnityEditor.Rendering.Toon
 
         private void ApplyHashAndGUID(Material material)
         {
-//            Proc_MainTexSynthesized(material);
+            Proc_MainTexSynthesized(material);
             Proc_ShadowControlSynthesized(material);
-            //            Proc_HighColor_TexSynthesized(material);
-            //Proc_MatCap_SamplerSynthesized(material);
+            Proc_HighColor_TexSynthesized(material);
+            Proc_MatCap_SamplerSynthesized(material);
             //Proc_Outline_SamplerSynthesized(material);
         }
 
@@ -889,7 +889,8 @@ namespace UnityEditor.Rendering.Toon
             Material material = materialEditor.target as Material;
 
             // this feature is still in test.
-            material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
+            material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE);
+            //            material.DisableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
             if ( material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
             {
                 StoreHashAndGUID(material);
@@ -1332,16 +1333,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine4, _Set_1st_ShadePosition, _Set_2nd_ShadePosition, _ShadingGradeMap, _Set_RimLightMask);
                 UTS_TextureSynthesizer.Proc(ref outputTexture);
-                EditorApplication.delayCall += () =>
-                {
-                    EditorApplication.delayCall += () =>
-                    {
-                        EditorApplication.delayCall += () =>
-                        {
-                            UpdateTextureAsset(material, ShaderProp_ShadowControlSynthesized, outputTextureOrg, outputTexture);
-                        };
-                    };
-                };
+                UpdateTextureAsset(material, ShaderProp_ShadowControlSynthesized, outputTextureOrg, outputTexture);
 
             }
 
