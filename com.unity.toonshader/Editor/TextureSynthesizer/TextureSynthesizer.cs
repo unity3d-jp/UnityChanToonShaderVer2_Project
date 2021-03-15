@@ -125,8 +125,8 @@ namespace UnityEditor.Rendering.Toon
         }
         internal static void Proc(ref Texture outTexture)
         {
-            const int renderTextureWidth = 1024;
-            const int renderTetureHeight = 1024;
+            const int kRenderTextureWidth = 2048;
+            const int kRenderTetureHeight = 2048;
             int resoX;
             int resoY;
             GetTextureSize(out resoX, out resoY);
@@ -146,7 +146,7 @@ namespace UnityEditor.Rendering.Toon
                 }
                 // outTexture = new Texture2D(resoX, resoY, TextureFormat.ARGB32, false, false);
                 // only fixed size can be used.
-                outTexture = new Texture2D(renderTetureHeight, resoY, TextureFormat.ARGB32, false, false);
+                outTexture = new Texture2D(kRenderTextureWidth, kRenderTetureHeight, TextureFormat.ARGB32, false, false);
             }
             if (!outTexture.isReadable)
             {
@@ -156,7 +156,7 @@ namespace UnityEditor.Rendering.Toon
             Debug.Assert(outTexture.isReadable);
             if (s_DebugRenderTexture == null)
             {
-                s_DebugRenderTexture = new RenderTexture(1024, 1024, 24, RenderTextureFormat.ARGB32);
+                s_DebugRenderTexture = new RenderTexture(kRenderTextureWidth, kRenderTetureHeight, 24, RenderTextureFormat.ARGB32);
                 s_DebugRenderTexture.name = "UTS_TextureSynthesizer RenderTexture";
                 s_DebugRenderTexture.Create();
             }
@@ -191,14 +191,14 @@ namespace UnityEditor.Rendering.Toon
                 material.SetTexture(strS3, Source3);
             }
 #if true
-            int tempTextureIdentifier = Shader.PropertyToID("TmpTexture");
+//            int tempTextureIdentifier = Shader.PropertyToID("TmpTexture");
             s_CommandBuffer.Clear();
- //           s_CommandBuffer.SetExecutionFlags(CommandBufferExecutionFlags.None);
-            s_CommandBuffer.GetTemporaryRT(tempTextureIdentifier, resoX, resoY);
 
-            s_CommandBuffer.Blit(Source0, tempTextureIdentifier, material);
+//            s_CommandBuffer.GetTemporaryRT(tempTextureIdentifier, resoX, resoY);
+
+//            s_CommandBuffer.Blit(Source0, tempTextureIdentifier, material);
             s_CommandBuffer.Blit(Source0, s_DebugRenderTexture, material);
-            s_CommandBuffer.Blit(Source0, s_DebugRenderTexture, material);
+
             if ( s_DebugRenderTexture.width != outTexture.width )
             {
                 Debug.LogErrorFormat("s_DebugRenderTexture.width:{0} != outTexture.width:{1}", s_DebugRenderTexture.width, outTexture.width);
@@ -208,9 +208,9 @@ namespace UnityEditor.Rendering.Toon
                 Debug.LogErrorFormat("s_DebugRenderTexture.height:{0} != outTexture.height:{1}", s_DebugRenderTexture.height, outTexture.height);
             }
 
-            s_CommandBuffer.CopyTexture(s_DebugRenderTexture, 0, outTexture,0);
+//            s_CommandBuffer.CopyTexture(s_DebugRenderTexture, 0, outTexture,0);
             s_DebugTexture = outTexture as Texture2D;
-            s_CommandBuffer.ReleaseTemporaryRT(tempTextureIdentifier);
+//            s_CommandBuffer.ReleaseTemporaryRT(tempTextureIdentifier);
             Graphics.ExecuteCommandBuffer(s_CommandBuffer);
 #else
             Graphics.Blit(Source0, s_DebugRenderTexture);

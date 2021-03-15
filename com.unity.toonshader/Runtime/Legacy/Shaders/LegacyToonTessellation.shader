@@ -44,11 +44,11 @@ Shader "ToonTessellation (Built-in)" {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
 
         // Syntesized Textures
-        _MainTexSynthesized("_MainTexSynthesized",2D) = "clear" {}
-        _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "clear" {}
-        _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "clear" {}
-        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "clear" {}
-        _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "clear" {}
+        _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
+        _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
+        _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
+        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white" {}
+        _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
 
         _MainTexHash128_0("",int) = 0
         _MainTexHash128_1("",int) = 0

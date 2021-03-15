@@ -890,7 +890,7 @@ namespace UnityEditor.Rendering.Toon
 
             // this feature is still in test.
             material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE);
-            //            material.DisableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
+            //material.DisableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
             if ( material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
             {
                 StoreHashAndGUID(material);
