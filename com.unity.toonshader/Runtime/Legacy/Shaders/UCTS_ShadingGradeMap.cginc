@@ -272,13 +272,12 @@ struct VertexOutput {
                 float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert
-#ifdef _SYNTHESIZED_TEXTURE
-
-                float _ShadingGradeMap_var = tex2Dlod(_ShadowControlSynthesized, float4(TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized), 0.0, _BlurLevelSGM)).b;
-#else
+//#ifdef _SYNTHESIZED_TEXTURE
+//                float4 _ShadingGradeMap_var = tex2Dlod(_ShadowControlSynthesized, float4(TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized), 0.0, _BlurLevelSGM)).b;
+//#else
                 //v.2.0.6
                 float4 _ShadingGradeMap_var = tex2Dlod(_ShadingGradeMap,float4(TRANSFORM_TEX(Set_UV0, _ShadingGradeMap),0.0,_BlurLevelSGM));
-#endif
+                //#endif
                 //v.2.0.6
                 //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
                 float _SystemShadowsLevel_var = (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;

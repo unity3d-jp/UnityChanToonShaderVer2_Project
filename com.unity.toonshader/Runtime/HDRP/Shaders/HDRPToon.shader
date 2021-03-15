@@ -1116,7 +1116,7 @@ Shader "HDRP/Toon"
             // controlling mask rendering
             #pragma shader_feature _ _IS_CLIPPING_MATTE
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
-            #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
+
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 

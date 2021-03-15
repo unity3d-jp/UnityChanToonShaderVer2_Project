@@ -1253,7 +1253,7 @@ namespace UnityEditor.Rendering.Toon
                 byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
                 File.WriteAllBytes(outputPath, byteData);
 #else //
-                 SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, outputPath);
+                SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, outputPath);
 #endif
                 AssetDatabase.ImportAsset(outputPath);
                 Object.DestroyImmediate(outputTexture);

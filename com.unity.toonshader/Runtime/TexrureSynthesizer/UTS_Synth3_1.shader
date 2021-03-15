@@ -46,6 +46,9 @@ Shader "Hidden/UnityToonShader/Synth3_1" {
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
+#if UNITY_UV_STARTS_AT_TOP
+				v.uv.y = 1 - v.uv.y;
+#endif
 				o.uv = TRANSFORM_TEX(v.uv, Source0);
 				return o;
 			}
