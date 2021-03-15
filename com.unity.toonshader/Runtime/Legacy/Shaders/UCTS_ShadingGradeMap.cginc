@@ -377,8 +377,10 @@ struct VertexOutput {
                 //v.2.0.6 : LOD of Matcap
 #ifdef _SYNTHESIZED_TEXTURE
                 float4 _MatCap_Sampler_var = float4(tex2Dlod(_MatCap_SamplerSynthesized, float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_SamplerSynthesized), 0.0, _BlurLevelMatcap)).rgb, 1.0f);
+                float4 _Set_MatcapMask_var = tex2D(_MatCap_SamplerSynthesized, TRANSFORM_TEX(Set_UV0, _MatCap_SamplerSynthesized)).aaaa;
 #else
                 float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler,float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler),0.0,_BlurLevelMatcap));
+                float4 _Set_MatcapMask_var = tex2D(_Set_MatcapMask, TRANSFORM_TEX(Set_UV0, _Set_MatcapMask));
 #endif
                 //                
                 //MatcapMask

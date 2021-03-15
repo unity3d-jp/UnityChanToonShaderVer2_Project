@@ -12,7 +12,7 @@ Shader "Hidden/UnityToonShader/Synth3_1" {
 		Cull Off
 		ZTest Off
 		ZWrite Off
-		Blend one   zero
+//		Blend one   zero
 //		ColorMask RGB
 		//Blend SrcColor DstColor, SrcAlpha OneMinusSrcAlpha
 		//    RGB                        ALPHA

@@ -46,7 +46,7 @@ Shader "Universal Render Pipeline/Toon" {
         _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
         _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
         _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white" {}
+        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
         _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
 
 

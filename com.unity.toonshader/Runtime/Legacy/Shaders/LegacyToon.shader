@@ -50,7 +50,7 @@ Shader "Toon (Built-in)" {
         [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
         [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
         [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "white" {}
+        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
         [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
 
         _MainTexHash128_0("",int) = 0
@@ -499,6 +499,7 @@ Shader "Toon (Built-in)" {
             #pragma multi_compile_shadowcaster
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
+            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             #pragma target 3.0
             //v.2.0.4
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE

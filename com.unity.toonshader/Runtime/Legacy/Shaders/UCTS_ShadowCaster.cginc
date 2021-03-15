@@ -1,11 +1,7 @@
-﻿//UCTS_ShadowCaster.cginc
-//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+﻿//Unity Toon Shader/HDRP
 //nobuyuki@unity3d.com
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-//#pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE  _IS_CLIPPING_TRANSMODE
-//
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 #ifdef _IS_CLIPPING_MODE
 //_Clipping
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
@@ -20,6 +16,13 @@
             uniform fixed _IsBaseMapAlphaAsClippingMask;
 #elif _IS_CLIPPING_OFF
 //Default
+#endif
+
+#ifdef _SYNTHESIZED_TEXTURE
+            uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
+            uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
+            uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthesized_ST;
+            uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
 #endif
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -70,8 +73,16 @@
 #elif _IS_CLIPPING_TRANSMODE
 //_TransClipping
                 float2 Set_UV0 = i.uv0;
-                float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
-                float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
+#ifdef _SYNTHESIZED_TEXTURE
+                float4 _ClippingMask_var = tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).aaaa;
+#else
+                float4 _ClippingMask_var = tex2D(_ClippingMask, TRANSFORM_TEX(Set_UV0, _ClippingMask));
+#endif
+#ifdef _SYNTHESIZED_TEXTURE
+                float4 _MainTex_var = float4(tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).rgb, 1.0f);
+#else
+                float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+#endif
                 float Set_MainTexAlpha = _MainTex_var.a;
                 float _IsBaseMapAlphaAsClippingMask_var = lerp( _ClippingMask_var.r, Set_MainTexAlpha, _IsBaseMapAlphaAsClippingMask );
                 float _Inverse_Clipping_var = lerp( _IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping );
