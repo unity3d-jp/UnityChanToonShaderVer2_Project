@@ -1,14 +1,18 @@
 ﻿//Unity Toon Shader/Legacy
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Intengrated) 
+// ※Tessellation support
+//   The corresponding code was adapted from Nora's https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess.
+//
 
-
+#ifndef TESSELLATION_ON
 struct VertexInput {
     float4 vertex : POSITION;
     float3 normal : NORMAL;
     float4 tangent : TANGENT;
     float2 texcoord0 : TEXCOORD0;
 };
+#endif
 struct VertexOutput {
     float4 pos : SV_POSITION;
     float2 uv0 : TEXCOORD0;
@@ -183,6 +187,19 @@ struct VertexOutput {
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
             }
+
+//Tessellation ON
+#ifdef TESSELLATION_ON
+#ifdef UNITY_CAN_COMPILE_TESSELLATION
+            // tessellation domain shader
+            [UNITY_domain("tri")]
+            VertexOutput ds_surf(UnityTessellationFactors tessFactors, const OutputPatch<InternalTessInterp_VertexInput, 3> vi, float3 bary : SV_DomainLocation)
+            {
+                VertexInput v = _ds_VertexInput(tessFactors, vi, bary);
+                return vert(v);
+            }
+#endif // UNITY_CAN_COMPILE_TESSELLATION
+#endif // TESSELLATION_ON
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET {
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);

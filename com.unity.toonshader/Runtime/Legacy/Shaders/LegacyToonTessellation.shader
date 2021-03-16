@@ -433,12 +433,12 @@ Shader "ToonTessellation (Built-in)" {
             #pragma shader_feature UTS_USE_RAYTRACING_SHADOW
 #if defined(_SHADINGGRADEMAP)
 
-#include "UCTS_ShadingGradeMap_tess.cginc"
+#include "UCTS_ShadingGradeMap.cginc"
 
 
 #else //#if defined(_SHADINGGRADEMAP)
 
-#include "UCTS_DoubleShadeWithFeather_tess.cginc"
+#include "UCTS_DoubleShadeWithFeather.cginc"
 
 
 #endif //#if defined(_SHADINGGRADEMAP)
@@ -490,12 +490,12 @@ Shader "ToonTessellation (Built-in)" {
 
 #if defined(_SHADINGGRADEMAP)
 
-#include "UCTS_ShadingGradeMap_tess.cginc"
+#include "UCTS_ShadingGradeMap.cginc"
 
 
 #else //#if defined(_SHADINGGRADEMAP)
 
-#include "UCTS_DoubleShadeWithFeather_tess.cginc"
+#include "UCTS_DoubleShadeWithFeather.cginc"
 
 
 #endif //#if defined(_SHADINGGRADEMAP)
