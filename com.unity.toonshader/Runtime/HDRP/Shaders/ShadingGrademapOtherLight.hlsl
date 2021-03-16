@@ -33,7 +33,11 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     float3 normalDirection = normalize(mul(normalLocal, tangentTransform)); // Perturbed normals
  //   float3 i_normalDir = surfaceData.normalWS;
     float3 viewDirection = V;
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _MainTex_var = float4(tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).rgb, 1.0f);
+#else
     float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+#endif
     /* end of todo.*/
 
 
@@ -90,7 +94,12 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
 
     // //v.2.0.5:
 //SGM
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _ShadingGradeMap_var = tex2Dlod(_ShadowControlSynthesized, float4(TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized), 0.0, _BlurLevelSGM)).b;
+#else
+                //v.2.0.6
     float4 _ShadingGradeMap_var = tex2Dlod(_ShadingGradeMap, float4(TRANSFORM_TEX(Set_UV0, _ShadingGradeMap), 0.0, _BlurLevelSGM));
+#endif
     //v.2.0.6
     //Minmimum value is same as the Minimum Feather's value with the Minimum Step's value as threshold.
     //float _SystemShadowsLevel_var = (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel > 0.001 ? (attenuation*0.5)+0.5+_Tweak_SystemShadowsLevel : 0.0001;
@@ -129,10 +138,18 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
             Set_FinalShadowMask);
 
     //v.2.0.6: Add HighColor if _Is_Filter_HiCutPointLightColor is False
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _Set_HighColorMask_var = tex2D(_HighColor_TexSynthesized, TRANSFORM_TEX(Set_UV0, _HighColor_TexSynthesized)).aaaa;
+#else
     float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
+#endif
     float _Specular_var = 0.5 * dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
     float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel)) * lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _HighColor_Tex_var = float4(tex2D(_HighColor_TexSynthesized, TRANSFORM_TEX(Set_UV0, _HighColor_TexSynthesized)).rgb, 1.0f);
+#else
     float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
+#endif
     float3 _HighColor_var = lerp((_HighColor_Tex_var.rgb * _HighColor.rgb), ((_HighColor_Tex_var.rgb * _HighColor.rgb) * Set_LightColor), _Is_LightColor_HighColor);
 #ifdef UTS_LAYER_VISIBILITY
     {

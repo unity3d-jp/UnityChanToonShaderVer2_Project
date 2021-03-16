@@ -310,7 +310,7 @@ struct VertexOutput {
                 //Composition: 3 Basic Colors and HighColor as Set_HighColor
                 float3 Set_HighColor = (lerp( saturate((Set_FinalBaseColor-_TweakHighColorMask_var)), Set_FinalBaseColor, lerp(_Is_BlendAddToHiColor,1.0,_Is_SpecularToHighColor) )+lerp( _HighColor_var, (_HighColor_var*((1.0 - Set_FinalShadowMask)+(Set_FinalShadowMask*_TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow ));
 #ifdef _SYNTHESIZED_TEXTURE
-                float4 _Set_RimLightMask_var = tex2D(_Set_RimLightMask, TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized)).a;
+                float4 _Set_RimLightMask_var = tex2D(_ShadowControlSynthesized, TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized)).a;
 #else
                 float4 _Set_RimLightMask_var = tex2D(_Set_RimLightMask, TRANSFORM_TEX(Set_UV0, _Set_RimLightMask));
 #endif

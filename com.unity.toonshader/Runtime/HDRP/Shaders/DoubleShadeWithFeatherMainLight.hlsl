@@ -35,7 +35,11 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float3 normalLocal = _NormalMap_var.rgb;
     float3 normalDirection = normalize(mul(normalLocal, tangentTransform)); // Perturbed normals
 
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _MainTex_var = float4(tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).rgb, 1.0f);
+#else
     float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+#endif
     float3 i_normalDir = surfaceData.normalWS;
     float3 viewDirection = V;
     /* to here todo. these should be put int a struct */
@@ -43,12 +47,20 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     //v.2.0.4
 #if defined(_IS_CLIPPING_MODE) 
 //DoubleShadeWithFeather_Clipping
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _ClippingMask_var = tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).aaaa;
+#else
     float4 _ClippingMask_var = tex2D(_ClippingMask, TRANSFORM_TEX(Set_UV0, _ClippingMask));
+#endif
     float Set_Clipping = saturate((lerp(_ClippingMask_var.r, (1.0 - _ClippingMask_var.r), _Inverse_Clipping) + _Clipping_Level));
     clip(Set_Clipping - 0.5);
 #elif defined(_IS_CLIPPING_TRANSMODE) || defined(_IS_TRANSCLIPPING_ON)
 //DoubleShadeWithFeather_TransClipping
-    float4 _ClippingMask_var = tex2D(_ClippingMask, TRANSFORM_TEX(Set_UV0, _ClippingMask));
+#ifdef _SYNTHESIZED_TEXTURE
+                float4 _ClippingMask_var = tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).aaaa;
+#else
+                float4 _ClippingMask_var = tex2D(_ClippingMask, TRANSFORM_TEX(Set_UV0, _ClippingMask));
+#endif
     float Set_MainTexAlpha = _MainTex_var.a;
     float _IsBaseMapAlphaAsClippingMask_var = lerp(_ClippingMask_var.r, Set_MainTexAlpha, _IsBaseMapAlphaAsClippingMask);
     float _Inverse_Clipping_var = lerp(_IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping);
@@ -126,8 +138,13 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
     float3 Set_2nd_ShadeColor = lerp((_2nd_ShadeColor.rgb * _2nd_ShadeMap_var.rgb), ((_2nd_ShadeColor.rgb * _2nd_ShadeMap_var.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
     float _HalfLambert_var = 0.5 * dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5;
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _Set_2nd_ShadePosition_var = tex2D(_Set_2nd_ShadePosition, TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized)).gggg;
+    float4 _Set_1st_ShadePosition_var = tex2D(_Set_1st_ShadePosition, TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized)).rrrr;
+#else   //#ifdef _SYNTHESIZED_TEXTURE
     float4 _Set_2nd_ShadePosition_var = tex2D(_Set_2nd_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_2nd_ShadePosition));
     float4 _Set_1st_ShadePosition_var = tex2D(_Set_1st_ShadePosition, TRANSFORM_TEX(Set_UV0, _Set_1st_ShadePosition));
+#endif  //#ifdef _SYNTHESIZED_TEXTURE
 
     float _1stColorFeatherForMask = lerp(_BaseShade_Feather, 0.0f, max(_FirstShadeOverridden, _ComposerMaskMode));
     float _2ndColorFeatherForMask = lerp(_1st2nd_Shades_Feather, 0.0f, max(_SecondShadeOverridden, _ComposerMaskMode));
@@ -155,11 +172,18 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     }
 #endif //#ifdef UTS_LAYER_VISIBILITY
     float3 Set_FinalBaseColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _2ndColorFeatherForMask)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _2ndColorFeatherForMask))))), Set_FinalShadowMask); // Final Color
-
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _Set_HighColorMask_var = tex2D(_HighColor_TexSynthesized, TRANSFORM_TEX(Set_UV0, _HighColor_TexSynthesized)).aaaa;
+#else
     float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
+#endif
     float _Specular_var = 0.5 * dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
     float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel)) * lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _HighColor_Tex_var = float4(tex2D(_HighColor_TexSynthesized, TRANSFORM_TEX(Set_UV0, _HighColor_TexSynthesized)).rgb, 1.0f);
+#else
     float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
+#endif
     float3 _HighColorWithOutTweak_var = lerp((_HighColor_Tex_var.rgb * _HighColor.rgb), ((_HighColor_Tex_var.rgb * _HighColor.rgb) * Set_LightColor), _Is_LightColor_HighColor);
     float3 _HighColor_var = _HighColorWithOutTweak_var * _TweakHighColorMask_var;
 
@@ -195,7 +219,11 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #else
     float3 Set_HighColor = (lerp(saturate((Set_FinalBaseColor - _TweakHighColorMask_var)), Set_FinalBaseColor, lerp(_Is_BlendAddToHiColor, 1.0, _Is_SpecularToHighColor)) + lerp(_HighColor_var, (_HighColor_var * ((1.0 - Set_FinalShadowMask) + (Set_FinalShadowMask * _TweakHighColorOnShadow))), _Is_UseTweakHighColorOnShadow));
 #endif
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _Set_RimLightMask_var = tex2D(_ShadowControlSynthesized, TRANSFORM_TEX(Set_UV0, _ShadowControlSynthesized)).a;
+#else
     float4 _Set_RimLightMask_var = tex2D(_Set_RimLightMask, TRANSFORM_TEX(Set_UV0, _Set_RimLightMask));
+#endif
     float3 _Is_LightColor_RimLight_var = lerp(_RimLightColor.rgb, (_RimLightColor.rgb * Set_LightColor), _Is_LightColor_RimLight);
     float _RimArea_var = (1.0 - dot(lerp(i_normalDir, normalDirection, _Is_NormalMapToRimLight), viewDirection));
     float _RimLightPower_var = pow(_RimArea_var, exp2(lerp(3, 0, _RimLight_Power)));
@@ -263,10 +291,15 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
         _Rot_MatCapUV_var = _Rot_MatCapUV_var;
     }
     //v.2.0.6 : LOD of Matcap
-    float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler, float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler), 0.0, _BlurLevelMatcap));
     //
     //MatcapMask
+#ifdef _SYNTHESIZED_TEXTURE
+    float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_SamplerSynthesized, float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_SamplerSynthesized), 0.0, _BlurLevelMatcap));
+    float4 _Set_MatcapMask_var = tex2D(_MatCap_SamplerSynthesized, TRANSFORM_TEX(Set_UV0, _MatCap_SamplerSynthesized)).aaaa;
+#else
+    float4 _MatCap_Sampler_var = tex2Dlod(_MatCap_Sampler, float4(TRANSFORM_TEX(_Rot_MatCapUV_var, _MatCap_Sampler), 0.0, _BlurLevelMatcap));
     float4 _Set_MatcapMask_var = tex2D(_Set_MatcapMask, TRANSFORM_TEX(Set_UV0, _Set_MatcapMask));
+#endif
     float _Tweak_MatcapMaskLevel_var = saturate(lerp(_Set_MatcapMask_var.g, (1.0 - _Set_MatcapMask_var.g), _Inverse_MatcapMask) + _Tweak_MatcapMaskLevel);
     //
     float3 _Is_LightColor_MatCap_var = lerp((_MatCap_Sampler_var.rgb * _MatCapColor.rgb), ((_MatCap_Sampler_var.rgb * _MatCapColor.rgb) * Set_LightColor), _Is_LightColor_MatCap);
