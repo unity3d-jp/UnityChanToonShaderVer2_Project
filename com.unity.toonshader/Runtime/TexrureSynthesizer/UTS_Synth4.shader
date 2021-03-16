@@ -33,6 +33,8 @@ Shader "Hidden/UnityToonShader/Synth4" {
 			struct v2f {
 				float2 uv0 : TEXCOORD0;
 				float2 uv1 : TEXCOORD1;
+				float2 uv2 : TEXCOORD2;
+				float2 uv3 : TEXCOORD3;
 				float4 vertex : SV_POSITION;
 			};
 
@@ -54,6 +56,8 @@ Shader "Hidden/UnityToonShader/Synth4" {
 				v2f o;
 				float2 uv0 = v.uv;
 				float2 uv1 = v.uv;
+				float2 uv2 = v.uv;
+				float2 uv3 = v.uv;
 #if UNITY_UV_STARTS_AT_TOP
 				if (Source0_TexelSize.y < 0) {
 					uv0.y = 1 - uv0.y;
@@ -61,10 +65,18 @@ Shader "Hidden/UnityToonShader/Synth4" {
 				if (Source1_TexelSize.y < 0) {
 					uv1.y = 1 - uv1.y;
 				}
+				if (Source2_TexelSize.y < 0) {
+					uv2.y = 1 - uv2.y;
+				}
+				if (Source3_TexelSize.y < 0) {
+					uv3.y = 1 - uv3.y;
+				}
 #endif
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv0 = TRANSFORM_TEX(uv0, Source0);
-				o.uv1 = TRANSFORM_TEX(uv1, Source1);				
+				o.uv1 = TRANSFORM_TEX(uv1, Source1);	
+				o.uv2 = TRANSFORM_TEX(uv2, Source2);
+				o.uv3 = TRANSFORM_TEX(uv3, Source3);
 				return o;
 			}
 
@@ -74,8 +86,8 @@ Shader "Hidden/UnityToonShader/Synth4" {
 			{
 				fixed4 col = tex2D(Source0, i.uv0);
 				col.g = tex2D(Source1, i.uv1).r;
-				col.b = tex2D(Source2, i.uv1).r;
-				col.a = tex2D(Source3, i.uv1).r;
+				col.b = tex2D(Source2, i.uv2).r;
+				col.a = tex2D(Source3, i.uv3).r;
 
 				return col;
 			}

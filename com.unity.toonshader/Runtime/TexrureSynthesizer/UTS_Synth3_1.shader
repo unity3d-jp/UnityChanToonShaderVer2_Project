@@ -40,7 +40,7 @@ Shader "Hidden/UnityToonShader/Synth3_1" {
 			sampler2D Source1;
 			sampler2D Source2;
 			sampler2D Source3;
-			float4 Source0_TexelSize;
+			float4 Source0_TexelSize;	// https://docs.unity3d.com/ja/2019.4/Manual/SL-PropertiesInPrograms.html
 			float4 Source1_TexelSize;
 			float4 Source2_TexelSize;
 			float4 Source3_TexelSize;
