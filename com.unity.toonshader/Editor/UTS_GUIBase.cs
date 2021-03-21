@@ -889,8 +889,8 @@ namespace UnityEditor.Rendering.Toon
             Material material = materialEditor.target as Material;
 
             // this feature is still in test.
-            material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE);
-            //material.DisableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
+            //material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE);
+            material.DisableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
             if ( material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
             {
                 StoreHashAndGUID(material);
