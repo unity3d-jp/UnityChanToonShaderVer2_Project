@@ -42,6 +42,147 @@ Shader "Universal Render Pipeline/Toon" {
         _Tweak_transparency("Tweak_transparency", Range(-1, 1)) = 0
         // ClippingMask paramaters to Here.
 
+        // Syntesized Textures
+        _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
+        _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
+        _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
+        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
+        _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
+
+
+        _MainTexHash128_0("",int) = 0
+        _MainTexHash128_1("",int) = 0
+        _MainTexHash128_2("",int) = 0
+        _MainTexHash128_3("",int) = 0
+
+        _MainTexGUID_0("",int) = 0
+        _MainTexGUID_1("",int) = 0
+        _MainTexGUID_2("",int) = 0
+        _MainTexGUID_3("",int) = 0
+        //
+        _ClippingMaskHash128_0("",int) = 0
+        _ClippingMaskHash128_1("",int) = 0
+        _ClippingMaskHash128_2("",int) = 0
+        _ClippingMaskHash128_3("",int) = 0
+
+        _ClippingMaskGUID_0("",int) = 0
+        _ClippingMaskGUID_1("",int) = 0
+        _ClippingMaskGUID_2("",int) = 0
+        _ClippingMaskGUID_3("",int) = 0
+
+        //
+        _Set_1st_ShadePositionHash128_0("",int) = 0
+        _Set_1st_ShadePositionHash128_1("",int) = 0
+        _Set_1st_ShadePositionHash128_2("",int) = 0
+        _Set_1st_ShadePositionHash128_3("",int) = 0
+
+        _Set_1st_ShadePositionGUID_0("",int) = 0
+        _Set_1st_ShadePositionGUID_1("",int) = 0
+        _Set_1st_ShadePositionGUID_2("",int) = 0
+        _Set_1st_ShadePositionGUID_3("",int) = 0
+
+        //
+        _Set_2nd_ShadePositionHash128_0("",int) = 0
+        _Set_2nd_ShadePositionHash128_1("",int) = 0
+        _Set_2nd_ShadePositionHash128_2("",int) = 0
+        _Set_2nd_ShadePositionHash128_3("",int) = 0
+
+        _Set_2nd_ShadePositionGUID_0("",int) = 0
+        _Set_2nd_ShadePositionGUID_1("",int) = 0
+        _Set_2nd_ShadePositionGUID_2("",int) = 0
+        _Set_2nd_ShadePositionGUID_3("",int) = 0
+
+        //
+        _ShadingGradeMapHash128_0("",int) = 0
+        _ShadingGradeMapHash128_1("",int) = 0
+        _ShadingGradeMapHash128_2("",int) = 0
+        _ShadingGradeMapHash128_3("",int) = 0
+
+        _ShadingGradeMapGUID_0("",int) = 0
+        _ShadingGradeMapGUID_1("",int) = 0
+        _ShadingGradeMapGUID_2("",int) = 0
+        _ShadingGradeMapGUID_3("",int) = 0
+
+
+        //
+        _Set_RimLightMaskHash128_0("", int) = 0
+        _Set_RimLightMaskHash128_1("", int) = 0
+        _Set_RimLightMaskHash128_2("", int) = 0
+        _Set_RimLightMaskHash128_3("", int) = 0
+
+        _Set_RimLightMaskGUID_0("", int) = 0
+        _Set_RimLightMaskGUID_1("", int) = 0
+        _Set_RimLightMaskGUID_2("", int) = 0
+        _Set_RimLightMaskGUID_3("", int) = 0
+
+        //
+        _HighColor_TexHash128_0("", int) = 0
+        _HighColor_TexHash128_1("", int) = 0
+        _HighColor_TexHash128_2("", int) = 0
+        _HighColor_TexHash128_3("", int) = 0
+
+        _HighColor_TexGUID_0("", int) = 0
+        _HighColor_TexGUID_1("", int) = 0
+        _HighColor_TexGUID_2("", int) = 0
+        _HighColor_TexGUID_3("", int) = 0
+
+        //
+        _Set_HighColorMaskHash128_0("", int) = 0
+        _Set_HighColorMaskHash128_1("", int) = 0
+        _Set_HighColorMaskHash128_2("", int) = 0
+        _Set_HighColorMaskHash128_3("", int) = 0
+
+        _Set_HighColorMaskGUID_0("", int) = 0
+        _Set_HighColorMaskGUID_1("", int) = 0
+        _Set_HighColorMaskGUID_2("", int) = 0
+        _Set_HighColorMaskGUID_3("", int) = 0
+
+        //
+        _MatCap_SamplerHash128_0("", int) = 0
+        _MatCap_SamplerHash128_1("", int) = 0
+        _MatCap_SamplerHash128_2("", int) = 0
+        _MatCap_SamplerHash128_3("", int) = 0
+
+        _MatCap_SamplerGUID_0("", int) = 0
+        _MatCap_SamplerGUID_1("", int) = 0
+        _MatCap_SamplerGUID_2("", int) = 0
+        _MatCap_SamplerGUID_3("", int) = 0
+
+
+        //
+        _Set_MatcapMaskHash128_0("", int) = 0
+        _Set_MatcapMaskHash128_1("", int) = 0
+        _Set_MatcapMaskHash128_2("", int) = 0
+        _Set_MatcapMaskHash128_3("", int) = 0
+
+        _Set_MatcapMaskGUID_0("", int) = 0
+        _Set_MatcapMaskGUID_1("", int) = 0
+        _Set_MatcapMaskGUID_2("", int) = 0
+        _Set_MatcapMaskGUID_3("", int) = 0
+
+        //
+        _Outline_SamplerHash128_0("", int) = 0
+        _Outline_SamplerHash128_1("", int) = 0
+        _Outline_SamplerHash128_2("", int) = 0
+        _Outline_SamplerHash128_3("", int) = 0
+
+        _Outline_SamplerGUID_0("", int) = 0
+        _Outline_SamplerGUID_1("", int) = 0
+        _Outline_SamplerGUID_2("", int) = 0
+        _Outline_SamplerGUID_3("", int) = 0
+
+        //
+        _OutlineTexHash128_0("", int) = 0
+        _OutlineTexHash128_1("", int) = 0
+        _OutlineTexHash128_2("", int) = 0
+        _OutlineTexHash128_3("", int) = 0
+
+        _OutlineTexGUID_0("", int) = 0
+        _OutlineTexGUID_1("", int) = 0
+        _OutlineTexGUID_2("", int) = 0
+        _OutlineTexGUID_3("", int) = 0
+
+
         _MainTex ("BaseMap", 2D) = "white" {}
         [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
@@ -302,6 +443,7 @@ Shader "Universal Render Pipeline/Toon" {
 
             #pragma multi_compile   _IS_PASS_FWDBASE
             #pragma multi_compile   _ENVIRONMENTREFLECTIONS_OFF
+            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
 
