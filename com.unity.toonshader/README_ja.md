@@ -1,46 +1,46 @@
 ﻿# 【Unity Toon Shader (Unity-Chan Toon Shader 3)】
 ---
-<img width = "800" src="../images/UTS3_TopImage00.png?raw=true">
+<img width = "800" src="./Documentation~/images/UTS3_TopImage00.png?raw=true">
 
 ***Read this document in other languages: [English](../README.md)***  
 
 ## 【Unity Toon Shaderの概要】
 
-<img width = "800" src="../images/TPK_04.png?raw=true">
+<img width = "800" src="./Documentation~/images/TPK_04.png?raw=true">
 
 **Unity Toon Shader (Unitychan Toon Shader 3)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、Unity Toon Shaderの最大の特長です**。  
 
 [![](https://img.youtube.com/vi/3yajmhc5A08/0.jpg)](https://www.youtube.com/watch?v=3yajmhc5A08)
 
-<img width = "800" src="../images/IllustSample_UTS3.png?raw=true">
+<img width = "800" src="./Documentation~/images/IllustSample_UTS3.png?raw=true">
 
 Unity Toon Shaderの強力な機能を使うことで、**セルルックから始まり、ラノベ風のイラスト表現**まで幅広いキャラクター表現が可能となっています。  
 
-<img width = "800" src="../images/UTS3_TopImage02.gif?raw=true">
+<img width = "800" src="./Documentation~/images/UTS3_TopImage02.gif?raw=true">
 
 Unity Toon Shaderは、「**基本色（ベースカラー）**」、「**１影色**」、「**２影色**」からなる基本３色による塗り分けに加えて、「**ハイカラー**」や「**リムライト**」、「**MatCap**（スフィアマッピング）」、「**エミッシブ**（自己発光）」などの沢山のオプションを追加することで、各カラーやテクスチャを様々に彩ることができます。  
 
-<img width = "800" src="../images/UTS3_TopImage05.png?raw=true">
+<img width = "800" src="./Documentation~/images/UTS3_TopImage05.png?raw=true">
 
 「**アクセントカラー**」には、どんな色を選択しますか？ アクセントカラーとは、光源の方向の反対側に設定されるカラーのことです。  
 
 Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠)リムライト**を使用できます。もちろんこれらのアクセントカラーもライトに対して動的に変化します。  
 
-<img width = "480" src="../images/UTS3_TopImage03.gif?raw=true">
+<img width = "480" src="./Documentation~/images/UTS3_TopImage03.gif?raw=true">
 
 また**各カラー間のぼかし加減も、Unity上でリアルタイムに調整することが可能**です。  
 
-<img width = "800" src="../images/UTS3_TopImage04.png?raw=true">
+<img width = "800" src="./Documentation~/images/UTS3_TopImage04.png?raw=true">
 
 アニメーション制作の現場では、各シーンごとに各々のパーツに対してカラーデザインがなされます。またこれらのカラーデザインを作るスペシャリストがいるのが一般的です。UTS3はそのようなパイプラインに適した設計になっています。  
 
 アニメーション映画では、影は光の差し込む方向を表すためだけでなく、キャラクターの形状を明確にするためにも使用されます。影は、単なる影に留まらず、キャラクターデザインの重要な部分を占めています。  
 
-<img width = "350" src="../images/UTS3_TopImage06.gif?raw=true">
+<img width = "350" src="./Documentation~/images/UTS3_TopImage06.gif?raw=true">
 
 これらデザイン上必要となる固定影の配置も、各影色ごとに発生する位置を設定できる「**ポジションマップ**」と、ライティングによって影の出やすさを変えることのできる「**シェーディンググレードマップ**」の、２つの手法が選べます。上のムービーは、**シェーディンググレードマップと天使の輪**機能のサンプルです。  
 
-<img width = "800" src="../images/UTS3_TopImage07.png?raw=true">
+<img width = "800" src="./Documentation~/images/UTS3_TopImage07.png?raw=true">
 
 これら2つの画像は、同じ条件のライティング下での **Standard Shader** と **Unity Toon Shader** の比較です。  
 
@@ -48,7 +48,7 @@ Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠
 
 ゲームシーンを美しいライティングで飾りたいならば、Unity Toon Shaderは非常に役に立ちます。  
 
-<img width = "500" src="../images/VRChatUser00.png?raw=true">
+<img width = "500" src="./Documentation~/images/VRChatUser00.png?raw=true">
 
 また昨今のVRChatでのユーザーの声を反映し、様々なライティング設定の環境下でも、キャラクターが美しく表現されるように様々な工夫が実装されています。  
 
