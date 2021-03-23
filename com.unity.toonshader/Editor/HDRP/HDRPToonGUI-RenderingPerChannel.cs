@@ -83,18 +83,27 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
             material.SetInt("_ClippingMatteMode", m_selectedIndex);
         }
 
+        string GetAppropriateIcon(string str)
+        {
+            if (EditorGUIUtility.pixelsPerPoint > 1.0f)
+            {
+                return str + "@2x";
+            }
+            return str;
+        }
+
         void SetupChannelSettings(Material material)
         {
 
             if (m_texIconVisible == null)
             {
                 m_texIconVisible = (Texture2D)EditorGUIUtility.Load(
-                        EditorGUIUtility.isProSkin ? "d_scenevis_visible_hover@2x" : "scenevis_visible_hover@2x");
+                        EditorGUIUtility.isProSkin ? GetAppropriateIcon("d_scenevis_visible_hover") : GetAppropriateIcon("scenevis_visible_hover"));
             }
             if (m_texIconInvisible == null)
             {
                 m_texIconInvisible = (Texture2D)EditorGUIUtility.Load(
-                        EditorGUIUtility.isProSkin ? "d_SceneViewVisibility@2x" : "scenevis_hidden_hover@2x");
+                        EditorGUIUtility.isProSkin ? GetAppropriateIcon("d_SceneViewVisibility") : GetAppropriateIcon("scenevis_hidden_hover"));
             }
 
             if (m_ToggleStyle == null)
