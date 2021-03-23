@@ -4,8 +4,8 @@
 
 # The Various Properties of Unity Toon  Shader  
 
-The following table is an explanation of the properties found in each UTS2 shader, in order by feature block.  
-For all UTS2 shaders, if the property name is the same, then they also function the same.  
+The following table is an explanation of the properties found in each Unity Toon Shader, in order by feature block.  
+For all Unity Toon Shaders, if the property name is the same, then they also function the same.  
 
 <img width = "400" src="images/UI_Toon_DoubleShadeWithFeather.png?raw=true">
 
@@ -86,7 +86,7 @@ There are common properties among DoubleShadeWithFeather shaders, the standard s
 
 ## 4-2. ShadingGradeMap Shaders
 
-These properties are common among UTS2’s high spec ShadingGradeMap shaders.  
+These properties are common among Unity Toon Shader's high spec ShadingGradeMap shaders.  
 
 <img width = "500" src="images/Property_UTS2_04_2.png?raw=true">
 
