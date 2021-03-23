@@ -1,5 +1,4 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+# Unity Toon Shader(Unity-Chan Toon Shader 3)  Manual
 ***Read this document in other languages: [日本語版](../ja/UTS3_Manual_ja.md)***  
 
 # Index
@@ -7,25 +6,23 @@
 - [Introduction to Unity-Chan Toon Shader 2.](./UTS3_Manual_en.md#introduction-to-unity-chan-toon-shader-2)
   - [【Development Environment】](./UTS3_Manual_en.md#development-environment)
   - [【Target Environment】](./UTS3_Manual_en.md#target-environment)
-  - [【Download the project】](./UTS3_Manual_en.md#download-the-project)
   - [【Installation】](./UTS3_Manual_en.md#installation)
-  - [【Basic UTS2 Settings】](./UTS3_Manual_en.md#basic-uts2-settings)
-- [Using the Different Shaders in UTS2](./UTS3_Manual_en.md#using-the-different-shaders-in-uts2)
+  - [【Basic Unity Toon Shader Settings】](./UTS3_Manual_en.md#basic-uts2-settings)
+- [Using the Different Shaders in Unity Toon Shader](./UTS3_Manual_en.md#using-the-different-shaders-in-uts2)
   - [The Shaders in the UnityChanToonShader Root Folder](./UTS3_Manual_en.md#the-shaders-in-the-unitychantoonshader-root-folder)
   - [The Shaders in the UnityChanToonShader/NoOutline Folder](./UTS3_Manual_en.md#the-shaders-in-the-unitychantoonshadernooutline-folder)
     - [Transparent shaders for transparency materials](./UTS3_Manual_en.md#transparent-shaders-for-transparency-materials)
   - [The Shaders in the UnityChanToonShader/AngelRing Folder](./UTS3_Manual_en.md#the-shaders-in-the-unitychantoonshaderangelring-folder)
-  - [The Shaders in the UnityChanToonShader/Mobile Folder](./UTS3_Manual_en.md#the-shaders-in-the-unitychantoonshadermobile-folder)
-  - [The Shaders in the UnityChanToonShader/Tessellation Folder](./UTS3_Manual_en.md#the-shaders-in-the-unitychantoonshadertessellation-folder)
+   - [The Shaders in the UnityChanToonShader/Tessellation Folder](./UTS3_Manual_en.md#the-shaders-in-the-unitychantoonshadertessellation-folder)
   - [The shaders in the UnityChanToonShader/Helper Folder](./UTS3_Manual_en.md#the-shaders-in-the-unitychantoonshaderhelper-folder)
 - [Sample Scenes](./UTS3_Manual_en.md#sample-scenes)
 - [Initial Project Settings](./UTS3_Manual_en.md#initial-project-settings)
-- [UTS2 Setting Menu：UTS2 Custom Inspector](./UTS3_Manual_en.md#uts2-setting-menuuts2-custom-inspector)
-  - [1.“Basic Shader Settings” Menu for UTS2](./UTS3_Manual_en.md#1-basic-shader-settings-menu-for-uts2)
+- [Unity Toon Shader Setting Menu：Unity Toon Shader Custom Inspector](./UTS3_Manual_en.md#uts2-setting-menuuts2-custom-inspector)
+  - [1.“Basic Shader Settings” Menu for Unity Toon Shader](./UTS3_Manual_en.md#1-basic-shader-settings-menu-for-uts2)
     - [Useful functions for VRChat users](./UTS3_Manual_en.md#useful-functions-for-vrchat-users)
-      - [“When setting up materials on UTS2”](./UTS3_Manual_en.md#when-setting-up-materials-on-uts2)
+      - [“When setting up materials on Unity Toon Shader”](./UTS3_Manual_en.md#when-setting-up-materials-on-uts2)
         - [If you want to brighten the appearance of characters in dark worlds](./UTS3_Manual_en.md#-if-you-want-to-brighten-the-appearance-of-characters-in-dark-worlds)
-      - [“When publishing avatars set in UTS2”](./UTS3_Manual_en.md#when-publishing-avatars-set-in-uts2)
+      - [“When publishing avatars set in Unity Toon Shader”](./UTS3_Manual_en.md#when-publishing-avatars-set-in-uts2)
   - [2.“Basic Three Colors and Control Maps Setups” Menu](./UTS3_Manual_en.md#2-basic-three-colors-and-control-maps-setups-menu)
     - [ “NormalMap Settings” Submenu](./UTS3_Manual_en.md#normalmap-settings-submenu)
     - [“Shadow Control Maps” Submenu](./UTS3_Manual_en.md#shadow-control-maps-submenu)
@@ -72,7 +69,7 @@
     - [3-1.Shadows appear in unexpected places](./UTS3_Manual_en.md#3-1-shadows-appear-in-unexpected-places)
     - [3-2.I uploaded the avatar to the VRChat server, and when I saw it on the HMD, the parallax between the left and right is off.](./UTS3_Manual_en.md#3-2-i-uploaded-the-avatar-to-the-vrchat-server-and-when-i-saw-it-on-the-hmd-the-parallax-between-the-left-and-right-is-off)
     - [3-3.Bloome may glow badly on VRChat](./UTS3_Manual_en.md#3-3-bloome-may-glow-badly-on-vrchat)
-- [All properties list](./UTS2_Props_en.md)
+- [All properties list](./UTS3_Props_en.md)
 ---
 ## [Important] Note on upgrading to version 2.0.7 directly
 * In v.2.0.5 or later, you can overwrite and update only the shader.  
@@ -134,52 +131,13 @@ You may be surprised to see your character looking better than ever before.
 
 This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.0.7**.  
 
-## 【Development Environment】
-Unity-Chan Toon Shader Ver. 2.0 is developed based on Unity 5.6.3p1, and verification of compatibility with the latest versions of Unity 2018.x is ongoing.  
-(However, as version 5.6.3p1 is in the legacy pipeline, it is not currently compatible with SRP).  
+## 【Recommendable Environment】
+Unity toon shader is compatible with Unity 2019.4 or later and capble of Lagacy, Univerasl and HDRP.
+As the shaders for each render pipile has a slight difference in feature. Please check the Feature model document. [English version](../en/FeatureModel_en.md)
 
-## 【Target Environment】
-Unity 5.6.x or later is required. This shader is confirmed to be compatible with Unity 2017.4 15f1 LTS. Unity 2018.1.0f2 and later versions can also be used.  
-This package is developed in Unity 5.6.3p1.  
-
-This package uses a forward rendering environment. Using a linear color space is recommended.  
+Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
 
-
-## 【Download the project】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
-
-
-## 【Installation】
-1. Extract the project included with Unity-Chan Toon Shader 2.0  and search directly under the folder for the `UTS2_ShaderOnly_(version name).unitypackage` file.  
-
-   The image below uses version `v2.0.6_Release`.  
-
-<img width = "600" src="../images/Explorer01.png?raw=true">
-
-2. Install Unity-Chan Toon Shader 2.0 and open a Unity project.  
-
-3. Open the Assets folder in the Unity Project window.  
-
-4. Drag and drop `UTS2_ShaderOnly_v(version name).unitypackage` from the OS’ Explorer or Finder window into the the Assets folder in the Unity Project window.  
-
-<img width = "800" src="../images/DandD01.png?raw=true">
-
-5. When the Import Unity Package window opens, import all files.  
-
-<img width = "600" src="../images/ImportWindow01.png?raw=true">
-
-6. This will create a Toon folder, where Unity-Chan Toon Shader 2.0 is installed, under Assets.  
-
-<img width = "400" src="../images/ProjectWindow01.png?raw=true">
-
-7. Create a new material, and if a section called UnityChanToonShader appears in the Shader drop down menu, installation has completed successfully.  
-
-<img width = "400" src="../images/NewShader01.png?raw=true">
-
-## 【Basic UTS2 Settings】
-
-Consult the following movie for an example of creating a skin-toned material on a shader ball.  
 
 [![](https://img.youtube.com/vi/z7Pr39NW5Dk/0.png)](https://www.youtube.com/watch?v=z7Pr39NW5Dk)
 
@@ -265,21 +223,9 @@ The “angel ring” is a highlight effect, as demonstrated in the image below. 
 Only UTS2’s hi-spec `ShadingGradeMap` shaders and their variant `ShadingGradeMap_TransClipping` shaders have this “angel ring” feature.  
 These shaders are primarily used in “hair” parts, which puts them in a similar category to `StencilOut` shaders, which are omitted by stencils.  
 
-## ●The Shaders in the UnityChanToonShader/Mobile Folder
-
-<img width = "800" src="../images/UTS2_Mobile.png?raw=true">
-
-Lightweight versions of shaders, intended for Mobile and VR content,  that generally won’t change the look of objects can be found in the  `Mobile` folder.  
-The following features are restricted in order to make these shaders lighter for mobile platforms.  
-
 * **Only one real-time directional light** may be used (**multiple lights and real-time point lights are also unsupported**).  
 
 * Point lights are supported by using baked point lights and [light probes](https://docs.unity3d.com/ja/current/Manual/LightProbes-MovingObjects.html). This may require certain adjustments to `GI_Intensity`.  
-
-Mobile shader properties are compatible with normal `Toon_DoubleShadeWithFeather` shaders and  `Toon_ShadingGradeMap` shaders, so if the above features are acceptable, mobile shaders can be substituted for their standard versions in order to improve rendering performance.  
-
-The `Mobile/AngelRing` folder contains mobile shaders that support the “angel ring” feature.  
-The basic features of each shader are identical to their standard version counterparts.  
 
 ## ●The Shaders in the UnityChanToonShader/Tessellation Folder
 
@@ -346,25 +292,25 @@ is recommended.
 
 <img width = "400" src="../images/0801-12_07.png?raw=true">
 
-# UTS2 Setting Menu：UTS2 Custom Inspector
+# Unity Toon Shader Setting Menu：Unity Toon Shader Custom Inspector
 
-From here, you will know the function of the user interface **UTS 2 custom inspector** which sets each function of UTS2.
+From here, you will know the function of the user interface **Unity Toon Shader custom inspector** which sets each function of Unity Toon Shader.
 
 <img width = "400" src="../images/UTS2UI_Standard.png?raw=true">
 
-UTS2 Custom Inspector can switch to the conventional property list type inspector by clicking the `Show All Properties` button.
+Unity Toon Shader Custom Inspector can switch to the conventional property list type inspector by clicking the `Show All Properties` button.
 
 <img width = "400" src="../images/UTS2UI_AllProperties.png?raw=true">
 
-Function description of the property list type is [here](./UTS2_Props_en.md).  
+Function description of the property list type is [here](./UTS3_Props_en.md).  
 You can restore the UI style of Inspector with the `Change CustomUI` button.  
 
 
 ---
-## 1. “Basic Shader Settings” Menu for UTS2
+## 1. “Basic Shader Settings” Menu for Unity Toon Shader
 <img width = "500" src="../images/UTS2UI_01_00.png?raw=true">
 
-In this menu, in addition to performing the basic setting of UTS2, you can specify reference number of stencil buffer, set culling method, and specify what kind of mask is set for each clipping shader.  
+In this menu, in addition to performing the basic setting of Unity Toon Shader, you can specify reference number of stencil buffer, set culling method, and specify what kind of mask is set for each clipping shader.  
 
 **※ Hint: The culling formula applies to every shader, but stencil and clipping settings only apply to shaders which use those settings.**  
 
@@ -375,8 +321,8 @@ Items in the menu are automatically expanded to the following maximum format acc
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
-| `日本語マニュアル` | Using the browser jumps to the UTS2 Japanese official manual. |  |
-| `English Manual` | Using the browser jumps to the UTS2 English official manual. |  |
+| `日本語マニュアル` | Using the browser jumps to the Unity Toon Shader Japanese official manual. |  |
+| `English Manual` | Using the browser jumps to the Unity Toon Shader English official manual. |  |
 | `Culling Mode` | Designates which side of a polygon will not be drawn (culling). Available options are: `Culling Off` (both sides drawn) / `Culling Front` (front side culling) / `Culling Back` (back side culling). `Back` is selected by default. In some cases, selecting `Culling Off` can cause the normal map and lighting to display strangely. | _CullMode |
 | `Stencil No` | Used by  `StencilMask`　/　`StencilOut` shaders. Designates a stencil reference number between 0 - 255 (note that in some cases 255 carries a special significance). Matches the number for the cutting material and the material to be cut. | _StencilNo |
 | `Clipping Mask` | Used by `Clipping` / `TransClipping` shaders. Designates the grayscale clipping mask. White indicates “none”. If no settings are chosen, the clipping feature will be inactive. | _ClippingMask |
@@ -397,15 +343,15 @@ Adjust the transparency level using the `Tweak_transparency` slider.
 
 ---
 ### Useful functions for VRChat users
-UTS2 is a general purpose toon shader that can be used in various projects in Unity. If you enjoy UTS2 on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of UTS2's advanced features.  
+Unity Toon Shader is a general purpose toon shader that can be used in various projects in Unity. If you enjoy Unity Toon Shader on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of Unity Toon Shader's advanced features.  
 
 <img width = "500" src="../images/VRChatUser00.png?raw=true">
 
 In the picture above, the button in the red box corresponds to it. There are two timings to use these buttons.  
 
-#### “When setting up materials on UTS2”
-When you set up each material in UTS2, please execute the `VRChat Recommendation` button in the Basic Shader Settings> Option Menu.  
-By executing this command, UTS2 will become familiar with various VRChat lighting environments.  
+#### “When setting up materials on Unity Toon Shader"
+When you set up each material in Unity Toon Shader, please execute the `Game Recommendation` button in the Basic Shader Settings> Option Menu.  
+By executing this command, Unity Toon Shader will become familiar with various VRChat lighting environments.  
 If you upload your avatar on VRChat and it feels different from what you intended, you should try this command first.  
 
 ##### ● If you want to brighten the appearance of characters in dark worlds
@@ -420,23 +366,23 @@ However, in a dark world, the post effect's bloom is often set to strong as well
 In such a world, if the value of **Unlit Intensity is set to over 1 (default value), it is also susceptible to bloom**, so be careful with it.  
 
 
-#### “When publishing avatars set in UTS2”
-Before releasing the avatars with each material set in UTS2 to VRChat, please execute the `Remove Unused Keywords / Properties from Material` button in Basic Shader Settings> Option Menu.  
+#### “When publishing avatars set in Unity Toon Shader"
+Before releasing the avatars with each material set in Unity Toon Shader to VRChat, please execute the `Remove Unused Keywords / Properties from Material` button in Basic Shader Settings> Option Menu.  
 By executing this command, you can organize and delete unused property settings and shader keywords that accumulate in each material file while working in Unity.  
-For example, from the material to which Standard Shader was initially assigned, even if you change the shader to that of UTS2, these unused values ​​will accumulate. These unused values ​​are what Unity holds in mind for the next time you switch shaders back to Standard Shader, but publish avatars and models with completed materials and applied them When you do, it becomes unnecessary.  
+For example, from the material to which Standard Shader was initially assigned, even if you change the shader to that of Unity Toon Shader, these unused values ​​will accumulate. These unused values ​​are what Unity holds in mind for the next time you switch shaders back to Standard Shader, but publish avatars and models with completed materials and applied them When you do, it becomes unnecessary.  
 If these unused values remain in each material, it is possible to put unnecessary load on the system, so it is recommended to organize them at the time of publishing avatars.  
 This command should also be used when building your own project.  
 
 <img width = "400" src="../images/ShaderKeywords.png?raw=true">
 
-When the command is executed, for UTS2 material, the remaining shader keywords are optimized to one of `_EMISSIVE_SIMPLE` / ` _EMISSIVE_ANIMATION` and one of `_OUTLINE_NML` / ` _OUTLINE_POS`. These are needed during shader compilation, so leave them as is.  
+When the command is executed, for Unity Toon Shader material, the remaining shader keywords are optimized to one of `_EMISSIVE_SIMPLE` / ` _EMISSIVE_ANIMATION` and one of `_OUTLINE_NML` / ` _OUTLINE_POS`. These are needed during shader compilation, so leave them as is.  
 
 
 ---
 ## 2. “Basic Three Colors and Control Maps Setups” Menu
 <img width = "500" src="../images/UTS2UI_02_00.png?raw=true">
 
-This Menu defines the basic colors used by UTS2: the Base Color, 1st Shade Color, and 2nd Shade Color.  
+This Menu defines the basic colors used by Unity Toon Shader: the Base Color, 1st Shade Color, and 2nd Shade Color.  
 These colors are arranged **in order from the light source’s direction, Base Color⇒ 1st Shade Color ⇒ 2nd Shade Color**.  
 Each color is determined by multiplying each pixel in the texture by each color, then multiplying by the light color.  
 
@@ -461,7 +407,7 @@ This block is where Normal Map settings are performed.
 
 <img width = "600" src="../images/Is_NormalToBase.png?raw=true">
 
-**The Normal Map is generally used in UTS2 for Shade Color gradation.**.  
+**The Normal Map is generally used in Unity Toon Shader for Shade Color gradation.**.  
 Using the Normal Map along with standard shading allows for more complex gradation effects. In the above image, **the left side reflects the normal map in color, the right does not reflect it**.  
 
 Besides, the normal map is used to adjust **skin texture** by using it together with the scale. Also, by preparing a normal map for MatCap, it is used to express **hair texture**.  
@@ -534,7 +480,7 @@ On the other hand, **for areas where the 2nd Shade Color doesn’t show** (areas
 | `Blur Level of ShadingGradeMap` | Blur the Shading Grade Map using the Mip Map function. To enable Mip Map, set Advanced> `Generate Mip Maps` to` ON` in the texture import settings. The default is 0 (no blur). | _BlurLevelSGM |
 
 ### 【What is the Shading Grade Map?】
-`Toon_DoubleShadeWithFeather.shader` is the basic shader in UTS2, and that shader is based on the shading grade map, which is a shading gray scale map. The `Toon_ShadingGradeMap` shader is further expanded to use the UV points to control shadows.  
+`Toon_DoubleShadeWithFeather.shader` is the basic shader in Unity Toon Shader, and that shader is based on the shading grade map, which is a shading gray scale map. The `Toon_ShadingGradeMap` shader is further expanded to use the UV points to control shadows.  
 
 <img width = "800" src="../images/0122-06_04.png?raw=true">
 
@@ -551,7 +497,7 @@ Applying **a shading map like the Ambient Occlusion map** to the shading grade m
 
 <img width = "500" src="../images/UTS2UI_03_00.png?raw=true">
 
-This block is where the Base Color/1st Shade Color/2nd Shade Color Step and the Feathering Intensity are set. In addition to the real-time directional light settings, these are the most important settings in UTS2. **These settings will determine the basic look of your content**. This menu is where basic items for making Cel and Illustration Styles are gathered.  
+This block is where the Base Color/1st Shade Color/2nd Shade Color Step and the Feathering Intensity are set. In addition to the real-time directional light settings, these are the most important settings in Unity Toon Shader. **These settings will determine the basic look of your content**. This menu is where basic items for making Cel and Illustration Styles are gathered.  
 These settings can be checked repeatedly in real-time in Unity.  
 There is no need to render and confirm the effects of every single property change, making it easier to deliberately design and assemble content.  
 Adjust the Step and Feather parameters to create totally different looks, without changing the direction of the light source.  
@@ -580,7 +526,7 @@ These shaders can have 2 **Position Maps**, a special feature that allows the 1s
 ---
 ### ●ShadingGradeMap Shaders
 
-These items are common among UTS2’s high spec ShadingGradeMap shaders.  
+These items are common among Unity Toon Shader’s high spec ShadingGradeMap shaders.  
 Shaders with a **Shading Grade Map** can control the sharpness and intensity of shadows in relation to the lighting.  
 These maps allow you to set shadows of any shape and in any place you like, regardless of geometry or vectors.  
 Compared to Point Maps, in addition to placing shadows, Shading Grade Maps can also adjust how shadows look depending on the way the light hits them.  
@@ -653,7 +599,7 @@ If you want the highlights to be brighter, turn off “PointLights Hi-Cut Filter
 <img width = "500" src="../images/UTS2UI_04_00.png?raw=true">
 
 **High Color** is also known as **Highlights or Speculum Lighting**.  
-It is used to reflect the main directional light. When the light moves the reflection also moves accordingly. In UTS2, you can adjust the high color rendering.  
+It is used to reflect the main directional light. When the light moves the reflection also moves accordingly. In Unity Toon Shader, you can adjust the high color rendering.  
 
 <img width = "500" src="../images/UTS2UI_04_01.png?raw=true">
 
@@ -689,7 +635,7 @@ As seen in Akatsuki Yuki’s (@AkatsukiWorks) work, by using HighColorMask and R
 
 In realistic styles, **RimLight**  is a technique in which light is set to shine on the rims of the object.  
 In non-photorealistic styles that includes Toon Shader, highlights are also placed on the edges of objects to make it more visible, and it is also called RimLight.  
-You can use these RimLight options in UTS2.  
+You can use these RimLight options in Unity Toon Shader.  
 
 <img width = "500" src="../images/UTS2UI_05_01.png?raw=true">
 
@@ -724,7 +670,7 @@ Specify the RimLight’s color of the light direction as Black (0,0,0) if you on
 
 RimLight can also be too bright like HighColor depending on the camera’s angles.  
 
-In UTS2, you can adjust RimLight’s mask to make it dimmer.  
+In Unity Toon Shader, you can adjust RimLight’s mask to make it dimmer.  
 
 In the image above, the RimLight’s color in the light source’s direction and the light reflection’s direction is changed. The rim light is also masked around the underarms to prevent unnecessary highlights.  
 
@@ -746,7 +692,7 @@ It is used for ZBrush texture rendering.
 
 When you google image search for Matcap, you can find a lot of examples. It was used to create metallic reflections before physics-based shaders were common.  
 You can use Matcap to create all kinds of textures in addition to metallic textures.  
-In UTS2, you can enjoy MatCap with Adding mode, as well as Multiplication mode.
+In Unity Toon Shader, you can enjoy MatCap with Adding mode, as well as Multiplication mode.
 
 **※ HINT: UTS2 v.2.0.5 and later, [appropriate adjustments will be made to distortions caused by the camera](https://twitter.com/kanihira/status/1061448868221480960). So the Matcap will not be distorted even when the object is on at the edge of the camera’s perspective.**.  
 
@@ -963,17 +909,17 @@ Black means “no lines” and white means that the width is at 100%.
 ---
 ### ●Supplementing the inverted outlines of objects：**UTS_EdgeDetection**
 
-The inverted object outline that is used in UTS2 is a technique that has been used for a long time but it is still used in games that is real-time sensitive.  
+The inverted object outline that is used in Unity Toon Shader is a technique that has been used for a long time but it is still used in games that is real-time sensitive.  
 On the other hand, machine power is considerably better today so it is also used with material-based outlines and post-process effects outlines that are attached to the camera.  
 
 <img width = "800" src="../images/UT2018_UTS2_SuperTips_23.png?raw=true">
 
-UTS2 also has a post-effect called  **UTS_EdgeDetection** that is used with the inverted object outline.  
-By attaching UTS_EdgeDetection to the main camera, UTS2’s inverted object outline looks better.  
+Unity Toon Shader also has a post-effect called  **UTS_EdgeDetection** that is used with the inverted object outline.  
+By attaching UTS_EdgeDetection to the main camera, Unity Toon Shader’s inverted object outline looks better.  
 
 <img width = "800" src="../images/UTS_EdgeDitectionV1.png?raw=true">
 
-UTS_EdgeDetection is provided at UTS2’s project route, **UTS_EdgeDetection.unitypackage**.  
+UTS_EdgeDetection is provided at Unity Toon Shader’s project route, **UTS_EdgeDetection.unitypackage**.  
 You can install this package by drag and dropping it to Unity.  
 `ToonShader_CelLook.unity` is the sample scene so please check the UTS_EdgeDetection component that is attached to the scene’s main camera.  
 
@@ -990,7 +936,7 @@ By using Sobel Color Filter, you can emphasize toon line edges effectively and r
 
 You can now read normal maps that have vertices normals baked on to them additionally when setting the inverted outlines. By using this you can give hard-edged objects soft-edged outlines according to the baked normal maps.  
 
-When using baked normal maps, set UTS2’s outline setting properties to.  
+When using baked normal maps, set Unity Toon Shader’s outline setting properties to.  
 
 1. Outline Mode as **"Normal Direction"**
 2. Use Baked Normal for Outline as **"Active"**
@@ -1021,7 +967,7 @@ In normal situations, please set this to 0.
 
 ---
 ## 10. “DX11 Phong Tessellation Settings” Menu
-You can only use Tessellation on UTS2 with **Windows/DX11**.  
+You can only use Tessellation on Unity Toon Shader with **Windows/DX11**.  
 
 <img width = "500" src="../images/UTS2UI_10_00.png?raw=true">
 
@@ -1171,11 +1117,11 @@ Unless expressly provided otherwise, the Software under this license is made ava
 **HINT:** 
 We would like to ask you not to remove the header that states the license in each file.  
 
-**※If you decide to use it for your work** : When  you have finished your model or content that used UTS2, we would love to hear from you!!! Please tweet at  [Unity Technologies Japan](https://twitter.com/unity_japan) ! We look forward to hearing from you and seeing your amazing work!  
+**※If you decide to use it for your work** : When  you have finished your model or content that used Unity Toon Shader, we would love to hear from you!!! Please tweet at  [Unity Technologies Japan](https://twitter.com/unity_japan) ! We look forward to hearing from you and seeing your amazing work!  
 
 # Additional Note.  
 
-Tips on using UTS2  
+Tips on using Unity Toon Shader  
 
 ## １．Tips: Minimizing the artifacts that appear at the edge of each color when using system shadow.  
 
@@ -1230,8 +1176,8 @@ However, if you increase it too much, the shadow itself might be too far away fr
 ---
 ## ２．Tips: Minimizing light slips when using multiple real-time point lights  
 
-If there is somewhere that more than four real-time point light ranges overlap, the light that is on the model that has adapted to UTS2 might flip.  
-This is because the maximum number of real-time point lights is four for forward rendering in Unity. UTS2 also follows this.  
+If there is somewhere that more than four real-time point light ranges overlap, the light that is on the model that has adapted to Unity Toon Shader might flip.  
+This is because the maximum number of real-time point lights is four for forward rendering in Unity. Unity Toon Shader also follows this.  
 This video explains how to unflip the lights. You can also use this for standard shaders.  
 
 [![](https://img.youtube.com/vi/G5-alxDO0bs/0.png)](https://www.youtube.com/watch?v=G5-alxDO0bs)
@@ -1265,7 +1211,7 @@ If this symptom occurs, try one of the following procedures.
 
 1. Create a new project that contains an avatar and upload it again to VRChat.  
 
-2. From the project, delete the Toon folder in Assets that contains UTS2. Then reinstall UTS2 and upload it to VRChat again.  
+2. From the project, delete the Toon folder in Assets that contains Unity Toon Shader. Then reinstall Unity Toon Shader and upload it to VRChat again.  
 
 
 After performing items 1 or 2, if you try to upload again to the VRChat server, it has been reported that it works.  
@@ -1279,7 +1225,7 @@ It seems that the congestion of the VRChat server is probably related, so if som
 ※Screen shot provided：@nD_ntny  
 
 In rare cases, the Bloom effect included in the Post-Processing Stack (PPS) used in VRChat will be severely lit.  
-※ According to @nD_ntny, **this bug does not occur with UTS2 or Standard Shader**.  
+※ According to @nD_ntny, **this bug does not occur with Unity Toon Shader or Standard Shader**.  
 
 This seems to be a defect on the PPS side, but the phenomenon occurs when there are particles with a scale of 0 in the screen or parts with concentrated UVs in the screen. Depending on the angle of the camera, UVs can also occur at the moment when the plane is horizontal with respect to the camera. You should be careful with the scale as it is particularly prone to particle generation.  
 

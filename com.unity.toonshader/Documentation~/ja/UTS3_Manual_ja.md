@@ -1,16 +1,13 @@
-﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+﻿# Unity Toon Shader(Unity-Chan Toon Shader 3) マニュアル
+
 ***Read this document in other languages: [English](../en/UTS3_Manual_en.md)***  
 
 # もくじ
 - [【重要】旧バージョンから、直接v.2.0.7へバージョンアップをする場合の注意](./UTS3_Manual_ja.md#%E9%87%8D%E8%A6%81%E6%97%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89%E7%9B%B4%E6%8E%A5v207%E3%81%B8%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E3%82%92%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E6%B3%A8%E6%84%8F)
-- [ユニティちゃんトゥーンシェーダー 2.0 の紹介](./UTS3_Manual_ja.md#%E3%83%A6%E3%83%8B%E3%83%86%E3%82%A3%E3%81%A1%E3%82%83%E3%82%93%E3%83%88%E3%82%A5%E3%83%BC%E3%83%B3%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC-20-%E3%81%AE%E7%B4%B9%E4%BB%8B)
-  - [【開発環境】](./UTS3_Manual_ja.md#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83)
-  - [【ターゲット環境】](./UTS3_Manual_ja.md#%E3%82%BF%E3%83%BC%E3%82%B2%E3%83%83%E3%83%88%E7%92%B0%E5%A2%83)
-  - [【プロジェクト全体のダウンロード】](./UTS3_Manual_ja.md#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E5%85%A8%E4%BD%93%E3%81%AE%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89)
-  - [【インストールの仕方】](./UTS3_Manual_ja.md#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%AE%E4%BB%95%E6%96%B9)
-  - [【UTS2の基本的な設定の仕方】](./UTS3_Manual_ja.md#uts2%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E4%BB%95%E6%96%B9)
-- [UTS2各シェーダーの使い分け](./UTS3_Manual_ja.md#uts2%E5%90%84%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91)
+- [Unity Tonn Shader の紹介](./UTS3_Manual_ja.md#%E3%83%A6%E3%83%8B%E3%83%86%E3%82%A3%E3%81%A1%E3%82%83%E3%82%93%E3%83%88%E3%82%A5%E3%83%BC%E3%83%B3%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC-20-%E3%81%AE%E7%B4%B9%E4%BB%8B)
+  - [【動作環境】](./UTS3_Manual_ja.md#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83)
+ - [【Unity Toon Shaderの基本的な設定の仕方】](./UTS3_Manual_ja.md#uts2%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E4%BB%95%E6%96%B9)
+- [Unity Toon Shader各シェーダーの使い分け](./UTS3_Manual_ja.md#uts2%E5%90%84%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91)
   - [UnityChanToonShaderルートフォルダ内のシェーダー](./UTS3_Manual_ja.md#unitychantoonshader%E3%83%AB%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
   - [UnityChanToonShader/NoOutlineフォルダ内のシェーダー](./UTS3_Manual_ja.md#unitychantoonshadernooutline%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
     - [半透明マテリアル向けのTransparentシェーダー](./UTS3_Manual_ja.md#%E5%8D%8A%E9%80%8F%E6%98%8E%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E5%90%91%E3%81%91%E3%81%AEtransparent%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
@@ -20,12 +17,12 @@
   - [UnityChanToonShader/Helperフォルダ内のシェーダー](./UTS3_Manual_ja.md#unitychantoonshaderhelper%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC)
 - [サンプルシーン](./UTS3_Manual_ja.md#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B7%E3%83%BC%E3%83%B3)
 - [プロジェクトの初期設定](./UTS3_Manual_ja.md#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A)
-- [UTS2 設定メニュー：UTS2カスタムインスペクター](./UTS3_Manual_ja.md#uts2-%E8%A8%AD%E5%AE%9A%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BCuts2%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC)
-  - [1. UTS2の基本設定をおこなう「Basic Shader Settings」メニュー](./UTS3_Manual_ja.md#1-uts2%E3%81%AE%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%8A%E3%81%93%E3%81%AA%E3%81%86basic-shader-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
+- [Unity Toon Shader 設定メニュー：Unity Toon Shaderカスタムインスペクター](./UTS3_Manual_ja.md#uts2-%E8%A8%AD%E5%AE%9A%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BCuts2%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC)
+  - [1. Unity Toon Shaderの基本設定をおこなう「Basic Shader Settings」メニュー](./UTS3_Manual_ja.md#1-uts2%E3%81%AE%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%8A%E3%81%93%E3%81%AA%E3%81%86basic-shader-settings%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
     - [VRChatユーザー向けの便利機能について](./UTS3_Manual_ja.md#vrchat%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E5%90%91%E3%81%91%E3%81%AE%E4%BE%BF%E5%88%A9%E6%A9%9F%E8%83%BD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
-      - [『UTS2でマテリアル設定をはじめる時』](./UTS3_Manual_ja.md#uts2%E3%81%A7%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B%E6%99%82)
+      - [『Unity Toon Shaderでマテリアル設定をはじめる時』](./UTS3_Manual_ja.md#uts2%E3%81%A7%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B%E6%99%82)
         - [暗いワールドでのキャラの見え方を明るくしたい場合](./UTS3_Manual_ja.md#-%E6%9A%97%E3%81%84%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%81%A7%E3%81%AE%E3%82%AD%E3%83%A3%E3%83%A9%E3%81%AE%E8%A6%8B%E3%81%88%E6%96%B9%E3%82%92%E6%98%8E%E3%82%8B%E3%81%8F%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88)
-      - [『UTS2で設定したアバターをパブリッシュする時』](./UTS3_Manual_ja.md#uts2%E3%81%A7%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%9F%E3%82%A2%E3%83%90%E3%82%BF%E3%83%BC%E3%82%92%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B%E6%99%82)
+      - [『Unity Toon Shaderで設定したアバターをパブリッシュする時』](./UTS3_Manual_ja.md#uts2%E3%81%A7%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%9F%E3%82%A2%E3%83%90%E3%82%BF%E3%83%BC%E3%82%92%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B%E6%99%82)
   - [2.「Basic Three Colors and Control Maps Setups」メニュー](./UTS3_Manual_ja.md#2-basic-three-colors-and-control-maps-setups%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
     - [「NormalMap Settings」サブメニュー](./UTS3_Manual_ja.md#normalmap-settings%E3%82%B5%E3%83%96%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
     - [「Shadow Control Maps」サブメニュー](./UTS3_Manual_ja.md#shadow-control-maps%E3%82%B5%E3%83%96%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC)
@@ -72,7 +69,7 @@
     - [3-1.予期していない場所に影が出る](./UTS3_Manual_ja.md#%EF%BC%93%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AB%E5%AF%84%E3%81%9B%E3%82%89%E3%82%8C%E3%81%9F%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E4%BA%8B%E4%BE%8B%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%B3%95)
     - [3-2.VRChatサーバーにアバターをアップロードして、HMDで見たところ、左右の視差がずれている](./UTS3_Manual_ja.md#3-2-vrchat%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AB%E3%82%A2%E3%83%90%E3%82%BF%E3%83%BC%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%97%E3%81%A6hmd%E3%81%A7%E8%A6%8B%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E5%B7%A6%E5%8F%B3%E3%81%AE%E8%A6%96%E5%B7%AE%E3%81%8C%E3%81%9A%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B)
     - [3-3.VRChat上で、ブルームが酷く光ることがある](./UTS3_Manual_ja.md#3-3-vrchat%E4%B8%8A%E3%81%A7%E3%83%96%E3%83%AB%E3%83%BC%E3%83%A0%E3%81%8C%E9%85%B7%E3%81%8F%E5%85%89%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%82%E3%82%8B)
-- [全プロパティリスト](./UTS2_Props_ja.md)
+- [全プロパティリスト](./UTS3_Props_ja.md)
 ---
 ## 【重要】旧バージョンから、直接v.2.0.7へバージョンアップをする場合の注意
 * v.2.0.5以降は、そのままシェーダーのみ上書きアップデートをして大丈夫です。  
@@ -101,7 +98,7 @@
 
 <img width = "800" src="../images/0713-06_01.png?raw=true">
 
-ユニティちゃんトゥーンシェーダー 2.0（UTS2）では、従来の機能に加えて大幅な機能強化を行いました。  
+Unity Toon Shader（UTS3）では、従来の機能に加えて大幅な機能強化を行いました。  
 Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。  
 
 <img width = "800" src="../images/SS_SampleScene.png?raw=true">
@@ -117,7 +114,7 @@ Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルッ�
 デザイン上必要となる固定影の配置も、各影色ごとに発生する位置を設定できる「**ポジションマップ**」に加え、ライティングによって影の出やすさを変えることのできる「**シェーディンググレードマップ**」と、２種類の手法を選べます。  
 さらに「**瞳や眉毛の前髪への透過**」など、アニメ風キャラクター表現に便利な機能も搭載しています。  
 
-結果として、ユニティちゃんトゥーンシェーダー 2.0（UTS2）では、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
+結果として、Unity Toon Shader では、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
 もちろんUnityのシステムシャドウにも対応しています。  
 
 <img width = "800" src="../images/Comp_ST_UTS2.png?raw=true">
@@ -125,69 +122,35 @@ Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルッ�
 <img width = "800" src="../images/Comp_ST_UTS2_2.png?raw=true">
 
 
-さらにポストエフェクトを追加することで、物理ベースレンダリング（PBR）に対応するスタンダードシェーダーで表現できる絵的要素を、ユニティちゃんトゥーンシェーダー 2.0（UTS2）では、全てノンフォトリアリスティックレンダリング（NPR）で表現することが可能です。  
+さらにポストエフェクトを追加することで、物理ベースレンダリング（PBR）に対応するスタンダードシェーダーで表現できる絵的要素を、Unity Toon Sahder では、全てノンフォトリアリスティックレンダリング（NPR）で表現することが可能です。  
 
 また昨今のVRChatでのユーザーの声を反映し、様々なライティング設定の環境下でも、キャラクターが美しく表現されるように様々な工夫が実装されています。  
 
-是非、貴方のご自慢のキャラクターモデルをユニティちゃんトゥーンシェーダー 2.0（UTS2）で彩ってみてください。  
+是非、貴方のご自慢のキャラクターモデルを Unity Toon Shader で彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、ユニティちゃんトゥーンシェーダー 2.0の最新版 **UTS2 v.2.0.7** 向けに書かれています。  
+本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader 0.0.1 preview ** 向けに書かれています。  
 
 
-## 【開発環境】
-ユニティちゃんトゥーンシェーダー 2.0は、Unity5.6.3p1ベースで開発され、最新のUnity 2018.xでも表示できることを確認しています。  
-（ただしレガシーパイプラインのみで、現状はSRPには対応していません。）  
+##【動作環境】
+Unity Toon Shader は Unity 2019.4以降に対応しており、Legacy, Universal, HDRP に対応しています。
+それぞれのレンダーパイプラインで利用できる機能が異なりますので詳細は Feature Model をご確認ください。 [英語版](../en/FeatureModel_en.md)
 
-
-
-## 【ターゲット環境】
-Unity5.6.x もしくはそれ以降が必要です。Unity 2017.4 15f1 LTSでの動作確認済み。Unity 2018.1.0f2以降でも使用できます。  
-本パッケージは、Unity5.6.3p1で作成されています。  
-
-Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
+リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
 
 
-## 【プロジェクト全体のダウンロード】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
 
 
-## 【インストールの仕方】
-1. ユニティちゃんトゥーンシェーダー 2.0の配布プロジェクトを解凍し、フォルダ直下にある `UTS2_ShaderOnly_(バージョン名).unitypackage`というファイルを探します。  
-図の例では、`v2.0.6_Release`という部分がバージョン名になっています。  
-
-<img width = "600" src="../images/Explorer01.png?raw=true">
-
-2. ユニティちゃんトゥーンシェーダー 2.0をインストールしたい、Unityプロジェクトを開きます。  
-
-3. UnityのProjectウィンドウより、Assetsフォルダを開きます。  
-
-4. OSのExplorerやFinderから、`UTS2_ShaderOnly_(バージョン名).unitypackage`をUnityのProjectウィンドウ内のAssetsフォルダにドラッグ＆ドロップします。  
-
-<img width = "800" src="../images/DandD01.png?raw=true">
-
-5. Import Unity Packageウィンドウが開きますので、全てのファイルをImportします。  
-
-<img width = "600" src="../images/ImportWindow01.png?raw=true">
-
-6. するとAssets下にToonというフォルダができます。この中にユニティちゃんトゥーンシェーダー 2.0がインストールされてます。  
-
-<img width = "400" src="../images/ProjectWindow01.png?raw=true">
-
-7. 新規にマテリアルを作成し、Shaderドロップダウンから、UnityChanToonShaderという項目が見つかれば、インストールは成功しています。  
-
-<img width = "400" src="../images/NewShader01.png?raw=true">
-
-## 【UTS2の基本的な設定の仕方】
+## 【Unity Toon Shaderの基本的な設定の仕方】
 
 例として、以下のムービーを参考に、シェーダーボール上で肌色のマテリアルを設定してみましょう。  
 
 [![](https://img.youtube.com/vi/z7Pr39NW5Dk/0.png)](https://www.youtube.com/watch?v=z7Pr39NW5Dk)
 
 
-またUTS2初心者の方は、いきなり全ての機能を使ってみようとするのではなく、まず「基本色と１影色の段階（Step）とぼかし（Feather）だけで絵作りをする」という練習をやってみるといいでしょう。  
-これらのUTS2での基本の絵作りに十分慣れてから、徐々にリムライトなどを追加し、必要だったら２影色を加えるようにするのが取得のコツです。  
+また Unity Toon Shader 初心者の方は、いきなり全ての機能を使ってみようとするのではなく、まず「基本色と１影色の段階（Step）とぼかし（Feather）だけで絵作りをする」という練習をやってみるといいでしょう。  
+これらの Unity Toon Shader での基本の絵作りに十分慣れてから、徐々にリムライトなどを追加し、必要だったら２影色を加えるようにするのが取得のコツです。  
 是非、以下のムービーを参考に練習をしてみてください。  
 
 [![](https://img.youtube.com/vi/8cIR5pfRihA/0.png)](https://www.youtube.com/watch?v=8cIR5pfRihA)
@@ -272,20 +235,9 @@ UTS2 v.2.0.7を使って、カスタムレンダーキューを各マテリア�
 また主に「髪の毛」パーツに使われるシェーダーなので、ステンシルで抜かれる側である`StencilOut`系のシェーダーが付属しています。  
 
 
-## ●UnityChanToonShader/Mobileフォルダ内のシェーダー
-
-<img width = "800" src="../images/UTS2_Mobile.png?raw=true">
-
-`Mobile`フォルダ内には、モバイルやVRコンテンツ向けに、ほぼルックが替わらない程度に軽量化したシェーダーが入ってます。  
-モバイル版では、軽量化のために以下の仕様に制限しています。  
-
 * **リアルタイムディレクショナルライト１灯のみ**の対応に制限しています（**複数のライトや、リアルタイムポイントライトには反応しません**）。  
 * ポイントライトへは、ベイク済みポイントライト＋[ライトプローブ](https://docs.unity3d.com/ja/current/Manual/LightProbes-MovingObjects.html)の組み合わせで対応します。その場合、`GI_Intensity` を適度に調整する必要があります。  
 
-通常版`Toon_DoubleShadeWithFeathe`系、`Toon_ShadingGradeMap`系各シェーダーとはプロパティ互換がありますので、上記機能で十分な場合、通常版と同名のMobile版シェーダーに切り替えるとレンダリングパフォーマンスが向上します。  
-
-`Mobile/AngelRing`フォルダ内には、「天使の輪」機能に対応したモバイル版シェーダーが入っています。  
-各シェーダーの基本機能は、通常版の同名のものと同じです。  
 
 
 ## ●UnityChanToonShader/Tessellationフォルダ内のシェーダー
@@ -328,12 +280,12 @@ Phong テッセレーションを利用することで、アウトラインの�
 * ToonShader_Emissive.unity	：エミッシブを使ったシェーダー設定  
 * ToonShader_Firefly.unity	：複数のリアルタイムポイントライト  
 * Baked Normal\Cube_HardEdge.unity：Baked Normalの参考  
-* Sample\Sample.unity		：UTS2の基本シェーダーの紹介  
-* ShaderBall\ShaderBall.unity：シェーダーボールを使ってUTS2を設定する  
+* Sample\Sample.unity		：Unity Toon Shaderの基本の紹介  
+* ShaderBall\ShaderBall.unity：シェーダーボールを使ってUnity Toon Shaderを設定する  
 * PointLightTest\PointLightTest.unity：ポイントライトを使ったセルルック表現のサンプル  
 * SSAO Test\SSAO.unity		：SSAO in PPSのテスト用  
-* NormalMap\NormalMap.unity	：UTS2でノーマルマップを使う際のコツ  
-* LightAndShadows\LightAndShadows.unity：スタンダードシェーダーとUTS2との比較  
+* NormalMap\NormalMap.unity	：Unity Toon Shaderでノーマルマップを使う際のコツ  
+* LightAndShadows\LightAndShadows.unity：スタンダードシェーダーとUnity Toon Shaderとの比較  
 * AngelRing\AngelRing.unity：「天使の輪」および ShadingGradeMap を使ったキャラクターのサンプル  
 * MatCapMask\MatCapMask.unity：MatcapMaskのサンプル  
 * EmissiveAnimation\EmisssiveAnimation.unity：EmissiveAnimationのサンプル  
@@ -351,28 +303,28 @@ File>Build Settings>Player Settings... より
 * Rendering Path⇒`Forward`  
 * Color Space⇒`Linear`  
 
-を推奨します。リニアカラーの時、UTS2は最大限の能力を発揮できます。  
+を推奨します。リニアカラーの時、Unity Toon Shaderは最大限の能力を発揮できます。  
 
 <img width = "400" src="../images/0801-12_07.png?raw=true">
 
 
 
-# UTS2 設定メニュー：UTS2カスタムインスペクター
+# Unity Toon Shader 設定メニュー：Unity Toon Shader　カスタムインスペクター
 
-ここからは、UTS2 の各機能を設定するユーザーインタフェース「**UTS2カスタムインスペクター**」の機能解説をします。  
+ここからは、UTS2 の各機能を設定するユーザーインタフェース「**Unity Toon Shaderカスタムインスペクター**」の機能解説をします。  
 
 <img width = "400" src="../images/UTS2UI_Standard.png?raw=true">
 
-UTS2カスタムインスペクターは、`Show All Properties` ボタンをクリックすることで、旧来のプロパティリスト型のインスペクターに切り替えることができます。  
+Unity Toon Shader カスタムインスペクターは、`Show All Properties` ボタンをクリックすることで、旧来のプロパティリスト型のインスペクターに切り替えることができます。  
 
 <img width = "400" src="../images/UTS2UI_AllProperties.png?raw=true">
 
-プロパティリスト型の機能解説は[こちら](./UTS2_Props_ja.md)です。
+プロパティリスト型の機能解説は[こちら](./UTS3_Props_ja.md)です。
 プロパティリスト型のインスペクターは、`Change CustomUI` ボタンで元に戻すことができます。
 
 
 ---
-## 1. UTS2の基本設定をおこなう「Basic Shader Settings」メニュー
+## 1. Unity Toon Shader の基本設定をおこなう「Basic Shader Settings」メニュー
 <img width = "500" src="../images/UTS2UI_01_00.png?raw=true">
 
 こちらのメニューでは、UTS2の基本設定をおこなう他、ステンシルバッファのリファレンスナンバーを設定したり、カリング方式を設定したり、各クリッピングシェーダーでどのようなマスクを設定するか指定できます。  
@@ -414,9 +366,9 @@ UTS2は、Unityの様々なプロジェクトで使うことのできる、汎�
 
 上の図で、赤い囲み内のボタンがそれに当たります。これらのボタンを使用するタイミングは２つあります。  
 
-#### 『UTS2でマテリアル設定をはじめる時』
-UTS2で各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`VRChat Recommendation`ボタンを実行してください。  
-このコマンドを実行することで、VRChatの様々なライティング環境にUTS2を馴染みやすくします。  
+#### 『Unity Toon Shader でマテリアル設定をはじめる時』
+Unity Toon Shader で各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`Game Recommendation`ボタンを実行してください。  
+このコマンドを実行することで、Gameなどの様々なライティング環境にUnity Toon Shader を馴染みやすくします。  
 VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
 
 ##### ● 暗いワールドでのキャラの見え方を明るくしたい場合
@@ -431,23 +383,23 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 そのようなワールドで**Unlit Intensityの値をデフォルトの1以上にすると、ブルームの影響も受けやすくなります**ので、十分に注意してください。  
 
 
-#### 『UTS2で設定したアバターをパブリッシュする時』
-UTS2で各マテリアルを設定したアバターをVRChatに公開する前に、Basic Shader Settings > Option Menu内の`Remove Unused Keywords/Properties from Material`ボタンを実行してください。  
+#### 『Unity Toon Shader で設定したアバターをパブリッシュする時』
+Unity Toon Shader で各マテリアルを設定したアバターをVRChatに公開する前に、Basic Shader Settings > Option Menu内の`Remove Unused Keywords/Properties from Material`ボタンを実行してください。  
 このコマンドを実行することで、Unityで作業している途中で各マテリアルファイル内に溜まる未使用のプロパティ設定値やシェーダーキーワードを、整理し削除することができます。  
-例えば、Standard Shaderを最初割り当ててあったマテリアルから、シェーダーをUTS2のものに変えただけでも、これらの未使用の値は溜まっていきます。これらの未使用の値は、次にシェーダーを再度Standard Shaderに切り替える時のために、Unityが念のために保持しているものなのですが、マテリアルが完成しそれらを適用したアバターやモデルを公開する時には、不要になります。  
+例えば、Standard Shaderを最初割り当ててあったマテリアルから、シェーダーを　Unity Toon Shader のものに変えただけでも、これらの未使用の値は溜まっていきます。これらの未使用の値は、次にシェーダーを再度Standard Shaderに切り替える時のために、Unityが念のために保持しているものなのですが、マテリアルが完成しそれらを適用したアバターやモデルを公開する時には、不要になります。  
 これらの使われない値が各マテリアルに入ったままだと、システムに不要な負荷を与える可能性も考えられますので、アバターを公開するタイミングで整理しておくのが推奨されます。  
 このコマンドは、ご自身のプロジェクトをビルドする際にも使うといいでしょう。  
 
 <img width = "400" src="../images/ShaderKeywords.png?raw=true">
 
-コマンドを実行すると、UTS2マテリアルの場合、残っているシェーダーキーワードは、`_EMISSIVE_SIMPLE` / `_EMISSIVE_ANIMATION`のいずれかと、`_OUTLINE_NML` / `_OUTLINE_POS`のいずれかの２つに最適化されます。これらはシェーダーコンパイル時に必要なので、そのまま残しておいてください。  
+コマンドを実行すると、Unity Toon Shader マテリアルの場合、残っているシェーダーキーワードは、`_EMISSIVE_SIMPLE` / `_EMISSIVE_ANIMATION`のいずれかと、`_OUTLINE_NML` / `_OUTLINE_POS`のいずれかの２つに最適化されます。これらはシェーダーコンパイル時に必要なので、そのまま残しておいてください。  
 
 
 ---
 ## 2. 「Basic Three Colors and Control Maps Setups」メニュー
 <img width = "500" src="../images/UTS2UI_02_00.png?raw=true">
 
-このメニューでは、UTS2の基本となる、基本色/１影色/２影色に用いるカラーを定義します。  
+このメニューでは、Unity Toon Shader の基本となる、基本色/１影色/２影色に用いるカラーを定義します。  
 これらのカラーは、**光源方向から順に、基本色⇒１影色⇒２影色**のように配置されます。  
 おのおののカラーは、テクスチャの各ピクセルに対して各カラーを乗算し、さらにライトカラーを乗算することで決まります。  
 **※ヒント：各影色は、基本色よりも暗い必要はありませんし、２影色が１影色よりも明るくても問題ありません。特に２影色を１影色よりも明るくすると、環境からの照り返しのような表現ができます。**  
@@ -536,7 +488,7 @@ UTS2で各マテリアルを設定したアバターをVRChatに公開する前�
 | `Blur Level of ShadingGradeMap` | Mip Map機能を利用して、Shading Grade Mapをぼかします。Mip Mapを有効にするためには、テクスチャインポートセッティングで、Advanced > `Generate Mip Maps` を `ON` にしてください。デフォルトは0（ぼかさない）です。 | _BlurLevelSGM |
 
 ### 【シェーディンググレードマップとは？】
-UTS2の標準シェーダーは、`Toon_DoubleShadeWithFeather.shader`という系統になりますが、その標準シェーダーの機能を元にシェーディンググレードマップというグレースケールのマップを使うことで、さらに影の掛かり方をUV座標単位で制御できるように拡張したシェーダーが、`Toon_ShadingGradeMap`系統のシェーダーです。  
+Unity Toon Shader の標準シェーダーは、`Toon_DoubleShadeWithFeather.shader`という系統になりますが、その標準シェーダーの機能を元にシェーディンググレードマップというグレースケールのマップを使うことで、さらに影の掛かり方をUV座標単位で制御できるように拡張したシェーダーが、`Toon_ShadingGradeMap`系統のシェーダーです。  
 
 <img width = "800" src="../images/0122-06_04.png?raw=true">
 
@@ -913,7 +865,7 @@ Unity上でαチャンネルを有効にするためには、各テクスチャ�
 ## 9.「Outline Settings」メニュー
 <img width = "500" src="../images/UTS2UI_09_00.png?raw=true">
 
-UTS2では、アウトライン機能として、**マテリアルベースのオブジェクト反転方式のアウトライン**を採用しています。  
+Unity Toon Shader では、アウトライン機能として、**マテリアルベースのオブジェクト反転方式のアウトライン**を採用しています。  
 この方式を簡単に説明すると、シェーダーで元のオブジェクトよりも少し大きめのオブジェクトを面法線だけ反転して生成します。  
 新たに生成したアウトライン用オブジェクトには、フロントカリングで描画されますので、元よりも少し大きめに生成したぶんだけ、それが元のオブジェクトによって上書きされると、はみ出した部分がアウトラインのように見えるというものです。  
 この方式は比較的軽い上に調整が楽にできるので、ゲーム用のアウトラインとして伝統的に使われてきました。  
@@ -960,13 +912,13 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 
 ---
 ### ●オブジェクト反転方式アウトラインを補う：**UTS_EdgeDetection**
-UTS2で採用されているオブジェクト反転方式のアウトラインは、古くから使われている技術ですが、高いリアルタイム性が求められるゲームでは、今でも使われています。  
+Unity Toon Shader で採用されているオブジェクト反転方式のアウトラインは、古くから使われている技術ですが、高いリアルタイム性が求められるゲームでは、今でも使われています。  
 その一方で、昨今ではマシンパワーもあがりましたので、これらのマテリアルベースアウトラインに加えて、カメラ側にアタッチするポストプロセスエフェクト型のアウトラインも同時に使われるようになりました。  
 両者は補完関係にあるので、両者を適宜組み合わせることで、さらに綺麗なアウトラインが得られます。  
 
 <img width = "800" src="../images/UT2018_UTS2_SuperTips_23.png?raw=true">
 
-UTS2にもオブジェクト反転方式アウトラインと組み合わせて使う、**UTS_EdgeDetection**と呼ばれるポストエフェクトが付属しています。  
+Unity Toon Shader にもオブジェクト反転方式アウトラインと組み合わせて使う、**UTS_EdgeDetection**と呼ばれるポストエフェクトが付属しています。  
 UTS_EdgeDetectionをメインカメラにアタッチすることで、UTS2のオブジェクト反転方式アウトラインがさらに綺麗になります。  
 
 <img width = "800" src="../images/UTS_EdgeDitectionV1.png?raw=true">
@@ -988,7 +940,7 @@ Sobel Color Filterを使うことで、効果的にトゥーンラインエッ�
 ### ●ベイクした頂点法線を転写する：**Baked Normal for Outline**  
 頂点法線を焼き付けたノーマルマップを、法線反転アウトラインの設定時に追加的に読み込むことができるようになりました。本機能を使うことで、ハードエッジのオブジェクトに、ソフトエッジのオブジェクトのアウトラインを、事前にベイクしたノーマルマップを経由して適用することができるようになります。  
 
-Baked Normalマップを使用する時には、UTS2のアウトライン設定メニューで、  
+Baked Normalマップを使用する時には、Unity Toon Shader のアウトライン設定メニューで、  
 1.  Outline Mode を **"Normal Direction"** に  
 2.  Use Baked Normal for Outline を **"Active"** に  
 3.  Baked Normal for Outline に使用したいマップを適用します。 
@@ -1015,7 +967,7 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 
 ---
 ## 10.「DX11 Phong Tessellation Settings」メニュー
-UTS2のテッセレーション機能は、**Windows/DX11環境でのみ**使用できます。  
+Unity Toon Shader のテッセレーション機能は、**Windows/DX11環境でのみ**使用できます。  
 
 <img width = "500" src="../images/UTS2UI_10_00.png?raw=true">
 
@@ -1062,7 +1014,7 @@ Light版とあるものは、ライトをディレクショナルライト１灯
 
 <img width = "500" src="../images/UTS2UI_12_00.png?raw=true">
 
-本メニューには、シーン内の環境光設定（Skybox、Gradient、ColorなどのEnvironment Lighting）やライトプローブに対して、UTS2がどの程度反応をするか調整したり、リアルタイムディレクショナルライトがない環境で起動するシェーダービルトインライトの明るさを調整をするアイテムが含まれています。  
+本メニューには、シーン内の環境光設定（Skybox、Gradient、ColorなどのEnvironment Lighting）やライトプローブに対して、Unity Toon Shader がどの程度反応をするか調整したり、リアルタイムディレクショナルライトがない環境で起動するシェーダービルトインライトの明るさを調整をするアイテムが含まれています。  
 また**VRChatユーザーに便利な機能**である、**SceneLights Hi-Cut Filter**のような白飛び防止機能のON/OFFも、このメニューからコントロールすることが可能です。  
 
 <img width = "500" src="../images/UTS2UI_12_01.png?raw=true">
@@ -1166,10 +1118,10 @@ https://github.com/unity3d-jp/AlembicImporter
 **※ヒント：** 
 各ファイルのヘッダー部には、ライセンス表記がありますので、そちらは修正しないでそのまま同梱することをお願いします。  
 
-**※コンテンツに採用した場合** ：UTS2を使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
+**※コンテンツに採用した場合** ：Unity Toon Shader を使ったステキなモデルやコンテンツができましたら、是非、[Unity Technologies Japan](https://twitter.com/unity_japan)にまでご連絡ください。皆さんの力作のご報告を、スタッフ一同、楽しみに待ってます！  
 
 # おまけ  
-UTS2を使う上で便利なTipsを紹介します。  
+Unity Toon Shader を使う上で便利なTipsを紹介します。  
 
 ## １．Tips:システムシャドウ使用時に、各色の境界に生じるアーティファクトの軽減法  
 
@@ -1222,9 +1174,9 @@ UTS2を使う上で便利なTipsを紹介します。
 ---
 ## ２．Tips:リアルタイムポイントライトを複数使う時のライトフリップの軽減法  
 
-シーン内に4つ以上のリアルタイムポイントライトのレンジが重なっている場所がある場合、UTS2を適用したモデルに当たるライトがフリップすることがあります。  
-これは、「フォワードレンダリングでは、リアルタイムポイントライトは4つまで」というUnityの制限に基づく現象で、UTS2でも仕様となります。  
-本ムービーでは、そのようなフリップ現象をなくす方法を紹介します。こちらはUTS2だけでなく、Stadard Shaderなどでもそのまま使えます。  
+シーン内に4つ以上のリアルタイムポイントライトのレンジが重なっている場所がある場合、Unity Toon Shader を適用したモデルに当たるライトがフリップすることがあります。  
+これは、「フォワードレンダリングでは、リアルタイムポイントライトは4つまで」というUnityの制限に基づく現象で、Unity Toon Shader でも仕様となります。  
+本ムービーでは、そのようなフリップ現象をなくす方法を紹介します。こちらはUnity Toon Shader だけでなく、Stadard Shaderなどでもそのまま使えます。  
 
 [![](https://img.youtube.com/vi/G5-alxDO0bs/0.png)](https://www.youtube.com/watch?v=G5-alxDO0bs)
 
@@ -1259,7 +1211,7 @@ DCCツールにMayaを使っている場合には、滅多に発生しません�
 
 1. アバターが含まれるプロジェクトを新規に作成し直して、再度VRChatにアップロードする。  
 
-2. プロジェクトから、UTS2が入っているAssets内のToonフォルダを削除する。続いて、UTS2をインストールし直してから、再度VRChatにアップロードする。  
+2. プロジェクトから、Unity Toon Shader が入っているAssets内のToonフォルダを削除する。続いて、Unity Toon Shader をインストールし直してから、再度VRChatにアップロードする。  
 
 
 1もしくは2の手順を行った後で、VRChatサーバへ再度アップロードを試みると、上手くいくとの報告を受けています。  
