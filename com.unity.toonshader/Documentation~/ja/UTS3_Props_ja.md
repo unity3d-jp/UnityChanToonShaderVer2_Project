@@ -2,10 +2,10 @@
 
 ***Read this document in other languages: [English](../UTS3_Props_en.md)***  
 
-# Unity Toon Shader のプロパティ解説
+# Unity Toon Shader の各プロパティ解説
 
-ここからは、UTS2各シェーダーに含まれるプロパティについて、上から順に機能ブロックごとに解説します。  
-全てのUTS2シェーダーで、プロパティの名前が同じならば機能は同じです。  
+ここからは、Unity Toon Shader に含まれるプロパティについて、上から順に機能ブロックごとに解説します。  
+全てのUnity Toon Shaderで、プロパティの名前が同じならば機能は同じです。  
 
 <img width = "400" src="../images/UI_Toon_DoubleShadeWithFeather.png?raw=true">
 
