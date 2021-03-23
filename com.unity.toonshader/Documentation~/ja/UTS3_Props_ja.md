@@ -1,8 +1,8 @@
-﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
-***Read this document in other languages: [English](../UTS2_Props_en.md)***  
+﻿# Unity Toon Shader(ユニティちゃんトゥーンシェーダー 3)  release 0.0.1 preview マニュアル
 
-# UTS2各シェーダーのプロパティ解説
+***Read this document in other languages: [English](../UTS3_Props_en.md)***  
+
+# Unity Toon Shader のプロパティ解説
 
 ここからは、UTS2各シェーダーに含まれるプロパティについて、上から順に機能ブロックごとに解説します。  
 全てのUTS2シェーダーで、プロパティの名前が同じならば機能は同じです。  

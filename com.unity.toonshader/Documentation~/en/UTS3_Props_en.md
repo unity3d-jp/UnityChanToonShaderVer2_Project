@@ -1,8 +1,8 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
-***Read this document in other languages: [日本語版](ja/UTS2_Props_ja.md)***  
+# Unity Toon Shader( Unity-Chan Toon Shader 3) release 0.0.1 preview  Manual
 
-# The Various Properties of UTS2 Shader  
+***Read this document in other languages: [日本語版](ja/UTS3_Props_ja.md)***  
+
+# The Various Properties of Unity Toon  Shader  
 
 The following table is an explanation of the properties found in each UTS2 shader, in order by feature block.  
 For all UTS2 shaders, if the property name is the same, then they also function the same.  
