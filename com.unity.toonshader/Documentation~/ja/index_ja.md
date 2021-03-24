@@ -1,11 +1,11 @@
 # Unity Toon Shader 0.0.2-preview マニュアル
 ***Read this document in [English](../en/index.md)***  
 
-[![](../Images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
-<img width = "800" src="../Images/CRS03.png">
-[![](../Images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
-<img width = "800" src="../Images/TPK_04.png">
-<img width = "800" src="../Images/HiUni01.png">
+[![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
+<img width = "800" src="../images/CRS03.png">
+[![](../images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
+<img width = "800" src="../images/TPK_04.png">
+<img width = "800" src="../images/HiUni01.png">
 
 # Unity Toon Shader とは？
 **Unity Toon Shader (ユニティちゃんトゥーンシェーダー 3.0)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、Unity Toon Shader の最大の特長です**。  
@@ -16,21 +16,21 @@
 # Unity Toon Shader の紹介
 Unity Toon Shader は、セルルック3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_10.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_10.png">
 
 セルルック3DCGアニメーションの制作現場向けの設計になっていますので、いわゆる「影」は色設計担当者が作成しやすいような「影色設定」を使う方式であり、かつ各パーツの形状（フォルム）を強調する「影」や、キャラクターのデザイン上、光源の位置や強さとは関係なく、必ず必要となる「影」が出しやすいように設計されています。  
 
 特にこれら「影」の調整機能は強力で、多数のライトを使わなくてもシェーダー内のスライダーだけで調整することが可能です。  
 
-<img width = "800" src="../Images/SS_SampleScene.png">
+<img width = "800" src="../images/SS_SampleScene.png">
 
 カラーやテクスチャは、「**基本色（ベースカラー）**」、「**１影色**」、「**２影色**」による３色塗り分けに加えて、「**ハイカラー**」や「**リムライト**」、「**MatCap**（スフィアマッピング）」、「**エミッシブ**（自己発光）」などの沢山のオプションを追加することができます。  
 
-<img width = "600" src="../Images/UTS2_TopImage03.gif">
+<img width = "600" src="../images/UTS2_TopImage03.gif">
 
 また各カラー間のぼかし加減も、Unity上でリアルタイムに調整することが可能となっています。  
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_13.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_13.png">
 
 デザイン上必要となる固定影の配置も、各影色ごとに発生する位置を設定できる「**ポジションマップ**」に加え、ライティングによって影の出やすさを変えることのできる「**シェーディンググレードマップ**」と、２種類の手法を選べます。  
 さらに「**瞳や眉毛の前髪への透過**」などに使われる「**ステンシル機能**」のような、アニメ風キャラクター表現に便利な機能も搭載しています。  
@@ -38,9 +38,9 @@ Unity Toon Shader は、セルルック3DCGアニメーションの制作現場�
 結果として、Unity Toon Shader では、セルルックから始まり、ラノベ風のイラスト表現まで幅広いキャラクター表現が可能となっています。  
 もちろんUnityのシステムシャドウにも対応しています。  
 
-<img width = "800" src="../Images/URP_image037.png">
+<img width = "800" src="../images/URP_image037.png">
 
-<img width = "800" src="../Images/URP_image038.png">
+<img width = "800" src="../images/URP_image038.png">
 
 さらに物理ベースレンダリング（PBR）に対応するUniversal Render Pipline/Litシェーダーで表現できる絵的要素を、Unity Toon Shaderでは、全てノンフォトリアリスティックレンダリング（NPR）で表現することが可能です。  
 
@@ -56,36 +56,36 @@ UUnity Toon Shaderは、マテリアルインスペクターの**Shaders**メニ
 
 1. Projectウィンドウの「＋」メニューを開き、「Material」を選択し、新規マテリアルを作成します。  
 
-<center><img width = "300" src="../Images/URP_image000.png"></center>
+<center><img width = "300" src="../images/URP_image000.png"></center>
 
 2. 作成した新規マテリアルを選択します。インスペクターを見ると、現在「Universal Render Pipeline/Lit」シェーダーが割り当てられています。  
 
-<center><img width = "300" src="../Images/URP_image001.png"></center>
+<center><img width = "300" src="../images/URP_image001.png"></center>
 
 3. インスペクターの「Shaders」メニューを開き、Shadersウィンドウより「Universal Render Pipeline」を選択し、さらに「Toon」を選択します。  
 
-<center><img width = "600" src="../Images/URP_image002.png"></center>
+<center><img width = "600" src="../images/URP_image002.png"></center>
 
 4. マテリアルのシェーダーが変更されます。インスペクターより「Universal Render Pipeline/Toon」が割り当てられていることを確認します。初期状態ではもっとも基本的なUTS2シェーダーである、「Double Shade With Feather」ワークフローが割り当てられます。  
 
-<center><img width = "300" src="../Images/URP_image003.png"></center>
+<center><img width = "300" src="../images/URP_image003.png"></center>
 
 
 ## 【統合シェーダーとしての Unity Toon Shader】
 レガシーパイプライン版のUTS2は、機能別に複数のシェーダーに別れていました。  
 
-<img width = "480" src="../Images/UTS2_Standard.png">
+<img width = "480" src="../images/UTS2_Standard.png">
 
 Unity Toon Shaderは統合型シェーダー（ウーバーシェーダー）として再設計されましたので、全ての機能を１つのシェーダーでまかなうことが可能となりました。  
 
-<img width = "300" src="../Images/URP_image006.png">
+<img width = "300" src="../images/URP_image006.png">
 
 全ての機能は、マテリアルインスペクターより必要なものを呼び出して使用します。  
 
 ### ● ワークフローモードの切り替え
 UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シェーダーと、その高機能版である「ShadingGradeMap」シェーダーが存在します。この２つのシェーダーの切り替えは、Unity Toon Shaderでは、マテリアルインスペクターのほぼトップにある「Workflow Mode」より選択します。  
 
-<img width = "400" src="../Images/URP_image004.png">
+<img width = "400" src="../images/URP_image004.png">
 
 デフォルトは「DoubleShadeWithFeather」です。２つのワークフローの違いは、後に解説します。  
 
@@ -93,7 +93,7 @@ UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シ
 「ステンシル機能」や「様々なカットアウト機能」、「半透明機能」など、従来はそれぞれの機能の組み合わせに応じてUTS2シェーダー自体を切り替える必要があった「特殊機能」に関しては、全て「Basic Shader Settings」メニュー下に動作モードとしてまとめられています。  
 ユーザーは欲しい機能を、各動作モードを有効にすることで、自由に組み合わせることができます。  
 
-<img width = "400" src="../Images/URP_image005.png">
+<img width = "400" src="../images/URP_image005.png">
 
 各動作モードに関しては、後に解説します。  
 
@@ -103,19 +103,19 @@ UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シ
 
 レガシーパイプライン版でシェーダーファイルに応じて切り替えていた「ステンシル」や「カットオフ」などの特殊機能に関しては、上の手順で「Basic Shader Settings」メニューより、必要な特殊機能の動作モードを有効にしてください。  
 
-<img width = "800" src="../Images/URP_image007.png">
+<img width = "800" src="../images/URP_image007.png">
 
 <center><small>↑ ユニバーサルレンダーパイプラインの環境下では、レガシーパイプライン版のUTS2マテリアルは、左図のように正常にレンダリングされないが、「Universal Render Pipeline/Toon」にシェーダーを切り替えると、正常に表示されるようになる。</small></center>  
 
 ## 【ワークフローモードの選択】
 
-<img width = "400" src="../Images/URP_image008.png">
+<img width = "400" src="../images/URP_image008.png">
 
 Unity Toon Shader には、大きく分けて2つのワークフローモードがあります。  
 * `DoubleShadeWithFeather` : Unity Toon Shaderの標準ワークフローモードです。2つの影色（Double Shade Colors）と、各々のカラーの境界にぼかし（Feather）を入れることができます。  
 * `ShadingGradeMap` : 高機能版のワークフローモードです。DoubleShadeWithFeatherの機能に加えて、ShadingGradeMapという強力なシャドウコントロールマップを持つことができます。  
 
-<img width = "800" src="../Images/URP_image035.png">
+<img width = "800" src="../images/URP_image035.png">
 
 
 
@@ -128,7 +128,7 @@ Unity Toon Shader には、大きく分けて2つのワークフローモード�
 
 レガシーパイプライン版のUTS2において、`Transparent`、`StencilMask`、`StencilOut`、`Clipping`、`TransClipping`のようなサフィックス名で区別されていた各シェーダー別の特殊機能は、Unity Toon Shaderでは「Basic Shder Settings」の各特殊機能の動作モードから有効にできます。  
 
-<img width = "800" src="../Images/URP_image009.png">
+<img width = "800" src="../images/URP_image009.png">
 
 動作モードから基本となるシェーダーに追加できる特殊機能は、以下の3つです。  
 1. Transparent Shader：半透明機能を基本シェーダーに追加
@@ -139,7 +139,7 @@ Unity Toon Shader には、大きく分けて2つのワークフローモード�
 
 ---
 ### Transparent Shader
-<img width = "400" src="../Images/URP_image010.png">
+<img width = "400" src="../images/URP_image010.png">
 
 `Transparent Mode`を`On`にすることで、半透明マテリアル向けのシェーダーになります。この時、必ずTransClipping機能が有効になります。  
 
@@ -149,7 +149,7 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 ---
 ### StencilMask or StencilOut Shader
-<img width = "400" src="../Images/URP_image011.png">
+<img width = "400" src="../images/URP_image011.png">
 
 `Stencil Mode`を設定することで、ステンシル機能を追加します。ステンシル機能を使うことで、アニメ＆イラスト表現でしばしば使われる「前髪を透過する眉毛」のような表現ができるようになります。  
 
@@ -157,11 +157,11 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 2. `StencilOut` : 透過される側のパーツに割り当てるマテリアルで設定します。必ず`StencilMask`マテリアルとペアで使います。下の例だと、「眉毛」パーツを透過させる側である「前髪」パーツに使用するマテリアルで使用します。  
 3. `StencilMask` : 透過する側のパーツに割り当てるマテリアルで設定します。必ず`StencilOut`マテリアルとペアで使います。下の例だと、「眉毛」パーツのマテリアルに割り当てます。常に「前髪」パーツよりも前面に表示されるようになります。  
 
-<img width = "800" src="../Images/URP_image036.png">
+<img width = "800" src="../images/URP_image036.png">
 
 ---
 ### Clipping Shader および TransClipping Shader
-<img width = "800" src="../Images/URP_image012.png">
+<img width = "800" src="../images/URP_image012.png">
 
 `Clipping Mode`もしくは、`Trans Clipping`から各機能を有効にすることで、基本シェーダー機能にクリッピングマスクを持たせることができます。クリッピングマスクを使うことで、「テクスチャの抜き」（カットアウトやディゾルブ）ができるようになります。  
 
@@ -224,8 +224,8 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 「Unity Toon Shaderカスタムインスペクター」（下図左）は、`Show All Properties` ボタンをクリックすることで、旧来の「プロパティリスト型インスペクター」（下図右）に切り替えることができます。  
 
-<img width = "300" src="../Images/URP_image033.png">
-<img width = "300" src="../Images/URP_image034.png">
+<img width = "300" src="../images/URP_image033.png">
+<img width = "300" src="../images/URP_image034.png">
 
 プロパティリスト型の機能解説は[こちら](Props_ja.md)です。
 プロパティリスト型のインスペクターは、`Change CustomUI` ボタンで元に戻すことができます。  
@@ -234,7 +234,7 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 ---
 ## 1. 「Basic Shader Settings」メニュー
 
-<img width = "400" src="../Images/URP_image013.png">
+<img width = "400" src="../images/URP_image013.png">
 
 こちらのメニューでは、Unity Toon Shader の基本設定をおこないます。  
 基本となる2つのワークフローモードを選択する他にも、様々な動作モードをオン/オフにすることで、基本となるシェーダーに多彩な特殊機能を追加できます。  
@@ -278,7 +278,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 `VRChat Recommendation`ボタンを実行した後で、主にポイントライトしかない暗いワールドでのキャラの見え方を、もっと明るめに調整したい場合があります。  
 その場合、「Environmental Lighting Contributions Setups」メニュー内の`Unlit Intensity`スライダーを調整することで、暗い場所での明るさを底上げすることができます。  
 
-<img width = "300" src="../Images/Unlit_Intensity_Comp.gif">
+<img width = "300" src="../images/Unlit_Intensity_Comp.gif">
 
 <small>【**ヒント**】：Unlit Intensityは、周りの明るさを考慮しつつ、暗い場所でのマテリアルの明るさをブーストする機能ですので、元々の環境光が暗めに設定されているワールドで極端に明るくすることはできません。  
 
@@ -287,7 +287,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 ---
 ## 2. 「Basic Three Colors and Control Maps Setups」メニュー
 
-<img width = "400" src="../Images/URP_image014.png">
+<img width = "400" src="../images/URP_image014.png">
 
 このメニューでは、Unity Toon Shaderの基本となる、基本色/１影色/２影色に用いるカラーを定義します。  
 これらのカラーは、**光源方向から順に、基本色⇒１影色⇒２影色**のように配置されます。  
@@ -298,7 +298,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 
 さらにサブメニューから、基本3色用テクスチャのシェアリング設定や、ノーマルマップ、シャドウコントロールマップの設定が行えます。
 
-<img width = "400" src="../Images/URP_image015.png">
+<img width = "400" src="../images/URP_image015.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -310,19 +310,19 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 ### 「NormalMap Settings」サブメニュー
 このメニューでは、ノーマルマップに関する設定を行います。  
 
-<img width = "600" src="../Images/Is_NormalToBase.png">
+<img width = "600" src="../images/Is_NormalToBase.png">
 
 **Unity Toon Shaderでは、ノーマルマップは主に影色のぼかし表現に使います。**  
 通常のシェーディング表現にノーマルマップを足してやることで、より複雑なぼかし表現をすることが可能となります。上の図で、**左側がノーマルマップをカラーに反映させたもの、右が反映させていないもの**です。  
 
 他にもノーマルマップは、スケールと共に使うことで**肌の質感**を調整したり、MatCap用のノーマルマップを別途用意することで、**髪の毛の質感**を表現するのに使われます。  
 
-<img width = "600" src="../Images/NormalMap01.png">
-<img width = "600" src="../Images/NormalMapforMatCap.png">
+<img width = "600" src="../images/NormalMap01.png">
+<img width = "600" src="../images/NormalMapforMatCap.png">
 
 ノーマルマップを使いこなすことで、様々な表現を楽しむことができます。  
 
-<img width = "400" src="../Images/URP_image016.png">
+<img width = "400" src="../images/URP_image016.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -342,7 +342,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 使用するワークフローに応じて、サブメニュー内のアイテムが切り替わります。  
 
 ### ● DoubleShadeWithFeather ワークフロー
-<img width = "400" src="../Images/URP_image017.png">
+<img width = "400" src="../images/URP_image017.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -350,14 +350,14 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 | `2nd Shade Position Map` | ライティングに関係なく、２影色の位置を強制的に指定したい場合、ポジションマップを割り当てます。必ず影を落としたい部分を黒で指定します。(１影色のポジションマップにも影響を受けます） | _Set_2nd_ShadePosition |
 
 #### 【ポジションマップとは？】
-<img width = "800" src="../Images/0906-18_03.png">
+<img width = "800" src="../images/0906-18_03.png">
 
 ライティングと関係なく影を落としたい部分をポジションマップで指定できます。  
 各シーンごとの特殊な影や、演出上追加したい影などがある場合、ライティングに加えて追加できます。  
 **※ヒント：Substance Painterなどの3Dペインターを使って、影位置を直接作画してしまうのが簡単です。**  
 
 #### ● １影と２影の各ポジションマップの相互作用について
-<img width = "800" src="../Images/0102-22_03.png">
+<img width = "800" src="../images/0102-22_03.png">
 
 ライトの状態に関係なく**常に２影色を表示したい場所は、１影色のポジションマップと２影色のポジションマップの同じ位置を塗りつぶし**ます。  
 常に２影色が表示されている領域は、ライトが作る影の中でも常に２影色が表示される領域になります。  
@@ -365,7 +365,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 
 ---
 ### ● ShadingGradeMap ワークフロー
-<img width = "400" src="../Images/URP_image018.png">
+<img width = "400" src="../images/URP_image018.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -376,7 +376,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 #### 【シェーディンググレードマップとは？】
 Unity Toon Shaderの標準ワークフローは、`DoubleShadeWithFeather`ですが、その標準ワークフローの機能を元にシェーディンググレードマップというグレースケールのマップを使うことで、さらに影の掛かり方をUV座標単位で制御できるように拡張したワークフローが、`ShadingGradeMap`ワークフローです。  
 
-<img width = "800" src="../Images/0122-06_04.png">
+<img width = "800" src="../images/0122-06_04.png">
 
 通常のトゥーンシェーダーに`Shading Grade Map`（シェーディングの掛かり方傾斜マップ）を足すことで、UV単位で１影色および２影色の掛かりやすさを制御できます。  
 このマップを使うことで、部分的に影の出やすさを調整できるので、「**ライトに照らされている面にはでない**服のしわの影」みたいな表現が可能となります。  
@@ -387,7 +387,7 @@ Unity Toon Shaderの標準ワークフローは、`DoubleShadeWithFeather`です
 
 ---
 ## 3.「Basic Lookdevs : Shading Step and Feather Settings」メニュー
-<img width = "400" src="../Images/URP_image019.png">
+<img width = "400" src="../images/URP_image019.png">
 
 
 このメニューでは、基本色/１影色/２影色の各カラーの塗り分け範囲の設定（**Step**）と、各カラー境界ぼかしの強さ(**Feather**)を設定します。リアルタイムのディレクショナルライトの設定と共に、UTS2を使う上で最も重要な設定です。**このブロックの設定で、基本的なルックは決まります**。セルルックおよびイラストレーションルックを作るための基本的なアイテムが集まっているのが、本メニューです。  
@@ -405,7 +405,7 @@ Unity Toon Shaderの標準ワークフローは、`DoubleShadeWithFeather`です
 
 Unity Toon Shaderの標準ワークフローである、DoubleShadeWithFeatherのアイテムです。  
 ライティングとは関係なく、モデルの指定位置に各々１影/２影色を配置できる、**ポジションマップ**を２枚持てるのが特徴です。  
-<img width = "400" src="../Images/URP_image020.png">
+<img width = "400" src="../images/URP_image020.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -421,7 +421,7 @@ Unity Toon Shaderの標準ワークフローである、DoubleShadeWithFeather�
 **シェーディンググレードマップ**と呼ばれる、ライティングに対する影の出やすさを制御できるマップを持つことができます。  
 シェーディンググレードマップを使うことで、ジオメトリや法線の状態とは関係なく、指定の位置に決まった形状の影色を配置ことができます。  
 ポジションマップとの違いは、シェーディンググレードマップは影色を決まった位置に表示するだけでなく、ライトの当て方次第でその出方を調整できるところにあります。  
-<img width = "400" src="../Images/URP_image021.png">
+<img width = "400" src="../images/URP_image021.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -437,7 +437,7 @@ Unityのシャドウシステムとトゥーンシェーディングを馴染ま
 トゥーンシェードの場合、システムが提供する影は、キャラのセルフシャドウ（自身への落ち影）を表現するために必要なものです。  
 「Basic Lookdevs : Shading Step and Feather Settings」サブメニューアイテムで塗り分けレベルを決定した後で、さらに微調整をしたい時や、セルフシャドウ等のReceiveShadowの出方を微調整したい時に使用します。  
 
-<img width = "400" src="../Images/URP_image022.png">
+<img width = "400" src="../images/URP_image022.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -456,7 +456,7 @@ Unityのシャドウシステムとトゥーンシェーディングを馴染ま
 ### 「Additional Settings」サブメニュー
 
 主にリアルタイムポイントライト群に対する調整アイテムです。  
-<img width = "400" src="../Images/URP_image023.png">
+<img width = "400" src="../images/URP_image023.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -490,7 +490,7 @@ Unity Toon Shaderは、ポイントライトだけでもセル風のルックが
 メインとなるディレクショナルライトからの「光」を照り返す表現として使われます。光の照り返し表現ですので、**ライトが動くと現れる位置も動きます**。  
 Unity Toon Shaderでは、ハイカラー表現に対して様々な調整をすることが可能です。  
 
-<img width = "400" src="../Images/URP_image024.png">
+<img width = "400" src="../images/URP_image024.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -506,13 +506,13 @@ Unity Toon Shaderでは、ハイカラー表現に対して様々な調整をす
 
 **※ヒント：リアルタイムポイントライトのハイカラーを有効にしたい場合は、`PointLights Hi-Cut Filter`を`Off`にします。**  
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_rev_16.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_rev_16.png">
 
 ハイカラーマスクを適用することで、角度によっては肌がテカってしまうような部分を抑えることができます。  
 頬や胸に載せる肌のハイカラー表現などで、特に有効です。  
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_31.png">
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_32.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_31.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_32.png">
 
 またハイカラーマスクは、鏡面反射を調整するスペキュラマップとしても使うことができますので、金属などの質感を表現するのにも使えます。  
 暁ゆ～き（@AkatsukiWorks）さんの作例では、ハイカラーマスクやリムライトマスクを使うことで、イラスト風でありながら同時にそこに使われている各素材（マテリアル）の質感を魅力たっぷりに引き出しています。  
@@ -525,7 +525,7 @@ Unity Toon Shaderでは、ハイカラー表現に対して様々な調整をす
 トゥーンシェーダーを含むノンフォトリアリスティックな表現では、形状を強調するのに同じようにエッジにハイライトを置きますが、これもしばしば「リムライト」と呼ばれています。  
 Unity Toon Shaderでは、リムライトに関しても様々なアイテムが利用できます。  
 
-<img width = "400" src="../Images/URP_image025.png">
+<img width = "400" src="../images/URP_image025.png">
 
 
 | `アイテム`  | 機能解説 | プロパティ |
@@ -547,22 +547,22 @@ Unity Toon Shaderでは、リムライトに関しても様々なアイテムが
 | `RimLight Mask` | UV座標に基づきリムライトをマスクします。白で100%表示、黒でリムライトを表示しません。必要がない場合、設定しなくても大丈夫です。 | _Set_RimLightMask |
 | `RimLight Mask Level` | リムライトマスクのレベル補正をします。デフォルト値は0です。 | _Tweak_RimLightMaskLevel |
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_14.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_14.png">
 
 **基本的なリムライトは、カメラから見てオブジェクトの周縁に表示**されます。  
 上に加えてUTS2では、メインライトが存在する方向を考慮してリムライトの出る位置を調整することができます。（`LightDirection Mask`）  
 さらに**光源とは反対方向のリムライト（対蹠リムライト）も設定できます**（`Antipodean(Ap)_RimLight`が`Active`）ので、「照り返し」も表現することが可能です。  
 もし光源方向のリムライトもカットして、光源方向の反対のみにリムライトを発生したい場合には、光源方向のリムライトのカラー（`RimLight Color`）を`黒（0,0,0）`に指定してください。  
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_15.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_15.png">
 
 またリムライトは、ハイカラーと同様にカメラの角度によってはひどくテカってしまうことがあります。  
 UTS2では、リムライトマスクを設定することで、それらのテカりを抑えることができます。  
 上の画像では、光源方向と照り返し方向のリムライトのカラーを変えた上に、脇の下などにリムライトマスクをかけることで不要なテカリを避けています。  
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_33.png">
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_34.png">
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_35.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_33.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_34.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_35.png">
 
 またリムライトマスクを使うことで、「**金属的な材質表現**」を他の素材と調整することで強調したり、服に差し込む入射光を調整することで 「**ベルベット風衣類のしわ表現**」などをすることが可能です。  
 
@@ -576,7 +576,7 @@ Unity Toon Shaderでは、Matcapテクスチャを乗算だけでなく加算で
 
 <small>**※ヒント：Unity Toon Shaderでは、カメラパースによるMatCapの歪みに対して適切な補正がはいるので、オブジェクトがカメラの端に来てもMatCapが歪みません。この設定は、`MatCap Projection Camera`で調整します。**</small>  
 
-<img width = "400" src="../Images/URP_image026.png">
+<img width = "400" src="../images/URP_image026.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -600,12 +600,12 @@ Unity Toon Shaderでは、Matcapテクスチャを乗算だけでなく加算で
 | `Matcap Mask Level` | Matcap Maskの強さを調整します。値が1の時、マスクのあるなしに関わらずMatCapを100％表示します。値が-1の時には、MatCapは一切表示されず、MatCapがオフの状態と同じになります。デフォルト値は0です。 | _Tweak_MatcapMaskLevel |
 | `Inverse Matcap Mask` | `Active`にすることで、Matcap Maskを反転します。 | _Inverse_MatcapMask |
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_36.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_36.png">
 
 上の例では、**Matcapを疑似環境マップとして利用**しています。  
 他にもMatcapを利用することで、つるつるした表面に光が反射する**ヌルテカ表現**も、適度なイラスト感を保ったまま、まとめることができます。  
 
-<img width = "800" src="../Images/URP_image039.png">
+<img width = "800" src="../images/URP_image039.png">
 
 上の例では、**サラサラ感のある髪の毛の光沢を表現する**のに、`MatCap`と`NormalMap for MatCap`、`Matcap Mask`を使用しています。  
 
@@ -613,7 +613,7 @@ Unity Toon Shaderでは、Matcapテクスチャを乗算だけでなく加算で
 * NormalMap for MatCap : MatCap単体だとそのままの形状で合成されてしまいますが、NormalMap for MatCapを細かいリピートで重ねることで、三日月型の光沢をサラサラ感のある光に散らしています。このような使い方を**スペキュラマスク**と呼びます。ここで使われるノーマルマップは、バンプ的な表現には使われません。  
 * MatCap Mask : MatCapが表示される範囲を調整します。垂直方向のグラデーションマスクを設定することで、`Matcap Mask Level`スライダーを調整することで、MatCapが表示される範囲を簡単に制御することができます。  
 
-<img width = "800" src="../Images/URP_image040.png">
+<img width = "800" src="../images/URP_image040.png">
 
 MatCap Maskを使うことで、上のようなライトクッキー的な表現も可能です。  
 
@@ -622,12 +622,12 @@ MatCap Maskを使うことで、上のようなライトクッキー的な表現
 
 **「AngelRing（天使の輪）」** とは、カメラから見て常に固定の位置に現れるハイライト表現で、髪のハイライト表現として使われます。「天使の輪」機能は、`ShadingGradeMap`ワークフローで利用することができます。  
 
-<img width = "300" src="../Images/AngelRing.png">
-<img width = "300" src="../Images/UTS2_TopImage06.gif">
+<img width = "300" src="../images/AngelRing.png">
+<img width = "300" src="../images/UTS2_TopImage06.gif">
 
 「天使の輪」は、それが投映されるメッシュのUV2を参照しますので、Mayaや3ds Max、BlenderなどのDCCツールで、事前にUV2を設定しておく必要があります。  
 
-<img width = "400" src="../Images/URP_image027.png">
+<img width = "400" src="../images/URP_image027.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -642,7 +642,7 @@ MatCap Maskを使うことで、上のようなライトクッキー的な表現
 まず「天使の輪」機能を適用する髪の毛のメッシュに、２つめのUVを設定しましょう。  
 
 「天使の輪」用のUVは、通常の髪用テクスチャのUVとは別に、「天使の輪」を適用する髪全体をキャラの正面方向から平面投影して作成します。  
-<img width = "800" src="../Images/HairModel.png">
+<img width = "800" src="../images/HairModel.png">
 
 **※UV2の作成を含むこれらの作業は、Mayaや3ds Max、BlenderなどのDCCツールで行います。**  
 
@@ -650,23 +650,23 @@ MatCap Maskを使うことで、上のようなライトクッキー的な表現
 作成したテクスチャは、`AngelRing`のテクスチャに登録します。  
 ハイライトは白で描いて、後に乗算でカラーを載せてもよいでしょう。  
 
-<img width = "800" src="../Images/Hair_UV1.png">
+<img width = "800" src="../images/Hair_UV1.png">
 
 `Use α channel as Clipping Mask`を`Active`にすると、下の図のように「天使の輪」テクスチャのαチャンネルがクリッピングマスクとして利用できるようになります。  
 「天使の輪」のカラーを加算でなく、直接指定できるようになります。  
 
-<img width = "800" src="../Images/0609-04_13.png">
+<img width = "800" src="../images/0609-04_13.png">
 
 ---
 ## 8.「Emissive : Self-luminescene Setings」メニュー
 
 **「エミッシブ」** とは、自己発光のことです。  
 カラーに**HDRカラー**（明るさとして1以上の値を持てるカラー仕様のこと）を定義することで、周りのカラーよりも明るい領域を設定することができます。  
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_17.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_17.png">
 
 **[Post-Processing in UniversalRP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@9.0/manual/integration-with-post-processing.html)の[Bloom](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@9.0/manual/post-processing-bloom.html)など、カメラにアタッチされるポストエフェクトと共に使われることで、パーツを効果的に光らせることができます。**  
 
-<img width = "400" src="../Images/URP_image028.png">
+<img width = "400" src="../images/URP_image028.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -685,9 +685,9 @@ MatCap Maskを使うことで、上のようなライトクッキー的な表現
 | `ViewShift of Color` | `Active`にすることで、オブジェクトを見るカメラのビュー角に対してカラーをシフトさせます。オブジェクトのサーフェイスに対し真っ正面から見た場合は、通常状態のEmissiveカラーが表示され、ビュー角が徐々に傾いていくにつれてシフト先のカラーに変化します。 | _Is_ViewShift |
 | `ViewShift Color` | ビューシフトする際の、変化先となるカラーです。HDRで指定します。 | _ViewShift |
 
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_42.png">
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_43.png">
-<img width = "800" src="../Images/UT2018_UTS2_SuperTips_48.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_42.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_43.png">
+<img width = "800" src="../images/UT2018_UTS2_SuperTips_48.png">
 
 あいんつばい（@einz_zwei）さんの作例。エミッシブパーツが大変効果的に使われています。  
 しかもカラーマップとエミッシブマップを組み合わせることで、ライトの明るさの変化に応じて、ディティールが追加されるような仕組みになっています。  
@@ -698,35 +698,35 @@ MatCap Maskを使うことで、上のようなライトクッキー的な表現
 αチャンネル付きテクスチャは、PhotoshopなどのDCCツールで作成します。  
 チャンネルタブより、新規チャンネルを追加し、できたチャンネルの上にグレースケールの画像を貼り付ければ、αチャンネルとして利用出来ます。Targa形式などαチャンネルが持てる画像形式の場合は、このままセーブできます。  
 
-<img width = "800" src="../Images/Emissive_Tex00.png">
+<img width = "800" src="../images/Emissive_Tex00.png">
 
 Unity上でαチャンネルを有効にするためには、各テクスチャのImport Settingsで、`Alpha Source`を`Input Texture Alpha`にしてください。  
 
 **PNG形式の場合**は画像仕様上、直接αチャンネルを持てないので、Photoshop上でαチャンネルを選択範囲として読み込んだ後で、「レイヤーマスク＞選択範囲外をマスク」で指定し、PNG形式で保存します。  
 
-<img width = "800" src="../Images/Emissive_Tex01.png">
-<img width = "800" src="../Images/Emissive_Tex02.png">
+<img width = "800" src="../images/Emissive_Tex01.png">
+<img width = "800" src="../images/Emissive_Tex02.png">
 
 続いてUnityに読み込み、Import Settingsで、`Alpha Source`を`Input Texture Alpha`に、`Alpha Is Transparency`を`ON`にしてください。
 
-<img width = "500" src="../Images/Emissive_Tex03.png">
+<img width = "500" src="../images/Emissive_Tex03.png">
 
 ---
 ### ● Destination Color設定の際のTips
 
 カラーシフト機能を使う際に、`Destination Color`をターゲットに設定しますが、元のカラーとターゲットとなるカラーが同色相の場合、想定していないカラーがフレームに混じることがあります。例えば、下図の矢印左側のカラーから、一見見た目は同じような右側の２つのいずれかのカラーにシフトさせると、矢印右側１つめのカラーは同色相の範囲でカラーシフトしますが、矢印右側２つめのカラーは、青っぽいフレームが混じります。  
 
-<img width = "800" src="../Images/DestColor00.png">
+<img width = "800" src="../images/DestColor00.png">
 
 これは、青っぽいフレームが混じるほうのカラーには、元のカラーのRGBと比較してみると、値が高くなっているBチャンネルがあるからです。  
 
 このように、**同色相内で輝度が違うカラーをターゲットにシフトさせる場合、各RGBの変化の方向を揃える**ことで、想定外のカラーがフレームに混入するのを避けることができます。  
 
-<img width = "800" src="../Images/DestColor01.png">
+<img width = "800" src="../images/DestColor01.png">
 
 ↑同一色相内でカラーがシフトする例。ターゲットカラーのRGBの値は、いずれも元のカラーよりも小さい。  
 
-<img width = "800" src="../Images/DestColor02.png">
+<img width = "800" src="../images/DestColor02.png">
 
 ↑色相外のフレームが混じる例。ターゲットカラーのBの値が元のカラーよりも高く、かつG値の変化が極端に大きい。  
 
@@ -746,7 +746,7 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 **＊参考：実際にオブジェクトの周りにラインを描画する方式もありますが、それらは主にポストプロセス（ポストエフェクト）方式のアウトラインとして知られています。**  
 ポストプロセス方式のアウトラインは採用する方式によって、スピードもクオリティも異なります。実際のゲームでは、従来型のオブジェクト反転方式に、軽めのポストプロセス方式を加えて補正する場合が多いです。  
 
-<img width = "400" src="../Images/URP_image031.png">
+<img width = "400" src="../images/URP_image031.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -763,7 +763,7 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 
 本サブメニューのアイテムで、アウトライン機能をさらに強化することができます。
 
-<img width = "400" src="../Images/URP_image032.png">
+<img width = "400" src="../images/URP_image032.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -776,7 +776,7 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 
 ---
 ### ● アウトラインの強弱を調整する：**Outline Sampler**
-<img width = "800" src="../Images/0906-18_01.png">
+<img width = "800" src="../images/0906-18_01.png">
 
 黒でラインなし、白でラインの幅が100%になります。  
 適宜 Outline_Sampler を設定することで、アウトラインに入り抜き（強弱）が発生します。  
@@ -805,7 +805,7 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 
 ---
 ### ● アウトラインをカメラの奥に移動する：**Offset Outline with Camera Z-axis**
-<img width = "800" src="../Images/0205-11_01.png">
+<img width = "800" src="../images/0205-11_01.png">
 
 `Offset Outline with Camera Z-axis`に値を入れることで、アウトラインがカメラの奥行き方向（Ｚ方向）にオフセットされます。  
 図のようなスパイク形状の髪型の場合に、スパイク部分のアウトラインの出方を調整するのに使用します。  
@@ -822,7 +822,7 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 本メニューから、各カラーへのライトカラーコントリビューション（寄与）のあり/なしを一元的に管理できます。  
 実際にシーン内で使用するキャラクターライトを使いながら、各カラーへの影響がライトコントリビューションのあり/なしでどう変わるかをリアルタイムで確認できます。ルックデブの仕上げに使うとよいでしょう。  
 
-<img width = "400" src="../Images/URP_image029.png">
+<img width = "400" src="../images/URP_image029.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -844,7 +844,7 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 本メニューには、シーン内の環境光設定（Skybox、Gradient、ColorなどのEnvironment Lighting）やライトプローブに対して、UTS2がどの程度反応をするか調整したり、リアルタイムディレクショナルライトがない環境で起動するシェーダービルトインライトの明るさを調整をするアイテムが含まれています。  
 また**VRChatユーザーに便利な機能**である、**SceneLights Hi-Cut Filter**のような白飛び防止機能のON/OFFも、このメニューからコントロールすることが可能です。  
 
-<img width = "400" src="../Images/URP_image030.png">
+<img width = "400" src="../images/URP_image030.png">
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
@@ -860,11 +860,11 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 ---
 ### ● ライトプローブの明るさを決定する：GI Intensity
 
-<img width = "800" src="../Images/GI_Intensity.png">
+<img width = "800" src="../images/GI_Intensity.png">
 
 <small>**↑ 左側：GI Intensity = 0、右側：GI Intensity = 1。GI Intensityの数値を上げると、マテリアルカラーにライトプローブのカラーが加算される。**</small>  
 
-<img width = "800" src="../Images/LightProbe.png">
+<img width = "800" src="../images/LightProbe.png">
 
 <small>**↑ ステージ上に配置された、ベイク用ポイントライトとライトプローブの例。ベイクドライトは、各レンジが重なっても問題ない。ライトプローブは、ユニティちゃんの足元から背の高さまで敷き詰める。**</small>  
 
@@ -872,11 +872,11 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 ベイクドライトと一緒にシーン内にベイクされたライトプローブは、環境補助色としてマテリアルカラーに加算されます。  
 `GI Intensity`が１の時、ライトプローブに焼き付けられたカラーを100％加算します。０の時は、元のマテリアルカラーのままです。  
 
-<img width = "800" src="../Images/GI_IntensityOFF.png">
+<img width = "800" src="../images/GI_IntensityOFF.png">
 
 <small>**↑ GI Intensity = 0</small>**  
 
-<img width = "800" src="../Images/GI_IntensityON.png">
+<img width = "800" src="../images/GI_IntensityON.png">
 
 <small>**↑ GI Intensity = 1</small>**  
 
