@@ -8,7 +8,7 @@
 <img width = "800" src="../images/HiUni01.png">
 
 # Unity Toon Shader とは？
-**Unity Toon Shader (ユニティちゃんトゥーンシェーダー 3.0)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、Unity Toon Shader の最大の特長です**。  
+**Unity Toon Shader (ユニティちゃんトゥーンシェーダー 3)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、Unity Toon Shader の最大の特長です**。  
 
 **Unity Toon Shader** は、UTS2 v.2.0.7.5の全機能を実装した、ウーバーシェーダー（統合型シェーダー）として設計されています。  Legacy, Universal Render Pipeline/ HDRP に対応しております。
 
@@ -97,8 +97,8 @@ UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シ
 
 各動作モードに関しては、後に解説します。  
 
-### ● レガシーパイプライン版 Unity Toon Shaderマテリアルとの互換性について
-レガシーパイプライン版の Unity Toon Shader マテリアルとは、マテリアルプロパティの設定値に関して互換性があります。  
+### ● レガシーパイプライン版 UTS2 マテリアルとの互換性について
+レガシーパイプライン版の UTS2 マテリアルとは、マテリアルプロパティの設定値に関して互換性があります。  
 従って、レガシーパイプライン版の Unity Toon Shader マテリアルをユニバーサルレンダーパイプラインの環境下にコピーした後で、シェーダーを「Universal Render Pipeline/Toon」に切り替えると、使用するWorkflow Modeやテクスチャ名、ぼかしの段階などの値に関してはそのまま反映されます。  
 
 レガシーパイプライン版でシェーダーファイルに応じて切り替えていた「ステンシル」や「カットオフ」などの特殊機能に関しては、上の手順で「Basic Shader Settings」メニューより、必要な特殊機能の動作モードを有効にしてください。  
@@ -159,6 +159,8 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 <img width = "800" src="../images/URP_image036.png">
 
+【NOTE】 この機能はLegacy, Universal RP 版でのみ有効です。HDRP版ではご利用いただくことができません。
+HDRPのシステム内部でステンシルが別の用途に使われているためです。各レンダーパイプラインの微妙な違いに関しては [Feature Model] (../en/FeatureModel_en.md) をご確認ください。
 ---
 ### Clipping Shader および TransClipping Shader
 <img width = "800" src="../images/URP_image012.png">
@@ -227,7 +229,6 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 <img width = "300" src="../images/URP_image033.png">
 <img width = "300" src="../images/URP_image034.png">
 
-プロパティリスト型の機能解説は[こちら](Props_ja.md)です。
 プロパティリスト型のインスペクターは、`Change CustomUI` ボタンで元に戻すことができます。  
 プロパティリスト型のインスペクターでの設定値のいくつかは、UTS2カスタムインスペクターに戻ることで有効になります。従って、**通常はUnity Toon Shaderカスタムインスペクターの状態で使用する**ことを強くお薦めいたします。  
 
@@ -241,8 +242,8 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 | `アイテム`  | 機能解説 | プロパティ |
 |:-------------------|:-------------------|:-------------------|
-| `日本語マニュアル` | ブラウザを利用して、UTS2日本語公式マニュアルにジャンプします。 |  |
-| `English Manual` | ブラウザを利用して、UTS2英語公式マニュアルにジャンプします。 |  |
+| `日本語マニュアル` | ブラウザを利用して、Unity Toon Shader 日本語公式マニュアルにジャンプします。 |  |
+| `English Manual` | ブラウザを利用して、Unity Toon Shader 英語公式マニュアルにジャンプします。 |  |
 | `Workflow Mode` | ワークフローモードを `DoubleShadeWithFeather` もしくは `ShadingGradeMap` のいずれかから選びます。 |  |
 | `Culling Mode` | ポリゴンのどちら側を描画しないか（カリング）を指定します。「`Culling Off`（両面描画）/ `Front Culling`（正面カリング）/ `Back Culling`（背面カリング）」が選べます。通常は`Back`で指定します。`Culling Off`はノーマルマップやライティング表示がおかしくなる場合がありますので、注意してください。 | _CullMode |
 | `Auto Queue` | `Active`の時、シェーダーの機能に合わせて、適切にレンダーキューを設定します。`Off`の時、下の`Render Queue`ボックスに値を入れることで、カスタムレンダーキューを設定できます。 |  |
@@ -259,10 +260,10 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 | `Use BaseMap α as Clipping Mask` | `TransClipping`シェーダーのみのプロパティです。`On`にすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 | _IsBaseMapAlphaAsClippingMask |
 | Option Menu | 以下、オプション機能のメニューになります。 |  |
 | `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |  |
-| `VRChat Recommendation` | 様々なライティング環境が混在している、VRChatのワールドのような環境において、カラーをなるべく破綻しないで楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
+| `Game Recommendation` | 様々なライティング環境が混在している、VRChatのワールドのような環境において、カラーをなるべく破綻しないで楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
 
 ---
-### 【参考】VRChatユーザー向けの便利機能について
+### 【参考】Game/VRChatユーザー向けの便利機能について
 
 <small>【**注意**】2020年5月の段階では、[VRChat](https://www.vrchat.com/)はユニバーサルレンダーパイプラインを採用してはいません。ユニバーサルレンダーパイプラインが採用されるまでは、[レガシー版のUTS2](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project)を使うようにしてください。</small>  
 
@@ -270,12 +271,12 @@ Unity Toon Shader、Unityの様々なプロジェクトで使うことのでき�
 VRChat上でUnity Toon Shaderを楽しむ場合、以下の便利機能を使うことで、Unity Toon Shaderの高機能を活かしつつ、VRChatの様々なライティング環境下でも安定して楽しむことができるようになります。  
 
 #### ● Unity Toon Shaderでマテリアル設定をはじめる時
-Unity Toon Shaderで各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`VRChat Recommendation`ボタンを実行してください。  
+Unity Toon Shaderで各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`Game Recommendation`ボタンを実行してください。  
 このコマンドを実行することで、VRChatの様々なライティング環境にUTS2を馴染みやすくします。  
 VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
 
 #### ● 暗いワールドでのキャラの見え方を明るくしたい場合
-`VRChat Recommendation`ボタンを実行した後で、主にポイントライトしかない暗いワールドでのキャラの見え方を、もっと明るめに調整したい場合があります。  
+`Gaame Recommendation`ボタンを実行した後で、主にポイントライトしかない暗いワールドでのキャラの見え方を、もっと明るめに調整したい場合があります。  
 その場合、「Environmental Lighting Contributions Setups」メニュー内の`Unlit Intensity`スライダーを調整することで、暗い場所での明るさを底上げすることができます。  
 
 <img width = "300" src="../images/Unlit_Intensity_Comp.gif">

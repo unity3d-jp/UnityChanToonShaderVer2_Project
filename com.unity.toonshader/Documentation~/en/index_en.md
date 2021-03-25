@@ -98,9 +98,9 @@ Users can freely combine the functions they want by activating each operating mo
 
 Each operating mode will be explained later.  
 
-### ● Compatibility with the Unity Toon Shader materials for legacy pipeline
-The UTS2 materials for Lecgacy pipeline are compatible with the UTS/UniversalToon materials in terms of material property settings.  
-Therefore, if you copy the Unity Toon Shader materials into the Universal Render Pipeline environment and switch the shader to "Universal Render Pipeline/Toon", the values of the workflow mode, texture name, blur stage, etc., will be reflected as they are.  
+### ● Compatibility with the UTS2 materials for legacy pipeline
+The UTS2 materials for Lecgacy pipeline are compatible with the Unity Toon Shader materials in terms of material property settings.  
+Therefore, if you copy the  UTS2 into the Universal Render Pipeline environment and switch the shader to "Universal Render Pipeline/Toon", the values of the workflow mode, texture name, blur stage, etc., will be reflected as they are.  
 
 For the special functions such as "Stencil" and "Cutoff" that were switched according to the shader file in the legacy pipeline, follow the above steps to activate each operating mode from the "Basic Shader Settings" menu.  
 
@@ -158,6 +158,7 @@ Set the `Stencil Mode` to add the stencil function. By using the stencil functio
 
 <img width = "800" src="../images/URP_image036.png">
 
+【NOTE】 This feature is sololy for Legacy, Universal RP。HDRP version is not ready for Stencil feature as stencill buffer is used for other purpose inside HDRP. Please, check  [Feature Model] (../en/FeatureModel_en.md) to see the difference among reander pipelines.
 ---
 ### Clipping Shader or TransClipping Shader
 <img width = "800" src="../images/URP_image012.png">
@@ -187,8 +188,7 @@ Most of them are integrated into the basic shader functionality.</small>
 <small>2. Set `AngelRing Projection` to `Active` in the "AngelRing Projection Settings" of the Material Inspector.</small>  
 
 #### ● Mobile shaders
-<small>In the Universal Render Pipeline, the Forward Add pass has been changed and merged with the standard render pass.  
-In Unity Toon Shader, Mobile shaders for UTS2 have been abolished accordingly</small>.  
+<small>In Unity Toon Shader, Mobile shaders for UTS2 have been abolished accordingly</small>.  
 
 #### ● Tessellation shaders
 <small>Tessellation is supported in Lagacy and HDRP for now</small>.  
@@ -241,8 +241,8 @@ In addition to selecting the two basic workflow modes, you can add a variety of 
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
-| `日本語マニュアル` | Using the browser jumps to the UTS2 Japanese official manual. |  |
-| `English Manual` | Using the browser jumps to the UTS2 English official manual. |  |
+| `日本語マニュアル` | Using the browser jumps to the Unity Toon Shader  Japanese official manual. |  |
+| `English Manual` | Using the browser jumps to the UUnity Toon Shader  English official manual. |  |
 | `Workflow Mode` | Choose your prefer workflow mode from either `DoubleShadeWithFeather` or `ShadingGradeMap`. |  |
 | `Culling Mode` | Designates which side of a polygon will not be drawn (culling). Available options are: `Culling Off` (both sides drawn) / `Culling Front` (front side culling) / `Culling Back` (back side culling). `Back` is selected by default. In some cases, selecting `Culling Off` can cause the normal map and lighting to display strangely. | _CullMode |
 | `Auto Queue` | When `Active`, the render queue is set appropriately according to the function of the shader. When `Off`, you can set a custom render queue by entering a value in the `Render Queue` box below. |  |
@@ -259,24 +259,24 @@ In addition to selecting the two basic workflow modes, you can add a variety of 
 | `Use BaseMap αas Clipping Mask` | A property only found in `TransClipping` shaders. Checking this property will use the A channel, including the `BaseMap`, as a clipping mask. Designating a `ClippingMask` is not required. | _IsBaseMapAlphaAsClippingMask |
 | Option Menu | The list of Optional features is below. |  |
 | `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS2's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS2 functions only. Toggle back to `Pro / Full Controll` mode. |  |
-| `VRChat Recommendation` | Set up convenient settings for enjoying VRChat, where various lighting environments are mixed together, all at once. When setting up for VRChat, recommend you to start from this button first. |  |
+| `Game Recommendation` | Set up convenient settings for enjoying VRChat, where various lighting environments are mixed together, all at once. When setting up for VRChat, recommend you to start from this button first. |  |
 
 ---
-### 【Note】Useful functions for VRChat users
+### 【Note】Useful functions for VRChat/Game users
 
 <small>【**Caution**】As of May 2020, [VRChat](https://www.vrchat.com/) is not adopting the universal render pipeline. For the present (until the universal render pipeline were adopted in the future), please use [Unity Toon Shader for legacy pipeline](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project).</small>  
 
 
 Unity Toon Shader is a general purpose toon shader that can be used in various projects in Unity.  
-If you enjoy Unity Toon Shader on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of UTS/Unity Toon Shader's advanced features.  
+If you enjoy Unity Toon Shader on VRChat, you can use the following convenient functions to enjoy the stable features of VRChat in various environments while taking advantage of Unity Toon Shader's advanced features.  
 
 #### ● When setting up materials on Unity Toon Shader
-When you set up each material in Unity Toon Shader, please execute the `VRChat Recommendation` button in the Basic Shader Settings> Option Menu.  
+When you set up each material in Unity Toon Shader, please execute the `Gaame Recommendation` button in the Basic Shader Settings> Option Menu.  
 By executing this command, Unity Toon Shader will become familiar with various VRChat lighting environments.  
 If you upload your avatar on VRChat and it feels different from what you intended, you should try this command first.  
 
 #### ● If you want to brighten the appearance of characters in dark worlds
-After executing the `VRChat Recommendation` button, you may want to adjust the appearance of the character in a dark world, which has only point lights, more brightly.  
+After executing the `Gaame Recommendation` button, you may want to adjust the appearance of the character in a dark world, which has only point lights, more brightly.  
 In that case, you can raise the brightness in dark world by adjusting the `Unlit Intensity` slider in the "Environmental Lighting Contributions Setups" menu.  
 
 <img width = "300" src="../images/Unlit_Intensity_Comp.gif">
