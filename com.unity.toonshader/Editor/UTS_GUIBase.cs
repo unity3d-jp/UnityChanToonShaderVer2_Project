@@ -74,6 +74,7 @@ namespace UnityEditor.Rendering.Toon
         protected const string ShaderPropUtsVersionX = "_utsVersionX";
         protected const string ShaderPropUtsVersionY = "_utsVersionY";
         protected const string ShaderPropUtsVersionZ = "_utsVersionZ";
+        protected const string ShaderPropIsUnityToonShader = "_isUnityToonshader";
         protected const string ShaderPropOutline = "_OUTLINE";
         protected const string ShaderPropNormalMapToHighColor = "_Is_NormalMapToHighColor";
         protected const string ShaderPropIsNormalMapToRimLight = "_Is_NormalMapToRimLight";
@@ -448,10 +449,10 @@ namespace UnityEditor.Rendering.Toon
         const int HDRPGeometryMin = 2650; // UnityEngine.Rendering.RenderQueue.Geometry;
         private void UpdateVersionInMaterial(Material material)
         {
-            material.SetInt("_isUnityToonshader", 1);
-            material.SetFloat("VersionX",  kVersionX);
-            material.SetFloat("VersionY",  kVersionY);
-            material.SetFloat("VersionZ",  kVersionZ);
+            material.SetInt(ShaderPropIsUnityToonShader, 1);
+            material.SetFloat(ShaderPropUtsVersionX,  kVersionX);
+            material.SetFloat(ShaderPropUtsVersionY,  kVersionY);
+            material.SetFloat(ShaderPropUtsVersionZ,  kVersionZ);
 
     }
         private void StoreHashAndGUID(Material material)
@@ -2637,7 +2638,7 @@ namespace UnityEditor.Rendering.Toon
             var stencilMode = (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode);
             if (_autoRenderQueue == 1)
             {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+                material.renderQueue = -1; //  (int)UnityEngine.Rendering.RenderQueue.Geometry;
             }
 
             const string OPAQUE = "Opaque";
