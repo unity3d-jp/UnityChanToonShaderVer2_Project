@@ -454,7 +454,7 @@ namespace UnityEditor.Rendering.Toon
             material.SetFloat(ShaderPropUtsVersionY,  kVersionY);
             material.SetFloat(ShaderPropUtsVersionZ,  kVersionZ);
 
-    }
+        }
         private void StoreHashAndGUID(Material material)
         {
             mainTexStore = material.GetTexture(ShaderPropMainTex);
