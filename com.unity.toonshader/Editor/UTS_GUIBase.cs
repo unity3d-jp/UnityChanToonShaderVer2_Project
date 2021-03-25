@@ -27,6 +27,10 @@ namespace UnityEditor.Rendering.Toon
 
     public class UTS_GUIBase : UnityEditor.ShaderGUI
     {
+        protected const float kVersionX = 0.0f;
+        protected const float kVersionY = 0.0f;
+        protected const float kVersionZ = 2.0f;
+
         internal virtual string srpDefaultLightModeName { get; }
         internal virtual void TessellationSetting(Material materal) { }
         internal virtual void RenderingPerChennelsSetting(Material materal) { }
@@ -442,7 +446,14 @@ namespace UnityEditor.Rendering.Toon
         protected Texture outlineSamplerStore = null;
 
         const int HDRPGeometryMin = 2650; // UnityEngine.Rendering.RenderQueue.Geometry;
+        private void UpdateVersionInMaterial(Material material)
+        {
+            material.SetInt("_isUnityToonshader", 1);
+            material.SetFloat("VersionX",  kVersionX);
+            material.SetFloat("VersionY",  kVersionY);
+            material.SetFloat("VersionZ",  kVersionZ);
 
+    }
         private void StoreHashAndGUID(Material material)
         {
             mainTexStore = material.GetTexture(ShaderPropMainTex);
@@ -888,6 +899,7 @@ namespace UnityEditor.Rendering.Toon
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
 
+            UpdateVersionInMaterial(material);
             // this feature is still in test.
             //material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE);
             material.DisableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
