@@ -83,7 +83,7 @@ Unity Toon Shaderは統合型シェーダー（ウーバーシェーダー）と
 全ての機能は、マテリアルインスペクターより必要なものを呼び出して使用します。  
 
 ### ● ワークフローモードの切り替え
-UTS2にはワークフローモードとして、「DoubleShadeWithFeather」シェーダーと、その高機能版である「ShadingGradeMap」シェーダーが存在します。この２つのシェーダーの切り替えは、Unity Toon Shaderでは、マテリアルインスペクターのほぼトップにある「Workflow Mode」より選択します。  
+Unity Toon Shaderにはワークフローモードとして、「DoubleShadeWithFeather」シェーダーと、その高機能版である「ShadingGradeMap」シェーダーが存在します。この２つのシェーダーの切り替えは、Unity Toon Shaderでは、マテリアルインスペクターのほぼトップにある「Workflow Mode」より選択します。  
 
 <img width = "400" src="../images/URP_image004.png">
 
@@ -208,13 +208,13 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 * Baked Normal\Cube_HardEdge.unity：Baked Normalの参考  
 * BoxProjection\BoxProjection.unity		：Box Projection を使った暗い部屋のライティング  
 * EmissiveAnimation\EmisssiveAnimation.unity：EmissiveAnimationのサンプル  
-* LightAndShadows\LightAndShadows.unity：PBRシェーダーとUTS2との比較  
+* LightAndShadows\LightAndShadows.unity：PBRシェーダーとUnity Toon Shaderとの比較  
 * MatCapMask\MatCapMask.unity：MatcapMaskのサンプル  
 * Mirror\MirrorTest.unity：鏡オブジェクトチェック用サンプルシーン  
-* NormalMap\NormalMap.unity	：UTS2でノーマルマップを使う際のコツ  
+* NormalMap\NormalMap.unity	：Unity Toon Shader でノーマルマップを使う際のコツ  
 * PointLightTest\PointLightTest.unity：ポイントライトを使ったセルルック表現のサンプル  
-* Sample\Sample.unity		：UTS2の基本シェーダーの紹介  
-* ShaderBall\ShaderBall.unity：シェーダーボールを使ってUTS2を設定する  
+* Sample\Sample.unity		：Unity Toon Shader の基本シェーダーの紹介  
+* ShaderBall\ShaderBall.unity：シェーダーボールを使ってUnity Toon Shader を設定する  
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
 作りたいルックやシーンの参考にしてください。  
@@ -229,7 +229,7 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 <img width = "300" src="../images/URP_image034.png">
 
 プロパティリスト型のインスペクターは、`Change CustomUI` ボタンで元に戻すことができます。  
-プロパティリスト型のインスペクターでの設定値のいくつかは、UTS2カスタムインスペクターに戻ることで有効になります。従って、**通常はUnity Toon Shaderカスタムインスペクターの状態で使用する**ことを強くお薦めいたします。  
+プロパティリスト型のインスペクターでの設定値のいくつかは、Unity Toon Shader カスタムインスペクターに戻ることで有効になります。従って、**通常はUnity Toon Shaderカスタムインスペクターの状態で使用する**ことを強くお薦めいたします。  
 
 ---
 ## 1. 「Basic Shader Settings」メニュー
@@ -259,19 +259,19 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 | `Use BaseMap α as Clipping Mask` | `TransClipping`シェーダーのみのプロパティです。`On`にすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 | _IsBaseMapAlphaAsClippingMask |
 | Option Menu | 以下、オプション機能のメニューになります。 |  |
 | `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |  |
-| `Game Recommendation` | 様々なライティング環境が混在している、VRChatのワールドのような環境において、カラーをなるべく破綻しないで楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
+| `Game Recommendation` | 様々なライティング環境が混在している、Game/VRChatのワールドのような環境において、カラーをなるべく破綻しないで楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
 
 ---
 ### 【参考】Game/VRChatユーザー向けの便利機能について
 
-<small>【**注意**】2020年5月の段階では、[VRChat](https://www.vrchat.com/)はユニバーサルレンダーパイプラインを採用してはいません。ユニバーサルレンダーパイプラインが採用されるまでは、[レガシー版のUTS2](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project)を使うようにしてください。</small>  
+<small>【**注意**】2020年5月の段階では、[VRChat](https://www.vrchat.com/)はユニバーサルレンダーパイプラインやHDRPを採用してはいません。VRChat では Lagacy用のシェーダーを使うようにしてください。</small>  
 
 Unity Toon Shader、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  
 VRChat上でUnity Toon Shaderを楽しむ場合、以下の便利機能を使うことで、Unity Toon Shaderの高機能を活かしつつ、VRChatの様々なライティング環境下でも安定して楽しむことができるようになります。  
 
 #### ● Unity Toon Shaderでマテリアル設定をはじめる時
 Unity Toon Shaderで各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`Game Recommendation`ボタンを実行してください。  
-このコマンドを実行することで、VRChatの様々なライティング環境にUTS2を馴染みやすくします。  
+このコマンドを実行することで、Game/VRChatの様々なライティング環境にUnity TOon Shaderを馴染みやすくします。  
 VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
 
 #### ● 暗いワールドでのキャラの見え方を明るくしたい場合
@@ -390,7 +390,7 @@ Unity Toon Shaderの標準ワークフローは、`DoubleShadeWithFeather`です
 <img width = "400" src="../images/URP_image019.png">
 
 
-このメニューでは、基本色/１影色/２影色の各カラーの塗り分け範囲の設定（**Step**）と、各カラー境界ぼかしの強さ(**Feather**)を設定します。リアルタイムのディレクショナルライトの設定と共に、UTS2を使う上で最も重要な設定です。**このブロックの設定で、基本的なルックは決まります**。セルルックおよびイラストレーションルックを作るための基本的なアイテムが集まっているのが、本メニューです。  
+このメニューでは、基本色/１影色/２影色の各カラーの塗り分け範囲の設定（**Step**）と、各カラー境界ぼかしの強さ(**Feather**)を設定します。リアルタイムのディレクショナルライトの設定と共に、Unity Toon Shader を使う上で最も重要な設定です。**このブロックの設定で、基本的なルックは決まります**。セルルックおよびイラストレーションルックを作るための基本的なアイテムが集まっているのが、本メニューです。  
 これらのアイテムの設定は、Unity上でリアルタイムで繰り返しチェックをすることができます。  
 プロパティ変更の結果をいちいちレンダリングして確認する必要がありませんので、じっくりと取り組んでみてください。  
 光源方向が同じでも、各Stepと各Featherのパラメタを変えることで、まったく違ったルックを作ることができます。  
@@ -417,7 +417,7 @@ Unity Toon Shaderの標準ワークフローである、DoubleShadeWithFeather�
 ---
 ### ● ShadingGradeMap ワークフロー
 
-高機能版UTS2ワークフローである、ShadingGradeMapワークフローのアイテムです。  
+高機能版Unity Toon Shaderワークフローである、ShadingGradeMapワークフローのアイテムです。  
 **シェーディンググレードマップ**と呼ばれる、ライティングに対する影の出やすさを制御できるマップを持つことができます。  
 シェーディンググレードマップを使うことで、ジオメトリや法線の状態とは関係なく、指定の位置に決まった形状の影色を配置ことができます。  
 ポジションマップとの違いは、シェーディンググレードマップは影色を決まった位置に表示するだけでなく、ライトの当て方次第でその出方を調整できるところにあります。  
@@ -450,7 +450,7 @@ Unityのシャドウシステムとトゥーンシェーディングを馴染ま
 
 [![](https://img.youtube.com/vi/LXV37a1jhUE/0.png)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
-<small>↑ Unityでシステムシャドウを使いつつ、Stepスライダーを調整していると、影色との領域にノイズが現れることがあります。これらのノイズは、セルルックでは困りものですので、それらを`System Shadows Level`スライダーや`Tessellation`（※Tessellation対応はレガシー版UTS2のみ）を使って改善する方法を紹介しています。</small>  
+<small>↑ Unityでシステムシャドウを使いつつ、Stepスライダーを調整していると、影色との領域にノイズが現れることがあります。これらのノイズは、セルルックでは困りものですので、それらを`System Shadows Level`スライダーや`Tessellation`（※Tessellation対応はレガシー版, HDRP版のみ）を使って改善する方法を紹介しています。</small>  
 
 ---
 ### 「Additional Settings」サブメニュー
@@ -550,14 +550,14 @@ Unity Toon Shaderでは、リムライトに関しても様々なアイテムが
 <img width = "800" src="../images/UT2018_UTS2_SuperTips_14.png">
 
 **基本的なリムライトは、カメラから見てオブジェクトの周縁に表示**されます。  
-上に加えてUTS2では、メインライトが存在する方向を考慮してリムライトの出る位置を調整することができます。（`LightDirection Mask`）  
+上に加えてUnity Toon Shaderでは、メインライトが存在する方向を考慮してリムライトの出る位置を調整することができます。（`LightDirection Mask`）  
 さらに**光源とは反対方向のリムライト（対蹠リムライト）も設定できます**（`Antipodean(Ap)_RimLight`が`Active`）ので、「照り返し」も表現することが可能です。  
 もし光源方向のリムライトもカットして、光源方向の反対のみにリムライトを発生したい場合には、光源方向のリムライトのカラー（`RimLight Color`）を`黒（0,0,0）`に指定してください。  
 
 <img width = "800" src="../images/UT2018_UTS2_SuperTips_15.png">
 
 またリムライトは、ハイカラーと同様にカメラの角度によってはひどくテカってしまうことがあります。  
-UTS2では、リムライトマスクを設定することで、それらのテカりを抑えることができます。  
+Unity Toon Shaderでは、リムライトマスクを設定することで、それらのテカりを抑えることができます。  
 上の画像では、光源方向と照り返し方向のリムライトのカラーを変えた上に、脇の下などにリムライトマスクをかけることで不要なテカリを避けています。  
 
 <img width = "800" src="../images/UT2018_UTS2_SuperTips_33.png">
@@ -737,7 +737,7 @@ Unity上でαチャンネルを有効にするためには、各テクスチャ�
 
 <small>【**参考**】Unity Toon Shaderでは、`Transparent Mode`が`Off`で、かつ`TransClipping Mode`が有効の時、アウトラインを表示することができます。この時、半透明部分ではプレデプス処理がおこなわれませんので、`Transparent Mode`と表示が異なる場合がありますが、こちらは仕様といたします。</small>  
 
-UTS2では、アウトライン機能として、**マテリアルベースのオブジェクト反転方式のアウトライン**を採用しています。  
+Unity Toon Shaderでは、アウトライン機能として、**マテリアルベースのオブジェクト反転方式のアウトライン**を採用しています。  
 この方式を簡単に説明すると、シェーダーで元のオブジェクトよりも少し大きめのオブジェクトを面法線だけ反転して生成します。  
 新たに生成したアウトライン用オブジェクトには、フロントカリングで描画されますので、元よりも少し大きめに生成したぶんだけ、それが元のオブジェクトによって上書きされると、はみ出した部分がアウトラインのように見えるというものです。  
 この方式は比較的軽い上に調整が楽にできるので、ゲーム用のアウトラインとして伝統的に使われてきました。  
@@ -787,7 +787,7 @@ UTS2では、アウトライン機能として、**マテリアルベースの�
 ### ● ベイクした頂点法線を転写する：**Baked Normal for Outline**  
 頂点法線を焼き付けたノーマルマップを、法線反転アウトラインの設定時に追加的に読み込むことができるようになりました。本機能を使うことで、ハードエッジのオブジェクトに、ソフトエッジのオブジェクトのアウトラインを、事前にベイクしたノーマルマップを経由して適用することができるようになります。  
 
-Baked Normalマップを使用する時には、UTS2のアウトライン設定メニューで、  
+Baked Normalマップを使用する時には、Unity Toon Shader のアウトライン設定メニューで、  
 1.  Outline Mode を **"Normal Direction"** に  
 2.  Use Baked Normal for Outline を **"Active"** に  
 3.  Baked Normal for Outline に使用したいマップを適用します。 
@@ -841,7 +841,7 @@ Baked Normalマップを使用する時には、UTS2のアウトライン設定�
 ---
 ## 11.「Environmental Lighting Contributions Setups」メニュー
 
-本メニューには、シーン内の環境光設定（Skybox、Gradient、ColorなどのEnvironment Lighting）やライトプローブに対して、UTS2がどの程度反応をするか調整したり、リアルタイムディレクショナルライトがない環境で起動するシェーダービルトインライトの明るさを調整をするアイテムが含まれています。  
+本メニューには、シーン内の環境光設定（Skybox、Gradient、ColorなどのEnvironment Lighting）やライトプローブに対して、Unity Toon Shaderがどの程度反応をするか調整したり、リアルタイムディレクショナルライトがない環境で起動するシェーダービルトインライトの明るさを調整をするアイテムが含まれています。  
 また**VRChatユーザーに便利な機能**である、**SceneLights Hi-Cut Filter**のような白飛び防止機能のON/OFFも、このメニューからコントロールすることが可能です。  
 
 <img width = "400" src="../images/URP_image030.png">

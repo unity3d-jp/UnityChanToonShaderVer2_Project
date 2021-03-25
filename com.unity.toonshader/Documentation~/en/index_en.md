@@ -265,7 +265,7 @@ In addition to selecting the two basic workflow modes, you can add a variety of 
 ---
 ### 【Note】Useful functions for VRChat/Game users
 
-<small>【**Caution**】As of May 2020, [VRChat](https://www.vrchat.com/) is not adopting the universal render pipeline. For the present (until the universal render pipeline were adopted in the future), please use [UTS2 for legacy pipeline](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project).</small>  
+<small>【**Caution**】As of May 2020, [VRChat](https://www.vrchat.com/) is not adopting the universal render pipeline and HDRP. For the present, please use legacy shader.</small>  
 
 
 Unity Toon Shader is a general purpose toon shader that can be used in various projects in Unity.  
