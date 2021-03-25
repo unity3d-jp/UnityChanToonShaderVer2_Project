@@ -158,7 +158,7 @@ Set the `Stencil Mode` to add the stencil function. By using the stencil functio
 
 <img width = "800" src="../images/URP_image036.png">
 
-<small>【**NOTE**】 This feature is sololy for Legacy, Universal RP。HDRP version is not ready for Stencil feature as stencill buffer is used for other purpose inside HDRP, so, implementing this feature for Unversal Toon Sahder  HDRP version seems difficult. Please, check  [Feature Model] (../en/FeatureModel_en.md) to see the difference among reander pipelines.</small>
+<small>【**NOTE**】 This feature is sololy for Legacy, Universal RP. HDRP version is not ready for Stencil feature as stencill buffer is used for other purpose inside HDRP. There is no plans to implement stencil  feature for HDRP version. If stencil features are neccesarry, please consider to use legacy or Universal RP.  The feature difference among render pipielines are noted in  [Feature Model] (../en/FeatureModel_en.md).</small>
 ---
 ### Clipping Shader or TransClipping Shader
 <img width = "800" src="../images/URP_image012.png">
