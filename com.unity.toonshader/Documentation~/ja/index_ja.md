@@ -159,8 +159,8 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 <img width = "800" src="../images/URP_image036.png">
 
-【NOTE】 この機能はLegacy, Universal RP 版でのみ有効です。HDRP版ではご利用いただくことができません。
-HDRPのシステム内部でステンシルが別の用途に使われているためです。各レンダーパイプラインの微妙な違いに関しては [Feature Model] (../en/FeatureModel_en.md) をご確認ください。
+<small>【**NOTE**】 この機能はLegacy, Universal RP 版でのみ有効です。HDRP版ではご利用いただくことができません。
+HDRPのシステム内部でステンシルが別の用途に使われているためです。各レンダーパイプラインの微妙な違いに関しては [Feature Model] (../en/FeatureModel_en.md) をご確認ください。</small>
 ---
 ### Clipping Shader および TransClipping Shader
 <img width = "800" src="../images/URP_image012.png">
