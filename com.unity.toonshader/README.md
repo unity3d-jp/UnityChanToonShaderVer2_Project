@@ -57,14 +57,10 @@ To install this package, follow the instructions in the [Package Manager documen
 
 If you installed this package, Unity Toon Shader files are installed into **Unity ToonShader** folder under **Packages** folder in your Unity project.  
 
-To get the sample scenes of Unity Toon Shader, download whole project from [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/package/sample-project.zip).  
-
-The project comes with sample scenes where you can learn various setting examples of Unity Toon Shader.  
-
 
 <a name="UsingUnitychanToonShader2"></a>
 ## 【Using Unity Toon Shader】
-To learn how to use Unity Toon Shader, see [Users' Manual](./Documentation~/en/UTS3_Manual_en.md).  
+To learn how to use Unity Toon Shader, see [Users' Manual](./Documentation~/en/index_en.md).  
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using Unity Toon Shader actually is the best way to learn the beautiful toon style.  
 
@@ -104,7 +100,7 @@ Unity Toon Shader is provided under the
 Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these and other terms and conditions.
 
 -----
-Be sure to check the [manual](./Documentation~/en/UTS3_Manual_en.md) after installation.  
+Be sure to check the [manual](https://github.com/Unity-Technologies/com.unity.toonshader/blob/feature/task_315_reduce_texturees/com.unity.toonshader/Documentation~/en/index_en.md) after installation.  
 The manual explains how to use Unity Toon Shader in detail.  
 
 Please contact us if you have any issues.  

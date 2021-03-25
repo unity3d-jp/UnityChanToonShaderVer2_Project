@@ -54,7 +54,7 @@ Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠
 
 -----
 ## 【ユーザーマニュアル】
-**[日本語マニュアル（v.2.0.7版）](./UTS3_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+**[日本語マニュアル](./Documentation~/en/index_en.md)が提供されています。合わせてご利用ください。**  
 
 ユーザーマニュアルには、トゥーンスタイルに関する、豊富なナレッジが集まっています。  
 マニュアルを読みつつ、実際にUnity Toon Shaderを使ってみるを繰り返すことで、美しいトゥーンスタイルを作り上げるための方法論が自然に身につきます。  
@@ -83,14 +83,14 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 
 -----
 ## 【シェーダーのインストール】
-インストール後は、必ず[マニュアル](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS3_Manual_ja.md)を確認するようにしてください。  
+インストール後は、必ず[マニュアル](https://github.com/Unity-Technologies/com.unity.toonshader/blob/development/v1/com.unity.toonshader/Documentation~/ja/index_ja.md)を確認するようにしてください。  
 マニュアルには、Unity Toon Shaderの使い方が詳しく解説されています。  
 
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 -----
 ## 【リリース履歴】  
-Unity Toon Shaderのリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/HISTORY_ja.md)。  
+Unity Toon Shaderのリリース履歴は、[こちら](https://github.com/Unity-Technologies/com.unity.toonshader/blob/com.unity.toonshader/Documentation~)。  
 
 -----
 ## 【インフォメーション】  

@@ -66,7 +66,7 @@ You can start using Unity Toon Shader by assigning the **Toon** shader in the **
 
 <center><img width = "600" src="../images/URP_image002.png"></center>
 
-4. The material shaders are changed. Make sure that "Universal Render Pipeline/Toon" is assigned by the Inspector. By default, the most basic UTS2 shader, the "Double Shade With Feather" workflow, is assigned.  
+4. The material shaders are changed. Make sure that "Universal Render Pipeline/Toon" is assigned by the Inspector. By default, the most basic Unity Toon Shader, the "Double Shade With Feather" workflow, is assigned.  
 
 <center><img width = "300" src="../images/URP_image003.png"></center>
 
@@ -76,7 +76,7 @@ The legacy pipeline version of UTS2 was divided into multiple shaders by functio
 
 <img width = "480" src="../images/UTS2_Standard.png">
 
-UTS2/UinversalToon has been redesigned as an integrated shader (Uber shader), allowing you to do all the work in one Universal Render Piplene/Toon shader.  
+Unity Toon Shader has been redesigned as an integrated shader (Uber shader), allowing you to do all the work in one Universal Render Piplene/Toon shader.  
 
 <img width = "300" src="../images/URP_image006.png">
 
@@ -462,7 +462,7 @@ Use this when you want to make further fine adjustments after deciding the color
 
 [![](https://img.youtube.com/vi/LXV37a1jhUE/0.png)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
-<small>↑ When using the system shadow with Unity and adjusting the Step slider, noise may appear in the area with shadow color. These noises are troublesome in Cel-look style, so I show you how to improve them using the `System Shadows Level` slider and` Tessellation` (※Tessellation support is only available for legacy UTS2).</small>  
+<small>↑ When using the system shadow with Unity and adjusting the Step slider, noise may appear in the area with shadow color. These noises are troublesome in Cel-look style, so I show you how to improve them using the `System Shadows Level` slider and` Tessellation` (※Tessellation support is  available for Legacy and HDRP).</small>  
 
 ---
 ### “Additional Settings” Submenu
@@ -558,7 +558,7 @@ You can use these RimLight options in UTS/UniversalToon.
 
 <img width = "800" src="../images/UT2018_UTS2_SuperTips_14.png">
 
-The RimLight is generally shown around the objects edges from the camera’s perspective. In UTS2, you can adjust where the rim light is shown in relation to where the main light is. (‘LightDirection Mask’)
+The RimLight is generally shown around the objects edges from the camera’s perspective. In Unity Toon Shader, you can adjust where the rim light is shown in relation to where the main light is. (‘LightDirection Mask’)
 
 You can also set RimLight in the opposite direction of the light source. You can also render “light reflection” with ‘Add Antipodean_RimLight’.
 
@@ -804,7 +804,7 @@ Black means “no lines” and white means that the width is at 100%.
 
 You can now read normal maps that have vertices normals baked on to them additionally when setting the inverted outlines. By using this you can give hard-edged objects soft-edged outlines according to the baked normal maps.  
 
-When using baked normal maps, set UTS2’s outline setting properties to.  
+When using baked normal maps, set Unity Toon Shader's outline setting properties to.  
 
 1. Outline Mode as **"Normal Direction"**
 2. Use Baked Normal for Outline as **"Active"**
