@@ -121,8 +121,8 @@ float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs 
             // the preprocessor.
 //                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
 //                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
-            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *light.diffuseDimmer;
-            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor  *light.specularDimmer;
+            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor.xyz  *light.diffuseDimmer;
+			finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor.xyz  *light.specularDimmer;
         }
 
 

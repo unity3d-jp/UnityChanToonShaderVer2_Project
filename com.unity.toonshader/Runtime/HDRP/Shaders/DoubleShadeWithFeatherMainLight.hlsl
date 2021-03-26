@@ -71,7 +71,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 //DoubleShadeWithFeather
 #endif
 
-    DirectionalShadowType shadowAttenuation = lightLoopContext.shadowValue;
+    float shadowAttenuation = (float)lightLoopContext.shadowValue;
 
 
     float3 mainLihgtDirection = -_DirectionalLightDatas[mainLightIndex].forward;
@@ -130,7 +130,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     {
         float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, _FirstShadeMaskColor.w, _FirstShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_FirstShadeOverridden, _ComposerMaskMode);
-        Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor, maskEnabled);
+        Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor.xyz, maskEnabled);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
     }
 #endif //#ifdef UTS_LAYER_VISIBILITY
@@ -167,7 +167,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     {
         float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, _SecondShadeMaskColor.w, _SecondShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_SecondShadeOverridden, _ComposerMaskMode);
-        Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor, maskEnabled);
+        Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor.xyz, maskEnabled);
         Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, Set_BaseColor, 1.0f - _SecondShadeVisible);
     }
 #endif //#ifdef UTS_LAYER_VISIBILITY
@@ -212,7 +212,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
         Set_HighColor += addColor;
         if (any(addColor))
         {
-            Set_HighColor = lerp(Set_HighColor, overridingColor, maskEnabled);
+            Set_HighColor = lerp(Set_HighColor, overridingColor.xyz, maskEnabled);
         }
     }
 
@@ -240,7 +240,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float3 _RimLight_var = lerp(Set_HighColor, (Set_HighColor + Set_RimLight), _RimLight);
     if (any(Set_RimLight) * maskRimEnabled)
     {
-        _RimLight_var = overridingRimColor;
+        _RimLight_var = overridingRimColor.xyz;
     }
 #else
     float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g + _Tweak_RimLightMaskLevel)) * lerp(_LightDirection_MaskOn_var, (_LightDirection_MaskOn_var + (lerp(_Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb * Set_LightColor), _Is_LightColor_Ap_RimLight) * saturate((lerp((0.0 + ((_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0)) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask, _ApRimLightPower_var), _Ap_RimLight_FeatherOff) - (saturate(_VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight));
@@ -272,7 +272,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     fixed _Camera_Dir = _Camera_Right.y < 0 ? -1 : 1;
     float _Rot_MatCapUV_var_ang = (_Rotate_MatCapUV * 3.141592654) - _Camera_Dir * _Camera_Roll * _CameraRolling_Stabilizer;
     //v.2.0.7
-    float2 _Rot_MatCapNmUV_var = RotateUV(Set_UV0, (_Rotate_NormalMapForMatCapUV * 3.141592654), float2(0.5, 0.5), 1.0);
+    float2 _Rot_MatCapNmUV_var = RotateUV(Set_UV0.xy, (_Rotate_NormalMapForMatCapUV * 3.141592654f), float2(0.5, 0.5), 1.0);
     //V.2.0.6
     float3 _NormalMapForMatCap_var = UnpackNormalScale(tex2D(_NormalMapForMatCap, TRANSFORM_TEX(_Rot_MatCapNmUV_var, _NormalMapForMatCap)), _BumpScaleMatcap);
     //v.2.0.5: MatCap with camera skew correction

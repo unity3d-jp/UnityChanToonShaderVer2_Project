@@ -24,7 +24,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     float4 Set_UV0 = input.texCoord0;
     float3x3 tangentTransform = input.tangentToWorld;
     //UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, texCoords))
-    float4 n = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, Set_UV0); // todo. TRANSFORM_TEX
+    float4 n = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, Set_UV0.xy); 
 //    float3 _NormalMap_var = UnpackNormalScale(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
     float3 _NormalMap_var = UnpackNormalScale(n, _BumpScale);
     float3 normalLocal = _NormalMap_var.rgb;
@@ -59,7 +59,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
 #ifdef UTS_LAYER_VISIBILITY
     float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, _BaseColorMaskColor.w, _BaseColorMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
-    Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
+    Set_BaseColor = lerp(Set_BaseColor, overridingColor.xyz, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY    //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
@@ -68,7 +68,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     {
         float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, _FirstShadeMaskColor.w, _FirstShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_FirstShadeOverridden, _ComposerMaskMode);
-        Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor, maskEnabled);
+        Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor.xyz, maskEnabled);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
     }
 #endif //#ifdef UTS_LAYER_VISIBILITY    //v.2.0.5
@@ -95,7 +95,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     {
         float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, _SecondShadeMaskColor.w, _SecondShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_SecondShadeOverridden, _ComposerMaskMode);
-        Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor, maskEnabled);
+        Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor.xyz, maskEnabled);
         Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, Set_BaseColor, 1.0f - _SecondShadeVisible);
     }
 #endif //#ifdef UTS_LAYER_VISIBILITY
@@ -132,7 +132,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
         finalColor += addColor;
         if (any(addColor))
         {
-            finalColor = lerp(finalColor, overridingColor, maskEnabled);
+            finalColor = lerp(finalColor, overridingColor.xyz, maskEnabled);
         }
 
     }
