@@ -249,8 +249,8 @@ float  GetLightAttenuation(float3 lightColor)
 
 int GetNextDirectionalLightIndex(BuiltinData builtinData, int currentIndex, int mainLightIndex)
 {
-    uint i = 0; // Declare once to avoid the D3D11 compiler warning.
-    for (i = 0; i < _DirectionalLightCount; ++i)
+    int i = 0; // Declare once to avoid the D3D11 compiler warning.
+    for (i = 0; i < (int)_DirectionalLightCount; ++i)
     {
         if (IsMatchingLightLayer(_DirectionalLightDatas[i].lightLayers, builtinData.renderingLayers))
         {
