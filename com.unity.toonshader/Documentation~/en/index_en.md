@@ -862,7 +862,7 @@ While actually using the character lights used in the scene, you can see in real
 ---
 ## 11. “Environmental Lighting Contributions Setups” Menu
 
-In this menu, adjust the response of the UTS 2 to “the ambient light setting”(Environment Lighting including Skybox, Gradient and Color) and the light probe in the scene, and adjust the brightness of the shader built-in light that starts up in an environment where there is no real-time directional light Items are included.  
+In this menu, adjust the response of the Unity Toon Shader to “the ambient light setting”(Environment Lighting including Skybox, Gradient and Color) and the light probe in the scene, and adjust the brightness of the shader built-in light that starts up in an environment where there is no real-time directional light Items are included.  
 It is also possible to control ON/OFF of the white jump prevention function like **SceneLights Hi-Cut Filter**, which is **a useful function for VRChat users**, from this menu.  
 
 <img width = "400" src="../images/URP_image030.png">
