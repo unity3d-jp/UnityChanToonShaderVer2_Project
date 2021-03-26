@@ -83,14 +83,14 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 
 -----
 ## 【シェーダーのインストール】
-インストール後は、必ず[マニュアル](https://github.com/Unity-Technologies/com.unity.toonshader/blob/development/v1/com.unity.toonshader/Documentation~/ja/index_ja.md)を確認するようにしてください。  
+インストール後は、必ず[マニュアル](Documentation~/ja/index_ja.md)を確認するようにしてください。  
 マニュアルには、Unity Toon Shaderの使い方が詳しく解説されています。  
 
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 -----
 ## 【リリース履歴】  
-Unity Toon Shaderのリリース履歴は、[こちら](https://github.com/Unity-Technologies/com.unity.toonshader/blob/com.unity.toonshader/Documentation~)。  
+Unity Toon Shaderのリリース履歴は、[こちら](./Documentation~/ja/HISTORY_ja.md)。  
 
 -----
 ## 【インフォメーション】  
