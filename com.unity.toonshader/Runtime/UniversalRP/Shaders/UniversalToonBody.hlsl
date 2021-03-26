@@ -541,13 +541,13 @@
                 o.pos = UnityObjectToClipPos( v.vertex );
                 //v.2.0.7 Detection of the inside the mirror (right or left-handed) o.mirrorFlag = -1 then "inside the mirror".
 
-                float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
-                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
+                float3 crossFwd = cross(UNITY_MATRIX_V[0].xyz, UNITY_MATRIX_V[1].xyz);
+                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2].xyz) < 0 ? 1 : -1;
                 //
 
-                float3 positionWS = TransformObjectToWorld(v.vertex);
+                float3 positionWS = TransformObjectToWorld(v.vertex.xyz);
                 float4 positionCS = TransformWorldToHClip(positionWS);
-                half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
+                half3 vertexLight = VertexLighting(o.posWorld.xyz, o.normalDir);
                 half fogFactor = ComputeFogFactor(positionCS.z);
 
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
@@ -559,11 +559,11 @@
     #if SHADOWS_SCREEN
                 o.shadowCoord = ComputeScreenPos(positionCS);
     #else
-                o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
+                o.shadowCoord = TransformWorldToShadowCoord(o.posWorld.xyz);
     #endif
-                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, o.shadowCoord, positionCS);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, o.shadowCoord, positionCS);
   #else
-                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, 0, positionCS);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, 0, positionCS);
   #endif
 
 		
