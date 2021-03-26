@@ -130,7 +130,7 @@
                 float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
                 float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
                 //
-                float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));
+                float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex)).xyz;
 
                 float4 overridingColor = lerp(_OutlineMaskColor, float4(_OutlineMaskColor.w, _OutlineMaskColor.w, _OutlineMaskColor.w, 1.0f), _ComposerMaskMode);
                 float  maskEnabled = max(_OutlineOverridden, _ComposerMaskMode);

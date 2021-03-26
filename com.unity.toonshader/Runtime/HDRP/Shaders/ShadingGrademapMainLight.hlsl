@@ -62,7 +62,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 
 
-    float shadowAttenuation = lightLoopContext.shadowValue;
+    DirectionalShadowType shadowAttenuation = lightLoopContext.shadowValue;
 
 
     float3 mainLihgtDirection = -_DirectionalLightDatas[mainLightIndex].forward;

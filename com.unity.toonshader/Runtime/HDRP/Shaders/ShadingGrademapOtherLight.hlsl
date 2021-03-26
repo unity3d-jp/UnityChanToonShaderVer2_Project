@@ -26,7 +26,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     float4 Set_UV0 = input.texCoord0;
     float3x3 tangentTransform = input.tangentToWorld;
     //UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, texCoords))
-    float4 n = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, Set_UV0); // todo. TRANSFORM_TEX
+    float4 n = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, Set_UV0.xy);
 //    float3 _NormalMap_var = UnpackNormalScale(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
     float3 _NormalMap_var = UnpackNormalScale(n, _BumpScale);
     float3 normalLocal = _NormalMap_var.rgb;
@@ -128,8 +128,6 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     float3 finalColor =
         lerp(
             Set_BaseColor,
-            //_BaseColor_var*(Set_LightColor*1.5),
-
             lerp(
                 Set_1st_ShadeColor,
                 Set_2nd_ShadeColor,

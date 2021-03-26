@@ -29,7 +29,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float4 Set_UV0 = input.texCoord0;
     float3x3 tangentTransform = input.tangentToWorld;
     //UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, texCoords))
-    float4 n = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, Set_UV0); // todo. TRANSFORM_TEX
+    float4 n = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, Set_UV0.xy); 
 //    float3 _NormalMap_var = UnpackNormalScale(tex2D(_NormalMap, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
     float3 _NormalMap_var = UnpackNormalScale(n, _BumpScale);
     float3 normalLocal = _NormalMap_var.rgb;
@@ -71,7 +71,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 //DoubleShadeWithFeather
 #endif
 
-    float shadowAttenuation = lightLoopContext.shadowValue;
+    DirectionalShadowType shadowAttenuation = lightLoopContext.shadowValue;
 
 
     float3 mainLihgtDirection = -_DirectionalLightDatas[mainLightIndex].forward;
@@ -111,7 +111,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #endif // _IS_CLIPPING_MATTE
 
 #ifdef UTS_LAYER_VISIBILITY
-    float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, _BaseColorMaskColor.w, _BaseColorMaskColor.w, 1.0f), _ComposerMaskMode);
+    float3 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, _BaseColorMaskColor.w, _BaseColorMaskColor.w, 1.0f), _ComposerMaskMode).xyz;
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
     Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
