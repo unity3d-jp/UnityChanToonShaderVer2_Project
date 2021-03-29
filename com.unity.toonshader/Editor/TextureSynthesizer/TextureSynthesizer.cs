@@ -190,7 +190,7 @@ namespace UnityEditor.Rendering.Toon
                 material.SetTexture(strS2, Source2);
                 material.SetTexture(strS3, Source3);
             }
-#if true
+#if false
 //            int tempTextureIdentifier = Shader.PropertyToID("TmpTexture");
             s_CommandBuffer.Clear();
 
@@ -213,9 +213,10 @@ namespace UnityEditor.Rendering.Toon
 //            s_CommandBuffer.ReleaseTemporaryRT(tempTextureIdentifier);
             Graphics.ExecuteCommandBuffer(s_CommandBuffer);
 #else
-            Graphics.Blit(Source0, s_DebugRenderTexture);
+            Graphics.Blit(Source0, s_DebugRenderTexture, material);
+            Graphics.CopyTexture(s_DebugRenderTexture, outTexture);
 #endif
-            SyncGPU();
+            //            SyncGPU();
         }
 
         internal static void SyncGPU()
