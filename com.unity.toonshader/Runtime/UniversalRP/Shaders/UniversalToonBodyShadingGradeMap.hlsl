@@ -36,7 +36,13 @@
                 input.vertexSH = i.vertexSH;
 # endif
                 input.uv = i.uv0;
+# ifdef _ADDITIONAL_LIGHTS_VERTEX
+
                 input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
+# else
+                input.fogFactor = i.fogFactor;
+# endif
+
 #  ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
                 input.shadowCoord = i.shadowCoord;
 #  endif
@@ -52,7 +58,9 @@
 #endif //
 #  else
                 input.normalWS = half3(i.normalDir);
+#    if (VERSION_LOWER(12, 0))
                 input.viewDirWS = half3(viewDirection);
+#    endif //(VERSION_LOWER(12, 0))
 #  endif
                 InitializeInputData(input, surfaceData.normalTS, inputData);
 

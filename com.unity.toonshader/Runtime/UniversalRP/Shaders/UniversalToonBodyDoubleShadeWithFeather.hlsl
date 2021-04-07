@@ -40,7 +40,13 @@
                 input.vertexSH = i.vertexSH;
 # endif
                 input.uv = i.uv0;
-                input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
+#  ifdef _ADDITIONAL_LIGHTS_VERTEX
+
+				input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
+#  else
+				input.fogFactor = i.fogFactor;
+#  endif
+
 #  ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
                 input.shadowCoord = i.shadowCoord;
 #  endif
@@ -52,12 +58,14 @@
 #  ifdef _NORMALMAP
                 input.normalWS = half4(i.normalDir, viewDirection.x);      // xyz: normal, w: viewDir.x
                 input.tangentWS = half4(i.tangentDir, viewDirection.y);        // xyz: tangent, w: viewDir.y
-#  if (VERSION_LOWER(7, 5))
+#    if (VERSION_LOWER(7, 5))
                 input.bitangentWS = half4(i.bitangentDir, viewDirection.z);    // xyz: bitangent, w: viewDir.z
-#endif
-#  else
+#    endif
+#  else //ifdef _NORMALMAP
                 input.normalWS = half3(i.normalDir);
+    #if (VERSION_LOWER(12, 0))  
                 input.viewDirWS = half3(viewDirection);
+    #endif  //    #if (VERSION_LOWER(12, 0))  
 #  endif
                 InitializeInputData(input, surfaceData.normalTS, inputData);
 

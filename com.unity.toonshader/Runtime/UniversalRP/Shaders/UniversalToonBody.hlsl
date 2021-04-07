@@ -279,7 +279,12 @@
                 float mirrorFlag : TEXCOORD5;
 
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
+#ifdef _ADDITIONAL_LIGHTS_VERTEX
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
+#else
+				half  fogFactor					: TEXCOORD7; 
+#endif 
+
 # ifndef _MAIN_LIGHT_SHADOWS
 				float4 positionCS               : TEXCOORD8;
                 int   mainLightID              : TEXCOORD9;
@@ -302,7 +307,11 @@
                 float mirrorFlag : TEXCOORD6;
 
                 DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 7);
+#ifdef _ADDITIONAL_LIGHTS_VERTEX
                 half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
+#else
+				half  fogFactor					: TEXCOORD8; // x: fogFactor, yzw: vertex light
+#endif 
 # ifndef _MAIN_LIGHT_SHADOWS
                 float4 positionCS               : TEXCOORD9;
                 int   mainLightID              : TEXCOORD10;
@@ -553,7 +562,12 @@
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
                 OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
-                o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+#ifdef _ADDITIONAL_LIGHTS_VERTEX
+				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+#else
+				o.fogFactor = fogFactor;
+#endif 
+                
                 o.positionCS = positionCS;
   #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
     #if SHADOWS_SCREEN
