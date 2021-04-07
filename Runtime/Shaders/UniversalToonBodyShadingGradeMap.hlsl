@@ -1,5 +1,5 @@
 ﻿//UTS2/UniversalToon
-//v.2.2.2
+//v.2.2.3
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Univerasl RP/HDRP)  
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
@@ -28,7 +28,7 @@
                 InitializeStandardLitSurfaceDataUTS(i.uv0, surfaceData);
 
                 InputData inputData;
-1
+                Varyings  input = (Varyings)0;
 
                 // todo.  it has to be cared more.
                 UNITY_SETUP_INSTANCE_ID(input);

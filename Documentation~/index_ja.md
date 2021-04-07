@@ -1,4 +1,4 @@
-# UTS/UniversalToon Ver.2.2.2 マニュアル
+# UTS/UniversalToon Ver.2.2.3 マニュアル
 ***Read this document in [English](index.md)***  
 
 [![](Images_jpg/SDUnitychan_URP.jpg)](https://www.youtube.com/watch?v=TfZ8B409uqM)

@@ -1,5 +1,5 @@
 ﻿//UTS2/UniversalToon
-//v.2.2.0
+//v.2.2.3
 //nobuyuki@unity3d.com
 //toshiyui@unity3d.com (universal RP)
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
