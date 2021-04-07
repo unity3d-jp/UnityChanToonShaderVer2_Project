@@ -36,7 +36,7 @@
                 input.vertexSH = i.vertexSH;
 # endif
                 input.uv = i.uv0;
-# ifdef _ADDITIONAL_LIGHTS_VERTEX
+#  if defined(_ADDITIONAL_LIGHTS_VERTEX) ||  (VERSION_LOWER(12, 0))  
 
                 input.fogFactorAndVertexLight = i.fogFactorAndVertexLight;
 # else

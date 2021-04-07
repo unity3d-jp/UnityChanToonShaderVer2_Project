@@ -279,7 +279,7 @@
                 float mirrorFlag : TEXCOORD5;
 
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
-#ifdef _ADDITIONAL_LIGHTS_VERTEX
+#if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
 #else
 				half  fogFactor					: TEXCOORD7; 
@@ -307,7 +307,7 @@
                 float mirrorFlag : TEXCOORD6;
 
                 DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 7);
-#ifdef _ADDITIONAL_LIGHTS_VERTEX
+#if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
                 half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
 #else
 				half  fogFactor					: TEXCOORD8; // x: fogFactor, yzw: vertex light
@@ -562,7 +562,7 @@
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
                 OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
-#ifdef _ADDITIONAL_LIGHTS_VERTEX
+#  if defined(_ADDITIONAL_LIGHTS_VERTEX) ||  (VERSION_LOWER(12, 0))  
 				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
 #else
 				o.fogFactor = fogFactor;
