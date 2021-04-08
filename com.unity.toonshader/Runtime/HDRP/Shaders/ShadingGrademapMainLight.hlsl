@@ -2,6 +2,15 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
+
+#ifndef DirectionalShadowType
+# if (SHADEROPTIONS_RAYTRACING && (defined(SHADER_API_D3D11) || defined(SHADER_API_D3D12)) && !defined(SHADER_API_XBOXONE) && !defined(SHADER_API_PSSL))
+#   define DirectionalShadowType float3
+# else
+#   define DirectionalShadowType float
+# endif
+#endif
+
 float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping)
 {
 
