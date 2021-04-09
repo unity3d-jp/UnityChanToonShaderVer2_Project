@@ -6,7 +6,7 @@ test_projects:
   - name: UniversalUTS_GraphicsTest
   - name: HDRPUTS_GraphicsTest
 unity_versions:
-  - name: {{ unity_version.name }}
+  - name: 2019.4
   - name: 2020.1
 #  - name: 2020.2
 #  - name: 2021.1

@@ -3,7 +3,7 @@
 # Introduce any changes under .yamato/config/*.metafile files (for most cases) or under .yamato/ruamel/* within Python (more elaborate cases), and rerun build.py to regenerate all .yml files. 
 # Read more under .yamato/docs/readme.md 
 unity_versions:
-  - name: {{ unity_version.name }}
+  - name: 2019.4
   - name: 2020.1
   - name: 2020.2
   - name: 2021.1
