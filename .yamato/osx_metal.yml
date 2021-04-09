@@ -5,10 +5,17 @@ test_projects:
   - name: LegacyUTS_GraphicsTest
   - name: UniversalUTS_GraphicsTest
   - name: HDRPUTS_GraphicsTest
+unity_versions:
+  - name: {{ unity_version.name }}
+  - name: 2020.1
+#  - name: 2020.2
+#  - name: 2021.1
+#  - name: trunk
 ---
 {% for test_project in test_projects %}
-{{ test_project.name }}_OSX_Metal_playmode_mono_Linear_2019.4:
-    name: {{ test_project.name }} on OSX_Metal_playmode_mono_Linear on version 2019.4
+{% for unity_version in unity_versions %}
+{{ test_project.name }}_OSX_Metal_playmode_mono_Linear_{{ unity_version.name }}:
+    name: {{ test_project.name }} on OSX_Metal_playmode_mono_Linear on version {{ unity_version.name }}
     agent:
         type: Unity::metal::macmini
         image: slough-ops/macos-10.14-xcode:stable
@@ -39,6 +46,7 @@ test_projects:
               -  "**/test-results/**"
               -  "TestProjects/{{ test_project.name }}/Logs/*.log"
     dependencies:
-      -  path: .yamato/_editor.yml#editor:priming:2019.4:macos
+      -  path: .yamato/_editor.yml#editor:priming:{{ unity_version.name }}:macos
          rerun: on-new-revision
+{% endfor %}
 {% endfor %}

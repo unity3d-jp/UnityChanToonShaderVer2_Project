@@ -2,7 +2,7 @@
 #
 #
 test_projects:
-#  - name: LegacyUTS_GraphicsTest
+  - name: LegacyUTS_GraphicsTest
   - name: UniversalUTS_GraphicsTest
   - name: HDRPUTS_GraphicsTest
 unity_versions:
@@ -32,7 +32,7 @@ unity_versions:
       -  cd TestProjects/{{ test_project.name }} && unity-downloader-cli --source-file ../../unity_revision_{{ unity_version.name }}.txt -c editor -c il2cpp  --wait --published-only
       -  cd TestProjects/{{ test_project.name }} && utr --suite=playmode --testproject=. --editor-location=.Editor --artifacts_path=test-results --extra-editor-arg="-force-d3d11"
     timeout: 360000
-    retries: 2
+    retries: 1
     triggers:
         branches:
           only:
