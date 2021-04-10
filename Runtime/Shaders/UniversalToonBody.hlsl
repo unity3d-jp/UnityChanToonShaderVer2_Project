@@ -1,10 +1,6 @@
-﻿//UTS2/UniversalToon
-//v.2.2.3
+﻿//Unity Toon Shader/Universal
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Univerasl RP/HDRP)  
-//https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-//
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
 
 #if (SHADER_LIBRARY_VERSION_MAJOR ==7 && SHADER_LIBRARY_VERSION_MINOR >= 3) || (SHADER_LIBRARY_VERSION_MAJOR >= 8)
 
@@ -180,8 +176,13 @@
 //            uniform sampler2D _RaytracedHardShadow;
             float4 _RaytracedHardShadow_TexelSize;
             uniform int UtsUseRaytracingShadow;
-
-            // UV回転をする関数：RotateUV()
+#ifdef _SYNTHESIZED_TEXTURE
+            uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
+            uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
+            uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthesized_ST;
+            uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
+#endif
+            //function to rotate the UV: RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
             float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
             {
@@ -195,8 +196,8 @@
                 return ShadeSH9(float4(N,1));
             }
 
-            inline void InitializeStandardLitSurfaceDataUTS(float2 uv, out SurfaceData outSurfaceData)
 
+            inline void InitializeStandardLitSurfaceDataUTS(float2 uv, out SurfaceData outSurfaceData)
             {
                 outSurfaceData = (SurfaceData)0;
                 // half4 albedoAlpha = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
@@ -278,7 +279,12 @@
                 float mirrorFlag : TEXCOORD5;
 
 				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
+#if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
 				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
+#else
+				half  fogFactor					: TEXCOORD7; 
+#endif 
+
 # ifndef _MAIN_LIGHT_SHADOWS
 				float4 positionCS               : TEXCOORD8;
                 int   mainLightID              : TEXCOORD9;
@@ -301,7 +307,11 @@
                 float mirrorFlag : TEXCOORD6;
 
                 DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 7);
+#if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
                 half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
+#else
+				half  fogFactor					: TEXCOORD8; // x: fogFactor, yzw: vertex light
+#endif 
 # ifndef _MAIN_LIGHT_SHADOWS
                 float4 positionCS               : TEXCOORD9;
                 int   mainLightID              : TEXCOORD10;
@@ -381,7 +391,7 @@
 
 
 
-            UtsLight GetMainUtsLight()
+            UtsLight GetUrpMainUtsLight()
             {
                 UtsLight light;
                 light.direction = _MainLightPosition.xyz;
@@ -397,9 +407,9 @@
                 return light;
             }
 
-            UtsLight GetMainUtsLight(float4 shadowCoord, float4 positionCS)
+            UtsLight GetUrpMainUtsLight(float4 shadowCoord, float4 positionCS)
             {
-                UtsLight light = GetMainUtsLight();
+                UtsLight light = GetUrpMainUtsLight();
                 light.shadowAttenuation = MainLightRealtimeShadowUTS(shadowCoord, positionCS);
                 return light;
             }
@@ -483,12 +493,12 @@
                 UtsLight mainLight;
                 INIT_UTSLIGHT(mainLight);
 
-                int mainLightIndex = -2;
-                UtsLight nextLight = GetMainUtsLight(shadowCoord, positionCS);
+                int mainLightIndex = MAINLIGHT_NOT_FOUND;
+                UtsLight nextLight = GetUrpMainUtsLight(shadowCoord, positionCS);
                 if (nextLight.distanceAttenuation > mainLight.distanceAttenuation && nextLight.type == 0)
                 {
                     mainLight = nextLight;
-                    mainLightIndex = -1;
+                    mainLightIndex = MAINLIGHT_IS_MAINLIGHT;
                 }
                 int lightCount = GetAdditionalLightsCount();
                 for (int ii = 0; ii < lightCount; ++ii)
@@ -508,13 +518,13 @@
             {
                 UtsLight mainLight;
                 INIT_UTSLIGHT(mainLight);
-                if (index == -2)
+                if (index == MAINLIGHT_NOT_FOUND)
                 {
                     return mainLight;
                 }
-                if (index == -1)
+                if (index == MAINLIGHT_IS_MAINLIGHT)
                 {
-                    return GetMainUtsLight(shadowCoord, positionCS);
+                    return GetUrpMainUtsLight(shadowCoord, positionCS);
                 }
                 return GetAdditionalUtsLight(index, posW, positionCS);
             }
@@ -538,30 +548,36 @@
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
 
                 o.pos = UnityObjectToClipPos( v.vertex );
-                //v.2.0.7 鏡の中判定（右手座標系か、左手座標系かの判定）o.mirrorFlag = -1 なら鏡の中.
-                float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
-                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
+                //v.2.0.7 Detection of the inside the mirror (right or left-handed) o.mirrorFlag = -1 then "inside the mirror".
+
+                float3 crossFwd = cross(UNITY_MATRIX_V[0].xyz, UNITY_MATRIX_V[1].xyz);
+                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2].xyz) < 0 ? 1 : -1;
                 //
 
-                float3 positionWS = TransformObjectToWorld(v.vertex);
+                float3 positionWS = TransformObjectToWorld(v.vertex.xyz);
                 float4 positionCS = TransformWorldToHClip(positionWS);
-                half3 vertexLight = VertexLighting(o.posWorld, o.normalDir);
+                half3 vertexLight = VertexLighting(o.posWorld.xyz, o.normalDir);
                 half fogFactor = ComputeFogFactor(positionCS.z);
 
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
                 OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
-                o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+#  if defined(_ADDITIONAL_LIGHTS_VERTEX) ||  (VERSION_LOWER(12, 0))  
+				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+#else
+				o.fogFactor = fogFactor;
+#endif 
+                
                 o.positionCS = positionCS;
   #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
     #if SHADOWS_SCREEN
                 o.shadowCoord = ComputeScreenPos(positionCS);
     #else
-                o.shadowCoord = TransformWorldToShadowCoord(o.posWorld);
+                o.shadowCoord = TransformWorldToShadowCoord(o.posWorld.xyz);
     #endif
-                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, o.shadowCoord, positionCS);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, o.shadowCoord, positionCS);
   #else
-                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld, 0, positionCS);
+                o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, 0, positionCS);
   #endif
 
 		

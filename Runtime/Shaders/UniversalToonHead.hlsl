@@ -1,3 +1,7 @@
+//Unity Toon Shader/Universal
+//nobuyuki@unity3d.com
+//toshiyuki@unity3d.com (Universal RP/HDRP) 
+
 #ifndef UCTS_LWRP_INCLUDED
 #define UCTS_LWRP_INCLUDED
 
@@ -8,7 +12,8 @@
 #define fixed4 half4
 
 
-
+#define MAINLIGHT_NOT_FOUND -2
+#define MAINLIGHT_IS_MAINLIGHT -1
 
 
 #ifndef DIRECTIONAL
