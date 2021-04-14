@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 using UnityEngine.TestTools.Graphics;
+using UnityEditor.TestTools.Graphics;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.IO;
@@ -14,12 +15,11 @@ namespace Tests
     public class HDRPUTS_GraphicsTests
     {
         public const string HDRPReferenceImagePath = "Assets/ReferenceImages";
-        [UnityTest, Category("LegacyRP")]
-        [PrebuildSetup("HDRPUTS_GraphicsTestCases")]
+        [UnityTest, Category("HDRP")]
+        [PrebuildSetup("SetupGraphicsTestCases")]
         [UseGraphicsTestCases(HDRPReferenceImagePath)]
         public IEnumerator Run(GraphicsTestCase testCase)
         {
-
             SceneManager.LoadScene(testCase.ScenePath);
 
             // Always wait one frame for scene load
@@ -27,7 +27,7 @@ namespace Tests
 
             var cameras = GameObject.FindGameObjectsWithTag("MainCamera").Select(x => x.GetComponent<Camera>());
             var settings = Object.FindObjectOfType<HDRPUTS_GraphicsTestSettings>();
-            Assert.IsNotNull(settings, "Invalid test scene, couldn't find HDRPyUTS_GraphicsTestSettings");
+            Assert.IsNotNull(settings, "Invalid test scene, couldn't find HDRP UTS_GraphicsTestSettings");
 
             Scene scene = SceneManager.GetActiveScene();
 

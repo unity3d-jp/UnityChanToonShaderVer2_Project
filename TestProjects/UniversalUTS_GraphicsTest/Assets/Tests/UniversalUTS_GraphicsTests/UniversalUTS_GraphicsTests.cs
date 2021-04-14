@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 using UnityEngine.TestTools.Graphics;
+using UnityEditor.TestTools.Graphics
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.IO;
@@ -14,8 +15,8 @@ namespace Tests
     public class UniversalUTS_GraphicsTests
     {
         public const string universalReferenceImagePath = "Assets/ReferenceImages";
-        [UnityTest, Category("LegacyRP")]
-        [PrebuildSetup("UniversalUTS_GraphicsTestCases")]
+        [UnityTest, Category("UniversalRP")]
+        [PrebuildSetup("SetupGraphicsTestCases")]
         [UseGraphicsTestCases(universalReferenceImagePath)]
         public IEnumerator Run(GraphicsTestCase testCase)
         {

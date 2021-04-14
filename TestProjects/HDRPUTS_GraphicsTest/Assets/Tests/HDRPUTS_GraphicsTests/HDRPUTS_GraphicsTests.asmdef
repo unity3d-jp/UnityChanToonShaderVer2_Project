@@ -2,6 +2,7 @@
     "name": "HDRPUTS_GraphicsTests",
     "references": [
         "UnityEngine.TestTools.Graphics",
+        "UnityEditor.TestTools.Graphics",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
