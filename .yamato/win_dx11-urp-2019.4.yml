@@ -2,11 +2,12 @@
 #
 #
 test_projects:
-#  - name: LegacyUTS_GraphicsTest
   - name: UniversalUTS_GraphicsTest
-  - name: HDRPUTS_GraphicsTest-2021.2
 unity_versions:
-  - name: 2021.2
+  - name: 2019.4
+  - name: 2020.1
+  - name: 2020.2
+  - name: 2021.1
 ---
 {% for test_project in test_projects %}
 {% for unity_version in unity_versions %}
