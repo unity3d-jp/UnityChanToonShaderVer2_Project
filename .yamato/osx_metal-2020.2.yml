@@ -2,9 +2,9 @@
 #
 #
 test_projects:
-#  - name: LegacyUTS_GraphicsTest
+  - name: LegacyUTS_GraphicsTest-2020.2
   - name: UniversalUTS_GraphicsTest
-  - name: HDRPUTS_GraphicsTest
+  - name: HDRPUTS_GraphicsTest-2020.2
 unity_versions:
 #  - name: 2019.4
 #  - name: 2020.1
