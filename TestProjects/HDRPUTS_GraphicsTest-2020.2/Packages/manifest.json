@@ -5,7 +5,7 @@
     "com.unity.ide.vscode": "1.2.3",
     "com.unity.package-validation-suite": "0.10.0-preview",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
-    "com.unity.render-pipelines.high-definition": "10.3.1",
+    "com.unity.render-pipelines.high-definition": "10.3.2",
     "com.unity.test-framework": "1.1.24",
     "com.unity.test-framework.build": "0.0.1-preview.12",
     "com.unity.test-framework.utp-reporter": "1.1.0-preview",
