@@ -365,7 +365,7 @@ namespace UnityChan
                     if(selectedUI==2){
                         _OriginalInspector = true;  //Original GUI
                     }else if(selectedUI == 1){
-                        _SimpleUI = true;   //UTS2 Biginner GUI
+                        _SimpleUI = true;   //UTS2 Beginner GUI
                     }
                     //Original/Custom GUI 切り替えボタン.
                     if (_OriginalInspector)
@@ -676,7 +676,7 @@ namespace UnityChan
             GUILayout.Label("Option Menu", EditorStyles.boldLabel);
             if(material.HasProperty("_simpleUI")){
                 if(material.GetInt("_simpleUI") == 1){
-                    _SimpleUI = true; //UTS2 Custom GUI Biginner
+                    _SimpleUI = true; //UTS2 Custom GUI Beginner
                 }
                 else{
                     _SimpleUI = false; //UTS2 Custom GUI Pro
@@ -689,10 +689,10 @@ namespace UnityChan
             if(_SimpleUI == false) {
                 if (GUILayout.Button("Pro / Full Control",middleButtonStyle))
                 {
-                    material.SetInt("_simpleUI",1); //UTS2 Custom GUI Biginner
+                    material.SetInt("_simpleUI",1); //UTS2 Custom GUI Beginner
                 }
             }else{
-                if (GUILayout.Button("Biginner",middleButtonStyle))
+                if (GUILayout.Button("Beginner",middleButtonStyle))
                 {
                     material.SetInt("_simpleUI",0); //UTS2 Custom GUI Pro
                 }
