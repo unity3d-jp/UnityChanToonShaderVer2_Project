@@ -4,7 +4,7 @@
 test_projects:
   - name: HDRPUTS_GraphicsTest-2020.2
 unity_versions:
-  - name: 2020.3
+#  - name: 2020.3
   - name: 2021.1
 ---
 {% for test_project in test_projects %}
