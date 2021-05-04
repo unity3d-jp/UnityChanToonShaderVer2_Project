@@ -735,8 +735,8 @@ Shader "HDRP/ToonTessellation"
 
         Pass
         {
-            Name "DepthOnly"
-            Tags{ "LightMode" = "DepthOnly" }
+            Name "DepthForwardOnly"
+            Tags{ "LightMode" = "DepthForwardOnly" }
 
             Cull[_CullMode]
 
@@ -939,7 +939,7 @@ Shader "HDRP/ToonTessellation"
 
         Pass
         {
-            Name "Forward"
+            Name "ForwardOnly"
             Tags { "LightMode" = "ForwardOnly" } 
             ZTest[_ZTestDepthEqualForOpaque]
             ZWrite[_ZWriteMode]

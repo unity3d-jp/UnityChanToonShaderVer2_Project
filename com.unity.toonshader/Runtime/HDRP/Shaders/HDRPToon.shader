@@ -733,8 +733,8 @@ Shader "HDRP/Toon"
 
         Pass
         {
-            Name "DepthOnly"
-            Tags{ "LightMode" = "DepthOnly" }
+            Name "DepthForwardOnly"
+            Tags{ "LightMode" = "DepthForwardOnly" }
 
             Cull[_CullMode]
 
@@ -934,7 +934,7 @@ Shader "HDRP/Toon"
         Pass
         {
 
-            Name "Forward"
+            Name "ForwardOnly"
             Tags { "LightMode" = "ForwardOnly" } 
 
             ZWrite[_ZWriteMode]
