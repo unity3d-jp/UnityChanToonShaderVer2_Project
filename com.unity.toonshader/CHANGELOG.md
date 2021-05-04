@@ -1,5 +1,9 @@
 # Changelog
 **Unity Toon Shader**
+## [0.0.3-preview] - 2021-05-05
+* Uniersal RP and HDRP shaders are compatible with SRP 10.
+* HDRP shaders' DepthOnlyp path is replaced to DepthForwardOnly path.
+* Internal tests are compatible with not only 2019.4 but also 2020.x now.
 
 ## [0.0.2-preview] - 2021-03-30
 * Legacy shaders are integrated into two shaders.
