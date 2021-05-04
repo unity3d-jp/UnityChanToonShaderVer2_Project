@@ -29,7 +29,7 @@ namespace UnityEditor.Rendering.Toon
     {
         protected const float kVersionX = 0.0f;
         protected const float kVersionY = 0.0f;
-        protected const float kVersionZ = 2.0f;
+        protected const float kVersionZ = 3.0f;
 
         internal virtual string srpDefaultLightModeName { get; }
         internal virtual void TessellationSetting(Material materal) { }
