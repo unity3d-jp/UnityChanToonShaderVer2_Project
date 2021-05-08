@@ -5,6 +5,9 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 {
     public class UniversalToonGUI : UnityEditor.ShaderGUI
     {
+        protected const float kVersionX = 2.0f;
+        protected const float kVersionY = 2.0f;
+        protected const float kVersionZ = 3.0f;
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
@@ -300,7 +303,13 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
         //------------------------------------------------------
 
         MaterialEditor m_MaterialEditor;
+        private void UpdateVersionInMaterial(Material material)
+        {
+            material.SetFloat(ShaderPropUtsVersionX, kVersionX);
+            material.SetFloat(ShaderPropUtsVersionY, kVersionY);
+            material.SetFloat(ShaderPropUtsVersionZ, kVersionZ);
 
+        }
         private bool IsClippingMaskPropertyAvailable(_UTS_Technique technique)
         {
 
@@ -551,6 +560,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
 
+            UpdateVersionInMaterial(material);
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
 

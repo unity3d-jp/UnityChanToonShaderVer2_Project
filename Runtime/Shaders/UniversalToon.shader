@@ -9,7 +9,7 @@ Shader "Universal Render Pipeline/Toon" {
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         [HideInInspector] _utsVersionX("VersionX", Float) = 2
         [HideInInspector] _utsVersionY("VersionY", Float) = 2
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 2
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 3
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
