@@ -1,8 +1,9 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
-## [2.2.3] - 2021/04/07
+## [2.2.3] - 2021/05/09
 ### Fixed
 - A compile error on Unity 2020.2 when ShadingGradeMap is selected.
+- Made the shaders compatible with 2020.2, 2021,1, 2021.2.
 
 ## [2.2.2] - 2021/02/22
 ### Fixed
