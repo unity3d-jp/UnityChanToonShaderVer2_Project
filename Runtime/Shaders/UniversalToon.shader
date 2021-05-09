@@ -97,7 +97,7 @@ Shader "Universal Render Pipeline/Toon" {
         [Toggle(_)] _Is_BlendAddToHiColor ("Is_BlendAddToHiColor", Float ) = 0
         [Toggle(_)] _Is_UseTweakHighColorOnShadow ("Is_UseTweakHighColorOnShadow", Float ) = 0
         _TweakHighColorOnShadow ("TweakHighColorOnShadow", Range(0, 1)) = 0
-//ハイカラーマスク.
+//HiColorMask
         _Set_HighColorMask ("Set_HighColorMask", 2D) = "white" {}
         _Tweak_HighColorMaskLevel ("Tweak_HighColorMaskLevel", Range(-1, 1)) = 0
         [Toggle(_)] _RimLight ("RimLight", Float ) = 0
@@ -107,7 +107,7 @@ Shader "Universal Render Pipeline/Toon" {
         _RimLight_Power ("RimLight_Power", Range(0, 1)) = 0.1
         _RimLight_InsideMask ("RimLight_InsideMask", Range(0.0001, 1)) = 0.0001
         [Toggle(_)] _RimLight_FeatherOff ("RimLight_FeatherOff", Float ) = 0
-//リムライト追加プロパティ.
+//RimLight
         [Toggle(_)] _LightDirection_MaskOn ("LightDirection_MaskOn", Float ) = 0
         _Tweak_LightDirection_MaskLevel ("Tweak_LightDirection_MaskLevel", Range(0, 0.5)) = 0
         [Toggle(_)] _Add_Antipodean_RimLight ("Add_Antipodean_RimLight", Float ) = 0
@@ -115,10 +115,10 @@ Shader "Universal Render Pipeline/Toon" {
         [Toggle(_)] _Is_LightColor_Ap_RimLight ("Is_LightColor_Ap_RimLight", Float ) = 1
         _Ap_RimLight_Power ("Ap_RimLight_Power", Range(0, 1)) = 0.1
         [Toggle(_)] _Ap_RimLight_FeatherOff ("Ap_RimLight_FeatherOff", Float ) = 0
-//リムライトマスク.
+//RimLightMask
         _Set_RimLightMask ("Set_RimLightMask", 2D) = "white" {}
         _Tweak_RimLightMaskLevel ("Tweak_RimLightMaskLevel", Range(-1, 1)) = 0
-//ここまで.
+//
         [Toggle(_)] _MatCap ("MatCap", Float ) = 0
         _MatCap_Sampler ("MatCap_Sampler", 2D) = "black" {}
         //v.2.0.6
@@ -229,7 +229,7 @@ Shader "Universal Render Pipeline/Toon" {
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            //アウトライン処理はUniversalToonOutline.hlslへ.
+            // Outline is implemented in UniversalToonOutline.hlslへ.
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "UniversalToonHead.hlsl"
             #include "UniversalToonOutline.hlsl"
@@ -238,10 +238,8 @@ Shader "Universal Render Pipeline/Toon" {
 
 //ToonCoreStart
         Pass {
-            Name "FORWARD"
-            Tags {
-                "LightMode"="LightweightForward"
-            }
+            Name "ForwardLit"
+            Tags{"LightMode" = "UniversalForward"}
             ZWrite[_ZWriteMode]
             Cull[_CullMode]
             Blend SrcAlpha OneMinusSrcAlpha
@@ -272,13 +270,13 @@ Shader "Universal Render Pipeline/Toon" {
             // Material Keywords
             // -------------------------------------
             // Material Keywords
-            //#pragma shader_feature _NORMALMAP
+//            #pragma shader_feature _NORMALMAP
             #pragma shader_feature _ALPHATEST_ON
             #pragma shader_feature _ALPHAPREMULTIPLY_ON
             #pragma shader_feature _EMISSION
             #pragma shader_feature _METALLICSPECGLOSSMAP
             #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-            // #pragma shader_feature _OCCLUSIONMAP
+//            #pragma shader_feature _OCCLUSIONMAP
 
             #pragma shader_feature _SPECULARHIGHLIGHTS_OFF
             #pragma shader_feature _ENVIRONMENTREFLECTIONS_OFF
