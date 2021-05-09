@@ -8,6 +8,7 @@ unity_versions:
   - name: 2020.1
   - name: 2020.2
   - name: 2021.1
+  - name: 2021.2
 ---
 {% for test_project in test_projects %}
 {% for unity_version in unity_versions %}
