@@ -246,10 +246,8 @@ Shader "Universal Render Pipeline/Toon" {
 
 //ToonCoreStart
         Pass {
-            Name "FORWARD"
-            Tags {
-                "LightMode"="LightweightForward"
-            }
+            Name "ForwardLit"
+            Tags{"LightMode" = "UniversalForward"}
             ZWrite[_ZWriteMode]
             Cull[_CullMode]
             Blend SrcAlpha OneMinusSrcAlpha
