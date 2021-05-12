@@ -2,9 +2,9 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
-float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping)
+float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping, out float channelAlpha)
 {
-
+    channelAlpha = 1.0f;
     uint2 tileIndex = uint2(input.positionSS.xy) / GetTileSize();
     inverseClipping = 0;
     // input.positionSS is SV_Position

@@ -3,8 +3,9 @@
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
 float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
-    float3 additionalLightColor, float3 lightDirection, float notDirectional)
+    float3 additionalLightColor, float3 lightDirection, float notDirectional, out float channelAlpha)
 {
+    channelAlpha = 0.0f;
 #ifdef _IS_CLIPPING_MATTE
     if (_ClippingMatteMode != 0)
     {

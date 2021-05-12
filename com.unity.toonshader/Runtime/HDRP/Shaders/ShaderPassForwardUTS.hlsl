@@ -203,10 +203,10 @@ void Frag(PackedVaryingsToPS packedInput,
     // Initialize the contactShadow and contactShadowFade fields
     InitContactShadow(posInput, context);
 
-    float3 i_normalDir = surfaceData.normalWS;
+	float3 i_normalDir = surfaceData.normalWS;
 
 
-
+	float channelAlpha = 0.0f;
     float3 finalColor = float3(0.0f, 0.0f, 0.0f);
     if (featureFlags & LIGHTFEATUREFLAGS_DIRECTIONAL)
     {
@@ -275,16 +275,16 @@ void Frag(PackedVaryingsToPS packedInput,
         if ( mainLightIndex >= 0)
         {
 #if defined(_SHADINGGRADEMAP)
-            finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex, inverseClipping);
+			finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex, inverseClipping, channelAlpha);
 #else
-            finalColor = UTS_MainLight(context, input, mainLightIndex, inverseClipping);
+			finalColor = UTS_MainLight(context, input, mainLightIndex, inverseClipping, channelAlpha);
 #endif
         }
 
 
 
         int i = 0; // Declare once to avoid the D3D11 compiler warning.
-
+        float channelAlpha = 0.0f;
         for (i = 0; i < (int)_DirectionalLightCount; ++i)
         {
             if (IsMatchingLightLayer(_DirectionalLightDatas[i].lightLayers, builtinData.renderingLayers))
@@ -295,11 +295,12 @@ void Frag(PackedVaryingsToPS packedInput,
                     float3 lightColor = _DirectionalLightDatas[i].color;
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
+
 #if defined(_SHADINGGRADEMAP)
-                    float3 additionalLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, lightColor, lightDirection, notDirectional);
+                    float3 additionalLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, lightColor, lightDirection, notDirectional, channelAlpha);
 
 #else
-                    float3 additionalLightColor = UTS_OtherLights(input, i_normalDir, lightColor, lightDirection, notDirectional);
+                    float3 additionalLightColor = UTS_OtherLights(input, i_normalDir, lightColor, lightDirection, notDirectional, channelAlpha);
 #endif
                     finalColor += additionalLightColor;
                 }
@@ -476,7 +477,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
         uint v_lightListOffset = 0;
         uint v_lightIdx = lightStart;
-
+        float channelAlpha = 0.0f;
         [loop]
         while (v_lightListOffset < lightCount)
         {
@@ -506,9 +507,9 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
 #if defined(_SHADINGGRADEMAP)
-                    float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+                    float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, lightDirection, notDirectional, channelAlpha);
 #else
-                    float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional);
+                    float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional, channelAlpha);
 #endif
                     finalColor += pointLightColor;
                 }
