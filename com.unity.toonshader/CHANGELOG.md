@@ -1,4 +1,6 @@
 # Changelog
+## [0.0.5-preview] - 2021-05-12
+* Channel Mask rendering feature put the results into alpha channel.
 
 ## [0.0.4-preview] - 2021-05-09
 * Uniersal RP shaders are compatible with SRP 12.
