@@ -34,7 +34,7 @@
             uniform float4 _OutlineMaskColor;
             uniform float _ComposerMaskMode;
             uniform int _ClippingMaskMode;
-
+            uniform int _ClippingMatteMode;
 
 //v.2.0.4
 #ifdef _IS_OUTLINE_CLIPPING_YES
@@ -106,11 +106,18 @@
             }
             float4 frag(VertexOutput i) : SV_Target{
 #ifdef _IS_CLIPPING_MASK
-                if (_ClippingMaskMode != 0)
-                {
-                    discard;
-                }
+            if (_ClippingMaskMode != 0)
+            {
+                discard;
+            }
 #endif
+#ifdef _IS_CLIPPING_MATTE
+            if (_ClippingMatteMode != 0)
+            {
+
+                discard;
+            }
+#endif // _IS_CLIPPING_MATTE
                 //v.2.0.5
                 if (_ZOverDrawMode > 0.99f)
                 {
