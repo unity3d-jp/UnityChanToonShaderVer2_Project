@@ -3,9 +3,9 @@
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
 float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
-    float3 additionalLightColor, float3 lightDirection, float notDirectional, out float channelAlpha)
+    float3 additionalLightColor, float3 lightDirection, float notDirectional, out float channelOutAlpha)
 {
-    channelAlpha = 0.0f;
+    channelOutAlpha = 1.0f;
 #ifdef _IS_CLIPPING_MATTE
     if (_ClippingMatteMode != 0)
     {
@@ -60,7 +60,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     //
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb * _LightIntensity), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
 #ifdef UTS_LAYER_VISIBILITY
-
+    float Set_BaseColorAlpha = _BaseColorVisible;
     float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, _BaseColorMaskColor.w, _BaseColorMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
     Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
@@ -77,6 +77,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor, maskEnabled);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
     }
+    float Set_1st_ShadeAlpha = _FirstShadeVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY    //v.2.0.5
     //v.2.0.5
     float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
@@ -135,7 +136,11 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
                 Set_ShadeShadowMask
             ),
             Set_FinalShadowMask);
-
+#ifdef UTS_LAYER_VISIBILITY
+    float Set_2nd_ShadeAlpha = _SecondShadeVisible;
+    channelOutAlpha =
+        lerp(Set_BaseColorAlpha, lerp(Set_1st_ShadeAlpha, Set_2nd_ShadeAlpha, Set_ShadeShadowMask), Set_FinalShadowMask);
+#endif
     //v.2.0.6: Add HighColor if _Is_Filter_HiCutPointLightColor is False
 #ifdef _SYNTHESIZED_TEXTURE
     float4 _Set_HighColorMask_var = tex2D(_HighColor_TexSynthesized, TRANSFORM_TEX(Set_UV0, _HighColor_TexSynthesized)).aaaa;
@@ -167,6 +172,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
         if (any(addColor))
         {
             finalColor = lerp(finalColor, overridingColor, maskEnabled);
+            channelOutAlpha = _HighlightVisible;
         }
     }
 

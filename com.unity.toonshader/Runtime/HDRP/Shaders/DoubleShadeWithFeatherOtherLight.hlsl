@@ -72,6 +72,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor.xyz, maskEnabled);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
     }
+    float Set_1st_ShadeAlpha = _FirstShadeVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY    //v.2.0.5
     float4 _2nd_ShadeMap_var = lerp(tex2Dlod(_2nd_ShadeMap, float4(TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap),0.0f,0.0f)), _1st_ShadeMap_var, _Use_1stAs2nd);
     float3 Set_2nd_ShadeColor = lerp((_2nd_ShadeColor.rgb * _2nd_ShadeMap_var.rgb * _LightIntensity), ((_2nd_ShadeColor.rgb * _2nd_ShadeMap_var.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
@@ -101,7 +102,10 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     }
 #endif //#ifdef UTS_LAYER_VISIBILITY
     float3 finalColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _2ndColorFeatherForMask)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _2ndColorFeatherForMask))))), Set_FinalShadowMask); // Final Color
-
+#ifdef UTS_LAYER_VISIBILITY
+    float Set_2nd_ShadeAlpha = _SecondShadeVisible;
+    channelOutAlpha = lerp(Set_BaseColorAlpha, lerp(Set_1st_ShadeAlpha, Set_2nd_ShadeAlpha, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _2ndColorFeatherForMask)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _2ndColorFeatherForMask))))), Set_FinalShadowMask);
+#endif
     //v.2.0.6: Add HighColor if _Is_Filter_HiCutPointLightColor is False
 
 #ifdef _SYNTHESIZED_TEXTURE
@@ -134,6 +138,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
         if (any(addColor))
         {
             finalColor = lerp(finalColor, overridingColor.xyz, maskEnabled);
+            channelOutAlpha = _HighlightVisible;
         }
 
     }
