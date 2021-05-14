@@ -2,9 +2,9 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
-float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping, out float channelAlpha)
+float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping, out float channelOutAlpha)
 {
-    channelAlpha = 1.0f;
+    channelOutAlpha = 1.0f;
     uint2 tileIndex = uint2(input.positionSS.xy) / GetTileSize();
     inverseClipping = 0;
     // input.positionSS is SV_Position
@@ -115,6 +115,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
     Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
+    float Set_BaseColorAlpha = _BaseColorVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
@@ -133,6 +134,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor.xyz, maskEnabled);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
     }
+    float Set_1st_ShadeAlpha = _FirstShadeVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
     float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
@@ -170,8 +172,10 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
         Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor.xyz, maskEnabled);
         Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, Set_BaseColor, 1.0f - _SecondShadeVisible);
     }
+    float Set_2nd_ShadeAlpha = _SecondShadeVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY
     float3 Set_FinalBaseColor = lerp(Set_BaseColor, lerp(Set_1st_ShadeColor, Set_2nd_ShadeColor, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _2ndColorFeatherForMask)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _2ndColorFeatherForMask))))), Set_FinalShadowMask); // Final Color
+    channelOutAlpha = lerp(Set_BaseColorAlpha, lerp(Set_1st_ShadeAlpha, Set_2nd_ShadeAlpha, saturate((1.0 + ((_HalfLambert_var - (_ShadeColor_Step - _2ndColorFeatherForMask)) * ((1.0 - _Set_2nd_ShadePosition_var.rgb).r - 1.0)) / (_ShadeColor_Step - (_ShadeColor_Step - _2ndColorFeatherForMask))))), Set_FinalShadowMask);
 #ifdef _SYNTHESIZED_TEXTURE
     float4 _Set_HighColorMask_var = tex2D(_HighColor_TexSynthesized, TRANSFORM_TEX(Set_UV0, _HighColor_TexSynthesized)).aaaa;
 #else
@@ -213,6 +217,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
         if (any(addColor))
         {
             Set_HighColor = lerp(Set_HighColor, overridingColor.xyz, maskEnabled);
+            channelOutAlpha = _HighlightVisible;
         }
     }
 
@@ -234,13 +239,14 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #ifdef UTS_LAYER_VISIBILITY
     float4 overridingRimColor = lerp(_RimLightMaskColor, float4(_RimLightMaskColor.w, _RimLightMaskColor.w, _RimLightMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskRimEnabled = max(_RimLightOverridden, _ComposerMaskMode);
-
+    float Set_RimLightAlpha = _RimLightVisible;
     float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g + _Tweak_RimLightMaskLevel)) * lerp(_LightDirection_MaskOn_var, (_LightDirection_MaskOn_var + (lerp(_Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb * Set_LightColor), _Is_LightColor_Ap_RimLight) * saturate((lerp((0.0 + ((_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0)) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask, _ApRimLightPower_var), _Ap_RimLight_FeatherOff) - (saturate(_VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight));
     Set_RimLight *= _RimLightVisible;
     float3 _RimLight_var = lerp(Set_HighColor, (Set_HighColor + Set_RimLight), _RimLight);
     if (any(Set_RimLight) * maskRimEnabled)
     {
         _RimLight_var = overridingRimColor.xyz;
+        channelOutAlpha = Set_RimLightAlpha;
     }
 #else
     float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g + _Tweak_RimLightMaskLevel)) * lerp(_LightDirection_MaskOn_var, (_LightDirection_MaskOn_var + (lerp(_Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb * Set_LightColor), _Is_LightColor_Ap_RimLight) * saturate((lerp((0.0 + ((_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0)) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask, _ApRimLightPower_var), _Ap_RimLight_FeatherOff) - (saturate(_VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight));

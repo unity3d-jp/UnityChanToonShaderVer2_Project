@@ -284,7 +284,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
         int i = 0; // Declare once to avoid the D3D11 compiler warning.
-        float channelAlpha = 0.0f;
+
         for (i = 0; i < (int)_DirectionalLightCount; ++i)
         {
             if (IsMatchingLightLayer(_DirectionalLightDatas[i].lightLayers, builtinData.renderingLayers))
@@ -528,12 +528,12 @@ void Frag(PackedVaryingsToPS packedInput,
     //v.2.0.4
   #ifdef _IS_TRANSCLIPPING_OFF
 
-    outColor = float4(finalColor, 1);
+    outColor = float4(finalColor, 1 * channelAlpha);
 
   #elif _IS_TRANSCLIPPING_ON
     float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
 
-    outColor = float4(finalColor, Set_Opacity);
+    outColor = float4(finalColor, Set_Opacity * channelAlpha );
 
   #endif
 
@@ -542,17 +542,17 @@ void Frag(PackedVaryingsToPS packedInput,
   #ifdef _IS_CLIPPING_OFF
     //DoubleShadeWithFeather
 
-    outColor = float4(finalColor, 1);
+    outColor = float4(finalColor, 1 * channelAlpha);
 
   #elif _IS_CLIPPING_MODE
     //DoubleShadeWithFeather_Clipping
 
-    outColor = float4(finalColor, 1);
+    outColor = float4(finalColor, 1 * channelAlpha);
 
   #elif _IS_CLIPPING_TRANSMODE
     //DoubleShadeWithFeather_TransClipping
     float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
-    outColor = float4(finalColor, Set_Opacity);
+    outColor = float4(finalColor, Set_Opacity * channelAlpha);
   #endif
 
 #endif //#if defined(_SHADINGGRADEMAP)
