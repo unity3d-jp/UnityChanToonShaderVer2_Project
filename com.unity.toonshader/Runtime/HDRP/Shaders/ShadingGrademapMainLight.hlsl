@@ -11,9 +11,9 @@
 # endif
 #endif
 
-float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping, out float channelAlpha)
+float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInputs input, int mainLightIndex, out float inverseClipping, out float channelOutAlpha)
 {
-    channelAlpha = 1.0f;
+    channelOutAlpha = 1.0f;
 
     uint2 tileIndex = uint2(input.positionSS.xy) / GetTileSize();
     inverseClipping = 0;
@@ -103,6 +103,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 Set_LightColor = lightColor.rgb;
 
     float3 Set_BaseColor = lerp((_BaseColor.rgb * _MainTex_var.rgb), ((_BaseColor.rgb * _MainTex_var.rgb) * Set_LightColor), _Is_LightColor_Base);
+    float Set_BaseColorAlpha = _BaseColorVisible;
     float3 clippingColor = float3(1.0f, 1.0f, 1.0f);
 #ifdef _IS_CLIPPING_MATTE
     if (_ClippingMatteMode == 1)
@@ -163,6 +164,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
         _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, overridingColor, maskEnabled);
         _Is_LightColor_1st_Shade_var = lerp(_Is_LightColor_1st_Shade_var, Set_BaseColor, 1.0f - _FirstShadeVisible);
     }
+    float Set_1st_ShadeAlpha = _FirstShadeVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY
     float3 _BaseColor_var = lerp(Set_BaseColor, _Is_LightColor_1st_Shade_var, Set_FinalShadowMask);
     //v.2.0.5
@@ -180,11 +182,15 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
         float3 _Is_LightColor_2nd_Shade_var = lerp((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb * _2nd_ShadeColor.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
         _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, overridingColor, maskEnabled);
         _Is_LightColor_2nd_Shade_var = lerp(_Is_LightColor_2nd_Shade_var, Set_BaseColor, 1.0f - _SecondShadeVisible);
+        float Set_2nd_ShadeAlpha = _SecondShadeVisible;
         Set_FinalBaseColor =
             lerp(_BaseColor_var,
                 lerp(_Is_LightColor_1st_Shade_var, _Is_LightColor_2nd_Shade_var
                     , Set_ShadeShadowMask)
                 , Set_FinalShadowMask);
+        channelOutAlpha = 
+            lerp(Set_BaseColorAlpha, lerp(Set_1st_ShadeAlpha, Set_2nd_ShadeAlpha, Set_ShadeShadowMask),Set_FinalShadowMask);
+
     }
 
 #else
@@ -246,6 +252,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
         if (any(addColor))
         {
             Set_HighColor = lerp(Set_HighColor, overridingColor, maskEnabled);
+            channelOutAlpha = _HighlightVisible;
         }
     }
 #else
@@ -270,13 +277,14 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
     float4 overridingRimColor = lerp(_RimLightMaskColor, float4(_RimLightMaskColor.w, _RimLightMaskColor.w, _RimLightMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskRimEnabled = max(_RimLightOverridden, _ComposerMaskMode);
-
+    float Set_RimLightAlpha = _RimLightVisible;
     float3 Set_RimLight = (saturate((_Set_RimLightMask_var.g + _Tweak_RimLightMaskLevel)) * lerp(_LightDirection_MaskOn_var, (_LightDirection_MaskOn_var + (lerp(_Ap_RimLightColor.rgb, (_Ap_RimLightColor.rgb * Set_LightColor), _Is_LightColor_Ap_RimLight) * saturate((lerp((0.0 + ((_ApRimLightPower_var - _RimLight_InsideMask) * (1.0 - 0.0)) / (1.0 - _RimLight_InsideMask)), step(_RimLight_InsideMask, _ApRimLightPower_var), _Ap_RimLight_FeatherOff) - (saturate(_VertHalfLambert_var) + _Tweak_LightDirection_MaskLevel))))), _Add_Antipodean_RimLight));
     Set_RimLight *= _RimLightVisible;
     float3 _RimLight_var = lerp(Set_HighColor, (Set_HighColor + Set_RimLight), _RimLight);
     if (any(Set_RimLight) * maskRimEnabled)
     {
         _RimLight_var = overridingRimColor;
+        channelOutAlpha = Set_RimLightAlpha;
     }
 
 #else
@@ -389,6 +397,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
         if (any(Set_AngelRing) * maskEnabled)
         {
             finalColor = lerp(finalColor, lerp(overridingColor.xyz, ((finalColor * (1.0 - Set_ARtexAlpha)) + Set_AngelRingWithAlpha), _ARSampler_AlphaOn), _AngelRing);// Final Composition before Emissive
+            channelOutAlpha = _AngelRingVisible;
         }
     }
 # else
