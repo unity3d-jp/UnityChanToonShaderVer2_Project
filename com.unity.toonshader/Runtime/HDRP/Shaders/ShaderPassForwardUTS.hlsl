@@ -64,7 +64,10 @@ PackedVaryingsToPS VertTesselation(VaryingsToDS input)
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
 #endif
 
-
+float ApplyChannelAlpha( float alpha)
+{
+    return lerp(1.0, alpha, _ComposerMaskMode);
+}
 
 float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs posInput,
     float3 V, BuiltinData builtinData,
@@ -528,12 +531,12 @@ void Frag(PackedVaryingsToPS packedInput,
     //v.2.0.4
   #ifdef _IS_TRANSCLIPPING_OFF
 
-    outColor = float4(finalColor, 1 * channelAlpha);
+    outColor = float4(finalColor, 1 * ApplyChannelAlpha(channelAlpha));
 
   #elif _IS_TRANSCLIPPING_ON
     float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
 
-    outColor = float4(finalColor, Set_Opacity * channelAlpha );
+    outColor = float4(finalColor, Set_Opacity * ApplyChannelAlpha(channelAlpha));
 
   #endif
 
@@ -542,17 +545,17 @@ void Frag(PackedVaryingsToPS packedInput,
   #ifdef _IS_CLIPPING_OFF
     //DoubleShadeWithFeather
 
-    outColor = float4(finalColor, 1 * channelAlpha);
+    outColor = float4(finalColor, 1 * ApplyChannelAlpha(channelAlpha));
 
   #elif _IS_CLIPPING_MODE
     //DoubleShadeWithFeather_Clipping
 
-    outColor = float4(finalColor, 1 * channelAlpha);
+    outColor = float4(finalColor, 1 * ApplyChannelAlpha(channelAlpha));
 
   #elif _IS_CLIPPING_TRANSMODE
     //DoubleShadeWithFeather_TransClipping
     float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
-    outColor = float4(finalColor, Set_Opacity * channelAlpha);
+    outColor = float4(finalColor, Set_Opacity * ApplyChannelAlpha(channelAlpha));
   #endif
 
 #endif //#if defined(_SHADINGGRADEMAP)
