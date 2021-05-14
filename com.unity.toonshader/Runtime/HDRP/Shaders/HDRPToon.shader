@@ -437,31 +437,31 @@ Shader "HDRP/Toon"
 
         [Toggle(_)] _BaseColorVisible("Channel mask", Float) = 1
         [Toggle(_)] _BaseColorOverridden("Channel mask", Float) = 0
-        _BaseColorMaskColor("chennel mask color", Color) = (1, 1, 1, 0.8)
+        _BaseColorMaskColor("chennel mask color", Color) = (1, 1, 1, 1)
 
         [Toggle(_)] _FirstShadeVisible("Channel mask", Float) = 1
         [Toggle(_)] _FirstShadeOverridden("Channel mask", Float) = 0
-        _FirstShadeMaskColor("chennel mask color", Color) = (0, 1, 1, 0.7)
+        _FirstShadeMaskColor("chennel mask color", Color) = (0, 1, 1, 1)
 
         [Toggle(_)] _SecondShadeVisible("Channel mask", Float) = 1
         [Toggle(_)] _SecondShadeOverridden("Channel mask", Float) = 0
-        _SecondShadeMaskColor("chennel mask color", Color) = (0, 0, 1, 0.6)
+        _SecondShadeMaskColor("chennel mask color", Color) = (0, 0, 1, 1)
 
         [Toggle(_)] _HighlightVisible("Channel mask", Float) = 1
         [Toggle(_)] _HighlightOverridden("Channel mask", Float) = 0
-        _HighlightMaskColor("Channel mask color", Color) = (1, 1, 0, 0.95)
+        _HighlightMaskColor("Channel mask color", Color) = (1, 1, 0, 1)
 
         [Toggle(_)] _AngelRingVisible("Channel mask", Float) = 1
         [Toggle(_)] _AngelRingOverridden("Channel mask", Float) = 0
-        _AngelRingMaskColor("Channel mask color", Color) = (0, 1, 0, 0.95)
+        _AngelRingMaskColor("Channel mask color", Color) = (0, 1, 0, 1)
 
         [Toggle(_)] _RimLightVisible("Channel mask", Float) = 1
         [Toggle(_)] _RimLightOverridden("Channel mask", Float) = 0
-        _RimLightMaskColor("Channel mask color", Color) = (1, 0, 1, 0.9)
+        _RimLightMaskColor("Channel mask color", Color) = (1, 0, 1, 1)
 
         [Toggle(_)] _OutlineVisible("Channel mask", Float) = 1
         [Toggle(_)] _OutlineOverridden("Channel mask", Float) = 0
-        _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 0.5)
+        _OutlineMaskColor("Channel mask color", Color) = (0, 0, 0, 1)
 
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
         [Enum(None, 0, BaseColor, 1, FirstShade, 2, SecondShade,3, Highlight, 4, AngelRing, 5, RimLight, 6)] _ClippingMatteMode("Clipping Matte Mode", int) = 0
