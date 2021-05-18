@@ -3,9 +3,9 @@
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
 float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
-    float3 additionalLightColor, float3 lightDirection, float notDirectional, out float channelAlpha)
+	float3 additionalLightColor, float3 lightDirection, float notDirectional, out float channelOutAlpha)
 {
-    channelAlpha = 1.0f;
+	channelOutAlpha = 1.0f;
 #ifdef _IS_CLIPPING_MATTE
     if (_ClippingMatteMode != 0)
     {
@@ -62,6 +62,7 @@ float3 UTS_OtherLights(FragInputs input, float3 i_normalDir,
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
     Set_BaseColor = lerp(Set_BaseColor, overridingColor.xyz, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
+	float Set_BaseColorAlpha = _BaseColorVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY    //v.2.0.5
     float4 _1st_ShadeMap_var = lerp(tex2Dlod(_1st_ShadeMap, float4(TRANSFORM_TEX(Set_UV0, _1st_ShadeMap),0.0f,0.0f)), _MainTex_var, _Use_BaseAs1st);
     float3 Set_1st_ShadeColor = lerp((_1st_ShadeColor.rgb * _1st_ShadeMap_var.rgb * _LightIntensity), ((_1st_ShadeColor.rgb * _1st_ShadeMap_var.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);
