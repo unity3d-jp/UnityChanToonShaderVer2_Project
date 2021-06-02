@@ -1,6 +1,6 @@
 ﻿# 【Unity Toon Shader (Unity-Chan Toon Shader 3)】
 ---
-<img width = "800" src="./com.unity.toonshader/Documentation~/images/UTS3_TopImage00.png?raw=true">
+<img width = "800" src="./com.unity.toonshader/Documentation~/images/SDUnitychan_URP.png?raw=true">
 
 ***Read this document in other languages: [日本語版](./com.unity.toonshader/Documentation~/ja/README_ja.md)***  
 
@@ -10,9 +10,9 @@
 
 **Unity Toon Shader (UTS3)** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of Unity Toon Shader**.  
 
-[![](https://img.youtube.com/vi/3yajmhc5A08/0.jpg)](https://www.youtube.com/watch?v=3yajmhc5A08)
+[![](./com.unity.toonshader/Documentation~/images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
 
-<img width = "800" src="./com.unity.toonshader/Documentation~/images/IllustSample_UTS3.png?raw=true">
+<img width = "800" src="./com.unity.toonshader/Documentation~/images/IllustSample_UTS2.png?raw=true">
 
 Unity Toon Shader has great power and makes a wide variety of character designs possible, **from cel-shaded to light novel illustration styles**.  
 
@@ -26,7 +26,7 @@ What colors will you select as **accent colors**? The accent color is the color 
 
 In Unity Toon Shader, you can use **2nd shade color and Ap-RimLight** as accent color. Of course, these accent colors also change dynamically to the light.  
 
-<img width = "480" src="./com.unity.toonshader/Documentation~/images/UTS3_TopImage03.gif?raw=true">
+<img width = "480" src="./com.unity.toonshader/Documentation~/images/UTS2_TopImage03.gif?raw=true">
 
 **The level of gradation (feather) between colors can also be adjusted in Unity in real-time**.  
 
@@ -36,21 +36,21 @@ In animation production, color design is made for each part in each scene unit. 
 
 In Animation movies, shadows are used not only to represent light directions but also to clarify shapes of characters. It’s not just shadow, but a vital part of character design.  
 
-<img width = "350" src="./com.unity.toonshader/Documentation~/images/UTS3_TopImage06.gif?raw=true">
+<img width = "350" src="./com.unity.toonshader/Documentation~/images/UTS2_TopImage06.gif?raw=true">
 
 For this purpose, Unity Toon Shader also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting. The movie above is a sample of the features of **Shading Grade Map and AngelRing**.  
 
 <img width = "800" src="./com.unity.toonshader/Documentation~/images/UTS3_TopImage07.png?raw=true">
 
-These two images are comparison between **Standard Shader** and **Unity Toon Shader** under the same lighting conditions.  
+These two images are comparison between **Lit Shader(Standard Shader)** and **Unity Toon Shader** under the same lighting conditions.  
 
-Although there is a difference between Photo-realistic and Non-photo-realistic images, you can understand all surface reflections to real-time lights are seen in the same areas. **It means Unity Toon Shader can be used as same as Standard Shader under various lighting conditions.**  
+Although there is a difference between Photo-realistic and Non-photo-realistic images, you can understand all surface reflections to real-time lights are seen in the same areas. **It means Unity Toon Shader can be used as same as Lit Shader(Standard Shader) under various lighting conditions.**  
 
 Unity Toon Shader is very useful if you want to decorate your game scene with beautiful lightings.
 
-<img width = "500" src="./com.unity.toonshader/Documentation~/images/VRChatUser00.png?raw=true">
+<img width = "340" src="./com.unity.toonshader/Documentation~/images/GameRecommendation.png?raw=true">
 
-Finally, several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat users.  
+Finally, several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat/Game users.  
 
 ## 【Installing Unity Toon Shader】
 To install this package, follow the instructions in the [Package Manager documentation](https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/index.html). 

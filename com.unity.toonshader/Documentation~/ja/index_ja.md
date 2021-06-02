@@ -1,16 +1,16 @@
-# Unity Toon Shader 0.0.2-preview マニュアル
+# Unity Toon Shader 0.0.4-preview マニュアル
 ***Read this document in [English](../en/index.md)***  
 
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
-<img width = "800" src="../images/CRS03.png">
 [![](../images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
 <img width = "800" src="../images/TPK_04.png">
 <img width = "800" src="../images/HiUni01.png">
+<img width = "800" src="../images/IllustSample_UTS2.png">
 
 # Unity Toon Shader とは？
 **Unity Toon Shader (ユニティちゃんトゥーンシェーダー 3)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、Unity Toon Shader の最大の特長です**。  
 
-**Unity Toon Shader** は、UTS2 v.2.0.7.5の全機能を実装した、ウーバーシェーダー（統合型シェーダー）として設計されています。  Legacy, Universal Render Pipeline/ HDRP に対応しております。
+**Unity Toon Shader** は、UTS2 v.2.0.7.5の全機能を実装した、ウーバーシェーダー（統合型シェーダー）として設計されています。  Legacy(Built-in), Universal Render Pipeline, HDRP に対応しております。
 
 
 # Unity Toon Shader の紹介
@@ -49,10 +49,16 @@ Unity Toon Shader は、セルルック3DCGアニメーションの制作現場�
 是非、貴方のご自慢のキャラクターモデルをUnity Toon Shaderで彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.0.2-preview** 向けに書かれています。  
+本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.0.4-preview** 向けに書かれています。  
+またマニュアル中では、Universal Render Pioeline版のUnity Toon Shaderの画面を例として使用しますが、Legacy(Built-in)およびHDRP版に関しましても、ほぼ同様の画面となっていますので、適宜読み替えてください。  
 
 ## 【Unity Toon Shaderを使い始める】
-UUnity Toon Shaderは、マテリアルインスペクターの**Shaders**メニューより、**Unity Toon Shader**グループの中にある**Toon**シェーダーを新規マテリアルに割り当てることで、使用を開始できます。以下、その手順を示します。  
+Unity Toon Shaderは、マテリアルインスペクターの**Shaders**メニューより、**Universal Render Pipeline**グループの中にある**Toon**シェーダーを新規マテリアルに割り当てることで、使用を開始できます。以下、その手順を示します。  
+
+【**NOTE**】 
+* もしお使いのレンダリングパイプラインが、Legacy(Built-in)の場合、選択するシェーダーは**「Toon (Built-in)」**になります。  
+* HDRPの場合には、選択するシェーダーは**「HDRP/Toon」**になります。  
+パイプラインに合わせてToonシェーダーは変えてください。  
 
 1. Projectウィンドウの「＋」メニューを開き、「Material」を選択し、新規マテリアルを作成します。  
 
@@ -66,13 +72,13 @@ UUnity Toon Shaderは、マテリアルインスペクターの**Shaders**メニ
 
 <center><img width = "600" src="../images/URP_image002.png"></center>
 
-4. マテリアルのシェーダーが変更されます。インスペクターより「Universal Render Pipeline/Toon」が割り当てられていることを確認します。初期状態ではもっとも基本的なUTS2シェーダーである、「Double Shade With Feather」ワークフローが割り当てられます。  
+4. マテリアルのシェーダーが変更されます。インスペクターより「Universal Render Pipeline/Toon」が割り当てられていることを確認します。初期状態ではもっとも基本的なUnity Toon Shaderシェーダーである、「Double Shade With Feather」ワークフローが割り当てられます。  
 
 <center><img width = "300" src="../images/URP_image003.png"></center>
 
 
 ## 【統合シェーダーとしての Unity Toon Shader】
-レガシーパイプライン版のUTS2は、機能別に複数のシェーダーに別れていました。  
+UTS2 v.2.0.7.5は、機能別に複数のシェーダーに別れていました。  
 
 <img width = "480" src="../images/UTS2_Standard.png">
 
@@ -97,15 +103,15 @@ Unity Toon Shaderにはワークフローモードとして、「DoubleShadeWith
 
 各動作モードに関しては、後に解説します。  
 
-### ● レガシーパイプライン版 UTS2 マテリアルとの互換性について
-レガシーパイプライン版の UTS2 マテリアルとは、マテリアルプロパティの設定値に関して互換性があります。  
-従って、レガシーパイプライン版の Unity Toon Shader マテリアルをユニバーサルレンダーパイプラインの環境下にコピーした後で、シェーダーを「Universal Render Pipeline/Toon」に切り替えると、使用するWorkflow Modeやテクスチャ名、ぼかしの段階などの値に関してはそのまま反映されます。  
+### ● UTS2 v.2.0.7.5 マテリアルとの互換性について
+UTS2 v.2.0.7.5 マテリアルとは、マテリアルプロパティの設定値に関して互換性があります。  
+従って、UTS2 v.2.0.7.5版の UTS2マテリアルをユニバーサルレンダーパイプラインの環境下にコピーした後で、シェーダーを「Universal Render Pipeline/Toon」に切り替えると、使用するWorkflow Modeやテクスチャ名、ぼかしの段階などの値に関してはそのまま反映されます。  
 
-レガシーパイプライン版でシェーダーファイルに応じて切り替えていた「ステンシル」や「カットオフ」などの特殊機能に関しては、上の手順で「Basic Shader Settings」メニューより、必要な特殊機能の動作モードを有効にしてください。  
+UTS2 v.2.0.7.5でシェーダーファイルに応じて切り替えていた「ステンシル」や「カットオフ」などの特殊機能に関しては、上の手順で「Basic Shader Settings」メニューより、必要な特殊機能の動作モードを有効にしてください。  
 
 <img width = "800" src="../images/URP_image007.png">
 
-<center><small>↑ ユニバーサルレンダーパイプラインの環境下では、レガシーパイプライン版のUTS2マテリアルは、左図のように正常にレンダリングされないが、「Universal Render Pipeline/Toon」にシェーダーを切り替えると、正常に表示されるようになる。</small></center>  
+<center><small>↑ ユニバーサルレンダーパイプラインの環境下では、レガシーパイプライン向けのUTS2マテリアルは、左図のように正常にレンダリングされないが、「Universal Render Pipeline/Toon」にシェーダーを切り替えると、正常に表示されるようになる。</small></center>  
 
 ## 【ワークフローモードの選択】
 
@@ -126,7 +132,7 @@ Unity Toon Shader には、大きく分けて2つのワークフローモード�
 
 ## 【各特殊機能モードを有効にする】
 
-レガシーパイプライン版のUTS2において、`Transparent`、`StencilMask`、`StencilOut`、`Clipping`、`TransClipping`のようなサフィックス名で区別されていた各シェーダー別の特殊機能は、Unity Toon Shaderでは「Basic Shder Settings」の各特殊機能の動作モードから有効にできます。  
+レガシーパイプライン版のUTS2 v.2.0.7.5において、`Transparent`、`StencilMask`、`StencilOut`、`Clipping`、`TransClipping`のようなサフィックス名で区別されていた各シェーダー別の特殊機能は、Unity Toon Shaderでは「Basic Shder Settings」の各特殊機能の動作モードから有効にできます。  
 
 <img width = "800" src="../images/URP_image009.png">
 
@@ -148,7 +154,7 @@ Unity Toon Shader には、大きく分けて2つのワークフローモード�
 Render Queueに設定する値について、より詳しく知りたい場合、Unityマニュアルから項目「Rendering Order - Queue tag」（[英語](https://docs.unity3d.com/Manual/SL-SubShaderTags.html)）/「レンダリング順 - Queue タグ」（[日本語](https://docs.unity3d.com/ja/current/Manual/SL-SubShaderTags.html)）を参照してください。  
 
 ---
-### StencilMask or StencilOut Shader
+### StencilMask または StencilOut Shader
 <img width = "400" src="../images/URP_image011.png">
 
 `Stencil Mode`を設定することで、ステンシル機能を追加します。ステンシル機能を使うことで、アニメ＆イラスト表現でしばしば使われる「前髪を透過する眉毛」のような表現ができるようになります。  
@@ -159,7 +165,7 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 <img width = "800" src="../images/URP_image036.png">
 
-<small> [note] この機能はLegacy, Universal RP 版でのみ有効です。HDRP版ではご利用いただくことができません。またこの制限は、HDRPの内部仕様に基づくものですので、今後も実装する予定はございません。リアルタイムにステンシル機能を必要とする場合には、URP版もしくはLegacy版のご利用を検討してください。各レンダーパイプラインの微妙な違いに関しては [Feature Model](../en/FeatureModel_en.md) をご確認ください。 </small>
+<small> [note] この機能はLegacy(Built-in), Universal RP 版でのみ有効です。HDRP版ではご利用いただくことができません。またこの制限は、HDRPの内部仕様に基づくものですので、今後も実装する予定はございません。リアルタイムにステンシル機能を必要とする場合には、URP版もしくはLegacy(Built-in)版のご利用を検討してください。各レンダーパイプラインの微妙な違いに関しては [Feature Model](../en/FeatureModel_en.md) をご確認ください。 </small>
 ---
 ### Clipping Shader および TransClipping Shader
 <img width = "800" src="../images/URP_image012.png">
@@ -176,7 +182,7 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 2. `On` ： トランスクリッピング機能を有効にします。トランスクリッピング機能では、マスクのα透明度（Transparency）を考慮した「テクスチャの抜き」ができます。
 ---
 ### 【参考】その他の特殊機能シェーダーの呼び出し方
-<small>レガシーパイプライン版UTS2にあった、それ以外の特殊機能シェーダーは、以下の手順で呼び出すことができます。  
+<small>レガシーパイプライン版UTS2 v.2.0.7.5にあった、それ以外の特殊機能シェーダーは、以下の手順で呼び出すことができます。  
 ほとんどがシェーダー基本機能に統合されています。</small>  
 
 #### ● NoOutline系シェーダー
@@ -188,17 +194,18 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 <small>2. マテリアルインスペクターの「AngelRing Projection Settings」より、`AngelRing Projection`を`Active`にする。</small>
 
 #### ● Mobile系シェーダー
-<small>それに合わせて、Unity Toon Shader では、Mobile系シェーダーは廃止されました。</small>  
+<small>Unity Toon Shader では、Mobile系シェーダーは廃止されました。</small>  
 
 #### ● Tessellation系シェーダー
-<small>Legacy, HDRP でサポートしています。</small>  
+<small>Legacy(Built-in), HDRP でサポートしています。</small>  
+<small>それぞれ、ToonTessellation (Built-in), HDRP/ToonTessellation をお使いください。</small>  
 
 #### ● Helper系シェーダー
 <small>Unity Toon Shader では廃止されました。</small>  
 
 ---
 # サンプルシーン
-サンプルプロジェクトを開くと、`\Assets\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
+サンプルプロジェクトを開くと、`\UnityToonshader_ProjectURP~\Assets\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
 
 * ToonShader.unity			：イラストルックのシェーダー設定  
 * ToonShader_CelLook.unity	：セルルックのシェーダー設定  
@@ -218,6 +225,11 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 各シーンは、シェーダーやライティングの設定の参考用です。  
 作りたいルックやシーンの参考にしてください。  
+
+【**NOTE**】 
+その他のレンダーパイプライン向けのサンプルシーンは以下のフォルダに入っています。  
+* Legacy(Built-in)の場合：`\UnityToonshader_Project~\Assets\Legacy\Sample Scenes`フォルダ  
+* HDRPの場合：`\UnityToonshader_ProjectHDRP~\Assets\HDRP`フォルダ　
 
 # Unity Toon Shader 設定メニュー：Unity Toon Shaderカスタムインスペクター
 
@@ -258,24 +270,28 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 | `Transparency Level` | `Trans Clipping`機能で使用します。クリッピングマスクのグレースケールレベルをα値として考慮することで、マスクの透過度を調整します。上の`Clipping Level`と合わせて調整することで、滑らかなマスク抜きが実現できます。 | _Tweak_transparency |
 | `Use BaseMap α as Clipping Mask` | `TransClipping`シェーダーのみのプロパティです。`On`にすることで、`BaseMap`に含まれるAチャンネルをクリッピングマスクとして使用します。この場合、`ClippingMask`には指定する必要はありません。 | _IsBaseMapAlphaAsClippingMask |
 | Option Menu | 以下、オプション機能のメニューになります。 |  |
-| `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUTS2コントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |  |
-| `Game Recommendation` | 様々なライティング環境が混在している、Game/VRChatのワールドのような環境において、カラーをなるべく破綻しないで楽しむのに便利な設定を一括でおこないます。VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
+| `Currnet UI Type` | ボタン上に現在選択されているユーザーインタフェースが表示されています。ボタンを押すことで、ユーザーインターフェースを`Beginner`モードに切り替えます。`Beginner`モードでは、必要最小限のUnity Toon Shaderコントロールができます。トグルで`Pro / Full Controll`モードに戻ります。 |  |
+| `Game Recommendation` | 様々なライティング環境が混在している、Game/VRChatのワールドのような環境において、カラーをなるべく破綻しないで楽しむのに便利な設定を一括でおこないます。Game/VRChat向けにセットアップをする場合、まずこちらから始めてみることをお薦めします。 |  |
 
 ---
-### 【参考】Game/VRChatユーザー向けの便利機能について
+### 【参考】Game/VRChatユーザー向けの便利機能「Game Recommendation」機能について
 
-<small>【**注意**】2020年5月の段階では、[VRChat](https://www.vrchat.com/)はユニバーサルレンダーパイプラインやHDRPを採用してはいません。VRChat では Lagacy用のシェーダーを使うようにしてください。</small>  
+<img width = "340" src="../images/GameRecommendation.png">
 
-Unity Toon Shader、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  
-VRChat上でUnity Toon Shaderを楽しむ場合、以下の便利機能を使うことで、Unity Toon Shaderの高機能を活かしつつ、VRChatの様々なライティング環境下でも安定して楽しむことができるようになります。  
+<small>【**注意**】2020年5月の段階では、[VRChat](https://www.vrchat.com/)はUniversal Render PipelineやHDRPを採用してはいません。VRChat では Lagacy(Built-in)用のシェーダーを使うようにしてください。</small>  
+
+Unity Toon Shaderは、Unityの様々なプロジェクトで使うことのできる、汎用トゥーンシェーダーです。  
+同時に、トゥーンシェーダーは、元々はインテンシティ1程度のディレクショナルライトの元で使用するものですので、それ以外のシーンライティング環境下では適切なセッティングを必要とします。  
+「Game Recommendation」は、マテリアル単位で、それらの最適なセッティングをアドバイスします。  
+特にVRChat上でUnity Toon Shaderの高機能を活かしつつ、VRChatの様々なライティング環境下でも安定して楽しむことができるようになります。  
 
 #### ● Unity Toon Shaderでマテリアル設定をはじめる時
-Unity Toon Shaderで各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`Game Recommendation`ボタンを実行してください。  
-このコマンドを実行することで、Game/VRChatの様々なライティング環境にUnity TOon Shaderを馴染みやすくします。  
+Unity Toon Shaderで各マテリアルの設定をはじめる時に、Basic Shader Settings > Option Menu内の`Game Recommendation`を実行してください。  
+このコマンドを実行することで、Game/VRChatの様々なライティング環境にUnity Toon Shaderを馴染みやすくします。  
 VRChat上にアバターをアップロードして、どうも自分の意図した表示と違うと感じる時には、まず最初にこちらのコマンドを試してみるといいでしょう。  
 
 #### ● 暗いワールドでのキャラの見え方を明るくしたい場合
-`Gaame Recommendation`ボタンを実行した後で、主にポイントライトしかない暗いワールドでのキャラの見え方を、もっと明るめに調整したい場合があります。  
+`Game Recommendation`を実行した後で、主にポイントライトしかない暗いワールドでのキャラの見え方を、もっと明るめに調整したい場合があります。  
 その場合、「Environmental Lighting Contributions Setups」メニュー内の`Unlit Intensity`スライダーを調整することで、暗い場所での明るさを底上げすることができます。  
 
 <img width = "300" src="../images/Unlit_Intensity_Comp.gif">
@@ -283,6 +299,11 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 <small>【**ヒント**】：Unlit Intensityは、周りの明るさを考慮しつつ、暗い場所でのマテリアルの明るさをブーストする機能ですので、元々の環境光が暗めに設定されているワールドで極端に明るくすることはできません。  
 
 ただし、暗いワールドでは同時にポストエフェクトのブルームも強めに設定されている場合がよくあります。そのようなワールドで**Unlit Intensityの値をデフォルトの1以上にすると、ブルームの影響も受けやすくなります**ので、十分に注意してください。</small>  
+
+#### ● HDRPでのシーンセッティングにおいて、他のフォトメトリックライトと共にUnity Toon Shaderを使う場合
+HDRPで使用されるフォトメトリックなライトは、その多くがインテンシティの値が、従来のLegacy(Built-in)やURPよりも非常に高く設定されます。  
+そのようなHDRライト環境下でUnity Toon Shaderを使う場合、積極的に`Game Recommendation`による最適な設定を利用すると、とても便利に使えます。  
+特にシーンビュー上でUnity Toon Shaderが白飛びをして表示されているような場合に、それらの白飛びを抑制し、各マテリアルのカラーを引き出すことができます。  
 
 ---
 ## 2. 「Basic Three Colors and Control Maps Setups」メニュー
@@ -350,14 +371,14 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 | `2nd Shade Position Map` | ライティングに関係なく、２影色の位置を強制的に指定したい場合、ポジションマップを割り当てます。必ず影を落としたい部分を黒で指定します。(１影色のポジションマップにも影響を受けます） | _Set_2nd_ShadePosition |
 
 #### 【ポジションマップとは？】
-<img width = "800" src="../images/0906-18_03.png">
+<img width = "800" src="../images/PositionMap01.png">
 
 ライティングと関係なく影を落としたい部分をポジションマップで指定できます。  
 各シーンごとの特殊な影や、演出上追加したい影などがある場合、ライティングに加えて追加できます。  
 **※ヒント：Substance Painterなどの3Dペインターを使って、影位置を直接作画してしまうのが簡単です。**  
 
 #### ● １影と２影の各ポジションマップの相互作用について
-<img width = "800" src="../images/0102-22_03.png">
+<img width = "800" src="../images/PositionMap02.png">
 
 ライトの状態に関係なく**常に２影色を表示したい場所は、１影色のポジションマップと２影色のポジションマップの同じ位置を塗りつぶし**ます。  
 常に２影色が表示されている領域は、ライトが作る影の中でも常に２影色が表示される領域になります。  
@@ -376,7 +397,7 @@ VRChat上にアバターをアップロードして、どうも自分の意図�
 #### 【シェーディンググレードマップとは？】
 Unity Toon Shaderの標準ワークフローは、`DoubleShadeWithFeather`ですが、その標準ワークフローの機能を元にシェーディンググレードマップというグレースケールのマップを使うことで、さらに影の掛かり方をUV座標単位で制御できるように拡張したワークフローが、`ShadingGradeMap`ワークフローです。  
 
-<img width = "800" src="../images/0122-06_04.png">
+<img width = "800" src="../images/ShadingGradeMap01.png">
 
 通常のトゥーンシェーダーに`Shading Grade Map`（シェーディングの掛かり方傾斜マップ）を足すことで、UV単位で１影色および２影色の掛かりやすさを制御できます。  
 このマップを使うことで、部分的に影の出やすさを調整できるので、「**ライトに照らされている面にはでない**服のしわの影」みたいな表現が可能となります。  
@@ -655,7 +676,7 @@ MatCap Maskを使うことで、上のようなライトクッキー的な表現
 `Use α channel as Clipping Mask`を`Active`にすると、下の図のように「天使の輪」テクスチャのαチャンネルがクリッピングマスクとして利用できるようになります。  
 「天使の輪」のカラーを加算でなく、直接指定できるようになります。  
 
-<img width = "800" src="../images/0609-04_13.png">
+<img width = "800" src="../images/ARSamplerAlfaOn01.png">
 
 ---
 ## 8.「Emissive : Self-luminescene Setings」メニュー
@@ -776,7 +797,7 @@ Unity Toon Shaderでは、アウトライン機能として、**マテリアル�
 
 ---
 ### ● アウトラインの強弱を調整する：**Outline Sampler**
-<img width = "800" src="../images/0906-18_01.png">
+<img width = "800" src="../images/OutlineSampler01.png">
 
 黒でラインなし、白でラインの幅が100%になります。  
 適宜 Outline_Sampler を設定することで、アウトラインに入り抜き（強弱）が発生します。  
@@ -805,7 +826,7 @@ Baked Normalマップを使用する時には、Unity Toon Shader のアウト�
 
 ---
 ### ● アウトラインをカメラの奥に移動する：**Offset Outline with Camera Z-axis**
-<img width = "800" src="../images/0205-11_01.png">
+<img width = "800" src="../images/OffsetZ01.png">
 
 `Offset Outline with Camera Z-axis`に値を入れることで、アウトラインがカメラの奥行き方向（Ｚ方向）にオフセットされます。  
 図のようなスパイク形状の髪型の場合に、スパイク部分のアウトラインの出方を調整するのに使用します。  
@@ -917,3 +938,56 @@ Built-in Light Directionのライトカラーは、シーン中のメインと�
 Built-in Light Directionの使い方は、下のムービーを見てみてください。  
 
 [![](https://img.youtube.com/vi/IFAPrbAGfmw/0.png)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
+
+# レンダリングパイプライン特有の機能
+
+Unity Toon Shaderには、一部のレンダリングパイプラインのみをサポートする機能がいくつかあります。  
+これらの機能を利用する場合、その機能に対応しているレンダリングパイプランを選ぶ必要があります。  
+
+---
+## 12.「Phong Tessellation Settings」メニュー
+Unity Toon Shaderのテッセレーション機能は、**レンダリングパイプラインが Legacy (Built-in)もしくはHDRP**で、かつ**Windows/DX11が正常に動く環境**でのみ使用できます。  
+
+<img width = "375" src="../images/UTS3UI_10_01.png">
+
+マテリアルインスペクターよりシェーダーとして、**ToonTessellation (Built-in)** もしくは、**HDRP/ToonTessellation** を選択してください。  
+Tessellationは、使えるプラットフォームが限られている上に、かなりパワフルなPC環境を要求しますので、覚悟して使ってください。想定している用途は、パワフルなGPUを搭載しているWindows10/DX11のマシンを使って、映像＆VR向けに使用することです。  
+
+---
+### ● ToonTessellation (Built-in) 
+
+<img width = "380" src="../images/UTS3UI_10_00.png">
+
+| `アイテム`  | 機能解説 | プロパティ |
+|:-------------------|:-------------------|:-------------------|
+| `Edge Length` | カメラとの距離に基づいて、よりテッセレーションを分割します。同じ距離では、値が小さいほうが細分化されます。デフォルトは 5 です。 | _TessEdgeLength |
+| `Phong Strengh` | テッセレーションによって細分化された分割面の引っ張り強度を変化させます。デフォルトは 0.5 です。 | _TessPhongStrength |
+| `Extrusion Amount` | テッセレーションの結果として発生する、膨張分を全体としてスケーリングします。デフォルトは 0 です。 | _TessExtrusionAmount |
+
+対応部分のコードは、Nora氏の https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess を参考にさせていただきました。  
+
+---
+### ● HDRP/ToonTessellation 
+<img width = "380" src="../images/UTS3UI_10_02.png">
+
+各オプションは、**HDRP/Lit Tessellation Shader** の[Tessellation Option](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@12.0/manual/Lit-Tessellation-Shader.html#tessellation-options)に準じます。  
+Unity Toon Shader では、Phong Tessellation にのみ対応しています。  
+
+---
+## 13.「Mask Rendering Settings」メニュー
+
+本機能は、アニメ制作および映像制作の際に、各カラー要素別にベタ塗り画像素材とそのクリッピング用マスク画像素材を出力するような場合に使用する機能です。  
+現在は、HDRP/Toonにのみ対応しています。  
+マニュアル操作でも本機能を使うことはできますが、主にVisual CompositorのToonClipMaskRenderNodeから利用します。Visual Compositor経由で本機能を使用する時には、`各カラー領域のカラーパレット`の αチャンネルの値(`A`)が必ず255になっていることを確認する以外は、特に操作する必要はありません。  
+
+<img width = "380" src="../images/UTS3UI_13_00.png">
+
+| `アイテム`  | 機能解説 |
+|:-------------------|:-------------------|
+| `Clipping Matte ドロップダウンメニュー` | 各カラー領域のベタ塗り画像素材を表示する時に、どのカラー領域のカラーを表示するか選択します。 |
+| `Compositor mask setting チェックボックス` | このチェックボックスを有効にすることで、Visual Compositor用にクリッピング用マスク画像を準備します。この時、マスク画像は白になります。出力する`各カラー領域のカラーパレット`のαチャンネルの値(`A`)は、必ず255にしてください。 |
+| Channel Mask Settings | 以下、Channel Mask Settings の設定となります。 |
+| `各カラー領域のビジビリティアイコン` | 目玉型のアイコンです。オフにすると対応するカラー領域の表示を無効にします。 |
+| `各カラー領域のチェックボックス` | チェックすると、横のカラーパレットに指定されているカラーで該当するカラー領域を塗り潰します。 |
+| `各カラー領域のカラーパレット` | 塗り潰すカラーを指定します。Visual Compositorからクリッピング用マスク画像を出力する場合は、αチャンネルの値(`A`)を必ず255に設定してください。 |
+---
