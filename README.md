@@ -99,12 +99,12 @@ The following table indicates the directory of Unity Toon Shader:
 -----
 ## 【License】
 Unity Toon Shader is provided under the 
-[Unity Companion License](LICENSE.md) for Unity-dependent projects.
+[Unity Companion License](./com.unity.toonshader/LICENSE.md) for Unity-dependent projects.
 
 Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these and other terms and conditions.
 
 -----
-Be sure to check the [manual](./com.unity.toonshader/Documentation~/en/UTS3_Manual_en.md) after installation.  
+Be sure to check the [manual](./com.unity.toonshader/Documentation~/en/index_en.md) after installation.  
 The manual explains how to use Unity Toon Shader in detail.  
 
 Please contact us if you have any issues.  
