@@ -1,11 +1,11 @@
 # Unity Toon Shader 0.0.6-preview Manual
-***Read this document in [日本語版](../ja/index_ja.md)***  
+***Read this document in [日本語版](ja/index_ja.md)***  
 
-[![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
-[![](../images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
-<img width = "800" src="../images/TPK_04.png">
-<img width = "800" src="../images/HiUni01.png">
-<img width = "800" src="../images/IllustSample_UTS2.png">
+[![](images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
+[![](images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
+<img width = "800" src="images/TPK_04.png">
+<img width = "800" src="images/HiUni01.png">
+<img width = "800" src="images/IllustSample_UTS2.png">
 
 # What is Unity Toon Shader?  
 Unity Toon Shader(Unity-Chan Toon Shader 3) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of Unity Toon Shader**..  
@@ -16,22 +16,22 @@ Unity Toon Shader(Unity-Chan Toon Shader 3) is a toon shader for images and vide
 
 **Unity Toon Shader** is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. 
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_10.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_10.png">
 
 This Toon shader is configured to easily produce all shadows essential to character design, such as those that accentuate the form of various parts of a character model, without having to worry about the position and intensity of light sources. Shadow color settings can also be used  to make it easy for the person responsible for color design to create shadows.  
 
 One of this shader’s particularly powerful features is the ability to adjust shadows using sliders within the shader itself, eliminating the need for multiple light sources.  
 
-<img width = "800" src="../images/SS_SampleScene.png">
+<img width = "800" src="images/SS_SampleScene.png">
 
 
 In addition to the 3 basic layers of **Base Color**, **1st Shade Color**, and **2nd Shade Color**, colors and textures can also accept a wide variety of customization options, such as **High Color**, **Rim Light**, **MatCap** (sphere mapping), and **Emissive** (light emission).  
 
-<img width = "600" src="../images/UTS2_TopImage03.gif">
+<img width = "600" src="images/UTS2_TopImage03.gif">
 
 The level of gradation between colors can also be adjusted in Unity in real-time.  
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_13.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_13.png">
 
 This shader also has 2 options for creating fixed shadows necessary to the design: the **Position Map**, which assigns a set casting point to each shadow, and the **Shading Grade Map**, which can adjust shadow intensity based on the lighting.  
 There are several other convenient tools for things like **how visible eyes and eyebrows are through bangs**, which can further emphasize an anime-style look.  
@@ -39,8 +39,8 @@ There are several other convenient tools for things like **how visible eyes and 
 In short, Unity Toon Shader makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.  
 Of course, it also supports Unity’s system shadow feature.  
 
-<img width = "800" src="../images/URP_image037.png">
-<img width = "800" src="../images/URP_image038.png">
+<img width = "800" src="images/URP_image037.png">
+<img width = "800" src="images/URP_image038.png">
 
 In addition, Unity Toon Shader allows for non-photorealistic rendering (NPR) to create any picture-like element that can be made with Universal Render Pipeline/Lit shader that supports physical-based rendering (PBR).  
 
@@ -64,37 +64,37 @@ The Toon shader should be switched to match the pipeline.
 
 1. Open the "+" menu in the Project window and select "Material" to create a new material.  
 
-<center><img width = "300" src="../images/URP_image000.png"></center>
+<center><img width = "300" src="images/URP_image000.png"></center>
 
 2. Select the new material that you have created. Looking at the Inspector, it currently has the "Universal Render Pipeline/Lit" shader assigned to it.  
 
-<center><img width = "300" src="../images/URP_image001.png"></center>
+<center><img width = "300" src="images/URP_image001.png"></center>
 
 3. Open the "Shaders" menu in the Inspector, select "Universal Render Pipeline" from the Shaders window, and then select "Toon".  
 
-<center><img width = "600" src="../images/URP_image002.png"></center>
+<center><img width = "600" src="images/URP_image002.png"></center>
 
 4. The material shaders are changed. Make sure that "Universal Render Pipeline/Toon" is assigned by the Inspector. By default, the most basic Unity Toon Shader, the "Double Shade With Feather" workflow, is assigned.  
 
-<center><img width = "300" src="../images/URP_image003.png"></center>
+<center><img width = "300" src="images/URP_image003.png"></center>
 
 
 
 ## 【Unity Toon Shader as an Uber Shader】
 UTS2 v.2.0.7.5 was divided into multiple shaders by function.  
 
-<img width = "480" src="../images/UTS2_Standard.png">
+<img width = "480" src="images/UTS2_Standard.png">
 
 Unity Toon Shader has been redesigned as an integrated shader (Uber shader), allowing you to do all the work in one Universal Render Pipeline/Toon shader.  
 
-<img width = "300" src="../images/URP_image006.png">
+<img width = "300" src="images/URP_image006.png">
 
 All functions are able to be used by selecting what you need from the Material Inspector.  
 
 ### ● Switch Workflow mode
 Original UTS2 v.2.0.7.5 has two workflow modes, the "DoubleShadeWithFeather" shader and its more advanced version, the "ShadingGradeMap" shader. In Unity Toon Shader, you can switch between these two shaders by selecting "Workflow Mode", which is almost at the top of the Material Inspector.  
 
-<img width = "400" src="../images/URP_image004.png">
+<img width = "400" src="images/URP_image004.png">
 
 The default is "DoubleShadeWithFeather" and the difference between the two workflows will be explained later.  
 
@@ -103,7 +103,7 @@ The default is "DoubleShadeWithFeather" and the difference between the two workf
 Special functions such as stencils, various cutouts, and transparent functions, which previously required switching the Unity Toon Shader shader itself according to the combination of each function, are now all grouped together in the "Basic Shader Settings" menu as operation modes.  
 Users can freely combine the functions they want by activating each operating mode.  
 
-<img width = "400" src="../images/URP_image005.png">
+<img width = "400" src="images/URP_image005.png">
 
 Each operating mode will be explained later.  
 
@@ -113,19 +113,19 @@ Therefore, if you copy the  UTS2 into the Universal Render Pipeline environment 
 
 For the special functions such as "Stencil" and "Cutoff" that were switched according to the shader file in UTS2 v.2.0.7.5, follow the above steps to activate each operating mode from the "Basic Shader Settings" menu.  
 
-<img width = "800" src="../images/URP_image007.png">
+<img width = "800" src="images/URP_image007.png">
 
 <center><small>↑ Under the environment of Universal Render Pipeline, the UTS2 v.2.0.7.5 material for the legacy pipeline is not correctly rendered as like in the left figure, but when the shader is switched to "Universal Render Pipeline/Toon", it comes to be correctly displayed.</small></center>  
 
 ## 【Sellection of Workflow Mode】
 
-<img width = "400" src="../images/URP_image008.png">
+<img width = "400" src="images/URP_image008.png">
 
 Unity Toon Shader has two main workflow modes.  
 * `DoubleShadeWithFeather` : The standard workflow mode for Unity Toon Shader. Allows for 2 shade colors (Double Shade Colors) and  gradation between colors (Feathering).  
 * `ShadingGradeMap`: A more advanced workflow mode. In addition to the DoubleShadeWithFeather features, this shader can also hold a special map called a ShadingGradeMap.  
 
-<img width = "800" src="../images/URP_image035.png">
+<img width = "800" src="images/URP_image035.png">
 
 Both types have the same basic features, so the same look can be achieved with either type by matching the color (`_Step`) and gradation (`_Feather`) values.  
 Choosing which workflow to use is a matter of personal taste, but generally `DoubleShadeWithFeather` is more suited to cel styles that need sharp, well defined colors, while `ShadingGradeMap` may be better for illustrated styles where the colors are more blurred together.  
@@ -136,7 +136,7 @@ You can switch between the two workflow modes at any time from the "Workflow Mod
 
 For the legacy UTS2 v.2.0.7.5, the shader-specific special features that were distinguished by suffix names such as `Transparent`, `StencilMask`, `StencilOut`, `Clipping`, or `TransClipping`, you can enable them from the settings of each special feature mode in the "Basic Shader Settings" for Unity Toon Shader.  
 
-<img width = "800" src="../images/URP_image009.png">
+<img width = "800" src="images/URP_image009.png">
 
 There are three special features that can be added to the basic shader from each special feature mode.  
 1. Transparent Shader : Add transparent or translucent function to the basic shader.  
@@ -147,7 +147,7 @@ There are three special features that can be added to the basic shader from each
 
 ---
 ### Transparent Shader
-<img width = "400" src="../images/URP_image010.png">
+<img width = "400" src="images/URP_image010.png">
 
 By setting `Transparent Mode` to `On`, it becomes a shader for transparent/translucent materials. At this time, the TransClipping function is always enabled.  
 
@@ -157,7 +157,7 @@ If you want to learn more about the values you set for the Render Queue, refer t
 
 ---
 ### StencilMask or StencilOut Shader
-<img width = "400" src="../images/URP_image011.png">
+<img width = "400" src="images/URP_image011.png">
 
 Set the `Stencil Mode` to add the stencil function. By using the stencil function, you can create an expression such as "eyebrows that penetrate the bangs", which is often used in anime and illustration expressions.  
 
@@ -165,13 +165,13 @@ Set the `Stencil Mode` to add the stencil function. By using the stencil functio
 2. `StencilOut` : Assign the material to use as the transparent part. It must be paired with some `StencilMask` materials. In the below example, this is the material used for the "Bangs" part, so the "Eyebrows" part looks transparent.  
 3. `StencilMask` : Assign the material to use as the part that is drawing through the surface in front. It must be paired with a `StencilOut` material. In the below example, you can assign it to the material for the "Eyebrows" part. It will always show through the "bangs" part.  
 
-<img width = "800" src="../images/URP_image036.png">
+<img width = "800" src="images/URP_image036.png">
 
 <small> [Note] **This feature is solely for Legacy (Built-in), Universal RP**. UTS/HDRP version is not ready for Stencil feature as stencil buffer is used for other purpose inside HDRP. There is no plans to implement stencil feature for UTS/HDRP version. If stencil features are necessary, please consider to use legacy (Built-in) or Universal RP.  The feature difference among render pipelines are noted in  [Feature Model](../en/FeatureModel_en.md). </small>
 
 ---
 ### Clipping Shader or TransClipping Shader
-<img width = "800" src="../images/URP_image012.png">
+<img width = "800" src="images/URP_image012.png">
 
 The basic shader function can have a clipping mask by activating each function from `Clipping Mode` or `Trans Clipping`. Clipping masks allow you to "cut out textures" (called as "cutouts" or "dissolves").  
 
@@ -242,8 +242,8 @@ From here, you will know the function of the user interface **Unity Toon Shader 
 
 "Unity Toon Shader Custom Inspector"(left below) can switch to the conventional "property list type inspector"(right below)  by clicking the `Show All Properties` button.
 
-<img width = "300" src="../images/URP_image033.png">
-<img width = "300" src="../images/URP_image034.png">
+<img width = "300" src="images/URP_image033.png">
+<img width = "300" src="images/URP_image034.png">
 
 You can restore the UI style of Inspector with the `Change CustomUI` button.  
 Some of the settings in the Inspector of property list type are validated by going back to the Unity Toon Shader Custom Inspector. Therefore, it is strongly recommended that you **usually use the Unity Toon Shader Custom Inspector**.  
@@ -251,7 +251,7 @@ Some of the settings in the Inspector of property list type are validated by goi
 ---
 ## 1. “Basic Shader Settings” Menu
 
-<img width = "400" src="../images/URP_image013.png">
+<img width = "400" src="images/URP_image013.png">
 
 In this menu, you will make basic settings for Unity Toon Shader.  
 In addition to selecting the two basic workflow modes, you can add a variety of special functions to the basic shaders by turning on and off various function modes.  
@@ -281,7 +281,7 @@ In addition to selecting the two basic workflow modes, you can add a variety of 
 ---
 ### 【Note】Game Remommendation feature : Useful functions for VRChat/Game users
 
-<img width = "340" src="../images/GameRecommendation.png">
+<img width = "340" src="images/GameRecommendation.png">
 
 <small>【**Caution**】As of May 2020, [VRChat](https://www.vrchat.com/) is not adopting the universal render pipeline and HDRP. For the present, please use legacy(Built-in) shader.</small>  
 
@@ -300,7 +300,7 @@ If you upload your avatar on VRChat and it feels different from what you intende
 After executing the `Game Recommendation`, you may want to adjust the appearance of the character in a dark world, which has only point lights, more brightly.  
 In that case, you can raise the brightness in dark world by adjusting the `Unlit Intensity` slider in the "Environmental Lighting Contributions Setups" menu.  
 
-<img width = "300" src="../images/Unlit_Intensity_Comp.gif">
+<img width = "300" src="images/Unlit_Intensity_Comp.gif">
 
 <small>【**Hint**】：`Unlit Intensity` is a function that boosts the brightness of the material in dark places while taking into consideration the brightness of the environment, so it can not be extremely bright in a world where the original environment lightings are set to be dark.  
 
@@ -315,7 +315,7 @@ In particular, if the Unity Toon Shader is displayed in the scene view with blow
 ---
 ## 2. “Basic Three Colors and Control Maps Setups” Menu
 
-<img width = "400" src="../images/URP_image014.png">
+<img width = "400" src="images/URP_image014.png">
 
 This Menu defines the basic colors used by Unity Toon Shader: the Base Color, 1st Shade Color, and 2nd Shade Color.  
 These colors are arranged **in order from the light source’s direction, Base Color⇒ 1st Shade Color ⇒ 2nd Shade Color**.  
@@ -327,7 +327,7 @@ Each color is determined by multiplying each pixel in the texture by each color,
 
 From the submenu, you can also set the sharing setting of texture for basic three colors, normal map, shadow control maps.  
 
-<img width = "400" src="../images/URP_image015.png">
+<img width = "400" src="images/URP_image015.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -340,19 +340,19 @@ From the submenu, you can also set the sharing setting of texture for basic thre
 ### “NormalMap Settings” Submenu
 This block is where Normal Map settings are performed.  
 
-<img width = "600" src="../images/Is_NormalToBase.png">
+<img width = "600" src="images/Is_NormalToBase.png">
 
 **The Normal Map is generally used in Unity Toon Shader for Shade Color gradation.**.  
 Using the Normal Map along with standard shading allows for more complex gradation effects. In the above image, **the left side reflects the normal map in color, the right does not reflect it**.  
 
 Besides, the normal map is used to adjust **skin texture** by using it together with the scale. Also, by preparing a normal map for MatCap, it is used to express **hair texture**.  
 
-<img width = "600" src="../images/NormalMap01.png">
-<img width = "600" src="../images/NormalMapforMatCap.png">
+<img width = "600" src="images/NormalMap01.png">
+<img width = "600" src="images/NormalMapforMatCap.png">
 
 By using normal maps, you can enjoy various expressions.  
 
-<img width = "400" src="../images/URP_image016.png">
+<img width = "400" src="images/URP_image016.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -373,7 +373,7 @@ Depending on the workflow you use, the items in the sub menu will change.
 
 ### ● DoubleShadeWithFeather Workflow
 
-<img width = "400" src="../images/URP_image017.png">
+<img width = "400" src="images/URP_image017.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -381,7 +381,7 @@ Depending on the workflow you use, the items in the sub menu will change.
 | `2nd Shade Position Map` | Uses a Position Map to force the 2nd Shade Color’s position, independent of the lighting. Indicate areas that must have a shadow in black (also affects the 1st Shade Color’s Position Map). | _Set_2nd_ShadePosition |
 
 #### 【What is the Position Map?】
-<img width = "800" src="../images/PositionMap01.png">
+<img width = "800" src="images/PositionMap01.png">
 
 The Position Map designates shadows that you want to cast regardless of the lighting.  
 
@@ -390,7 +390,7 @@ It can be added to a material in addition to the lighting, for times when you wa
 **※ Hint: It might be easier to draw those shadows directly using a 3D painter like Substance Painter, etc.**  
 
 #### ● How the 1st and 2nd Shade Color Position Maps Interact
-<img width = "800" src="../images/PositionMap02.png">
+<img width = "800" src="images/PositionMap02.png">
 
 In order to **display the 2nd Shade Color** independent of lighting, make sure to **fill in the places where the 1st and 2nd Shade Color Position Maps will overlap**.  
 
@@ -401,7 +401,7 @@ On the other hand, **for areas where the 2nd Shade Color doesn’t show** (areas
 ---
 ### ● ShadingGradeMap workflow
 
-<img width = "400" src="../images/URP_image018.png">
+<img width = "400" src="images/URP_image018.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -412,7 +412,7 @@ On the other hand, **for areas where the 2nd Shade Color doesn’t show** (areas
 #### 【What is the Shading Grade Map?】
 `DoubleShadeWithFeather` is the basic workflow in Unity Toon Shader, and `ShadingGradeMap` workflow is the expansion of this basic workflow using the shading grade map, which is a grayscale map to control shadows with the UV coordinate.  
 
-<img width = "800" src="../images/ShadingGradeMap01.png">
+<img width = "800" src="images/ShadingGradeMap01.png">
 
 Adding the `Shading Grade Map` to the basic toon shader allows the 1st and/or 2nd Shade Colors to be controlled at the UV point level.  
 This map’s fine level of control makes effects like “hiding the wrinkles in clothes **when the light hits them**” possible.  
@@ -424,7 +424,7 @@ Applying **a shading map like the Ambient Occlusion map** to the shading grade m
 ---
 ## 3. “Basic Lookdevs : Shading Step and Feather Settings” Menu
 
-<img width = "400" src="../images/URP_image019.png">
+<img width = "400" src="images/URP_image019.png">
 
 This block is where the Base Color/1st Shade Color/2nd Shade Color **Step** and the **Feathering** Intensity are set. In addition to the real-time directional light settings, these are the most important settings in Unity Toon Shader. **These settings will determine the basic look of your content**. This menu is where basic items for making Cel and Illustration Styles are gathered.  
 These settings can be checked repeatedly in real-time in Unity.  
@@ -443,7 +443,7 @@ Adjust the Step and Feather parameters to create totally different looks, withou
 There are items of DoubleShadeWithFeather, the standard workflow in Unity Toon Shader.  
 This workflow can have 2 **Position Maps**, a special feature that allows the 1st and 2nd Shade Colors to be fixed to a model regardless of lighting.  
 
-<img width = "400" src="../images/URP_image020.png">
+<img width = "400" src="images/URP_image020.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -460,7 +460,7 @@ This workflow with a **Shading Grade Map** can control the sharpness and intensi
 This map allows you to set shadows of any shape and in any place you like, regardless of geometry or vectors.  
 Compared to Position Maps, in addition to placing shadows, Shading Grade Maps can also adjust how shadows look depending on the way the light hits them.  
 
-<img width = "400" src="../images/URP_image021.png">
+<img width = "400" src="images/URP_image021.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -476,7 +476,7 @@ These are adjustment items to make Unity's shadow system and toon shading famili
 In the case of the toon shade, the shadow provided by the system is necessary to express the character 's self - shadow (falling shadow to himself).  
 Use this when you want to make further fine adjustments after deciding the coloring level with the “Basic Lookdevs: Shading Step and Feather Settings” submenu items and want to fine-tune the way ReceiveShadow exits, such as self shadow.  
 
-<img width = "400" src="../images/URP_image022.png">
+<img width = "400" src="images/URP_image022.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -495,7 +495,7 @@ Use this when you want to make further fine adjustments after deciding the color
 
 These are adjustment items mainly for the real-time point light group.  
 
-<img width = "400" src="../images/URP_image023.png">
+<img width = "400" src="images/URP_image023.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -527,7 +527,7 @@ If you want the highlights to be brighter, turn off “PointLights Hi-Cut Filter
 **High Color** is also known as **Highlights or Speculum Lighting**.  
 It is used to reflect the main directional light. When the light moves the reflection also moves accordingly. In Unity Toon Shader, you can adjust the high color rendering.  
 
-<img width = "400" src="../images/URP_image024.png">
+<img width = "400" src="images/URP_image024.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -543,13 +543,13 @@ It is used to reflect the main directional light. When the light moves the refle
 
 **※Tip: If you want to enable high color of real-time point lights, set `PointLights Hi-Cut Filter` to` Off`.**
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_rev_16.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_rev_16.png">
 
 By using HighColorMask, you can dim light (on skin etc.) that reflects too much depending on the angle.  
 This is useful when highlighting skin color on the cheeks and chest.  
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_31.png">
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_32.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_31.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_32.png">
 
 You can also use HighColorMask as a specular lighting map for reflective surfaces. So it can also be use for metallic textures as well.  
 As seen in Akatsuki Yuki’s (@AkatsukiWorks) work, by using HighColorMask and RimLightMask, you can create art that looks like an illustration but also render the texture of each material.  
@@ -561,7 +561,7 @@ In realistic styles, **RimLight**  is a technique in which light is set to shine
 In non-photorealistic styles that includes Toon Shader, highlights are also placed on the edges of objects to make it more visible, and it is also called RimLight.  
 You can use these RimLight options in Unity Toon Shader.  
 
-<img width = "400" src="../images/URP_image025.png">
+<img width = "400" src="images/URP_image025.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -582,7 +582,7 @@ You can use these RimLight options in Unity Toon Shader.
 | `RimLight Mask` | Masks the RimLight according to the UV coordinates. Set to 100% for white, and the rim light does not show when set to black. If you do not need it, you do not have to adjust it. | _Set_RimLightMask |
 | `RimLight Mask Level` | Adjusts the RimLight mask’s level. The default is 0. | _Tweak_RimLightMaskLevel |
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_14.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_14.png">
 
 The RimLight is generally shown around the objects edges from the camera’s perspective. In Unity Toon Shader, you can adjust where the rim light is shown in relation to where the main light is. (‘LightDirection Mask’)
 
@@ -590,7 +590,7 @@ You can also set RimLight in the opposite direction of the light source. You can
 
 Specify the RimLight’s color of the light direction as Black (0,0,0) if you only want the rim light to be shown on the opposite direction of the light source and cut the rim light in the direction of the light source.  
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_15.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_15.png">
 
 RimLight can also be too bright like HighColor depending on the camera’s angles.  
 
@@ -598,9 +598,9 @@ In UTS2, you can adjust RimLight’s mask to make it dimmer.
 
 In the image above, the RimLight’s color in the light source’s direction and the light reflection’s direction is changed. The rim light is also masked around the underarms to prevent unnecessary highlights.  
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_33.png">
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_34.png">
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_35.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_33.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_34.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_35.png">
 
 By masking the RimLight, you can also emphasize the metallic textures in comparison to other materials, or adjust the incidental light on clothes to create wrinkles on velvet.  
 
@@ -616,7 +616,7 @@ In Unity Toon Shader, you can enjoy MatCap with Adding mode, as well as Multipli
 
 <small>**※ HINT: In Unity Toon Shader, appropriate adjustments will be made to distortions caused by the camera. So the Matcap will not be distorted even when the object is on at the edge of the camera’s perspective. This setting is adjusted with the `MatCap Projection Camera`.**</small>  
 
-<img width = "400" src="../images/URP_image026.png">
+<img width = "400" src="images/URP_image026.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -640,12 +640,12 @@ In Unity Toon Shader, you can enjoy MatCap with Adding mode, as well as Multipli
 | `Matcap Mask Level` | Adjusts the power of the MatcapMask. When the value is 1, MatCap is displayed 100% irrespective of whether or not there is a mask. When the value is -1, MatCap will not be displayed at all and MatCap will be the same as in the off state. The default value is 0. | _Tweak_MatcapMaskLevel |
 | `Inverse MatcapMask` | In case of `Active`, the MatcapMask is inverted. | _Inverse_MatcapMask |
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_36.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_36.png">
 
 In the example above, Matcap is used as **a similar environment map**.  
 By using MatCap, you can create **light reflections of smooth surfaces** while keeping the illustration style.
 
-<img width = "800" src="../images/URP_image039.png">
+<img width = "800" src="images/URP_image039.png">
 
 In the example above, `MatCap`, `NormalMap for MatCap` and `MatcapMask` is used to express **a silky hair gloss**.  
 
@@ -653,7 +653,7 @@ In the example above, `MatCap`, `NormalMap for MatCap` and `MatcapMask` is used 
 * NormalMap for MatCap : If only MatCap is used, it will be rendered as is, but by repeatedly using NormalMapForMatCap, the crescent-shaped light reflections are created. This is known as **Speculum Masking**. The normal map used here is not used for bumpy textures.  
 * MatCap Mask : Adjusts the range where MatCap is shown. By setting the gradation mask vertically, and adjusting the Matcap Mask Level slider, you can easily control the range of the MatCap shown.  
 
-<img width = "800" src="../images/URP_image040.png">
+<img width = "800" src="images/URP_image040.png">
 
 You can also express light cookies like this with MatCap Mask.  
 
@@ -662,12 +662,12 @@ You can also express light cookies like this with MatCap Mask.
 
 Angel Ring is a highlight that is always shown in a fixed place from the camera’s perspective. It is used on highlights for hair. Angel Ring feature is available in the `ShadingGradeMap` workflow.  
 
-<img width = "300" src="../images/AngelRing.png">
-<img width = "300" src="../images/UTS2_TopImage06.gif">
+<img width = "300" src="images/AngelRing.png">
+<img width = "300" src="images/UTS2_TopImage06.gif">
 
 Angel Ring reffers to the UV2 of the mesh that it will be projected on. So you have to set the UV2 with the DCC tools like Maya, 3ds Max, Blender, etc. beforehand.  
 
-<img width = "400" src="../images/URP_image027.png">
+<img width = "400" src="images/URP_image027.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -684,7 +684,7 @@ First, set a second UV that will be applied to the Angel Ring function of the ha
 
 The UV for AngelRing is separate from the UV for the hair’s texture and is created orthographically from the character’s front.  
 
-<img width = "800" src="../images/HairModel.png">
+<img width = "800" src="images/HairModel.png">
 
 **The steps from here, including creating UV2, are done with DCC tools like Maya, 3ds Max, Blender etc.**.  
 
@@ -692,12 +692,12 @@ By using the AngelWing’s UV as a guide, draw the texture of the highlights. Th
 Register the created texture as AngelRing_Sampler.  
 You can draw the highlight with white and add color in AngelRing_Color too.  
 
-<img width = "800" src="../images/Hair_UV1.png">
+<img width = "800" src="images/Hair_UV1.png">
 
 In case of `Active` with `Use α channel as Clipping Mask`, you can use the α channel that is included in the AngelRing’s texture as a clipping mask, as shown below.  
 You can set the color of the AngelRing directly instead of adding it.  
 
-<img width = "800" src="../images/ARSamplerAlfaOn01.png">
+<img width = "800" src="images/ARSamplerAlfaOn01.png">
 
 ---
 ## 8. “Emissive : Self-luminescene Setings” Menu
@@ -705,11 +705,11 @@ You can set the color of the AngelRing directly instead of adding it.
 **Emissive** means that objects emit light.  
 By defining the **HDR color** for ‘Emissive’, you can create parts that are brighter than the other colors.  
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_17.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_17.png">
 
 **By using it with post-effects that are attached to the camera, like [Bloom](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@9.0/manual/post-processing-bloom.html) in [Post-Processing in UniversalRP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@9.0/manual/integration-with-post-processing.html) you can make parts emit light effectively.**  
 
-<img width = "400" src="../images/URP_image028.png">
+<img width = "400" src="images/URP_image028.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -728,9 +728,9 @@ By defining the **HDR color** for ‘Emissive’, you can create parts that are 
 | `ViewShift of Color` | `Active` shifts the color relative to the camera's viewing angle to view the object. When viewed from the front of the surface of the object, the normal Emissive color is displayed, and the color changes to the shifted color as the view angle gradually inclines. | _Is_ViewShift |
 | `ViewShift Color` | This is the color to change to when shifting views. Specify in HDR. | _ViewShift |
 
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_42.png">
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_43.png">
-<img width = "800" src="../images/UT2018_UTS2_SuperTips_48.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_42.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_43.png">
+<img width = "800" src="images/UT2018_UTS2_SuperTips_48.png">
 
 This is an example from @einz_zwei, in which emissive parts are used very effectively.  
 By combining color maps and emissive maps, details are added according to the light’s brightness.  
@@ -741,35 +741,35 @@ By combining color maps and emissive maps, details are added according to the li
 Texture with alpha channel is created with DCC tools such as Photoshop.  
 You can use it as an alpha channel by adding a new channel from the channel tab and pasting a grayscale image on the created channel. If you use an image format that has an alpha channel such as Targa format, you can save as it is.  
 
-<img width = "800" src="../images/Emissive_Tex00.png">
+<img width = "800" src="images/Emissive_Tex00.png">
 
 To enable the alpha channel on Unity, set `Alpha Source` to` Input Texture Alpha` in the Import Settings of each texture.  
 
 **In the case of PNG format** can not have an alpha channel directly in the image specification, so after loading an alpha channel as a selection range in Photoshop, specify “Layer mask> Mask outside selection range”, PNG Save in format.  
 
-<img width = "800" src="../images/Emissive_Tex01.png">
-<img width = "800" src="../images/Emissive_Tex02.png">
+<img width = "800" src="images/Emissive_Tex01.png">
+<img width = "800" src="images/Emissive_Tex02.png">
 
 Then import it into Unity, and in Import Settings, set `Alpha Source` to` Input Texture Alpha` and `Alpha Is Transparency` to` ON`.  
 
-<img width = "500" src="../images/Emissive_Tex03.png">
+<img width = "500" src="images/Emissive_Tex03.png">
 
 ---
 ### ● Tips for setting Destination Color
 
 When using the color shift function, set `Destination Color` as the target, but if the original color and the target color have the same hue, unexpected colors may be mixed into the frame. For example, if you shift from the color shown on the left side of the arrow to one of the two colors on the right that looks similar, the first color on the right of the arrow shifts color within the same hue range. The second color is a mixture of bluish frames.  
 
-<img width = "800" src="../images/DestColor00.png">
+<img width = "800" src="images/DestColor00.png">
 
 This is because the color that mixes blueish frames has a B channel that has a higher value when compared to the RGB of the original color.  
 
 In this way, when shifting colors with different luminance within the same hue to the target in this way, **by aligning the direction of change of each RGB**, it is possible to prevent unexpected colors from entering the frame.  
 
-<img width = "800" src="../images/DestColor01.png">
+<img width = "800" src="images/DestColor01.png">
 
 ↑Example of color shift within the same hue. The target color RGB values are all smaller than the original color.  
 
-<img width = "800" src="../images/DestColor02.png">
+<img width = "800" src="images/DestColor02.png">
 
 ↑Example where frames outside the hue are mixed. The B value of the target color is higher than the original color, and the change in G value is extremely large.  
 
@@ -789,7 +789,7 @@ Please be aware that **actual lines are not drawn around the objects**.
 **Reference: You can draw lines around the objects too, but that is mostly used as a post-process (post-effects) outline.**.  
 The type of outline used in post-process affects the speed and quality. In games, the inverted-object method and light post-process methods are used to make adjustments.  
 
-<img width = "400" src="../images/URP_image031.png">
+<img width = "400" src="images/URP_image031.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -806,7 +806,7 @@ The type of outline used in post-process affects the speed and quality. In games
 
 Items in this submenu can further enhance the outline function.  
 
-<img width = "400" src="../images/URP_image032.png">
+<img width = "400" src="images/URP_image032.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -819,7 +819,7 @@ Items in this submenu can further enhance the outline function.
 
 ---
 ### ● Adjusting the strength of outlines：**Outline Sampler**
-<img width = "800" src="../images/OutlineSampler01.png">
+<img width = "800" src="images/OutlineSampler01.png">
 
 Black means “no lines” and white means that the width is at 100%.  
 
@@ -852,7 +852,7 @@ For more please check the assets in the Baked Normal folder of the sample projec
 ---
 ### ● Moving the outline away from the camera：**Offset Outline with Camera Z-axis**
 
-<img width = "800" src="../images/OffsetZ01.png">
+<img width = "800" src="images/OffsetZ01.png">
 
 By inputting a value in `Offset Outline with Camera Z-axis` , you can offset the outline in Z direction.  
 You can use this when your model has spikey hair to adjust the outlines of the spikes.  
@@ -869,7 +869,7 @@ In the case of `Active`, the effect of the color of the real time light on each 
 From this menu you can centrally manage the presence / absence of light color contribution to each color.  
 While actually using the character lights used in the scene, you can see in real-time how the effect on each color will change with / without light contribution. It is a good idea to use it to finish the look-dev.  
 
-<img width = "400" src="../images/URP_image029.png">
+<img width = "400" src="images/URP_image029.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -891,7 +891,7 @@ While actually using the character lights used in the scene, you can see in real
 In this menu, adjust the response of the Unity Toon Shader to “the ambient light setting”(Environment Lighting including Skybox, Gradient and Color) and the light probe in the scene, and adjust the brightness of the shader built-in light that starts up in an environment where there is no real-time directional light Items are included.  
 It is also possible to control ON/OFF of the white jump prevention function like **SceneLights Hi-Cut Filter**, which is **a useful function for VRChat users**, from this menu.  
 
-<img width = "400" src="../images/URP_image030.png">
+<img width = "400" src="images/URP_image030.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -908,11 +908,11 @@ It is also possible to control ON/OFF of the white jump prevention function like
 
 ### ● Decide the light probe’s brightness ：GI Intensity
 
-<img width = "800" src="../images/GI_Intensity.png">
+<img width = "800" src="images/GI_Intensity.png">
 
 <small>**↑ Left：GI Intensity = 0、Right：GI Intensity = 1. When the value of GI Intensity goes up, the light probe’s color will be added to the material color.**</small>  
 
-<img width = "800" src="../images/LightProbe.png">
+<img width = "800" src="images/LightProbe.png">
 
 <small>**↑ This is an example of a baked point light and a light probe that is positioned on a stage. There is no problem for baked lights overlapping in each range. Line light probes from the top to bottom of Unity-chan.**</small>  
 
@@ -920,10 +920,10 @@ It is also possible to control ON/OFF of the white jump prevention function like
 By setting  ’GI Intensity’ to 0 and above, it will be compatible with GI systems like light probes.  
 Light probes that are baked in a scene with other baked lights will be added to the material color as a complementary color. When is at 1, the color that is baked into light probes is added 100%. When it is set to 0, it is the color of the material color.  
 
-<img width = "800" src="../images/GI_IntensityOFF.png">
+<img width = "800" src="images/GI_IntensityOFF.png">
 <small>**↑ GI Intensity = 0**.</small>  
 
-<img width = "800" src="../images/GI_IntensityON.png">
+<img width = "800" src="images/GI_IntensityON.png">
 <small>**↑ GI Intensity = 1**.</small>  
 
 ---
@@ -972,7 +972,7 @@ If you want to use these features, you need to choose a render pipeline that sup
 ## 12. “Phong Tessellation Settings” Menu
 You can only use the tessellation feature on Unity Toon Shader in **rendering pipelines with Legacy (built-in) or HDRP** ,and **with Windows/DX11 running properly**.  
 
-<img width = "375" src="../images/UTS3UI_10_01.png">
+<img width = "375" src="images/UTS3UI_10_01.png">
 
 Select **ToonTessellation (Built-in)** or **HDRP/ToonTessellation** as the shader in the Material Inspector.  
 Tessellation is not available on every platform and also requires a good PC environment, so please take this into account.  
@@ -981,7 +981,7 @@ It can be used with Windows10/DX11 machines that have powerful GPUs for visuals 
 ---
 ### ● ToonTessellation (Built-in) 
 
-<img width = "380" src="../images/UTS3UI_10_00.png">
+<img width = "380" src="images/UTS3UI_10_00.png">
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
@@ -993,7 +993,7 @@ We used Nora’s https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess  as 
 
 ---
 ### ● HDRP/ToonTessellation 
-<img width = "380" src="../images/UTS3UI_10_02.png">
+<img width = "380" src="images/UTS3UI_10_02.png">
 
 Each option follows [Tessellation Option](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@12.0/manual/Lit-Tessellation-Shader.html#tessellation-options) of **HDRP/Lit Tessellation Shader**.  
 Unity Toon Shader only supports Phong Tessellation.  
@@ -1006,7 +1006,7 @@ Currently, only HDRP/Toon is supported.
 You can use this function manually, but it is used primarily from ToonClipMaskRenderNode in Visual Compositor.  
 When using this function via Visual Compositor, there is no need to do any particular operation other than making sure that the alpha channel value (`A`) in every `Color palette of each color area` is set to 255.  
 
-<img width = "380" src="../images/UTS3UI_13_00.png">
+<img width = "380" src="images/UTS3UI_13_00.png">
 
 | `Item`  | Function |
 |:-------------------|:-------------------|

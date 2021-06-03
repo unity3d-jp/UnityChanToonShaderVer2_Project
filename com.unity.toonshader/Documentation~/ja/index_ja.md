@@ -1,5 +1,5 @@
 # Unity Toon Shader 0.0.6-preview マニュアル
-***Read this document in [English](../en/index.md)***  
+***Read this document in [English](../index.md)***  
 
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 [![](../images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
