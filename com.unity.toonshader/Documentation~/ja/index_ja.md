@@ -1,4 +1,4 @@
-# Unity Toon Shader 0.0.4-preview マニュアル
+# Unity Toon Shader 0.0.6-preview マニュアル
 ***Read this document in [English](../en/index.md)***  
 
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
@@ -49,7 +49,7 @@ Unity Toon Shader は、セルルック3DCGアニメーションの制作現場�
 是非、貴方のご自慢のキャラクターモデルをUnity Toon Shaderで彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.0.4-preview** 向けに書かれています。  
+本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.0.6-preview** 向けに書かれています。  
 またマニュアル中では、Universal Render Pioeline版のUnity Toon Shaderの画面を例として使用しますが、Legacy(Built-in)およびHDRP版に関しましても、ほぼ同様の画面となっていますので、適宜読み替えてください。  
 
 ## 【Unity Toon Shaderを使い始める】

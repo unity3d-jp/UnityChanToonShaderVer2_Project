@@ -1,4 +1,4 @@
-# Unity Toon Shader 0.0.4-preview Manual
+# Unity Toon Shader 0.0.6-preview Manual
 ***Read this document in [日本語版](../ja/index_ja.md)***  
 
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
@@ -49,7 +49,7 @@ Several techniques have been implemented to beautifully display characters in a 
 See for yourself by coloring your best character model with Unity Toon Shader.  
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the latest version of Unity Toon Shader: **Unity Toon Shader v.0.0.4-preview**.  
+This manual focuses on the latest version of Unity Toon Shader: **Unity Toon Shader v.0.0.6-preview**.  
 In this manual, the screen of Unity Toon Shader for Universal Render Pipeline is used as an example, but the ones for the Legacy (Built-in) and HDRP versions are alomost the same with URP, so please read it accordingly.  
 
 ## 【Start using Unity Toon Shader】
