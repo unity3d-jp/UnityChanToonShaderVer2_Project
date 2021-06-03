@@ -8,7 +8,7 @@
 <img width = "800" src="../images/IllustSample_UTS2.png">
 
 # What is Unity Toon Shader?  
-Unity Toon Shader(Unity-Chan Toon Shader 3) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of UTS2**..  
+Unity Toon Shader(Unity-Chan Toon Shader 3) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of Unity Toon Shader**..  
 
 **Unity Toon Shader** has all the feature of UTS2 v.2.0.7.5, and been implemented as an uber shader, whitch is compatible with Legacy (Built-in), Universal RP and HDRP.
 
