@@ -99,7 +99,7 @@ The following table indicates the directory of Unity Toon Shader:
 -----
 ## 【License】
 Unity Toon Shader is provided under the 
-[Unity Companion License](./com.unity.toonshader/LICENSE.md) for Unity-dependent projects.
+[Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License) for Unity-dependent projects.
 
 Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these and other terms and conditions.
 
@@ -112,7 +112,7 @@ Please contact us if you have any issues.
 -----
 ## 【Release History】
 
-The release history of Unity Toon Shader is [here.](./CHANGELOG.md)
+The release history of Unity Toon Shader is [here.](./com.unity.toonshader/CHANGELOG.md)
 The release history of UTS2 is [here.](./com.unity.toonshader/Documentation~/en/UTS2_HISTORY_en.md) 
 -----
 **README.md 2021/06/04**  
