@@ -167,7 +167,7 @@ Set the `Stencil Mode` to add the stencil function. By using the stencil functio
 
 <img width = "800" src="images/URP_image036.png">
 
-<small> [Note] **This feature is solely for Legacy (Built-in), Universal RP**. UTS/HDRP version is not ready for Stencil feature as stencil buffer is used for other purpose inside HDRP. There is no plans to implement stencil feature for UTS/HDRP version. If stencil features are necessary, please consider to use legacy (Built-in) or Universal RP.  The feature difference among render pipelines are noted in  [Feature Model](../en/FeatureModel_en.md). </small>
+<small> [Note] **This feature is solely for Legacy (Built-in), Universal RP**. UTS/HDRP version is not ready for Stencil feature as stencil buffer is used for other purpose inside HDRP. There is no plans to implement stencil feature for UTS/HDRP version. If stencil features are necessary, please consider to use legacy (Built-in) or Universal RP.  The feature difference among render pipelines are noted in  [Feature Model](./en/FeatureModel_en.md). </small>
 
 ---
 ### Clipping Shader or TransClipping Shader
