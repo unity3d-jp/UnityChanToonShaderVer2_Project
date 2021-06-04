@@ -110,9 +110,10 @@ The manual explains how to use Unity Toon Shader in detail.
 Please contact us if you have any issues.  
 
 -----
-## 【Release History】  
-The release history of Unity Toon Shader is [here.](./CHANGELOG.md)。 
-The release history of UTS2 is [here.](./com.unity.toonshader/Documentation~/en/HISTORY_en.md)  
+## 【Release History】
+
+The release history of Unity Toon Shader is [here.](./CHANGELOG.md)
+The release history of UTS2 is [here.](./com.unity.toonshader/Documentation~/en/UTS2_HISTORY_en.md) 
 -----
 **README.md 2021/06/04**  
 
