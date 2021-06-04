@@ -64,12 +64,12 @@ The project comes with sample scenes where you can learn various setting example
 
 <a name="UsingUnitychanToonShader2"></a>
 ## 【Using Unity Toon Shader】
-To learn how to use Unity Toon Shader, see [Users' Manual](./Documentation~/en/UTS3_Manual_en.md).  
+To learn how to use Unity Toon Shader, see [Users' Manual](./com.unity.toonshader/Documentation~/index.md).  
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using Unity Toon Shader actually is the best way to learn the beautiful toon style.  
 
 You can open Users' Manual from the custom inspector **English Manual** button of Unity Toon Shader, 
-see [here](./com.unity.toonshader/Documentation~/en/UTS3_Manual_en.md#1-basic-shader-settings-menu-for-uts3).  
+see [here](./com.unity.toonshader/Documentation~/index.md#1-basic-shader-settings-menu-for-uts3).  
 
 
 
@@ -111,15 +111,8 @@ Please contact us if you have any issues.
 
 -----
 ## 【Release History】  
-The release history of Unity Toon Shader is [here.](./com.unity.toonshader/Documentation~/en/HISTORY_en.md)  
-
+The release history of Unity Toon Shader is [here.](./CHANGELOG.md)。 
+The release history of UTS2 is [here.](./com.unity.toonshader/Documentation~/en/HISTORY_en.md)  
 -----
-## 【Information】  
-Latest Version: x.x.x Release: 
-Update: 2021/02/19  
-Category: 3D  
-File format: zip/unitypackage  
-
------
-**README.md 2021/02/19**  
+**README.md 2021/06/04**  
 

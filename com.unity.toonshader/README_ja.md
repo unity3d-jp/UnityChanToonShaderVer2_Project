@@ -94,11 +94,4 @@ Unity Toon Shader のリリース履歴は、[こちら](./CHANGELOG.md)。
 UTS2 のリリース履歴は、[こちら](./Documentation~/ja/HISTORY_ja.md)。  
 
 -----
-## 【インフォメーション】  
-Latest Version: x.x.x Release: 
-Update: 2021/02/19  
-Category: 3D  
-File format: zip/unitypackage  
-
------
-**README_ja.md 2021/02/19**  
+**README_ja.md 2021/06/04**

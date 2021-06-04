@@ -1,5 +1,5 @@
 # Changelog
-## [0.0.6-preview] - 2021-06-03
+## [0.0.6-preview] - 2021-06-04
 * Modifed documents
 
 ## [0.0.5-preview] - 2021-05-12

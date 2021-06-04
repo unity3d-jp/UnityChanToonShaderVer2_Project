@@ -60,12 +60,12 @@ If you installed this package, Unity Toon Shader files are installed into **Unit
 
 <a name="UsingUnitychanToonShader2"></a>
 ## 【Using Unity Toon Shader】
-To learn how to use Unity Toon Shader, see [Users' Manual](./Documentation~/en/index_en.md).  
+To learn how to use Unity Toon Shader, see [Users' Manual](Documentation~/index.md).  
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using Unity Toon Shader actually is the best way to learn the beautiful toon style.  
 
 You can open Users' Manual from the custom inspector **English Manual** button of Unity Toon Shader, 
-see [here](./Documentation~/en/UTS3_Manual_en.md#1-basic-shader-settings-menu-for-uts3).  
+see [here](Documentation~/index.md#1-basic-shader-settings-menu-for-uts3).  
 
 
 
@@ -100,7 +100,7 @@ Unity Toon Shader is provided under the
 Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these and other terms and conditions.
 
 -----
-Be sure to check the [manual](Documentation~/en/index_en.md) after installation.  
+Be sure to check the [manual](Documentation~/index.md) after installation.  
 The manual explains how to use Unity Toon Shader in detail.  
 
 Please contact us if you have any issues.  
@@ -109,14 +109,6 @@ Please contact us if you have any issues.
 ## 【Release History】  
 The release history of Unity Toon Shader is [here.](./CHANGELOG.md)。 
 The release history of UTS2 is [here.](./Documentation~/en/HISTORY_en.md)  
-
 -----
-## 【Information】  
-Latest Version: x.x.x Release: 
-Update: 2021/02/19  
-Category: 3D  
-File format: zip/unitypackage  
-
------
-**README.md 2021/02/19**  
+**README.md 2021/06/04**  
 
