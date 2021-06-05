@@ -92,6 +92,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 ## 【リリース履歴】  
 
 Unity Toon Shader のリリース履歴は、[こちら](../CHANGELOG.md)。 
+
 UTS2 のリリース履歴は、[こちら](./UTS2_HISTORY_ja.md)。  
 
 -----

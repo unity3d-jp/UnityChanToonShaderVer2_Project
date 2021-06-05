@@ -109,7 +109,9 @@ Please contact us if you have any issues.
 ## 【Release History】 
  
 The release history of Unity Toon Shader is [here.](../CHANGELOG.md) 
+
 The release history of UTS2 is [here.](./UTS2_HISTORY_en.md)
+
 -----
 **README.md 2021/06/04**  
 
