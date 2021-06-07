@@ -32,7 +32,7 @@ Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠
 
 <img width = "800" src="../images/UTS3_TopImage04.png?raw=true">
 
-アニメーション制作の現場では、各シーンごとに各々のパーツに対してカラーデザインがなされます。またこれらのカラーデザインを作るスペシャリストがいるのが一般的です。UTS3はそのようなパイプラインに適した設計になっています。  
+アニメーション制作の現場では、各シーンごとに各々のパーツに対してカラーデザインがなされます。またこれらのカラーデザインを作るスペシャリストがいるのが一般的です。Unity Toon Shaderはそのようなパイプラインに適した設計になっています。  
 
 アニメーション映画では、影は光の差し込む方向を表すためだけでなく、キャラクターの形状を明確にするためにも使用されます。影は、単なる影に留まらず、キャラクターデザインの重要な部分を占めています。  
 
@@ -52,6 +52,22 @@ Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠
 
 また昨今のVRChat/Gameでのユーザーの声を反映し、様々なライティング設定の環境下でも、キャラクターが美しく表現されるように様々な工夫が実装されています。  
 
+
+-----
+## 【Unity Toon Shader のインストール】
+本パッケージをインストールすると、Unity Toon Shaderのファイルは、Unityプロジェクトの**Packages**フォルダ内の**com.unity.toonshader**フォルダにインストールされます。  
+
+Unity Toon Shaderのサンプルシーンを入手するには、[こちら](https://github.com/Unity-Technologies/com.unity.toonshader/archive/refs/heads/development/v1.zip)からプロジェクト全体をダウンロードしてください。  
+
+各サンプルプロジェクトは、以下のようになっています。  
+* Legacy(built-in) : **UnityToonshader_Project~** フォルダ内  
+* HDRP : **UnityToonshader_ProjectHDRP~** フォルダ内  
+* URP : **UnityToonshader_ProjectURP~** フォルダ内  
+
+プロジェクトには、Unity Toon Shaderの様々な設定例を学べるサンプルシーンが用意されています。  
+
+
+
 -----
 ## 【ユーザーマニュアル】
 **[日本語マニュアル](./index_ja.md)が提供されています。合わせてご利用ください。**  
@@ -65,13 +81,17 @@ Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠
 * **Unity 2019.4.21f1 もしくはそれ以降が必要です。**
 * Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
-
+* 対象プラットフォームは**Windows、MacOS、iOS、Android、PlayStation4、Xbox One、Nintendo Switch**です。テッセレーション版は、DX11/DX12が正常に動作する環境でのみ対応しています。  
 
 -----
-## 【ターゲットプラットフォーム】
-Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch  
+## 【パッケージの内容】
 
-* テッセレーション版は、DX11が正常に動く環境のみのサポートです。  
+Unity Toon Shaderのディレクトリは以下の通りです。　　
+
+|フォルダの場所|説明|
+|---|---|
+|`Runtime\Shader`|Unity Toon Shaderのファイルが入っています。|
+|`Editor`|Unity Toon Shader Custom Inspectorやその他のユーティリティが含まれています。|
 
 -----
 ## 【提供ライセンス】
@@ -79,14 +99,13 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 **Unity Companion License for Unity-dependent projects** で提供されます。
 [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License) をご参照ください.
 
-
+本ライセンスに基づくソフトウェアは、明示的に別段の定めがない限り、「現状のまま」で提供され、明示的にも黙示的にも、いかなる種類の保証も行われないものとします。これらの条件およびその他の条件の詳細については、提供ライセンスの本文をご覧ください。  
 
 -----
-## 【シェーダーのインストール】
 インストール後は、必ず[マニュアル](./index_ja.md)を確認するようにしてください。  
 マニュアルには、Unity Toon Shaderの使い方が詳しく解説されています。  
 
-個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
+個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。  
 
 -----
 ## 【リリース履歴】  

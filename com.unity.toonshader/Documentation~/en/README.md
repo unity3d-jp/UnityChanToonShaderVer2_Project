@@ -32,7 +32,7 @@ In Unity Toon Shader, you can use **2nd shade color and Ap-RimLight** as accent 
 
 <img width = "800" src="../images/UTS3_TopImage04.png?raw=true">
 
-In animation production, color design is made for each part in each scene unit. It is common to have specialists who make these color designs. UTS3 is suitable for such pipelines.  
+In animation production, color design is made for each part in each scene unit. It is common to have specialists who make these color designs. Unity Toon Shader is suitable for such pipelines.  
 
 In Animation movies, shadows are used not only to represent light directions but also to clarify shapes of characters. It’s not just shadow, but a vital part of character design.  
 
@@ -52,10 +52,20 @@ Unity Toon Shader is very useful if you want to decorate your game scene with be
 
 Finally, several techniques have been implemented to beautifully display characters in a variety of lighting environments, thanks to recent feedback from VRChat/Game users.  
 
+-----
 ## 【Installing Unity Toon Shader】
 To install this package, follow the instructions in the [Package Manager documentation](https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/index.html). 
 
-If you installed this package, Unity Toon Shader files are installed into **Unity ToonShader** folder under **Packages** folder in your Unity project.  
+If you installed this package, Unity Toon Shader files are installed into **com.unity.toonshader** folder under **Packages** folder in your Unity project.  
+
+To get the sample scenes of Unity Toon Shader, download whole project from [here](https://github.com/Unity-Technologies/com.unity.toonshader/archive/refs/heads/development/v1.zip).  
+
+Each sample project is below.  
+* Legacy(built-in) : under **UnityToonshader_Project~** folder  
+* HDRP : under **UnityToonshader_ProjectHDRP~** folder  
+* URP : under **UnityToonshader_ProjectURP~** folder  
+
+The project comes with sample scenes where you can learn various setting examples of Unity Toon Shader.  
 
 
 <a name="UsingUnitychanToonShader2"></a>
@@ -74,13 +84,6 @@ see [here](../index.md#1-basic-shader-settings-menu-for-uts3).
 * **Requires Unity 2019.4.21f1 or higher**. 
 * Unity Toon Shader uses **a forward rendering environment**. Using **a linear color space** is recommended. (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html).)
 * Target Platforms are **Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch**. Tessellation version is only supported for environments where DX11/DX12 works properly.  
-
-
------
-## 【Target Platforms】
-Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch  
-
-* Tessellation version is only supported for environments where DX11 works properly.  
 
 -----
 ## 【Package contents】

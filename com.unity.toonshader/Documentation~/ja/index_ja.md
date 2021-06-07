@@ -50,7 +50,7 @@ Unity Toon Shader は、セルルック3DCGアニメーションの制作現場�
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
 本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.0.6-preview** 向けに書かれています。  
-またマニュアル中では、Universal Render Pioeline版のUnity Toon Shaderの画面を例として使用しますが、Legacy(Built-in)およびHDRP版に関しましても、ほぼ同様の画面となっていますので、適宜読み替えてください。  
+またマニュアル中では、Universal Render Pipeline版のUnity Toon Shaderの画面を例として使用しますが、Legacy(Built-in)およびHDRP版に関しましても、ほぼ同様の画面となっていますので、適宜読み替えてください。  
 
 ## 【Unity Toon Shaderを使い始める】
 Unity Toon Shaderは、マテリアルインスペクターの**Shaders**メニューより、**Universal Render Pipeline**グループの中にある**Toon**シェーダーを新規マテリアルに割り当てることで、使用を開始できます。以下、その手順を示します。  
@@ -353,7 +353,7 @@ HDRPで使用されるフォトメトリックなライトは、その多くが�
 | `HighColor` | ノーマルマップをハイカラーに反映させる時に**Active**にします。 | _Is_NormalMapToHighColor |
 | `RimLight` | ノーマルマップをリムライトに反映させる時に**Active**にします。 | _Is_NormalMapToRimLight |
 
-[![](https://img.youtube.com/vi/Hdyp8f7l0VI/0.png)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
+[![](../images/YTB001.png)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
 
 **※ヒント**：もちろんノーマルマップをバンプのように疑似立体表現として利用することもできます。ただしバンプ表現に用いられる場合、ノーマルマップは実際にジオメトリの表面を凸凹させるものではなく、ライティングでその凹凸を表現するものですので、**ライティングの変化が現れやすくするように、基本色/1影色/2影色のステップを設定してやる**必要があります。[上の例](https://twitter.com/nyaa_toraneko/status/1051359237631164417)の場合、基本色側のステップを0.8、影色側のステップを0.5ぐらいにした上で、さらに少し暗めのハイカラーを足してやることで立体感を強調してやっています。  
 
@@ -417,7 +417,7 @@ Unity Toon Shaderの標準ワークフローは、`DoubleShadeWithFeather`です
 光源方向が同じでも、各Stepと各Featherのパラメタを変えることで、まったく違ったルックを作ることができます。  
 
 ### 【Step/Feather各スライダーの基本的な使い方】
-[![](https://img.youtube.com/vi/eM3iwE67ICM/0.png)](https://www.youtube.com/watch?v=eM3iwE67ICM)
+[![](../images/YTB002.png)](https://www.youtube.com/watch?v=eM3iwE67ICM)
 
 <small>↑ 塗り分け段階を設定するStepスライダー、各色の境界をぼかすFeatherスライダーの基本的な使い方です。</small>  
 
@@ -469,7 +469,7 @@ Unityのシャドウシステムとトゥーンシェーディングを馴染ま
 【NOTE】RTHS機能および`ShadowRaytracer`コンポーネントに関しては、詳しくは[こちら](https://github.com/unity3d-jp/RaytracedHardShadow/blob/dev/Documentation~/Readme.md)を参照してください。  
 
 
-[![](https://img.youtube.com/vi/LXV37a1jhUE/0.png)](https://www.youtube.com/watch?v=LXV37a1jhUE)
+[![](../images/YTB003.png)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
 <small>↑ Unityでシステムシャドウを使いつつ、Stepスライダーを調整していると、影色との領域にノイズが現れることがあります。これらのノイズは、セルルックでは困りものですので、それらを`System Shadows Level`スライダーや`Tessellation`（※Tessellation対応はレガシー版, HDRP版のみ）を使って改善する方法を紹介しています。</small>  
 
@@ -488,13 +488,13 @@ Unityのシャドウシステムとトゥーンシェーディングを馴染ま
 ---
 ### ● ポイントライトによるカラー塗り分けを微調整する：Step Offset、PointLights Hi-Cut Filter
 
-[![](https://img.youtube.com/vi/fJX8uQKzWhc/0.png)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
+[![](../images/YTB004.png)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
 
 Unity Toon Shaderは、ポイントライトだけでもセル風のルックが実現できます。  
 セルルックは、基本色（明色）/１影色、１影色/２影色の各Stepスライダーを調整して設定しますが、ポイントライトの場合、ディレクショナルライト以上に移動に対する影の変化が顕著になります。  
 それらの変化ををある程度抑え込むための微調整用として、`Step Offset`スライダーを使います。  
 
-[![](https://img.youtube.com/vi/WkJId-e2TKk/0.png)](https://www.youtube.com/watch?v=WkJId-e2TKk)
+[![](../images/YTB005.png)](https://www.youtube.com/watch?v=WkJId-e2TKk)
 
 `Step Offset`を使うことで、ポイントライトなどのリアルタイムライトのステップ（塗り分け段階）を微調整できます。  
 塗り分け用に使われる`BaseColor Step`などの調整は、メインライトによる塗り分け段階を決めるのと同時に、ポイントライト側の設定にも使われます。  
@@ -838,7 +838,7 @@ Baked Normalマップを使用する時には、Unity Toon Shader のアウト�
 各カラーに対する、シーン内のリアルタイムライトのカラーの影響を、個別にON/OFFできるスイッチを集めたものです。
 `Active`の場合、各カラーに対するリアルタイムライトのカラーの影響が有効となり、`Off`の場合、インテンシティが１の時の各カラーの設定色がそのまま表示されます。
 
-[![](https://img.youtube.com/vi/THzoRcWpUmU/0.png)](https://www.youtube.com/watch?v=THzoRcWpUmU)
+[![](../images/YTB006.png)](https://www.youtube.com/watch?v=THzoRcWpUmU)
 
 本メニューから、各カラーへのライトカラーコントリビューション（寄与）のあり/なしを一元的に管理できます。  
 実際にシーン内で使用するキャラクターライトを使いながら、各カラーへの影響がライトコントリビューションのあり/なしでどう変わるかをリアルタイムで確認できます。ルックデブの仕上げに使うとよいでしょう。  
@@ -916,7 +916,7 @@ VRChatで、アンビエントライトの設定に基づくワールドごと�
 
 以下に、アンビエントブレンディングとUnlit_Intensityの機能を解説するムービーを用意しました。  
 
-[![](https://img.youtube.com/vi/7-k6m69JQ2g/0.png)](https://www.youtube.com/watch?v=7-k6m69JQ2g)
+[![](../images/YTB007.png)](https://www.youtube.com/watch?v=7-k6m69JQ2g)
 
 ---
 ### ● 極めて明るいライトが複数存在するシーンでの白飛びを抑える：SceneLights Hi-Cut Filter  
@@ -925,7 +925,7 @@ VRChatで、アンビエントライトの設定に基づくワールドごと�
 下に詳しい機能説明のムービーを用意しました。  
 またムービー中では、PPSでトーンマッパーを設定する方法も簡単に説明しています。  
 
-[![](https://img.youtube.com/vi/FM8TomuNwnI/0.png)](https://www.youtube.com/watch?v=FM8TomuNwnI)
+[![](../images/YTB008.png)](https://www.youtube.com/watch?v=FM8TomuNwnI)
 
 ---
 ### ● アドバンス機能：Built-in Light Direction  
@@ -937,7 +937,7 @@ Built-in Light Directionのライトカラーは、シーン中のメインと�
 
 Built-in Light Directionの使い方は、下のムービーを見てみてください。  
 
-[![](https://img.youtube.com/vi/IFAPrbAGfmw/0.png)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
+[![](../images/YTB009.png)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
 
 # レンダリングパイプライン特有の機能
 

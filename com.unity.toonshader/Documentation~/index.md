@@ -362,7 +362,7 @@ By using normal maps, you can enjoy various expressions.
 | `HighColor` | Set **Active** when you want the normal map to influence the high color. | _Is_NormalMapToHighColor |
 | `RimLight` | Set **Active** when you want the normal map to influence the RimLight. | _Is_NormalMapToRimLight |
 
-[![](https://img.youtube.com/vi/Hdyp8f7l0VI/0.png)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
+[![](images/YTB001.png)](https://www.youtube.com/watch?v=Hdyp8f7l0VI)
 
 **※ Hint:** The Normal Map can also be used for pseudo-solid effects like bumps. However, the Normal Map will not actually make the surface of the object’s geometry bumpy and instead will cause the lighting to give the appearance of bumps. Therefore it is necessary to **set the Base Color/1st Shade Color/2nd Shade color step so that it is easier for the light to bring out this effect**. [In the example above](https://twitter.com/nyaa_toraneko/status/1051359237631164417), the Base Color step is set to 0.8, the Shade Color step is set to 0.5, and a slightly darker Hi-Color is used to emphasize the object as solid.  
 
@@ -433,7 +433,7 @@ Adjust the Step and Feather parameters to create totally different looks, withou
 
 ### 【The Basics of Using the Step/Feather Sliders】
 
-[![](https://img.youtube.com/vi/eM3iwE67ICM/0.png)](https://www.youtube.com/watch?v=eM3iwE67ICM)
+[![](images/YTB002.png)](https://www.youtube.com/watch?v=eM3iwE67ICM)
 
 <small>↑ This covers the basics of using the Step slider, which controls the color levels, and the Feather slider, which controls the gradation at the boundaries between colors.</small>  
 
@@ -486,7 +486,7 @@ Use this when you want to make further fine adjustments after deciding the color
 
 【NOTE】For more information about the RTHS feature and `ShadowRaytracer` component, see [here](https://github.com/unity3d-jp/RaytracedHardShadow/blob/dev/Documentation~/README_EN.md).  
 
-[![](https://img.youtube.com/vi/LXV37a1jhUE/0.png)](https://www.youtube.com/watch?v=LXV37a1jhUE)
+[![](images/YTB003.png)](https://www.youtube.com/watch?v=LXV37a1jhUE)
 
 <small>↑ When using the system shadow with Unity and adjusting the Step slider, noise may appear in the area with shadow color. These noises are troublesome in Cel-look style, so I show you how to improve them using the `System Shadows Level` slider and` Tessellation` (※Tessellation support is  available for Legacy and HDRP).</small>  
 
@@ -505,13 +505,13 @@ These are adjustment items mainly for the real-time point light group.
 ---
 ### ● Adjusting the different colors of point lights ：Step Offset、PointLights Hi-Cut Filter
 
-[![](https://img.youtube.com/vi/fJX8uQKzWhc/0.png)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
+[![](images/YTB004.png)](https://www.youtube.com/watch?v=fJX8uQKzWhc)
 
 With Unity Toon Shader, you can create a cel-shaded look with just point lighting.  
 This is done by adjusting the Step slider of the Base Color /1st Shade Color, 1st Shade Color / 2nd Shade Color. With point lighting, the changes in shadows are more obvious when moving, compared to directional lighting.  
 To make it less obvious, use “Step_Offset” to make finer adjustments.  
 
-[![](https://img.youtube.com/vi/WkJId-e2TKk/0.png)](https://www.youtube.com/watch?v=WkJId-e2TKk)
+[![](images/YTB005.png)](https://www.youtube.com/watch?v=WkJId-e2TKk)
 
 By using “Step Offset”, you can adjust the Realtime light steps (the level of gradation) like point lighting.  
 The adjustments on “BaseColor_Step” will determine the main light’s gradation but you can also use it to adjust the point lighting settings.  
@@ -864,7 +864,7 @@ In normal situations, please set this to 0.
 This menu collects switches that can individually turn ON/OFF “the influence of color of real time light”(LightColor Contribution) in the scene for each color.  
 In the case of `Active`, the effect of the color of the real time light on each color is effective, and in the case of `Off`, the setting color of each color when the intensity = 1 is displayed as it is.  
 
-[![](https://img.youtube.com/vi/THzoRcWpUmU/0.png)](https://www.youtube.com/watch?v=THzoRcWpUmU)
+[![](images/YTB006.png)](https://www.youtube.com/watch?v=THzoRcWpUmU)
 
 From this menu you can centrally manage the presence / absence of light color contribution to each color.  
 While actually using the character lights used in the scene, you can see in real-time how the effect on each color will change with / without light contribution. It is a good idea to use it to finish the look-dev.  
@@ -941,7 +941,7 @@ This light will function when the ambient light is blended.
 
 This is a video that explains the Unlit_Intensity function and ambient blending.  
 
-[![](https://img.youtube.com/vi/7-k6m69JQ2g/0.png)](https://www.youtube.com/watch?v=7-k6m69JQ2g)
+[![](images/YTB007.png)](https://www.youtube.com/watch?v=7-k6m69JQ2g)
 
 ---
 ### ● Preventing overexposure when there are multiple bright lights in a scene ：SceneLights Hi-Cut Filter  
@@ -950,7 +950,7 @@ This is a video that explains the Unlit_Intensity function and ambient blending.
 This is a video that explains it in detail.  
 It also explains in brief how to set the tone mapper with PPS.  
 
-[![](https://img.youtube.com/vi/FM8TomuNwnI/0.png)](https://www.youtube.com/watch?v=FM8TomuNwnI)
+[![](images/YTB008.png)](https://www.youtube.com/watch?v=FM8TomuNwnI)
 
 ---
 ### ● Built-in Light Direction as an advanced feature  
@@ -961,7 +961,7 @@ The drop shadow of this part will be used for the directional light in the scene
 
 Please watch this video about how to use Built-in Light Direction.  
 
-[![](https://img.youtube.com/vi/IFAPrbAGfmw/0.png)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
+[![](images/YTB009.png)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
 
 # Features specific to the rendering pipeline
 
