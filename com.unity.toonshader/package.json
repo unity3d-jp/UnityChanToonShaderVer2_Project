@@ -6,9 +6,19 @@
 	"description": "Unity Toon Shader (Unity-Chan Toon Shader 3) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations.\nUnlike other pre-render toon shaders, all features can be adjusted in real time on Unity, which is the greatest feature of UTS.\n\nUTS has great power and makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.\n\nUTS has the 3 basic layers of Base Color, 1st Shade Color, and 2nd Shade Color, colors and textures can also accept a wide variety of customization options, such as High Color, Rim Light, MatCap (sphere mapping), and Emissive (light emission).The level of gradation (feather) between colors can also be adjusted in Unity in real-time.\n\nMore precisely, View documentation above.",
     "samples": [
         {
-         "displayName": "ShaderBall",
-         "description": "A sample using a sphere showing the use of 3 basic layers: Base Color, 1st Shade Color, and 2nd Shade Color, with a wide variety of customization options such as High Color, Rim Light, MatCap (sphere mapping), and Emissive (light emission).",
-         "path": "Samples~/ShaderBall"
+         "displayName": "Legacy (built-in)",
+         "description": "Sample scenes for the legacy (built-in) pipe-lines.",
+         "path": "Samples~/Legacy (Built-in)"
+        },
+        {
+         "displayName": "Universal RP",
+         "description": "Sample scenes for Universal render pipeline.",
+         "path": "Samples~/Univerasl RP"
+        },
+        {
+         "displayName": "High definition render pipeline)",
+         "description": "Sample scenes for High definition render pipeline.",
+         "path": "Samples~/HDRP"
         }
     ],
     "contributors": [      

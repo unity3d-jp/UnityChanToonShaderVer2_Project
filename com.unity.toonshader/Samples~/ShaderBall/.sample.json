@@ -1,6 +1,0 @@
-{
-	"displayName":"ShaderBall",
-	"description": "A sample using a sphere showing the use of 3 basic layers: Base Color, 1st Shade Color, and 2nd Shade Color, with a wide variety of customization options such as High Color, Rim Light, MatCap (sphere mapping), and Emissive (light emission).",
-    
-	"createSeparatePackage": true
-}
