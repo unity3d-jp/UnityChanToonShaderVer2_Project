@@ -7,7 +7,9 @@ Documentation~/ApiDocs/**
 UnityToonshader_Project~/**
 UnityToonshader_ProjectHDRP~/**
 UnityToonshader_ProjectURP~/**
-com.unity.toonshader/Samples~/**
+com.unity.toonshader/Samples~/HDRP/**
+com.unity.toonshader/Samples~/Legacy (built-in)/**
+com.unity.toonshader/Samples~/Universal RP/**
 .DS_Store
 .npmrc
 .npmignore
