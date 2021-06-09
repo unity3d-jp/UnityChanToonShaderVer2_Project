@@ -1,0 +1,20 @@
+    "samples": [
+        {
+         "displayName": "Legacy (built-in)",
+         "description": "Sample scenes for the legacy (built-in) pipe-lines.",
+         "path": "Legacy (Built-in)",
+	  "createSeparatePackage": false
+        },
+        {
+         "displayName": "Universal RP",
+         "description": "Sample scenes for Universal render pipeline.",
+         "path": "Univerasl RP",
+	  "createSeparatePackage": false
+        },
+        {
+         "displayName": "High definition render pipeline)",
+         "description": "Sample scenes for High definition render pipeline.",
+         "path": "HDRP",
+	  "createSeparatePackage": false
+        }
+    ],
