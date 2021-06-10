@@ -1,0 +1,32 @@
+{
+	"SuiteConfig":
+	{
+		"Targets": "+"
+	},
+	
+	"SDKFilesValidation":
+	{
+		"manifestIgnore":
+		[
+			"*"
+		]
+	},
+
+	"FileContentKeywordValidation":
+	{
+		"Keywords":
+		[
+			{
+				"Targets": "+",
+				"Files":
+				[
+					"*.*"
+				],
+				"Patterns":
+				[
+					".*"
+				]
+			}
+		]
+	}
+}
