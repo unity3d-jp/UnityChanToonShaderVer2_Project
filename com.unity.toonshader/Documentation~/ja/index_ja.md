@@ -205,6 +205,23 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 ---
 # サンプルシーン
+サンプルシーンはパッケージマネージャーからインストール可能です。
+HDRP, Universal RP の場合はそれぞれのレンダーパイプラインのインストールと設定をお願いいたします。
+
+<img width = "400" src="images/InstallingSamples.png">
+
+Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipelineAsset` を設定する必要があります。
+
+<img width = "400" src="images/URP-asset.png">
+
+同様にHDRP 用サンプルは`HDRenderPipelineAsset_UTS` アセットの設定が必要です。
+
+<img width = "400" src="images/HDRP-asset.png">
+
+また、カラースペースは`Linear`に設定する必要があります。
+
+<img width = "400" src="images/SelectLinearColorSpace.png">
+
 サンプルプロジェクトを開くと、`\UnityToonshader_ProjectURP~\Assets\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
 
 * ToonShader.unity			：イラストルックのシェーダー設定  

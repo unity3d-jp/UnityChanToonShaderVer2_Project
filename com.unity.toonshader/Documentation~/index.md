@@ -209,6 +209,23 @@ Most of them are integrated into the basic shader functionality.</small>
 
 ---
 # Sample Scenes
+Sample scenes are installable from the package manager.
+Please, make shure that HDRP or URP is installed and set up before installing the samples for each.
+
+<img width = "400" src="images/InstallingSamples.png">
+
+Samples for Universal RP require `UTS2URPPipelineAsset` to be set in `Project Setting` dialog.
+
+<img width = "400" src="images/URP-asset.png">
+
+Ones for HDRP require `HDRenderPipelineAsset_UTS` asset as well.
+
+<img width = "400" src="images/HDRP-asset.png">
+
+The Color Space must be set to `Linear`.
+
+<img width = "400" src="images/SelectLinearColorSpace.png">
+
 The following sample scenes can be found by opening the sample project and opening the `\UnityToonshader_ProjectURP~\Assets\Sample Scenes(Universal)` folder.  
 
 * ToonShader.unity            ：Settings for an illustration-style shader.  
