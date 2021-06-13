@@ -81,9 +81,9 @@ The Toon shader should be switched to match the pipeline.
 
 
 ## 【Unity Toon Shader as an Uber Shader】
-UTS2 v.2.0.7.5  consisted of various specialized feature shaders. Now, all the sdhaders are integrated into two shaders. The difference between two shaders is just tessellation capability.
+UTS2 v.2.0.7.5  consisted of various specialized feature shaders. Now, all the shaders are integrated into two uber shaders. The difference between two shaders is just one is ready for  tessellation but the other is not..
 
-<img width = "480" src="images/UTS2_Standard.png">
+<Img width = "480" src="images/UTS2_Standard.png">
 
 Unity Toon Shader has been redesigned as an integrated shader (Uber shader), allowing you to do all the work in one Universal Render Pipeline/Toon shader.  
 
