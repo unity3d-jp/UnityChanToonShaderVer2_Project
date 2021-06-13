@@ -12,7 +12,7 @@
 	  "createSeparatePackage": false
         },
         {
-         "displayName": "High definition render pipeline)",
+         "displayName": "High definition render pipeline",
          "description": "Sample scenes for High definition render pipeline.",
          "path": "HDRP",
 	  "createSeparatePackage": false

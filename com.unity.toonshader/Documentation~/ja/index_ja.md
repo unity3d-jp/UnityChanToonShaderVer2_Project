@@ -204,6 +204,7 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 <small>Unity Toon Shader では廃止されました。</small>  
 
 ---
+<a name="InstallingSamples"></a>
 # サンプルシーン
 サンプルシーンはパッケージマネージャーからインストール可能です。
 HDRP, Universal RP の場合はそれぞれのレンダーパイプラインのインストールと設定をお願いいたします。
@@ -222,7 +223,7 @@ Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipel
 
 <img width = "400" src="images/SelectLinearColorSpace.png">
 
-サンプルプロジェクトを開くと、`\UnityToonshader_ProjectURP~\Assets\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
+サンプルプロジェクトを開くと、`Assets\Samples\Unity Toon Shader\0.0.6-preview\Universal RP\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
 
 * ToonShader.unity			：イラストルックのシェーダー設定  
 * ToonShader_CelLook.unity	：セルルックのシェーダー設定  
@@ -245,8 +246,8 @@ Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipel
 
 【**NOTE**】 
 その他のレンダーパイプライン向けのサンプルシーンは以下のフォルダに入っています。  
-* Legacy(Built-in)の場合：`\UnityToonshader_Project~\Assets\Legacy\Sample Scenes`フォルダ  
-* HDRPの場合：`\UnityToonshader_ProjectHDRP~\Assets\HDRP`フォルダ　
+* Legacy(Built-in)の場合：`Assets\Samples\Unity Toon Shader\0.0.6-preview\Legacy (built-in)\Runtime`フォルダ  
+* HDRPの場合：`Assets\Samples\Unity Toon Shader\0.0.6-preview\High definition render pipeline\Runtime`フォルダ　
 
 # Unity Toon Shader 設定メニュー：Unity Toon Shaderカスタムインスペクター
 

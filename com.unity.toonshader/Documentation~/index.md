@@ -208,7 +208,7 @@ Most of them are integrated into the basic shader functionality.</small>
 <small>It was deprecated in Unity Toon Shader</small>.  
 
 ---
-# Sample Scenes
+# Samples
 Sample scenes are installable from the package manager.
 Please, make shure that HDRP or URP is installed and set up before installing the samples for each.
 
@@ -226,7 +226,7 @@ The Color Space must be set to `Linear`.
 
 <img width = "400" src="images/SelectLinearColorSpace.png">
 
-The following sample scenes can be found by opening the sample project and opening the `\UnityToonshader_ProjectURP~\Assets\Sample Scenes(Universal)` folder.  
+The following sample scenes can be found by opening the sample project and opening the `Assets\Samples\Unity Toon Shader\0.0.6-preview\Universal RP\Sample Scenes(Universal)` folder.  
 
 * ToonShader.unity            ：Settings for an illustration-style shader.  
 * ToonShader_CelLook.unity    ：Settings for a cel-style shader.  
@@ -249,8 +249,8 @@ They should come in handy as an example when creating your own scenes.
 
 【**NOTE**】 
 Sample scenes for other render pipeline can be found in the following folder.  
-* for Legacy (Built-in)：`\UnityToonshader_Project~\Assets\Legacy\Sample Scenes` folder  
-* for HDRP：`\UnityToonshader_ProjectHDRP~\Assets\HDRP` folder 
+* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.0.6-preview\Legacy (built-in)\Runtime` folder  
+* for HDRP：`Assets\Samples\Unity Toon Shader\0.0.6-preview\High definition render pipeline\Runtime` folder 
 
 
 # Unity Toon Shader Setting Menu：Unity Toon Shader Custom Inspector
