@@ -13,7 +13,7 @@ Shader "HDRP/Toon"
         [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
         [HideInInspector] _utsVersionY("VersionY", Float) = 0
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 6
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 7
 
         // Syntesized Textures
         _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
