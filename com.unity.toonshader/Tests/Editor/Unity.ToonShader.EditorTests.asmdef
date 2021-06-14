@@ -1,5 +1,5 @@
 {
-    "name": "Unity.ToonShader.Editor.Tests",
+    "name": "Unity.Toonshader.EditorTests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
