@@ -216,11 +216,11 @@ Please, make shure that HDRP or URP is installed and set up before installing th
 
 Samples for Universal RP require `UTS2URPPipelineAsset` to be set in `Project Setting` dialog.
 
-<img width = "400" src="images/URP-asset.png">
+<img width = "400" src="images/URP-Asset.png">
 
 Ones for HDRP require `HDRenderPipelineAsset_UTS` asset as well.
 
-<img width = "400" src="images/HDRP-asset.png">
+<img width = "400" src="images/HDRP-Asset.png">
 
 The Color Space must be set to `Linear`.
 

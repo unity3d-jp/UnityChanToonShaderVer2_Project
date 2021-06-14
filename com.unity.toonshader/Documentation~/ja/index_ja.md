@@ -213,11 +213,11 @@ HDRP, Universal RP の場合はそれぞれのレンダーパイプラインの�
 
 Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipelineAsset` を設定する必要があります。
 
-<img width = "400" src="images/URP-asset.png">
+<img width = "400" src="images/URP-Asset.png">
 
 同様にHDRP 用サンプルは`HDRenderPipelineAsset_UTS` アセットの設定が必要です。
 
-<img width = "400" src="images/HDRP-asset.png">
+<img width = "400" src="images/HDRP-Asset.png">
 
 また、カラースペースは`Linear`に設定する必要があります。
 
