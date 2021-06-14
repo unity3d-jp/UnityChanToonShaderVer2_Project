@@ -8,11 +8,11 @@
         {
          "displayName": "Universal RP",
          "description": "Sample scenes for Universal render pipeline.",
-         "path": "Univerasl RP",
+         "path": "Universal RP",
 	  "createSeparatePackage": false
         },
         {
-         "displayName": "High definition render pipeline)",
+         "displayName": "High definition render pipeline",
          "description": "Sample scenes for High definition render pipeline.",
          "path": "HDRP",
 	  "createSeparatePackage": false

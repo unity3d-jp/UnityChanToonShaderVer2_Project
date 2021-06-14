@@ -1,4 +1,4 @@
-# Unity Toon Shader 0.0.6-preview マニュアル
+# Unity Toon Shader 0.0.7-preview マニュアル
 ***Read this document in [English](../index.md)***  
 
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
@@ -49,7 +49,7 @@ Unity Toon Shader は、セルルック3DCGアニメーションの制作現場�
 是非、貴方のご自慢のキャラクターモデルをUnity Toon Shaderで彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.0.6-preview** 向けに書かれています。  
+本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.0.7-preview** 向けに書かれています。  
 またマニュアル中では、Universal Render Pipeline版のUnity Toon Shaderの画面を例として使用しますが、Legacy(Built-in)およびHDRP版に関しましても、ほぼ同様の画面となっていますので、適宜読み替えてください。  
 
 ## 【Unity Toon Shaderを使い始める】
@@ -204,8 +204,26 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 <small>Unity Toon Shader では廃止されました。</small>  
 
 ---
+<a name="InstallingSamples"></a>
 # サンプルシーン
-サンプルプロジェクトを開くと、`\UnityToonshader_ProjectURP~\Assets\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
+サンプルシーンはパッケージマネージャーからインストール可能です。
+HDRP, Universal RP の場合はそれぞれのレンダーパイプラインのインストールと設定をお願いいたします。
+
+<img width = "400" src="images/InstallingSamples.png">
+
+Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipelineAsset` を設定する必要があります。
+
+<img width = "400" src="images/URP-Asset.png">
+
+同様にHDRP 用サンプルは`HDRenderPipelineAsset_UTS` アセットの設定が必要です。
+
+<img width = "400" src="images/HDRP-Asset.png">
+
+また、カラースペースは`Linear`に設定する必要があります。
+
+<img width = "400" src="images/SelectLinearColorSpace.png">
+
+サンプルプロジェクトを開くと、`Assets\Samples\Unity Toon Shader\0.0.7-preview\Universal RP\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
 
 * ToonShader.unity			：イラストルックのシェーダー設定  
 * ToonShader_CelLook.unity	：セルルックのシェーダー設定  
@@ -228,8 +246,8 @@ Render Queueに設定する値について、より詳しく知りたい場合�
 
 【**NOTE**】 
 その他のレンダーパイプライン向けのサンプルシーンは以下のフォルダに入っています。  
-* Legacy(Built-in)の場合：`\UnityToonshader_Project~\Assets\Legacy\Sample Scenes`フォルダ  
-* HDRPの場合：`\UnityToonshader_ProjectHDRP~\Assets\HDRP`フォルダ　
+* Legacy(Built-in)の場合：`Assets\Samples\Unity Toon Shader\0.0.7-preview\Legacy (built-in)\Runtime`フォルダ  
+* HDRPの場合：`Assets\Samples\Unity Toon Shader\0.0.7-preview\High definition render pipeline\Runtime`フォルダ　
 
 # Unity Toon Shader 設定メニュー：Unity Toon Shaderカスタムインスペクター
 

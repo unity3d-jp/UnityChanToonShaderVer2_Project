@@ -58,14 +58,9 @@ To install this package, follow the instructions in the [Package Manager documen
 
 If you installed this package, Unity Toon Shader files are installed into **com.unity.toonshader** folder under **Packages** folder in your Unity project.  
 
-To get the sample scenes of Unity Toon Shader, download whole project from [here](https://github.com/Unity-Technologies/com.unity.toonshader/archive/refs/heads/development/v1.zip).  
+To get the sample scenes of Unity Toon Shader, Install samples via `Package Manager` for each render pipeline. The instruction to install the samples is [here](../index.md#Samples).  
 
-Each sample project is below.  
-* Legacy(built-in) : under **UnityToonshader_Project~** folder  
-* HDRP : under **UnityToonshader_ProjectHDRP~** folder  
-* URP : under **UnityToonshader_ProjectURP~** folder  
-
-The project comes with sample scenes where you can learn various setting examples of Unity Toon Shader.  
+You can learn various setting examples of Unity Toon Shader.  
 
 
 <a name="UsingUnitychanToonShader2"></a>

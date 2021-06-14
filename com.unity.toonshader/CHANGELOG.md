@@ -1,4 +1,7 @@
 # Changelog
+## [0.0.7-preview] - 2021-06-14
+* Made samples insstallable.
+
 ## [0.0.6-preview] - 2021-06-04
 * Modifed documents
 

@@ -57,14 +57,13 @@ Unity Toon Shaderでは、アクセントカラーとして**2影色とAp(対蹠
 ## 【Unity Toon Shader のインストール】
 本パッケージをインストールすると、Unity Toon Shaderのファイルは、Unityプロジェクトの**Packages**フォルダ内の**com.unity.toonshader**フォルダにインストールされます。  
 
-Unity Toon Shaderのサンプルシーンを入手するには、[こちら](https://github.com/Unity-Technologies/com.unity.toonshader/archive/refs/heads/development/v1.zip)からプロジェクト全体をダウンロードしてください。  
+To get the sample scenes of Unity Toon Shader, Install samples via `Package Manager` for each render pipeline. The instruction to install the samples is [here](../index.md#InstallingSamples).  
 
-各サンプルプロジェクトは、以下のようになっています。  
-* Legacy(built-in) : **UnityToonshader_Project~** フォルダ内  
-* HDRP : **UnityToonshader_ProjectHDRP~** フォルダ内  
-* URP : **UnityToonshader_ProjectURP~** フォルダ内  
+You can learn various setting examples of Unity Toon Shader.  
 
-プロジェクトには、Unity Toon Shaderの様々な設定例を学べるサンプルシーンが用意されています。  
+Unity Toon Shaderのサンプルシーンは、`Package Manager`からインストールをお願いいたします。インストール方法は[こちら](index_ja.md#サンプルシーン)。  
+
+Unity Toon Shaderの様々な設定例を学べるサンプルシーンが用意されています。  
 
 
 
