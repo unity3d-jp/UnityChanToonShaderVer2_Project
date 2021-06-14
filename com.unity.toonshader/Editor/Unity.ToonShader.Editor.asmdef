@@ -1,8 +1,10 @@
 {
-    "name": "Com.Unity.Toonshader",
+    "name": "Unity.Toonshader.Editor",
     "references": [
+      "Unity.Toonshader"
     ],
     "includePlatforms": [
+        "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
