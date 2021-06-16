@@ -28,8 +28,8 @@ namespace UnityEditor.Rendering.Toon
     public class UTS_GUIBase : UnityEditor.ShaderGUI
     {
         protected const float kVersionX = 0.0f;
-        protected const float kVersionY = 0.0f;
-        protected const float kVersionZ = 8.0f;
+        protected const float kVersionY = 1.0f;
+        protected const float kVersionZ = 0.0f;
 
         internal virtual string srpDefaultLightModeName { get; }
         internal virtual void TessellationSetting(Material materal) { }
