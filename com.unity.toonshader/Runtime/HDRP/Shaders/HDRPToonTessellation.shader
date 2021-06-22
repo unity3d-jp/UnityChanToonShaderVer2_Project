@@ -628,18 +628,26 @@ Shader "HDRP/ToonTessellation"
             Name "GBuffer"
             Tags { "LightMode" = "GBuffer" } // This will be only for opaque object based on the RenderQueue index
 
-            Cull [_CullMode]
+            Cull[_CullMode]
             ZTest[_ZTestGBuffer]
 
             Stencil
             {
-                WriteMask [_StencilWriteMaskGBuffer]
-                Ref  [_StencilRefGBuffer]
+                WriteMask[_StencilWriteMaskGBuffer]
+                Ref[_StencilRefGBuffer]
                 Comp Always
                 Pass Replace
             }
 
             HLSLPROGRAM
+
+            #pragma only_renderers d3d11 playstation xboxone xboxseries vulkan metal switch
+            //enable GPU instancing support
+            #pragma multi_compile_instancing
+            #pragma instancing_options renderinglayer
+            #pragma multi_compile _ DOTS_INSTANCING_ON
+            // enable dithering LOD crossfade
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
 
             #pragma multi_compile _ DEBUG_DISPLAY
             #pragma multi_compile _ LIGHTMAP_ON
@@ -657,9 +665,10 @@ Shader "HDRP/ToonTessellation"
         #endif
 
             #define SHADERPASS SHADERPASS_GBUFFER
-        #ifdef DEBUG_DISPLAY
+            #ifdef DEBUG_DISPLAY
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Debug/DebugDisplay.hlsl"
-        #endif
+            #endif
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
@@ -668,8 +677,6 @@ Shader "HDRP/ToonTessellation"
 
             #pragma vertex Vert
             #pragma fragment Frag
-            #pragma hull Hull
-            #pragma domain Domain
 
             ENDHLSL
         }
