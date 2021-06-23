@@ -665,7 +665,9 @@ Shader "HDRP/Toon"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Debug/DebugDisplay.hlsl"
             #endif
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
+            #include "MaterialGBufferMacrosUTS.hlsl" // must be above lit.hlsl
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
+            #include "EncodeIntoGBufferUTS.hlsl" // must be bellow lit.hlsl
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
 
