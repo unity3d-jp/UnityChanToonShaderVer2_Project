@@ -255,7 +255,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #endif
     //Matcap
     //v.2.0.6 : CameraRolling Stabilizer
-    //鏡スクリプト判定：_sign_Mirror = -1 なら、鏡の中と判定.
+    //Mirror Script Determination: if sign_Mirror = -1, determine "Inside the mirror".
     //v.2.0.7
     fixed _sign_Mirror = 0; //  todo. i.mirrorFlag;
     float3 _Camera_Right = UNITY_MATRIX_V[0].xyz;
@@ -263,7 +263,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float3 _Up_Unit = float3(0, 1, 0);
     float3 _Right_Axis = cross(_Camera_Front, _Up_Unit);
 
-    //鏡の中なら反転.
+    //Invert if it's "inside the mirror".
     if (_sign_Mirror < 0) {
         _Right_Axis = -1 * _Right_Axis;
         _Rotate_MatCapUV = -1 * _Rotate_MatCapUV;
@@ -289,7 +289,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float2 _ViewNormalAsMatCapUV = (lerp(noSknewViewNormal, viewNormal, _Is_Ortho).rg * 0.5) + 0.5;
     //v.2.0.7
     float2 _Rot_MatCapUV_var = RotateUV((0.0 + ((_ViewNormalAsMatCapUV - (0.0 + _Tweak_MatCapUV)) * (1.0 - 0.0)) / ((1.0 - _Tweak_MatCapUV) - (0.0 + _Tweak_MatCapUV))), _Rot_MatCapUV_var_ang, float2(0.5, 0.5), 1.0);
-    //鏡の中ならUV左右反転.
+    //Invert if it's "inside the mirror".
     if (_sign_Mirror < 0) {
         _Rot_MatCapUV_var.x = 1 - _Rot_MatCapUV_var.x;
     }
