@@ -377,7 +377,7 @@
                 float3 noSknewViewNormal_Emissive = NormalBlend_Emissive_Base*dot(NormalBlend_Emissive_Base, NormalBlend_Emissive_Detail)/NormalBlend_Emissive_Base.z - NormalBlend_Emissive_Detail;
                 float2 _ViewNormalAsEmissiveUV = noSknewViewNormal_Emissive.xy*0.5+0.5;
                 float2 _ViewCoord_UV = RotateUV(_ViewNormalAsEmissiveUV, -(_Camera_Dir*_Camera_Roll), float2(0.5,0.5), 1.0);
-                //鏡の中ならUV左右反転.
+                //Invert if it's "inside the mirror".
                 if(_sign_Mirror < 0){
                     _ViewCoord_UV.x = 1-_ViewCoord_UV.x;
                 }else{
