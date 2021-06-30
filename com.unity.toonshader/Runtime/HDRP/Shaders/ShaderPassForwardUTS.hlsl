@@ -172,7 +172,7 @@ void Frag(PackedVaryingsToPS packedInput,
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(packedInput);
     FragInputs input = UnpackVaryingsMeshToFragInputs(packedInput.vmesh);
 
-
+    float4 Set_UV0 = input.texCoord0;
     // We need to readapt the SS position as our screen space positions are for a low res buffer, but we try to access a full res buffer.
     input.positionSS.xy = _OffScreenRendering > 0 ? (input.positionSS.xy * _OffScreenDownsampleFactor) : input.positionSS.xy;
 
@@ -535,7 +535,48 @@ void Frag(PackedVaryingsToPS packedInput,
             }
         }
     }
+    //v.2.0.7
 
+#ifdef _EMISSIVE_SIMPLE
+    float4 _Emissive_Tex_var = tex2D(_Emissive_Tex, TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
+    float emissiveMask = _Emissive_Tex_var.a;
+    emissive = _Emissive_Tex_var.rgb * _Emissive_Color.rgb * emissiveMask;
+#elif _EMISSIVE_ANIMATION
+                //v.2.0.7 Calculation View Coord UV for Scroll 
+    float3 viewNormal_Emissive = (mul(UNITY_MATRIX_V, float4(i_normalDir, 0))).xyz;
+    float3 NormalBlend_Emissive_Detail = viewNormal_Emissive * float3(-1, -1, 1);
+    float3 NormalBlend_Emissive_Base = (mul(UNITY_MATRIX_V, float4(viewDirection, 0)).xyz * float3(-1, -1, 1)) + float3(0, 0, 1);
+    float3 noSknewViewNormal_Emissive = NormalBlend_Emissive_Base * dot(NormalBlend_Emissive_Base, NormalBlend_Emissive_Detail) / NormalBlend_Emissive_Base.z - NormalBlend_Emissive_Detail;
+    float2 _ViewNormalAsEmissiveUV = noSknewViewNormal_Emissive.xy * 0.5 + 0.5;
+    float2 _ViewCoord_UV = RotateUV(_ViewNormalAsEmissiveUV, -(_Camera_Dir * _Camera_Roll), float2(0.5, 0.5), 1.0);
+    //Invert if it's "inside the mirror".
+    if (_sign_Mirror < 0) {
+        _ViewCoord_UV.x = 1 - _ViewCoord_UV.x;
+    }
+    else {
+        _ViewCoord_UV = _ViewCoord_UV;
+    }
+    float2 emissive_uv = lerp(Set_UV0, _ViewCoord_UV, _Is_ViewCoord_Scroll);
+    //
+    float4 _time_var = _Time;
+    float _base_Speed_var = (_time_var.g * _Base_Speed);
+    float _Is_PingPong_Base_var = lerp(_base_Speed_var, sin(_base_Speed_var), _Is_PingPong_Base);
+    float2 scrolledUV = emissive_uv + float2(_Scroll_EmissiveU, _Scroll_EmissiveV) * _Is_PingPong_Base_var;
+    float rotateVelocity = _Rotate_EmissiveUV * 3.141592654;
+    float2 _rotate_EmissiveUV_var = RotateUV(scrolledUV, rotateVelocity, float2(0.5, 0.5), _Is_PingPong_Base_var);
+    float4 _Emissive_Tex_var = tex2D(_Emissive_Tex, TRANSFORM_TEX(Set_UV0, _Emissive_Tex));
+    float emissiveMask = _Emissive_Tex_var.a;
+    _Emissive_Tex_var = tex2D(_Emissive_Tex, TRANSFORM_TEX(_rotate_EmissiveUV_var, _Emissive_Tex));
+    float _colorShift_Speed_var = 1.0 - cos(_time_var.g * _ColorShift_Speed);
+    float viewShift_var = smoothstep(0.0, 1.0, max(0, dot(normalDirection, viewDirection)));
+    float4 colorShift_Color = lerp(_Emissive_Color, lerp(_Emissive_Color, _ColorShift, _colorShift_Speed_var), _Is_ColorShift);
+    float4 viewShift_Color = lerp(_ViewShift, colorShift_Color, viewShift_var);
+    float4 emissive_Color = lerp(colorShift_Color, viewShift_Color, _Is_ViewShift);
+    emissive = emissive_Color.rgb * _Emissive_Tex_var.rgb * emissiveMask;
+
+    //
+                    //v.2.0.6: GI_Intensity with Intensity Multiplier Filter
+#endif
     //   float3 envColor = aggregateLighting.direct.diffuse; // ???
     float3 envColor = float3(0.2f, 0.2f, 0.2f);
     float3 envLightColor = envColor;
