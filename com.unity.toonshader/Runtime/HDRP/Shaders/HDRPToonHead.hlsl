@@ -17,9 +17,26 @@
 # define DIRECTIONAL
 #endif
 
+#if UCTS_HDRP
+  #define SATURATE_BASE_COLOR_IF_SDR(x) (x)
+#else
+  #define SATURATE_BASE_COLOR_IF_SDR(x) saturate(x)
+#endif
 
+#if UCTS_HDRP
+  #define SATURATE_IF_SDR(x) (x)
+#else
+  #define SATURATE_IF_SDR(x) saturate(x)
+#endif
 
-
+struct UTSData
+{
+	float3 viewDirection;
+	float3 normalDirection;
+	fixed  cameraDir;
+    float  cameraRoll;
+	fixed  signMirror;
+};
 
 
 

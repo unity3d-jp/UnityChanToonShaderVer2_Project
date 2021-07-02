@@ -173,6 +173,7 @@ void Frag(PackedVaryingsToPS packedInput,
     FragInputs input = UnpackVaryingsMeshToFragInputs(packedInput.vmesh);
 
     float4 Set_UV0 = input.texCoord0;
+    UTSData utsData;
     // We need to readapt the SS position as our screen space positions are for a low res buffer, but we try to access a full res buffer.
     input.positionSS.xy = _OffScreenRendering > 0 ? (input.positionSS.xy * _OffScreenDownsampleFactor) : input.positionSS.xy;
 
@@ -294,9 +295,9 @@ void Frag(PackedVaryingsToPS packedInput,
         if ( mainLightIndex >= 0)
         {
 #if defined(_SHADINGGRADEMAP)
-			finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex, inverseClipping, channelAlpha);
+			finalColor = UTS_MainLightShadingGrademap(context, input, mainLightIndex, inverseClipping, channelAlpha, utsData);
 #else
-			finalColor = UTS_MainLight(context, input, mainLightIndex, inverseClipping, channelAlpha);
+			finalColor = UTS_MainLight(context, input, mainLightIndex, inverseClipping, channelAlpha, utsData);
 #endif
         }
 
@@ -311,7 +312,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (mainLightIndex != i)
                 {
                     
-                    float3 lightColor = _DirectionalLightDatas[i].color;
+                    float3 lightColor = _DirectionalLightDatas[i].color * GetCurrentExposureMultiplier();
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
@@ -545,12 +546,12 @@ void Frag(PackedVaryingsToPS packedInput,
                 //v.2.0.7 Calculation View Coord UV for Scroll 
     float3 viewNormal_Emissive = (mul(UNITY_MATRIX_V, float4(i_normalDir, 0))).xyz;
     float3 NormalBlend_Emissive_Detail = viewNormal_Emissive * float3(-1, -1, 1);
-    float3 NormalBlend_Emissive_Base = (mul(UNITY_MATRIX_V, float4(viewDirection, 0)).xyz * float3(-1, -1, 1)) + float3(0, 0, 1);
+    float3 NormalBlend_Emissive_Base = (mul(UNITY_MATRIX_V, float4(utsData.viewDirection, 0)).xyz * float3(-1, -1, 1)) + float3(0, 0, 1);
     float3 noSknewViewNormal_Emissive = NormalBlend_Emissive_Base * dot(NormalBlend_Emissive_Base, NormalBlend_Emissive_Detail) / NormalBlend_Emissive_Base.z - NormalBlend_Emissive_Detail;
     float2 _ViewNormalAsEmissiveUV = noSknewViewNormal_Emissive.xy * 0.5 + 0.5;
-    float2 _ViewCoord_UV = RotateUV(_ViewNormalAsEmissiveUV, -(_Camera_Dir * _Camera_Roll), float2(0.5, 0.5), 1.0);
+    float2 _ViewCoord_UV = RotateUV(_ViewNormalAsEmissiveUV, -(utsData.cameraDir * utsData.cameraRoll), float2(0.5, 0.5), 1.0);
     //Invert if it's "inside the mirror".
-    if (_sign_Mirror < 0) {
+    if (utsData.signMirror < 0) {
         _ViewCoord_UV.x = 1 - _ViewCoord_UV.x;
     }
     else {
@@ -568,7 +569,7 @@ void Frag(PackedVaryingsToPS packedInput,
     float emissiveMask = _Emissive_Tex_var.a;
     _Emissive_Tex_var = tex2D(_Emissive_Tex, TRANSFORM_TEX(_rotate_EmissiveUV_var, _Emissive_Tex));
     float _colorShift_Speed_var = 1.0 - cos(_time_var.g * _ColorShift_Speed);
-    float viewShift_var = smoothstep(0.0, 1.0, max(0, dot(normalDirection, viewDirection)));
+    float viewShift_var = smoothstep(0.0, 1.0, max(0, dot(utsData.normalDirection, utsData.viewDirection)));
     float4 colorShift_Color = lerp(_Emissive_Color, lerp(_Emissive_Color, _ColorShift, _colorShift_Speed_var), _Is_ColorShift);
     float4 viewShift_Color = lerp(_ViewShift, colorShift_Color, viewShift_var);
     float4 emissive_Color = lerp(colorShift_Color, viewShift_Color, _Is_ViewShift);
@@ -582,7 +583,7 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 envLightColor = envColor;
     float3 envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
 
-    finalColor = saturate(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
+    finalColor = SATURATE_IF_SDR(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
     //    finalColor = float3(context.shadowValue, 0, 0);
 #if defined(_SHADINGGRADEMAP)
     //v.2.0.4
@@ -591,7 +592,7 @@ void Frag(PackedVaryingsToPS packedInput,
     outColor = float4(finalColor, 1 * ApplyChannelAlpha(channelAlpha));
 
   #elif _IS_TRANSCLIPPING_ON
-    float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
+    float Set_Opacity = SATURATE_IF_SDR((inverseClipping + _Tweak_transparency));
 
     outColor = float4(finalColor, Set_Opacity * ApplyChannelAlpha(channelAlpha));
 
@@ -611,7 +612,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
   #elif _IS_CLIPPING_TRANSMODE
     //DoubleShadeWithFeather_TransClipping
-    float Set_Opacity = saturate((inverseClipping + _Tweak_transparency));
+    float Set_Opacity = SATURATE_IF_SDR((inverseClipping + _Tweak_transparency));
     outColor = float4(finalColor, Set_Opacity * ApplyChannelAlpha(channelAlpha));
   #endif
 
