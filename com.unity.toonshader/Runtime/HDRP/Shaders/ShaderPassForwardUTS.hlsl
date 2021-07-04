@@ -312,7 +312,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (mainLightIndex != i)
                 {
                     
-                    float3 lightColor = _DirectionalLightDatas[i].color * GetCurrentExposureMultiplier();
+                    float3 lightColor = _DirectionalLightDatas[i].color * GET_CURRENT_EXPOSURE_MULTIPLIER();
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 

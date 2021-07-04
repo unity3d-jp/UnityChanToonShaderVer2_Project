@@ -75,7 +75,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 
 
     float3 mainLihgtDirection = -_DirectionalLightDatas[mainLightIndex].forward;
-    float3 mainLightColor = _DirectionalLightDatas[mainLightIndex].color * GetCurrentExposureMultiplier();
+    float3 mainLightColor = _DirectionalLightDatas[mainLightIndex].color * GET_CURRENT_EXPOSURE_MULTIPLIER();
 //    float4 tmpColor = EvaluateLight_Directional(context, posInput, _DirectionalLightDatas[mainLightIndex]);
 //    float3 mainLightColor = tmpColor.xyz;
     float3 defaultLightDirection = normalize(UNITY_MATRIX_V[2].xyz + UNITY_MATRIX_V[1].xyz);
