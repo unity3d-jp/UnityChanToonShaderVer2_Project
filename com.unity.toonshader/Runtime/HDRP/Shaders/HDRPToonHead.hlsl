@@ -18,11 +18,9 @@
 
 #define HDRP_FP_BUFFER 1
 #if HDRP_FP_BUFFER
-  #define GET_CURRENT_EXPOSURE_MULTIPLIER() GetCurrentExposureMultiplier()
   #define SATURATE_IF_SDR(x) (x)
   #define SATURATE_BASE_COLOR_IF_SDR(x) (x)
 #else
-  #define GET_CURRENT_EXPOSURE_MULTIPLIER() (1)
   #define SATURATE_IF_SDR(x) saturate(x)
   #define SATURATE_BASE_COLOR_IF_SDR(x) saturate(x)
 #endif
