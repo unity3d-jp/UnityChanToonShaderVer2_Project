@@ -1,12 +1,14 @@
 # Changelog
-## [0.1.0-preview] - 2021-06-17
-* NOTHING YET
+## [0.1.0-preview] - 2021-07-07
+* HDRP: Emission started to work.
+* HDRP: Improved exposure.
+* HDRP: Added outline shader for tessellation shader.
 
 ## [0.0.8-preview] - 2021-06-16
 * deleted ValidationConfig.json. 
 
 ## [0.0.7-preview] - 2021-06-14
-* Made samples insstallable.
+* Made samples installable.
 
 ## [0.0.6-preview] - 2021-06-04
 * Modifed documents

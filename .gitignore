@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 [Uu]nityPackageManager/
+[Uu]serSettings/
 Assets/AssetStoreTools*
 
 # Mac

@@ -1046,7 +1046,7 @@ Shader "HDRP/Toon"
         }
 
         Tags{
-            "RenderType" = "Opaque"
+           "RenderType" = "Opaque"
         }
         Pass{
             Name "Outline"
@@ -1069,19 +1069,45 @@ Shader "HDRP/Toon"
 
 
 
-
-            //V.2.0.4
-
+            #define SHADERPASS SHADERPASS_FORWARD
+            #define SHADOW_LOW
+            #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
 
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
             #pragma shader_feature _ _IS_CLIPPING_MATTE
-            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
+
+            #ifdef DEBUG_DISPLAY
+                #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Debug/DebugDisplay.hlsl"
+            #endif
+
+            // The light loop (or lighting architecture) is in charge to:
+            // - Define light list
+            // - Define the light loop
+            // - Setup the constant/data
+            // - Do the reflection hierarchy
+            // - Provide sampling function for shadowmap, ies, cookie and reflection (depends on the specific use with the light loops like index array or atlas or single and texture format (cubemap/latlong))
+
+            #define HAS_LIGHTLOOP
+
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoopDef.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
+
+
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoop.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
+
+
+
             #include "HDRPToonHead.hlsl"
             #include "HDRPToonOutline.hlsl"
 
-            #pragma vertex vert
-            #pragma fragment frag
+            #pragma vertex Vert
+            #pragma fragment Frag
+
             ENDHLSL
         }
 

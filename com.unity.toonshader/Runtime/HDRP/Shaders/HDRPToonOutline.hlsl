@@ -46,126 +46,196 @@
 
 
 
-            struct VertexInput {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-                float4 tangent : TANGENT;
-                float2 texcoord0 : TEXCOORD0;
-            };
-            struct VertexOutput {
-                float4 pos : SV_POSITION;
-                float2 uv0 : TEXCOORD0;
-                float3 normalDir : TEXCOORD1;
-                float3 tangentDir : TEXCOORD2;
-                float3 bitangentDir : TEXCOORD3;
-            };
-
 #undef unity_ObjectToWorld 
 #undef unity_WorldToObject 
 
-            VertexOutput vert (VertexInput v) {
 
-                VertexOutput o = (VertexOutput)0;
-                o.uv0 = v.texcoord0;
-                float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                float2 Set_UV0 = o.uv0;
-                float4 _Outline_Sampler_var = tex2Dlod(_Outline_Sampler,float4(TRANSFORM_TEX(Set_UV0, _Outline_Sampler),0.0,0));
-                //v.2.0.4.3 baked Normal Texture for Outline
-                o.normalDir = UnityObjectToWorldNormal(v.normal);
-                o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
-                o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
-                float3x3 tangentTransform = float3x3( o.tangentDir, o.bitangentDir, o.normalDir);
-                //UnpackNormal() can't be used, and so as follows. Do not specify a bump for the texture to be used.
-                float4 _BakedNormal_var = (tex2Dlod(_BakedNormal,float4(TRANSFORM_TEX(Set_UV0, _BakedNormal),0.0,0)) * 2 - 1);
-                float3 _BakedNormalDir = normalize(mul(_BakedNormal_var.rgb, tangentTransform));
-                //end
-                float Set_Outline_Width = (_Outline_Width*0.001*smoothstep( _Farthest_Distance, _Nearest_Distance, distance(objPos.rgb,_WorldSpaceCameraPos) )*_Outline_Sampler_var.rgb).r;
-                Set_Outline_Width *= (1.0f - _ZOverDrawMode);
-                //v.2.0.7.5
-                float4 _ClipCameraPos = mul(UNITY_MATRIX_VP, float4(_WorldSpaceCameraPos.xyz, 1));
-                //v.2.0.7
-                #if defined(UNITY_REVERSED_Z)
-                    //v.2.0.4.2 (DX)
-                    _Offset_Z = _Offset_Z * -0.01;
-                #else
-                    //OpenGL
-                    _Offset_Z = _Offset_Z * 0.01;
-                #endif
-//v2.0.4
-#ifdef _OUTLINE_NML
-                //v.2.0.4.3 baked Normal Texture for Outline
-                o.pos = UnityObjectToClipPos(lerp(float4(v.vertex.xyz + v.normal*Set_Outline_Width,1), float4(v.vertex.xyz + _BakedNormalDir*Set_Outline_Width,1),_Is_BakedNormal));
-#elif _OUTLINE_POS
-                Set_Outline_Width = Set_Outline_Width*2;
-                float signVar = dot(normalize(v.vertex),normalize(v.normal))<0 ? -1 : 1;
-                o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + signVar*normalize(v.vertex)*Set_Outline_Width, 1));
-#endif
-                //v.2.0.7.5
-                o.pos.z = o.pos.z + _Offset_Z * _ClipCameraPos.z;
-                return o;
-            }
-            float4 frag(VertexOutput i) : SV_Target{
-#ifdef _IS_CLIPPING_MASK
-            if (_ClippingMaskMode != 0)
+
+#ifdef _WRITE_TRANSPARENT_MOTION_VECTOR
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/MotionVectorVertexShaderCommon.hlsl"
+
+            // PackedVaryingsType
+            // https://github.com/Unity-Technologies/Graphics/blob/e4117c07b479adafed38237f3407a363eefb4590/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/VertMesh.hlsl#L120
+
+            PackedVaryingsType Vert(AttributesMesh inputMesh, AttributesPass inputPass)
             {
-                discard;
+                // VaryingsType
+                // https://github.com/Unity-Technologies/Graphics/blob/e4117c07b479adafed38237f3407a363eefb4590/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/VertMesh.hlsl#L118
+
+                VaryingsType varyingsType;
+                varyingsType.vmesh = VertMesh(inputMesh);
+                #include "HDRPToonOutlineVertMain.hlsl"
+
+                return MotionVectorVS(varyingsType, inputMesh, inputPass);
             }
+
+#ifdef TESSELLATION_ON
+
+            PackedVaryingsToPS VertTesselation(VaryingsToDS input)
+            {
+                VaryingsToPS output;
+                output.vmesh = VertMeshTesselation(input.vmesh);
+                MotionVectorPositionZBias(output);
+
+                output.vpass.positionCS = input.vpass.positionCS;
+                output.vpass.previousPositionCS = input.vpass.previousPositionCS;
+
+                return PackVaryingsToPS(output);
+            }
+
+#endif // TESSELLATION_ON
+
+#else // _WRITE_TRANSPARENT_MOTION_VECTOR
+
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/VertMesh.hlsl"
+
+            PackedVaryingsType Vert(AttributesMesh inputMesh)
+            {
+                VaryingsType varyingsType;
+                varyingsType.vmesh = VertMesh(inputMesh);
+                #include "HDRPToonOutlineVertMain.hlsl"
+
+                return PackVaryingsType(varyingsType);
+            }
+
+#ifdef TESSELLATION_ON
+
+            PackedVaryingsToPS VertTesselation(VaryingsToDS input)
+            {
+                VaryingsToPS output;
+                output.vmesh = VertMeshTesselation(input.vmesh);
+
+                return PackVaryingsToPS(output);
+            }
+
+
+#endif // TESSELLATION_ON
+
+#endif // _WRITE_TRANSPARENT_MOTION_VECTOR
+
+
+#ifdef TESSELLATION_ON
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
+#endif
+
+
+
+
+
+#ifdef UNITY_VIRTUAL_TEXTURING
+#define VT_BUFFER_TARGET SV_Target1
+#define EXTRA_BUFFER_TARGET SV_Target2
+#else
+#define EXTRA_BUFFER_TARGET SV_Target1
+#endif
+
+
+
+void Frag(PackedVaryingsToPS packedInput,
+#ifdef OUTPUT_SPLIT_LIGHTING
+            out float4 outColor : SV_Target0,  // outSpecularLighting
+#ifdef UNITY_VIRTUAL_TEXTURING
+            out float4 outVTFeedback : VT_BUFFER_TARGET,
+#endif
+            out float4 outDiffuseLighting : EXTRA_BUFFER_TARGET,
+            OUTPUT_SSSBUFFER(outSSSBuffer)
+#else
+            out float4 outColor : SV_Target0
+#ifdef UNITY_VIRTUAL_TEXTURING
+            , out float4 outVTFeedback : VT_BUFFER_TARGET
+#endif
+#ifdef _WRITE_TRANSPARENT_MOTION_VECTOR
+            , out float4 outMotionVec : EXTRA_BUFFER_TARGET
+#endif // _WRITE_TRANSPARENT_MOTION_VECTOR
+#endif // OUTPUT_SPLIT_LIGHTING
+#ifdef _DEPTHOFFSET_ON
+            , out float outputDepth : SV_Depth
+#endif
+            )
+{
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(packedInput);
+    FragInputs input = UnpackVaryingsMeshToFragInputs(packedInput.vmesh);
+#ifdef _IS_CLIPPING_MASK
+    if (_ClippingMaskMode != 0)
+    {
+        discard;
+    }
 #endif
 #ifdef _IS_CLIPPING_MATTE
-            if (_ClippingMatteMode != 0)
-            {
-
-                discard;
-            }
+    if (_ClippingMatteMode != 0)
+    {
+        discard;
+    }
 #endif // _IS_CLIPPING_MATTE
-                //v.2.0.5
-                if (_ZOverDrawMode > 0.99f)
-                {
-                    return float4(1.0f, 1.0f, 1.0f, 1.0f);  // but nothing should be drawn except Z value as colormask is set to 0
-                }
-                _Color = _BaseColor;
-				float4 objPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
-					//v.2.0.7.5
-				float4 unity_AmbientSky = float4(0.1, 0.1, 0.1, 1.0f); //Todo.
-                half3 ambientSkyColor = unity_AmbientSky.rgb>0.05 ? unity_AmbientSky.rgb*_Unlit_Intensity : half3(0.05,0.05,0.05)*_Unlit_Intensity;
-                float3 lightColor = _LightColor0.rgb >0.05 ? _LightColor0.rgb : ambientSkyColor.rgb;
-                float lightColorIntensity = (0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b);
-                lightColor = lightColorIntensity<1 ? lightColor : lightColor/lightColorIntensity;
-                lightColor = lerp(half3(1.0,1.0,1.0), lightColor, _Is_LightColor_Outline);
-                float2 Set_UV0 = i.uv0;
-                float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
-                float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
-                float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
-                //
-                float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex)).xyz;
 
-                float4 overridingColor = lerp(_OutlineMaskColor, float4(_OutlineMaskColor.w, _OutlineMaskColor.w, _OutlineMaskColor.w, 1.0f), _ComposerMaskMode);
-                float  maskEnabled = max(_OutlineOverridden, _ComposerMaskMode);
+
+    //v.2.0.5
+    if (_ZOverDrawMode > 0.99f)
+    {
+#ifdef _DEPTHOFFSET_ON
+        outputDepth = posInput.deviceDepth;
+#endif
+#ifdef UNITY_VIRTUAL_TEXTURING
+
+        outVTFeedback = builtinData.vtPackedFeedback;
+#endif
+        outColor = float4(1.0f, 1.0f, 1.0f, 1.0f);  // but nothing should be drawn except Z value as colormask is set to 0
+        return;
+    }
+    _Color = _BaseColor;
+	float4 objPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
+		//v.2.0.7.5
+	float4 unity_AmbientSky = float4(0.1, 0.1, 0.1, 1.0f); //Todo.
+    half3 ambientSkyColor = unity_AmbientSky.rgb>0.05 ? unity_AmbientSky.rgb*_Unlit_Intensity : half3(0.05,0.05,0.05)*_Unlit_Intensity;
+    float3 lightColor = _LightColor0.rgb >0.05 ? _LightColor0.rgb : ambientSkyColor.rgb;
+    float lightColorIntensity = (0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b);
+    lightColor = lightColorIntensity<1 ? lightColor : lightColor/lightColorIntensity;
+    lightColor = lerp(half3(1.0,1.0,1.0), lightColor, _Is_LightColor_Outline);
+
+    float2 Set_UV0 = input.texCoord0;
+
+    float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
+    float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
+    float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
+    //
+    float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex)).xyz;
+
+    float4 overridingColor = lerp(_OutlineMaskColor, float4(_OutlineMaskColor.w, _OutlineMaskColor.w, _OutlineMaskColor.w, 1.0f), _ComposerMaskMode);
+    float  maskEnabled = max(_OutlineOverridden, _ComposerMaskMode);
 
 //v.2.0.7.5
 #ifdef _IS_OUTLINE_CLIPPING_NO
-                float3 Set_Outline_Color = lerp(_Is_BlendBaseColor_var, _OutlineTex_var.rgb*_Outline_Color.rgb*lightColor, _Is_OutlineTex );
-                if (_OutlineVisible < 0.1)
-                {
-                    // Todo. 
-                    // without this, something is drawn even if _OutlineVisible = 0, in AngelRing(HDRP)
-                    discard; 
-                }
-                Set_Outline_Color = lerp(Set_Outline_Color, overridingColor.xyz, maskEnabled);
-                return float4(Set_Outline_Color, _OutlineVisible );
+    float3 Set_Outline_Color = lerp(_Is_BlendBaseColor_var, _OutlineTex_var.rgb*_Outline_Color.rgb*lightColor, _Is_OutlineTex );
+    if (_OutlineVisible < 0.1)
+    {
+        // Todo. 
+        // without this, something is drawn even if _OutlineVisible = 0, in AngelRing(HDRP)
+        discard; 
+    }
+    Set_Outline_Color = lerp(Set_Outline_Color, overridingColor.xyz, maskEnabled);
+    outColor =float4(Set_Outline_Color, _OutlineVisible );
+
 
 #elif _IS_OUTLINE_CLIPPING_YES
-                float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
-                float Set_MainTexAlpha = _MainTex_var.a;
-                float _IsBaseMapAlphaAsClippingMask_var = lerp( _ClippingMask_var.r, Set_MainTexAlpha, _IsBaseMapAlphaAsClippingMask );
-                float _Inverse_Clipping_var = lerp( _IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping );
-                float Set_Clipping = saturate((_Inverse_Clipping_var+_Clipping_Level));
-                clip(Set_Clipping - 0.5);
-                float4 Set_Outline_Color = lerp( float4(_Is_BlendBaseColor_var,Set_Clipping), float4((_OutlineTex_var.rgb*_Outline_Color.rgb*lightColor),Set_Clipping), _Is_OutlineTex );
-                Set_Outline_Color = lerp(Set_Outline_Color, overridingColor, maskEnabled);
-                Set_Outline_Color.w *= _OutlineVisible;
-                return Set_Outline_Color;
+    float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
+    float Set_MainTexAlpha = _MainTex_var.a;
+    float _IsBaseMapAlphaAsClippingMask_var = lerp( _ClippingMask_var.r, Set_MainTexAlpha, _IsBaseMapAlphaAsClippingMask );
+    float _Inverse_Clipping_var = lerp( _IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping );
+    float Set_Clipping = saturate((_Inverse_Clipping_var+_Clipping_Level));
+    clip(Set_Clipping - 0.5);
+    float4 Set_Outline_Color = lerp( float4(_Is_BlendBaseColor_var,Set_Clipping), float4((_OutlineTex_var.rgb*_Outline_Color.rgb*lightColor),Set_Clipping), _Is_OutlineTex );
+    Set_Outline_Color = lerp(Set_Outline_Color, overridingColor, maskEnabled);
+    Set_Outline_Color.w *= _OutlineVisible;
+    outColor = Set_Outline_Color;
 #endif
-            }
+
+
+#ifdef _DEPTHOFFSET_ON
+    outputDepth = posInput.deviceDepth;
+#endif
+#ifdef UNITY_VIRTUAL_TEXTURING
+    outVTFeedback = builtinData.vtPackedFeedback;
+#endif
+}
 // End of File
 
