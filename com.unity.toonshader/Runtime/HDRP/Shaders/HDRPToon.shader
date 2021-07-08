@@ -12,7 +12,7 @@ Shader "HDRP/Toon"
         // Versioning of material to help for upgrading
         [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
-        [HideInInspector] _utsVersionY("VersionY", Float) = 1
+        [HideInInspector] _utsVersionY("VersionY", Float) = 2
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
         // Syntesized Textures

@@ -11,7 +11,7 @@ Shader "HDRP/ToonTessellation"
         // -----------------------------------------------------------------------------
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
-        [HideInInspector] _utsVersionY("VersionY", Float) = 1
+        [HideInInspector] _utsVersionY("VersionY", Float) = 2
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
         // Syntesized Textures
         _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
