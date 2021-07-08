@@ -3,8 +3,6 @@
 * HDRP: Emission started to work.
 * HDRP: Improved exposure.
 * HDRP: Added outline shader for tessellation shader.
-
-## [0.0.8-preview] - 2021-06-16
 * deleted ValidationConfig.json. 
 
 ## [0.0.7-preview] - 2021-06-14
