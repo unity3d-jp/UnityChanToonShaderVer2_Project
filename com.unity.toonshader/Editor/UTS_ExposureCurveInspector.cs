@@ -18,7 +18,7 @@ namespace UnityEditor.Rendering.Toon
             mode = EditorGUILayout.Popup(label, (int)mode, System.Enum.GetNames(typeof(UTS_ExposureCurveType)));
             if (EditorGUI.EndChangeCheck())
             {
- //               materialEditor.RegisterPropertyChangeUndo(label);
+                Undo.RecordObject(target, "Changed UTS Curve Logic");
                 obj.m_logic =(int) mode;
             }
 
