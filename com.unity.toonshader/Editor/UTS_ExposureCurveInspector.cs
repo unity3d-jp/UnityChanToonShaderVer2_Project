@@ -28,9 +28,9 @@ namespace UnityEditor.Rendering.Toon
             float yMin = 0;
             float yMax = 1;
             float step = 1 /10.0f;
-
+            Handles.color = Color.green;
             Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)mode), 0);
-            for (float t = step; t < 10; t += step)
+            for (float t = step; t < 1; t += step)
             {
                 Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)mode), 0);
                 Handles.DrawLine(
