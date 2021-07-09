@@ -42,6 +42,15 @@ namespace UnityEditor.Rendering.Toon
                 prevPos = pos;
 
             }
+            Handles.color = Color.white;
+            // y == 1.0f;
+            Handles.DrawLine(
+                    new Vector3(rect.xMin + 0.0f * rect.width, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom, 0),
+                    new Vector3(rect.xMin + 1.0f * rect.width, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom, 0));
+            // x == 1.0f;
+            Handles.DrawLine(
+                    new Vector3(rect.xMin + 1.0f * rect.width/zoom, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height, 0),
+                    new Vector3(rect.xMin + 1.0f * rect.width/zoom, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height, 0));
 
             zoom = EditorGUILayout.Slider(zoom, 1, 10);
             //            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
