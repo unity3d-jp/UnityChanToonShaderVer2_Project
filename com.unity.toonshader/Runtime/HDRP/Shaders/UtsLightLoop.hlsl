@@ -220,7 +220,7 @@ uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthe
 uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
 #endif
 
-uniform int _ExposureCurveLogic;
+uniform int _ExposureCurveType;
 
 // just grafted from UTS/Universal RP
 struct UtsLight

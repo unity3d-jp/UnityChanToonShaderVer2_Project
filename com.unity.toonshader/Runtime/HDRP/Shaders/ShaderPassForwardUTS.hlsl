@@ -585,14 +585,14 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 finalColorWoEmissive = SATURATE_IF_SDR(finalColor) + (envLightColor * envLightIntensity * _GI_Intensity * smoothstep(1, 0, envLightIntensity / 2));
 
     float  brightness = GetLightAttenuation(finalColorWoEmissive);
-    if (_ExposureCurveLogic == 1)
+    if (_ExposureCurveType == 1)
     {
         float RR = log(finalColorWoEmissive.r + 1.0);
         float GG = log(finalColorWoEmissive.g + 1.0);
         float BB = log(finalColorWoEmissive.b + 1.0);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
-    else if (_ExposureCurveLogic = 2)
+    else if (_ExposureCurveType = 2)
     {
         float RR = log2(finalColorWoEmissive.r + 1.0);
         float GG = log2(finalColorWoEmissive.g + 1.0);

@@ -7,9 +7,9 @@ namespace Unity.Rendering.Toon
     [DisallowMultipleComponent]
     public class UTS_ExposureCurve : MonoBehaviour
     {
-        const string EXPOSURE_CURVE_PROP_NMAE = "_ExposureCurveLogic";
+        const string EXPOSURE_CURVE_PROP_NMAE = "_ExposureCurveType";
         [SerializeField]
-        int m_logic;
+        public int m_logic;
         // Start is called before the first frame update
         void Start()
         {
@@ -30,4 +30,13 @@ namespace Unity.Rendering.Toon
             Shader.SetGlobalInt(EXPOSURE_CURVE_PROP_NMAE, m_logic);
         }
     }
+
+    public enum UTS_ExposureCurveType
+    {
+        Linier,
+        Log,
+        Log2,
+
+    };
+
 }
