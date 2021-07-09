@@ -9,8 +9,10 @@ namespace UnityEditor.Rendering.Toon
 
     public class UTS_ExposureCurveInspector : Editor
     {
+        float zoom = 2.0f;
         public override void OnInspectorGUI()
         {
+
             var obj = target as UTS_ExposureCurve;
             var mode = obj.m_logic;
             const string label = "Curve Logic";
@@ -24,7 +26,7 @@ namespace UnityEditor.Rendering.Toon
 
             Rect rect = GUILayoutUtility.GetRect(Screen.width, 200.0f);
             EditorGUI.DrawRect(rect, Color.black);
-            float zoom = 2.0f;
+
             float yMin = 0;
             float yMax = 1;
             float step = 1/10.0f;
@@ -40,6 +42,8 @@ namespace UnityEditor.Rendering.Toon
                 prevPos = pos;
 
             }
+
+            zoom = EditorGUILayout.Slider(zoom, 1, 10);
             //            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
         }
         float curveFunc(float t, UTS_ExposureCurveType curveType)
