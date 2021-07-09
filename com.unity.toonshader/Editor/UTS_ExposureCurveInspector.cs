@@ -24,18 +24,18 @@ namespace UnityEditor.Rendering.Toon
 
             Rect rect = GUILayoutUtility.GetRect(Screen.width, 200.0f);
             EditorGUI.DrawRect(rect, Color.black);
-
+            float zoom = 2.0f;
             float yMin = 0;
             float yMax = 1;
-            float step = 1 /10.0f;
+            float step = 1/10.0f;
             Handles.color = Color.green;
             Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)mode), 0);
-            for (float t = step; t < 1; t += step)
+            for (float t = step; t < 1 * zoom +step ; t += step)
             {
                 Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)mode), 0);
                 Handles.DrawLine(
-                    new Vector3(rect.xMin + prevPos.x * rect.width, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height, 0),
-                    new Vector3(rect.xMin + pos.x * rect.width, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height, 0));
+                    new Vector3(rect.xMin + prevPos.x * rect.width /zoom, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0),
+                    new Vector3(rect.xMin + pos.x * rect.width/zoom, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0));
 
                 prevPos = pos;
 
