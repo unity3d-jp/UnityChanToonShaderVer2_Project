@@ -19,11 +19,48 @@ namespace UnityEditor.Rendering.Toon
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Changed UTS Curve Logic");
-                obj.m_logic =(int) mode;
+                obj.m_logic = (int)mode;
             }
 
-            Rect area = GUILayoutUtility.GetRect(Screen.width, 200.0f);
-            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
+            Rect rect = GUILayoutUtility.GetRect(Screen.width, 200.0f);
+            EditorGUI.DrawRect(rect, Color.black);
+
+            float yMin = 0;
+            float yMax = 1;
+            float step = 1 /10.0f;
+
+            Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)mode), 0);
+            for (float t = step; t < 10; t += step)
+            {
+                Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)mode), 0);
+                Handles.DrawLine(
+                    new Vector3(rect.xMin + prevPos.x * rect.width, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height, 0),
+                    new Vector3(rect.xMin + pos.x * rect.width, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height, 0));
+
+                prevPos = pos;
+
+            }
+            //            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
+        }
+        float curveFunc(float t, UTS_ExposureCurveType curveType)
+        {
+            const float logOffset = 1.0f;
+            float result = 0.0f;
+            switch (curveType)
+            {
+                case UTS_ExposureCurveType.Linier:
+                    result =  t;
+                    break;
+                case UTS_ExposureCurveType.Log:
+                    result = Mathf.Log(t + logOffset);
+                    break;
+                case UTS_ExposureCurveType.Log2:
+                    result =  Mathf.Log(t + logOffset, 2);
+                    break;
+                default:
+                    break;
+            }
+            return result;
         }
     }
 }
