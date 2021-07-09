@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf7219bab7fe46a1ad266029b2fee19, type: 3}
+  m_Name: Readme
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 9b84c330de497af4793fd7b376afed13, type: 3}
+  title: High-Definition Render Pipeline
+  sections:
+  - heading: 
+    text: This template is a good starting point for projects aiming at <b>High-end Graphics</b>
+      and developed for platforms that support Shader Model 5.0 (DX11
+      and above). This template utilizes the <b>High Definition Render Pipeline (HDRP)</b>,
+      a modern rendering pipeline that includes advanced material types and a configurable
+      hybrid tile/cluster deferred/forward lighting architecture. This template also includes the <b>Shader Graph</b> tool, <b>Visual Effect Graph</b> tool, several Presets to jump start development, and example content.
+    linkText: 
+    url: 
+  - heading: 
+    text: 'The example content in this template showcases an environment with three distinct rooms with specific lighting conditions:'
+  - heading:
+    text: '    <b>The first room</b> includes directional sunlight that uses real-world values, and has examples of decal projectors used to bring more believability to the environment.'
+    linkText: 
+    url: 
+  - heading:
+    text: '    <b>The second room</b> is an interior room lit by the same directional light coming in through a sunroof. It has examples of artificial lighting using real-world values, and demonstrates how physical light values contribute to lighting the scene. Also included are material examples of metal, glass, stone, and foliage.'
+    linkText: 
+    url: 
+  - heading:
+    text: '    <b>The last room</b> is an interior room lit entirely with artificial lighting. It showcases the same physical values used for the artificial lights, and the effects exposure has on lighting. Also in this room are examples of emission materials and light cookies.'
+    linkText: 
+    url: 	
+  - heading: 
+    text: This project uses the <b>Package Manager</b> to bring you the latest features
+      Unity has to offer. Open the Package Manager from <b>Windows > Package Manager</b>
+      and make sure you're using the most recent version of HDRP. To update packages, select your desired package from the list on the
+      left, and click the Update to button in the bottom right corner.
+    linkText: 
+    url: 
+  - heading: Documentation
+    text: 'To read more about HDRP please see the <b>HDRP documentation</b> :'
+    linkText: High Definition Render Pipeline
+    url: https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html
+  - heading: 
+    text: 'HDRP uses its own implementation of <b>post-processing</b>. It uses the <b>Volume system</b> to allow
+      you to localize post-processing effects to a certain area of your Scene. For
+      more information about post-processing and the Volume system, see the pages :'
+    linkText: Post-processing
+    url: https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Post-Processing-Main.html?preview=1
+  - heading:
+    text:
+    linkText: Volumes System
+    url: https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Volumes.html?preview=1	
+  - heading: Sample Content
+    text: 'The <b>Unity HDRI Pack</b> is a great resource when working with HDRP. You can use the HDRIs in this pack with the Look Dev tool. Download the Unity HDRI Pack here:'
+    linkText: HDRI Package
+    url: https://assetstore.unity.com/packages/essentials/beta-projects/unity-hdri-pack-72511
+  - heading: 
+    text: 'Examples of complex projects that use HDRP :'
+  - heading:
+    text: 'The <b>Fontainebleau</b> project contains examples of complex Material usage, volumetric effects, decals, Shader Graphs, and more.'
+    linkText: Fontainbleau demo
+    url: https://github.com/Unity-Technologies/FontainebleauDemo	
+  - heading:
+    text: 'The <b>Spaceship</b> project uses the Visual Effect Graph to showcase high quality visual effects. This project also shows how to use scripting and user interaction to trigger visual effects.'
+    linkText: Spaceship demo
+    url: https://github.com/Unity-Technologies/SpaceshipDemo
+  - heading:
+    text: 'The <b>VR Alchemist Lab</b> project is a small medieval laboratory that showcases HDRP rendering features in VR. This project also shows interactive effects.'
+    linkText: VR Alchemist Lab demo
+    url: https://github.com/Unity-Technologies/VRAlchemyLab
+  - heading: Ray tracing (Preview)
+    text: 'This version of HDRP includes a preview of Ray tracing features. To read more on this topic please see our <b>"Getting started"</b> guide :'
+    linkText: Getting started with Ray Tracing
+    url: https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Ray-Tracing-Getting-Started.html?preview=1  
+  - heading: 
+    text: 'Ray tracing features are also demonstrated in this small sample projet :'
+    linkText: Small office Ray tracing
+    url: https://github.com/Unity-Technologies/SmallOfficeRayTracing    
+  loadedLayout: 1
