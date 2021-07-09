@@ -600,7 +600,13 @@ void Frag(PackedVaryingsToPS packedInput,
         float BB = log2(finalColorWoEmissive.b + logOffset);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
-
+    else if (_ExposureCurveType = 3)
+    {
+        float RR = log10(finalColorWoEmissive.r + logOffset);
+        float GG = log10(finalColorWoEmissive.g + logOffset);
+        float BB = log10(finalColorWoEmissive.b + logOffset);
+        finalColorWoEmissive = float3(RR, GG, BB);
+    }
     finalColor = finalColorWoEmissive + emissive;
 
 #if defined(_SHADINGGRADEMAP)

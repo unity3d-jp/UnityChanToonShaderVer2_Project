@@ -19,9 +19,10 @@ namespace Unity.Rendering.Toon
         // Update is called once per frame
         void Update()
         {
-            if ( m_logic > 2 )
+            const int logMax = 4;
+            if ( m_logic >= logMax)
             {
-                m_logic = 2;
+                m_logic = logMax - 1;
             }
             if ( m_logic < 0 )
             {
@@ -33,10 +34,10 @@ namespace Unity.Rendering.Toon
 
     public enum UTS_ExposureCurveType
     {
-        Linier,
+        Linear,
         Log,
         Log2,
-
+        Log10
     };
 
 }

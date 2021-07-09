@@ -48,7 +48,7 @@ namespace UnityEditor.Rendering.Toon
             float result = 0.0f;
             switch (curveType)
             {
-                case UTS_ExposureCurveType.Linier:
+                case UTS_ExposureCurveType.Linear:
                     result =  t;
                     break;
                 case UTS_ExposureCurveType.Log:
@@ -56,6 +56,9 @@ namespace UnityEditor.Rendering.Toon
                     break;
                 case UTS_ExposureCurveType.Log2:
                     result =  Mathf.Log(t + logOffset, 2);
+                    break;
+                case UTS_ExposureCurveType.Log10:
+                    result = Mathf.Log10(t + logOffset);
                     break;
                 default:
                     break;
