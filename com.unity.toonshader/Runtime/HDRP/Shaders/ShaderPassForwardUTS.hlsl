@@ -581,10 +581,27 @@ void Frag(PackedVaryingsToPS packedInput,
     //   float3 envColor = aggregateLighting.direct.diffuse; // ???
     float3 envColor = float3(0.2f, 0.2f, 0.2f);
     float3 envLightColor = envColor;
-    float3 envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
+    float3 envLightIntensity = GetLightAttenuation(envLightColor)  < 1 ? GetLightAttenuation(envLightColor) : 1;
+    float3 finalColorWoEmissive = SATURATE_IF_SDR(finalColor) + (envLightColor * envLightIntensity * _GI_Intensity * smoothstep(1, 0, envLightIntensity / 2));
 
-    finalColor = SATURATE_IF_SDR(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
-    //    finalColor = float3(context.shadowValue, 0, 0);
+    float  brightness = GetLightAttenuation(finalColorWoEmissive);
+    if (_ExposureCurveLogic == 1)
+    {
+        float RR = log(finalColorWoEmissive.r + 1.0);
+        float GG = log(finalColorWoEmissive.g + 1.0);
+        float BB = log(finalColorWoEmissive.b + 1.0);
+        finalColorWoEmissive = float3(RR, GG, BB);
+    }
+    else if (_ExposureCurveLogic = 2)
+    {
+        float RR = log2(finalColorWoEmissive.r + 1.0);
+        float GG = log2(finalColorWoEmissive.g + 1.0);
+        float BB = log2(finalColorWoEmissive.b + 1.0);
+        finalColorWoEmissive = float3(RR, GG, BB);
+    }
+
+    finalColor = finalColorWoEmissive + emissive;
+
 #if defined(_SHADINGGRADEMAP)
     //v.2.0.4
   #ifdef _IS_TRANSCLIPPING_OFF

@@ -217,5 +217,11 @@ float3 ShadeSH9 (float4 normal)
     return res;
 }
 
+float rateR = 0.299;
+float rateG = 0.587;
+float rateB = 0.114;
+
+
+
 
 #endif //#ifndef UCTS_HDRP_INCLUDED

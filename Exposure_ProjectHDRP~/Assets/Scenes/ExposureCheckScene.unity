@@ -1513,6 +1513,7 @@ GameObject:
   - component: {fileID: 1797894836}
   - component: {fileID: 1797894835}
   - component: {fileID: 1797894837}
+  - component: {fileID: 1797894838}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1718,6 +1719,19 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+--- !u!114 &1797894838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797894834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8edd5c572b6e648974dac4815d5619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_logic: 0
 --- !u!1 &1919670976
 GameObject:
   m_ObjectHideFlags: 0

@@ -220,6 +220,8 @@ uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthe
 uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
 #endif
 
+uniform int _ExposureCurveLogic;
+
 // just grafted from UTS/Universal RP
 struct UtsLight
 {
@@ -243,7 +245,7 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 
 float  GetLightAttenuation(float3 lightColor)
 {
-    float lightAttenuation = 0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b;
+    float lightAttenuation = rateR *lightColor.r + rateG *lightColor.g + rateB *lightColor.b;
     return lightAttenuation;
 }
 
