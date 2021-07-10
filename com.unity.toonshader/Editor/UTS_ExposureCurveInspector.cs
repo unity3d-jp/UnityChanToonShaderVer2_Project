@@ -14,14 +14,22 @@ namespace UnityEditor.Rendering.Toon
         {
 
             var obj = target as UTS_ExposureCurve;
-            var mode = obj.m_logic;
-            const string label = "Curve Logic";
+            const string labelCurveLogic = "Curve Logic";
+            const string label0To1 = "Linear 0 to 1.0";
             EditorGUI.BeginChangeCheck();
-            mode = EditorGUILayout.Popup(label, (int)mode, System.Enum.GetNames(typeof(UTS_ExposureCurveType)));
+            var curveType = EditorGUILayout.Popup(labelCurveLogic, obj.m_CurveType, System.Enum.GetNames(typeof(UTS_ExposureCurveType)));
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Changed UTS Curve Logic");
-                obj.m_logic = (int)mode;
+                obj.m_CurveType = (int)curveType;
+            }
+
+            EditorGUI.BeginChangeCheck();
+            bool linearFrom0to10 = EditorGUILayout.Toggle(label0To1,obj.m_LinearFrom0to10);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed UTS Curve Linear 0 to 1.0");
+                obj.m_LinearFrom0to10 = linearFrom0to10;
             }
 
             Rect rect = GUILayoutUtility.GetRect(Screen.width, 200.0f);
@@ -31,10 +39,10 @@ namespace UnityEditor.Rendering.Toon
             float yMax = 1;
             float step = 1/10.0f;
             Handles.color = Color.green;
-            Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)mode), 0);
+            Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)curveType, linearFrom0to10), 0);
             for (float t = step; t < 1 * zoom +step ; t += step)
             {
-                Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)mode), 0);
+                Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)curveType, linearFrom0to10), 0);
                 Handles.DrawLine(
                     new Vector3(rect.xMin + prevPos.x * rect.width /zoom, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0),
                     new Vector3(rect.xMin + pos.x * rect.width/zoom, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0));
@@ -67,7 +75,7 @@ namespace UnityEditor.Rendering.Toon
             }
             //            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
         }
-        float curveFunc(float t, UTS_ExposureCurveType curveType)
+        float curveFunc(float t, UTS_ExposureCurveType curveType, bool linearFrom0to10)
         {
             const float logOffset = 1.0f;
             float result = 0.0f;
@@ -78,12 +86,24 @@ namespace UnityEditor.Rendering.Toon
                     break;
                 case UTS_ExposureCurveType.Log:
                     result = Mathf.Log(t * 1.7f + logOffset);
+                    if ( linearFrom0to10 && result < logOffset )
+                    {
+                        result = Mathf.Lerp(result, t, logOffset-t);
+                    }
                     break;
                 case UTS_ExposureCurveType.Log2:
                     result = Mathf.Log(t + logOffset, 2);
+                    if ( linearFrom0to10 && result < logOffset )
+                    {
+                        result = Mathf.Lerp(result, t, logOffset-t);
+                    }
                     break;
                 case UTS_ExposureCurveType.Log10:
                     result = Mathf.Log10(t * 9 + logOffset);
+                    if ( linearFrom0to10 && result < logOffset )
+                    {
+                        result = Mathf.Lerp(result, t, logOffset-t);
+                    }
                     break;
                 default:
                     break;

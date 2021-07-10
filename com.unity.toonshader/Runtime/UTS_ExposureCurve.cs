@@ -9,7 +9,9 @@ namespace Unity.Rendering.Toon
     {
         const string EXPOSURE_CURVE_PROP_NMAE = "_ExposureCurveType";
         [SerializeField]
-        public int m_logic;
+        public int m_CurveType;
+        [SerializeField]
+        public bool m_LinearFrom0to10 = true;
         // Start is called before the first frame update
         void Start()
         {
@@ -20,15 +22,15 @@ namespace Unity.Rendering.Toon
         void Update()
         {
             const int logMax = 4;
-            if ( m_logic >= logMax)
+            if ( m_CurveType >= logMax)
             {
-                m_logic = logMax - 1;
+                m_CurveType = logMax - 1;
             }
-            if ( m_logic < 0 )
+            if ( m_CurveType < 0 )
             {
-                m_logic = 0;
+                m_CurveType = 0;
             }
-            Shader.SetGlobalInt(EXPOSURE_CURVE_PROP_NMAE, m_logic);
+            Shader.SetGlobalInt(EXPOSURE_CURVE_PROP_NMAE, m_CurveType);
         }
     }
 

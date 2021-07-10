@@ -221,6 +221,7 @@ uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynt
 #endif
 
 uniform int _ExposureCurveType;
+uniform int _LinearFrom0to10;
 
 // just grafted from UTS/Universal RP
 struct UtsLight
@@ -232,7 +233,7 @@ struct UtsLight
     int     type;
 };
 
-// UV‰ñ“]‚ğ‚·‚éŠÖ”FRotateUV()
+// UVï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½FRotateUV()
 //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
 float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 {
