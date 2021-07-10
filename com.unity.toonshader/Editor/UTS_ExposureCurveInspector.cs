@@ -86,21 +86,21 @@ namespace UnityEditor.Rendering.Toon
                     break;
                 case UTS_ExposureCurveType.Log:
                     result = Mathf.Log(t * 1.7f + logOffset);
-                    if ( linearFrom0to10 && result < logOffset )
+                    if ( linearFrom0to10 && t < logOffset )
                     {
                         result = Mathf.Lerp(result, t, logOffset-t);
                     }
                     break;
                 case UTS_ExposureCurveType.Log2:
                     result = Mathf.Log(t + logOffset, 2);
-                    if ( linearFrom0to10 && result < logOffset )
+                    if ( linearFrom0to10 && t < logOffset )
                     {
                         result = Mathf.Lerp(result, t, logOffset-t);
                     }
                     break;
                 case UTS_ExposureCurveType.Log10:
                     result = Mathf.Log10(t * 9 + logOffset);
-                    if ( linearFrom0to10 && result < logOffset )
+                    if ( linearFrom0to10 && t < logOffset )
                     {
                         result = Mathf.Lerp(result, t, logOffset-t);
                     }

@@ -1731,7 +1731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8edd5c572b6e648974dac4815d5619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_logic: 3
+  m_CurveType: 3
+  m_LinearFrom0to10: 0
 --- !u!1 &1919670976
 GameObject:
   m_ObjectHideFlags: 0

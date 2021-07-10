@@ -250,6 +250,19 @@ float  GetLightAttenuation(float3 lightColor)
     return lightAttenuation;
 }
 
+float AdjustLogResult(float resultCol, float linearCol)
+{
+    float klogOffset = 1.0;
+    if (_LinearFrom0to10 == 0.0)
+    {
+        return resultCol;   // no adjusstment.
+    }
+    if ( linearCol < klogOffset)
+    {
+        resultCol = lerp(resultCol, linearCol, klogOffset-linearCol);
+    }
+    return resultCol;
+}
 int GetNextDirectionalLightIndex(BuiltinData builtinData, int currentIndex, int mainLightIndex)
 {
     int i = 0; // Declare once to avoid the D3D11 compiler warning.

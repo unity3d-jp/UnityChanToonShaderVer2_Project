@@ -589,24 +589,24 @@ void Frag(PackedVaryingsToPS packedInput,
     if (_ExposureCurveType == 1)
     {
         float logT1to1 = 1.7f;
-        float RR = log(finalColorWoEmissive.r * logT1to1 + logOffset);
-        float GG = log(finalColorWoEmissive.g * logT1to1 + logOffset);
-        float BB = log(finalColorWoEmissive.b * logT1to1 + logOffset);
+        float RR = AdjustLogResult(log(finalColorWoEmissive.r * logT1to1 + logOffset),finalColorWoEmissive.r);
+        float GG = AdjustLogResult(log(finalColorWoEmissive.g * logT1to1 + logOffset),finalColorWoEmissive.g);
+        float BB = AdjustLogResult(log(finalColorWoEmissive.b * logT1to1 + logOffset),finalColorWoEmissive.b);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
     else if (_ExposureCurveType = 2)
     {
-        float RR = log2(finalColorWoEmissive.r + logOffset);
-        float GG = log2(finalColorWoEmissive.g + logOffset);
-        float BB = log2(finalColorWoEmissive.b + logOffset);
+        float RR = AdjustLogResult(log2(finalColorWoEmissive.r + logOffset), finalColorWoEmissive.r);
+        float GG = AdjustLogResult(log2(finalColorWoEmissive.g + logOffset), finalColorWoEmissive.g);
+        float BB = AdjustLogResult(log2(finalColorWoEmissive.b + logOffset), finalColorWoEmissive.b);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
     else if (_ExposureCurveType = 3)
     {
         float logT1to1 = 9.0f;
-        float RR = log10(finalColorWoEmissive.r * logT1to1 + logOffset);
-        float GG = log10(finalColorWoEmissive.g * logT1to1 + logOffset);
-        float BB = log10(finalColorWoEmissive.b * logT1to1 + logOffset);
+        float RR = AdjustLogResult(log10(finalColorWoEmissive.r * logT1to1 + logOffset),finalColorWoEmissive.r);
+        float GG = AdjustLogResult(log10(finalColorWoEmissive.g * logT1to1 + logOffset),finalColorWoEmissive.g);
+        float BB = AdjustLogResult(log10(finalColorWoEmissive.b * logT1to1 + logOffset),finalColorWoEmissive.b);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
     finalColor = finalColorWoEmissive + emissive;

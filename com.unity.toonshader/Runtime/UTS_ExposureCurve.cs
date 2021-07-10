@@ -7,7 +7,8 @@ namespace Unity.Rendering.Toon
     [DisallowMultipleComponent]
     public class UTS_ExposureCurve : MonoBehaviour
     {
-        const string EXPOSURE_CURVE_PROP_NMAE = "_ExposureCurveType";
+        const string kExposureCurvePropName = "_ExposureCurveType";
+        const string kLinearFrom0To1Name = "_LinearFrom0to10";
         [SerializeField]
         public int m_CurveType;
         [SerializeField]
@@ -30,7 +31,8 @@ namespace Unity.Rendering.Toon
             {
                 m_CurveType = 0;
             }
-            Shader.SetGlobalInt(EXPOSURE_CURVE_PROP_NMAE, m_CurveType);
+            Shader.SetGlobalInt(kExposureCurvePropName, m_CurveType);
+            Shader.SetGlobalInt(kLinearFrom0To1Name, m_LinearFrom0to10 ? 1 : 0);
         }
     }
 
