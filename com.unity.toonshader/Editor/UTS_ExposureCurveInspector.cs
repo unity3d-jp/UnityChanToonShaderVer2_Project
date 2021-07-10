@@ -51,10 +51,20 @@ namespace UnityEditor.Rendering.Toon
             Handles.DrawLine(
                     new Vector3(rect.xMin + 1.0f * rect.width/zoom, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height, 0),
                     new Vector3(rect.xMin + 1.0f * rect.width/zoom, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height, 0));
-            Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 16.0f,0),
-                "1.0" );
+            
 
             zoom = EditorGUILayout.Slider(zoom, 1, 10);
+            if ( zoom < 1.14)
+            {
+                Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom + 8.0f,0),
+                    "1.0" );
+            }
+            else
+            {
+                Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 16.0f,0),
+                    "1.0" );
+
+            }
             //            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
         }
         float curveFunc(float t, UTS_ExposureCurveType curveType)
