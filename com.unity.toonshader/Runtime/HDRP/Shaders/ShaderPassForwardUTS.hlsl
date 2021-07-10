@@ -588,9 +588,10 @@ void Frag(PackedVaryingsToPS packedInput,
     float logOffset = 1.0;
     if (_ExposureCurveType == 1)
     {
-        float RR = log(finalColorWoEmissive.r + logOffset);
-        float GG = log(finalColorWoEmissive.g + logOffset);
-        float BB = log(finalColorWoEmissive.b + logOffset);
+        float logT1to1 = 1.7f;
+        float RR = log(finalColorWoEmissive.r * logT1to1 + logOffset);
+        float GG = log(finalColorWoEmissive.g * logT1to1 + logOffset);
+        float BB = log(finalColorWoEmissive.b * logT1to1 + logOffset);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
     else if (_ExposureCurveType = 2)
@@ -602,9 +603,10 @@ void Frag(PackedVaryingsToPS packedInput,
     }
     else if (_ExposureCurveType = 3)
     {
-        float RR = log10(finalColorWoEmissive.r + logOffset);
-        float GG = log10(finalColorWoEmissive.g + logOffset);
-        float BB = log10(finalColorWoEmissive.b + logOffset);
+        float logT1to1 = 9.0f;
+        float RR = log10(finalColorWoEmissive.r * logT1to1 + logOffset);
+        float GG = log10(finalColorWoEmissive.g * logT1to1 + logOffset);
+        float BB = log10(finalColorWoEmissive.b * logT1to1 + logOffset);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
     finalColor = finalColorWoEmissive + emissive;

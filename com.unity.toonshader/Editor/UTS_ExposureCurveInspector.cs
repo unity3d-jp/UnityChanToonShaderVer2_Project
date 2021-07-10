@@ -77,13 +77,13 @@ namespace UnityEditor.Rendering.Toon
                     result =  t;
                     break;
                 case UTS_ExposureCurveType.Log:
-                    result = Mathf.Log(t + logOffset);
+                    result = Mathf.Log(t * 1.7f + logOffset);
                     break;
                 case UTS_ExposureCurveType.Log2:
-                    result =  Mathf.Log(t + logOffset, 2);
+                    result = Mathf.Log(t + logOffset, 2);
                     break;
                 case UTS_ExposureCurveType.Log10:
-                    result = Mathf.Log10(t + logOffset);
+                    result = Mathf.Log10(t * 9 + logOffset);
                     break;
                 default:
                     break;
