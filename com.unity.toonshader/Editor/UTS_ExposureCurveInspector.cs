@@ -12,6 +12,7 @@ namespace UnityEditor.Rendering.Toon
         float zoom = 2.0f;
         public override void OnInspectorGUI()
         {
+            bool isChanged = false;
 
             var obj = target as UTS_ExposureCurve;
             const string labelCurveLogic = "Curve Logic";
@@ -22,6 +23,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 Undo.RecordObject(target, "Changed UTS Curve Logic");
                 obj.m_CurveType = (int)curveType;
+                isChanged = true;
             }
 
             EditorGUI.BeginChangeCheck();
@@ -30,6 +32,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 Undo.RecordObject(target, "Changed UTS Curve Linear 0 to 1.0");
                 obj.m_LinearFrom0to10 = linearFrom0to10;
+                isChanged = true;
             }
 
             Rect rect = GUILayoutUtility.GetRect(Screen.width, 200.0f);
@@ -72,6 +75,11 @@ namespace UnityEditor.Rendering.Toon
                 Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 16.0f,0),
                     "1.0" );
 
+            }
+            if ( isChanged)
+            {
+                // at leaset 2020.3.12f1, not neccessary but from which version??
+                EditorApplication.QueuePlayerLoopUpdate();
             }
             //            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
         }

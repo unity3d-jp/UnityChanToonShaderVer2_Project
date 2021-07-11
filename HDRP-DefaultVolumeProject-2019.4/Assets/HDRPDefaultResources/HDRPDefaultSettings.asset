@@ -41,6 +41,9 @@ MonoBehaviour:
     m_Value: 1
     min: 0
     max: 20
+  cameraMotionBlur:
+    m_OverrideState: 0
+    m_Value: 1
   m_SampleCount:
     m_OverrideState: 0
     m_Value: 8
@@ -59,6 +62,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   m_AdvancedMode: 0
+  quality:
+    m_OverrideState: 0
+    m_Value: 1
   enable:
     m_OverrideState: 1
     m_Value: 1
@@ -85,7 +91,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 5
     min: 0
-  sampleCount:
+  m_SampleCount:
     m_OverrideState: 1
     m_Value: 12
     min: 4
@@ -145,6 +151,9 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.46608552
     min: 0
+  upperHemisphereLuxColor:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
   desiredLuxValue:
     m_OverrideState: 0
     m_Value: 20000
@@ -161,6 +170,55 @@ MonoBehaviour:
   hdriSky:
     m_OverrideState: 1
     m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
+  enableBackplate:
+    m_OverrideState: 0
+    m_Value: 0
+  backplateType:
+    m_OverrideState: 0
+    m_Value: 0
+  groundLevel:
+    m_OverrideState: 0
+    m_Value: 0
+  scale:
+    m_OverrideState: 0
+    m_Value: {x: 32, y: 32}
+  projectionDistance:
+    m_OverrideState: 0
+    m_Value: 16
+    min: 0.0000001
+  plateRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexOffset:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0}
+  blendAmount:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 100
+  shadowTint:
+    m_OverrideState: 0
+    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
+  pointLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  dirLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  rectLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &1501199423866068322
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -178,6 +236,10 @@ MonoBehaviour:
   quality:
     m_OverrideState: 1
     m_Value: 1
+  threshold:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0.2
@@ -201,9 +263,6 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
     min: 0
-  prefilter:
-    m_OverrideState: 0
-    m_Value: 0
   anamorphic:
     m_OverrideState: 0
     m_Value: 1
@@ -322,6 +381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   m_AdvancedMode: 0
+  quality:
+    m_OverrideState: 0
+    m_Value: 1
   rayTracing:
     m_OverrideState: 0
     m_Value: 0
@@ -335,24 +397,11 @@ MonoBehaviour:
     m_Value: 0
     min: 0
     max: 1
-  stepCount:
-    m_OverrideState: 0
-    m_Value: 6
-    min: 2
-    max: 32
   radius:
     m_OverrideState: 1
     m_Value: 1.5
     min: 0.25
     max: 5
-  fullResolution:
-    m_OverrideState: 0
-    m_Value: 0
-  maximumRadiusInPixels:
-    m_OverrideState: 0
-    m_Value: 40
-    min: 16
-    max: 256
   temporalAccumulation:
     m_OverrideState: 0
     m_Value: 1
@@ -361,14 +410,6 @@ MonoBehaviour:
     m_Value: 0.5
     min: 0
     max: 1
-  bilateralUpsample:
-    m_OverrideState: 0
-    m_Value: 1
-  directionCount:
-    m_OverrideState: 0
-    m_Value: 2
-    min: 1
-    max: 6
   blurSharpness:
     m_OverrideState: 0
     m_Value: 0.1
@@ -397,6 +438,27 @@ MonoBehaviour:
     m_Value: 0.5
     min: 0.001
     max: 1
+  m_StepCount:
+    m_OverrideState: 0
+    m_Value: 6
+    min: 2
+    max: 32
+  m_FullResolution:
+    m_OverrideState: 0
+    m_Value: 0
+  m_MaximumRadiusInPixels:
+    m_OverrideState: 0
+    m_Value: 40
+    min: 16
+    max: 256
+  m_BilateralUpsample:
+    m_OverrideState: 0
+    m_Value: 1
+  m_DirectionCount:
+    m_OverrideState: 0
+    m_Value: 2
+    min: 1
+    max: 6
 --- !u!114 &7542669330009093999
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -468,6 +530,11 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 150
     min: 0
+  directionalTransmissionMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
   cascadeShadowSplitCount:
     m_OverrideState: 0
     m_Value: 4
