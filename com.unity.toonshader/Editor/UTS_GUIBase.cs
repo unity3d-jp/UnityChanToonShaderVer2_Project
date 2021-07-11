@@ -3525,7 +3525,7 @@ namespace UnityEditor.Rendering.Toon
         }
         void GUI_LightColorContribution(Material material)
         {
-            GUILayout.Label("Realtime LightColor Contribution to each colors", EditorStyles.boldLabel);
+            GUILayout.Label("Realtime LightColor Contribution to each color", EditorStyles.boldLabel);
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Base Color");
             //GUILayout.Space(60);
