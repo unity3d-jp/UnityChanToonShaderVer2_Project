@@ -35,6 +35,17 @@ namespace UnityEditor.Rendering.Toon
                 isChanged = true;
             }
 
+            EditorGUI.BeginChangeCheck();
+            var exposureMultiplier = EditorGUILayout.Slider(1.0f-obj.m_ExopsureMultiplier, 0.0f, 1.0f);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed UTS Exposure Multiplier");
+                obj.m_ExopsureMultiplier = 1.0f-exposureMultiplier;
+                isChanged = true;
+            }
+
+
+
             Rect rect = GUILayoutUtility.GetRect(Screen.width, 200.0f);
             EditorGUI.DrawRect(rect, Color.black);
 

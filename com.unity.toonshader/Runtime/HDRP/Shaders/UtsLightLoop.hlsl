@@ -222,6 +222,7 @@ uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynt
 
 uniform int _ExposureCurveType;
 uniform int _LinearFrom0to10;
+uniform float _ExopsureMultiplier;
 
 // just grafted from UTS/Universal RP
 struct UtsLight

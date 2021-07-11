@@ -9,10 +9,13 @@ namespace Unity.Rendering.Toon
     {
         const string kExposureCurvePropName = "_ExposureCurveType";
         const string kLinearFrom0To1Name = "_LinearFrom0to10";
+	const string kExopsureMultiplier = "_ExopsureMultiplier";
         [SerializeField]
         public int m_CurveType;
         [SerializeField]
         public bool m_LinearFrom0to10 = true;
+	[SerializeField]
+	public float m_ExopsureMultiplier = 0.0f;
         // Start is called before the first frame update
         void Start()
         {
@@ -33,6 +36,7 @@ namespace Unity.Rendering.Toon
             }
             Shader.SetGlobalInt(kExposureCurvePropName, m_CurveType);
             Shader.SetGlobalInt(kLinearFrom0To1Name, m_LinearFrom0to10 ? 1 : 0);
+	    Shader.SetGlobalFloat(kExopsureMultiplier, m_ExopsureMultiplier);
         }
     }
 
