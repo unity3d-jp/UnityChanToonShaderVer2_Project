@@ -594,14 +594,14 @@ void Frag(PackedVaryingsToPS packedInput,
         float BB = AdjustLogResult(log(finalColorWoEmissive.b * logT1to1 + logOffset),finalColorWoEmissive.b);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
-    else if (_ExposureCurveType = 2)
+    else if (_ExposureCurveType == 2)
     {
         float RR = AdjustLogResult(log2(finalColorWoEmissive.r + logOffset), finalColorWoEmissive.r);
         float GG = AdjustLogResult(log2(finalColorWoEmissive.g + logOffset), finalColorWoEmissive.g);
         float BB = AdjustLogResult(log2(finalColorWoEmissive.b + logOffset), finalColorWoEmissive.b);
         finalColorWoEmissive = float3(RR, GG, BB);
     }
-    else if (_ExposureCurveType = 3)
+    else if (_ExposureCurveType == 3)
     {
         float logT1to1 = 9.0f;
         float RR = AdjustLogResult(log10(finalColorWoEmissive.r * logT1to1 + logOffset),finalColorWoEmissive.r);
