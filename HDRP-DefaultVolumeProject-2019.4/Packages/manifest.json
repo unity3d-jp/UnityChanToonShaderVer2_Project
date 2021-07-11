@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
+    "com.unity.toonshader": "file:../../com.unity.toonshader",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.2.1",
     "com.unity.ide.visualstudio": "2.0.8",

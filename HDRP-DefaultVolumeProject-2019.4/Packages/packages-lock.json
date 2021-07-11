@@ -39,6 +39,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.raytracedhardshadow": {
+      "version": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "bbba12aaf3e7c6fb1c198746ef9a0fcf408b79b9"
+    },
     "com.unity.render-pipelines.core": {
       "version": "7.7.0",
       "depth": 1,
@@ -113,6 +120,12 @@
         "com.unity.modules.particlesystem": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.unity.toonshader": {
+      "version": "file:../../com.unity.toonshader",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.ugui": {
       "version": "1.0.0",
