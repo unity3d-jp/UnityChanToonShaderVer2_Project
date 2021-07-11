@@ -35,6 +35,8 @@ namespace UnityEditor.Rendering.Toon
                 isChanged = true;
             }
 
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("UTS Exposure Multiplier");
             EditorGUI.BeginChangeCheck();
             var exposureMultiplier = EditorGUILayout.Slider(1.0f-obj.m_ExopsureMultiplier, 0.0f, 1.0f);
             if (EditorGUI.EndChangeCheck())
@@ -43,6 +45,7 @@ namespace UnityEditor.Rendering.Toon
                 obj.m_ExopsureMultiplier = 1.0f-exposureMultiplier;
                 isChanged = true;
             }
+            EditorGUILayout.EndHorizontal();
 
 
 
@@ -79,12 +82,12 @@ namespace UnityEditor.Rendering.Toon
             if ( zoom < 1.14)
             {
                 Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom + 8.0f,0),
-                    "1.0" );
+                    exposureMultiplier.ToString() );
             }
             else
             {
                 Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 16.0f,0),
-                    "1.0" );
+                    exposureMultiplier.ToString() );
 
             }
             if ( isChanged)
