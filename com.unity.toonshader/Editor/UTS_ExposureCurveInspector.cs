@@ -55,11 +55,12 @@ namespace UnityEditor.Rendering.Toon
             float yMin = 0;
             float yMax = 1;
             float step = 1/10.0f;
+            const float one = 1.0f;
             Handles.color = Color.green;
-            Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)curveType, linearFrom0to10), 0);
+            Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)curveType, exposureMultiplier, linearFrom0to10), 0);
             for (float t = step; t < 1 * zoom +step ; t += step)
             {
-                Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)curveType, linearFrom0to10), 0);
+                Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)curveType, exposureMultiplier, linearFrom0to10), 0);
                 Handles.DrawLine(
                     new Vector3(rect.xMin + prevPos.x * rect.width /zoom, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0),
                     new Vector3(rect.xMin + pos.x * rect.width/zoom, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0));
@@ -82,12 +83,12 @@ namespace UnityEditor.Rendering.Toon
             if ( zoom < 1.14)
             {
                 Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom + 8.0f,0),
-                    exposureMultiplier.ToString() );
+                    one.ToString() );
             }
             else
             {
                 Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 16.0f,0),
-                    exposureMultiplier.ToString() );
+                    one.ToString() );
 
             }
             if ( isChanged)
@@ -97,7 +98,7 @@ namespace UnityEditor.Rendering.Toon
             }
             //            Handles.DrawSolidDisc(area.center, Vector3.forward, 80f);
         }
-        float curveFunc(float t, UTS_ExposureCurveType curveType, bool linearFrom0to10)
+        float curveFunc(float t, UTS_ExposureCurveType curveType,float exposure, bool linearFrom0to10)
         {
             const float logOffset = 1.0f;
             float result = 0.0f;
@@ -130,7 +131,7 @@ namespace UnityEditor.Rendering.Toon
                 default:
                     break;
             }
-            return result;
+            return result * exposure;
         }
     }
 }
