@@ -32,10 +32,10 @@ namespace UnityEditor.Rendering.Toon
             const int zoomMax = 10;
             float yMin = -zoomMax;
             float yMax = zoomMax;
-            float step = 1/10.0f;
+            float step = 1/1000.0f;
             const float one = 1.0f;
             Handles.color = Color.green;
-            Vector3 prevPos = new Vector3(0, curveFunc(0, (UTS_ExposureCurveType)curveType), 0);
+            Vector3 prevPos = new Vector3(0, curveFunc(0.0001f, (UTS_ExposureCurveType)curveType), 0);
             for (float t = step; t < 1 * zoom +step ; t += step)
             {
                 Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)curveType), 0);
