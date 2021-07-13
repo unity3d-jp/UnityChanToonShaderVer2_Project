@@ -32,6 +32,8 @@ namespace UnityEditor.Rendering.Toon
             const int zoomMax = 10;
             float yMin = -zoomMax;
             float yMax = zoomMax;
+            float xMin = -zoomMax;
+            float xMax = zoomMax;
             float step = 1/1000.0f;
             const float one = 1.0f;
             Handles.color = Color.green;
@@ -53,24 +55,16 @@ namespace UnityEditor.Rendering.Toon
                     new Vector3(rect.xMax, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
             // x == 1.0f;
              Handles.DrawLine(
-                    new Vector3(rect.xMin + 1.0f * rect.width/zoom, rect.yMin, 0),
-                    new Vector3(rect.xMin + 1.0f * rect.width/zoom, rect.yMax, 0));
+                    new Vector3(rect.xMin + (1.0f-xMin) / (xMax - xMin) * rect.width/zoom, rect.yMin, 0),
+                    new Vector3(rect.xMin + (1.0f-xMin) / (xMax - xMin) * rect.width/zoom, rect.yMax, 0));
 
             Handles.color = Color.white;
 
 
             zoom = EditorGUILayout.Slider(zoom, 1, zoomMax);
-            if ( zoom < 1.14f)
-            {
-                Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom + 8.0f,0),
-                    one.ToString() );
-            }
-            else
-            {
-                Handles.Label(new Vector3(rect.xMin + 1.0f * rect.width/zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 16.0f,0),
-                    one.ToString() );
-
-            }
+ 
+            Handles.Label(new Vector3(rect.xMin + (1.0f - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom + 8.0f,0),
+                one.ToString() );
             if ( isChanged)
             {
                 // at leaset 2020.3.12f1, not neccessary. but, from which version??
