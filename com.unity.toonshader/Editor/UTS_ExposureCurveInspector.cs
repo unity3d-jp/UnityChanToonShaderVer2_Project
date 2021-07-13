@@ -38,12 +38,12 @@ namespace UnityEditor.Rendering.Toon
             const float one = 1.0f;
             Handles.color = Color.green;
             Vector3 prevPos = new Vector3(0, curveFunc(0.0001f, (UTS_ExposureCurveType)curveType), 0);
-            for (float t = step; t < 1 * zoom +step ; t += step)
+            for (float t = step; t < 10.0  +step ; t += step)
             {
                 Vector3 pos = new Vector3(t, curveFunc(t, (UTS_ExposureCurveType)curveType), 0);
                 Handles.DrawLine(
-                    new Vector3(rect.xMin + prevPos.x * rect.width /zoom, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0),
-                    new Vector3(rect.xMin + pos.x * rect.width/zoom, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0));
+                    new Vector3(rect.xMin + (prevPos.x - xMin) / (xMax - xMin)  * rect.width /zoom, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0),
+                    new Vector3(rect.xMin + (pos.x - xMin) / (xMax - xMin)  * rect.width/zoom, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0));
 
                 prevPos = pos;
 
@@ -53,11 +53,18 @@ namespace UnityEditor.Rendering.Toon
             Handles.DrawLine(
                     new Vector3(rect.xMin, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
                     new Vector3(rect.xMax, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
+            // y == 0.0f;
+            Handles.DrawLine(
+                    new Vector3(rect.xMin, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
+                    new Vector3(rect.xMax, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
             // x == 1.0f;
-             Handles.DrawLine(
-                    new Vector3(rect.xMin + (1.0f-xMin) / (xMax - xMin) * rect.width/zoom, rect.yMin, 0),
-                    new Vector3(rect.xMin + (1.0f-xMin) / (xMax - xMin) * rect.width/zoom, rect.yMax, 0));
-
+            Handles.DrawLine(
+                   new Vector3(rect.xMin + (1.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
+                   new Vector3(rect.xMin + (1.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
+            // x == 0.0f;
+            Handles.DrawLine(
+                   new Vector3(rect.xMin + (0.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
+                   new Vector3(rect.xMin + (0.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
             Handles.color = Color.white;
 
 
