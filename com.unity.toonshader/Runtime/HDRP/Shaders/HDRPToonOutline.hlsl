@@ -192,7 +192,7 @@ void Frag(PackedVaryingsToPS packedInput,
     lightColor = lightColorIntensity<1 ? lightColor : lightColor/lightColorIntensity;
     lightColor = lerp(half3(1.0,1.0,1.0), lightColor, _Is_LightColor_Outline);
 
-    float2 Set_UV0 = input.texCoord0;
+    float2 Set_UV0 = input.texCoord0.xy;
 
     float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
     float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;

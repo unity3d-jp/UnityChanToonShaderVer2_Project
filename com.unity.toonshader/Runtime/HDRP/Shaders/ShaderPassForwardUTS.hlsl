@@ -92,7 +92,7 @@ float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs 
 # endif
         {
             // This code works for both surface reflection and thin object transmission.
-            float shadow = EvaluateShadow_Punctual(context, posInput, light, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
+            float shadow = (float)EvaluateShadow_Punctual(context, posInput, light, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
             lightColor.rgb *= ComputeShadowColor(shadow, light.shadowTint, light.penumbraTint);
 
 # ifdef DEBUG_DISPLAY
