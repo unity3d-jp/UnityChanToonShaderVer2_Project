@@ -45,6 +45,6 @@
 #ifndef TESSELLATION_ON
         varyingsType.vmesh.positionCS = clipPos;
 #endif // TESSELLATION_ON
-        varyingsType.vmesh.positionRWS = (float3)rws;
+        varyingsType.vmesh.positionRWS = rws.xyz;
 
 #endif // #if 1
