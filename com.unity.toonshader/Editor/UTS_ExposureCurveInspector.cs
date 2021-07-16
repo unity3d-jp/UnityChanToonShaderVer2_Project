@@ -27,7 +27,7 @@ namespace UnityEditor.Rendering.Toon
             }
 
 
-            Rect rect = GUILayoutUtility.GetRect(Screen.width, 200.0f);
+            Rect rect = GUILayoutUtility.GetRect(Screen.width, 300.0f);
             EditorGUI.DrawRect(rect, Color.black);
             const int zoomMax = 10;
             float yMin = -zoomMax;
@@ -38,7 +38,7 @@ namespace UnityEditor.Rendering.Toon
             const float kTwo = 2.0f;
             const float kOne = 1.0f;
             const float kZero = 0.0f;
-            const float kDashSize = 4.0f;
+            const float kDashSize = 2.0f;
             Handles.color = Color.green;
             Vector3 prevPos = new Vector3(0, curveFunc(0.0001f, (UTS_ExposureCurveType)curveType), 0);
             for (float t = step; t < 10.0  +step ; t += step)
