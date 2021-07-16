@@ -35,9 +35,10 @@ namespace UnityEditor.Rendering.Toon
             float xMin = -zoomMax;
             float xMax = zoomMax;
             float step = 1/1000.0f;
-            const float two = 2.0f;
-            const float one = 1.0f;
-            const float zero = 0.0f;
+            const float kTwo = 2.0f;
+            const float kOne = 1.0f;
+            const float kZero = 0.0f;
+            const float kDashSize = 4.0f;
             Handles.color = Color.green;
             Vector3 prevPos = new Vector3(0, curveFunc(0.0001f, (UTS_ExposureCurveType)curveType), 0);
             for (float t = step; t < 10.0  +step ; t += step)
@@ -52,41 +53,41 @@ namespace UnityEditor.Rendering.Toon
             }
             Handles.color = Color.white;
             // y == 2.0f;
-            Handles.DrawLine(
-                    new Vector3(rect.xMin, rect.yMax - ((two - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
-                    new Vector3(rect.xMax, rect.yMax - ((two - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
+            Handles.DrawDottedLine(
+                    new Vector3(rect.xMin, rect.yMax - ((kTwo - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
+                    new Vector3(rect.xMax, rect.yMax - ((kTwo - yMin) / (yMax - yMin)) * rect.height / zoom, 0), kDashSize);
             // y == 1.0f;
-            Handles.DrawLine(
-                    new Vector3(rect.xMin, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
-                    new Vector3(rect.xMax, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
+            Handles.DrawDottedLine(
+                    new Vector3(rect.xMin, rect.yMax - ((kOne - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
+                    new Vector3(rect.xMax, rect.yMax - ((kOne - yMin) / (yMax - yMin)) * rect.height / zoom, 0), kDashSize);
             // y == 0.0f;
             Handles.DrawLine(
-                    new Vector3(rect.xMin, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
-                    new Vector3(rect.xMax, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
+                    new Vector3(rect.xMin, rect.yMax - ((kZero - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
+                    new Vector3(rect.xMax, rect.yMax - ((kZero - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
             // x == 1.0f;
-            Handles.DrawLine(
-                   new Vector3(rect.xMin + (two - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
-                   new Vector3(rect.xMin + (two - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
+            Handles.DrawDottedLine(
+                   new Vector3(rect.xMin + (kTwo - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
+                   new Vector3(rect.xMin + (kTwo - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0), kDashSize);
             // x == 1.0f;
-            Handles.DrawLine(
-                   new Vector3(rect.xMin + (1.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
-                   new Vector3(rect.xMin + (1.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
+            Handles.DrawDottedLine(
+                   new Vector3(rect.xMin + (kOne - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
+                   new Vector3(rect.xMin + (kOne - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0), kDashSize);
             // x == 0.0f;
             Handles.DrawLine(
-                   new Vector3(rect.xMin + (0.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
-                   new Vector3(rect.xMin + (0.0f - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
+                   new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
+                   new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
             Handles.color = Color.white;
 
 
             zoom = EditorGUILayout.Slider(zoom, 1, zoomMax);
 
-            Handles.Label(new Vector3(rect.xMin + (2.0f - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((2.0f - yMin) / (yMax - yMin)) * rect.height / zoom - 12.0f, 0),
-                two.ToString());
-            Handles.Label(new Vector3(rect.xMin + (1.0f - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 12.0f,0),
-                one.ToString() );
+            Handles.Label(new Vector3(rect.xMin + (kTwo - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((2.0f - yMin) / (yMax - yMin)) * rect.height / zoom - 12.0f, 0),
+                kTwo.ToString());
+            Handles.Label(new Vector3(rect.xMin + (kOne - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((1.0f - yMin) / (yMax - yMin)) * rect.height/zoom - 12.0f,0),
+                kOne.ToString() );
 
-            Handles.Label(new Vector3(rect.xMin + (0.0f - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height / zoom - 16.0f, 0),
-                zero.ToString());
+            Handles.Label(new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height / zoom - 16.0f, 0),
+                kZero.ToString());
             if ( isChanged)
             {
                 // at leaset 2020.3.12f1, not neccessary. but, from which version??
@@ -108,7 +109,7 @@ namespace UnityEditor.Rendering.Toon
 
                     break;
                 case UTS_ExposureCurveType.Log2:
-                    result = Mathf.Log(t);
+                    result = Mathf.Log(t, 2.0f);
 
                     break;
                 case UTS_ExposureCurveType.Log10:
