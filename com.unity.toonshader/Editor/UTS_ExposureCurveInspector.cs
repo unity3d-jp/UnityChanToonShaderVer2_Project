@@ -32,14 +32,16 @@ namespace UnityEditor.Rendering.Toon
             const int zoomMax = 10;
             float yMin = -zoomMax;
             float yMax = zoomMax;
-            float xMin = -zoomMax;
+            float xMin = -0.5f;
             float xMax = zoomMax;
-            float step = 1/1000.0f;
+  
             const float kTwo = 2.0f;
             const float kOne = 1.0f;
             const float kZero = 0.0f;
             const float kDashSize = 2.0f;
             Handles.color = Color.green;
+
+            float step = 1 / 1000.0f;
             Vector3 prevPos = new Vector3(0, curveFunc(0.0001f, (UTS_ExposureCurveType)curveType), 0);
             for (float t = step; t < 10.0  +step ; t += step)
             {
@@ -49,9 +51,23 @@ namespace UnityEditor.Rendering.Toon
                     new Vector3(rect.xMin + (pos.x - xMin) / (xMax - xMin)  * rect.width/zoom, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height/zoom, 0));
 
                 prevPos = pos;
+                if ( t > 1.0f )
+                {
+                    step = 1.0f;
+                }
 
             }
             Handles.color = Color.white;
+            // y == 0.0f;
+            Handles.DrawLine(
+                    new Vector3(rect.xMin, rect.yMax - ((kZero - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
+                    new Vector3(rect.xMax, rect.yMax - ((kZero - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
+            // x == 0.0f;
+            Handles.DrawLine(
+                   new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
+                   new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
+            Handles.color = Color.gray;
+
             // y == 2.0f;
             Handles.DrawDottedLine(
                     new Vector3(rect.xMin, rect.yMax - ((kTwo - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
@@ -60,10 +76,7 @@ namespace UnityEditor.Rendering.Toon
             Handles.DrawDottedLine(
                     new Vector3(rect.xMin, rect.yMax - ((kOne - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
                     new Vector3(rect.xMax, rect.yMax - ((kOne - yMin) / (yMax - yMin)) * rect.height / zoom, 0), kDashSize);
-            // y == 0.0f;
-            Handles.DrawLine(
-                    new Vector3(rect.xMin, rect.yMax - ((kZero - yMin) / (yMax - yMin)) * rect.height / zoom, 0),
-                    new Vector3(rect.xMax, rect.yMax - ((kZero - yMin) / (yMax - yMin)) * rect.height / zoom, 0));
+
             // x == 1.0f;
             Handles.DrawDottedLine(
                    new Vector3(rect.xMin + (kTwo - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
@@ -72,10 +85,7 @@ namespace UnityEditor.Rendering.Toon
             Handles.DrawDottedLine(
                    new Vector3(rect.xMin + (kOne - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
                    new Vector3(rect.xMin + (kOne - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0), kDashSize);
-            // x == 0.0f;
-            Handles.DrawLine(
-                   new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMin, 0),
-                   new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom, rect.yMax, 0));
+
             Handles.color = Color.white;
 
 
