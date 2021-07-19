@@ -8,12 +8,13 @@ namespace Unity.Rendering.Toon
     public class UTS_ExposureCurve : MonoBehaviour
     {
         const string kExposureCurvePropName = "_ExposureCurveType";
-        const string kLinearFrom0To1Name = "_LinearFrom0to10";
-	const string kExopsureMultiplier = "_ExopsureMultiplier";
+        const string kExposureAdjustmentPropName = "_ExposureAdjustment";
+        //      const string kLinearFrom0To1Name = "_LinearFrom0to10";
+        //      const string kExopsureMultiplier = "_ExopsureMultiplier";
         [SerializeField]
         public int m_CurveType;
         [SerializeField]
-        public bool m_LinearFrom0to10 = true;
+        public bool m_expssureAdjustmnt = true;
 	[SerializeField]
 	public float m_ExopsureMultiplier = 0.0f;
         // Start is called before the first frame update
@@ -35,8 +36,8 @@ namespace Unity.Rendering.Toon
                 m_CurveType = 0;
             }
             Shader.SetGlobalInt(kExposureCurvePropName, m_CurveType);
-            Shader.SetGlobalInt(kLinearFrom0To1Name, m_LinearFrom0to10 ? 1 : 0);
-	    Shader.SetGlobalFloat(kExopsureMultiplier, m_ExopsureMultiplier);
+           Shader.SetGlobalInt(kExposureCurvePropName, m_expssureAdjustmnt ? 1 : 0);
+//	        Shader.SetGlobalFloat(kExopsureMultiplier, m_ExopsureMultiplier);
         }
     }
 

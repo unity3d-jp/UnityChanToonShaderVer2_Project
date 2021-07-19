@@ -16,7 +16,7 @@ namespace UnityEditor.Rendering.Toon
 
             var obj = target as UTS_ExposureCurve;
             const string labelCurveLogic = "Curve Logic";
-
+            const string labelExposureAdjustment = "Exposure Adjustment";
             EditorGUI.BeginChangeCheck();
             var curveType = EditorGUILayout.Popup(labelCurveLogic, obj.m_CurveType, System.Enum.GetNames(typeof(UTS_ExposureCurveType)));
             if (EditorGUI.EndChangeCheck())
@@ -98,6 +98,17 @@ namespace UnityEditor.Rendering.Toon
 
             Handles.Label(new Vector3(rect.xMin + (kZero - xMin) / (xMax - xMin) * rect.width / zoom - 20.0f, rect.yMax - ((0.0f - yMin) / (yMax - yMin)) * rect.height / zoom - 16.0f, 0),
                 kZero.ToString());
+
+
+            EditorGUI.BeginChangeCheck();
+            bool exposureAdjustment = EditorGUILayout.Toggle(labelExposureAdjustment, obj.m_expssureAdjustmnt);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed Exposure Adjustment");
+                obj.m_expssureAdjustmnt = exposureAdjustment;
+                isChanged = true;
+            }
+
             if ( isChanged)
             {
                 // at leaset 2020.3.12f1, not neccessary. but, from which version??

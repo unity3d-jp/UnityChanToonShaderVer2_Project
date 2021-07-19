@@ -312,7 +312,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (mainLightIndex != i)
                 {
                     
-                    float3 lightColor = _DirectionalLightDatas[i].color * GetCurrentExposureMultiplier();
+                    float3 lightColor = GetAdjustedLightColor(_DirectionalLightDatas[i].color);
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
@@ -583,33 +583,6 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 envLightColor = envColor;
     float3 envLightIntensity = GetLightAttenuation(envLightColor)  < 1 ? GetLightAttenuation(envLightColor) : 1;
     float3 finalColorWoEmissive = SATURATE_IF_SDR(finalColor) + (envLightColor * envLightIntensity * _GI_Intensity * smoothstep(1, 0, envLightIntensity / 2));
-
-//    float  brightness = GetLightAttenuation(finalColorWoEmissive);
-    float logOffset = 1.0;
-    if (_ExposureCurveType == 1)
-    {
-        float logT1to1 = 1.7f;
-        float RR = AdjustLogResult(log(finalColorWoEmissive.r * logT1to1 + logOffset),finalColorWoEmissive.r);
-        float GG = AdjustLogResult(log(finalColorWoEmissive.g * logT1to1 + logOffset),finalColorWoEmissive.g);
-        float BB = AdjustLogResult(log(finalColorWoEmissive.b * logT1to1 + logOffset),finalColorWoEmissive.b);
-        finalColorWoEmissive = float3(RR, GG, BB);
-    }
-    else if (_ExposureCurveType == 2)
-    {
-        float RR = AdjustLogResult(log2(finalColorWoEmissive.r + logOffset), finalColorWoEmissive.r);
-        float GG = AdjustLogResult(log2(finalColorWoEmissive.g + logOffset), finalColorWoEmissive.g);
-        float BB = AdjustLogResult(log2(finalColorWoEmissive.b + logOffset), finalColorWoEmissive.b);
-        finalColorWoEmissive = float3(RR, GG, BB);
-    }
-    else if (_ExposureCurveType == 3)
-    {
-        float logT1to1 = 9.0f;
-        float RR = AdjustLogResult(log10(finalColorWoEmissive.r * logT1to1 + logOffset),finalColorWoEmissive.r);
-        float GG = AdjustLogResult(log10(finalColorWoEmissive.g * logT1to1 + logOffset),finalColorWoEmissive.g);
-        float BB = AdjustLogResult(log10(finalColorWoEmissive.b * logT1to1 + logOffset),finalColorWoEmissive.b);
-        finalColorWoEmissive = float3(RR, GG, BB);
-    }
-    finalColorWoEmissive *= (1.0f- _ExopsureMultiplier );
     finalColor = finalColorWoEmissive + emissive;
 
 #if defined(_SHADINGGRADEMAP)
