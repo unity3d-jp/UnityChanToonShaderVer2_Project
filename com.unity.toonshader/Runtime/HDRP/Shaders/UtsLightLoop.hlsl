@@ -245,11 +245,19 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 
 float3 GetAdjustedLightColor(float3 originalLightColor )
 {
+
+
     if (_ExposureAdjustment == 0)
     {
         return originalLightColor * GetCurrentExposureMultiplier();
     }
-    return originalLightColor * 0.0;
+    else // else is neccessary to avoid warrnings.
+    {
+        originalLightColor = max(float3(0.00001, 0.0001, 0.0001), originalLightColor);
+        originalLightColor = min(float3(100000, 100000, 100000), originalLightColor);
+        float3 log10color = log10(originalLightColor);
+        return clamp(log10color+float3(5.0,5.0,5.0)/10.0, 0, 1);
+    }
 }
 
 float  GetLightAttenuation(float3 lightColor)

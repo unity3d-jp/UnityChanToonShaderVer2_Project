@@ -36,7 +36,7 @@ namespace Unity.Rendering.Toon
                 m_CurveType = 0;
             }
             Shader.SetGlobalInt(kExposureCurvePropName, m_CurveType);
-           Shader.SetGlobalInt(kExposureCurvePropName, m_expssureAdjustmnt ? 1 : 0);
+           Shader.SetGlobalInt(kExposureAdjustmentPropName, m_expssureAdjustmnt ? 1 : 0);
 //	        Shader.SetGlobalFloat(kExopsureMultiplier, m_ExopsureMultiplier);
         }
     }
