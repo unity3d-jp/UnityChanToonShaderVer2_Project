@@ -245,7 +245,9 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 
 float3 GetAdjustedLightColor(float3 originalLightColor )
 {
-
+    float minBrightness = 0.0001;
+    float maxBrightness = 100000;
+    float logOffset = 5.0;
 
     if (_ExposureAdjustment == 0)
     {
@@ -253,10 +255,10 @@ float3 GetAdjustedLightColor(float3 originalLightColor )
     }
     else // else is neccessary to avoid warrnings.
     {
-        originalLightColor = max(float3(0.00001, 0.0001, 0.0001), originalLightColor);
-        originalLightColor = min(float3(100000, 100000, 100000), originalLightColor);
+        originalLightColor = max(float3(minBrightness, minBrightness, minBrightness), originalLightColor);
+        originalLightColor = min(float3(maxBrightness, maxBrightness, maxBrightness), originalLightColor);
         float3 log10color = log10(originalLightColor);
-        return clamp(log10color+float3(5.0,5.0,5.0)/10.0, 0, 1);
+        return clamp((log10color+float3(logOffset, logOffset, logOffset))/10.0, 0, 1);
     }
 }
 
