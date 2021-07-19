@@ -524,6 +524,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
                 float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
                 float3 additionalLightColor = s_lightData.color;
+                additionalLightColor = GetAdjustedLightColor(additionalLightColor);
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
 #if defined(_SHADINGGRADEMAP)
