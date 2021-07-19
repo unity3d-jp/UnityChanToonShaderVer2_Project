@@ -9,6 +9,8 @@ namespace UnityEditor.Rendering.Toon
 
     public class UTS_ExposureCurveInspector : Editor
     {
+
+        string numberString = "1";
         float zoom = 2.0f;
         public override void OnInspectorGUI()
         {
@@ -109,6 +111,14 @@ namespace UnityEditor.Rendering.Toon
                 isChanged = true;
             }
 
+            numberString = EditorGUILayout.TextField("lux: ", numberString);
+            float fLux = float.Parse(numberString);
+            fLux = Mathf.Max(fLux, 0.0001f);
+            fLux = Mathf.Min(fLux, 100000 );
+            float log10value = Mathf.Log10(fLux);
+            fLux = Mathf.Clamp((log10value + 5.0f) / 10.0f, 0.0f, 1.0f);
+            string label = fLux.ToString();
+            EditorGUILayout.LabelField(label);
             if ( isChanged)
             {
                 // at leaset 2020.3.12f1, not neccessary. but, from which version??
