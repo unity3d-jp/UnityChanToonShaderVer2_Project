@@ -13,22 +13,23 @@ namespace Unity.Rendering.Toon
     [DisallowMultipleComponent]
     public class UTS_ExposureCurve : MonoBehaviour
     {
+        // flags
+        bool m_initialized = false;
+        bool m_srpCallbackInitialized = false;
 
         const int k_ExposureCurvePrecision = 128;
         Texture2D m_ExposureCurveTexture;
         const string kExposureAdjustmentPropName = "_ExposureAdjustment";
-
+        readonly Color[] m_ExposureCurveColorArray = new Color[k_ExposureCurvePrecision];
         [SerializeField]
         public bool m_expssureAdjustmnt = true;
         [SerializeField]
-        public float m_ExopsureMultiplier = 0.0f;
-        bool m_initialized = false;
-        bool m_srpCallbackInitialized = false;
+        public AnimationCurve m_AnimationCurve = AnimationCurve.Linear(-10f, -10f, 20f, 20f);
+
 #if UNITY_EDITOR
 #pragma warning restore CS0414
         bool m_isCompiling = false;
 #endif
-
 
 
         void Update()

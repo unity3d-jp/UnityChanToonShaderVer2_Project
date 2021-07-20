@@ -11,14 +11,15 @@ namespace UnityEditor.Rendering.Toon
     {
 
         string numberString = "1";
-        float zoom = 2.0f;
+
         public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
             bool isChanged = false;
 
             var obj = target as UTS_ExposureCurve;
-            const string labelCurveLogic = "Curve Logic";
-            const string labelExposureAdjustment = "Exposure Adjustment";
+
+           // const string labelExposureAdjustment = "Exposure Adjustment";
             EditorGUI.BeginChangeCheck();
 
             if (EditorGUI.EndChangeCheck())
@@ -29,9 +30,10 @@ namespace UnityEditor.Rendering.Toon
             }
 
 
-            Rect rect = GUILayoutUtility.GetRect(Screen.width, 300.0f);
+            //Rect rect = GUILayoutUtility.GetRect(Screen.width, 300.0f);
 
             EditorGUI.BeginChangeCheck();
+            /*
             bool exposureAdjustment = EditorGUILayout.Toggle(labelExposureAdjustment, obj.m_expssureAdjustmnt);
             if (EditorGUI.EndChangeCheck())
             {
@@ -39,7 +41,7 @@ namespace UnityEditor.Rendering.Toon
                 obj.m_expssureAdjustmnt = exposureAdjustment;
                 isChanged = true;
             }
-
+            */
             numberString = EditorGUILayout.TextField("lux: ", numberString);
             float fLux = float.Parse(numberString);
             fLux = Mathf.Max(fLux, 0.0001f);
