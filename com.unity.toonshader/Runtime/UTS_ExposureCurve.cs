@@ -38,7 +38,32 @@ namespace Unity.Rendering.Toon
             Initialize();
 
             Shader.SetGlobalInt(kExposureAdjustmentPropName, m_expssureAdjustmnt ? 1 : 0);
+            var pixels = m_ExposureCurveColorArray;
 
+            // Fail safe in case the curve is deleted / has 0 point
+            var curve = m_AnimationCurve;
+            float min, max;
+
+            if (curve == null || curve.length == 0)
+            {
+                min = 0f;
+                max = 0f;
+
+                for (int i = 0; i < k_ExposureCurvePrecision; i++)
+                    pixels[i] = Color.clear;
+            }
+            else
+            {
+                min = curve[0].time;
+                max = curve[curve.length - 1].time;
+                float step = (max - min) / (k_ExposureCurvePrecision - 1f);
+
+                for (int i = 0; i < k_ExposureCurvePrecision; i++)
+                    pixels[i] = new Color(curve.Evaluate(min + step * i), 0f, 0f, 0f);
+            }
+
+            m_ExposureCurveTexture.SetPixels(pixels);
+            m_ExposureCurveTexture.Apply();
 #if UNITY_EDITOR
             // handle script recompile
             if (EditorApplication.isCompiling && !m_isCompiling)
