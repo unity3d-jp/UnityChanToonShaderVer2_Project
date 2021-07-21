@@ -259,7 +259,7 @@ float3 ConvertToEV100(float3 value)
     return log2(value*0.4f);
 }
 
-float3 GetExpojureAdjustedColor(float3 originalColor)
+float3 GetExposureAdjustedColor(float3 originalColor)
 {
 
     float fMin = ConvertFromEV100(_UTS_ExposureMin);
