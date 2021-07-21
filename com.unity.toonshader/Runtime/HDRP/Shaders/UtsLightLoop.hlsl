@@ -249,34 +249,40 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 
 float3 ConvertFromEV100(float3 EV100)
 {
-    float3 value = pow(2, EV100) * 2.5f;
-    return value;
-
+//    float3 value = pow(2, EV100) * 2.5f;
+//    return value;
+    float maxLuminance = 1.2f * pow(2.0f, EV100);
+    return 1.0f / maxLuminance;
 }
 
 float3 ConvertToEV100(float3 value)
 {
-    return log2(value*0.4f);
+    return log2(1.0f / (1.2f * value));
+//    return log2(value*0.4f);
 }
 
 float3 GetExposureAdjustedColor(float3 originalColor)
 {
     if (_UTS_ExposureAdjustment != 0)
     {
-//        float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
-//        float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
+#if 0
+        float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
+        float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
+        float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
+#else
         float3 orignalEV = ConvertToEV100(originalColor);
         float3 f3RemapEV = clamp((orignalEV - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin),0,128);
 
         int3   i3RemapEV = (int3)f3RemapEV;
         float3 f3RemapLerp = f3RemapEV - i3RemapEV;
- //       float3 f3ResultColor = clamp(originalColor, fMin, fMax);
+
         float3 f3RemapedEV;
         f3RemapedEV.r = _UTS_ExposureArray[i3RemapEV.r] +(_UTS_ExposureArray[i3RemapEV.r + 1] - _UTS_ExposureArray[i3RemapEV.r]) * f3RemapLerp.r;
         f3RemapedEV.g = _UTS_ExposureArray[i3RemapEV.g] +(_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.g]) * f3RemapLerp.g;
         f3RemapedEV.b = _UTS_ExposureArray[i3RemapEV.b] +(_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.b]) * f3RemapLerp.b;
 
         float3 resultColor = ConvertFromEV100(f3RemapedEV);
+#endif
         return resultColor;
     }
     else  // else is neccessary to avoid warrnings.
