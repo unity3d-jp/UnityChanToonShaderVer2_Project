@@ -249,23 +249,29 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 
 float3 ConvertFromEV100(float3 EV100)
 {
-//    float3 value = pow(2, EV100) * 2.5f;
-//    return value;
-    float maxLuminance = 1.2f * pow(2.0f, EV100);
+#if 1
+    float3 value = pow(2, EV100) * 2.5f;
+    return value;
+#else
+    float3 maxLuminance = 1.2f * pow(2.0f, EV100);
     return 1.0f / maxLuminance;
+#endif
 }
 
 float3 ConvertToEV100(float3 value)
 {
+#if 1
+    return log2(value*0.4f);
+#else
     return log2(1.0f / (1.2f * value));
-//    return log2(value*0.4f);
+#endif
 }
 
 float3 GetExposureAdjustedColor(float3 originalColor)
 {
     if (_UTS_ExposureAdjustment != 0)
     {
-#if 0
+#if 1
         float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
         float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
         float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
