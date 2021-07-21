@@ -222,6 +222,7 @@ uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynt
 
 // global variables, not in materials. so _UTS_Prefex is neccessary to avoid conflict to other shaders.
 uniform int _UTS_LightAdjustment;
+uniform int _UTS_ExposureAdjustment;
 uniform float _UTS_ExposureArray[128];
 uniform float _UTS_ExposureMin;
 uniform float _UTS_ExposureMax;
