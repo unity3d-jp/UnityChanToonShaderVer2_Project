@@ -162,7 +162,7 @@ uniform float _Tweak_transparency;
 #endif
 
 
-sampler2D _MainTex; uniform float4 _MainTex_ST;
+uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
 uniform float _GI_Intensity;
 #if defined(_SHADINGGRADEMAP)
 
@@ -220,8 +220,9 @@ uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthe
 uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
 #endif
 
-uniform int _ExposureCurveType;
-uniform int _ExposureAdjustment;
+// global variables, not in materials. so _UTS_Prefex is neccessary to avoid conflict to other shaders.
+uniform int _UTS_ExposureAdjustment;
+uniform float _UTS_ExposureArray[128];
 
 // just grafted from UTS/Universal RP
 struct UtsLight
@@ -249,7 +250,7 @@ float3 GetAdjustedLightColor(float3 originalLightColor )
     float maxBrightness = 100000;
     float logOffset = 5.0;
 
-    if (_ExposureAdjustment == 0)
+    if (_UTS_ExposureAdjustment == 0)
     {
         return originalLightColor * GetCurrentExposureMultiplier();
     }

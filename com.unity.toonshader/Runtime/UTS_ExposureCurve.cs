@@ -18,14 +18,16 @@ namespace Unity.Rendering.Toon
         bool m_srpCallbackInitialized = false;
 
         const int k_ExposureCurvePrecision = 128;
-        Texture2D m_ExposureCurveTexture;
-        const string kExposureAdjustmentPropName = "_ExposureAdjustment";
+
+        const string kExposureAdjustmentPropName = "_UTS_ExposureAdjustment";
+        const string kExposureArrayPropName = "_UTS_ExposureArray";
         readonly Color[] m_ExposureCurveColorArray = new Color[k_ExposureCurvePrecision];
         [SerializeField]
         public bool m_expssureAdjustmnt = true;
         [SerializeField]
         public AnimationCurve m_AnimationCurve = AnimationCurve.Linear(-10f, -10f, 20f, 20f);
-
+        [SerializeField]
+        float[] m_ExposureArray;
 #if UNITY_EDITOR
 #pragma warning restore CS0414
         bool m_isCompiling = false;
@@ -37,8 +39,7 @@ namespace Unity.Rendering.Toon
 
             Initialize();
 
-            Shader.SetGlobalInt(kExposureAdjustmentPropName, m_expssureAdjustmnt ? 1 : 0);
-            var pixels = m_ExposureCurveColorArray;
+
 
             // Fail safe in case the curve is deleted / has 0 point
             var curve = m_AnimationCurve;
@@ -50,7 +51,7 @@ namespace Unity.Rendering.Toon
                 max = 0f;
 
                 for (int i = 0; i < k_ExposureCurvePrecision; i++)
-                    pixels[i] = Color.clear;
+                    m_ExposureArray[i] = 0.0f;
             }
             else
             {
@@ -59,11 +60,10 @@ namespace Unity.Rendering.Toon
                 float step = (max - min) / (k_ExposureCurvePrecision - 1f);
 
                 for (int i = 0; i < k_ExposureCurvePrecision; i++)
-                    pixels[i] = new Color(curve.Evaluate(min + step * i), 0f, 0f, 0f);
+                    m_ExposureArray[i] = curve.Evaluate(min + step * i);
             }
 
-            m_ExposureCurveTexture.SetPixels(pixels);
-            m_ExposureCurveTexture.Apply();
+
 #if UNITY_EDITOR
             // handle script recompile
             if (EditorApplication.isCompiling && !m_isCompiling)
@@ -78,6 +78,9 @@ namespace Unity.Rendering.Toon
                 m_isCompiling = false;
             }
 #endif
+            Shader.SetGlobalFloatArray(kExposureArrayPropName, m_ExposureArray);
+            Shader.SetGlobalInt(kExposureAdjustmentPropName, m_expssureAdjustmnt ? 1 : 0);
+            var pixels = m_ExposureCurveColorArray;
 
         }
 
@@ -125,15 +128,11 @@ namespace Unity.Rendering.Toon
             if (EditorApplication.isCompiling)
                 return;
 #endif
-            Debug.Assert(m_ExposureCurveTexture == null);
-            m_ExposureCurveTexture = new Texture2D(k_ExposureCurvePrecision, 1, TextureFormat.RHalf, false, true)
+
+            if (m_ExposureArray == null)
             {
-                name = "Exposure Curve",
-                filterMode = FilterMode.Bilinear,
-                wrapMode = TextureWrapMode.Clamp
-            };
-
-
+                m_ExposureArray = new float[k_ExposureCurvePrecision];
+            }
             m_initialized = true;
         }
 
@@ -142,14 +141,12 @@ namespace Unity.Rendering.Toon
         {
             if (m_initialized)
             {
-                 DestroyUnityObject(m_ExposureCurveTexture);
-                 m_ExposureCurveTexture = null;
             }
 
             m_initialized = false;
 
         }
-
+/*
         public static void DestroyUnityObject(UnityObject obj)
         {
             if (obj != null)
@@ -164,6 +161,7 @@ namespace Unity.Rendering.Toon
 #endif
             }
         }
+*/
     }
 
 
