@@ -221,8 +221,10 @@ uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynt
 #endif
 
 // global variables, not in materials. so _UTS_Prefex is neccessary to avoid conflict to other shaders.
-uniform int _UTS_ExposureAdjustment;
+uniform int _UTS_LightAdjustment;
 uniform float _UTS_ExposureArray[128];
+uniform float _UTS_ExposureMin;
+uniform float _UTS_ExposureMax;
 
 // just grafted from UTS/Universal RP
 struct UtsLight
@@ -244,22 +246,44 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
     return (mul(_uv - _piv, float2x2(RotateUV_cos, -RotateUV_sin, RotateUV_sin, RotateUV_cos)) + _piv);
 }
 
+float3 ConvertFromEV100(float3 EV100)
+{
+    float3 value = pow(2, EV100) * 2.5f;
+    return value;
+
+}
+
+float3 ConvertToEV100(float3 value)
+{
+    return log2(value*0.4f);
+}
+
+float3 GetExpojureAdjustedColor(float3 originalColor)
+{
+
+    float fMin = ConvertFromEV100(_UTS_ExposureMin);
+    float fMax = ConvertFromEV100(_UTS_ExposureMax);
+    return clamp(originalColor, fMin, fMax);
+    //        return originalLightColor;
+}
 float3 GetAdjustedLightColor(float3 originalLightColor )
 {
-    float minBrightness = 0.0001;
-    float maxBrightness = 100000;
-    float logOffset = 5.0;
 
-    if (_UTS_ExposureAdjustment == 0)
+
+    if (_UTS_LightAdjustment == 0)
     {
         return originalLightColor * GetCurrentExposureMultiplier();
     }
     else // else is neccessary to avoid warrnings.
     {
+
+        float minBrightness = 0.0001;
+        float maxBrightness = 100000;
+        float logOffset = 5.0;
         originalLightColor = max(float3(minBrightness, minBrightness, minBrightness), originalLightColor);
         originalLightColor = min(float3(maxBrightness, maxBrightness, maxBrightness), originalLightColor);
         float3 log10color = log10(originalLightColor);
-        return clamp((log10color+float3(logOffset, logOffset, logOffset))/10.0, 0, 1);
+        return clamp((log10color + float3(logOffset, logOffset, logOffset)) / 10.0, 0, 1);
     }
 }
 
