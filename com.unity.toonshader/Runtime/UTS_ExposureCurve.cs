@@ -26,7 +26,7 @@ namespace Unity.Rendering.Toon
         const string kExposureMaxPropName   = "_UTS_ExposureMax";
         readonly Color[] m_ExposureCurveColorArray = new Color[k_ExposureCurvePrecision];
         [SerializeField]
-        public bool m_LightAdjustmnt = false;
+        public bool m_LightAdjustment = false;
         [SerializeField]
         public bool m_ExposureAdjustmnt = false;
         [SerializeField]
@@ -88,7 +88,7 @@ namespace Unity.Rendering.Toon
             Shader.SetGlobalFloat(kExposureMinPropName, min );
             Shader.SetGlobalFloat(kExposureMaxPropName, max );
             Shader.SetGlobalInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
-            Shader.SetGlobalInt(kLightAdjustmentPropName, m_LightAdjustmnt ? 1 : 0);
+            Shader.SetGlobalInt(kLightAdjustmentPropName, m_LightAdjustment ? 1 : 0);
             var pixels = m_ExposureCurveColorArray;
 
         }

@@ -17,32 +17,42 @@ namespace UnityEditor.Rendering.Toon
             const string labelLightAdjustment = "Light Adjustment";
             const string labelExposureAdjustment = "Exposure Adjustment";
             const string labelExposureCurave = "Curve";
-            const string labelExposureMin = "Min";
-            const string labelExposureMax = "Max";
+            //const string labelExposureMin = "Min";
+            //const string labelExposureMax = "Max";
             bool isChanged = false;
 
             var obj = target as UTS_ExposureCurve;
+            EditorGUI.BeginChangeCheck();
+            bool exposureAdjustment = EditorGUILayout.Toggle(labelExposureAdjustment, obj.m_ExposureAdjustmnt);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed Expsure Adjustment");
+                obj.m_ExposureAdjustmnt = exposureAdjustment;
+                isChanged = true;
+            }
 
-
+            EditorGUI.BeginDisabledGroup(!obj.m_ExposureAdjustmnt);
+            EditorGUI.indentLevel++;
             EditorGUI.BeginChangeCheck();
             var curve = EditorGUILayout.CurveField(labelExposureCurave, obj.m_AnimationCurve );
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Changed Curve");
-
+                obj.m_AnimationCurve = curve;
                 isChanged = true;
             }
-
+            EditorGUI.indentLevel--;
+            EditorGUI.EndDisabledGroup();
 
             //Rect rect = GUILayoutUtility.GetRect(Screen.width, 300.0f);
 
             EditorGUI.BeginChangeCheck();
 
-            bool exposureAdjustment = EditorGUILayout.Toggle(labelLightAdjustment, obj.m_LightAdjustmnt);
+            bool lightAdjustment = EditorGUILayout.Toggle(labelLightAdjustment, obj.m_LightAdjustment);
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(target, "Changed Exposure Adjustment");
-                obj.m_LightAdjustmnt = exposureAdjustment;
+                Undo.RecordObject(target, "Changed Light Adjustment");
+                obj.m_LightAdjustment = lightAdjustment;
                 isChanged = true;
             }
 
