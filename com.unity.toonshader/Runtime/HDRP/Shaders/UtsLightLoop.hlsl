@@ -297,6 +297,15 @@ float3 GetExposureAdjustedColor(float3 originalColor)
     }
 }
 
+
+float WeightSample(PositionInputs positionInput)
+{
+    // Center-weighted
+    const float2 kCenter = _ScreenParams.xy * 0.5;
+    const float weight = pow(length((kCenter.xy - positionInput.positionSS.xy) / _ScreenParams.xy),1.0) ;
+    return 1.0 - saturate(weight);
+}
+
 float3 GetAdjustedLightColor(float3 originalLightColor )
 {
 
