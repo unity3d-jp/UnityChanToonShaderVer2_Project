@@ -3,6 +3,7 @@
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Macros.hlsl"
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/PhysicalCamera.hlsl"
 #include "HDRPToonHead.hlsl"
 
 // Channel mask enum.
@@ -249,7 +250,7 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 
 float3 ConvertFromEV100(float3 EV100)
 {
-#if 1
+#if 0
     float3 value = pow(2, EV100) * 2.5f;
     return value;
 #else
@@ -260,32 +261,50 @@ float3 ConvertFromEV100(float3 EV100)
 
 float3 ConvertToEV100(float3 value)
 {
-#if 1
+#if 0
     return log2(value*0.4f);
 #else
     return log2(1.0f / (1.2f * value));
 #endif
 }
 
-float3 GetExposureAdjustedColor(float3 originalColor)
+
+
+float WeightSample(PositionInputs positionInput)
+{
+    // Center-weighted
+    const float2 kCenter = _ScreenParams.xy * 0.5;
+    const float weight = pow(length((kCenter.xy - positionInput.positionSS.xy) / _ScreenParams.xy),1.0) ;
+    return 1.0 - saturate(weight);
+}
+
+
+float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
 {
     if (_UTS_ExposureAdjustment != 0)
     {
-#if 1
+#if 0
         float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
         float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
         float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
 #else
+
+        // processed in kPrePass
+        const float luma = 1.0;
+        float weight = WeightSample(posInput);
+        float logLuma = ComputeEV100FromAvgLuminance(max(luma, 1e-4));
+
+        // processed in KReduction
         float3 orignalEV = ConvertToEV100(originalColor);
-        float3 f3RemapEV = clamp((orignalEV - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin),0,128);
+        float3 f3RemapEV = clamp((orignalEV - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin), 0, 128);
 
         int3   i3RemapEV = (int3)f3RemapEV;
         float3 f3RemapLerp = f3RemapEV - i3RemapEV;
 
         float3 f3RemapedEV;
-        f3RemapedEV.r = _UTS_ExposureArray[i3RemapEV.r] +(_UTS_ExposureArray[i3RemapEV.r + 1] - _UTS_ExposureArray[i3RemapEV.r]) * f3RemapLerp.r;
-        f3RemapedEV.g = _UTS_ExposureArray[i3RemapEV.g] +(_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.g]) * f3RemapLerp.g;
-        f3RemapedEV.b = _UTS_ExposureArray[i3RemapEV.b] +(_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.b]) * f3RemapLerp.b;
+        f3RemapedEV.r = _UTS_ExposureArray[i3RemapEV.r] + (_UTS_ExposureArray[i3RemapEV.r + 1] - _UTS_ExposureArray[i3RemapEV.r]) * f3RemapLerp.r;
+        f3RemapedEV.g = _UTS_ExposureArray[i3RemapEV.g] + (_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.g]) * f3RemapLerp.g;
+        f3RemapedEV.b = _UTS_ExposureArray[i3RemapEV.b] + (_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.b]) * f3RemapLerp.b;
 
         float3 resultColor = ConvertFromEV100(f3RemapedEV);
 #endif
@@ -295,15 +314,6 @@ float3 GetExposureAdjustedColor(float3 originalColor)
     {
         return originalColor;
     }
-}
-
-
-float WeightSample(PositionInputs positionInput)
-{
-    // Center-weighted
-    const float2 kCenter = _ScreenParams.xy * 0.5;
-    const float weight = pow(length((kCenter.xy - positionInput.positionSS.xy) / _ScreenParams.xy),1.0) ;
-    return 1.0 - saturate(weight);
 }
 
 float3 GetAdjustedLightColor(float3 originalLightColor )
