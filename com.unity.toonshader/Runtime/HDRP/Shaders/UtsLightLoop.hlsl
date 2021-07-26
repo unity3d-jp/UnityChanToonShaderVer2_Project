@@ -288,29 +288,30 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
         float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
         float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
 #else
-        float previousExposureEV100 = 0.0f; // todo.
+        float previousExposureEV100 = 10.0f; // todo.
         float utsParamExposureCompensation = 0.0f;
 
         // processed in kPrePass
         float  prevExposure = ConvertEV100ToExposure(previousExposureEV100); 
-        float3 color = originalColor;
-        float luma = Luminance(color / prevExposure);
+
+        float luma = Luminance(originalColor / prevExposure);
         float weight = WeightSample(posInput);
         float logLuma = ComputeEV100FromAvgLuminance(max(luma, 1e-4));
 
         // processed in KReduction
-        float  remapLogLuma = clamp((logLuma - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin), 0, 128);
+        float  fRemapEV = clamp((logLuma - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin), 0, 128);
 
 
-        int    iRemapEV = (int)remapLogLuma;
-        float  fRemapLerp = remapLogLuma - iRemapEV;
+        int    iRemapEV = (int)fRemapEV;
+        float  fRemapLerp = fRemapEV - iRemapEV;
 
         float  fRemapedEV = _UTS_ExposureArray[iRemapEV] + (_UTS_ExposureArray[iRemapEV + 1] - _UTS_ExposureArray[iRemapEV]) * fRemapLerp;
         float  fRemapedExposure = ConvertEV100ToExposure(fRemapedEV);
 
-
         // processed in 
         float3 resultColor = originalColor * fRemapedExposure;
+//        resultColor = float3(0, 0, fRemapedEV);
+
 #endif
         return resultColor;
     }
