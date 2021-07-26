@@ -250,7 +250,7 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 
 float3 ConvertFromEV100(float3 EV100)
 {
-#if 0
+#if 1
     float3 value = pow(2, EV100) * 2.5f;
     return value;
 #else
@@ -261,7 +261,7 @@ float3 ConvertFromEV100(float3 EV100)
 
 float3 ConvertToEV100(float3 value)
 {
-#if 0
+#if 1
     return log2(value*0.4f);
 #else
     return log2(1.0f / (1.2f * value));
@@ -288,25 +288,29 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
         float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
         float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
 #else
+        float previousExposureEV100 = 0.0f; // todo.
+        float utsParamExposureCompensation = 0.0f;
 
         // processed in kPrePass
-        const float luma = 1.0;
+        float  prevExposure = ConvertEV100ToExposure(previousExposureEV100); 
+        float3 color = originalColor;
+        float luma = Luminance(color / prevExposure);
         float weight = WeightSample(posInput);
         float logLuma = ComputeEV100FromAvgLuminance(max(luma, 1e-4));
 
         // processed in KReduction
-        float3 orignalEV = ConvertToEV100(originalColor);
-        float3 f3RemapEV = clamp((orignalEV - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin), 0, 128);
+        float  remapLogLuma = clamp((logLuma - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin), 0, 128);
 
-        int3   i3RemapEV = (int3)f3RemapEV;
-        float3 f3RemapLerp = f3RemapEV - i3RemapEV;
 
-        float3 f3RemapedEV;
-        f3RemapedEV.r = _UTS_ExposureArray[i3RemapEV.r] + (_UTS_ExposureArray[i3RemapEV.r + 1] - _UTS_ExposureArray[i3RemapEV.r]) * f3RemapLerp.r;
-        f3RemapedEV.g = _UTS_ExposureArray[i3RemapEV.g] + (_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.g]) * f3RemapLerp.g;
-        f3RemapedEV.b = _UTS_ExposureArray[i3RemapEV.b] + (_UTS_ExposureArray[i3RemapEV.g + 1] - _UTS_ExposureArray[i3RemapEV.b]) * f3RemapLerp.b;
+        int    iRemapEV = (int)remapLogLuma;
+        float  fRemapLerp = remapLogLuma - iRemapEV;
 
-        float3 resultColor = ConvertFromEV100(f3RemapedEV);
+        float  fRemapedEV = _UTS_ExposureArray[iRemapEV] + (_UTS_ExposureArray[iRemapEV + 1] - _UTS_ExposureArray[iRemapEV]) * fRemapLerp;
+        float  fRemapedExposure = ConvertEV100ToExposure(fRemapedEV);
+
+
+        // processed in 
+        float3 resultColor = originalColor * fRemapedExposure;
 #endif
         return resultColor;
     }
