@@ -283,7 +283,7 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
 {
     if (_UTS_ExposureAdjustment != 0)
     {
-#if 0
+#if 1
         float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
         float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
         float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
