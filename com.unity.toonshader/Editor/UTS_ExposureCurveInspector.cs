@@ -35,6 +35,8 @@ namespace UnityEditor.Rendering.Toon
             {
                 EditorGUI.indentLevel++;
                 EditorGUI.BeginChangeCheck();
+                //               var ranges = new Rect(-10, -10, 20, 20);
+                //               var curve = EditorGUILayout.CurveField(labelExposureCurave, obj.m_AnimationCurve, Color.green,ranges);
                 var curve = EditorGUILayout.CurveField(labelExposureCurave, obj.m_AnimationCurve);
                 if (EditorGUI.EndChangeCheck())
                 {
