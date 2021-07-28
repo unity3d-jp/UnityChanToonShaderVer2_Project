@@ -292,9 +292,9 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
         float3 ev100_lerp = ev100_remap - ev100_idx;
         float3  ev100_remapped;
 
-        ev100_remapped.r = _UTS_ExposureArray[ev100_idx.r]; // +(_UTS_ExposureArray[ev100_idx.r + 1] - _UTS_ExposureArray[ev100_idx.r]) * ev100_lerp.r;
-        ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g]; // +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
-        ev100_remapped.b = _UTS_ExposureArray[ev100_idx.b]; //  +(_UTS_ExposureArray[ev100_idx.b + 1] - _UTS_ExposureArray[ev100_idx.b]) * ev100_lerp.b;
+        ev100_remapped.r = _UTS_ExposureArray[ev100_idx.r] +(_UTS_ExposureArray[ev100_idx.r + 1] - _UTS_ExposureArray[ev100_idx.r]) * ev100_lerp.r;
+        ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g] +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
+        ev100_remapped.b = _UTS_ExposureArray[ev100_idx.b] +(_UTS_ExposureArray[ev100_idx.b + 1] - _UTS_ExposureArray[ev100_idx.b]) * ev100_lerp.b;
 
 //        ev100_remapped.r = _UTS_ExposureArray[ev100_idx.r]; // +(_UTS_ExposureArray[ev100_idx.r + 1] - _UTS_ExposureArray[ev100_idx.r]) * ev100_lerp.r;
 //        ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g]; // +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
