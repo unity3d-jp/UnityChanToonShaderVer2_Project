@@ -47,7 +47,7 @@
       "hash": "bbba12aaf3e7c6fb1c198746ef9a0fcf408b79b9"
     },
     "com.unity.render-pipelines.core": {
-      "version": "7.7.0",
+      "version": "7.7.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -57,35 +57,35 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.high-definition": {
-      "version": "7.7.0",
+      "version": "7.7.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.video": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.render-pipelines.core": "7.7.0",
-        "com.unity.shadergraph": "7.7.0",
-        "com.unity.visualeffectgraph": "7.7.0",
-        "com.unity.render-pipelines.high-definition-config": "7.7.0"
+        "com.unity.render-pipelines.core": "7.7.1",
+        "com.unity.shadergraph": "7.7.1",
+        "com.unity.visualeffectgraph": "7.7.1",
+        "com.unity.render-pipelines.high-definition-config": "7.7.1"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.high-definition-config": {
-      "version": "7.7.0",
+      "version": "7.7.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.7.0"
+        "com.unity.render-pipelines.core": "7.7.1"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "7.7.0",
+      "version": "7.7.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.7.0"
+        "com.unity.render-pipelines.core": "7.7.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -137,12 +137,12 @@
       }
     },
     "com.unity.visualeffectgraph": {
-      "version": "7.7.0",
+      "version": "7.7.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.shadergraph": "7.7.0",
-        "com.unity.render-pipelines.core": "7.7.0"
+        "com.unity.shadergraph": "7.7.1",
+        "com.unity.render-pipelines.core": "7.7.1"
       },
       "url": "https://packages.unity.com"
     },
