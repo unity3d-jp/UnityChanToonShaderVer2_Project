@@ -30,7 +30,7 @@ namespace Unity.Rendering.Toon
         [SerializeField]
         public bool m_ExposureAdjustmnt = false;
         [SerializeField]
-        public AnimationCurve m_AnimationCurve = AnimationCurve.Linear(-10f, -10f, 20f, 20f);
+        public AnimationCurve m_AnimationCurve = AnimationCurve.Linear(-10f, -10f, 16f, 16f);
         [SerializeField]
         public float[] m_ExposureArray;
         public float m_Max, m_Min;

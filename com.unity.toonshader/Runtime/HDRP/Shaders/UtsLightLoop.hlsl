@@ -284,9 +284,25 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
     if (_UTS_ExposureAdjustment != 0)
     {
 #if 1
-        float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
-        float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
-        float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
+        float3 ev100_Color = ConvertToEV100(originalColor);
+        ev100_Color = clamp(ev100_Color, _UTS_ExposureMin, _UTS_ExposureMax);
+        float3 ev100_remap = (ev100_Color - _UTS_ExposureMin) * (128-1) / (_UTS_ExposureMax - _UTS_ExposureMin);
+//        float3 resultColor = ConvertFromEV100(ev100_Color);
+        int3  ev100_idx = (int3)ev100_remap;
+        float3 ev100_lerp = ev100_remap - ev100_idx;
+        float3  ev100_remapped;
+
+        ev100_remapped.r = _UTS_ExposureArray[ev100_idx.r]; // +(_UTS_ExposureArray[ev100_idx.r + 1] - _UTS_ExposureArray[ev100_idx.r]) * ev100_lerp.r;
+        ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g]; // +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
+        ev100_remapped.b = _UTS_ExposureArray[ev100_idx.b]; //  +(_UTS_ExposureArray[ev100_idx.b + 1] - _UTS_ExposureArray[ev100_idx.b]) * ev100_lerp.b;
+
+//        ev100_remapped.r = _UTS_ExposureArray[ev100_idx.r]; // +(_UTS_ExposureArray[ev100_idx.r + 1] - _UTS_ExposureArray[ev100_idx.r]) * ev100_lerp.r;
+//        ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g]; // +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
+//        ev100_remapped.b = _UTS_ExposureArray[ev100_idx.b]; //  +(_UTS_ExposureArray[ev100_idx.b + 1] - _UTS_ExposureArray[ev100_idx.b]) * ev100_lerp.b;
+        float3 resultColor = ConvertFromEV100(ev100_remapped);
+//        float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
+//        float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
+//        float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
 #else
         float previousExposureEV100 = 10.0f; // todo.
         float utsParamExposureCompensation = 0.0f;

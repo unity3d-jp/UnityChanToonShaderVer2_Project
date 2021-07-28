@@ -72,7 +72,7 @@ namespace UnityEditor.Rendering.Toon
                 EditorApplication.QueuePlayerLoopUpdate();
             }
 
-            obj.m_DebugUI = EditorGUILayout.Toggle(labelExposureAdjustment, obj.m_DebugUI);
+            obj.m_DebugUI = EditorGUILayout.Toggle("Debug UI", obj.m_DebugUI);
             if (m_SerializedObject == null )
             {
                 m_SerializedObject = new SerializedObject(obj);
@@ -102,6 +102,15 @@ namespace UnityEditor.Rendering.Toon
                     EditorGUILayout.LabelField(ConvertFromEV100(obj.m_ExposureArray[ii]).ToString());
                     EditorGUILayout.EndHorizontal();
                 }
+
+                float brightness = 130000;
+                float ev100_Color = ConvertToEV100(brightness);
+                ev100_Color =  Mathf.Clamp(ev100_Color, obj.m_Min, obj.m_Max);
+                float ev100_remap = (ev100_Color - obj.m_Min) * (obj.m_ExposureArray.Length-1) / (obj.m_Max - obj.m_Min);
+
+                int ev100_idx = (int)ev100_remap;
+                EditorGUILayout.LabelField("ev100_Color:" + ev100_Color.ToString());
+                EditorGUILayout.LabelField("idx:" + ev100_idx.ToString()); 
                 EditorGUI.indentLevel--;
             }
             EditorGUI.EndDisabledGroup();
