@@ -310,7 +310,7 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
 
         // processed in 
         float3 resultColor = originalColor * fRemapedExposure;
-//        resultColor = float3(0, 0, fRemapedEV);
+        resultColor = float3(originalColor.r * fRemapedExposure, 0, 0);
 
 #endif
         return resultColor;

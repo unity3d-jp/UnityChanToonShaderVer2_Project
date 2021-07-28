@@ -32,7 +32,9 @@ namespace Unity.Rendering.Toon
         [SerializeField]
         public AnimationCurve m_AnimationCurve = AnimationCurve.Linear(-10f, -10f, 20f, 20f);
         [SerializeField]
-        float[] m_ExposureArray;
+        public float[] m_ExposureArray;
+        public float m_Max, m_Min;
+        public bool m_DebugUI;
 
 #if UNITY_EDITOR
 #pragma warning restore CS0414
@@ -49,24 +51,24 @@ namespace Unity.Rendering.Toon
 
             // Fail safe in case the curve is deleted / has 0 point
             var curve = m_AnimationCurve;
-            float min, max;
+
 
             if (curve == null || curve.length == 0)
             {
-                min = 0f;
-                max = 0f;
+                m_Min = 0f;
+                m_Max = 0f;
 
                 for (int i = 0; i < k_ExposureCurvePrecision; i++)
                     m_ExposureArray[i] = 0.0f;
             }
             else
             {
-                min = curve[0].time;
-                max = curve[curve.length - 1].time;
-                float step = (max - min) / (k_ExposureCurvePrecision - 1f);
+                m_Min = curve[0].time;
+                m_Max = curve[curve.length - 1].time;
+                float step = (m_Max - m_Min) / (k_ExposureCurvePrecision - 1f);
 
                 for (int i = 0; i < k_ExposureCurvePrecision; i++)
-                    m_ExposureArray[i] = curve.Evaluate(min + step * i);
+                    m_ExposureArray[i] = curve.Evaluate(m_Min + step * i);
             }
 
 
@@ -85,8 +87,8 @@ namespace Unity.Rendering.Toon
             }
 #endif
             Shader.SetGlobalFloatArray(kExposureArrayPropName, m_ExposureArray);
-            Shader.SetGlobalFloat(kExposureMinPropName, min );
-            Shader.SetGlobalFloat(kExposureMaxPropName, max );
+            Shader.SetGlobalFloat(kExposureMinPropName, m_Min);
+            Shader.SetGlobalFloat(kExposureMaxPropName, m_Max);
             Shader.SetGlobalInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
             Shader.SetGlobalInt(kLightAdjustmentPropName, m_LightAdjustment ? 1 : 0);
             var pixels = m_ExposureCurveColorArray;
