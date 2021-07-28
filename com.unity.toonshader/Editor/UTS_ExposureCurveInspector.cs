@@ -80,8 +80,14 @@ namespace UnityEditor.Rendering.Toon
             EditorGUI.BeginDisabledGroup(!obj.m_DebugUI);
             {
                 EditorGUI.indentLevel++;
-                EditorGUILayout.LabelField(labelExposureMin + obj.m_Min.ToString());
-                EditorGUILayout.LabelField(labelExposureMax + obj.m_Max.ToString());
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField(labelExposureMin);
+                EditorGUILayout.LabelField(obj.m_Min.ToString());
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField(labelExposureMax);
+                EditorGUILayout.LabelField(obj.m_Max.ToString());
+                EditorGUILayout.EndHorizontal();
                 /*
                 var prop = m_SerializedObject.FindProperty("m_ExposureArray");
                 EditorGUILayout.PropertyField(prop, new GUIContent("ExposureArray"), true);
