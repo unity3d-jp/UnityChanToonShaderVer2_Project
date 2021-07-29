@@ -11,7 +11,7 @@ namespace Unity.Rendering.Toon
 {
     [ExecuteAlways]
     [DisallowMultipleComponent]
-    public class UTS_AdjustmentCurve : MonoBehaviour
+    public class LightAdjustmentCurve : MonoBehaviour
     {
         // flags
         bool m_initialized = false;
@@ -21,10 +21,10 @@ namespace Unity.Rendering.Toon
 #if false
         const string kLightAdjustmentPropName = "_UTS_LightAdjustment";
 #endif
-        const string kExposureAdjustmentPorpName = "_UTS_AdjustmentCurve";
-        const string kExposureArrayPropName = "_UTS_AdjustmentValueArray";
-        const string kExposureMinPropName   = "_UTS_AdjustmentValueMin";
-        const string kExposureMaxPropName   = "_UTS_AdjustmentValueMax";
+        const string kExposureAdjustmentPorpName = "_UTS_LightAdjustmentCurve";
+        const string kExposureArrayPropName = "_UTS_LightAdjustmentValueArray";
+        const string kExposureMinPropName   = "_UTS_LightAdjustmentValueMin";
+        const string kExposureMaxPropName   = "_UTS_LightAdjustmentValueMax";
 
 #if false
         [SerializeField]
@@ -160,7 +160,7 @@ namespace Unity.Rendering.Toon
             }
 
             m_initialized = false;
-
+            Shader.SetGlobalInt(kExposureAdjustmentPorpName, 0);
         }
 /*
         public static void DestroyUnityObject(UnityObject obj)

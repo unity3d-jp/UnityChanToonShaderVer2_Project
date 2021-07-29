@@ -5,17 +5,18 @@ using UnityEditor;
 using Unity.Rendering.Toon;
 namespace UnityEditor.Rendering.Toon
 {
-    [CustomEditor(typeof(UTS_AdjustmentCurve))]
+    [CustomEditor(typeof(LightAdjustmentCurve))]
 
-    public class UTS_ExposureCurveInspector : Editor
+    public class ExposureCurveInspector : Editor
     {
         SerializedObject m_SerializedObject;
+#if ADJUSTMENT_CURVE_DEBUG_UI
         string numberString = "1";
-
+#endif //
         public override void OnInspectorGUI()
         {
-            const string labelExposureAdjustment = "Adjustment";
-            const string labelExposureCurve = "Curve";
+            const string labelLightAdjustment = "Light Adjustment";
+            const string labelLightAdjustmentCurve = "Curve";
 #if ADJUSTMENT_CURVE_DEBUG_UI
             const string labelLightAdjustment = "Light Adjustment";
             const string labelExposureMin = "Min:";
@@ -23,9 +24,9 @@ namespace UnityEditor.Rendering.Toon
 #endif
             bool isChanged = false;
 
-            var obj = target as UTS_AdjustmentCurve;
+            var obj = target as LightAdjustmentCurve;
             EditorGUI.BeginChangeCheck();
-            bool exposureAdjustment = EditorGUILayout.Toggle(labelExposureAdjustment, obj.m_ExposureAdjustmnt);
+            bool exposureAdjustment = EditorGUILayout.Toggle(labelLightAdjustment, obj.m_ExposureAdjustmnt);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Changed Expsure Adjustment");
@@ -39,7 +40,7 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUI.BeginChangeCheck();
                 //               var ranges = new Rect(-10, -10, 20, 20);
                 //               var curve = EditorGUILayout.CurveField(labelExposureCurave, obj.m_AnimationCurve, Color.green,ranges);
-                var curve = EditorGUILayout.CurveField(labelExposureCurve, obj.m_AnimationCurve);
+                var curve = EditorGUILayout.CurveField(labelLightAdjustmentCurve, obj.m_AnimationCurve);
                 if (EditorGUI.EndChangeCheck())
                 {
                     Undo.RecordObject(target, "Changed Curve");
@@ -130,22 +131,17 @@ namespace UnityEditor.Rendering.Toon
 
         float ConvertFromEV100(float EV100)
         {
-#if true
+
             float val = Mathf.Pow(2, EV100) * 2.5f;
             return val;
-#else
-            float3 maxLuminance = 1.2f * pow(2.0f, EV100);
-            return 1.0f / maxLuminance;
-#endif
+
         }
 
         float ConvertToEV100(float val)
         {
-#if true
+
             return Mathf.Log(val*0.4f,2.0f);
-#else
-            return log2(1.0f / (1.2f * value));
-#endif
+
         }
 
     }
