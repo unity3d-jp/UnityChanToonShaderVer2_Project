@@ -3,6 +3,7 @@
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Macros.hlsl"
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/PhysicalCamera.hlsl"
 #include "HDRPToonHead.hlsl"
 
 // Channel mask enum.
@@ -162,7 +163,7 @@ uniform float _Tweak_transparency;
 #endif
 
 
-sampler2D _MainTex; uniform float4 _MainTex_ST;
+uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
 uniform float _GI_Intensity;
 #if defined(_SHADINGGRADEMAP)
 
@@ -220,6 +221,15 @@ uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthe
 uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
 #endif
 
+// global variables, not in materials. so _UTS_Prefex is neccessary to avoid conflict to other shaders.
+#if 0
+uniform int _UTS_LightAdjustment;
+#endif
+uniform int _UTS_LightAdjustmentCurve;
+uniform float _UTS_LightAdjustmentValueArray[128];
+uniform float _UTS_LightAdjustmentValueMin;
+uniform float _UTS_LightAdjustmentValueMax;
+
 // just grafted from UTS/Universal RP
 struct UtsLight
 {
@@ -230,7 +240,7 @@ struct UtsLight
     int     type;
 };
 
-// UVâÒì]ÇÇ∑ÇÈä÷êîÅFRotateUV()
+// function to rotate the UV: RotateUV()
 //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
 float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
 {
@@ -240,12 +250,97 @@ float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
     return (mul(_uv - _piv, float2x2(RotateUV_cos, -RotateUV_sin, RotateUV_sin, RotateUV_cos)) + _piv);
 }
 
+float3 ConvertFromEV100(float3 EV100)
+{
+#if 1
+    float3 value = pow(2, EV100) * 2.5f;
+    return value;
+#else
+    float3 maxLuminance = 1.2f * pow(2.0f, EV100);
+    return 1.0f / maxLuminance;
+#endif
+}
+
+float3 ConvertToEV100(float3 value)
+{
+#if 1
+    return log2(value*0.4f);
+#else
+    return log2(1.0f / (1.2f * value));
+#endif
+}
+
+
+
+float WeightSample(PositionInputs positionInput)
+{
+    // Center-weighted
+    const float2 kCenter = _ScreenParams.xy * 0.5;
+    const float weight = pow(length((kCenter.xy - positionInput.positionSS.xy) / _ScreenParams.xy),1.0) ;
+    return 1.0 - saturate(weight);
+}
+
+
+float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
+{
+    if (_UTS_LightAdjustmentCurve != 0)
+    {
+
+        float3 ev100_Color = ConvertToEV100(originalColor);
+        ev100_Color = clamp(ev100_Color, _UTS_LightAdjustmentValueMin, _UTS_LightAdjustmentValueMax);
+        float3 ev100_remap = (ev100_Color - _UTS_LightAdjustmentValueMin) * (128-1) / (_UTS_LightAdjustmentValueMax - _UTS_LightAdjustmentValueMin);
+        ev100_remap = clamp(ev100_remap, 0.0, 127.0);
+        int3  ev100_idx = (int3)ev100_remap;
+        float3 ev100_lerp = ev100_remap - ev100_idx;
+        float3  ev100_remapped;
+
+        ev100_remapped.r = _UTS_LightAdjustmentValueArray[ev100_idx.r] +(_UTS_LightAdjustmentValueArray[ev100_idx.r + 1] - _UTS_LightAdjustmentValueArray[ev100_idx.r]) * ev100_lerp.r;
+        ev100_remapped.g = _UTS_LightAdjustmentValueArray[ev100_idx.g] +(_UTS_LightAdjustmentValueArray[ev100_idx.g + 1] - _UTS_LightAdjustmentValueArray[ev100_idx.g]) * ev100_lerp.g;
+        ev100_remapped.b = _UTS_LightAdjustmentValueArray[ev100_idx.b] +(_UTS_LightAdjustmentValueArray[ev100_idx.b + 1] - _UTS_LightAdjustmentValueArray[ev100_idx.b]) * ev100_lerp.b;
+
+
+        float3 resultColor = ConvertFromEV100(ev100_remapped);
+
+
+        return resultColor;
+    }
+    else  // else is neccessary to avoid warrnings.
+    {
+        return originalColor;
+    }
+}
+
+float3 GetAdjustedLightColor(float3 originalLightColor )
+{
+
+
+#if 0
+    if (_UTS_LightAdjustment == 0)
+    {
+#endif
+        return originalLightColor * GetCurrentExposureMultiplier();
+#if 0
+    }
+    else // else is neccessary to avoid warrnings.
+    {
+
+        float minBrightness = 0.0001;
+        float maxBrightness = 100000;
+        float logOffset = 5.0;
+        originalLightColor = max(float3(minBrightness, minBrightness, minBrightness), originalLightColor);
+        originalLightColor = min(float3(maxBrightness, maxBrightness, maxBrightness), originalLightColor);
+        float3 log10color = log10(originalLightColor);
+        return clamp((log10color + float3(logOffset, logOffset, logOffset)) / 10.0, 0, 1);
+    }
+#endif
+}
 
 float  GetLightAttenuation(float3 lightColor)
 {
-    float lightAttenuation = 0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b;
+    float lightAttenuation = rateR *lightColor.r + rateG *lightColor.g + rateB *lightColor.b;
     return lightAttenuation;
 }
+
 
 int GetNextDirectionalLightIndex(BuiltinData builtinData, int currentIndex, int mainLightIndex)
 {

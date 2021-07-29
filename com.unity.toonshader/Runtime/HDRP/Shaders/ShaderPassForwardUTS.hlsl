@@ -312,7 +312,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (mainLightIndex != i)
                 {
                     
-                    float3 lightColor = _DirectionalLightDatas[i].color * GetCurrentExposureMultiplier();
+                    float3 lightColor = GetAdjustedLightColor(_DirectionalLightDatas[i].color);
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
@@ -524,6 +524,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
                 float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
                 float3 additionalLightColor = s_lightData.color;
+                additionalLightColor = GetAdjustedLightColor(additionalLightColor);
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
 #if defined(_SHADINGGRADEMAP)
@@ -581,10 +582,11 @@ void Frag(PackedVaryingsToPS packedInput,
     //   float3 envColor = aggregateLighting.direct.diffuse; // ???
     float3 envColor = float3(0.2f, 0.2f, 0.2f);
     float3 envLightColor = envColor;
-    float3 envLightIntensity = 0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b < 1 ? (0.299*envLightColor.r + 0.587*envLightColor.g + 0.114*envLightColor.b) : 1;
+    float3 envLightIntensity = GetLightAttenuation(envLightColor)  < 1 ? GetLightAttenuation(envLightColor) : 1;
+    float3 finalColorWoEmissive = SATURATE_IF_SDR(finalColor) + (envLightColor * envLightIntensity * _GI_Intensity * smoothstep(1, 0, envLightIntensity / 2));
+    finalColorWoEmissive = GetExposureAdjustedColor(finalColorWoEmissive, posInput );
+    finalColor = finalColorWoEmissive + emissive;
 
-    finalColor = SATURATE_IF_SDR(finalColor) + (envLightColor*envLightIntensity*_GI_Intensity*smoothstep(1, 0, envLightIntensity / 2)) + emissive;
-    //    finalColor = float3(context.shadowValue, 0, 0);
 #if defined(_SHADINGGRADEMAP)
     //v.2.0.4
   #ifdef _IS_TRANSCLIPPING_OFF

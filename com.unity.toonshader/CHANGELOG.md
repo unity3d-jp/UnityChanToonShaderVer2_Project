@@ -1,6 +1,6 @@
 # Changelog
-## [0.2.0-preview] - 2021-07-08
-* Nothing yet.
+## [0.2.0-preview] - 2021-07-29
+* HDRP: Light reaction curve feature.
 
 ## [0.1.0-preview] - 2021-07-07
 * HDRP: Emission started to work.
