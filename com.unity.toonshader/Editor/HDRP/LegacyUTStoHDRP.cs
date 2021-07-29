@@ -126,7 +126,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
         static int _StencilNo_Setting;
 //        static bool _OriginalInspector = false;
 //        static bool _SimpleUI = false;
-        [MenuItem("Assets/Universal Toon/Convert Legacy materials to HDRP materials", false, 0)]
+        [MenuItem("Assets/Toon Shader/Convert Legacy materials to HDRP materials", false, 9999)]
         static private void OpenWindow()
         {
             var window = GetWindow<LegacyUTStoHDRP>(true, "LegacyUTStoHDRP");
