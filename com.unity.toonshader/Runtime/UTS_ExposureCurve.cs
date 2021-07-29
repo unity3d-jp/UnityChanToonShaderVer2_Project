@@ -18,8 +18,9 @@ namespace Unity.Rendering.Toon
         bool m_srpCallbackInitialized = false;
 
         const int k_ExposureCurvePrecision = 128;
-
+#if false
         const string kLightAdjustmentPropName = "_UTS_LightAdjustment";
+#endif
         const string kExposureAdjustmentPorpName = "_UTS_ExposureAdjustment";
         const string kExposureArrayPropName = "_UTS_ExposureArray";
         const string kExposureMinPropName   = "_UTS_ExposureMin";
@@ -90,7 +91,9 @@ namespace Unity.Rendering.Toon
             Shader.SetGlobalFloat(kExposureMinPropName, m_Min);
             Shader.SetGlobalFloat(kExposureMaxPropName, m_Max);
             Shader.SetGlobalInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
+#if false
             Shader.SetGlobalInt(kLightAdjustmentPropName, m_LightAdjustment ? 1 : 0);
+#endif
             var pixels = m_ExposureCurveColorArray;
 
         }

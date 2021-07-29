@@ -222,7 +222,9 @@ uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynt
 #endif
 
 // global variables, not in materials. so _UTS_Prefex is neccessary to avoid conflict to other shaders.
+#if 0
 uniform int _UTS_LightAdjustment;
+#endif
 uniform int _UTS_ExposureAdjustment;
 uniform float _UTS_ExposureArray[128];
 uniform float _UTS_ExposureMin;
@@ -283,11 +285,11 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
 {
     if (_UTS_ExposureAdjustment != 0)
     {
-#if 1
+
         float3 ev100_Color = ConvertToEV100(originalColor);
         ev100_Color = clamp(ev100_Color, _UTS_ExposureMin, _UTS_ExposureMax);
         float3 ev100_remap = (ev100_Color - _UTS_ExposureMin) * (128-1) / (_UTS_ExposureMax - _UTS_ExposureMin);
-//        float3 resultColor = ConvertFromEV100(ev100_Color);
+
         int3  ev100_idx = (int3)ev100_remap;
         float3 ev100_lerp = ev100_remap - ev100_idx;
         float3  ev100_remapped;
@@ -296,39 +298,10 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
         ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g] +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
         ev100_remapped.b = _UTS_ExposureArray[ev100_idx.b] +(_UTS_ExposureArray[ev100_idx.b + 1] - _UTS_ExposureArray[ev100_idx.b]) * ev100_lerp.b;
 
-//        ev100_remapped.r = _UTS_ExposureArray[ev100_idx.r]; // +(_UTS_ExposureArray[ev100_idx.r + 1] - _UTS_ExposureArray[ev100_idx.r]) * ev100_lerp.r;
-//        ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g]; // +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
-//        ev100_remapped.b = _UTS_ExposureArray[ev100_idx.b]; //  +(_UTS_ExposureArray[ev100_idx.b + 1] - _UTS_ExposureArray[ev100_idx.b]) * ev100_lerp.b;
+
         float3 resultColor = ConvertFromEV100(ev100_remapped);
-//        float fMinColor = ConvertFromEV100(_UTS_ExposureMin);
-//        float fMaxColor = ConvertFromEV100(_UTS_ExposureMax);
-//        float3 resultColor = clamp(originalColor, fMinColor, fMaxColor);
-#else
-        float previousExposureEV100 = 10.0f; // todo.
-        float utsParamExposureCompensation = 0.0f;
-
-        // processed in kPrePass
-        float  prevExposure = ConvertEV100ToExposure(previousExposureEV100); 
-
-        float luma = Luminance(originalColor / prevExposure);
-        float weight = WeightSample(posInput);
-        float logLuma = ComputeEV100FromAvgLuminance(max(luma, 1e-4));
-
-        // processed in KReduction
-        float  fRemapEV = clamp((logLuma - _UTS_ExposureMin) * 128 / (_UTS_ExposureMax - _UTS_ExposureMin), 0, 128);
 
 
-        int    iRemapEV = (int)fRemapEV;
-        float  fRemapLerp = fRemapEV - iRemapEV;
-
-        float  fRemapedEV = _UTS_ExposureArray[iRemapEV] + (_UTS_ExposureArray[iRemapEV + 1] - _UTS_ExposureArray[iRemapEV]) * fRemapLerp;
-        float  fRemapedExposure = ConvertEV100ToExposure(fRemapedEV);
-
-        // processed in 
-        float3 resultColor = originalColor * fRemapedExposure;
-        resultColor = float3(originalColor.r * fRemapedExposure, 0, 0);
-
-#endif
         return resultColor;
     }
     else  // else is neccessary to avoid warrnings.
@@ -341,9 +314,12 @@ float3 GetAdjustedLightColor(float3 originalLightColor )
 {
 
 
+#if 0
     if (_UTS_LightAdjustment == 0)
     {
+#endif
         return originalLightColor * GetCurrentExposureMultiplier();
+#if 0
     }
     else // else is neccessary to avoid warrnings.
     {
@@ -356,6 +332,7 @@ float3 GetAdjustedLightColor(float3 originalLightColor )
         float3 log10color = log10(originalLightColor);
         return clamp((log10color + float3(logOffset, logOffset, logOffset)) / 10.0, 0, 1);
     }
+#endif
 }
 
 float  GetLightAttenuation(float3 lightColor)

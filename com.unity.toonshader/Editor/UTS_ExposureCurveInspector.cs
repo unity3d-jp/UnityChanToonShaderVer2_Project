@@ -49,7 +49,7 @@ namespace UnityEditor.Rendering.Toon
             EditorGUI.EndDisabledGroup();
 
             //Rect rect = GUILayoutUtility.GetRect(Screen.width, 300.0f);
-
+#if false
             EditorGUI.BeginChangeCheck();
 
             bool lightAdjustment = EditorGUILayout.Toggle(labelLightAdjustment, obj.m_LightAdjustment);
@@ -59,7 +59,7 @@ namespace UnityEditor.Rendering.Toon
                 obj.m_LightAdjustment = lightAdjustment;
                 isChanged = true;
             }
-
+#endif
             numberString = EditorGUILayout.TextField("lux: ", numberString);
             float fLux = float.Parse(numberString);
             fLux = Mathf.Max(fLux, 0.0001f);
@@ -73,7 +73,7 @@ namespace UnityEditor.Rendering.Toon
                 // at leaset 2020.3.12f1, not neccessary. but, from which version??
                 EditorApplication.QueuePlayerLoopUpdate();
             }
-
+#if ADJUSTMENT_CURVE_DEBUG_UI
             obj.m_DebugUI = EditorGUILayout.Toggle("Debug UI", obj.m_DebugUI);
             if (m_SerializedObject == null )
             {
@@ -120,6 +120,7 @@ namespace UnityEditor.Rendering.Toon
 
         }
 
+#endif
 
         float ConvertFromEV100(float EV100)
         {
