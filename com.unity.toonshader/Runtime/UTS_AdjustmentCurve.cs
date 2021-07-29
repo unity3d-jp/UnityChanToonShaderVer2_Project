@@ -11,7 +11,7 @@ namespace Unity.Rendering.Toon
 {
     [ExecuteAlways]
     [DisallowMultipleComponent]
-    public class UTS_ExposureCurve : MonoBehaviour
+    public class UTS_AdjustmentCurve : MonoBehaviour
     {
         // flags
         bool m_initialized = false;

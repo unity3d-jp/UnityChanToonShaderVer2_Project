@@ -5,7 +5,7 @@ using UnityEditor;
 using Unity.Rendering.Toon;
 namespace UnityEditor.Rendering.Toon
 {
-    [CustomEditor(typeof(UTS_ExposureCurve))]
+    [CustomEditor(typeof(UTS_AdjustmentCurve))]
 
     public class UTS_ExposureCurveInspector : Editor
     {
@@ -14,14 +14,16 @@ namespace UnityEditor.Rendering.Toon
 
         public override void OnInspectorGUI()
         {
+            const string labelExposureAdjustment = "Adjustment";
+            const string labelExposureCurve = "Curve";
+#if ADJUSTMENT_CURVE_DEBUG_UI
             const string labelLightAdjustment = "Light Adjustment";
-            const string labelExposureAdjustment = "Exposure Adjustment";
-            const string labelExposureCurave = "Curve";
             const string labelExposureMin = "Min:";
             const string labelExposureMax = "Max:";
+#endif
             bool isChanged = false;
 
-            var obj = target as UTS_ExposureCurve;
+            var obj = target as UTS_AdjustmentCurve;
             EditorGUI.BeginChangeCheck();
             bool exposureAdjustment = EditorGUILayout.Toggle(labelExposureAdjustment, obj.m_ExposureAdjustmnt);
             if (EditorGUI.EndChangeCheck())
@@ -37,7 +39,7 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUI.BeginChangeCheck();
                 //               var ranges = new Rect(-10, -10, 20, 20);
                 //               var curve = EditorGUILayout.CurveField(labelExposureCurave, obj.m_AnimationCurve, Color.green,ranges);
-                var curve = EditorGUILayout.CurveField(labelExposureCurave, obj.m_AnimationCurve);
+                var curve = EditorGUILayout.CurveField(labelExposureCurve, obj.m_AnimationCurve);
                 if (EditorGUI.EndChangeCheck())
                 {
                     Undo.RecordObject(target, "Changed Curve");
