@@ -60,6 +60,14 @@ namespace UnityEditor.Rendering.Toon
                 isChanged = true;
             }
 #endif
+
+            if ( isChanged)
+            {
+                // at leaset 2020.3.12f1, not neccessary. but, from which version??
+                EditorApplication.QueuePlayerLoopUpdate();
+            }
+#if ADJUSTMENT_CURVE_DEBUG_UI
+
             numberString = EditorGUILayout.TextField("lux: ", numberString);
             float fLux = float.Parse(numberString);
             fLux = Mathf.Max(fLux, 0.0001f);
@@ -68,12 +76,8 @@ namespace UnityEditor.Rendering.Toon
             fLux = Mathf.Clamp((log10value + 5.0f) / 10.0f, 0.0f, 1.0f);
             string label = fLux.ToString();
             EditorGUILayout.LabelField(label);
-            if ( isChanged)
-            {
-                // at leaset 2020.3.12f1, not neccessary. but, from which version??
-                EditorApplication.QueuePlayerLoopUpdate();
-            }
-#if ADJUSTMENT_CURVE_DEBUG_UI
+
+
             obj.m_DebugUI = EditorGUILayout.Toggle("Debug UI", obj.m_DebugUI);
             if (m_SerializedObject == null )
             {
@@ -118,9 +122,9 @@ namespace UnityEditor.Rendering.Toon
             EditorGUI.EndDisabledGroup();
 
 
+#endif
         }
 
-#endif
 
         float ConvertFromEV100(float EV100)
         {

@@ -225,10 +225,10 @@ uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynt
 #if 0
 uniform int _UTS_LightAdjustment;
 #endif
-uniform int _UTS_ExposureAdjustment;
-uniform float _UTS_ExposureArray[128];
-uniform float _UTS_ExposureMin;
-uniform float _UTS_ExposureMax;
+uniform int _UTS_AdjustmentCurve;
+uniform float _UTS_AdjustmentValueArray[128];
+uniform float _UTS_AdjustmentValueMin;
+uniform float _UTS_AdjustmentValueMax;
 
 // just grafted from UTS/Universal RP
 struct UtsLight
@@ -283,20 +283,20 @@ float WeightSample(PositionInputs positionInput)
 
 float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
 {
-    if (_UTS_ExposureAdjustment != 0)
+    if (_UTS_AdjustmentCurve != 0)
     {
 
         float3 ev100_Color = ConvertToEV100(originalColor);
-        ev100_Color = clamp(ev100_Color, _UTS_ExposureMin, _UTS_ExposureMax);
-        float3 ev100_remap = (ev100_Color - _UTS_ExposureMin) * (128-1) / (_UTS_ExposureMax - _UTS_ExposureMin);
-
+        ev100_Color = clamp(ev100_Color, _UTS_AdjustmentValueMin, _UTS_AdjustmentValueMax);
+        float3 ev100_remap = (ev100_Color - _UTS_AdjustmentValueMin) * (128-1) / (_UTS_AdjustmentValueMax - _UTS_AdjustmentValueMin);
+        ev100_remap = clamp(ev100_remap, 0.0, 127.0);
         int3  ev100_idx = (int3)ev100_remap;
         float3 ev100_lerp = ev100_remap - ev100_idx;
         float3  ev100_remapped;
 
-        ev100_remapped.r = _UTS_ExposureArray[ev100_idx.r] +(_UTS_ExposureArray[ev100_idx.r + 1] - _UTS_ExposureArray[ev100_idx.r]) * ev100_lerp.r;
-        ev100_remapped.g = _UTS_ExposureArray[ev100_idx.g] +(_UTS_ExposureArray[ev100_idx.g + 1] - _UTS_ExposureArray[ev100_idx.g]) * ev100_lerp.g;
-        ev100_remapped.b = _UTS_ExposureArray[ev100_idx.b] +(_UTS_ExposureArray[ev100_idx.b + 1] - _UTS_ExposureArray[ev100_idx.b]) * ev100_lerp.b;
+        ev100_remapped.r = _UTS_AdjustmentValueArray[ev100_idx.r] +(_UTS_AdjustmentValueArray[ev100_idx.r + 1] - _UTS_AdjustmentValueArray[ev100_idx.r]) * ev100_lerp.r;
+        ev100_remapped.g = _UTS_AdjustmentValueArray[ev100_idx.g] +(_UTS_AdjustmentValueArray[ev100_idx.g + 1] - _UTS_AdjustmentValueArray[ev100_idx.g]) * ev100_lerp.g;
+        ev100_remapped.b = _UTS_AdjustmentValueArray[ev100_idx.b] +(_UTS_AdjustmentValueArray[ev100_idx.b + 1] - _UTS_AdjustmentValueArray[ev100_idx.b]) * ev100_lerp.b;
 
 
         float3 resultColor = ConvertFromEV100(ev100_remapped);

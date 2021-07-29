@@ -17,17 +17,19 @@ namespace Unity.Rendering.Toon
         bool m_initialized = false;
         bool m_srpCallbackInitialized = false;
 
-        const int k_ExposureCurvePrecision = 128;
+        const int kAdjustmentCurvePrecision = 128;
 #if false
         const string kLightAdjustmentPropName = "_UTS_LightAdjustment";
 #endif
-        const string kExposureAdjustmentPorpName = "_UTS_ExposureAdjustment";
-        const string kExposureArrayPropName = "_UTS_ExposureArray";
-        const string kExposureMinPropName   = "_UTS_ExposureMin";
-        const string kExposureMaxPropName   = "_UTS_ExposureMax";
-        readonly Color[] m_ExposureCurveColorArray = new Color[k_ExposureCurvePrecision];
+        const string kExposureAdjustmentPorpName = "_UTS_AdjustmentCurve";
+        const string kExposureArrayPropName = "_UTS_AdjustmentValueArray";
+        const string kExposureMinPropName   = "_UTS_AdjustmentValueMin";
+        const string kExposureMaxPropName   = "_UTS_AdjustmentValueMax";
+
+#if false
         [SerializeField]
         public bool m_LightAdjustment = false;
+#endif
         [SerializeField]
         public bool m_ExposureAdjustmnt = false;
         [SerializeField]
@@ -52,23 +54,23 @@ namespace Unity.Rendering.Toon
 
             // Fail safe in case the curve is deleted / has 0 point
             var curve = m_AnimationCurve;
-
+            
 
             if (curve == null || curve.length == 0)
             {
                 m_Min = 0f;
                 m_Max = 0f;
 
-                for (int i = 0; i < k_ExposureCurvePrecision; i++)
+                for (int i = 0; i < kAdjustmentCurvePrecision; i++)
                     m_ExposureArray[i] = 0.0f;
             }
             else
             {
                 m_Min = curve[0].time;
                 m_Max = curve[curve.length - 1].time;
-                float step = (m_Max - m_Min) / (k_ExposureCurvePrecision - 1f);
+                float step = (m_Max - m_Min) / (kAdjustmentCurvePrecision - 1f);
 
-                for (int i = 0; i < k_ExposureCurvePrecision; i++)
+                for (int i = 0; i < kAdjustmentCurvePrecision; i++)
                     m_ExposureArray[i] = curve.Evaluate(m_Min + step * i);
             }
 
@@ -94,7 +96,7 @@ namespace Unity.Rendering.Toon
 #if false
             Shader.SetGlobalInt(kLightAdjustmentPropName, m_LightAdjustment ? 1 : 0);
 #endif
-            var pixels = m_ExposureCurveColorArray;
+
 
         }
 
@@ -145,7 +147,7 @@ namespace Unity.Rendering.Toon
 
             if (m_ExposureArray == null)
             {
-                m_ExposureArray = new float[k_ExposureCurvePrecision];
+                m_ExposureArray = new float[kAdjustmentCurvePrecision];
             }
             m_initialized = true;
         }
