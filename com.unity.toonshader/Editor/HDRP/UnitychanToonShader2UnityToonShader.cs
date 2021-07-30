@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-namespace UnityEditor.Rendering.HighDefinition.Toon
+namespace UnityEditor.Rendering.Toon
 {
-    public class LegacyUTStoHDRP : EditorWindow
+    public class UnitychanToonShader2UnityToonShader : EditorWindow
     {
         public enum _UTS_Technique
         {
@@ -119,27 +119,124 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 
 
 
-
         public int _autoRenderQueue = 1;
         public int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
         static _UTS_Transparent _Transparent_Setting;
         static int _StencilNo_Setting;
-//        static bool _OriginalInspector = false;
-//        static bool _SimpleUI = false;
-        [MenuItem("Assets/Toon Shader/Convert Legacy materials to HDRP materials", false, 9999)]
+        //        static bool _OriginalInspector = false;
+        //        static bool _SimpleUI = false;
+
+        // for converter
+        Vector2 m_scrollPos;
+        bool m_initialzed;
+        string[] guids;
+        const string legacyShaderPrefix = "UnityChanToonShader/";
+        readonly string[] m_RendderPipelineNames = { "Legacy", "Universal", "HDRP" };
+        int m_selectedRenderPipeline;
+        int m_materialCount = 0;
+        [MenuItem("Window/Toon Shader/Unitychan Toon Shader Material Converter", false, 9999)]
         static private void OpenWindow()
         {
-            var window = GetWindow<LegacyUTStoHDRP>(true, "LegacyUTStoHDRP");
+            var window = GetWindow<UnitychanToonShader2UnityToonShader>(true, "Unitychan Toon Shader Material Converter");
             window.Show();
         }
 
         private void OnGUI()
         {
+
+            if (!m_initialzed)
+            {
+                guids = AssetDatabase.FindAssets("t:Material", null);
+            }
+            m_initialzed = true;
+            int buttonHeight = 20;
+            Rect rect =  new Rect(0, 0, position.width, position.height - buttonHeight); // GUILayoutUtility.GetRect(position.width, position.height - buttonHeight);
+            Rect rect2 = new Rect(2, 2, position.width - 4, position.height - 4 - buttonHeight);
+            // scroll view background
+            EditorGUI.DrawRect(rect, Color.gray);
+            EditorGUI.DrawRect(rect2, new Color(0.3f, 0.3f, 0.3f));
+            using (new EditorGUI.DisabledScope(m_materialCount == 0))
+            {
+                EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.LabelField("Convert to ");
+                m_selectedRenderPipeline = EditorGUILayout.Popup(m_selectedRenderPipeline, m_RendderPipelineNames);
+                EditorGUILayout.EndHorizontal();
+            }
+
+
+            // scroll view 
+            m_scrollPos =
+                 EditorGUILayout.BeginScrollView(m_scrollPos, GUILayout.Width(position.width - 4));
+            EditorGUILayout.BeginVertical();
+
+
+            int materialCount = 0;
+            int versionErrorCount = 0;
+            for (int ii = 0; ii < guids.Length; ii++)
+            {
+                var guid = guids[ii];
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+                var shaderName = material.shader.ToString();
+                if (!shaderName.StartsWith(legacyShaderPrefix))
+                {
+                    continue;
+
+                }
+                const string utsVersionProp = "_utsVersion";
+                if (material.HasProperty(utsVersionProp))
+                {
+                    float utsVersion = material.GetFloat(utsVersionProp);
+                    if (utsVersion < 2.07)
+                    {
+                        versionErrorCount++;
+                        continue;
+                    }
+                }
+                else
+                {
+                    versionErrorCount++;
+                    continue;
+                }
+                materialCount++;
+                Debug.Log(shaderName);
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(16);
+                string str = "" + materialCount + ":";
+
+                EditorGUILayout.LabelField(str, GUILayout.Width(40));
+                EditorGUILayout.LabelField(path, GUILayout.Width(Screen.width - 130));
+                GUILayout.Space(1);
+                EditorGUILayout.EndHorizontal();
+            }
+            m_materialCount = materialCount;
+            if (m_materialCount == 0)
+            {
+                GUILayout.Space(16);
+                if (versionErrorCount > 0 )
+                {
+                    EditorGUILayout.LabelField("   Error: Unitychan Toon Shader version must be newer than 2.0.7");
+                }
+                else
+                {
+                    EditorGUILayout.LabelField("   No Unitychan Toon Shader material was found.");
+                }
+            }
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndScrollView();
+
+
+            // buttons 
             EditorGUILayout.BeginVertical();
             EditorGUILayout.BeginHorizontal();
-            if ( GUILayout.Button(new GUIContent("Convert")) )
+            using (new EditorGUI.DisabledScope(m_materialCount == 0))
             {
-                ConvertMaterials();
+                if (GUILayout.Button(new GUIContent("Convert")))
+                {
+                    ConvertMaterials(m_selectedRenderPipeline, guids);
+                }
             }
             if ( GUILayout.Button(new GUIContent("Close")) )
             {
@@ -147,15 +244,17 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
             }
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndVertical();
+
+
         }
 
-        void ConvertMaterials()
+        void ConvertMaterials(int renderPipelineIndex, string[] guids)
         {
 
-            const string legacyShaderPrefix = "UnityChanToonShader/";
+
  
 
-            var guids = AssetDatabase.FindAssets("t:Material", null);
+
             foreach (var guid in guids)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
@@ -167,7 +266,20 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 
                 }
                 Debug.Log(shaderName);
-                material.shader = Shader.Find("HDRP/Toon");
+                switch (renderPipelineIndex)
+                {
+                    case 0: // built in
+                        material.shader = Shader.Find("Toon (Built-in)"); 
+                        break;
+                    case 1: // Universal
+                        material.shader = Shader.Find("Universal Render Pipeline/Toon");
+                        break;
+                    case 2: // HDRP
+                        material.shader = Shader.Find("HDRP/Toon");
+                        break;
+                }
+
+               
                 _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
                 _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
                 _autoRenderQueue = material.GetInt(ShaderPropAutoRenderQueue);

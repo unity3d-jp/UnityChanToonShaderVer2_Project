@@ -31,13 +31,15 @@ namespace Unity.Rendering.Toon
         public bool m_LightAdjustment = false;
 #endif
         [SerializeField]
-        public bool m_ExposureAdjustmnt = false;
+        internal bool m_ExposureAdjustmnt = false;
         [SerializeField]
-        public AnimationCurve m_AnimationCurve = AnimationCurve.Linear(-10f, -10f, 16f, 16f);
+        internal AnimationCurve m_AnimationCurve = AnimationCurve.Linear(-10f, -10f, 16f, 16f);
         [SerializeField]
-        public float[] m_ExposureArray;
-        public float m_Max, m_Min;
-        public bool m_DebugUI;
+        internal float[] m_ExposureArray;
+        [SerializeField]
+        internal float m_Max, m_Min;
+        [SerializeField]
+        internal bool m_DebugUI;
 
 #if UNITY_EDITOR
 #pragma warning restore CS0414

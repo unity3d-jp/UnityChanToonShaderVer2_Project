@@ -1,15 +1,24 @@
 {
     "name": "Unity.Toonshader",
-    "references": [
-    ],
-    "includePlatforms": [
-    ],
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "",
+            "define": "HDRP_IS_INSTALLED_FOR_UTS"
+        },
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "",
+            "define": "URP_IS_INSTALLED_FOR_UTS"
+        }
+    ],
     "noEngineReferences": false
 }

@@ -10,7 +10,7 @@ namespace UnityEditor.Rendering.Toon
         const string ShaderPropOutline = "_OUTLINE";
         const string ShaderPropIs_LightColor_Outline = "_Is_LightColor_Outline";
         const string ShaderPropIs_BakedNormal = "_Is_BakedNormal";
-        [MenuItem("Assets//Toon Shader/Convert old Legacy materials to 2.0.7.5 materials", false, 9999)]
+        [MenuItem("Window/Toon Shader/Convert old Legacy materials to 2.0.7.5 materials", false, 9999)]
         static private void OpenWindow()
         {
             var window = GetWindow<OldLegacyUTStoCurrentLegacyUTS>();
