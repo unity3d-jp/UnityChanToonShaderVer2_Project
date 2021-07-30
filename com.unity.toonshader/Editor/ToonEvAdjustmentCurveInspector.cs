@@ -5,9 +5,9 @@ using UnityEditor;
 using Unity.Rendering.Toon;
 namespace UnityEditor.Rendering.Toon
 {
-    [CustomEditor(typeof(LightAdjustmentCurve))]
+    [CustomEditor(typeof(ToonEvAdjustmentCurve))]
 
-    public class ExposureCurveInspector : Editor
+    public class ToonEvAdjustmentCurveCurveInspector : Editor
     {
         SerializedObject m_SerializedObject;
 #if ADJUSTMENT_CURVE_DEBUG_UI
@@ -15,16 +15,15 @@ namespace UnityEditor.Rendering.Toon
 #endif //
         public override void OnInspectorGUI()
         {
-            const string labelLightAdjustment = "Light Adjustment";
+            const string labelLightAdjustment = "Toon EV Adjustment";
             const string labelLightAdjustmentCurve = "Curve";
 #if ADJUSTMENT_CURVE_DEBUG_UI
-            const string labelLightAdjustment = "Light Adjustment";
             const string labelExposureMin = "Min:";
             const string labelExposureMax = "Max:";
 #endif
             bool isChanged = false;
 
-            var obj = target as LightAdjustmentCurve;
+            var obj = target as ToonEvAdjustmentCurve;
             EditorGUI.BeginChangeCheck();
             bool exposureAdjustment = EditorGUILayout.Toggle(labelLightAdjustment, obj.m_ExposureAdjustmnt);
             if (EditorGUI.EndChangeCheck())

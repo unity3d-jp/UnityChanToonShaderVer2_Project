@@ -221,14 +221,12 @@ uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthe
 uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
 #endif
 
-// global variables, not in materials. so _UTS_Prefex is neccessary to avoid conflict to other shaders.
-#if 0
-uniform int _UTS_LightAdjustment;
-#endif
-uniform int _UTS_LightAdjustmentCurve;
-uniform float _UTS_LightAdjustmentValueArray[128];
-uniform float _UTS_LightAdjustmentValueMin;
-uniform float _UTS_LightAdjustmentValueMax;
+
+
+uniform int _ToonEvAdjustmentCurve;
+uniform float _ToonEvAdjustmentValueArray[128];
+uniform float _ToonEvAdjustmentValueMin;
+uniform float _ToonEvAdjustmentValueMax;
 
 // just grafted from UTS/Universal RP
 struct UtsLight
@@ -283,20 +281,20 @@ float WeightSample(PositionInputs positionInput)
 
 float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
 {
-    if (_UTS_LightAdjustmentCurve != 0)
+    if (_ToonEvAdjustmentCurve != 0)
     {
 
         float3 ev100_Color = ConvertToEV100(originalColor);
-        ev100_Color = clamp(ev100_Color, _UTS_LightAdjustmentValueMin, _UTS_LightAdjustmentValueMax);
-        float3 ev100_remap = (ev100_Color - _UTS_LightAdjustmentValueMin) * (128-1) / (_UTS_LightAdjustmentValueMax - _UTS_LightAdjustmentValueMin);
+        ev100_Color = clamp(ev100_Color, _ToonEvAdjustmentValueMin, _ToonEvAdjustmentValueMax);
+        float3 ev100_remap = (ev100_Color - _ToonEvAdjustmentValueMin) * (128-1) / (_ToonEvAdjustmentValueMax - _ToonEvAdjustmentValueMin);
         ev100_remap = clamp(ev100_remap, 0.0, 127.0);
         int3  ev100_idx = (int3)ev100_remap;
         float3 ev100_lerp = ev100_remap - ev100_idx;
         float3  ev100_remapped;
 
-        ev100_remapped.r = _UTS_LightAdjustmentValueArray[ev100_idx.r] +(_UTS_LightAdjustmentValueArray[ev100_idx.r + 1] - _UTS_LightAdjustmentValueArray[ev100_idx.r]) * ev100_lerp.r;
-        ev100_remapped.g = _UTS_LightAdjustmentValueArray[ev100_idx.g] +(_UTS_LightAdjustmentValueArray[ev100_idx.g + 1] - _UTS_LightAdjustmentValueArray[ev100_idx.g]) * ev100_lerp.g;
-        ev100_remapped.b = _UTS_LightAdjustmentValueArray[ev100_idx.b] +(_UTS_LightAdjustmentValueArray[ev100_idx.b + 1] - _UTS_LightAdjustmentValueArray[ev100_idx.b]) * ev100_lerp.b;
+        ev100_remapped.r = _ToonEvAdjustmentValueArray[ev100_idx.r] +(_ToonEvAdjustmentValueArray[ev100_idx.r + 1] - _ToonEvAdjustmentValueArray[ev100_idx.r]) * ev100_lerp.r;
+        ev100_remapped.g = _ToonEvAdjustmentValueArray[ev100_idx.g] +(_ToonEvAdjustmentValueArray[ev100_idx.g + 1] - _ToonEvAdjustmentValueArray[ev100_idx.g]) * ev100_lerp.g;
+        ev100_remapped.b = _ToonEvAdjustmentValueArray[ev100_idx.b] +(_ToonEvAdjustmentValueArray[ev100_idx.b + 1] - _ToonEvAdjustmentValueArray[ev100_idx.b]) * ev100_lerp.b;
 
 
         float3 resultColor = ConvertFromEV100(ev100_remapped);

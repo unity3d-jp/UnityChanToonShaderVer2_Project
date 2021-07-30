@@ -11,7 +11,7 @@ namespace Unity.Rendering.Toon
 {
     [ExecuteAlways]
     [DisallowMultipleComponent]
-    public class LightAdjustmentCurve : MonoBehaviour
+    public class ToonEvAdjustmentCurve : MonoBehaviour
     {
         // flags
         bool m_initialized = false;
@@ -21,10 +21,10 @@ namespace Unity.Rendering.Toon
 #if false
         const string kLightAdjustmentPropName = "_UTS_LightAdjustment";
 #endif
-        const string kExposureAdjustmentPorpName = "_UTS_LightAdjustmentCurve";
-        const string kExposureArrayPropName = "_UTS_LightAdjustmentValueArray";
-        const string kExposureMinPropName   = "_UTS_LightAdjustmentValueMin";
-        const string kExposureMaxPropName   = "_UTS_LightAdjustmentValueMax";
+        const string kExposureAdjustmentPorpName = "_ToonEvAdjustmentCurve";
+        const string kExposureArrayPropName = "_ToonEvAdjustmentValueArray";
+        const string kExposureMinPropName   = "_ToonEvAdjustmentValueMin";
+        const string kExposureMaxPropName   = "_ToonEvAdjustmentValueMax";
 
 #if false
         [SerializeField]
