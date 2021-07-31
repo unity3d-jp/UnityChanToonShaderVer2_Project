@@ -20,6 +20,14 @@
 # define DIRECTIONAL
 #endif
 
+#define FP_BUFFER 1
+#if FP_BUFFER
+#define SATURATE_IF_SDR(x) (x)
+#define SATURATE_BASE_COLOR_IF_SDR(x) (x)
+#else
+#define SATURATE_IF_SDR(x) saturate(x)
+#define SATURATE_BASE_COLOR_IF_SDR(x) saturate(x)
+#endif
 
 
 

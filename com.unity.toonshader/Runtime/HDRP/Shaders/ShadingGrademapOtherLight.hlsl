@@ -182,7 +182,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
 #endif //#ifdef UTS_LAYER_VISIBILITY
 
 
-    finalColor = saturate(finalColor);
+    finalColor = SATURATE_IF_SDR(finalColor);
 
     //    pointLightColor += finalColor;
     return finalColor;
