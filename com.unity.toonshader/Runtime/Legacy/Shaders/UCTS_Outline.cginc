@@ -26,12 +26,11 @@
             uniform fixed _Is_BakedNormal;
             //
 //v.2.0.4
-#ifdef _IS_OUTLINE_CLIPPING_YES
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
             uniform float _Clipping_Level;
             uniform fixed _Inverse_Clipping;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
-#endif
+
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;

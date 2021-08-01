@@ -160,15 +160,13 @@ struct VertexOutput {
             uniform float _Offset_Y_Axis_BLD;
             uniform fixed _Inverse_Z_Axis_BLD;
 //v.2.0.4
-#ifdef _IS_TRANSCLIPPING_OFF
-//
-#elif _IS_TRANSCLIPPING_ON
+
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
             uniform float _Clipping_Level;
             uniform fixed _Inverse_Clipping;
             uniform float _Tweak_transparency;
-#endif
+
 
 #ifdef _SYNTHESIZED_TEXTURE
             uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;

@@ -21,6 +21,14 @@ Shader "Universal Render Pipeline/Toon" {
         _StencilOpFail("Stencil Operation", Float) = 0
         [Enum(OFF,0,ON,1)] _TransparentEnabled("Transparent Mode", int) = 0
 
+        // These two are used in Lit shader.
+        // inoorder to make the shaders compatible with SRP Batcher 
+        // The following decralation is indespensable as they are used in CBUFFER UnityPerMaterial block.
+        // 
+        [HideInInspector] _Metallic("_Metallic", Range(0.0, 1.0)) = 0
+        [HideInInspector] _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
+
+
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
         // ShadingGradeMap
@@ -237,8 +245,10 @@ Shader "Universal Render Pipeline/Toon" {
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            // Outline is implemented in UniversalToonOutline.hlslへ.
+            // Outline is implemented in UniversalToonOutline.hlsl.
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            #include "UniversalToonInput.hlsl"
             #include "UniversalToonHead.hlsl"
             #include "UniversalToonOutline.hlsl"
             ENDHLSL
@@ -325,7 +335,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "UniversalToonInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
             #include "UniversalToonHead.hlsl"
             #include "UniversalToonBody.hlsl"
@@ -361,7 +371,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma vertex ShadowPassVertex
             #pragma fragment ShadowPassFragment
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "UniversalToonInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
             ENDHLSL
         }
@@ -393,7 +403,7 @@ Shader "Universal Render Pipeline/Toon" {
             // GPU Instancing
             #pragma multi_compile_instancing
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "UniversalToonInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
             ENDHLSL
         }

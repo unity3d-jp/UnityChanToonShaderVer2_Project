@@ -146,21 +146,14 @@ uniform float _Offset_X_Axis_BLD;
 uniform float _Offset_Y_Axis_BLD;
 uniform fixed _Inverse_Z_Axis_BLD;
 //v.2.0.4
-#ifdef _IS_CLIPPING_MODE
-//DoubleShadeWithFeather_Clipping
-uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-uniform float _Clipping_Level;
-uniform fixed _Inverse_Clipping;
-#elif defined(_IS_CLIPPING_TRANSMODE) || defined(_IS_TRANSCLIPPING_ON)
+
 //DoubleShadeWithFeather_TransClipping
 uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
 uniform fixed _IsBaseMapAlphaAsClippingMask;
 uniform float _Clipping_Level;
 uniform fixed _Inverse_Clipping;
 uniform float _Tweak_transparency;
-#elif defined(_IS_CLIPPING_OFF) || defined(_IS_TRANSCLIPPING_OFF)
-//DoubleShadeWithFeather
-#endif
+
 
 
 uniform sampler2D _MainTex; uniform float4 _MainTex_ST;

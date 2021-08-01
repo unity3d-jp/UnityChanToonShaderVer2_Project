@@ -7,9 +7,7 @@
 
 #define UCTS_LWRP 1
 
-#define fixed  half
-#define fixed3 half3
-#define fixed4 half4
+
 
 
 #define MAINLIGHT_NOT_FOUND -2

@@ -1,28 +1,17 @@
 ﻿//UCTS_ShadowCaster_Tess.cginc
-//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
-//(C)Unity Technologies Japan/UCL
-//#pragma multi_compile _IS_CLIPPING_OFF _IS_CLIPPING_MODE  _IS_CLIPPING_TRANSMODE
 // ※Tessellation support
 //   The corresponding code was adapted from Nora's https://github.com/Stereoarts/UnityChanToonShaderVer2_Tess.
 //
-#ifdef _IS_CLIPPING_MODE
-//_Clipping
-            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-            uniform float _Clipping_Level;
-            uniform fixed _Inverse_Clipping;
-#elif _IS_CLIPPING_TRANSMODE
-//_TransClipping
+
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
             uniform float _Clipping_Level;
             uniform fixed _Inverse_Clipping;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
-#elif _IS_CLIPPING_OFF
-//Default
-#endif
+
+
 
 //Tessellation OFF
 #ifndef TESSELLATION_ON

@@ -2,21 +2,13 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
-#ifdef _IS_CLIPPING_MODE
-//_Clipping
-            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-            uniform float _Clipping_Level;
-            uniform fixed _Inverse_Clipping;
-#elif _IS_CLIPPING_TRANSMODE
-//_TransClipping
+
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
             uniform float _Clipping_Level;
             uniform fixed _Inverse_Clipping;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
-#elif _IS_CLIPPING_OFF
-//Default
-#endif
+
 
 #ifdef _SYNTHESIZED_TEXTURE
             uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;

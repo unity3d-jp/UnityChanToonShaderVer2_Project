@@ -133,21 +133,13 @@ struct VertexOutput {
             uniform float _Offset_Y_Axis_BLD;
             uniform fixed _Inverse_Z_Axis_BLD;
 //v.2.0.4
-#ifdef _IS_CLIPPING_MODE
-//DoubleShadeWithFeather_Clipping
-            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-            uniform float _Clipping_Level;
-            uniform fixed _Inverse_Clipping;
-#elif _IS_CLIPPING_TRANSMODE
-//DoubleShadeWithFeather_TransClipping
+
             uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
             uniform fixed _IsBaseMapAlphaAsClippingMask;
             uniform float _Clipping_Level;
             uniform fixed _Inverse_Clipping;
             uniform float _Tweak_transparency;
-#elif _IS_CLIPPING_OFF
-//DoubleShadeWithFeather
-#endif
+
 #ifdef _SYNTHESIZED_TEXTURE
             uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
             uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
