@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1382183770}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.085015655, g: 0.12048276, b: 0.21854623, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 794565942}
   - component: {fileID: 794565947}
   - component: {fileID: 794565944}
+  - component: {fileID: 794565948}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -492,6 +493,32 @@ MonoBehaviour:
   focus: {x: 0, y: 0.7, z: 0}
   focusObj: {fileID: 1036948364}
   showInstWindow: 0
+--- !u!114 &794565948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794565941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694cd275e14473e4cb911da4d0a44291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageComparisonSettings:
+    TargetWidth: 960
+    TargetHeight: 540
+    PerPixelCorrectnessThreshold: 0.001
+    PerPixelGammaThreshold: 0.003921569
+    PerPixelAlphaThreshold: 0.003921569
+    AverageCorrectnessThreshold: 0.005
+    IncorrectPixelsThreshold: 0.0000038146973
+    UseHDR: 0
+    UseBackBuffer: 0
+    ImageResolution: 3
+    ActiveImageTests: 1
+    ActivePixelTests: 7
+  WaitFrames: 120
 --- !u!1 &882377317
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +979,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -962,6 +993,10 @@ PrefabInstance:
     - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
       propertyPath: m_LocalRotation.x
@@ -976,14 +1011,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -993,6 +1020,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4485053995679290, guid: 5c9c37f44a2a40278f68da278e7933b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95912159379542604, guid: 5c9c37f44a2a40278f68da278e7933b1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114092374645513894, guid: 5c9c37f44a2a40278f68da278e7933b1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133199099747798, guid: 5c9c37f44a2a40278f68da278e7933b1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114189751673756366, guid: 5c9c37f44a2a40278f68da278e7933b1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483367132283864, guid: 5c9c37f44a2a40278f68da278e7933b1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114716831147547478, guid: 5c9c37f44a2a40278f68da278e7933b1,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

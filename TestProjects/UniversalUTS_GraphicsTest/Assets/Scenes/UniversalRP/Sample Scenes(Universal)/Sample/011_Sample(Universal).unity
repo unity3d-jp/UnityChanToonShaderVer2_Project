@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 189582750}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.083406255, g: 0.118639976, b: 0.21898487, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189582749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 930b4dcb84134a9583acefdfe58dd762, type: 3}
   m_Name: 
@@ -654,6 +654,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8795992
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2165349
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.36
       objectReference: {fileID: 0}
@@ -664,6 +676,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.488
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6954393
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
       propertyPath: m_LocalRotation.x
@@ -678,18 +694,6 @@ PrefabInstance:
       value: 0.34717876
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.6954393
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 35.087
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -22.500002
       objectReference: {fileID: 0}
@@ -698,12 +702,8 @@ PrefabInstance:
       value: 76.968
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2165349
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8795992
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 35.087
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 7836c6821786442cb7a7e562af192560, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -725,6 +725,7 @@ GameObject:
   - component: {fileID: 2116290028}
   - component: {fileID: 2116290033}
   - component: {fileID: 2116290030}
+  - component: {fileID: 2116290034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -851,3 +852,29 @@ MonoBehaviour:
   focus: {x: 0, y: 1, z: 0}
   focusObj: {fileID: 981154325}
   showInstWindow: 0
+--- !u!114 &2116290034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116290027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694cd275e14473e4cb911da4d0a44291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageComparisonSettings:
+    TargetWidth: 960
+    TargetHeight: 540
+    PerPixelCorrectnessThreshold: 0.001
+    PerPixelGammaThreshold: 0.003921569
+    PerPixelAlphaThreshold: 0.003921569
+    AverageCorrectnessThreshold: 0.005
+    IncorrectPixelsThreshold: 0.0000038146973
+    UseHDR: 0
+    UseBackBuffer: 0
+    ImageResolution: 3
+    ActiveImageTests: 1
+    ActivePixelTests: 7
+  WaitFrames: 120

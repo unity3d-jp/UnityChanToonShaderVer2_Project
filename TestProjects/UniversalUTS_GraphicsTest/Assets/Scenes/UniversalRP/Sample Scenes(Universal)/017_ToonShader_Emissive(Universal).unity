@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1382183770}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.00085017196, g: 0.00120479, b: 0.0021854895, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 794565942}
   - component: {fileID: 794565947}
   - component: {fileID: 794565944}
+  - component: {fileID: 794565948}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -706,6 +707,32 @@ MonoBehaviour:
   focus: {x: 0, y: 0.6, z: 0}
   focusObj: {fileID: 1443813257616679}
   showInstWindow: 0
+--- !u!114 &794565948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794565941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694cd275e14473e4cb911da4d0a44291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageComparisonSettings:
+    TargetWidth: 960
+    TargetHeight: 540
+    PerPixelCorrectnessThreshold: 0.001
+    PerPixelGammaThreshold: 0.003921569
+    PerPixelAlphaThreshold: 0.003921569
+    AverageCorrectnessThreshold: 0.005
+    IncorrectPixelsThreshold: 0.0000038146973
+    UseHDR: 0
+    UseBackBuffer: 0
+    ImageResolution: 3
+    ActiveImageTests: 1
+    ActivePixelTests: 7
+  WaitFrames: 120
 --- !u!1 &882377317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,10 +1214,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5491574523930761693, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491640787843047139, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491754925300746205, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492362937523559359, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492365387371488005, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544286281146891205, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5594835989873423675, guid: dd83863ba6074124bc95a3491dce0597,
         type: 3}
       propertyPath: m_Name
       value: ToonShader_SD_unitychan_humanoid_Emissive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5598104094224656607, guid: dd83863ba6074124bc95a3491dce0597,
         type: 3}
@@ -1209,6 +1271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5598104094224656607, guid: dd83863ba6074124bc95a3491dce0597,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: dd83863ba6074124bc95a3491dce0597,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1221,16 +1288,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5598104094224656607, guid: dd83863ba6074124bc95a3491dce0597,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5598104094224656607, guid: dd83863ba6074124bc95a3491dce0597,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5598104094224656607, guid: dd83863ba6074124bc95a3491dce0597,
         type: 3}

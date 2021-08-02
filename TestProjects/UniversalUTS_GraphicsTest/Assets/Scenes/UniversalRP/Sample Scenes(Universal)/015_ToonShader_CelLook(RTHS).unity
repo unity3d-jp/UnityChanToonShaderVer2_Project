@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.08079448, g: 0.115334414, b: 0.21634787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -428,12 +428,12 @@ PrefabInstance:
       value: ToonShader_SD_unitychan_humanoid_CelLook
       objectReference: {fileID: 0}
     - target: {fileID: 1590974229819140, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590974229819140, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590974229819140, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1673285163430804, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
       propertyPath: m_Layer
@@ -452,6 +452,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -462,6 +466,10 @@ PrefabInstance:
     - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -476,14 +484,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: 7b95d586607141bcb802b8d68d84e52b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -495,16 +495,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 137086489294773550, guid: 7b95d586607141bcb802b8d68d84e52b,
+    - target: {fileID: 95883473384962064, guid: 7b95d586607141bcb802b8d68d84e52b,
         type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 74b7a427b8ce4b95bdbbd7e022d69f6a, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114055486772545932, guid: 7b95d586607141bcb802b8d68d84e52b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733876629818134, guid: 7b95d586607141bcb802b8d68d84e52b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114868247278837488, guid: 7b95d586607141bcb802b8d68d84e52b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114908668597406430, guid: 7b95d586607141bcb802b8d68d84e52b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114972122099090148, guid: 7b95d586607141bcb802b8d68d84e52b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 137086489294773550, guid: 7b95d586607141bcb802b8d68d84e52b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7dafccaa373d4f71ad0156ceba19b7f1, type: 2}
+    - target: {fileID: 137086489294773550, guid: 7b95d586607141bcb802b8d68d84e52b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74b7a427b8ce4b95bdbbd7e022d69f6a, type: 2}
     - target: {fileID: 137665887834554748, guid: 7b95d586607141bcb802b8d68d84e52b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -693,6 +723,7 @@ GameObject:
   - component: {fileID: 794565947}
   - component: {fileID: 794565948}
   - component: {fileID: 794565944}
+  - component: {fileID: 794565949}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -756,7 +787,7 @@ MonoBehaviour:
   m_GPUSkinning: 1
   m_adaptiveSampling: 0
   m_antialiasing: 0
-  m_clampBlendshapeWeights: 1
+  m_clampBlendshapeWeights: 0
   m_dbgVerboseLog: 0
   m_foldDebug: 0
 --- !u!20 &794565945
@@ -862,6 +893,32 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &794565949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794565941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694cd275e14473e4cb911da4d0a44291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageComparisonSettings:
+    TargetWidth: 960
+    TargetHeight: 540
+    PerPixelCorrectnessThreshold: 0.001
+    PerPixelGammaThreshold: 0.003921569
+    PerPixelAlphaThreshold: 0.003921569
+    AverageCorrectnessThreshold: 0.005
+    IncorrectPixelsThreshold: 0.0000038146973
+    UseHDR: 0
+    UseBackBuffer: 0
+    ImageResolution: 3
+    ActiveImageTests: 1
+    ActivePixelTests: 7
+  WaitFrames: 120
 --- !u!1 &882377317
 GameObject:
   m_ObjectHideFlags: 0
