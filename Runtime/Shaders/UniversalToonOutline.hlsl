@@ -2,38 +2,9 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
-            uniform float4 _LightColor0;
-            uniform float4 _BaseColor;
-            //v.2.0.7.5
-            uniform float _Unlit_Intensity;
-            uniform fixed _Is_Filter_LightColor;
-            uniform fixed _Is_LightColor_Outline;
-            //v.2.0.5
-            uniform float4 _Color;
-            uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
-            uniform float _Outline_Width;
-            uniform float _Farthest_Distance;
-            uniform float _Nearest_Distance;
-            uniform sampler2D _Outline_Sampler; uniform float4 _Outline_Sampler_ST;
-            uniform float4 _Outline_Color;
-            uniform fixed _Is_BlendBaseColor;
-            uniform float _Offset_Z;
-            //v2.0.4
-            uniform sampler2D _OutlineTex; uniform float4 _OutlineTex_ST;
-            uniform fixed _Is_OutlineTex;
-            //Baked Normal Texture for Outline
-            uniform sampler2D _BakedNormal; uniform float4 _BakedNormal_ST;
-            uniform fixed _Is_BakedNormal;
 
-            uniform float _ZOverDrawMode;
-            //
-//v.2.0.4
-#ifdef _IS_OUTLINE_CLIPPING_YES
-            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-            uniform float _Clipping_Level;
-            uniform fixed _Inverse_Clipping;
-            uniform fixed _IsBaseMapAlphaAsClippingMask;
-#endif
+            uniform float4 _LightColor0; // this is not set in c# code ?
+
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;

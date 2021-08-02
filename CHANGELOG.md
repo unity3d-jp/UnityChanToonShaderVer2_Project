@@ -1,5 +1,10 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
+
+## [2.3.0] - 2021/08/02
+### Fixed
+- The shader is compatible with SRP Batcher.
+
 ## [2.2.3] - 2021/05/09
 ### Fixed
 - A compile error on Unity 2020.2 when ShadingGradeMap is selected.

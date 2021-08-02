@@ -7,9 +7,7 @@
 
 #define UCTS_LWRP 1
 
-#define fixed  half
-#define fixed3 half3
-#define fixed4 half4
+
 
 
 #define MAINLIGHT_NOT_FOUND -2
@@ -20,6 +18,14 @@
 # define DIRECTIONAL
 #endif
 
+#define FP_BUFFER 1
+#if FP_BUFFER
+#define SATURATE_IF_SDR(x) (x)
+#define SATURATE_BASE_COLOR_IF_SDR(x) (x)
+#else
+#define SATURATE_IF_SDR(x) saturate(x)
+#define SATURATE_BASE_COLOR_IF_SDR(x) saturate(x)
+#endif
 
 
 
