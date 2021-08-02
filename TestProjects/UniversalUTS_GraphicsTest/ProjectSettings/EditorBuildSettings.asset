@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/PointLightTest/012_SceneLights
       Hi-Cut_Filter Test(Universal).unity
     guid: d42a1c787fc040be88ac34842b8d547f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/ShaderBall/013_ShaderBall(Universal).unity
     guid: a5fb7d6114eb4687b6b9a0a80dbee966
   - enabled: 1
