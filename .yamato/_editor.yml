@@ -4,8 +4,7 @@
 # Read more under .yamato/docs/readme.md 
 unity_versions:
   - name: 2019.4
-  - name: 2020.1
-  - name: 2020.2
+  - name: 2020.3
   - name: 2021.1
   - name: trunk
 ---
