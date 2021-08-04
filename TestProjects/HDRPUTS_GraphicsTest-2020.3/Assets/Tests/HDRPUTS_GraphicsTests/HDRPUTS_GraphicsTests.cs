@@ -79,8 +79,6 @@ namespace Tests
 
             // 2D Renderer is currently allocating memory, skip it as it will always fail GC alloc tests.
             //var additionalCameraData = mainCamera.GetHDRPAdditionalCameraData();
-#if UNITY_EDITOR_OSX
-#else
             bool is2DRenderer = false; // additionalCameraData.scriptableRenderer is Renderer2D;
 
             if (!is2DRenderer)
@@ -96,7 +94,6 @@ namespace Tests
                 if (allocatesMemory)
                     Assert.Fail("Allocated memory when rendering what is on main camera");
             }
-#endif            
         }
 
         public static Texture2D LoadPNG(string filePath)

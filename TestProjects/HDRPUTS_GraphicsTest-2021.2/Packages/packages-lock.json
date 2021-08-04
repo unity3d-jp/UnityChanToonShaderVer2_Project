@@ -57,7 +57,7 @@
     },
     "com.unity.nuget.mono-cecil": {
       "version": "1.10.1",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -70,11 +70,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.package-validation-suite": {
-      "version": "0.15.0-preview",
+      "version": "0.10.0-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.nuget.mono-cecil": "0.1.6-preview.2"
+        "nuget.mono-cecil": "0.1.6-preview"
       },
       "url": "https://packages.unity.com"
     },
@@ -170,7 +170,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework.utp-reporter": {
-      "version": "1.1.0-preview",
+      "version": "1.0.2-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -240,7 +240,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.0.5",
+      "version": "4.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -251,6 +251,14 @@
         "com.unity.subsystemregistration": "1.0.6"
       },
       "url": "https://packages.unity.com"
+    },
+    "nuget.mono-cecil": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.nuget.mono-cecil": "1.10.1"
+      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ProjectSettingFolderPath: HDRPDefaultResources
-  m_LastMaterialVersion: 12
   m_WizardPopupAtStart: 0
+  m_LastMaterialVersion: 12
+  m_HDShaderGraphLastSeenVersion: 0
+  m_PluginMaterialVersions:
+    m_Keys: []
+    m_Values: 
+  m_PluginSubTargetVersions:
+    m_Keys: []
+    m_Values: 
   m_Version: 2
   m_ObsoleteWizardPopupAlreadyShownOnce: 0
-  m_ObsoleteWizardActiveTab: 0
+  m_ObsoleteWizardActiveTab: 2
   m_ObsoleteWizardNeedRestartAfterChangingToDX12: 0
   m_ObsoleteWizardNeedToRunFixAllAgainAfterDomainReload: 0

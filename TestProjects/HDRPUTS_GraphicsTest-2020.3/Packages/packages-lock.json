@@ -55,13 +55,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.mathematics": {
-      "version": "1.1.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.nuget.newtonsoft-json": {
       "version": "2.0.0-preview",
       "depth": 1,
@@ -112,17 +105,6 @@
       "source": "registry",
       "dependencies": {
         "com.unity.render-pipelines.core": "10.5.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.render-pipelines.universal": {
-      "version": "10.5.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.mathematics": "1.1.0",
-        "com.unity.render-pipelines.core": "10.5.0",
-        "com.unity.shadergraph": "10.5.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -178,7 +160,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework.utp-reporter": {
-      "version": "1.1.0-preview",
+      "version": "1.0.2-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {

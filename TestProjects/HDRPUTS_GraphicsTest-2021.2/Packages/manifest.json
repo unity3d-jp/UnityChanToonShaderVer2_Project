@@ -3,17 +3,17 @@
     "com.unity.ide.rider": "3.0.7",
     "com.unity.ide.visualstudio": "2.0.9",
     "com.unity.ide.vscode": "1.2.3",
-    "com.unity.package-validation-suite": "0.15.0-preview",
+    "com.unity.package-validation-suite": "0.10.0-preview",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
     "com.unity.render-pipelines.high-definition": "12.0.0",
     "com.unity.test-framework": "1.1.26",
     "com.unity.test-framework.build": "0.0.1-preview.12",
-    "com.unity.test-framework.utp-reporter": "1.1.0-preview",
+    "com.unity.test-framework.utp-reporter": "1.0.2-preview",
     "com.unity.testframework.graphics": "7.8.8-preview",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.toonshader": "file:../../../com.unity.toonshader",
     "com.unity.ugui": "1.0.0",
-    "com.unity.xr.management": "4.0.5",
+    "com.unity.xr.management": "4.0.7",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -47,6 +47,7 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "testables": [
-    "com.unity.testframework.graphics"
+    "com.unity.testframework.graphics",
+    "com.unity.toonshader"
   ]
 }
