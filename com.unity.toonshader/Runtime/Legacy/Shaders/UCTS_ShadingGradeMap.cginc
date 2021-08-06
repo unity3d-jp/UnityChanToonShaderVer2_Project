@@ -54,127 +54,7 @@ struct VertexOutput {
 //---------------------------------------------------------------------------------------------------------------------
 
 #include "UCTS_Light.cginc"
-
-            uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
-            uniform float4 _BaseColor;
-            //v.2.0.5
-            uniform float4 _Color;
-            uniform fixed _Use_BaseAs1st;
-            uniform fixed _Use_1stAs2nd;
-            //
-            uniform fixed _Is_LightColor_Base;
-            uniform sampler2D _1st_ShadeMap; uniform float4 _1st_ShadeMap_ST;
-            uniform float4 _1st_ShadeColor;
-            uniform fixed _Is_LightColor_1st_Shade;
-            uniform sampler2D _2nd_ShadeMap; uniform float4 _2nd_ShadeMap_ST;
-            uniform float4 _2nd_ShadeColor;
-            uniform fixed _Is_LightColor_2nd_Shade;
-            uniform sampler2D _NormalMap; uniform float4 _NormalMap_ST;
-            uniform fixed _Is_NormalMapToBase;
-            uniform fixed _Set_SystemShadowsToBase;
-            uniform float _Tweak_SystemShadowsLevel;
-            uniform sampler2D _ShadingGradeMap; uniform float4 _ShadingGradeMap_ST;
-            //v.2.0.6
-            uniform float _Tweak_ShadingGradeMapLevel;
-            uniform fixed _BlurLevelSGM;
-            //
-            uniform float _1st_ShadeColor_Step;
-            uniform float _1st_ShadeColor_Feather;
-            uniform float _2nd_ShadeColor_Step;
-            uniform float _2nd_ShadeColor_Feather;
-            uniform float4 _HighColor;
-            uniform sampler2D _HighColor_Tex; uniform float4 _HighColor_Tex_ST;
-            uniform fixed _Is_LightColor_HighColor;
-            uniform fixed _Is_NormalMapToHighColor;
-            uniform float _HighColor_Power;
-            uniform fixed _Is_SpecularToHighColor;
-            uniform fixed _Is_BlendAddToHiColor;
-            uniform fixed _Is_UseTweakHighColorOnShadow;
-            uniform float _TweakHighColorOnShadow;
-            uniform sampler2D _Set_HighColorMask; uniform float4 _Set_HighColorMask_ST;
-            uniform float _Tweak_HighColorMaskLevel;
-            uniform fixed _RimLight;
-            uniform float4 _RimLightColor;
-            uniform fixed _Is_LightColor_RimLight;
-            uniform fixed _Is_NormalMapToRimLight;
-            uniform float _RimLight_Power;
-            uniform float _RimLight_InsideMask;
-            uniform fixed _RimLight_FeatherOff;
-            uniform fixed _LightDirection_MaskOn;
-            uniform float _Tweak_LightDirection_MaskLevel;
-            uniform fixed _Add_Antipodean_RimLight;
-            uniform float4 _Ap_RimLightColor;
-            uniform fixed _Is_LightColor_Ap_RimLight;
-            uniform float _Ap_RimLight_Power;
-            uniform fixed _Ap_RimLight_FeatherOff;
-            uniform sampler2D _Set_RimLightMask; uniform float4 _Set_RimLightMask_ST;
-            uniform float _Tweak_RimLightMaskLevel;
-            uniform fixed _MatCap;
-            uniform sampler2D _MatCap_Sampler; uniform float4 _MatCap_Sampler_ST;
-            uniform float4 _MatCapColor;
-            uniform fixed _Is_LightColor_MatCap;
-            uniform fixed _Is_BlendAddToMatCap;
-            uniform float _Tweak_MatCapUV;
-            uniform float _Rotate_MatCapUV;
-            uniform fixed _Is_NormalMapForMatCap;
-            uniform sampler2D _NormalMapForMatCap; uniform float4 _NormalMapForMatCap_ST;
-            uniform float _Rotate_NormalMapForMatCapUV;
-            uniform fixed _Is_UseTweakMatCapOnShadow;
-            uniform float _TweakMatCapOnShadow;
-            //MatcapMask
-            uniform sampler2D _Set_MatcapMask; uniform float4 _Set_MatcapMask_ST;
-            uniform float _Tweak_MatcapMaskLevel;
-            //v.2.0.5
-            uniform fixed _Is_Ortho;
-            //v.2.0.6
-            uniform float _CameraRolling_Stabilizer;
-            uniform fixed _BlurLevelMatcap;
-            uniform fixed _Inverse_MatcapMask;
-            uniform float _BumpScale;
-            uniform float _BumpScaleMatcap;
-            //Emissive
-            uniform sampler2D _Emissive_Tex; uniform float4 _Emissive_Tex_ST;
-            uniform float4 _Emissive_Color;
-            //v.2.0.7
-            uniform fixed _Is_ViewCoord_Scroll;
-            uniform float _Rotate_EmissiveUV;
-            uniform float _Base_Speed;
-            uniform float _Scroll_EmissiveU;
-            uniform float _Scroll_EmissiveV;
-            uniform fixed _Is_PingPong_Base;
-            uniform float4 _ColorShift;
-            uniform float4 _ViewShift;
-            uniform float _ColorShift_Speed;
-            uniform fixed _Is_ColorShift;
-            uniform fixed _Is_ViewShift;
-            uniform float3 emissive;
-            // 
-            uniform float _Unlit_Intensity;
-            //v.2.0.5
-            uniform fixed _Is_Filter_HiCutPointLightColor;
-            uniform fixed _Is_Filter_LightColor;
-            //v.2.0.4.4
-            uniform float _StepOffset;
-            uniform fixed _Is_BLD;
-            uniform float _Offset_X_Axis_BLD;
-            uniform float _Offset_Y_Axis_BLD;
-            uniform fixed _Inverse_Z_Axis_BLD;
-//v.2.0.4
-
-            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-            uniform fixed _IsBaseMapAlphaAsClippingMask;
-            uniform float _Clipping_Level;
-            uniform fixed _Inverse_Clipping;
-            uniform float _Tweak_transparency;
-
-
-#ifdef _SYNTHESIZED_TEXTURE
-            uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
-            uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
-            uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthesized_ST;
-            uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
-#endif
-
+#include "UCTS_Input.cginc"
             //function to rotate the UV: RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
             float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
@@ -186,23 +66,10 @@ struct VertexOutput {
             }
             //
             fixed3 DecodeLightProbe( fixed3 N ){
-            return ShadeSH9(float4(N,1));
+                return ShadeSH9(float4(N,1));
             }
-            
-            uniform float _GI_Intensity;
-//v.2.0.4
-#ifdef _IS_ANGELRING_OFF
-//
-#elif _IS_ANGELRING_ON
-            uniform fixed _AngelRing;
-            uniform sampler2D _AngelRing_Sampler; uniform float4 _AngelRing_Sampler_ST;
-            uniform float4 _AngelRing_Color;
-            uniform fixed _Is_LightColor_AR;
-            uniform float _AR_OffsetU;
-            uniform float _AR_OffsetV;
-            uniform fixed _ARSampler_AlphaOn;
 
-#endif
+            //
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
@@ -245,13 +112,13 @@ struct VertexOutput {
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
                 float2 Set_UV0 = i.uv0;
                 //v.2.0.6
-                float3 _NormalMap_var = UnpackScaleNormal(tex2D(_NormalMap,TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
+                float3 _NormalMap_var = UnpackScaleNormal(SAMPLE_TEXTURE2D(_NormalMap,sampler_MainTex, TRANSFORM_TEX(Set_UV0, _NormalMap)), _BumpScale);
                 float3 normalLocal = _NormalMap_var.rgb;
                 float3 normalDirection = normalize(mul( normalLocal, tangentTransform )); // Perturbed normals
 #ifdef _SYNTHESIZED_TEXTURE
                 float4 _MainTex_var = float4(tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).rgb, 1.0f);
 #else
-                float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+                float4 _MainTex_var = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
 #endif
 
 //v.2.0.4
@@ -298,7 +165,7 @@ struct VertexOutput {
                 float3 Set_LightColor = lightColor.rgb;
                 float3 Set_BaseColor = lerp( (_MainTex_var.rgb*_BaseColor.rgb), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base );
                 //v.2.0.5
-                float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
+                float4 _1st_ShadeMap_var = lerp(SAMPLE_TEXTURE2D(_1st_ShadeMap,sampler_MainTex, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert
 #ifdef _SYNTHESIZED_TEXTURE
@@ -316,7 +183,7 @@ struct VertexOutput {
                 float Set_FinalShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)))); // Base and 1st Shade Mask
                 float3 _BaseColor_var = lerp(Set_BaseColor,_Is_LightColor_1st_Shade_var,Set_FinalShadowMask);
                 //v.2.0.5
-                float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap,TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)),_1st_ShadeMap_var,_Use_1stAs2nd);
+                float4 _2nd_ShadeMap_var = lerp(SAMPLE_TEXTURE2D(_2nd_ShadeMap,sampler_MainTex, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)),_1st_ShadeMap_var,_Use_1stAs2nd);
                 float Set_ShadeShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_2nd_ShadeColor_Step-_2nd_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_2nd_ShadeColor_Step - (_2nd_ShadeColor_Step-_2nd_ShadeColor_Feather)))); // 1st and 2nd Shades Mask
                 //Composition: 3 Basic Colors as Set_FinalBaseColor
                 float3 Set_FinalBaseColor = lerp(_BaseColor_var,lerp(_Is_LightColor_1st_Shade_var,lerp( (_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb), ((_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade ),Set_ShadeShadowMask),Set_FinalShadowMask);
@@ -490,7 +357,7 @@ struct VertexOutput {
                 //
                 float3 Set_BaseColor = lerp( (_MainTex_var.rgb*_BaseColor.rgb*_LightIntensity), ((_MainTex_var.rgb*_BaseColor.rgb)*Set_LightColor), _Is_LightColor_Base );
                 //v.2.0.5
-                float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
+                float4 _1st_ShadeMap_var = lerp(SAMPLE_TEXTURE2D(_1st_ShadeMap,sampler_MainTex, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)),_MainTex_var,_Use_BaseAs1st);
                 float3 _Is_LightColor_1st_Shade_var = lerp( (_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb*_LightIntensity), ((_1st_ShadeMap_var.rgb*_1st_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_1st_Shade );
                 float _HalfLambert_var = 0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ),lightDirection)+0.5; // Half Lambert
                 //v.2.0.6
@@ -502,7 +369,7 @@ struct VertexOutput {
                 float Set_FinalShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_1st_ShadeColor_Step - (_1st_ShadeColor_Step-_1st_ShadeColor_Feather)))); // Base and 1st Shade Mask
                 float3 _BaseColor_var = lerp(Set_BaseColor,_Is_LightColor_1st_Shade_var,Set_FinalShadowMask);
                 //v.2.0.5
-                float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap,TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)),_1st_ShadeMap_var,_Use_1stAs2nd);
+                float4 _2nd_ShadeMap_var = lerp(SAMPLE_TEXTURE2D(_2nd_ShadeMap,sampler_MainTex, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)),_1st_ShadeMap_var,_Use_1stAs2nd);
                 float Set_ShadeShadowMask = saturate((1.0 + ( (Set_ShadingGrade - (_2nd_ShadeColor_Step-_2nd_ShadeColor_Feather)) * (0.0 - 1.0) ) / (_2nd_ShadeColor_Step - (_2nd_ShadeColor_Step-_2nd_ShadeColor_Feather)))); // 1st and 2nd Shades Mask
                 //Composition: 3 Basic Colors as finalColor
                 float3 finalColor = lerp(_BaseColor_var,lerp(_Is_LightColor_1st_Shade_var,lerp( (_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb*_LightIntensity), ((_2nd_ShadeMap_var.rgb*_2nd_ShadeColor.rgb)*Set_LightColor), _Is_LightColor_2nd_Shade ),Set_ShadeShadowMask),Set_FinalShadowMask);

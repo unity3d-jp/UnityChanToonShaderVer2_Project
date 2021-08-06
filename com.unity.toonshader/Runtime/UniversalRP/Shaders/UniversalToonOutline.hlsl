@@ -73,7 +73,7 @@
                 lightColor = lightColorIntensity<1 ? lightColor : lightColor/lightColorIntensity;
                 lightColor = lerp(half3(1.0,1.0,1.0), lightColor, _Is_LightColor_Outline);
                 float2 Set_UV0 = i.uv0;
-                float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
+                float4 _MainTex_var = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
                 float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
                 float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
                 //

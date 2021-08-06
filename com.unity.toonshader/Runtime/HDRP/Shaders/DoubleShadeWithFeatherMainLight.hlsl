@@ -38,7 +38,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
 #ifdef _SYNTHESIZED_TEXTURE
     float4 _MainTex_var = float4(tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).rgb, 1.0f);
 #else
-    float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+    float4 _MainTex_var = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
 #endif
     float3 i_normalDir = surfaceData.normalWS;
     utsData.viewDirection = V;
@@ -118,7 +118,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float Set_BaseColorAlpha = _BaseColorVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
-    float4 _1st_ShadeMap_var = lerp(tex2D(_1st_ShadeMap, TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
+    float4 _1st_ShadeMap_var = lerp(SAMPLE_TEXTURE2D(_1st_ShadeMap, sampler_MainTex,TRANSFORM_TEX(Set_UV0, _1st_ShadeMap)), _MainTex_var, _Use_BaseAs1st);
     float3 Set_1st_ShadeColor = lerp((_1st_ShadeColor.rgb * _1st_ShadeMap_var.rgb), ((_1st_ShadeColor.rgb * _1st_ShadeMap_var.rgb) * Set_LightColor), _Is_LightColor_1st_Shade);
 #ifdef _IS_CLIPPING_MATTE
     if (_ClippingMatteMode == 2)
@@ -137,7 +137,7 @@ float3 UTS_MainLight(LightLoopContext lightLoopContext, FragInputs input, int ma
     float Set_1st_ShadeAlpha = _FirstShadeVisible;
 #endif //#ifdef UTS_LAYER_VISIBILITY
     //v.2.0.5
-    float4 _2nd_ShadeMap_var = lerp(tex2D(_2nd_ShadeMap, TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
+    float4 _2nd_ShadeMap_var = lerp(SAMPLE_TEXTURE2D(_2nd_ShadeMap, sampler_MainTex,TRANSFORM_TEX(Set_UV0, _2nd_ShadeMap)), _1st_ShadeMap_var, _Use_1stAs2nd);
     float3 Set_2nd_ShadeColor = lerp((_2nd_ShadeColor.rgb * _2nd_ShadeMap_var.rgb), ((_2nd_ShadeColor.rgb * _2nd_ShadeMap_var.rgb) * Set_LightColor), _Is_LightColor_2nd_Shade);
     float _HalfLambert_var = 0.5 * dot(lerp(i_normalDir, utsData.normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5;
 #ifdef _SYNTHESIZED_TEXTURE

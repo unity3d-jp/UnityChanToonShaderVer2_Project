@@ -142,8 +142,6 @@ inline half3 LinearToGammaSpace(half3 linRGB)
 //#define TRANSFORM_TEX(tex,name) (tex.xy * name##_ST.xy + name##_ST.zw)
 #define UCTS_TEXTURE2D(tex,name)  SAMPLE_TEXTURE2D(tex,sampler##tex,TRANSFORM_TEX(name, tex));
 
-
-
 inline float4 UnityObjectToClipPosInstanced(in float3 pos)
 {
     //    return mul(UNITY_MATRIX_VP, mul(unity_ObjectToWorldArray[unity_InstanceID], float4(pos, 1.0)));
