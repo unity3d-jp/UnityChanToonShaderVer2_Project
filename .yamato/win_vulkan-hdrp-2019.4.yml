@@ -8,7 +8,7 @@ unity_versions:
 ---
 {% for test_project in test_projects %}
 {% for unity_version in unity_versions %}
-{{ test_project.name }}_Win_DX11_playmode_{{ unity_version.name }}:
+{{ test_project.name }}_Win_Vulkan_playmode_{{ unity_version.name }}:
     name: {{ test_project.name }} on Win_Vulkan_playmode on version {{ unity_version.name }}
     agent:
         type: Unity::VM::GPU
