@@ -60,4 +60,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sample Scenes/018_ToonShader_Firefly.unity
     guid: db853c23f85248ef9b204089b231ee31
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: beadd2f698478bb489e31d3e6ccc28ac,
+      type: 2}
