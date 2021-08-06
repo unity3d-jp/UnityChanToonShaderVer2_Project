@@ -43,12 +43,7 @@ Shader "ToonTessellation (Built-in)" {
         // ClippingMask paramaters to Here.
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
 
-        // Syntesized Textures
-        _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
-        _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
-        _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
-        _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
+
 
 
         _MainTex ("BaseMap", 2D) = "white" {}
@@ -287,7 +282,6 @@ Shader "ToonTessellation (Built-in)" {
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
 
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap
@@ -343,7 +337,6 @@ Shader "ToonTessellation (Built-in)" {
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap

@@ -1,21 +1,11 @@
-﻿//Unity Toon Shader/HDRP
+﻿//Unity Toon Shader/Legacy
 //nobuyuki@unity3d.com
-//toshiyuki@unity3d.com (Universal RP/HDRP) 
+//toshiyuki@unity3d.com (Intengrated) 
 
 
-            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
-            uniform float _Clipping_Level;
-            uniform fixed _Inverse_Clipping;
-            uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
-            uniform fixed _IsBaseMapAlphaAsClippingMask;
+#include "UCTS_Input.cginc"
 
 
-#ifdef _SYNTHESIZED_TEXTURE
-            uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
-            uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
-            uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthesized_ST;
-            uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
-#endif
             struct VertexInput {
                 float4 vertex : POSITION;
 #ifdef _IS_CLIPPING_MODE
@@ -65,16 +55,10 @@
 #elif _IS_CLIPPING_TRANSMODE
 //_TransClipping
                 float2 Set_UV0 = i.uv0;
-#ifdef _SYNTHESIZED_TEXTURE
-                float4 _ClippingMask_var = tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).aaaa;
-#else
+
                 float4 _ClippingMask_var = tex2D(_ClippingMask, TRANSFORM_TEX(Set_UV0, _ClippingMask));
-#endif
-#ifdef _SYNTHESIZED_TEXTURE
-                float4 _MainTex_var = float4(tex2D(_MainTexSynthesized, TRANSFORM_TEX(Set_UV0, _MainTexSynthesized)).rgb, 1.0f);
-#else
-                float4 _MainTex_var = tex2D(_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
-#endif
+                float4 _MainTex_var = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+
                 float Set_MainTexAlpha = _MainTex_var.a;
                 float _IsBaseMapAlphaAsClippingMask_var = lerp( _ClippingMask_var.r, Set_MainTexAlpha, _IsBaseMapAlphaAsClippingMask );
                 float _Inverse_Clipping_var = lerp( _IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping );

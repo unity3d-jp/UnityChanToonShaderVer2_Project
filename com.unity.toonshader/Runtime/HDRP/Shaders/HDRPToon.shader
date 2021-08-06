@@ -15,12 +15,7 @@ Shader "HDRP/Toon"
         [HideInInspector] _utsVersionY("VersionY", Float) = 2
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
-        // Syntesized Textures
-        _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
-        _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
-        _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
-        _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
+
 
 
         // Following set of parameters represent the parameters node inside the MaterialGraph.
@@ -975,7 +970,6 @@ Shader "HDRP/Toon"
             #if !defined(_SURFACE_TYPE_TRANSPARENT) && !defined(DEBUG_DISPLAY)
                 #define SHADERPASS_FORWARD_BYPASS_ALPHA_TEST
             #endif
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap
             #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON

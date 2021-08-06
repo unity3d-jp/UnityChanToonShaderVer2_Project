@@ -13,12 +13,7 @@ Shader "HDRP/ToonTessellation"
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
         [HideInInspector] _utsVersionY("VersionY", Float) = 2
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
-        // Syntesized Textures
-        _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
-        _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
-        _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
-        _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
+
 
         // Reminder. Color here are in linear but the UI (color picker) do the conversion sRGB to linear
         _BaseColor("BaseColor", Color) = (1,1,1,1)
@@ -982,7 +977,6 @@ Shader "HDRP/ToonTessellation"
             #if !defined(_SURFACE_TYPE_TRANSPARENT) && !defined(DEBUG_DISPLAY)
                 #define SHADERPASS_FORWARD_BYPASS_ALPHA_TEST
             #endif
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap
             #pragma shader_feature _IS_TRANSCLIPPING_OFF _IS_TRANSCLIPPING_ON

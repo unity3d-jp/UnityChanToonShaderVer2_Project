@@ -40,12 +40,6 @@
             float4 _RaytracedHardShadow_TexelSize;
             uniform int UtsUseRaytracingShadow;
 
-#ifdef _SYNTHESIZED_TEXTURE
-            uniform sampler2D _MainTexSynthesized; uniform float4 _MainTexSynthesized_ST;
-            uniform sampler2D _ShadowControlSynthesized; uniform float4 _ShadowControlSynthesized_ST;
-            uniform sampler2D _HighColor_TexSynthesized; uniform float4 _HighColor_TexSynthesized_ST;
-            uniform sampler2D _MatCap_SamplerSynthesized; uniform float4 _MatCap_SamplerSynthesized_ST;
-#endif
             //function to rotate the UV: RotateUV()
             //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
             float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)

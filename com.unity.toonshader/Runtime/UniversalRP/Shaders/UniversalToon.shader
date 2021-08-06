@@ -50,12 +50,6 @@ Shader "Universal Render Pipeline/Toon" {
         _Tweak_transparency("Tweak_transparency", Range(-1, 1)) = 0
         // ClippingMask paramaters to Here.
 
-        // Syntesized Textures
-        _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
-        _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
-        _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
-        _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
 
 
         _MainTex ("BaseMap", 2D) = "white" {}
@@ -318,7 +312,6 @@ Shader "Universal Render Pipeline/Toon" {
 
             #pragma multi_compile   _IS_PASS_FWDBASE
             #pragma multi_compile   _ENVIRONMENTREFLECTIONS_OFF
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
 

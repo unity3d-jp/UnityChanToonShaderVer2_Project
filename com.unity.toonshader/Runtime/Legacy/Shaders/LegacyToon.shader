@@ -46,12 +46,7 @@ Shader "Toon (Built-in)" {
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
 
 
-        // Syntesized Textures
-        [HideInInspector] _MainTexSynthesized("_MainTexSynthesized",2D) = "white" {}
-        [HideInInspector] _ShadowControlSynthesized("_ShadowControlSynthesized", 2D) = "white" {}
-        [HideInInspector] _HighColor_TexSynthesized("_HighColor_TexSynthesized", 2D) = "white" {}
-        [HideInInspector] _MatCap_SamplerSynthesized("_MatCap_SamplerSynthesized", 2D) = "black" {}
-        [HideInInspector] _Outline_SamplerSynthesized("_Outline_SamplerSynthesized", 2D) = "white" {}
+
 
 
 
@@ -273,8 +268,6 @@ Shader "Toon (Built-in)" {
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
-
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap
@@ -323,7 +316,6 @@ Shader "Toon (Built-in)" {
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
             #pragma shader_feature _ _SHADINGGRADEMAP
             // used in ShadingGradeMap

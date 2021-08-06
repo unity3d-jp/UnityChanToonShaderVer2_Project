@@ -38,7 +38,6 @@ namespace UnityEditor.Rendering.Toon
         internal virtual void ApplyRenderingPerChennelsSetting(Material materal) { }
         internal virtual void FindTessellationProperties(MaterialProperty[] props) { }
         internal virtual bool handleTessellation { get; }
-        protected const string ShaderDefineSYNTEHSIZEDTEXTURE = "_SYNTHESIZED_TEXTURE";
         protected const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         protected const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
         protected const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
@@ -135,11 +134,7 @@ namespace UnityEditor.Rendering.Toon
         protected const string ShaderPropInverse_Z_Axis_BLD = "_Inverse_Z_Axis_BLD";
 
 
-        protected const string ShaderProp_MainTexSynthesized = "_MainTexSynthesized";
-        protected const string ShaderProp_ShadowControlSynthesized = "_ShadowControlSynthesized";
-        protected const string ShaderProp_HighColor_TexSynthesized = "_HighColor_TexSynthesized";
-        protected const string ShaderProp_MatCap_SamplerSynthesized = "_MatCap_SamplerSynthesized";
-        protected const string ShaderProp_Outline_SamplerSynthesized = "_Outline_SamplerSynthesized";
+
         
 
         protected const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
@@ -261,9 +256,7 @@ namespace UnityEditor.Rendering.Toon
             SimpleEmissive, EmissiveAnimation
         }
 
-        // Texture synthesizing
 
-        internal UTS_TextureSynthesizer m_textureSynthesizer;
         // variables which must be gotten from shader at the beggning of GUI
         internal int _autoRenderQueue = 1;
         internal int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
@@ -619,14 +612,7 @@ namespace UnityEditor.Rendering.Toon
 
         }
 
-        private void ApplyHashAndGUID(Material material)
-        {
-            Proc_MainTexSynthesized(material);
-            Proc_ShadowControlSynthesized(material);
-            Proc_HighColor_TexSynthesized(material);
-            Proc_MatCap_SamplerSynthesized(material);
-            //Proc_Outline_SamplerSynthesized(material);
-        }
+
 
         private bool IsClippingMaskPropertyAvailable(_UTS_Technique technique)
         {
@@ -875,11 +861,7 @@ namespace UnityEditor.Rendering.Toon
 
         public UTS_GUIBase()
         {
-            if (m_textureSynthesizer == null)
-            {
-                m_textureSynthesizer = new UTS_TextureSynthesizer();
 
-            }
         }
 
         // never called from the system??
@@ -893,7 +875,7 @@ namespace UnityEditor.Rendering.Toon
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
         {
 //            base.OnGUI(materialEditor, props);
-            UTS_TextureSynthesizer.Init();
+
 
             EditorGUIUtility.fieldWidth = 0;
             FindProperties(props);
@@ -901,13 +883,8 @@ namespace UnityEditor.Rendering.Toon
             Material material = materialEditor.target as Material;
 
             UpdateVersionInMaterial(material);
-            // this feature is still in test.
-            //material.EnableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE);
-            material.DisableKeyword(ShaderDefineSYNTEHSIZEDTEXTURE); 
-            if ( material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
-            {
-                StoreHashAndGUID(material);
-            }
+
+
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
 
@@ -1169,10 +1146,7 @@ namespace UnityEditor.Rendering.Toon
             ApplyTessellation(material);
             ApplyMatCapMode(material);
             ApplyQueueAndRenderType(technique, material);
-            if (material.IsKeywordEnabled(ShaderDefineSYNTEHSIZEDTEXTURE))
-            {
-                ApplyHashAndGUID(material);
-            }
+
 
 
             if (EditorGUI.EndChangeCheck())
@@ -1185,239 +1159,9 @@ namespace UnityEditor.Rendering.Toon
 
 
 
-        bool  IsDifferentTexture(Texture tex0, Texture tex1)
-        {
-            if ( tex0 != tex1)
-            {
-                return true;
-            }
-            if (tex0 != null && tex1 != null )
-            {
-                if ( tex0.imageContentsHash != tex1.imageContentsHash )
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        string GetValidFileName(Texture source0, Texture source1, Texture source2, Texture source3)
-        {
-            if ( source0 != null )
-            {
-                return AssetDatabase.GetAssetPath(source0);
-            }
-            if (source1 != null)
-            {
-                return AssetDatabase.GetAssetPath(source1);
-            }
-            if (source2 != null)
-            {
-                return AssetDatabase.GetAssetPath(source2);
-            }
-            if (source3 != null)
-            {
-                return AssetDatabase.GetAssetPath(source3);
-            }
-            Debug.Assert(false);
-            return null;
-        }
-
-        const string uts_tmp = "uts_tmp";
-        const string uts_sysnthesized_prefix = "uts_sysnthesized_";
-        void UpdateTextureAsset(Material material, string shaderProp, Texture outputTextureOrg, Texture outputTexture)
-        {
-            if (outputTextureOrg == outputTexture)
-            {
-                return;
-            }
-            Debug.Assert(outputTexture != null);
-            if (outputTextureOrg != null)
-            {
-                var originalPath = AssetDatabase.GetAssetPath(outputTextureOrg);
-                var fileName = Path.GetFileName(originalPath);
-                var tmpFolderPath = Path.Combine(originalPath.Replace(fileName, ""), uts_tmp);
-                Directory.CreateDirectory(tmpFolderPath);
-
-                var tmpFilePath = Path.Combine(tmpFolderPath, fileName);
-                // doesn't work
-#if false
-                var outputTexture2D = outputTexture as Texture2D;
-                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
-                File.WriteAllBytes(tmpFilePath, byteData);
-#else // use this for saving instaed.
-                SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, tmpFilePath );
-#endif
-
-                FileUtil.ReplaceFile(tmpFilePath, originalPath);
-                AssetDatabase.DeleteAsset(tmpFolderPath);
-                Object.DestroyImmediate(outputTexture);
-                AssetDatabase.ImportAsset(originalPath);
-                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(originalPath, typeof(Texture2D));
-                material.SetTexture(shaderProp, outputTexture);
-
-            }
-            else
-            {
-                var outputPath = GetValidFileName(UTS_TextureSynthesizer.Source0, UTS_TextureSynthesizer.Source1, UTS_TextureSynthesizer.Source2, UTS_TextureSynthesizer.Source3);
-                var fileName = Path.GetFileName(outputPath);
-                var folderName = Path.GetDirectoryName(outputPath);
-                outputPath = Path.Combine(folderName, uts_sysnthesized_prefix + fileName);
-#if false
-                var outputTexture2D = outputTexture as Texture2D;
-                byte[] byteData = ImageConversion.EncodeToPNG(outputTexture2D);
-                File.WriteAllBytes(outputPath, byteData);
-#else //
-                SaveRenderTextureNow(UTS_TextureSynthesizer.DebugRenderTexture, outputPath);
-#endif
-                AssetDatabase.ImportAsset(outputPath);
-                Object.DestroyImmediate(outputTexture);
-                outputTexture = (Texture)AssetDatabase.LoadAssetAtPath(outputPath, typeof(Texture2D));
-                material.SetTexture(shaderProp, outputTexture);
-            }
-        }
 
 
-        public void SaveRenderTextureNow(RenderTexture targetRenderTexture, string filePath)
-        {
-            var store = RenderTexture.active;
 
-            Debug.Assert(targetRenderTexture != null);
-            RenderTexture.active = targetRenderTexture;
-
-            var tex = new Texture2D(targetRenderTexture.width, targetRenderTexture.height);
-
-            tex.ReadPixels(new Rect(0, 0, targetRenderTexture.width, targetRenderTexture.height), 0, 0);
-            tex.Apply();
-            RenderTexture.active = store;
-            SaveTexture2DNow(tex, filePath);
-
-        }
-
-        void SaveTexture2DNow(Texture2D savingTexture, string filePath)
-        {
-            var buffer = ImageConversion.EncodeToPNG(savingTexture);
-            File.WriteAllBytes(filePath, buffer);
-
-        }
-        void Proc_MainTexSynthesized(Material material)
-        {
-            
-            var _MainTex = material.GetTexture(ShaderPropMainTex);
-            var _ClippingMask = material.GetTexture(ShaderPropClippingMask);
-            if (_MainTex == null && _ClippingMask == null)
-            {
-                material.SetTexture(ShaderProp_MainTexSynthesized, null);
-                // ?? thiynsesized texture should be deleted?
-                return;
-            }
-            var outputTextureOrg = material.GetTexture(ShaderProp_MainTexSynthesized);
-            var outputTexture = outputTextureOrg;
-            if (outputTextureOrg == null
-                || IsDifferentTexture(_MainTex, mainTexStore)
-                || IsDifferentTexture(_ClippingMask, clippingMaskStore) )
-            {
-                UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _MainTex, _ClippingMask);
-                UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, ShaderProp_MainTexSynthesized, outputTextureOrg, outputTexture);
-            }
-
-        }
-
-        void Proc_ShadowControlSynthesized(Material material)
-        {
-
-            var _Set_1st_ShadePosition = material.GetTexture(ShaderProp_Set_1st_ShadePosition);
-            var _Set_2nd_ShadePosition = material.GetTexture(ShaderProp_Set_2nd_ShadePosition);
-            var _ShadingGradeMap = material.GetTexture(ShaderProp_ShadingGradeMap);
-            var _Set_RimLightMask = material.GetTexture(ShaderProp_Set_RimLightMask);
-            if (_Set_1st_ShadePosition == null && _Set_2nd_ShadePosition == null && _ShadingGradeMap == null && _Set_RimLightMask == null )
-            {
-                material.SetTexture(ShaderProp_ShadowControlSynthesized, null);
-                // ?? thiynsesized texture should be deleted?
-                return;
-            }
-            var outputTextureOrg = material.GetTexture(ShaderProp_ShadowControlSynthesized);
-            var outputTexture = outputTextureOrg;
-            if (outputTextureOrg == null
-                || IsDifferentTexture(_Set_1st_ShadePosition, set1stShadePositionStore)
-                || IsDifferentTexture(_Set_2nd_ShadePosition, set2ndShadePositionStore)
-                || IsDifferentTexture(_ShadingGradeMap, shadingGradeMapStore)
-                || IsDifferentTexture(_Set_RimLightMask, rimLightMaskStore) )
-            {
-                UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine4, _Set_1st_ShadePosition, _Set_2nd_ShadePosition, _ShadingGradeMap, _Set_RimLightMask);
-                UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, ShaderProp_ShadowControlSynthesized, outputTextureOrg, outputTexture);
-
-            }
-
-        }
-
-        void Proc_HighColor_TexSynthesized(Material material)
-        {
-            var _HighColor_Tex = material.GetTexture(ShaderProp_HighColor_Tex);
-            var _Set_HighColorMask = material.GetTexture(ShaderProp_Set_HighColorMask);
-            if ( _HighColor_Tex == null && _Set_HighColorMask == null )
-            {
-                material.SetTexture(ShaderProp_HighColor_TexSynthesized, null );
-                // ?? thiynsesized texture should be deleted?
-                return;
-            }
-            var outputTextureOrg = material.GetTexture(ShaderProp_HighColor_TexSynthesized);
-            var outputTexture = outputTextureOrg;
-            if (outputTextureOrg == null
-                || IsDifferentTexture(_HighColor_Tex, highColorTexStore)
-                || IsDifferentTexture(_Set_HighColorMask, highColorMaskStore))
-            {
-                UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _HighColor_Tex, _Set_HighColorMask);
-                UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, ShaderProp_HighColor_TexSynthesized, outputTextureOrg, outputTexture);
-            }
-        }
-
-        void Proc_MatCap_SamplerSynthesized(Material material)
-        {
-            var _MatCap_Sampler = material.GetTexture(ShaderProp_MatCap_Sampler);
-            var _Set_MatcapMask = material.GetTexture(ShaderProp_Set_MatcapMask);
-            if (_MatCap_Sampler == null && _Set_MatcapMask == null)
-            {
-                material.SetTexture(ShaderProp_MatCap_SamplerSynthesized, null);
-                // ?? thiynsesized texture should be deleted?
-                return;
-            }
-
-            var outputTextureOrg = material.GetTexture(ShaderProp_MatCap_SamplerSynthesized);
-            var outputTexture = outputTextureOrg;
-            if (outputTextureOrg == null
-                || IsDifferentTexture(_MatCap_Sampler, matcapSamplerStore)
-                || IsDifferentTexture(_Set_MatcapMask, setMatcapMaskStore))
-            {
-                UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _MatCap_Sampler, _Set_MatcapMask);
-                UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, ShaderProp_MatCap_SamplerSynthesized, outputTextureOrg, outputTexture);
-            }
-        }
-
-        void Proc_Outline_SamplerSynthesized(Material material)
-        {
-            var _Outline_Sampler = material.GetTexture(ShaderProp_Outline_Sampler);
-            var _OutlineTex = material.GetTexture(ShaderProp_OutlineTex);
-            if (_Outline_Sampler == null && _OutlineTex == null)
-            {
-                material.SetTexture(ShaderProp_HighColor_TexSynthesized, null);
-                // ?? thiynsesized texture should be deleted?
-                return;
-            }
-            var outputTextureOrg = material.GetTexture(ShaderProp_HighColor_TexSynthesized);
-            var outputTexture = outputTextureOrg;
-            if (outputTextureOrg == null
-                || IsDifferentTexture(_Outline_Sampler, outlineTexStore)
-                || IsDifferentTexture(_OutlineTex, outlineSamplerStore))
-            {
-                UTS_TextureSynthesizer.SetMode(UTS_TextureSynthesizer.eSynthesizerMode.Combine3_1, _Outline_Sampler, _OutlineTex);
-                UTS_TextureSynthesizer.Proc(ref outputTexture);
-                UpdateTextureAsset(material, ShaderProp_HighColor_TexSynthesized, outputTextureOrg, outputTexture);
-            }
-        }
         // --------------------------------
 
         void CheckUtsTechnique(Material material)
