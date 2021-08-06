@@ -4,6 +4,7 @@
 * Legacy, Universal and HDRP: Some texture samplers,such as  _MainTex,  _NormalMap, _1st_ShadeMap and  _2nd_ShadeMap, are shared by 1 sampler, sampler_MainTex, in order to avoid sampler number exceeding errors. 
 * Integrated Textures feature is removed from all the render pipeline versions instead of above.
 * HDRP and URP are compatible with SRP Batcher.
+* Legacy, Universal and HDRP: Added image comparison tests with Vulkan API.
 
 ## [0.1.0-preview] - 2021-07-07
 * HDRP: Emission started to work.
