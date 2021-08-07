@@ -207,7 +207,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
 
-    // toshi.
+
 #define UNITY_PROJ_COORD(a) a
 #define UNITY_SAMPLE_SCREEN_SHADOW(tex, uv) tex2Dproj( tex, UNITY_PROJ_COORD(uv) ).r
     float inverseClipping = 0;
@@ -518,19 +518,25 @@ void Frag(PackedVaryingsToPS packedInput,
                 LightData s_lightData = FetchLight(s_lightIdx);
                 float3 lightColor = 0;
 
+                float3 L;
+                float4 distances; // {d, d^2, 1/d, d_proj}
+                GetPunctualLightVectors(posInput.positionWS, s_lightData, L, distances);
+                real attenuation = PunctualLightAttenuation(distances, s_lightData.rangeAttenuationScale, s_lightData.rangeAttenuationBias,
+                    s_lightData.angleScale, s_lightData.angleOffset);
 
-                float notDirectional = 1.0f;
-                float3 lightVector = s_lightData.positionRWS - posInput.positionWS * notDirectional;
-                float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
-                float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
-                float3 additionalLightColor = s_lightData.color;
-                additionalLightColor = GetAdjustedLightColor(additionalLightColor);
+                const float notDirectional = 1.0f;
+//                float3 lightVector = s_lightData.positionRWS - posInput.positionWS * notDirectional;
+//                float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
+//                float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
+//                float3 additionalLightColor = s_lightData.color;
+//                additionalLightColor = GetAdjustedLightColor(additionalLightColor);
+                float3 additionalLightColor = s_lightData.color * attenuation;
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
 #if defined(_SHADINGGRADEMAP)
-                    float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, lightDirection, notDirectional, channelAlpha);
+                    float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, L, notDirectional, channelAlpha);
 #else
-                    float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional, channelAlpha);
+                    float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, L, notDirectional, channelAlpha);
 #endif
                     finalColor += pointLightColor;
                 }
