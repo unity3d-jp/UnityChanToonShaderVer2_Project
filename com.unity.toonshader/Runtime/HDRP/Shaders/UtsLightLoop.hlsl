@@ -108,30 +108,6 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
     }
 }
 
-float3 GetAdjustedLightColor(float3 originalLightColor )
-{
-
-
-#if 0
-    if (_UTS_LightAdjustment == 0)
-    {
-#endif
-        return originalLightColor * GetCurrentExposureMultiplier();
-#if 0
-    }
-    else // else is neccessary to avoid warrnings.
-    {
-
-        float minBrightness = 0.0001;
-        float maxBrightness = 100000;
-        float logOffset = 5.0;
-        originalLightColor = max(float3(minBrightness, minBrightness, minBrightness), originalLightColor);
-        originalLightColor = min(float3(maxBrightness, maxBrightness, maxBrightness), originalLightColor);
-        float3 log10color = log10(originalLightColor);
-        return clamp((log10color + float3(logOffset, logOffset, logOffset)) / 10.0, 0, 1);
-    }
-#endif
-}
 
 float  GetLightAttenuation(float3 lightColor)
 {
