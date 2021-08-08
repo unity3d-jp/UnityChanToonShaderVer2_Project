@@ -15,7 +15,9 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    IgnoreProjection: False
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -199,10 +201,14 @@ Material:
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
     - _AngelRing: 0
+    - _AngelRingOverridden: 0
+    - _AngelRingVisible: 1
     - _Anisotropy: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
+    - _BaseColorOverridden: 0
+    - _BaseColorVisible: 1
     - _BaseColor_Step: 0.6
     - _BaseShade_Feather: 0.1
     - _Base_Speed: 0
@@ -212,10 +218,12 @@ Material:
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
+    - _ClippingMatteMode: 0
     - _ClippingMode: 1
     - _Clipping_Level: 0
     - _CoatMask: 0
     - _ColorShift_Speed: 0
+    - _ComposerMaskMode: 0
     - _CullMode: 0
     - _CullModeForward: 2
     - _Cutoff: 0.5
@@ -255,6 +263,8 @@ Material:
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _Farthest_Distance: 10
+    - _FirstShadeOverridden: 0
+    - _FirstShadeVisible: 1
     - _GI_Intensity: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
@@ -266,6 +276,8 @@ Material:
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
     - _HighColor_Power: 0.5
+    - _HighlightOverridden: 0
+    - _HighlightVisible: 1
     - _InvTilingScale: 1
     - _Inverse_Clipping: 1
     - _Inverse_MatcapMask: 0
@@ -315,6 +327,8 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
+    - _OutlineOverridden: 0
+    - _OutlineVisible: 1
     - _Outline_Width: 1
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -324,6 +338,8 @@ Material:
     - _ReceivesSSR: 1
     - _RefractionModel: 0
     - _RimLight: 2
+    - _RimLightOverridden: 0
+    - _RimLightVisible: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
     - _RimLight_Power: 0.1
@@ -335,6 +351,8 @@ Material:
     - _SSRefractionProjectionModel: 0
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
+    - _SecondShadeOverridden: 0
+    - _SecondShadeVisible: 1
     - _Set_SystemShadowsToBase: 0.25
     - _ShadeColor_Step: 0
     - _Smoothness: 0.5
@@ -399,19 +417,22 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - _ZWriteMode: 1
+    - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersion: 2.075
-    - _utsVersionX: 2
-    - _utsVersionY: 9
-    - _utsVersionZ: 9
+    - _utsVersionX: 0
+    - _utsVersionY: 2
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.6117647, g: 0, b: 0, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _AngelRingMaskColor: {r: 0, g: 1, b: 0, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseColorMaskColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
@@ -420,12 +441,17 @@ Material:
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _FirstShadeMaskColor: {r: 0, g: 1, b: 1, a: 1}
     - _HighColor: {r: 0.14901961, g: 0.9254902, b: 0.21568628, a: 1}
+    - _HighlightMaskColor: {r: 1, g: 1, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MatCapColor: {r: 1, g: 0.64705884, b: 0.9026369, a: 1}
+    - _OutlineMaskColor: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimLightMaskColor: {r: 1, g: 0, b: 1, a: 1}
+    - _SecondShadeMaskColor: {r: 0, g: 0, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}

@@ -28,16 +28,6 @@ uniform float _ToonEvAdjustmentValueArray[128];
 uniform float _ToonEvAdjustmentValueMin;
 uniform float _ToonEvAdjustmentValueMax;
 
-// just grafted from UTS/Universal RP
-struct UtsLight
-{
-    float4   direction;
-    float3   color;
-    float    distanceAttenuation;
-    float    shadowAttenuation;
-    int     type;
-};
-
 // function to rotate the UV: RotateUV()
 //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
 float2 RotateUV(float2 _uv, float _radian, float2 _piv, float _time)
@@ -108,30 +98,6 @@ float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
     }
 }
 
-float3 GetAdjustedLightColor(float3 originalLightColor )
-{
-
-
-#if 0
-    if (_UTS_LightAdjustment == 0)
-    {
-#endif
-        return originalLightColor * GetCurrentExposureMultiplier();
-#if 0
-    }
-    else // else is neccessary to avoid warrnings.
-    {
-
-        float minBrightness = 0.0001;
-        float maxBrightness = 100000;
-        float logOffset = 5.0;
-        originalLightColor = max(float3(minBrightness, minBrightness, minBrightness), originalLightColor);
-        originalLightColor = min(float3(maxBrightness, maxBrightness, maxBrightness), originalLightColor);
-        float3 log10color = log10(originalLightColor);
-        return clamp((log10color + float3(logOffset, logOffset, logOffset)) / 10.0, 0, 1);
-    }
-#endif
-}
 
 float  GetLightAttenuation(float3 lightColor)
 {

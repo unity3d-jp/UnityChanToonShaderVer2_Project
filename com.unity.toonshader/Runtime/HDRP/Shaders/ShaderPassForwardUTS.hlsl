@@ -64,6 +64,37 @@ PackedVaryingsToPS VertTesselation(VaryingsToDS input)
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
 #endif
 
+///////////////////////////////////////////////////////////////////////////////
+//                        Attenuation Functions                               /
+///////////////////////////////////////////////////////////////////////////////
+// Grafted from URP
+// Matches Unity Vanila attenuation
+// Attenuation smoothly decreases to light range.
+float DistanceAttenuation(float distanceSqr, half2 distanceAttenuation)
+{
+    // We use a shared distance attenuation for additional directional and puctual lights
+    // for directional lights attenuation will be 1
+    float lightAtten = rcp(distanceSqr);
+
+#if SHADER_HINT_NICE_QUALITY
+    // Use the smoothing factor also used in the Unity lightmapper.
+    half factor = distanceSqr * distanceAttenuation.x;
+    half smoothFactor = saturate(1.0h - factor * factor);
+    smoothFactor = smoothFactor * smoothFactor;
+#else
+    // We need to smoothly fade attenuation to light range. We start fading linearly at 80% of light range
+    // Therefore:
+    // fadeDistance = (0.8 * 0.8 * lightRangeSq)
+    // smoothFactor = (lightRangeSqr - distanceSqr) / (lightRangeSqr - fadeDistance)
+    // We can rewrite that to fit a MAD by doing
+    // distanceSqr * (1.0 / (fadeDistanceSqr - lightRangeSqr)) + (-lightRangeSqr / (fadeDistanceSqr - lightRangeSqr)
+    // distanceSqr *        distanceAttenuation.y            +             distanceAttenuation.z
+    half smoothFactor = saturate(distanceSqr * distanceAttenuation.x + distanceAttenuation.y);
+#endif
+
+    return lightAtten * smoothFactor;
+}
+
 float ApplyChannelAlpha( float alpha)
 {
     return lerp(1.0, alpha, _ComposerMaskMode);
@@ -207,7 +238,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
 
 
-    // toshi.
+
 #define UNITY_PROJ_COORD(a) a
 #define UNITY_SAMPLE_SCREEN_SHADOW(tex, uv) tex2Dproj( tex, UNITY_PROJ_COORD(uv) ).r
     float inverseClipping = 0;
@@ -312,7 +343,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (mainLightIndex != i)
                 {
                     
-                    float3 lightColor = GetAdjustedLightColor(_DirectionalLightDatas[i].color);
+                    float3 lightColor = _DirectionalLightDatas[i].color;
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
@@ -515,25 +546,32 @@ void Frag(PackedVaryingsToPS packedInput,
             {
                 v_lightListOffset++;
 
+
                 LightData s_lightData = FetchLight(s_lightIdx);
                 float3 lightColor = 0;
 
+                float3 L;
+                float4 distances; // {d, d^2, 1/d, d_proj}
+                GetPunctualLightVectors(posInput.positionWS, s_lightData, L, distances);
+                real attenuation = PunctualLightAttenuation(distances, s_lightData.rangeAttenuationScale, s_lightData.rangeAttenuationBias,
+                s_lightData.angleScale, s_lightData.angleOffset);
 
-                float notDirectional = 1.0f;
-                float3 lightVector = s_lightData.positionRWS - posInput.positionWS * notDirectional;
-                float distanceSqr = max(dot(lightVector, lightVector), HALF_MIN);
-                float3 lightDirection = float3(lightVector * rsqrt(distanceSqr));
-                float3 additionalLightColor = s_lightData.color;
-                additionalLightColor = GetAdjustedLightColor(additionalLightColor);
+                const float notDirectional = 1.0f;
+
+ 
+                float3 additionalLightColor = s_lightData.color  * attenuation;
+
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
 #if defined(_SHADINGGRADEMAP)
-                    float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, lightDirection, notDirectional, channelAlpha);
+                    float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, L, notDirectional, channelAlpha);
 #else
-                    float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, lightDirection, notDirectional, channelAlpha);
+                    float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, L, notDirectional, channelAlpha);
 #endif
                     finalColor += pointLightColor;
+
                 }
+
             }
         }
     }

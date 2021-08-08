@@ -430,7 +430,7 @@
 
                         finalColor = SATURATE_IF_SDR(finalColor);
 
-                        pointLightColor += finalColor;
+                        pointLightColor +=  finalColor;
                         //	pointLightColor += lightColor;
                     }
                 }
