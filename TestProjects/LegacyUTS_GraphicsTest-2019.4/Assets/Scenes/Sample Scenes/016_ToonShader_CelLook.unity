@@ -363,6 +363,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToonShader_SD_unitychan_humanoid_CelLook
       objectReference: {fileID: 0}
+    - target: {fileID: 1673285163430804, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_RootOrder
       value: 1

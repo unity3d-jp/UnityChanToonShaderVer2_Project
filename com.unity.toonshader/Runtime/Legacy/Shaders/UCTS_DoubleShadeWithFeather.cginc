@@ -43,7 +43,7 @@ struct VertexOutput {
             }
             //
             fixed3 DecodeLightProbe( fixed3 N ){
-            return ShadeSH9(float4(N,1));
+                return ShadeSH9(float4(N,1));
             }
             
 

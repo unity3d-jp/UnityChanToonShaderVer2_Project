@@ -227,7 +227,7 @@ Material:
     - _Anisotropy: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
-    - _AutoRenderQueue: 0
+    - _AutoRenderQueue: 1
     - _BaseColorOverridden: 0
     - _BaseColorVisible: 1
     - _BaseColor_Step: 0.757
@@ -444,8 +444,8 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.075
     - _utsVersionX: 0
-    - _utsVersionY: 2
-    - _utsVersionZ: 0
+    - _utsVersionY: 0
+    - _utsVersionZ: 2
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 0, g: 0, b: 0, a: 1}

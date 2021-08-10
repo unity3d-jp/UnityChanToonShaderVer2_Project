@@ -17,6 +17,7 @@ namespace UnityEditor.Rendering.Toon
         {
             const string labelLightAdjustment = "Toon EV Adjustment";
             const string labelLightAdjustmentCurve = "Curve";
+
 #if ADJUSTMENT_CURVE_DEBUG_UI
             const string labelExposureMin = "Min:";
             const string labelExposureMax = "Max:";
@@ -46,6 +47,14 @@ namespace UnityEditor.Rendering.Toon
                     obj.m_AnimationCurve = curve;
                     isChanged = true;
                 }
+                var rangeMinLux = ConvertFromEV100(obj.m_Min);
+                var rangeMaxLux = ConvertFromEV100(obj.m_Max);
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("rangeMin:" +rangeMinLux.ToString() );
+                EditorGUILayout.LabelField("rangeMax:" +rangeMaxLux.ToString() );
+                EditorGUILayout.EndHorizontal();
+
+
                 EditorGUI.indentLevel--;
             }
             EditorGUI.EndDisabledGroup();

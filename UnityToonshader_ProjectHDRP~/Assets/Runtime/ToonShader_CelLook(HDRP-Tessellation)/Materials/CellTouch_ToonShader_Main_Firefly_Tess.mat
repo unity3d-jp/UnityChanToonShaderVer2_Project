@@ -14,7 +14,7 @@ Material:
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     IgnoreProjection: False
     RenderType: Opaque
@@ -218,7 +218,6 @@ Material:
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
-    - _ClippingMaskMode: 0
     - _ClippingMode: 0
     - _Clipping_Level: 0
     - _CoatMask: 0
@@ -430,9 +429,9 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersion: 2.075
-    - _utsVersionX: 0
-    - _utsVersionY: 2
-    - _utsVersionZ: 0
+    - _utsVersionX: 2
+    - _utsVersionY: 9
+    - _utsVersionZ: 9
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 0.85294116, g: 0.82158303, b: 0.82158303, a: 1}

@@ -5,7 +5,7 @@
 * Integrated Textures feature is removed from all the render pipeline versions instead of above.
 * HDRP and URP are compatible with SRP Batcher.
 * Legacy, Universal and HDRP: Added image comparison tests with Vulkan API.
-
+* HDRP: Compatible with light probes.
 ## [0.1.0-preview] - 2021-07-07
 * HDRP: Emission started to work.
 * HDRP: Improved exposure.

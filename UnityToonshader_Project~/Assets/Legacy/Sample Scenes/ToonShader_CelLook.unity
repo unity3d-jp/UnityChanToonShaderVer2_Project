@@ -359,9 +359,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1083778304470998, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143962290918434, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229443725375378, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1348741524522182, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_Name
       value: ToonShader_SD_unitychan_humanoid_CelLook
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590974229819140, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973451554856924, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,6 +400,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -386,14 +414,6 @@ PrefabInstance:
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: fa8b7e5cd70f4a16aeac19899779d43a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
