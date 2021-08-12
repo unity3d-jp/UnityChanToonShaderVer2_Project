@@ -167,10 +167,12 @@ namespace Unity.Rendering.Toon
         {
             if (m_initialized)
             {
+                m_ExposureArray = null;
+                Shader.SetGlobalInt(kExposureAdjustmentPorpName, 0);
             }
 
             m_initialized = false;
-            Shader.SetGlobalInt(kExposureAdjustmentPorpName, 0);
+
         }
 /*
         public static void DestroyUnityObject(UnityObject obj)
