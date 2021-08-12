@@ -169,7 +169,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework.utp-reporter": {
-      "version": "1.1.0-preview",
+      "version": "1.0.2-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -179,7 +179,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.testframework.graphics": {
-      "version": "7.8.15-preview",
+      "version": "7.8.16-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {

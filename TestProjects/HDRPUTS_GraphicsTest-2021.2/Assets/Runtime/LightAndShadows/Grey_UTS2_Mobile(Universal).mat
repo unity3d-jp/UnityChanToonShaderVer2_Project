@@ -295,7 +295,7 @@ Material:
     - _HeightPoMAmplitude: 2
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
-    - _HighColor_Power: 0.28
+    - _HighColor_Power: 0.35
     - _HighlightOverridden: 0
     - _HighlightVisible: 1
     - _InvTilingScale: 1
@@ -330,7 +330,7 @@ Material:
     - _Is_Ortho: 0
     - _Is_OutlineTex: 0
     - _Is_PingPong_Base: 0
-    - _Is_SpecularToHighColor: 1
+    - _Is_SpecularToHighColor: 0
     - _Is_UseTweakHighColorOnShadow: 0
     - _Is_UseTweakMatCapOnShadow: 0
     - _Is_ViewCoord_Scroll: 0
@@ -414,7 +414,7 @@ Material:
     - _TransparentWritingMotionVec: 0
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0
-    - _Tweak_HighColorMaskLevel: 0
+    - _Tweak_HighColorMaskLevel: 0.136
     - _Tweak_LightDirection_MaskLevel: 0
     - _Tweak_MatCapUV: 0
     - _Tweak_MatcapMaskLevel: 0
@@ -442,8 +442,8 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.075
     - _utsVersionX: 0
-    - _utsVersionY: 0
-    - _utsVersionZ: 2
+    - _utsVersionY: 2
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
     - _2nd_ShadeColor: {r: 0.375, g: 0.375, b: 0.375, a: 1}

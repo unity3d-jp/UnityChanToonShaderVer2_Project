@@ -343,7 +343,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (mainLightIndex != i)
                 {
                     
-                    float3 lightColor = _DirectionalLightDatas[i].color;
+                    float3 lightColor = _DirectionalLightDatas[i].color * GetCurrentExposureMultiplier();
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
@@ -559,7 +559,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 const float notDirectional = 1.0f;
 
  
-                float3 additionalLightColor = s_lightData.color  * attenuation;
+                float3 additionalLightColor = GetCurrentExposureMultiplier()  * s_lightData.color * attenuation;
 
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
