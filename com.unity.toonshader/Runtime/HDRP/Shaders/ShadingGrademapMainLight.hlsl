@@ -85,7 +85,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
     float3 originalLightColor = mainLightColor.rgb;
 
     originalLightColor = lerp(originalLightColor, clamp(originalLightColor, ConvertFromEV100(_ToonEvAdjustmentValueMin ), ConvertFromEV100(_ToonEvAdjustmentValueMax)), _ToonEvAdjustmentCurve);
-    float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), _Is_Filter_LightColor );
+    float3 lightColor = lerp(max(defaultLightColor, originalLightColor), max(defaultLightColor, saturate(originalLightColor)), max(_Is_Filter_LightColor, _ToonLightHiCutFilter));
 
 
     ////// Lighting:
