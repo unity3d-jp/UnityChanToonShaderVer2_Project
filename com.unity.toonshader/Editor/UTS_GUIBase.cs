@@ -935,8 +935,8 @@ namespace UnityEditor.Rendering.Toon
 
             // select UTS technique here.
             DoPopup(workflowModeText, utsTechnique, System.Enum.GetNames(typeof(_UTS_Technique)));
-            _autoRenderQueue = material.GetInt(ShaderPropAutoRenderQueue);
-            _renderQueue = material.renderQueue;
+
+
 
             _UTS_Technique technique = (_UTS_Technique)material.GetInt(ShaderPropUtsTechniqe);
             switch (technique)
@@ -1258,7 +1258,7 @@ namespace UnityEditor.Rendering.Toon
             }
             EditorGUILayout.EndHorizontal();
             EditorGUI.BeginDisabledGroup(_autoRenderQueue == 1);
-            _renderQueue = (int)EditorGUILayout.IntField("Render Queue", _renderQueue);
+            _renderQueue = (int)EditorGUILayout.IntField("Render Queue", material.renderQueue);
             EditorGUI.EndDisabledGroup();
         }
         void GUI_SetCullingMode(Material material)
@@ -2379,10 +2379,10 @@ namespace UnityEditor.Rendering.Toon
         }
         void ApplyQueueAndRenderType(_UTS_Technique technique, Material material)
         {
-            var stencilMode = (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode);
+
             if (_autoRenderQueue == 1)
             {
-                material.renderQueue = -1; //  (int)UnityEngine.Rendering.RenderQueue.Geometry;
+                 material.renderQueue = -1; //  (int)UnityEngine.Rendering.RenderQueue.Geometry;
             }
 
             const string OPAQUE = "Opaque";
@@ -2438,18 +2438,7 @@ namespace UnityEditor.Rendering.Toon
             }
             if (_autoRenderQueue == 1)
             {
-                if (_Transparent_Setting == _UTS_Transparent.On)
-                {
-                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-                }
-                else if (stencilMode == _UTS_StencilMode.StencilMask)
-                {
-                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
-                }
-                else if (stencilMode == _UTS_StencilMode.StencilOut)
-                {
-                    material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-                }
+                SetReqnderQueueAuto(material);
             }
             else
             {
@@ -2458,6 +2447,35 @@ namespace UnityEditor.Rendering.Toon
 
             material.SetOverrideTag(RENDERTYPE, renderType);
             material.SetOverrideTag(IGNOREPROJECTION, ignoreProjection);
+        }
+
+        void SetReqnderQueueAuto(Material material)
+        {
+            var stencilMode = (_UTS_StencilMode)material.GetInt(ShaderPropStencilMode);
+            if (_Transparent_Setting == _UTS_Transparent.On)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+            }
+            else if (stencilMode == _UTS_StencilMode.StencilMask)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+            }
+            else if (stencilMode == _UTS_StencilMode.StencilOut)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+            }
+            if (_Transparent_Setting == _UTS_Transparent.On)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+            }
+            else if (stencilMode == _UTS_StencilMode.StencilMask)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+            }
+            else if (stencilMode == _UTS_StencilMode.StencilOut)
+            {
+                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+            }
         }
         void ApplyMatCapMode(Material material)
         {

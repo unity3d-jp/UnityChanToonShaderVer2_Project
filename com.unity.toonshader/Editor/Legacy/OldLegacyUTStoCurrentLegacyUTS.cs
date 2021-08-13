@@ -5,6 +5,7 @@ using UnityEditor;
 using System.IO;
 namespace UnityEditor.Rendering.Toon
 {
+#if false // should be deleted
     public class OldLegacyUTStoCurrentLegacyUTS : EditorWindow
     {
         const string ShaderPropOutline = "_OUTLINE";
@@ -239,4 +240,5 @@ namespace UnityEditor.Rendering.Toon
         }
 
     }
+#endif
 }

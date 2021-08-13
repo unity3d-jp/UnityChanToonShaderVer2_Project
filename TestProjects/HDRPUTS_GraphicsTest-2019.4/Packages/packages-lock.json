@@ -40,7 +40,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.8",
+      "version": "2.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -136,7 +136,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.24",
+      "version": "1.1.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -156,7 +156,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework.utp-reporter": {
-      "version": "1.0.2-preview",
+      "version": "1.1.0-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -166,11 +166,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.testframework.graphics": {
-      "version": "7.8.8-preview",
+      "version": "7.8.16-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.xr.management": "3.2.15",
+        "com.unity.xr.management": "4.0.5",
         "com.unity.external.test-protocol": "1.0.0-preview",
         "com.unity.nuget.newtonsoft-json": "2.0.0-preview",
         "com.unity.subsystemregistration": "1.0.6",
@@ -226,8 +226,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.0.1",
-      "depth": 0,
+      "version": "4.0.5",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.subsystems": "1.0.0",
