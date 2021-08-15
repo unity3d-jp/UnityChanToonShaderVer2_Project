@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1480.2773, g: 1833.5312, b: 2427.2754, a: 1}
+  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17741,7 +17741,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 33.398487
+  field of view: 33.39849
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -26237,7 +26237,6 @@ GameObject:
   - component: {fileID: 2035111235}
   - component: {fileID: 2035111234}
   - component: {fileID: 2035111237}
-  - component: {fileID: 2035111236}
   m_Layer: 9
   m_Name: Directional Light Sun
   m_TagString: Untagged
@@ -26321,176 +26320,6 @@ Transform:
   m_Father: {fileID: 1377783}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 72.021, y: 328.463, z: 210.952}
---- !u!114 &2035111236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035111233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db8edd5c572b6e648974dac4815d5619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ExposureAdjustmnt: 1
-  m_HighCutFilter: 1000000
-  m_AnimationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -11.920764
-      value: -9.620428
-      inSlope: 0.73847175
-      outSlope: 0.73847175
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: -0.11631012
-      value: -0.90317285
-      inSlope: 0.73847175
-      outSlope: 0.73847175
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ExposureArray:
-  - -9.620428
-  - -9.551788
-  - -9.483149
-  - -9.414509
-  - -9.345869
-  - -9.277228
-  - -9.20859
-  - -9.139949
-  - -9.07131
-  - -9.002669
-  - -8.934031
-  - -8.86539
-  - -8.796751
-  - -8.72811
-  - -8.659471
-  - -8.590831
-  - -8.522191
-  - -8.453551
-  - -8.384912
-  - -8.316272
-  - -8.247632
-  - -8.178992
-  - -8.110352
-  - -8.041713
-  - -7.973072
-  - -7.904433
-  - -7.8357925
-  - -7.7671533
-  - -7.698513
-  - -7.6298733
-  - -7.5612335
-  - -7.492594
-  - -7.423954
-  - -7.3553143
-  - -7.2866745
-  - -7.2180347
-  - -7.1493945
-  - -7.080755
-  - -7.012115
-  - -6.9434757
-  - -6.8748355
-  - -6.806196
-  - -6.7375555
-  - -6.6689157
-  - -6.600276
-  - -6.531636
-  - -6.4629965
-  - -6.3943567
-  - -6.325717
-  - -6.257077
-  - -6.1884375
-  - -6.1197977
-  - -6.051158
-  - -5.982518
-  - -5.9138775
-  - -5.8452377
-  - -5.776598
-  - -5.707958
-  - -5.6393185
-  - -5.5706787
-  - -5.502039
-  - -5.433399
-  - -5.3647594
-  - -5.2961197
-  - -5.22748
-  - -5.15884
-  - -5.0902004
-  - -5.0215607
-  - -4.9529204
-  - -4.8842807
-  - -4.815641
-  - -4.7470007
-  - -4.678361
-  - -4.609721
-  - -4.5410814
-  - -4.472441
-  - -4.4038014
-  - -4.3351617
-  - -4.266522
-  - -4.197882
-  - -4.1292424
-  - -4.0606027
-  - -3.9919624
-  - -3.9233227
-  - -3.854683
-  - -3.7860432
-  - -3.7174034
-  - -3.6487641
-  - -3.580124
-  - -3.5114837
-  - -3.4428444
-  - -3.3742042
-  - -3.3055644
-  - -3.2369246
-  - -3.168285
-  - -3.0996447
-  - -3.0310054
-  - -2.9623652
-  - -2.8937259
-  - -2.8250856
-  - -2.7564464
-  - -2.6878061
-  - -2.619166
-  - -2.5505261
-  - -2.4818869
-  - -2.4132466
-  - -2.3446064
-  - -2.2759671
-  - -2.2073278
-  - -2.1386876
-  - -2.0700474
-  - -2.001408
-  - -1.9327679
-  - -1.8641281
-  - -1.7954884
-  - -1.7268486
-  - -1.6582084
-  - -1.5895691
-  - -1.5209284
-  - -1.4522886
-  - -1.3836489
-  - -1.3150091
-  - -1.2463694
-  - -1.1777296
-  - -1.1090899
-  - -1.0404501
-  - -0.9718094
-  - -0.90317285
-  m_Max: -0.11631012
-  m_Min: -11.920764
-  m_DebugUI: 0
 --- !u!114 &2035111237
 MonoBehaviour:
   m_ObjectHideFlags: 0
