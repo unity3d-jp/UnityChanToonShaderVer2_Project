@@ -5,10 +5,6 @@ test_projects:
   - name: HDRPUTS_GraphicsTest-2019.4
 unity_versions:
   - name: 2019.4
-  - name: 2020.1
-# - name: 2020.2
-#  - name: 2021.1
-#  - name: trunk
 ---
 {% for test_project in test_projects %}
 {% for unity_version in unity_versions %}

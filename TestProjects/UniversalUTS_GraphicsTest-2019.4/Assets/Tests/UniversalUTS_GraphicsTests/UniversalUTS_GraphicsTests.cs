@@ -78,11 +78,7 @@ namespace Tests
             bool allocatesMemory = false;
             var mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-            // 2D Renderer is currently allocating memory, skip it as it will always fail GC alloc tests.
-            //var additionalCameraData = mainCamera.GetUniversalAdditionalCameraData();
-            bool is2DRenderer = false; // additionalCameraData.scriptableRenderer is Renderer2D;
-
-            if (!is2DRenderer)
+            if (settings == null || settings.CheckMemoryAllocation)
             {
                 try
                 {
