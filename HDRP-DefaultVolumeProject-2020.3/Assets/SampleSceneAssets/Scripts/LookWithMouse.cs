@@ -20,17 +20,40 @@ public class LookWithMouse : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public CursorLockMode Locked
+    {
+        get {
+            return Cursor.lockState;
+        }
+
+        set
+        {
+            Cursor.lockState = value;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (Cursor.lockState == CursorLockMode.None )
+        {
+            return;
+        }
+
+
+
 #if ENABLE_INPUT_SYSTEM
+
         float mouseX = 0, mouseY = 0;
 
         if (Mouse.current != null)
         {
-            var delta = Mouse.current.delta.ReadValue() / 15.0f;
-            mouseX += delta.x;
-            mouseY += delta.y;
+            if ( Mouse.current.middleButton.isPressed )
+            {
+                var delta = Mouse.current.delta.ReadValue() / 15.0f;
+                mouseX += delta.x;
+                mouseY += delta.y;
+            }
         }
         if (Gamepad.current != null)
         {

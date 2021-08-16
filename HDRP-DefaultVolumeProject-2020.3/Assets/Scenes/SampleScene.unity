@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
+  m_IndirectSpecularColor: {r: 1481.7451, g: 1835.5391, b: 2429.8105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1943,6 +1943,63 @@ MonoBehaviour:
     m_Shape: 1
     m_BoxSize: {x: 1, y: 1, z: 1}
     m_SphereRadius: 19.4
+--- !u!1001 &240902215
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1505896528405314, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_Illust
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
 --- !u!1 &248024620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,6 +2271,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6979351295171511291, guid: 2658dc79455b4694e9b38cd7b9453ff0, type: 3}
   m_PrefabInstance: {fileID: 255980800}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &272295130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3750380391580544809, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_CelLook_Firefly (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
 --- !u!1 &275320386
 GameObject:
   m_ObjectHideFlags: 3
@@ -2406,6 +2520,63 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 1}
   m_Size: {x: 8, y: 8, z: 2}
   m_FadeFactor: 0.18
+--- !u!1001 &285299609
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5594835989873423675, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_Emissive (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 53.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.975
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
 --- !u!1001 &286860035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6047,6 +6218,63 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 1.5}
   m_Size: {x: 7.3573437, y: 8.222879, z: 3}
   m_FadeFactor: 0.18
+--- !u!1001 &520198973
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1348741524522182, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_CelLook (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 52.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
 --- !u!1001 &531975315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6597,6 +6825,63 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 1.5}
   m_Size: {x: 8, y: 8, z: 3}
   m_FadeFactor: 0.18
+--- !u!1001 &575172541
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3750380391580544809, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_CelLook_Firefly (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
 --- !u!1 &581053291
 GameObject:
   m_ObjectHideFlags: 3
@@ -8994,6 +9279,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4865063454252499328, guid: c176f53f0f3a90a448b849e5d0e0af46, type: 3}
   m_PrefabInstance: {fileID: 789254190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &789334784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1505896528405314, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_Illust (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 55.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
 --- !u!1 &812970922
 GameObject:
   m_ObjectHideFlags: 0
@@ -10631,6 +10973,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4815497566155810433, guid: cd71e9a7b3e576847bee371f47119db8, type: 3}
   m_PrefabInstance: {fileID: 956419814}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &957666329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1348741524522182, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_CelLook
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
 --- !u!1001 &959282923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13353,6 +13752,63 @@ Transform:
   m_Father: {fileID: 1425786420}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1182491191
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3750380391580544809, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_CelLook_Firefly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754243279204564011, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22ae8924d0014ac3b8bc815422e5d164, type: 3}
 --- !u!1 &1189696389
 GameObject:
   m_ObjectHideFlags: 0
@@ -14191,6 +14647,17 @@ Transform:
   m_Father: {fileID: 1086288951}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1295527025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 738646681595172702, guid: 573ac53c334415945bf239de2c2f0511, type: 3}
+  m_PrefabInstance: {fileID: 1448742964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb578550bc4f824e97f0a72eac1f3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1296980971
 GameObject:
   m_ObjectHideFlags: 0
@@ -15569,6 +16036,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 738646681595172702, guid: 573ac53c334415945bf239de2c2f0511, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 738646681744756154, guid: 573ac53c334415945bf239de2c2f0511, type: 3}
       propertyPath: m_Name
       value: PlayerControllerFPS
@@ -15617,6 +16088,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 738646681744756157, guid: 573ac53c334415945bf239de2c2f0511, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 738646681744756157, guid: 573ac53c334415945bf239de2c2f0511, type: 3}
+      propertyPath: m_lockWithMouse
+      value: 
+      objectReference: {fileID: 1295527025}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 573ac53c334415945bf239de2c2f0511, type: 3}
 --- !u!1 &1462492497
@@ -17056,6 +17535,63 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 1.5}
   m_Size: {x: 8, y: 8, z: 3}
   m_FadeFactor: 0.18
+--- !u!1001 &1578759784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5594835989873423675, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_Emissive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
 --- !u!1 &1587207273
 GameObject:
   m_ObjectHideFlags: 0
@@ -19776,6 +20312,63 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1001 &1675554895
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1348741524522182, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_CelLook (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b6c739b928a4adaa6818fa57c8c14bf, type: 3}
 --- !u!1001 &1680111095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25938,6 +26531,63 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 0.5}
   m_Size: {x: 5, y: 5, z: 1}
   m_FadeFactor: 0.18
+--- !u!1001 &2012524002
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5594835989873423675, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_Emissive (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598104094224656607, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a61f6f8c9864619a71bad897fb71e9b, type: 3}
 --- !u!1 &2019943081
 GameObject:
   m_ObjectHideFlags: 0
@@ -27208,6 +27858,63 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 1.5}
   m_Size: {x: 8, y: 8, z: 3}
   m_FadeFactor: 0.18
+--- !u!1001 &2126939375
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1505896528405314, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_Name
+      value: ToonShader_SD_unitychan_humanoid_Illust (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 33.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485053995679290, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab1817cbe76d4b28b724f2b18f43242a, type: 3}
 --- !u!1 &2129332201
 GameObject:
   m_ObjectHideFlags: 0

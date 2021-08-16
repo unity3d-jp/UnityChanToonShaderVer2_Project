@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    
 
     Vector3 velocity;
     bool isGrounded;
@@ -43,14 +42,17 @@ public class PlayerMovement : MonoBehaviour
         jump = new InputAction("PlayerJump", binding: "<Gamepad>/a");
         jump.AddBinding("<Keyboard>/space");
 
+ 
         movement.Enable();
         jump.Enable();
+
     }
 #endif
 
     // Update is called once per frame
     void Update()
     {
+
         float x;
         float z;
         bool jumpPressed = false;
