@@ -1,6 +1,6 @@
 # Changelog
-## [0.2.0-preview] - 2021-08-15
-* HDRP: Toon EV adjutment curve as a SRP VolumeComponent.
+## [0.2.0-preview] - 2021-08-17
+* HDRP: Toon EV adjutment curve as a Mono-behavior.
 * Legacy, Universal and HDRP: Some texture samplers,such as  _MainTex,  _NormalMap, _1st_ShadeMap and  _2nd_ShadeMap, are shared by 1 sampler, sampler_MainTex, in order to avoid sampler number exceeding errors.
 * Integrated Textures feature is removed from all the render pipeline versions instead of above.
 * HDRP and URP are compatible with SRP Batcher.

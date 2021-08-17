@@ -7,16 +7,11 @@ using UnityEditor;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using UnityObject = UnityEngine.Object;
-using System;
-
-#if SRPCORE_IS_INSTALLED_FOR_UTS
 namespace Unity.Rendering.Toon
 {
-    /// <summary>
-    /// A volume component that holds settings for the Toon Ev Adjustment Curve.
-    /// </summary>
-    [Serializable, VolumeComponentMenu("Toon/EV Adjustment Curve")]
-    public sealed class ToonEvAdjustmentCurve : VolumeComponent
+    [ExecuteAlways]
+    [DisallowMultipleComponent]
+    public class ToonEvAdjustmentCurve : MonoBehaviour
     {
         // flags
         bool m_initialized = false;
@@ -31,12 +26,15 @@ namespace Unity.Rendering.Toon
         const string kExposureMaxPropName   = "_ToonEvAdjustmentValueMax";
         const string kToonLightFilterPropName = "_ToonLightHiCutFilter";
 
-
+        [SerializeField]
+        internal bool m_ToonLightHiCutFilter= false;
 
         [SerializeField]
         internal bool m_ExposureAdjustmnt = false;
-
-
+        [SerializeField]
+        public int m_HighCutFilter = 1000000;
+        [SerializeField]
+        internal AnimationCurve m_AnimationCurve = DefaultAnimationCurve();
         [SerializeField]
         internal float[] m_ExposureArray;
         [SerializeField]
@@ -49,35 +47,26 @@ namespace Unity.Rendering.Toon
         bool m_isCompiling = false;
 #endif
 
-        /// <summary>
-        /// Specifies the method that Toon Shader uses hiCutFilter.
-        /// This parameter is only used when <see cref="hiCutFilter"/> is set.
-        /// </summary>
-        [Tooltip("Specifies the method that Toon Shader uses hiCutFilter.")]
-        public BoolParameter hiCutFilter = new BoolParameter(false);
+        void Reset()
+        {
+            OnDisable();
+            OnEnable();
+            DefaultAnimationCurve();
+        }   
 
-        /// <summary>
-        /// Specifies a curve that remaps the Toon exposure on the x-axis to the EV you want on the y-axis.
-        /// This parameter is only used when <see cref="curveRemapping"/> is set.
-        /// </summary>
-        [Tooltip("Specifies a curve that remaps the Toon EV on the x-axis to the EV you want on the y-axis.")]
-        public AnimationCurveParameter curveMap = new AnimationCurveParameter(AnimationCurve.Linear(-10f, -10f, -1.32f, -1.32f)); // TODO: Use TextureCurve instead?
-
-
-
- 
-
+        static AnimationCurve DefaultAnimationCurve()
+        {
+            return AnimationCurve.Linear(-10f, -10f, -1.32f, -1.32f);
+        }
         void Update()
         {
-            if (!m_initialized)
-            {
-                return;
-            }
+
+            Initialize();
 
 
 
             // Fail safe in case the curve is deleted / has 0 point
-            var curve = curveMap.value;
+            var curve = m_AnimationCurve;
             
 
             if (curve == null || curve.length == 0)
@@ -105,7 +94,7 @@ namespace Unity.Rendering.Toon
             {
                 // on compile begin
                 m_isCompiling = true;
-                ReleaseToonEvAdjustmentCurve();
+                Release();
             }
             else if (!EditorApplication.isCompiling && m_isCompiling)
             {
@@ -113,12 +102,11 @@ namespace Unity.Rendering.Toon
                 m_isCompiling = false;
             }
 #endif
-
             Shader.SetGlobalFloatArray(kExposureArrayPropName, m_ExposureArray);
             Shader.SetGlobalFloat(kExposureMinPropName, m_Min);
             Shader.SetGlobalFloat(kExposureMaxPropName, m_Max);
-            Shader.SetGlobalInt(kExposureAdjustmentPorpName, curveMap.overrideState ? 1 : 0);
-            Shader.SetGlobalInt(kToonLightFilterPropName, hiCutFilter.overrideState && hiCutFilter.value ? 1 : 0);
+            Shader.SetGlobalInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
+            Shader.SetGlobalInt(kToonLightFilterPropName, m_ToonLightHiCutFilter ? 1 : 0);
 
 
         }
@@ -128,8 +116,6 @@ namespace Unity.Rendering.Toon
 
             if (!m_srpCallbackInitialized)
             {
-                RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
-                RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
                 m_srpCallbackInitialized = true;
             }
         }
@@ -138,15 +124,11 @@ namespace Unity.Rendering.Toon
             if (m_srpCallbackInitialized)
             {
                 m_srpCallbackInitialized = false;
-                RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
-                RenderPipelineManager.endCameraRendering -= OnEndCameraRendering;
-                m_srpCallbackInitialized = false;
             }
         }
 
-        protected override void OnEnable()
+        void OnEnable()
         {
-            base.OnEnable();
 
             Initialize();
 
@@ -154,12 +136,11 @@ namespace Unity.Rendering.Toon
 
         }
 
-        protected override void OnDisable()
+        void OnDisable()
         {
             DisableSrpCallbacks();
 
-            ReleaseToonEvAdjustmentCurve();
-            base.OnDisable();
+            Release();
         }
 
         void Initialize()
@@ -183,94 +164,35 @@ namespace Unity.Rendering.Toon
         }
 
 
-        void ReleaseToonEvAdjustmentCurve()
+        void Release()
         {
-
             if (m_initialized)
             {
                 m_ExposureArray = null;
                 Shader.SetGlobalInt(kExposureAdjustmentPorpName, 0);
                 Shader.SetGlobalInt(kToonLightFilterPropName, 0);
-
             }
 
             m_initialized = false;
-            base.Release();
-        }
 
-        void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
+        }
+/*
+        public static void DestroyUnityObject(UnityObject obj)
         {
-            Update();
+            if (obj != null)
+            {
+#if UNITY_EDITOR
+                if (Application.isPlaying)
+                    UnityObject.Destroy(obj);
+                else
+                    UnityObject.DestroyImmediate(obj);
+#else
+                UnityObject.Destroy(obj);
+#endif
+            }
         }
-
-        void OnEndCameraRendering(ScriptableRenderContext context, Camera camera)
-        {
-            //    Finish();
-        }
+*/
     }
 
 
-
-
-    /// <summary>
-    /// Methods that HDRP uses to change the exposure when the Camera moves from dark to light and vice versa.
-    /// </summary>
-    /// <seealso cref="Exposure.adjustmentMode"/>
-    public enum ToonEVAdjustmentMode
-    {
-        /// <summary>
-        /// No Adjustment
-        /// </summary>
-        NoAdjustment,
-
-        /// <summary>
-        /// The EV changes correspond with the curve.
-        /// </summary>
-        CurveAdjustment
-    }
-
-    /// <summary>
-    /// Methods that HDRP uses to change the exposure when the Camera moves from dark to light and vice versa.
-    /// </summary>
-    /// <seealso cref="Exposure.adjustmentMode"/>
-    public enum ToonHiCutFilter
-    {
-        /// <summary>
-        /// No Adjustment
-        /// </summary>
-        Disable,
-
-        /// <summary>
-        /// The EV changes correspond with the curve.
-        /// </summary>
-        Enable
-    }
-    
-    /// <summary>
-    /// A <see cref="VolumeParameter"/> that holds a <see cref="ToonEVAdjustmentMode"/> value.
-    /// </summary>
-    [Serializable]
-    public sealed class ToonEVAdjustmentModeParamater : VolumeParameter<ToonEVAdjustmentMode>
-    {
-        /// <summary>
-        /// Creates a new <see cref="ToonEVAdjustmentModeParamater"/> instance.
-        /// </summary>
-        /// <param name="value">The initial value to store in the parameter.</param>
-        /// <param name="overrideState">The initial override state for the parameter.</param>
-        public ToonEVAdjustmentModeParamater(ToonEVAdjustmentMode value, bool overrideState = false) : base(value, overrideState) { }
-    }
-    /// <summary>
-    /// A <see cref="VolumeParameter"/> that holds a <see cref="ToonHiCutFilter"/> value.
-    /// </summary>
-    [Serializable]
-    public sealed class ToonHiCutFiltereParamater : VolumeParameter<ToonHiCutFilter>
-    {
-        /// <summary>
-        /// Creates a new <see cref="ToonEVAdjustmentModeParamater"/> instance.
-        /// </summary>
-        /// <param name="value">The initial value to store in the parameter.</param>
-        /// <param name="overrideState">The initial override state for the parameter.</param>
-        public ToonHiCutFiltereParamater(ToonHiCutFilter value, bool overrideState = false) : base(value, overrideState) { }
-    }
 }
-#endif //SRPCORE_IS_INSTALLED_FOR_UTS
