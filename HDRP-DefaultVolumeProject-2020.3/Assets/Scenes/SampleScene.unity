@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1377783}
-  - component: {fileID: 1377784}
   m_Layer: 0
   m_Name: Lighting
   m_TagString: Untagged
@@ -160,177 +159,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1377784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db8edd5c572b6e648974dac4815d5619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ToonLightHiCutFilter: 0
-  m_ExposureAdjustmnt: 0
-  m_HighCutFilter: 1000000
-  m_AnimationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -10
-      value: -10
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: -1.32
-      value: -1.32
-      inSlope: 1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ExposureArray:
-  - -10
-  - -9.931654
-  - -9.863307
-  - -9.794961
-  - -9.726614
-  - -9.658268
-  - -9.589921
-  - -9.521575
-  - -9.453228
-  - -9.384882
-  - -9.316535
-  - -9.248189
-  - -9.179843
-  - -9.111496
-  - -9.04315
-  - -8.974803
-  - -8.906457
-  - -8.83811
-  - -8.769764
-  - -8.701417
-  - -8.633071
-  - -8.564724
-  - -8.496378
-  - -8.428032
-  - -8.359685
-  - -8.291339
-  - -8.222992
-  - -8.154646
-  - -8.086299
-  - -8.017953
-  - -7.9496064
-  - -7.88126
-  - -7.8129134
-  - -7.744567
-  - -7.6762204
-  - -7.607874
-  - -7.5395274
-  - -7.471181
-  - -7.402835
-  - -7.3344884
-  - -7.266142
-  - -7.1977954
-  - -7.129449
-  - -7.0611024
-  - -6.992756
-  - -6.9244094
-  - -6.856063
-  - -6.7877164
-  - -6.71937
-  - -6.651024
-  - -6.5826774
-  - -6.514331
-  - -6.4459844
-  - -6.377638
-  - -6.3092914
-  - -6.240945
-  - -6.1725984
-  - -6.104252
-  - -6.0359054
-  - -5.9675593
-  - -5.899213
-  - -5.8308663
-  - -5.76252
-  - -5.6941733
-  - -5.625827
-  - -5.5574803
-  - -5.489134
-  - -5.4207873
-  - -5.352441
-  - -5.2840943
-  - -5.2157483
-  - -5.147402
-  - -5.0790553
-  - -5.010709
-  - -4.9423623
-  - -4.874016
-  - -4.8056693
-  - -4.737323
-  - -4.6689763
-  - -4.60063
-  - -4.532284
-  - -4.4639373
-  - -4.395591
-  - -4.3272443
-  - -4.258898
-  - -4.1905513
-  - -4.122205
-  - -4.0538583
-  - -3.9855118
-  - -3.9171658
-  - -3.8488188
-  - -3.7804728
-  - -3.7121258
-  - -3.6437798
-  - -3.5754333
-  - -3.5070868
-  - -3.4387403
-  - -3.3703938
-  - -3.3020473
-  - -3.2337008
-  - -3.1653547
-  - -3.0970078
-  - -3.0286617
-  - -2.9603148
-  - -2.8919687
-  - -2.8236222
-  - -2.7552757
-  - -2.6869292
-  - -2.6185827
-  - -2.5502362
-  - -2.4818897
-  - -2.4135437
-  - -2.3451967
-  - -2.2768507
-  - -2.2085037
-  - -2.1401577
-  - -2.0718112
-  - -2.0034647
-  - -1.9351177
-  - -1.8667717
-  - -1.7984257
-  - -1.7300787
-  - -1.6617327
-  - -1.5933857
-  - -1.5250397
-  - -1.4566927
-  - -1.3883467
-  - -1.3199997
-  m_Max: -1.32
-  m_Min: -10
-  m_DebugUI: 0
 --- !u!1 &23481561
 GameObject:
   m_ObjectHideFlags: 0
@@ -4788,6 +4616,208 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3163352547752738580, guid: 045bfee370fc8c84ca955348ca9f3fd9, type: 3}
   m_PrefabInstance: {fileID: 409468208}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &413353050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413353052}
+  - component: {fileID: 413353051}
+  m_Layer: 0
+  m_Name: Toon Ev Adjustment Curve
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &413353051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413353050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8edd5c572b6e648974dac4815d5619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ToonLightHiCutFilter: 1
+  m_ExposureAdjustmnt: 1
+  m_HighCutFilter: 1000000
+  m_AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -10
+      value: -10
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: -2.3278127
+      value: -1.8682407
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ExposureArray:
+  - -10
+  - -9.998967
+  - -9.995886
+  - -9.990782
+  - -9.983679
+  - -9.974604
+  - -9.96358
+  - -9.950634
+  - -9.93579
+  - -9.919074
+  - -9.900511
+  - -9.880126
+  - -9.857944
+  - -9.83399
+  - -9.80829
+  - -9.780868
+  - -9.75175
+  - -9.720961
+  - -9.688526
+  - -9.654471
+  - -9.61882
+  - -9.581599
+  - -9.542832
+  - -9.502546
+  - -9.460764
+  - -9.417513
+  - -9.372817
+  - -9.326703
+  - -9.279194
+  - -9.230315
+  - -9.180094
+  - -9.128552
+  - -9.075718
+  - -9.021615
+  - -8.9662695
+  - -8.909705
+  - -8.851948
+  - -8.793023
+  - -8.732956
+  - -8.671772
+  - -8.609495
+  - -8.54615
+  - -8.481766
+  - -8.416363
+  - -8.349969
+  - -8.282608
+  - -8.214307
+  - -8.145088
+  - -8.07498
+  - -8.004005
+  - -7.9321904
+  - -7.8595605
+  - -7.78614
+  - -7.711954
+  - -7.6370287
+  - -7.561388
+  - -7.485058
+  - -7.408064
+  - -7.33043
+  - -7.252182
+  - -7.1733465
+  - -7.0939455
+  - -7.0140066
+  - -6.9335546
+  - -6.8526134
+  - -6.7712097
+  - -6.6893682
+  - -6.607114
+  - -6.5244713
+  - -6.441468
+  - -6.3581257
+  - -6.274472
+  - -6.1905313
+  - -6.1063285
+  - -6.021889
+  - -5.937238
+  - -5.8524017
+  - -5.7674036
+  - -5.6822705
+  - -5.5970254
+  - -5.5116954
+  - -5.4263043
+  - -5.3408785
+  - -5.255442
+  - -5.1700206
+  - -5.0846395
+  - -4.9993243
+  - -4.9140997
+  - -4.8289905
+  - -4.744022
+  - -4.6592193
+  - -4.5746083
+  - -4.4902134
+  - -4.4060597
+  - -4.322173
+  - -4.238579
+  - -4.155301
+  - -4.0723658
+  - -3.9897976
+  - -3.9076223
+  - -3.8258643
+  - -3.7445488
+  - -3.6637015
+  - -3.5833478
+  - -3.5035133
+  - -3.42422
+  - -3.3454971
+  - -3.267367
+  - -3.189857
+  - -3.1129909
+  - -3.0367937
+  - -2.9612918
+  - -2.886508
+  - -2.8124704
+  - -2.739203
+  - -2.6667304
+  - -2.595077
+  - -2.5242705
+  - -2.4543343
+  - -2.385294
+  - -2.317175
+  - -2.250001
+  - -2.1837997
+  - -2.1185937
+  - -2.0544105
+  - -1.9912729
+  - -1.9292078
+  - -1.8682407
+  m_Max: -2.3278127
+  m_Min: -10
+  m_DebugUI: 0
+--- !u!4 &413353052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413353050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &424002116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6819,208 +6849,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8110425016416769263, guid: dd7bc729052fb0349850831c3c596d60, type: 3}
   m_PrefabInstance: {fileID: 553938282}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &561912584
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 561912586}
-  - component: {fileID: 561912585}
-  m_Layer: 0
-  m_Name: Toon Ev Adjustment Curve
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &561912585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561912584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db8edd5c572b6e648974dac4815d5619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ToonLightHiCutFilter: 0
-  m_ExposureAdjustmnt: 1
-  m_HighCutFilter: 1000000
-  m_AnimationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -10
-      value: -10
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: -1.32
-      value: -1.32
-      inSlope: 1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ExposureArray:
-  - -10
-  - -9.931654
-  - -9.863307
-  - -9.794961
-  - -9.726614
-  - -9.658268
-  - -9.589921
-  - -9.521575
-  - -9.453228
-  - -9.384882
-  - -9.316535
-  - -9.248189
-  - -9.179843
-  - -9.111496
-  - -9.04315
-  - -8.974803
-  - -8.906457
-  - -8.83811
-  - -8.769764
-  - -8.701417
-  - -8.633071
-  - -8.564724
-  - -8.496378
-  - -8.428032
-  - -8.359685
-  - -8.291339
-  - -8.222992
-  - -8.154646
-  - -8.086299
-  - -8.017953
-  - -7.9496064
-  - -7.88126
-  - -7.8129134
-  - -7.744567
-  - -7.6762204
-  - -7.607874
-  - -7.5395274
-  - -7.471181
-  - -7.402835
-  - -7.3344884
-  - -7.266142
-  - -7.1977954
-  - -7.129449
-  - -7.0611024
-  - -6.992756
-  - -6.9244094
-  - -6.856063
-  - -6.7877164
-  - -6.71937
-  - -6.651024
-  - -6.5826774
-  - -6.514331
-  - -6.4459844
-  - -6.377638
-  - -6.3092914
-  - -6.240945
-  - -6.1725984
-  - -6.104252
-  - -6.0359054
-  - -5.9675593
-  - -5.899213
-  - -5.8308663
-  - -5.76252
-  - -5.6941733
-  - -5.625827
-  - -5.5574803
-  - -5.489134
-  - -5.4207873
-  - -5.352441
-  - -5.2840943
-  - -5.2157483
-  - -5.147402
-  - -5.0790553
-  - -5.010709
-  - -4.9423623
-  - -4.874016
-  - -4.8056693
-  - -4.737323
-  - -4.6689763
-  - -4.60063
-  - -4.532284
-  - -4.4639373
-  - -4.395591
-  - -4.3272443
-  - -4.258898
-  - -4.1905513
-  - -4.122205
-  - -4.0538583
-  - -3.9855118
-  - -3.9171658
-  - -3.8488188
-  - -3.7804728
-  - -3.7121258
-  - -3.6437798
-  - -3.5754333
-  - -3.5070868
-  - -3.4387403
-  - -3.3703938
-  - -3.3020473
-  - -3.2337008
-  - -3.1653547
-  - -3.0970078
-  - -3.0286617
-  - -2.9603148
-  - -2.8919687
-  - -2.8236222
-  - -2.7552757
-  - -2.6869292
-  - -2.6185827
-  - -2.5502362
-  - -2.4818897
-  - -2.4135437
-  - -2.3451967
-  - -2.2768507
-  - -2.2085037
-  - -2.1401577
-  - -2.0718112
-  - -2.0034647
-  - -1.9351177
-  - -1.8667717
-  - -1.7984257
-  - -1.7300787
-  - -1.6617327
-  - -1.5933857
-  - -1.5250397
-  - -1.4566927
-  - -1.3883467
-  - -1.3199997
-  m_Max: -1.32
-  m_Min: -10
-  m_DebugUI: 0
---- !u!4 &561912586
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561912584}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &566695218
 PrefabInstance:
   m_ObjectHideFlags: 0

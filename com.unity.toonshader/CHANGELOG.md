@@ -1,4 +1,7 @@
 # Changelog
+## [0.2.1-preview] - 2021-08-18
+* HDRP: Fixed: Multiple instances of Toon EV adjustment cureve can exist in one scene.   
+
 ## [0.2.0-preview] - 2021-08-17
 * HDRP: Toon EV adjutment curve as a Mono-behavior.
 * Legacy, Universal and HDRP: Some texture samplers,such as  _MainTex,  _NormalMap, _1st_ShadeMap and  _2nd_ShadeMap, are shared by 1 sampler, sampler_MainTex, in order to avoid sampler number exceeding errors.

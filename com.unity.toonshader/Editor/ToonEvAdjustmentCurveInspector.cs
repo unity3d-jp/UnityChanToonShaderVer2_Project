@@ -17,7 +17,7 @@ namespace UnityEditor.Rendering.Toon
         {
             const string labelLightAdjustment = "Toon EV Adjustment";
             const string labelLightAdjustmentCurve = "Curve";
-            const string labelLightHighCutFilter = "Light High-Cult Filter";
+            const string labelLightHighCutFilter = "Light High-Cut Filter";
 #if ADJUSTMENT_CURVE_DEBUG_UI
             const string labelExposureMin = "Min:";
             const string labelExposureMax = "Max:";
@@ -103,10 +103,19 @@ namespace UnityEditor.Rendering.Toon
         [MenuItem("GameObject/Toon Shader/Create Toon Ev Adjustment Curve", false, 9999)]
         static void CreateToonEvAdjustmentCurveGameObject()
         {
-            var go = new GameObject();
-            go.name = "Toon Ev Adjustment Curve";
-            go.AddComponent<ToonEvAdjustmentCurve>();
-            Undo.RegisterCreatedObjectUndo(go, "Create Toon Ev Adjustment Curve");
+            var obj = FindObjectOfType<ToonEvAdjustmentCurve>();
+            if (obj == null)
+            {
+                var go = new GameObject();
+                go.name = "Toon Ev Adjustment Curve";
+                go.AddComponent<ToonEvAdjustmentCurve>();
+                Undo.RegisterCreatedObjectUndo(go, "Create Toon Ev Adjustment Curve");
+                Selection.activeGameObject = go;
+            }
+            else
+            {
+                Selection.activeGameObject = obj.gameObject;
+            }
         }
     }
 }

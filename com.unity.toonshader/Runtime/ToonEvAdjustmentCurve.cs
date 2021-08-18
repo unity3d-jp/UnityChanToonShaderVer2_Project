@@ -42,10 +42,32 @@ namespace Unity.Rendering.Toon
         [SerializeField]
         internal bool m_DebugUI;
 
+        private static ToonEvAdjustmentCurve instance;
 #if UNITY_EDITOR
 #pragma warning restore CS0414
         bool m_isCompiling = false;
 #endif
+
+
+        void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this as ToonEvAdjustmentCurve;
+                return;
+            }
+            else if (instance == this)
+            {
+                return ;
+            }
+            Debug.LogError("There is ToonEvAdjustmentCurve instance in hierarchy.");
+#if UNITY_EDITOR
+            DestroyImmediate(this);
+            Selection.activeGameObject = instance.gameObject;
+#else
+            Destroy(this);
+#endif
+        }
 
         void Reset()
         {
@@ -94,7 +116,8 @@ namespace Unity.Rendering.Toon
             {
                 // on compile begin
                 m_isCompiling = true;
-                Release();
+                //                Release(); no need
+                return; // 
             }
             else if (!EditorApplication.isCompiling && m_isCompiling)
             {
@@ -176,22 +199,7 @@ namespace Unity.Rendering.Toon
             m_initialized = false;
 
         }
-/*
-        public static void DestroyUnityObject(UnityObject obj)
-        {
-            if (obj != null)
-            {
-#if UNITY_EDITOR
-                if (Application.isPlaying)
-                    UnityObject.Destroy(obj);
-                else
-                    UnityObject.DestroyImmediate(obj);
-#else
-                UnityObject.Destroy(obj);
-#endif
-            }
-        }
-*/
+
     }
 
 

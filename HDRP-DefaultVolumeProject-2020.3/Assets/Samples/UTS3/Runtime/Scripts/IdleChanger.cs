@@ -41,6 +41,7 @@ namespace UnityEngine.Rendering.Toon.HDRP.Samples
 		// Update is called once per frame
 		void  Update ()
 		{
+			/*
 			// ↑キー/スペースが押されたら、ステートを次に送る処理
 			if (Input.GetKeyDown ("up") || Input.GetButton ("Jump")) {
 				// ブーリアンNextをtrueにする
@@ -52,7 +53,8 @@ namespace UnityEngine.Rendering.Toon.HDRP.Samples
 				// ブーリアンBackをtrueにする
 				anim.SetBool ("Back", true);
 			}
-		
+			*/
+
 			// "Next"フラグがtrueの時の処理
 			if (anim.GetBool ("Next")) {
 				// 現在のステートをチェックし、ステート名が違っていたらブーリアンをfalseに戻す
