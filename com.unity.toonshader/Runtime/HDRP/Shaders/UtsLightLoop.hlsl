@@ -71,7 +71,7 @@ float WeightSample(PositionInputs positionInput)
 }
 
 
-float3 GetExposureAdjustedColor(float3 originalColor, PositionInputs posInput)
+float3 GetExposureAdjustedColor(float3 originalColor)
 {
     if (_ToonEvAdjustmentCurve != 0)
     {
