@@ -43,11 +43,13 @@ namespace Unity.Rendering.Toon
         [SerializeField]
         internal float m_Max, m_Min;
 
-        public GameObject[] objs;
+        public GameObject[] m_Objs;
         [SerializeField]
-        Renderer[] renderers;
+//        [HideInInspector]
+        Renderer[] m_Renderers;
         [SerializeField]
-        MaterialPropertyBlock[] materialPropertyBlocks;
+//        [HideInInspector]
+        MaterialPropertyBlock[] m_MaterialPropertyBlocks;
 
 #if UNITY_EDITOR
 #pragma warning restore CS0414
@@ -61,6 +63,11 @@ namespace Unity.Rendering.Toon
             DefaultAnimationCurve();
         }
 
+        void OnValidate()
+        {
+            Release();
+            Initialize();
+        }
         static AnimationCurve DefaultAnimationCurve()
         {
             return AnimationCurve.Linear(-10f, -10f, -1.32f, -1.32f);
@@ -80,7 +87,7 @@ namespace Unity.Rendering.Toon
         // Update is called once per frame
         void Update()
         {
-            if (renderers == null || renderers.Length == 0)
+            if (m_Renderers == null || m_Renderers.Length == 0)
             {
                 return;
             }
@@ -130,21 +137,20 @@ namespace Unity.Rendering.Toon
 
 
 
-            Color col = Color.green;
-            int length = renderers.Length;
+            int length = m_Renderers.Length;
             for (int ii = 0; ii < length; ii++)
             {
-                renderers[ii].GetPropertyBlock(materialPropertyBlocks[ii]);
+                m_Renderers[ii].GetPropertyBlock(m_MaterialPropertyBlocks[ii]);
 
 //                materialPropertyBlocks[ii].SetColor("_UnlitColor", col);
-                materialPropertyBlocks[ii].SetFloatArray(kExposureArrayPropName, m_ExposureArray);
-                materialPropertyBlocks[ii].SetFloat(kExposureMinPropName, m_Min);
-                materialPropertyBlocks[ii].SetFloat(kExposureMaxPropName, m_Max);
-                materialPropertyBlocks[ii].SetInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
-                materialPropertyBlocks[ii].SetInt(kToonLightFilterPropName, m_ToonLightHiCutFilter ? 1 : 0);
+                m_MaterialPropertyBlocks[ii].SetFloatArray(kExposureArrayPropName, m_ExposureArray);
+                m_MaterialPropertyBlocks[ii].SetFloat(kExposureMinPropName, m_Min);
+                m_MaterialPropertyBlocks[ii].SetFloat(kExposureMaxPropName, m_Max);
+                m_MaterialPropertyBlocks[ii].SetInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
+                m_MaterialPropertyBlocks[ii].SetInt(kToonLightFilterPropName, m_ToonLightHiCutFilter ? 1 : 0);
 
 
-                renderers[ii].SetPropertyBlock(materialPropertyBlocks[ii]);
+                m_Renderers[ii].SetPropertyBlock(m_MaterialPropertyBlocks[ii]);
             }
 
         }
@@ -192,19 +198,23 @@ namespace Unity.Rendering.Toon
             if (EditorApplication.isCompiling)
                 return;
 #endif
-            if (objs == null || objs.Length == 0)
+            if (m_Objs == null || m_Objs.Length == 0)
             {
                 return;
             }
-            int objCount = objs.Length;
+            int objCount = m_Objs.Length;
             int rendererCount = 0;
 
             List<Renderer> rendererList = new List<Renderer>();
             for (int ii = 0; ii < objCount; ii++)
             {
-                GameObject[] childGameObjects = objs[ii].GetComponentsInChildren<Transform>().Select(t => t.gameObject).ToArray();
+                if (m_Objs[ii] == null )
+                {
+                    continue;
+                }
+                GameObject[] childGameObjects = m_Objs[ii].GetComponentsInChildren<Transform>().Select(t => t.gameObject).ToArray();
 
-                var renderer = objs[ii].GetComponent<Renderer>();
+                var renderer = m_Objs[ii].GetComponent<Renderer>();
                 if (renderer != null)
                 {
                     rendererCount++;
@@ -223,14 +233,14 @@ namespace Unity.Rendering.Toon
             }
             if (rendererCount != 0)
             {
-                renderers = new Renderer[rendererCount];
-                materialPropertyBlocks = new MaterialPropertyBlock[rendererCount];
-                renderers = rendererList.ToArray();
+ 
+                m_MaterialPropertyBlocks = new MaterialPropertyBlock[rendererCount];
+                m_Renderers = rendererList.ToArray();
 
 
                 for (int ii = 0; ii < rendererCount; ii++)
                 {
-                    materialPropertyBlocks[ii] = new MaterialPropertyBlock();
+                    m_MaterialPropertyBlocks[ii] = new MaterialPropertyBlock();
                 }
             }
             if (m_ExposureArray == null || m_ExposureArray.Length != kAdjustmentCurvePrecision)
@@ -246,8 +256,16 @@ namespace Unity.Rendering.Toon
             if (m_initialized)
             {
                 m_ExposureArray = null;
-                Shader.SetGlobalInt(kExposureAdjustmentPorpName, 0);
-                Shader.SetGlobalInt(kToonLightFilterPropName, 0);
+                if (m_Renderers != null )
+                {
+                    int length = m_Renderers.Length;
+                    for (int ii = 0; ii < length; ii++)
+                    {
+                        m_Renderers[ii].SetPropertyBlock(null);
+                    }
+                }
+                m_Renderers = null;
+                m_MaterialPropertyBlocks = null;
             }
 
             m_initialized = false;
