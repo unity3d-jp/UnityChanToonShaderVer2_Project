@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using UnityObject = UnityEngine.Object;
+using System.Linq;
 
 namespace Unity.Rendering.Toon
 {
@@ -34,8 +35,7 @@ namespace Unity.Rendering.Toon
 
         [SerializeField]
         internal bool m_ExposureAdjustmnt = false;
-        [SerializeField]
-        public int m_HighCutFilter = 1000000;
+
         [SerializeField]
         internal AnimationCurve m_AnimationCurve = DefaultAnimationCurve();
         [SerializeField]
@@ -68,41 +68,7 @@ namespace Unity.Rendering.Toon
 
         private void Awake()
         {
-            if (objs == null || objs.Length == 0)
-            {
-                return;
-            }
-            int objCount = objs.Length;
-            int rendererCount = 0;
-            for (int ii = 0; ii < objCount; ii++)
-            {
-                var renderer = objs[ii].GetComponent<Renderer>();
-                if (renderer == null)
-                {
-                    continue;
-                }
-                rendererCount++;
-
-            }
-            if (rendererCount != 0)
-            {
-                renderers = new Renderer[rendererCount];
-                materialPropertyBlocks = new MaterialPropertyBlock[rendererCount];
-                int rendererCount2 = 0;
-                for (int ii = 0; ii < objCount; ii++)
-                {
-                    var renderer = objs[ii].GetComponent<Renderer>();
-                    if (renderer == null)
-                    {
-                        continue;
-                    }
-                    renderers[rendererCount2] = renderer;
-                    materialPropertyBlocks[rendererCount2] = new MaterialPropertyBlock();
-                    rendererCount2++;
-
-                }
-                Debug.Assert(rendererCount2 == rendererCount);
-            }
+            Initialize();
 
         }
         // Start is called before the first frame update
@@ -226,7 +192,47 @@ namespace Unity.Rendering.Toon
             if (EditorApplication.isCompiling)
                 return;
 #endif
+            if (objs == null || objs.Length == 0)
+            {
+                return;
+            }
+            int objCount = objs.Length;
+            int rendererCount = 0;
 
+            List<Renderer> rendererList = new List<Renderer>();
+            for (int ii = 0; ii < objCount; ii++)
+            {
+                GameObject[] childGameObjects = objs[ii].GetComponentsInChildren<Transform>().Select(t => t.gameObject).ToArray();
+
+                var renderer = objs[ii].GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    rendererCount++;
+                    rendererList.Add(renderer);
+                }
+                int childCount = childGameObjects.Length;
+                for (int jj = 0; jj < childCount; jj++)
+                {
+                    renderer = childGameObjects[jj].GetComponent<Renderer>();
+                    if ( renderer != null )
+                    {
+                        rendererList.Add(renderer);
+                        rendererCount++;
+                    }
+                }
+            }
+            if (rendererCount != 0)
+            {
+                renderers = new Renderer[rendererCount];
+                materialPropertyBlocks = new MaterialPropertyBlock[rendererCount];
+                renderers = rendererList.ToArray();
+
+
+                for (int ii = 0; ii < rendererCount; ii++)
+                {
+                    materialPropertyBlocks[ii] = new MaterialPropertyBlock();
+                }
+            }
             if (m_ExposureArray == null || m_ExposureArray.Length != kAdjustmentCurvePrecision)
             {
                 m_ExposureArray = new float[kAdjustmentCurvePrecision];

@@ -173,8 +173,13 @@ float4 _BakedNormal_ST;
 fixed _Is_BakedNormal;
 
 float _ZOverDrawMode;
-//
-
+ //
+ // not in materials
+int _ToonLightHiCutFilter;
+int _ToonEvAdjustmentCurve;
+float _ToonEvAdjustmentValueArray[128];
+float _ToonEvAdjustmentValueMin;
+float _ToonEvAdjustmentValueMax;
 
 
 

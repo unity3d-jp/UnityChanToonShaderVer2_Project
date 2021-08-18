@@ -22,12 +22,7 @@ int eOutline = 6;
 
 
 
-// not in materials
-uniform int _ToonLightHiCutFilter;
-uniform int _ToonEvAdjustmentCurve;
-uniform float _ToonEvAdjustmentValueArray[128];
-uniform float _ToonEvAdjustmentValueMin;
-uniform float _ToonEvAdjustmentValueMax;
+
 
 
 // function to rotate the UV: RotateUV()
