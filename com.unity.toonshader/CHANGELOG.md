@@ -1,6 +1,9 @@
 # Changelog
+## [0.2.2-preview] - 2021-09-02
+* Updated documentation.
+
 ## [0.2.1-preview] - 2021-08-18
-* HDRP: Fixed: Multiple instances of Toon EV adjustment cureve can exist in one scene.   
+* HDRP: Fixed: Multiple instances of Toon EV adjustment cureve can exist in one scene.
 
 ## [0.2.0-preview] - 2021-08-17
 * HDRP: Toon EV adjutment curve as a Mono-behavior.
