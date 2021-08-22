@@ -28,7 +28,7 @@ uniform int _ToonEvAdjustmentCurve;
 uniform float _ToonEvAdjustmentValueArray[128];
 uniform float _ToonEvAdjustmentValueMin;
 uniform float _ToonEvAdjustmentValueMax;
-
+uniform float _ToonIgnoreExposureMultiplier;
 
 // function to rotate the UV: RotateUV()
 //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);
@@ -70,6 +70,10 @@ float WeightSample(PositionInputs positionInput)
     return 1.0 - saturate(weight);
 }
 
+float3 ApplyCurrentExposureMultiplier(float3 color)
+{
+    return color * lerp(GetCurrentExposureMultiplier(),1, _ToonIgnoreExposureMultiplier);
+}
 
 float3 GetExposureAdjustedColor(float3 originalColor)
 {

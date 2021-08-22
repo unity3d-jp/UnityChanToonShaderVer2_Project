@@ -25,12 +25,16 @@ namespace Unity.Rendering.Toon
         const string kExposureMinPropName   = "_ToonEvAdjustmentValueMin";
         const string kExposureMaxPropName   = "_ToonEvAdjustmentValueMax";
         const string kToonLightFilterPropName = "_ToonLightHiCutFilter";
+        const string kIgonoreVolumeExposurePropName = "_ToonIgnoreExposureMultiplier";
 
         [SerializeField]
         internal bool m_ToonLightHiCutFilter= false;
 
         [SerializeField]
         internal bool m_ExposureAdjustmnt = false;
+        [SerializeField]
+        internal bool m_IgnorVolumeExposure= false;
+
         [SerializeField]
         public int m_HighCutFilter = 1000000;
         [SerializeField]
@@ -74,9 +78,9 @@ namespace Unity.Rendering.Toon
             OnDisable();
             OnEnable();
             DefaultAnimationCurve();
-        }   
+        }
 
-        static AnimationCurve DefaultAnimationCurve()
+        internal static AnimationCurve DefaultAnimationCurve()
         {
             return AnimationCurve.Linear(-10f, -10f, -1.32f, -1.32f);
         }
@@ -130,7 +134,7 @@ namespace Unity.Rendering.Toon
             Shader.SetGlobalFloat(kExposureMaxPropName, m_Max);
             Shader.SetGlobalInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
             Shader.SetGlobalInt(kToonLightFilterPropName, m_ToonLightHiCutFilter ? 1 : 0);
-
+            Shader.SetGlobalInt(kIgonoreVolumeExposurePropName, m_IgnorVolumeExposure ? 1: 0);
 
         }
 

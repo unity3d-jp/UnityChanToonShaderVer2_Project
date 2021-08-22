@@ -69,7 +69,7 @@ float3 UTS_MainLightShadingGrademap(LightLoopContext lightLoopContext, FragInput
 
 
     float3 mainLihgtDirection = -_DirectionalLightDatas[mainLightIndex].forward;
-    float3 mainLightColor = _DirectionalLightDatas[mainLightIndex].color * GetCurrentExposureMultiplier();
+    float3 mainLightColor = ApplyCurrentExposureMultiplier(_DirectionalLightDatas[mainLightIndex].color);
 
 
     //v.2.0.4

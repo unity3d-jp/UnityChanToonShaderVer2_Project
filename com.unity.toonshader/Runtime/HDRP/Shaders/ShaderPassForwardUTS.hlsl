@@ -100,6 +100,7 @@ float ApplyChannelAlpha( float alpha)
     return lerp(1.0, alpha, _ComposerMaskMode);
 }
 
+
 float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs posInput,
     float3 V, BuiltinData builtinData,
     BSDFData bsdfData, PreLightData preLightData, LightData light)
@@ -343,7 +344,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 if (mainLightIndex != i)
                 {
                     
-                    float3 lightColor = _DirectionalLightDatas[i].color * GetCurrentExposureMultiplier();
+                    float3 lightColor = ApplyCurrentExposureMultiplier(_DirectionalLightDatas[i].color);
                     float3 lightDirection = -_DirectionalLightDatas[i].forward;
                     float notDirectional = 0.0f;
 
@@ -559,7 +560,7 @@ void Frag(PackedVaryingsToPS packedInput,
                 const float notDirectional = 1.0f;
 
  
-                float3 additionalLightColor = GetCurrentExposureMultiplier()  * s_lightData.color * attenuation;
+                float3 additionalLightColor = ApplyCurrentExposureMultiplier( s_lightData.color) * attenuation;
 
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {

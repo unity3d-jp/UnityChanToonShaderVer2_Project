@@ -18,6 +18,8 @@ namespace UnityEditor.Rendering.Toon
             const string labelLightAdjustment = "Toon EV Adjustment";
             const string labelLightAdjustmentCurve = "Curve";
             const string labelLightHighCutFilter = "Light High-Cut Filter";
+            const string labeIgnoreVolumeExposure = "Ignore Volume Exposure";
+
 #if ADJUSTMENT_CURVE_DEBUG_UI
             const string labelExposureMin = "Min:";
             const string labelExposureMax = "Max:";
@@ -25,6 +27,18 @@ namespace UnityEditor.Rendering.Toon
             bool isChanged = false;
 
             var obj = target as ToonEvAdjustmentCurve;
+
+            // hi cut filter
+            EditorGUI.BeginChangeCheck();
+
+            bool egnoreExposure = EditorGUILayout.Toggle(labeIgnoreVolumeExposure, obj.m_IgnorVolumeExposure);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed Ignore Volume Exposure");
+                obj.m_IgnorVolumeExposure = egnoreExposure;
+                isChanged = true;
+            }
+
             // hi cut filter
             EditorGUI.BeginChangeCheck();
 
@@ -37,11 +51,6 @@ namespace UnityEditor.Rendering.Toon
             }
 
 
-            if (isChanged)
-            {
-                // at leaset 2020.3.12f1, not neccessary. but, from which version??
-                EditorApplication.QueuePlayerLoopUpdate();
-            }
 
 
             // curve
@@ -53,32 +62,61 @@ namespace UnityEditor.Rendering.Toon
                 obj.m_ExposureAdjustmnt = exposureAdjustment;
                 isChanged = true;
             }
+            // = obj.m_AnimationCurve;            // curve
+
+
+
 
             EditorGUI.BeginDisabledGroup(!obj.m_ExposureAdjustmnt);
             {
                 EditorGUI.indentLevel++;
+                EditorGUILayout.BeginHorizontal();
+
                 EditorGUI.BeginChangeCheck();
                 //               var ranges = new Rect(-10, -10, 20, 20);
                 //               var curve = EditorGUILayout.CurveField(labelExposureCurave, obj.m_AnimationCurve, Color.green,ranges);
-                var curve = EditorGUILayout.CurveField(labelLightAdjustmentCurve, obj.m_AnimationCurve);
+                AnimationCurve curve = EditorGUILayout.CurveField(labelLightAdjustmentCurve, obj.m_AnimationCurve);
+
                 if (EditorGUI.EndChangeCheck())
                 {
                     Undo.RecordObject(target, "Changed Curve");
                     obj.m_AnimationCurve = curve;
                     isChanged = true;
                 }
+                EditorGUI.BeginChangeCheck();
+                bool buttonIsPressed = GUILayout.Button("Reset", GUILayout.Width(50));
+                var curve2 = obj.m_AnimationCurve;
+                if (buttonIsPressed)
+                {
+                    curve2 = ToonEvAdjustmentCurve.DefaultAnimationCurve();
+                }
+                if (EditorGUI.EndChangeCheck())
+                {
+                    Undo.RecordObject(target, "Changed Curve");
+                    obj.m_AnimationCurve = curve2;
+                    isChanged = true;
+                }
+                EditorGUILayout.EndHorizontal();
+
                 var rangeMinLux = ConvertFromEV100(obj.m_Min);
                 var rangeMaxLux = ConvertFromEV100(obj.m_Max);
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("rangeMin:" + rangeMinLux.ToString());
-                EditorGUILayout.LabelField("rangeMax:" + rangeMaxLux.ToString());
+                EditorGUILayout.LabelField("Min EV/LUX:" + obj.m_Min + " / " + rangeMinLux.ToString());
+                EditorGUILayout.LabelField("Max EV/LUX:" + obj.m_Max + " / " + rangeMaxLux.ToString());
                 EditorGUILayout.EndHorizontal();
+
+
 
 
                 EditorGUI.indentLevel--;
             }
             EditorGUI.EndDisabledGroup();
 
+            if (isChanged)
+            {
+                // at leaset 2020.3.12f1, not neccessary. but, from which version??
+                EditorApplication.QueuePlayerLoopUpdate();
+            }
 
 
 
