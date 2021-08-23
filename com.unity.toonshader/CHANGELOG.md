@@ -1,6 +1,8 @@
 # Changelog
-## [0.2.2-preview] - 2021-09-02
-* Updated documentation.
+## [0.2.2-preview] - 2021-08-23
+* Modefind Toon EV curve inspector.
+* Exclued unnecessary files from release zip.
+* Improved folder structure in order not to cause long file name errors when included in other packages.
 
 ## [0.2.1-preview] - 2021-08-18
 * HDRP: Fixed: Multiple instances of Toon EV adjustment cureve can exist in one scene.
@@ -11,7 +13,7 @@
 * Integrated Textures feature is removed from all the render pipeline versions instead of above.
 * HDRP and URP are compatible with SRP Batcher.
 * Legacy, Universal and HDRP: Added image comparison tests for Windows Vulkan API.
-* HDRP: Added light prob compatibilty.
+* HDRP: Added light probe compatibilty.
 * Added a material converter from Unitychan Toon Shader newer than 2.0.7  to Unity Toon Shader. (Experimental)
 
 ## [0.1.0-preview] - 2021-07-07
