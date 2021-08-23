@@ -424,12 +424,12 @@ PrefabInstance:
       value: ToonShader_SD_unitychan_humanoid_CelLook
       objectReference: {fileID: 0}
     - target: {fileID: 1590974229819140, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590974229819140, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590974229819140, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1673285163430804, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
       propertyPath: m_Layer
@@ -448,6 +448,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -460,6 +464,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -470,14 +478,6 @@ PrefabInstance:
     - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -500,12 +500,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3d69f7c739484098a7f6d446c75dde83, type: 2}
+      objectReference: {fileID: 2100000, guid: c108d0a7db524a57b7c0c7c2cda289a5, type: 2}
     - target: {fileID: 137086489294773550, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 7d1cd75aae644738b811b82fc4e8c97d, type: 2}
+      objectReference: {fileID: 2100000, guid: a5646a8e26cf47a2b603300b9b379499, type: 2}
     - target: {fileID: 137665887834554748, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_RenderingLayerMask
@@ -515,7 +515,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0e5b97cb4f0b4a02bca7b0cbde5bb045, type: 2}
+      objectReference: {fileID: 2100000, guid: 5712e3ab25394507aeb4f46bb76d0a3c, type: 2}
     - target: {fileID: 137691761718692556, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_RenderingLayerMask
@@ -530,17 +530,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0c7274efdc0144e489b031bf3939ac8f, type: 2}
+      objectReference: {fileID: 2100000, guid: 069c2f88477245ffb0238c7a5c45e2eb, type: 2}
     - target: {fileID: 137797591847690792, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 989f8f7ed4b64624853e89198795cf98, type: 2}
-    - target: {fileID: 137867813737667552, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
-        type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ceeb197f633342f88e4b7802bd333ed2, type: 2}
     - target: {fileID: 137867813737667552, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_CastShadows
@@ -548,14 +543,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137867813737667552, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 137867813737667552, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6b92126db05c4b929524f16d466ee626, type: 2}
+      objectReference: {fileID: 2100000, guid: 96820072609c4bc6a1d26edb036b54c7, type: 2}
     - target: {fileID: 137867813737667552, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 5ca0f66b5b7a46759f76f1859871450f, type: 2}
+      objectReference: {fileID: 2100000, guid: d5e2a8fe8b7541a4811b3c3b01e66bad, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
 --- !u!1 &694067455
