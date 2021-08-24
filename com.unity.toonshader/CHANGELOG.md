@@ -1,9 +1,9 @@
 # Changelog
-## [0.2.2-preview] - 2021-08-23
-* Modefind Toon EV curve inspector.
+## [0.2.2-preview] - 2021-08-24
+* Modefind Toon EV Adjustment Curve inspector.
 * Exclued unnecessary files from release zip.
 * Improved folder structure in order not to cause long file name errors when included in other packages.
-
+* Added documentation for Toon EV Adjustment Curve.
 ## [0.2.1-preview] - 2021-08-18
 * HDRP: Fixed: Multiple instances of Toon EV adjustment cureve can exist in one scene.
 

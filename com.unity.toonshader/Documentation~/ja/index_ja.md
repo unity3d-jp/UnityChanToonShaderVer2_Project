@@ -1009,3 +1009,22 @@ Unity Toon Shader では、Phong Tessellation にのみ対応しています。
 | `各カラー領域のチェックボックス` | チェックすると、横のカラーパレットに指定されているカラーで該当するカラー領域を塗り潰します。 |
 | `各カラー領域のカラーパレット` | 塗り潰すカラーを指定します。Visual Compositorからクリッピング用マスク画像を出力する場合は、αチャンネルの値(`A`)を必ず255に設定してください。 |
 ---
+
+## 14. "Toon EV Adjustment Curve" Mono behavior
+
+<img width = "380" src="../images/TooEvAdjustmenEfficiency.png">
+
+本機能はHDRP専用となります。HDRPでは Exposure Volume Profile などのポストエフェクトと組み合わせることによって、130000 lux もの強烈な明るい環境でも破綻せず、光学的に正しいレンダリングを行うように設計されています。 しかし、Toon Shaderはこう言った光学的な正しさから離れて全く異なるロジックでトゥーン表現を行うため、HDRP組み込みの自動補正を行うだけではアーティストの求める画を得ることができません。本機能は３つの方式でアーティストによる補正をサポートします。
+
+<img width = "380" src="../images/CreateTonEvAdjustmentCurve.png">
+
+本機能は Unity Editor のメニューから `GameObject/Toon Shader/Create Toon EV Adjustment Curve` を選択して、コントロールする GameObject を作成して利用します。`Toon EV Adjustment Curve Mono Behavior` はシーン内に一つだけ置くことができます。
+
+<img width = "380" src="../images/ToonEvAdjustmentCurveScript.png">
+
+| `機能` | 機能解説 |
+|:-------------------|:-------------------|
+| `Ignore Volume Exposure` | HDRP 組み込みの自動補正を無視します。このチェックボックスを On にすると 1 より明るいライトを当てた場合、白飛びが多くなり、Bloomもかなり大袈裟にかかることになります。しかし、Light Culling などを使ってキャラクターに 1lux 以下の独立したライトを当てる場合はこの方法が適しています。| 
+| `Light High Cut  Filter` | Toon Shader マテリアルを持つオブジェクトに当たるライトを 1 lux までにクリップします。| 
+| `Toon EV adjustment curve` | 編集可能なカーブで補正を行います。0 lux から 130000 luxまでをコントロールするカーブをアーティストが描くのは無理があるため、この画面では EV を明るさの単位として用いています。デフォルトでは -10 EVから -1.32 EV までをリニアに補完するカーブが設定されています。| 
+---
