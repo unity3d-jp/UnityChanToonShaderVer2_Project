@@ -1,11 +1,15 @@
 # Unity Toon Shader 0.2.2-preview マニュアル
 ***Read this document in [English](../index.md)***  
 
+<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Toon EV Adjustment Curve</span>](#ToonEvAdjustmentCurve)
+
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 [![](../images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
 <img width = "800" src="../images/TPK_04.png">
 <img width = "800" src="../images/HiUni01.png">
 <img width = "800" src="../images/IllustSample_UTS2.png">
+
+
 
 # Unity Toon Shader とは？
 **Unity Toon Shader (ユニティちゃんトゥーンシェーダー 3)** は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、トゥーンシェーダーです。他のプリレンダー向けトゥーンシェーダーとは異なり、**すべての機能がUnity上でリアルタイムで調整可能なことが、Unity Toon Shader の最大の特長です**。  
@@ -223,7 +227,7 @@ Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipel
 
 <img width = "400" src="../images/SelectLinearColorSpace.png">
 
-サンプルプロジェクトを開くと、`Assets\Samples\Unity Toon Shader\0.2.2-preview\Universal RP\Sample Scenes(Universal)`フォルダ以下に、次のようなサンプルシーンがあります。  
+サンプルプロジェクトを開くと、`Assets\Samples\Unity Toon Shader\0.2.2-preview\Universal render pipeline`フォルダ以下に、次のようなサンプルシーンがあります。  
 
 * ToonShader.unity			：イラストルックのシェーダー設定  
 * ToonShader_CelLook.unity	：セルルックのシェーダー設定  
@@ -246,8 +250,8 @@ Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipel
 
 【**NOTE**】 
 その他のレンダーパイプライン向けのサンプルシーンは以下のフォルダに入っています。  
-* Legacy(Built-in)の場合：`Assets\Samples\Unity Toon Shader\0.2.2-preview\Legacy (built-in)\Runtime`フォルダ  
-* HDRPの場合：`Assets\Samples\Unity Toon Shader\0.2.2-preview\High definition render pipeline\Runtime`フォルダ　
+* Legacy(Built-in)の場合：`Assets\Samples\Unity Toon Shader\0.2.2-preview\Legacy render pipeline`フォルダ  
+* HDRPの場合：`Assets\Samples\Unity Toon Shader\0.2.2-preview\High definition render pipeline`フォルダ　
 
 # Unity Toon Shader 設定メニュー：Unity Toon Shaderカスタムインスペクター
 
@@ -1009,10 +1013,11 @@ Unity Toon Shader では、Phong Tessellation にのみ対応しています。
 | `各カラー領域のチェックボックス` | チェックすると、横のカラーパレットに指定されているカラーで該当するカラー領域を塗り潰します。 |
 | `各カラー領域のカラーパレット` | 塗り潰すカラーを指定します。Visual Compositorからクリッピング用マスク画像を出力する場合は、αチャンネルの値(`A`)を必ず255に設定してください。 |
 ---
+<a id="ToonEvAdjustmentCurve"></a>
+## 14. <span style="color: red; ">【NEW】</span> "Toon EV Adjustment Curve" Mono behavior 
 
-## 14. "Toon EV Adjustment Curve" Mono behavior
 
-<img width = "380" src="../images/TooEvAdjustmenEfficiency.png">
+<img width = "800" src="../images/TooEvAdjustmenEfficiency2.png">
 
 本機能はHDRP専用となります。HDRPでは Exposure Volume Profile などのポストエフェクトと組み合わせることによって、130000 lux もの強烈な明るい環境でも破綻せず、光学的に正しいレンダリングを行うように設計されています。 しかし、Toon Shaderはこう言った光学的な正しさから離れて全く異なるロジックでトゥーン表現を行うため、HDRP組み込みの自動補正を行うだけではアーティストの求める画を得ることができません。本機能は３つの方式でアーティストによる補正をサポートします。
 

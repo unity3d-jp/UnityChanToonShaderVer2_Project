@@ -1,11 +1,16 @@
 # Unity Toon Shader 0.2.2-preview Manual
 ***Read this document in [日本語版](ja/index_ja.md)***  
 
+<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Toon EV Adjustment Curve</span>](#ToonEvAdjustmentCurve)
+
 [![](images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 [![](images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
 <img width = "800" src="images/TPK_04.png">
 <img width = "800" src="images/HiUni01.png">
 <img width = "800" src="images/IllustSample_UTS2.png">
+
+
+
 
 # What is Unity Toon Shader?  
 Unity Toon Shader(Unity-Chan Toon Shader 3) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations. Unlike other pre-render toon shaders, **all features can be adjusted in real time on Unity, which is the greatest feature of Unity Toon Shader**..  
@@ -226,7 +231,7 @@ The Color Space must be set to `Linear`.
 
 <img width = "400" src="images/SelectLinearColorSpace.png">
 
-The following sample scenes can be found by opening the sample project and opening the `Assets\Samples\Unity Toon Shader\0.2.2-preview\Universal RP\Sample Scenes(Universal)` folder.  
+The following sample scenes can be found by opening the sample project and opening the `Assets\Samples\Unity Toon Shader\0.2.2-preview\Universal render pipeline` folder.  
 
 * ToonShader.unity            ：Settings for an illustration-style shader.  
 * ToonShader_CelLook.unity    ：Settings for a cel-style shader.  
@@ -249,8 +254,8 @@ They should come in handy as an example when creating your own scenes.
 
 【**NOTE**】 
 Sample scenes for other render pipeline can be found in the following folder.  
-* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.2.2-preview\Legacy (built-in)\Runtime` folder  
-* for HDRP：`Assets\Samples\Unity Toon Shader\0.2.2-preview\High definition render pipeline\Runtime` folder 
+* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.2.2-preview\Legacy render pipeline` folder  
+* for HDRP：`Assets\Samples\Unity Toon Shader\0.2.2-preview\High definition render pipeline` folder 
 
 
 # Unity Toon Shader Setting Menu：Unity Toon Shader Custom Inspector
@@ -1034,10 +1039,9 @@ When using this function via Visual Compositor, there is no need to do any parti
 | `Check box for each color area` | When checked, it will fill the corresponding color area with the color specified in the color palette beside it. |
 | `Color palette for each color area` | Specify the color to be filled in. When outputting a mask image for clipping from Visual Compositor, be sure to set the value of the alpha channel (`A`) to 255. |
 ---
-
-## 14. "Toon EV Adjustment Curve" Mono Behavior
-
-<img width = "380" src="images/TooEvAdjustmenEfficiency.png">
+<a id="ToonEvAdjustmentCurve"></a>
+## 14. <span style="color: red; ">【NEW】</span> "Toon EV Adjustment Curve" Mono behavior 
+<img width = "800" src="images/TooEvAdjustmenEfficiency2.png">
 
 
 This feature is only available for HDRP, which, when combined with post-effects such as the Exposure Volume Profile, is designed to render optically correct images without collapsing even in bright environments as intense as 130,000 lux. However, because the Toon Shader uses a completely different logic to render toons apart from this optical correctness, the automatic correction built into HDRP is not enough to get the picture the artist wants. This feature supports artists' corrections in three ways.
