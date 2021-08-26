@@ -79,7 +79,7 @@ see [here](./com.unity.toonshader/Documentation~/index.md#1-basic-shader-setting
 ## 【Target Environment】
 * **Requires Unity 2019.4.21f1 or higher**. 
 * Unity Toon Shader uses **a forward rendering environment**. Using **a linear color space** is recommended. (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html).)
-* Target Platforms are **Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch**. Tessellation version is only supported for environments where DX11/DX12 works properly.  
+* Target Platforms are **Windows, MacOS, iOS, Android(Vulkan), PlayStation4, Xbox One, Nintendo Switch**. Tessellation version is only supported for environments where DX11/DX12 works properly.  
 
 -----
 ## 【Package contents】

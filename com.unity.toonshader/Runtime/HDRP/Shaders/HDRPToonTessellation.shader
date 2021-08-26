@@ -11,8 +11,8 @@ Shader "HDRP/ToonTessellation"
         // -----------------------------------------------------------------------------
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
-        [HideInInspector] _utsVersionY("VersionY", Float) = 2
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 2
+        [HideInInspector] _utsVersionY("VersionY", Float) = 3
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
 
         // Reminder. Color here are in linear but the UI (color picker) do the conversion sRGB to linear
