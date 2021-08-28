@@ -521,6 +521,8 @@ void Frag(PackedVaryingsToPS packedInput,
         }
 #endif
 
+
+
         // Scalarized loop. All lights that are in a tile/cluster touched by any pixel in the wave are loaded (scalar load), only the one relevant to current thread/pixel are processed.
         // For clarity, the following code will follow the convention: variables starting with s_ are meant to be wave uniform (meant for scalar register),
         // v_ are variables that might have different value for each thread in the wave (meant for vector registers).
@@ -538,6 +540,7 @@ void Frag(PackedVaryingsToPS packedInput,
             if (s_lightIdx == -1)
                 break;
 
+            LightData s_lightData = FetchLight(s_lightIdx);
 
 
             // If current scalar and vector light index match, we process the light. The v_lightListOffset for current thread is increased.
@@ -548,27 +551,26 @@ void Frag(PackedVaryingsToPS packedInput,
                 v_lightListOffset++;
 
 
-                LightData s_lightData = FetchLight(s_lightIdx);
-                float3 lightColor = 0;
-
-                float3 L;
-                float4 distances; // {d, d^2, 1/d, d_proj}
-                GetPunctualLightVectors(posInput.positionWS, s_lightData, L, distances);
-                real attenuation = PunctualLightAttenuation(distances, s_lightData.rangeAttenuationScale, s_lightData.rangeAttenuationBias,
-                s_lightData.angleScale, s_lightData.angleOffset);
-
-                const float notDirectional = 1.0f;
-
- 
-                float3 additionalLightColor = ApplyCurrentExposureMultiplier( s_lightData.color) * attenuation;
-
                 if (IsMatchingLightLayer(s_lightData.lightLayers, builtinData.renderingLayers))
                 {
+
+                    float3 lightColor = 0;
+
+                    float3 L;
+                    float4 distances; // {d, d^2, 1/d, d_proj}
+                    GetPunctualLightVectors(posInput.positionWS, s_lightData, L, distances);
+                    real attenuation = PunctualLightAttenuation(distances, s_lightData.rangeAttenuationScale, s_lightData.rangeAttenuationBias,
+                        s_lightData.angleScale, s_lightData.angleOffset);
+                    float3 additionalLightColor = ApplyCurrentExposureMultiplier(s_lightData.color) * attenuation;
+                    const float notDirectional = 1.0f;
+
 #if defined(_SHADINGGRADEMAP)
                     float3 pointLightColor = UTS_OtherLightsShadingGrademap(input, i_normalDir, additionalLightColor, L, notDirectional, channelAlpha);
 #else
                     float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, L, notDirectional, channelAlpha);
 #endif
+
+                    
                     finalColor += pointLightColor;
 
                 }
