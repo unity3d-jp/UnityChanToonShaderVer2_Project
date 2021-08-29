@@ -544,7 +544,6 @@ Shader "HDRP/ToonTessellation"
     //-------------------------------------------------------------------------------------
 
     #define TESSELLATION_ON
-    #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
     // This shader support vertex modification
     #define HAVE_VERTEX_MODIFICATION
     #define HAVE_TESSELLATION_MODIFICATION

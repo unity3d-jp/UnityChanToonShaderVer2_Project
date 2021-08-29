@@ -532,7 +532,7 @@ void Frag(PackedVaryingsToPS packedInput,
         uint v_lightListOffset = 0;
         uint v_lightIdx = lightStart;
         float channelAlpha = 0.0f;
-        [loop]
+
         while (v_lightListOffset < lightCount)
         {
             v_lightIdx = FetchIndex(lightStart, v_lightListOffset);

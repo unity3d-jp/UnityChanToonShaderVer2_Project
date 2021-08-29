@@ -1062,7 +1062,7 @@ Shader "HDRP/Toon"
 
             #define SHADERPASS SHADERPASS_FORWARD
             #define SHADOW_LOW
-            #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+
 
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
