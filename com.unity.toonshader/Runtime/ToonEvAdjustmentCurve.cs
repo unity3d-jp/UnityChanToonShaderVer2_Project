@@ -29,14 +29,10 @@ namespace Unity.Rendering.Toon
 
         [SerializeField]
         internal bool m_ToonLightHiCutFilter= false;
-
         [SerializeField]
         internal bool m_ExposureAdjustmnt = false;
         [SerializeField]
         internal bool m_IgnorVolumeExposure= false;
-
-        [SerializeField]
-        public int m_HighCutFilter = 1000000;
         [SerializeField]
         internal AnimationCurve m_AnimationCurve = DefaultAnimationCurve();
         [SerializeField]
