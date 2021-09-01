@@ -101,71 +101,6 @@ float ApplyChannelAlpha( float alpha)
 }
 
 
-float3 GetLightColor(LightLoopContext context, FragInputs input, PositionInputs posInput,
-    float3 V, BuiltinData builtinData,
-    BSDFData bsdfData, PreLightData preLightData, LightData light)
-{
-    float3 finalColor = float3(0, 0, 0);
-    float3 L; // lightToSample = positionWS - light.positionRWS;  unL = -lightToSample; L = unL * distRcp;
-    float4 distances; // {d, d^2, 1/d, d_proj}
-    GetPunctualLightVectors(input.positionRWS, light, L, distances);
-    if ((light.lightDimmer > 0) && IsNonZeroBSDF(V, L, preLightData, bsdfData))
-    {
-        float4 lightColor = EvaluateLight_Punctual(context, posInput, light, L, distances);
-        lightColor.rgb *= lightColor.a; // Composite
-# ifdef MATERIAL_INCLUDE_TRANSMISSION
-        if (ShouldEvaluateThickObjectTransmission(V, L, preLightData, bsdfData, light.shadowIndex))
-        {
-            // Replace the 'baked' value using 'thickness from shadow'.
-            bsdfData.transmittance = EvaluateTransmittance_Punctual(context, posInput,
-                bsdfData, light, L, distances);
-        }
-        else
-# endif
-        {
-            // This code works for both surface reflection and thin object transmission.
-            float shadow = (float)EvaluateShadow_Punctual(context, posInput, light, builtinData, GetNormalForShadowBias(bsdfData), L, distances);
-            lightColor.rgb *= ComputeShadowColor(shadow, light.shadowTint, light.penumbraTint);
-
-# ifdef DEBUG_DISPLAY
-            // The step with the attenuation is required to avoid seeing the screen tiles at the end of lights because the attenuation always falls to 0 before the tile ends.
-            // Note: g_DebugShadowAttenuation have been setup in EvaluateShadow_Punctual
-            if (_DebugShadowMapMode == SHADOWMAPDEBUGMODE_SINGLE_SHADOW && light.shadowIndex == _DebugSingleShadowIndex)
-                g_DebugShadowAttenuation *= step(FLT_EPS, lightColor.a);
-# endif
-        }
-
-
-        // this is not so important for UTS.
-        ClampRoughness(preLightData, bsdfData, light.minRoughness);
-
-        // extracted ShadeSurface_Infinitesimal()
-        if (Max3(lightColor.r, lightColor.g, lightColor.b) > 0)
-        {
-            CBSDF cbsdf = EvaluateBSDF(V, L, preLightData, bsdfData);
-
-# if defined(MATERIAL_INCLUDE_TRANSMISSION) || defined(MATERIAL_INCLUDE_PRECOMPUTED_TRANSMISSION)
-            float3 transmittance = bsdfData.transmittance;
-# else
-            float3 transmittance = float3(0.0, 0.0, 0.0);
-# endif
-
-            // If transmittance or the CBSDF's transmission components are known to be 0,
-            // the optimization pass of the compiler will remove all of the associated code.
-            // However, this will take a lot more CPU time than doing the same thing using
-            // the preprocessor.
-//                            lighting.diffuse = (cbsdf.diffR + cbsdf.diffT * transmittance) * lightColor * diffuseDimmer;
-//                            lighting.specular = (cbsdf.specR + cbsdf.specT * transmittance) * lightColor * specularDimmer;
-            finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor.xyz  *light.diffuseDimmer;
-			finalColor += (cbsdf.diffR + cbsdf.diffT  * transmittance) * lightColor.xyz  *light.specularDimmer;
-        }
-
-
-    }
-    return finalColor;
-}
-
-
 
 
 #ifdef UNITY_VIRTUAL_TEXTURING
@@ -361,6 +296,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
     }
 
+#if 0 // --------------------------------------------------------------------
     AggregateLighting aggregateLighting;
     ZERO_INITIALIZE(AggregateLighting, aggregateLighting); // LightLoop is in charge of initializing the struct
 
@@ -374,6 +310,7 @@ void Frag(PackedVaryingsToPS packedInput,
 
 // Environment cubemap test lightlayers, sky don't test it
 #define EVALUATE_BSDF_ENV(envLightData, TYPE, type) if (IsMatchingLightLayer(envLightData.lightLayers, builtinData.renderingLayers)) { EVALUATE_BSDF_ENV_SKY(envLightData, TYPE, type) }
+
 
     // First loop iteration
     if (featureFlags & (LIGHTFEATUREFLAGS_ENV | LIGHTFEATUREFLAGS_SKY | LIGHTFEATUREFLAGS_SSREFRACTION | LIGHTFEATUREFLAGS_SSREFLECTION))
@@ -496,9 +433,11 @@ void Frag(PackedVaryingsToPS packedInput,
             }
         }
     }
+#endif //#if 0 // --------------------------------------------------------------------
+
 #undef EVALUATE_BSDF_ENV
 #undef EVALUATE_BSDF_ENV_SKY
-    // ------------------- env --------------------
+
     if (featureFlags & LIGHTFEATUREFLAGS_PUNCTUAL)
     {
         uint lightCount, lightStart;
@@ -509,8 +448,7 @@ void Frag(PackedVaryingsToPS packedInput,
         lightCount = _PunctualLightCount;
         lightStart = 0;
 #endif
-
-        bool fastPath = false;
+         bool fastPath = false;
 #if SCALARIZE_LIGHT_LOOP
         uint lightStartLane0;
         fastPath = IsFastPath(lightStart, lightStartLane0);
@@ -570,7 +508,12 @@ void Frag(PackedVaryingsToPS packedInput,
                     float3 pointLightColor = UTS_OtherLights(input, i_normalDir, additionalLightColor, L, notDirectional, channelAlpha);
 #endif
 
-                    
+//#if USE_FPTL_LIGHTLIST
+//                    pointLightColor = float3(tileIndex.xy/30, 0.0);
+//#endif
+//#if USE_CLUSTERED_LIGHTLIST
+//                    pointLightColor = float3(0.0f, 0.0, 1.0);
+//#endif
                     finalColor += pointLightColor;
 
                 }

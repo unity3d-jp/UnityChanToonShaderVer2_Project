@@ -6,8 +6,9 @@ Shader "HDRP/Toon"
 {
     Properties
     {
-
-
+        // -----------------------------------------------------------------------------
+        // parameters for UTS
+        // -----------------------------------------------------------------------------
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         // Versioning of material to help for upgrading
         [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
@@ -15,11 +16,6 @@ Shader "HDRP/Toon"
         [HideInInspector] _utsVersionY("VersionY", Float) = 3
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
-
-
-
-        // Following set of parameters represent the parameters node inside the MaterialGraph.
-        // They are use to fill a SurfaceData. With a MaterialGraph this should not exist.
 
         // Reminder. Color here are in linear but the UI (color picker) do the conversion sRGB to linear
         _BaseColor("BaseColor", Color) = (1,1,1,1)
@@ -70,6 +66,9 @@ Shader "HDRP/Toon"
         _Anisotropy("Anisotropy", Range(-1.0, 1.0)) = 0
         _AnisotropyMap("AnisotropyMap", 2D) = "white" {}
 
+        [HideInInspector] _DiffusionProfile("Obsolete, kept for migration purpose", Int) = 0
+        [HideInInspector] _DiffusionProfileAsset("Diffusion Profile Asset", Vector) = (0, 0, 0, 0)
+        [HideInInspector] _DiffusionProfileHash("Diffusion Profile Hash", Float) = 0
         _SubsurfaceMask("Subsurface Radius", Range(0.0, 1.0)) = 1.0
         _SubsurfaceMaskMap("Subsurface Radius Map", 2D) = "white" {}
         _Thickness("Thickness", Range(0.0, 1.0)) = 1.0
@@ -120,7 +119,6 @@ Shader "HDRP/Toon"
         _DistortionBlurRemapMin("DistortionBlurRemapMin", Float) = 0.0
         _DistortionBlurRemapMax("DistortionBlurRemapMax", Float) = 1.0
 
-
         [ToggleUI]  _UseShadowThreshold("_UseShadowThreshold", Float) = 0.0
         [ToggleUI]  _AlphaCutoffEnable("Alpha Cutoff Enable", Float) = 0.0
         _AlphaCutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
@@ -135,7 +133,8 @@ Shader "HDRP/Toon"
         // Transparency
         [Enum(None, 0, Box, 1, Sphere, 2, Thin, 3)]_RefractionModel("Refraction Model", Int) = 0
         [Enum(Proxy, 1, HiZ, 2)]_SSRefractionProjectionModel("Refraction Projection Model", Int) = 0
-        _Ior("Index Of Refraction", Range(1.0, 2.5)) = 1.5
+        _Ior("Index Of Refraction", Range(1.0, 2.5)) = 1.0
+        _ThicknessMultiplier("Thickness Multiplier", Float) = 1.0
         _TransmittanceColor("Transmittance Color", Color) = (1.0, 1.0, 1.0)
         _TransmittanceColorMap("TransmittanceColorMap", 2D) = "white" {}
         _ATDistance("Transmittance Absorption Distance", Float) = 1.0
@@ -167,6 +166,7 @@ Shader "HDRP/Toon"
         [HideInInspector] _AlphaSrcBlend("__alphaSrc", Float) = 1.0
         [HideInInspector] _AlphaDstBlend("__alphaDst", Float) = 0.0
         [HideInInspector][ToggleUI] _ZWrite("__zw", Float) = 1.0
+        [HideInInspector][ToggleUI] _TransparentZWrite("_TransparentZWrite", Float) = 0.0
         [HideInInspector] _CullMode("__cullmode", Float) = 2.0
         [HideInInspector] _CullModeForward("__cullmodeForward", Float) = 2.0 // This mode is dedicated to Forward to correctly handle backface then front face rendering thin transparent
         [Enum(UnityEditor.Rendering.HighDefinition.TransparentCullMode)] _TransparentCullMode("_TransparentCullMode", Int) = 2 // Back culling by default
@@ -234,12 +234,6 @@ Shader "HDRP/Toon"
         [ToggleUI] _ReceivesSSR("Receives SSR", Float) = 1.0
         [ToggleUI] _AddPrecomputedVelocity("AddPrecomputedVelocity", Float) = 0.0
 
-        [HideInInspector] _DiffusionProfile("Obsolete, kept for migration purpose", Int) = 0
-        [HideInInspector] _DiffusionProfileAsset("Diffusion Profile Asset", Vector) = (0, 0, 0, 0)
-        [HideInInspector] _DiffusionProfileHash("Diffusion Profile Hash", Float) = 0
-        // -----------------------------------------------------------------------------
-        // parameters for UTS
-        // -----------------------------------------------------------------------------
 
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
@@ -461,6 +455,7 @@ Shader "HDRP/Toon"
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
         [Enum(None, 0, BaseColor, 1, FirstShade, 2, SecondShade,3, Highlight, 4, AngelRing, 5, RimLight, 6)] _ClippingMatteMode("Clipping Matte Mode", int) = 0
 
+        [HideInInspector] emissive("to avoid srp batcher error", Color)= (0, 0, 0, 1) //
         // to here parameters for UTS>
     }
 
@@ -480,7 +475,8 @@ Shader "HDRP/Toon"
     #pragma shader_feature_local _VERTEX_DISPLACEMENT_LOCK_OBJECT_SCALE
     #pragma shader_feature_local _DISPLACEMENT_LOCK_TILING_SCALE
     #pragma shader_feature_local _PIXEL_DISPLACEMENT_LOCK_OBJECT_SCALE
-    #pragma shader_feature_local _ _REFRACTION_PLANE _REFRACTION_SPHERE
+    #pragma shader_feature_local _TESSELLATION_PHONG
+    #pragma shader_feature_local _ _REFRACTION_PLANE _REFRACTION_SPHERE _REFRACTION_THIN
 
     #pragma shader_feature_local _ _EMISSIVE_MAPPING_PLANAR _EMISSIVE_MAPPING_TRIPLANAR
     #pragma shader_feature_local _ _MAPPING_PLANAR _MAPPING_TRIPLANAR
@@ -513,6 +509,7 @@ Shader "HDRP/Toon"
 
     #pragma shader_feature_local _DISABLE_DECALS
     #pragma shader_feature_local _DISABLE_SSR
+    #pragma shader_feature_local _ADD_PRECOMPUTED_VELOCITY
     #pragma shader_feature_local _ENABLE_GEOMETRIC_SPECULAR_AA
 
     // Keyword for transparent
@@ -530,7 +527,6 @@ Shader "HDRP/Toon"
     #pragma shader_feature_local _MATERIAL_FEATURE_IRIDESCENCE
     #pragma shader_feature_local _MATERIAL_FEATURE_SPECULAR_COLOR
 
-    #pragma shader_feature_local _ADD_PRECOMPUTED_VELOCITY
 
     // enable dithering LOD crossfade
     #pragma multi_compile _ LOD_FADE_CROSSFADE
@@ -542,7 +538,7 @@ Shader "HDRP/Toon"
     //-------------------------------------------------------------------------------------
     // Define
     //-------------------------------------------------------------------------------------
-    #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+
     // This shader support vertex modification
     #define HAVE_VERTEX_MODIFICATION
  
@@ -960,7 +956,8 @@ Shader "HDRP/Toon"
             // Supported shadow modes per light type
             #pragma multi_compile SHADOW_LOW SHADOW_MEDIUM SHADOW_HIGH
 
-            #pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
+            #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+            //#pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
 
             #define SHADERPASS SHADERPASS_FORWARD
             // In case of opaque we don't want to perform the alpha test, it is done in depth prepass and we use depth equal for ztest (setup from UI)
@@ -1062,7 +1059,7 @@ Shader "HDRP/Toon"
 
             #define SHADERPASS SHADERPASS_FORWARD
             #define SHADOW_LOW
-
+            #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
 
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS

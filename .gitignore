@@ -40,6 +40,7 @@ ExportedObj/
 
 *.orig
 *.bak
+*.bak.meta
 
 # UTR
 .bin/

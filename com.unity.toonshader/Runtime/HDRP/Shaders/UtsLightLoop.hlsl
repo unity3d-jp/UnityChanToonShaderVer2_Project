@@ -23,15 +23,15 @@ int eOutline = 6;
 
 
 
-#if !defined(_UTS_TOON_EV_PER_MODEL)
+
 // not in materials
-uniform int _ToonLightHiCutFilter;
-uniform int _ToonEvAdjustmentCurve;
-uniform float _ToonEvAdjustmentValueArray[128];
-uniform float _ToonEvAdjustmentValueMin;
-uniform float _ToonEvAdjustmentValueMax;
-uniform float _ToonIgnoreExposureMultiplier;
-#endif // #if defined(_UTS_TOON_EV_PER_MODEL)
+int _ToonLightHiCutFilter;
+int _ToonEvAdjustmentCurve;
+float _ToonEvAdjustmentValueArray[128];
+float _ToonEvAdjustmentValueMin;
+float _ToonEvAdjustmentValueMax;
+float _ToonIgnoreExposureMultiplier;
+
 
 // function to rotate the UV: RotateUV()
 //float2 rotatedUV = RotateUV(i.uv0, (_angular_Verocity*3.141592654), float2(0.5, 0.5), _Time.g);

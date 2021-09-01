@@ -1,6 +1,7 @@
 # Changelog
 ## [0.3.0-preview] - 2021-09-27
-* Nothing yet
+* HDRP: Fixed wiered steps when more than 3 point lights are in a scene.
+* Added Toon EV Adjustement per Model.
 ## [0.2.2-preview] - 2021-08-24
 * Modefind Toon EV Adjustment Curve inspector.
 * Exclued unnecessary files from release zip.

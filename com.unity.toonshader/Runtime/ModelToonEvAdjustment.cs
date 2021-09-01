@@ -13,7 +13,7 @@ namespace Unity.Rendering.Toon
 {
     [ExecuteAlways]
     [DisallowMultipleComponent]
-    public class MaterialPropertyBlockController : MonoBehaviour
+    public class ModelToonEvAdjustment : MonoBehaviour
     {
         const string kExposureAdjustmentPorpName = "_ToonEvAdjustmentCurve";
         const string kExposureArrayPropName = "_ToonEvAdjustmentValueArray";
@@ -32,10 +32,10 @@ namespace Unity.Rendering.Toon
 
         [SerializeField]
         internal bool m_ToonLightHiCutFilter = false;
-
         [SerializeField]
         internal bool m_ExposureAdjustmnt = false;
-
+        [SerializeField]
+        internal bool m_IgnorVolumeExposure = false;
         [SerializeField]
         internal AnimationCurve m_AnimationCurve = DefaultAnimationCurve();
         [SerializeField]
@@ -198,9 +198,11 @@ namespace Unity.Rendering.Toon
             if (EditorApplication.isCompiling)
                 return;
 #endif
+            // must be put to gameObject model chain.
             if (m_Objs == null || m_Objs.Length == 0)
             {
-                return;
+                m_Objs = new GameObject[1];
+                m_Objs[0] = this.gameObject;
             }
             int objCount = m_Objs.Length;
             int rendererCount = 0;
@@ -212,7 +214,7 @@ namespace Unity.Rendering.Toon
                 {
                     continue;
                 }
-                GameObject[] childGameObjects = m_Objs[ii].GetComponentsInChildren<Transform>().Select(t => t.gameObject).ToArray();
+
 
                 var renderer = m_Objs[ii].GetComponent<Renderer>();
                 if (renderer != null)
@@ -220,9 +222,18 @@ namespace Unity.Rendering.Toon
                     rendererCount++;
                     rendererList.Add(renderer);
                 }
+                GameObject[] childGameObjects = m_Objs[ii].GetComponentsInChildren<Transform>().Select(t => t.gameObject).ToArray();
                 int childCount = childGameObjects.Length;
                 for (int jj = 0; jj < childCount; jj++)
                 {
+                    if (m_Objs[ii] == childGameObjects[jj])
+                        continue;
+                    var modelToonEvAdjustment = childGameObjects[jj].GetComponent<ModelToonEvAdjustment>();
+                    if ( modelToonEvAdjustment != null )
+                    {
+
+                        break;
+                    }
                     renderer = childGameObjects[jj].GetComponent<Renderer>();
                     if ( renderer != null )
                     {

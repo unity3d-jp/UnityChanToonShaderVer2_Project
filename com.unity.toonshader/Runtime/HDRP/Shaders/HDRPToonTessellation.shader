@@ -10,6 +10,8 @@ Shader "HDRP/ToonTessellation"
         // parameters for UTS
         // -----------------------------------------------------------------------------
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
+        // Versioning of material to help for upgrading
+        [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
         [HideInInspector] _utsVersionY("VersionY", Float) = 3
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
@@ -139,21 +141,22 @@ Shader "HDRP/ToonTessellation"
         [ToggleUI] _TransparentWritingMotionVec("_TransparentWritingMotionVec", Float) = 0.0
 
         // Stencil state
+
         // Forward
-        [HideInInspector] _StencilRef("_StencilRef", Int) = 0 // StencilUsage.Clear
-        [HideInInspector] _StencilWriteMask("_StencilWriteMask", Int) = 3 // StencilUsage.RequiresDeferredLighting | StencilUsage.SubsurfaceScattering
+        [HideInInspector] _StencilRef("_StencilRef", Int) = 2 // StencilLightingUsage.RegularLighting
+        [HideInInspector] _StencilWriteMask("_StencilWriteMask", Int) = 3 // StencilMask.Lighting
         // GBuffer
-        [HideInInspector] _StencilRefGBuffer("_StencilRefGBuffer", Int) = 2 // StencilUsage.RequiresDeferredLighting
-        [HideInInspector] _StencilWriteMaskGBuffer("_StencilWriteMaskGBuffer", Int) = 3 // StencilUsage.RequiresDeferredLighting | StencilUsage.SubsurfaceScattering
+        [HideInInspector] _StencilRefGBuffer("_StencilRefGBuffer", Int) = 2 // StencilLightingUsage.RegularLighting
+        [HideInInspector] _StencilWriteMaskGBuffer("_StencilWriteMaskGBuffer", Int) = 3 // StencilMask.Lighting
         // Depth prepass
         [HideInInspector] _StencilRefDepth("_StencilRefDepth", Int) = 0 // Nothing
-        [HideInInspector] _StencilWriteMaskDepth("_StencilWriteMaskDepth", Int) = 8 // StencilUsage.TraceReflectionRay
+        [HideInInspector] _StencilWriteMaskDepth("_StencilWriteMaskDepth", Int) = 32 // DoesntReceiveSSR
         // Motion vector pass
-        [HideInInspector] _StencilRefMV("_StencilRefMV", Int) = 32 // StencilUsage.ObjectMotionVector
-        [HideInInspector] _StencilWriteMaskMV("_StencilWriteMaskMV", Int) = 32 // StencilUsage.ObjectMotionVector
+        [HideInInspector] _StencilRefMV("_StencilRefMV", Int) = 128 // StencilBitMask.ObjectMotionVectors
+        [HideInInspector] _StencilWriteMaskMV("_StencilWriteMaskMV", Int) = 128 // StencilBitMask.ObjectMotionVectors
         // Distortion vector pass
-        [HideInInspector] _StencilRefDistortionVec("_StencilRefDistortionVec", Int) = 2 // StencilUsage.DistortionVectors
-        [HideInInspector] _StencilWriteMaskDistortionVec("_StencilWriteMaskDistortionVec", Int) = 2 // StencilUsage.DistortionVectors
+        [HideInInspector] _StencilRefDistortionVec("_StencilRefDistortionVec", Int) = 64 // StencilBitMask.DistortionVectors
+        [HideInInspector] _StencilWriteMaskDistortionVec("_StencilWriteMaskDistortionVec", Int) = 64 // StencilBitMask.DistortionVectors
 
         // Blending state
         [HideInInspector] _SurfaceType("__surfacetype", Float) = 0.0
@@ -233,7 +236,7 @@ Shader "HDRP/ToonTessellation"
          // TODO: Handle culling mode for backface culling
 
         // HACK: GI Baking system relies on some properties existing in the shader ("_MainTex", "_Cutoff" and "_Color") for opacity handling, so we need to store our version of those parameters in the hard-coded name the GI baking system recognizes.
-        _MainTex("Albedo", 2D) = "white" {}
+        _MainTex("BaseMap", 2D) = "white" {}
         _Color("Color", Color) = (1,1,1,1)
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
@@ -462,6 +465,9 @@ Shader "HDRP/ToonTessellation"
         [Toggle(_)] _ComposerMaskMode("", Float) = 0
         [Enum(None, 0, BaseColor, 1, FirstShade, 2, SecondShade, 3, Highlight, 4, AngelRing, 5, RimLight, 6)] _ClippingMaskMode("Clipping Mask Mode", int) = 0
 
+        [HideInInspector] emissive("to avoid srp batcher error", Color) = (0, 0, 0, 1)
+
+
         // to here parameters for UTS>
     }
 
@@ -523,6 +529,7 @@ Shader "HDRP/ToonTessellation"
     #pragma shader_feature_local _ _BLENDMODE_ALPHA _BLENDMODE_ADD _BLENDMODE_PRE_MULTIPLY
     #pragma shader_feature_local _BLENDMODE_PRESERVE_SPECULAR_LIGHTING
     #pragma shader_feature_local _ENABLE_FOG_ON_TRANSPARENT
+    #pragma shader_feature_local _TRANSPARENT_WRITES_MOTION_VEC
 
     // MaterialFeature are used as shader feature to allow compiler to optimize properly
     #pragma shader_feature_local _MATERIAL_FEATURE_SUBSURFACE_SCATTERING
@@ -531,6 +538,7 @@ Shader "HDRP/ToonTessellation"
     #pragma shader_feature_local _MATERIAL_FEATURE_CLEAR_COAT
     #pragma shader_feature_local _MATERIAL_FEATURE_IRIDESCENCE
     #pragma shader_feature_local _MATERIAL_FEATURE_SPECULAR_COLOR
+
 
     // enable dithering LOD crossfade
     #pragma multi_compile _ LOD_FADE_CROSSFADE
@@ -553,6 +561,9 @@ Shader "HDRP/ToonTessellation"
     #define OUTPUT_SPLIT_LIGHTING
     #endif
 
+    #if defined(_TRANSPARENT_WRITES_MOTION_VEC) && defined(_SURFACE_TYPE_TRANSPARENT)
+    #define _WRITE_TRANSPARENT_MOTION_VECTOR
+    #endif
     //-------------------------------------------------------------------------------------
     // Include
     //-------------------------------------------------------------------------------------
@@ -887,6 +898,8 @@ Shader "HDRP/ToonTessellation"
             Blend [_SrcBlend] [_DstBlend], [_AlphaSrcBlend] [_AlphaDstBlend]
             ZWrite [_ZWrite]
             Cull Front
+            ColorMask [_ColorMaskTransparentVel] 1
+            ZTest [_ZTestTransparent]
 
             HLSLPROGRAM
 
@@ -966,7 +979,8 @@ Shader "HDRP/ToonTessellation"
             // Supported shadow modes per light type
             #pragma multi_compile SHADOW_LOW SHADOW_MEDIUM SHADOW_HIGH
 
-            #pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
+            #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+            //#pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
 
             #define SHADERPASS SHADERPASS_FORWARD
             // In case of opaque we don't want to perform the alpha test, it is done in depth prepass and we use depth equal for ztest (setup from UI)
@@ -982,7 +996,8 @@ Shader "HDRP/ToonTessellation"
             #pragma shader_feature _ UTS_USE_RAYTRACING_SHADOW
             // used in DoubleShadeWithFeather
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
-
+            // controlling mask rendering
+            #pragma shader_feature _ _IS_CLIPPING_MATTE
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
 
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
@@ -1068,6 +1083,7 @@ Shader "HDRP/ToonTessellation"
             HLSLPROGRAM
 
             #define TESSELLATION_ON
+            #pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
 
             #define SHADERPASS SHADERPASS_FORWARD
             #define SHADOW_LOW
