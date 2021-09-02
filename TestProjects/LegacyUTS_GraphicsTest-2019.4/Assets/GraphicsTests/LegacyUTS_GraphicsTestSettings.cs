@@ -4,7 +4,7 @@ namespace Tests
 {
     public class LegacyUTS_GraphicsTestSettings : GraphicsTestSettings
     {
-        public int WaitFrames = 60;
+        public int WaitFrames = 0;
         public bool XRCompatible = true;
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
         public bool CheckMemoryAllocation = false;

@@ -1209,7 +1209,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1132814363262106, guid: 3b25f2302c264b398fb5dfd7abe26234, type: 3}
       propertyPath: m_Name
-      value: ToonShader_SD_unitychan_humanoid_Emissive
+      value: SD_unitychan_humanoid_Emissive
       objectReference: {fileID: 0}
     - target: {fileID: 4690491684004222, guid: 3b25f2302c264b398fb5dfd7abe26234, type: 3}
       propertyPath: m_RootOrder

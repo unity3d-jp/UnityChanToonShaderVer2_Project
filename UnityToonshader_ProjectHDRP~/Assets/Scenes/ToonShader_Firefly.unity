@@ -2047,7 +2047,7 @@ PrefabInstance:
     - target: {fileID: 3750380391580544809, guid: 1fe8230446ff43d595294493590261fd,
         type: 3}
       propertyPath: m_Name
-      value: ToonShader_SD_unitychan_humanoid_CelLook_Firefly
+      value: SD_unitychan_humanoid_CelLook_Firefly
       objectReference: {fileID: 0}
     - target: {fileID: 3750720502714275963, guid: 1fe8230446ff43d595294493590261fd,
         type: 3}

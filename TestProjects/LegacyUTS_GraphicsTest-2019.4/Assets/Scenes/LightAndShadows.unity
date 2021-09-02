@@ -1120,7 +1120,7 @@ MonoBehaviour:
   ImageComparisonSettings:
     TargetWidth: 960
     TargetHeight: 540
-    PerPixelCorrectnessThreshold: 0.001
+    PerPixelCorrectnessThreshold: 0.005
     PerPixelGammaThreshold: 0.003921569
     PerPixelAlphaThreshold: 0.003921569
     AverageCorrectnessThreshold: 0.005
@@ -1130,7 +1130,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 60
+  WaitFrames: 480
   XRCompatible: 1
   CheckMemoryAllocation: 0
 --- !u!1 &1467344791

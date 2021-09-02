@@ -6,25 +6,25 @@
 //Rocket Jump : http://rocketjump.skr.jp/unity3d/109/
 //https://twitter.com/ricopin416
 //
-//修正2014/12/20
-//風の方向変化/重力影響を追加.
+//Modification 2014/12/20
+//Add directional change/gravity influence on the wind.
 //
 
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Universal.Samples
+namespace UnityEngine.Rendering.Toon.Samples
 {
 	public class RandomWind : MonoBehaviour
 	{
 		private SpringBone[] springBones;
 		public bool isWindActive = false;
 
-		private bool isMinus = false;				//風方向反転用.
-		public float threshold = 0.5f;				// ランダム判定の閾値.
-		public float interval = 5.0f;				// ランダム判定のインターバル.
-		public float windPower = 1.0f;				//風の強さ.
-		public float gravity = 0.98f;				//重力の強さ.
+		private bool isMinus = false;				//For wind direction reversal.
+		public float threshold = 0.5f;				// Random Decision Threshold.
+		public float interval = 5.0f;				// Random Decision Interval.
+		public float windPower = 1.0f;				//Wind strength.
+		public float gravity = 0.98f;				//Strength of gravity.
         public bool isGUI = true;
 
 
@@ -67,22 +67,22 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
             }
 		}
 
-		// ランダム判定用関数.
+		// Function for random decision.
 		IEnumerator RandomChange ()
 		{
-			// 無限ループ開始.
+			// Infinite loop start.
 			while (true) {
-				//ランダム判定用シード発生.
+				//Seed generation for random decisions.
 				float _seed = Random.Range (0.0f, 1.0f);
 
 				if (_seed > threshold) {
-					//_seedがthreshold以上の時、符号を反転する.
+					//Invert the sign when the _seed is greater than threshold.
 					isMinus = true;
 				}else{
 					isMinus = false;
 				}
 
-				// 次の判定までインターバルを置く.
+				// Put an interval until the next decision.
 				yield return new WaitForSeconds (interval);
 			}
 		}

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -130,7 +130,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1348741524522182, guid: bf9ef6fae1d74bfa93daab42d75ec8d4, type: 3}
       propertyPath: m_Name
-      value: ToonShader_SD_unitychan_humanoid_CelLook
+      value: SD_unitychan_humanoid_CelLook
       objectReference: {fileID: 0}
     - target: {fileID: 4800381845215172, guid: bf9ef6fae1d74bfa93daab42d75ec8d4, type: 3}
       propertyPath: m_RootOrder

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Universal.Samples
+namespace UnityEngine.Rendering.Toon.Samples
 {
 //
-// ↑↓キーでループアニメーションを切り替えるスクリプト（ランダム切り替え付き）Ver.3
+// Script to switch the loop animation with the UP/DOWN keys (with random switching) Ver.3
 // 2014/04/03 N.Kobayashi
 //
 
@@ -16,13 +16,13 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 	public class IdleChanger : MonoBehaviour
 	{
 	
-		private Animator anim;						// Animatorへの参照
-		private AnimatorStateInfo currentState;		// 現在のステート状態を保存する参照
-		private AnimatorStateInfo previousState;	// ひとつ前のステート状態を保存する参照
-		public bool _random = false;				// ランダム判定スタートスイッチ
-		public float _threshold = 0.5f;				// ランダム判定の閾値
-		public float _interval = 10f;               // ランダム判定のインターバル
-        //private float _seed = 0.0f;					// ランダム判定用シード
+		private Animator anim;						// ref to Animator
+		private AnimatorStateInfo currentState;		// Save the current state state reference
+		private AnimatorStateInfo previousState;	// Save the previous state reference
+		public bool _random = false;				// Random Decision Start Switch
+		public float _threshold = 0.5f;				// Random Decision Threshold
+		public float _interval = 10f;               // Random Decision Interval
+        //private float _seed = 0.0f;					// Seeds for random decisions
         public bool isGUI = true;
 	
 
@@ -30,32 +30,32 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 		// Use this for initialization
 		void Start ()
 		{
-			// 各参照の初期化
+			// Initialization of each reference
 			anim = GetComponent<Animator> ();
 			currentState = anim.GetCurrentAnimatorStateInfo (0);
 			previousState = currentState;
-			// ランダム判定用関数をスタートする
+			// Start a function for random decisions
 			StartCoroutine ("RandomChange");
 		}
 	
 		// Update is called once per frame
 		void  Update ()
 		{
-			// ↑キー/スペースが押されたら、ステートを次に送る処理
+			// Send state to the next process when the UP key or space(JUMP) is pressed
 			if (Input.GetKeyDown ("up") || Input.GetButton ("Jump")) {
-				// ブーリアンNextをtrueにする
+				// Set the Boolean Next to true
 				anim.SetBool ("Next", true);
 			}
 		
-			// ↓キーが押されたら、ステートを前に戻す処理
+			// The DOWN key is pressed, the process of bringing the state back
 			if (Input.GetKeyDown ("down")) {
-				// ブーリアンBackをtrueにする
+				// Set the Boolean Back to true
 				anim.SetBool ("Back", true);
 			}
 		
-			// "Next"フラグがtrueの時の処理
+			// Process when the "Next" flag is true
 			if (anim.GetBool ("Next")) {
-				// 現在のステートをチェックし、ステート名が違っていたらブーリアンをfalseに戻す
+				// Check the current state and set the boolean Next to false if the state name is different
 				currentState = anim.GetCurrentAnimatorStateInfo (0);
 				if (previousState.fullPathHash != currentState.fullPathHash) {
 					anim.SetBool ("Next", false);
@@ -63,9 +63,9 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 				}
 			}
 		
-			// "Back"フラグがtrueの時の処理
+			// Process when the "Back" flag is true
 			if (anim.GetBool ("Back")) {
-				// 現在のステートをチェックし、ステート名が違っていたらブーリアンをfalseに戻す
+				// Check the current state and set the boolean Back to false if the state name is different
 				currentState = anim.GetCurrentAnimatorStateInfo (0);
 				if (previousState.fullPathHash != currentState.fullPathHash) {
 					anim.SetBool ("Back", false);
@@ -87,14 +87,14 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 		}
 
 
-		// ランダム判定用関数
+		// Functions for Random Decision
 		IEnumerator RandomChange ()
 		{
-			// 無限ループ開始
+			// Infinite Loop Start
 			while (true) {
-				//ランダム判定スイッチオンの場合
+				//IF Random Decision Switch On
 				if (_random) {
-					// ランダムシードを取り出し、その大きさによってフラグ設定をする
+					// Extract a random seed and set the flag by its size
 					float _seed = Random.Range (0.0f, 1.0f);
 					if (_seed < _threshold) {
 						anim.SetBool ("Back", true);
@@ -102,7 +102,7 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 						anim.SetBool ("Next", true);
 					}
 				}
-				// 次の判定までインターバルを置く
+				// Put an interval until the next decision
 				yield return new WaitForSeconds (_interval);
 			}
 

@@ -117,7 +117,9 @@ namespace UnityEditor.Rendering.Toon
                 settings = cameraList[0].gameObject.AddComponent<UniversalUTS_GraphicsTestSettings>();
             }
             settings.ImageComparisonSettings.ImageResolution = UnityEngine.TestTools.Graphics.ImageComparisonSettings.Resolution.w960h540;
+            settings.ImageComparisonSettings.PerPixelCorrectnessThreshold = 0.005f;
             settings.CheckMemoryAllocation = false;
+            settings.WaitFrames = 480;
             foreach (GameObject obj in FindObjectsOfType(typeof(GameObject)))
             {
                 if (! obj.activeInHierarchy )

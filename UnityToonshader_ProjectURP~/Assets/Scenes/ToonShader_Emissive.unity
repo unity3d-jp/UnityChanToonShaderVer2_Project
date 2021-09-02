@@ -1190,7 +1190,7 @@ PrefabInstance:
     - target: {fileID: 5594835989873423675, guid: bfc21c110072461c985b0c2b669485d2,
         type: 3}
       propertyPath: m_Name
-      value: ToonShader_SD_unitychan_humanoid_Emissive
+      value: SD_unitychan_humanoid_Emissive
       objectReference: {fileID: 0}
     - target: {fileID: 5598104094224656607, guid: bfc21c110072461c985b0c2b669485d2,
         type: 3}

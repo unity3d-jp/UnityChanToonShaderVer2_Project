@@ -642,7 +642,7 @@ MonoBehaviour:
   ImageComparisonSettings:
     TargetWidth: 960
     TargetHeight: 540
-    PerPixelCorrectnessThreshold: 0.001
+    PerPixelCorrectnessThreshold: 0.005
     PerPixelGammaThreshold: 0.003921569
     PerPixelAlphaThreshold: 0.003921569
     AverageCorrectnessThreshold: 0.005
@@ -652,7 +652,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 60
+  WaitFrames: 480
   XRCompatible: 1
   CheckMemoryAllocation: 0
 --- !u!1 &882377317
@@ -1720,7 +1720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348741524522182, guid: 1b5314dcbdfe4ef38224c8671da30243, type: 3}
       propertyPath: m_Name
-      value: ToonShader_SD_unitychan_humanoid_CelLook_Firefly
+      value: SD_unitychan_humanoid_CelLook_Firefly
       objectReference: {fileID: 0}
     - target: {fileID: 1348741524522182, guid: 1b5314dcbdfe4ef38224c8671da30243, type: 3}
       propertyPath: m_Layer

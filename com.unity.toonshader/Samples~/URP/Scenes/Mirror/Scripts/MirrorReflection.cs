@@ -2,9 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// This MirrorReflection.cs is the version for Scriptable Render Pipeline.
+// This is in fact just the Water script from Pro Standard Assets,
+// just with refraction stuff removed.
 
-namespace UnityEngine.Rendering.Toon.Universal.Samples
+namespace UnityEngine.Rendering.Toon.Samples
 {
     [ExecuteInEditMode] // Make mirror live-update even when not in play mode
     public class MirrorReflection : MonoBehaviour
@@ -15,15 +16,8 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
             wall
         }
 
-        public enum SetMirrorFor
-        {
-            GameView, // Set this mirror object for Game view.
-            SceneView // Set this mirror object for Scene view.
-        }
-
-
         public Mode _Mode = Mode.water;
-        public SetMirrorFor _SetMirrorFor = SetMirrorFor.GameView;
+
         public bool m_DisablePixelLights = true;
         public int m_TextureSize = 256;
         [SerializeField]
@@ -41,21 +35,13 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
         private int m_OldReflectionTextureSize = 0;
         private static bool s_InsideRendering = false;
 
-        public void  Update()
+        public void OnWillRenderObject()
         {
             var rend = GetComponent<Renderer>();
             if (!enabled || !rend || !rend.sharedMaterial || !rend.enabled)
                 return;
-            Camera cam = null;
-            switch (_SetMirrorFor){
-                case SetMirrorFor.GameView:
-                    cam = Camera.main;
-                    break;
-                case SetMirrorFor.SceneView:
-                    cam = Camera.current;
-                    break;
-            }
 
+            Camera cam = Camera.current;
             if (!cam)
                 return;
 

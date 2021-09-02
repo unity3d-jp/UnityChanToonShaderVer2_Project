@@ -683,8 +683,8 @@ MonoBehaviour:
       m_ObsoleteOffset: {x: -0.098137714, y: 0.32599574, z: -0.08333695}
       m_Shape: 0
       m_BoxSize: {x: 1.9027548, y: 1.9319916, z: 1.8737593}
-      m_BoxBlendDistancePositive: {x: 1, y: 1, z: 1}
-      m_BoxBlendDistanceNegative: {x: 1, y: 1, z: 1}
+      m_BoxBlendDistancePositive: {x: 0.93687963, y: 0.93687963, z: 0.93687963}
+      m_BoxBlendDistanceNegative: {x: 0.93687963, y: 0.93687963, z: 0.93687963}
       m_BoxBlendNormalDistancePositive: {x: 0, y: 0, z: 0}
       m_BoxBlendNormalDistanceNegative: {x: 0, y: 0, z: 0}
       m_BoxSideFadePositive: {x: 1, y: 1, z: 1}
@@ -1163,7 +1163,6 @@ GameObject:
   - component: {fileID: 794565943}
   - component: {fileID: 794565942}
   - component: {fileID: 794565947}
-  - component: {fileID: 794565948}
   - component: {fileID: 794565944}
   m_Layer: 0
   m_Name: Main Camera
@@ -1364,28 +1363,6 @@ MonoBehaviour:
   focus: {x: 0, y: 0.6, z: 0}
   focusObj: {fileID: 1036948364}
   showInstWindow: 1
---- !u!114 &794565948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794565941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a6f0b0773f6fbe4ebaaa0eff2d31199, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 3
-  sensitivityDepth: 1
-  sensitivityNormals: 1
-  edgeExp: 1
-  sampleDist: 1
-  edgesColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  filterPower: 0.6
-  threshold: 0.3
-  edgesOnly: 0
-  edgeDetectShader: {fileID: 4800000, guid: 25f3ae0d0271490419a188afd866a647, type: 3}
 --- !u!1 &1036948364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1618416153455038, guid: 732c69152427470a994adbc0b98ddbbf,

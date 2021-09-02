@@ -1,12 +1,12 @@
 ﻿//
-// QualitySettings/Shadows内のShadow Distance/Shadow Cascades/Cascade splitsをシーンから設定する.
+// Set the Shadow Distance/Shadow Cascades/Cascade splits from the scene in QualitySettings/Shadows.
 //
 //
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityEngine.Rendering.Toon.Universal.Samples
+namespace UnityEngine.Rendering.Toon.Samples
 {
 	[ExecuteInEditMode]
 	public class SetShadowQuality : MonoBehaviour {

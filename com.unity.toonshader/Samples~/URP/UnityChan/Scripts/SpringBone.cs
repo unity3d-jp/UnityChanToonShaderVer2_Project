@@ -11,24 +11,24 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Universal.Samples
+namespace UnityEngine.Rendering.Toon.Samples
 {
 	public class SpringBone : MonoBehaviour
 	{
-		//次のボーン
+		//Next Bone
 		public Transform child;
 
-		//ボーンの向き
+		//Bones orientation
 		public Vector3 boneAxis = new Vector3 (-1.0f, 0.0f, 0.0f);
 		public float radius = 0.05f;
 
-		//各SpringBoneに設定されているstiffnessForceとdragForceを使用するか？
+		//Use the stiffnessForce and dragForce set in each SpringBone?
 		public bool isUseEachBoneForceSettings = false; 
 
-		//バネが戻る力
+		//The power of the spring return
 		public float stiffnessForce = 0.01f;
 
-		//力の減衰力
+		//Force Attenuation
 		public float dragForce = 0.4f;
 		public Vector3 springForce = new Vector3 (0.0f, -0.0001f, 0.0f);
 		public SpringCollider[] colliders;
@@ -79,7 +79,7 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 		{
 			//Kobayashi
 			org = trs;
-			//回転をリセット
+			//Reset Rotation
 			trs.localRotation = Quaternion.identity * localRotation;
 
 			float sqrDt = Time.deltaTime * Time.deltaTime;
@@ -92,16 +92,16 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 
 			force += springForce / sqrDt;
 
-			//前フレームと値が同じにならないように
+			//The value should not be the same as the previous frame
 			Vector3 temp = currTipPos;
 
 			//verlet
 			currTipPos = (currTipPos - prevTipPos) + currTipPos + (force * sqrDt);
 
-			//長さを元に戻す
+			//Restore the length
 			currTipPos = ((currTipPos - trs.position).normalized * springLength) + trs.position;
 
-			//衝突判定
+			//Collision Detection
 			for (int i = 0; i < colliders.Length; i++) {
 				if (Vector3.Distance (currTipPos, colliders [i].transform.position) <= (radius + colliders [i].radius)) {
 					Vector3 normal = (currTipPos - colliders [i].transform.position).normalized;
@@ -114,7 +114,7 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 
 			prevTipPos = temp;
 
-			//回転を適用；
+			//Applying rotation
 			Vector3 aimVector = trs.TransformDirection (boneAxis);
 			Quaternion aimRotation = Quaternion.FromToRotation (aimVector, currTipPos - trs.position);
 			//original

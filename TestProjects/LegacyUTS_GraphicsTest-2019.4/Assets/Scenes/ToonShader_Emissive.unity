@@ -774,7 +774,7 @@ MonoBehaviour:
   ImageComparisonSettings:
     TargetWidth: 960
     TargetHeight: 540
-    PerPixelCorrectnessThreshold: 0.001
+    PerPixelCorrectnessThreshold: 0.005
     PerPixelGammaThreshold: 0.003921569
     PerPixelAlphaThreshold: 0.003921569
     AverageCorrectnessThreshold: 0.005
@@ -784,7 +784,7 @@ MonoBehaviour:
     ImageResolution: 3
     ActiveImageTests: 1
     ActivePixelTests: 7
-  WaitFrames: 60
+  WaitFrames: 480
   XRCompatible: 1
   CheckMemoryAllocation: 0
 --- !u!1 &882377317
@@ -1238,7 +1238,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1132814363262106, guid: 3b25f2302c264b398fb5dfd7abe26234, type: 3}
       propertyPath: m_Name
-      value: ToonShader_SD_unitychan_humanoid_Emissive
+      value: SD_unitychan_humanoid_Emissive
       objectReference: {fileID: 0}
     - target: {fileID: 4690491684004222, guid: 3b25f2302c264b398fb5dfd7abe26234, type: 3}
       propertyPath: m_RootOrder

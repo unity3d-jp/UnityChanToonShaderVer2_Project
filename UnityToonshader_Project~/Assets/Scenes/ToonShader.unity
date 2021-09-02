@@ -941,7 +941,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1505896528405314, guid: f1babc712cdb42718331afbf8be46c7e, type: 3}
       propertyPath: m_Name
-      value: ToonShader_SD_unitychan_humanoid_Illust
+      value: SD_unitychan_humanoid_Illust
       objectReference: {fileID: 0}
     - target: {fileID: 4485053995679290, guid: f1babc712cdb42718331afbf8be46c7e, type: 3}
       propertyPath: m_RootOrder

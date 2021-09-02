@@ -12,7 +12,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Universal.Samples
+namespace UnityEngine.Rendering.Toon.Samples
 {
 	public class SpringManager : MonoBehaviour
 	{

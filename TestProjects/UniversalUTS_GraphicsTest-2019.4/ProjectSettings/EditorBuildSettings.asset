@@ -6,61 +6,57 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/AngelRing/001_AngelRing(Universal).unity
-    guid: c6c8b4629b7c42d9baf80a28541a7fd7
+    path: Assets/Scenes/AngelRing.unity
+    guid: c24086d9a98047e0942e8833fb4c9213
   - enabled: 0
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/BoxProjection/002_BoxProjection(Universal).unity
-    guid: 3b43c2b0bef94cd3b49fff4aa0636372
+    path: Assets/Scenes/BoxProjection.unity
+    guid: 6e471ed006d9491e9dde5d9963fbae86
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/Baked Normal/003_Cube_HardEdge(Universal).unity
-    guid: f720f911852b4c6e91ed3b4474b31b4a
+    path: Assets/Scenes/Cube_HardEdge.unity
+    guid: 26d7b7fc97994621b455b0a15f718b73
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/EmissiveAnimation/004_EmissiveAnimation(Universal).unity
-    guid: 1bf56caf35494e4ebc454f24f60c3fb2
+    path: Assets/Scenes/EmissiveAnimation.unity
+    guid: 78a2ca88832c4e838052ce8e7b6436da
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/LightAndShadows/005_LightAndShadows(Universal).unity
-    guid: 0794107444564c61bc153dcbdbfa5b27
+    path: Assets/Scenes/LightAndShadows.unity
+    guid: 330dfaaf05df42d389985f9ebaecf095
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/LightAndShadows/006_LightAndShadows_BakedLight(Universal).unity
-    guid: 2e9e785f0687471abd5c674bfec8f460
+    path: Assets/Scenes/LightAndShadows_BakedLight.unity
+    guid: cb9cd012102546509011eec8aa6f7d26
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/MatCapMask/007_MatCapMask(Universal).unity
-    guid: 08c5a8fd83c04d21ba76cbcfb2182a30
+    path: Assets/Scenes/MatCapMask.unity
+    guid: d52835c5a06d483e9fb9f920344112b7
   - enabled: 0
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/Mirror/008_MirrorTest(Universal).unity
-    guid: 498fc62acb08465185f88a5d9450243c
+    path: Assets/Scenes/MirrorTest.unity
+    guid: 8e8190a88fc14c63bfd0533ebee7efd9
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/NormalMap/009_NormalMap(Universal).unity
-    guid: ea7f437209e043a7a3603326405240cb
+    path: Assets/Scenes/NormalMap/NormalMap.unity
+    guid: b08adbe797f04343b28ddafefbf6719b
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/PointLightTest/010_PointLightTest(Universal).unity
-    guid: 13a44ae23cd848f49abbfe973605f091
+    path: Assets/Scenes/PointLightTest.unity
+    guid: 3fd1bd19f29d41b3938f1bc8d4b702e7
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/Sample/011_Sample(Universal).unity
-    guid: 3b587a6987d94abbadcfc8648996c60f
+    path: Assets/Scenes/Sample.unity
+    guid: 84e407fe6ccc4b6291f02236f927d15e
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/PointLightTest/012_SceneLights
-      Hi-Cut_Filter Test(Universal).unity
-    guid: d42a1c787fc040be88ac34842b8d547f
-  - enabled: 0
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/ShaderBall/013_ShaderBall(Universal).unity
-    guid: a5fb7d6114eb4687b6b9a0a80dbee966
+    path: Assets/Scenes/SceneLights Hi-Cut_Filter Test.unity
+    guid: 8cf67b5156354863a2bac9b3c9b8f30c
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/014_ToonShader(Universal).unity
-    guid: 42f2052b3d674dd28fa5e0ca19f0203a
-  - enabled: 0
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/015_ToonShader_CelLook(RTHS).unity
-    guid: 6ac1ba5766dc4bd49305322ccadd33e7
+    path: Assets/Scenes/ShaderBall.unity
+    guid: ca770347e2c945bcb2a16a2cd2ef000f
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/016_ToonShader_CelLook(Univeral).unity
-    guid: b01b6d405ac54ee3b4a8b1d6cc92c79c
+    path: Assets/Scenes/ToonShader.unity
+    guid: 02a6b7208fdf49cb80a1a498925989df
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/017_ToonShader_Emissive(Universal).unity
-    guid: f16dc5746dfd4637b31f1cbe69e3a580
+    path: Assets/Scenes/ToonShader_CelLook.unity
+    guid: 17e8b8cecf3143a6952f6dc32d6b2b03
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/018_ToonShader_Firefly(Universal).unity
-    guid: 85f11e1f69674b34b1d638825a1472e2
+    path: Assets/Scenes/ToonShader_Emissive.unity
+    guid: 2ab68ef98809431e931ad545caa8b847
   - enabled: 1
-    path: Assets/Scenes/UniversalRP/Sample Scenes(Universal)/019_ToonShader_LightCulling(Universal).unity
-    guid: 65744cc81ebb444ba9b45d141089cd7e
+    path: Assets/Scenes/ToonShader_Firefly.unity
+    guid: 3ca21401b0a1439188d445956244f86b
+  - enabled: 1
+    path: Assets/Scenes/ToonShader_LightCulling.unity
+    guid: c7bca689aba34555bd96d1f82c7defbe
   m_configObjects: {}
