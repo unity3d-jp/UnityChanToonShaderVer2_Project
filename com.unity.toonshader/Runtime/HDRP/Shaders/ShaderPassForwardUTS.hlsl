@@ -112,7 +112,6 @@ float ApplyChannelAlpha( float alpha)
 
 uniform sampler2D _RaytracedHardShadow;
 float4 _RaytracedHardShadow_TexelSize;
-uniform int UtsUseRaytracingShadow;
 //TEXTURE2D_SAMPLER2D(_RaytracedHardShadow, sampler_RaytracedHardShadow);
 void Frag(PackedVaryingsToPS packedInput,
 #ifdef OUTPUT_SPLIT_LIGHTING
