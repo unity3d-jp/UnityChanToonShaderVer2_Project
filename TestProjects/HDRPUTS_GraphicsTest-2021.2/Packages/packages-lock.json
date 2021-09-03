@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.addressables": {
-      "version": "1.18.13",
+      "version": "1.18.15",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -11,6 +11,15 @@
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0",
         "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.burst": {
+      "version": "1.6.0-pre.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -40,7 +49,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.9",
+      "version": "2.0.11",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -51,6 +60,13 @@
     "com.unity.ide.vscode": {
       "version": "1.2.3",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.mathematics": {
+      "version": "1.2.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -99,6 +115,8 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.burst": "1.5.0",
         "com.unity.modules.video": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
@@ -125,7 +143,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.searcher": {
-      "version": "4.3.2",
+      "version": "4.8.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
@@ -137,7 +155,7 @@
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "12.0.0",
-        "com.unity.searcher": "4.3.1"
+        "com.unity.searcher": "4.8.0"
       }
     },
     "com.unity.subsystemregistration": {
@@ -161,7 +179,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework.build": {
-      "version": "0.0.1-preview.12",
+      "version": "0.0.1-preview.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -170,7 +188,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework.utp-reporter": {
-      "version": "1.1.0-preview",
+      "version": "1.0.2-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -180,7 +198,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.testframework.graphics": {
-      "version": "7.8.16-preview",
+      "version": "7.8.14-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {

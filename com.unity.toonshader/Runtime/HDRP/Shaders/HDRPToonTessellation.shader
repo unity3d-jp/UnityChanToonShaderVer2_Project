@@ -978,9 +978,11 @@ Shader "HDRP/ToonTessellation"
 
             // Supported shadow modes per light type
             #pragma multi_compile SHADOW_LOW SHADOW_MEDIUM SHADOW_HIGH
-
-            #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
-            //#pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
+#if defined (SHADER_API_D3D12)
+#define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
+#else
+#pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
+#endif    
 
             #define SHADERPASS SHADERPASS_FORWARD
             // In case of opaque we don't want to perform the alpha test, it is done in depth prepass and we use depth equal for ztest (setup from UI)
