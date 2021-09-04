@@ -2,7 +2,7 @@
 #
 #
 test_projects:
-  - name: LegacyUTS_GraphicsTest-2021.1
+  - name: LegacyGraphicsTest-2021.1
 unity_versions:
   - name: 2021.1
 ---

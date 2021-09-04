@@ -2,7 +2,7 @@
 #
 #
 test_projects:
-  - name: HDRPUTS_GraphicsTest-2020.3
+  - name: HdrpGraphicsTest-2020.3
 unity_versions:
   - name: 2020.3
   - name: 2021.1
