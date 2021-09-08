@@ -1,5 +1,8 @@
 ﻿# Release History of UTS2
 ## Version
+### 2021/09/08: 2.0.8 Release: Bug fix for outlines.    
+* Fixed a bug that caused the brightness of the outline to change unexpectedly in some VRChat worlds (Issue#82).  
+
 ### 2019/05/22: 2.0.7 Release: Fixed release version 5
 * Fixed Version 4 has been discarded and a new "the problem of incorrect display of the image outline reflected in the mirror object when Z-Offset is specified in the outline" has been corrected.  
 * Added "_Is_LightColor_Outline" to make light color react to outline color. From the custom GUI, the function can be turned on by setting "Outline" button to "Active" from "LightColor Contribution to Materials" menu. In the case of the outline, there are some specification restrictions on the reaction to the light color, so please refer to the manual for details.  

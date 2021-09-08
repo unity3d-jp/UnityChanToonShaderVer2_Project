@@ -1,12 +1,12 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+//v.2.0.8
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Mobile/Toon_DoubleShadeWithFeather_Clipping" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
-        [HideInInspector] _utsVersion ("Version", Float ) = 2.07
+        [HideInInspector] _utsVersion ("Version", Float ) = 2.08
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
         _ClippingMask ("ClippingMask", 2D) = "white" {}

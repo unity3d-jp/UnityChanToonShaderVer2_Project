@@ -1,12 +1,12 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+//v.2.0.8
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_StencilMask" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
-        [HideInInspector] _utsVersion ("Version", Float ) = 2.07
+        [HideInInspector] _utsVersion ("Version", Float ) = 2.08
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
         _StencilNo ("Stencil No", int) =1
         [Enum(OFF,0,FRONT,1,BACK,2)] _CullMode("Cull Mode", int) = 2  //OFF/FRONT/BACK
@@ -158,6 +158,7 @@ Shader "UnityChanToonShader/Toon_DoubleShadeWithFeather_StencilMask" {
         Pass {
             Name "Outline"
             Tags {
+                "LightMode"="ForwardBase"
             }
             Cull Front
             

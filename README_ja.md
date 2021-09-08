@@ -1,8 +1,8 @@
-﻿# 【ユニティちゃんトゥーンシェーダー 2.0 (UTS2) Ver.2.0.7】
+﻿# 【ユニティちゃんトゥーンシェーダー 2.0 (UTS2) Ver.2.0.8】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README.md)***  
+***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/README.md)***  
 
 ## 【UTS2の概要】
 
@@ -54,7 +54,7 @@ UTS2では、アクセントカラーとして**2影色とAp(対蹠)リムライ
 
 -----
 ## 【ユーザーマニュアル】
-**[日本語マニュアル（v.2.0.7版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+**[日本語マニュアル（v.2.0.8版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 ユーザーマニュアルには、トゥーンスタイルに関する、豊富なナレッジが集まっています。  
 マニュアルを読みつつ、実際にUTS2を使ってみるを繰り返すことで、美しいトゥーンスタイルを作り上げるための方法論が自然に身につきます。  
@@ -81,17 +81,17 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 ## 【提供ライセンス】
 「ユニティちゃんトゥーンシェーダー 2.0」は、UCL2.0（ユニティちゃんライセンス2.0）で提供されます。  
 ユニティちゃんライセンスについては、以下を参照してください。  
-http://unity-chan.com/contents/guideline/
+https://unity-chan.com/contents/guideline/
 
 -----
 ## 【プロジェクト全体のダウンロード】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/refs/heads/release/legacy/2.0.zip)  
 
 プロジェクトには、UTS2の様々な設定例が学べるサンプルシーンが付属します。  
 
 -----
 ## 【シェーダーのインストール】
-### [UTS2_ShaderOnly_v2.0.7_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.7_Release.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.8_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/UTS2_ShaderOnly_v2.0.8_Release.unitypackage)  
 
 新規インストールは、Unityにそのまま本パッケージをD&Dすればインストールされます。  
 上書きインストールの場合も、同様の手順で問題ありませんが、細心の注意を払いたい場合は、以下の手順で行うとよいでしょう。  
@@ -100,21 +100,21 @@ http://unity-chan.com/contents/guideline/
 3. 元のトゥーンシェーダーが入っているフォルダ（Assets/Toon/Shader）をUnity上から削除する。  
 4. 本パッケージをUnityにD&Dする。  
 
-インストール後は、必ず[マニュアル](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)を確認するようにしてください。  
+インストール後は、必ず[マニュアル](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_ja.md)を確認するようにしてください。  
 マニュアルには、UTS2の使い方が詳しく解説されています。  
 
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 -----
 ## 【リリース履歴】  
-UTS2のリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/HISTORY_ja.md)。  
+UTS2のリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/HISTORY_ja.md)。  
 
 -----
 ## 【インフォメーション】  
-最新バージョン：2.0.7 Release：修正リリース版５  
-最終リリース日：2019/05/25  
+最新バージョン：2.0.8 Release  
+最終リリース日：2021/09/08  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 -----
-**README_ja.md 2019/06/10**  
+**README_ja.md 2021/09/08**  
