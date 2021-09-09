@@ -1,4 +1,4 @@
-﻿# 【ユニティちゃんトゥーンシェーダー 2.0 (UTS2) Ver.2.0.7】
+﻿# 【ユニティちゃんトゥーンシェーダー 2.0 (UTS2) Ver.2.1.1】
 ---
 <img width = "800" src="../images/UTS2_TopImage00.png?raw=true">
 
@@ -54,7 +54,7 @@ UTS2では、アクセントカラーとして**2影色とAp(対蹠)リムライ
 
 -----
 ## 【ユーザーマニュアル】
-**[日本語マニュアル（v.2.0.7版）](./UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
+**[日本語マニュアル（v.2.1.1版）](./UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
 ユーザーマニュアルには、トゥーンスタイルに関する、豊富なナレッジが集まっています。  
 マニュアルを読みつつ、実際にUTS2を使ってみるを繰り返すことで、美しいトゥーンスタイルを作り上げるための方法論が自然に身につきます。  
@@ -62,20 +62,29 @@ UTS2では、アクセントカラーとして**2影色とAp(対蹠)リムライ
 
 -----
 ## 【ターゲット環境】
-Unity5.6.x もしくはそれ以降が必要です。  
-Unity 2018.2.21f1からUnity 2019.2.0a9までの動作確認が終了しています。  
-Unity 2017.4.15f1 LTSを含む、Unity 2017.4.x LTSでの動作確認済み。  
-本パッケージは、Unity5.6.7f1で作成されています。  
-
-Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
+* Unity 2019.4.30f1 もしくはそれ以降が必要です。  
+* Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
-
 
 -----
 ## 【ターゲットプラットフォーム】
 Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch  
-
 * テッセレーション版は、DX11が正常に動く環境のみのサポートです。  
+* このパッケージマネージャーのバージョンは、オリジナルのGithubリポジトリにあるUTS2 v.2.1.1と同等です。  
+
+-----
+## 【既知の制限】
+
+* 本バージョンのUTS2は、レガシーパイプラインの元で使用できます。  
+
+## 【パッケージの内容】
+
+Unitychan ToonShader2のディレクトリ構成は以下の通りです:
+
+|フォルダの位置|説明|
+|---|---|
+|`Runtime\Shader`|UTS2シェーダーファイルを含みます。|
+|`Editor`|UTS2カスタムインスペクターおよびその他のユーティリティを含みます。|
 
 -----
 ## 【提供ライセンス】
@@ -83,7 +92,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 **Unity Companion License for Unity-dependent projects** で提供されます。
 [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License) をご参照ください.
 
------
+<!-- -----
 ## 【プロジェクト全体のダウンロード】
 ### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
 
@@ -101,20 +110,20 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 4. 本パッケージをUnityにD&Dする。  
 
 インストール後は、必ず[マニュアル](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md)を確認するようにしてください。  
-マニュアルには、UTS2の使い方が詳しく解説されています。  
+マニュアルには、UTS2の使い方が詳しく解説されています。   -->
 
 個人でみられる範囲でバグチェックはしていますが、何か不具合があったらご連絡よろしくお願いします。
 
 -----
 ## 【リリース履歴】  
-UTS2のリリース履歴は、[こちら](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/HISTORY_ja.md)。  
+UTS2のリリース履歴は、[こちら](HISTORY_ja.md)。  
 
 -----
 ## 【インフォメーション】  
-最新バージョン：2.0.7 Release：修正リリース版５  
-最終リリース日：2019/05/25  
+最新バージョン：2.1.1 Release   
+最終リリース日：2021/09/09  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 -----
-**README_ja.md 2019/06/10**  
+**README_ja.md 2021/09/09**  

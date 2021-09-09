@@ -1,4 +1,4 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
+# Unity-Chan Toon Shader 2.0 v.2.1.1 Manual
 ### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](ja/UTS2_Props_ja.md)***  
 

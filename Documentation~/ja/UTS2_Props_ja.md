@@ -1,4 +1,4 @@
-﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.0.7 マニュアル
+﻿# ユニティちゃんトゥーンシェーダー 2.0 v.2.1.1 マニュアル
 ### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [English](../UTS2_Props_en.md)***  
 

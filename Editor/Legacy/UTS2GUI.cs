@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//UTS2GUI.cs for UTS2 v.2.0.7.5
+//UTS2GUI.cs for UTS2 v.2.1.1
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -153,7 +153,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
 
         //Variables to keep each settings
         //UTS2 versions.
-        static float _UTS2VersionNumber = 2.075f; 
+        static float _UTS2VersionNumber = 2.11f; 
         //
         static int _StencilNo_Setting;
         static bool _OriginalInspector = false;
@@ -466,7 +466,7 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
 
             //v.2.0.7.2 / v.2.0.7.4
             //For compatibility with BaseMap names before v.2.0.4.3p1 and update _utsVersion.
-            //The new version of _utsVersion = 2.07f is set on the shader side, so a subversion is added on the CustomGUI side.
+            //The new version of _utsVersion = 2.11f is set on the shader side, so a subversion is added on the CustomGUI side.
             if(material.GetFloat("_utsVersion") < _UTS2VersionNumber)
             {
                 //Generations using _MainTex have no texture information in _BaseMap.
@@ -746,11 +746,11 @@ namespace UnityEditor.Rendering.Toon.ShaderGUI
         void OpenManualLink(){
             if (GUILayout.Button("日本語マニュアル",middleButtonStyle))
             {
-                    Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_ja.md");
+                    Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.1/Documentation~/ja/UTS2_Manual_ja.md");
             }
             if (GUILayout.Button("English manual",middleButtonStyle))
             {
-                    Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md");
+                    Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.1/Documentation~/UTS2_Manual_en.md");
             }
         }
 

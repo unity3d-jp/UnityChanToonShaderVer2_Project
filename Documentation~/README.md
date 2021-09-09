@@ -1,4 +1,4 @@
-﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.7】
+﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.1.1】
 ---
 <img width = "800" src="images/UTS2_TopImage00.png?raw=true">
 
@@ -75,10 +75,10 @@ see [here](UTS2_Manual_en.md#1-basic-shader-settings-menu-for-uts2).
 
 -----
 ## 【Target Environment】
-* **Requires Unity 5.6.x or higher**. The operation check from latest Unity 2019.3.x to Unity 2017.4.x LTS has been completed.  
+* **Requires Unity 2019.4.30f1 or higher**.  
 * UTS2 uses **a forward rendering environment**. Using **a linear color space** is recommended. (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html).)
 * Target Platforms are **Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch**. Tessellation version is only supported for environments where DX11/DX12 works properly.  
-* This Package Manager version is equivalent to UTS2 v.2.0.7.5 in the Original Github repository.  
+* This Package Manager version is equivalent to UTS2 v.2.1.1 in the Original Github repository.  
 
 -----
 ## 【Target Platforms】
@@ -89,7 +89,7 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 -----
 ## 【Known limitations】
 
-* UTS2 runs under legacy rendering pipeline.  
+* The current version of UTS2 runs under legacy rendering pipeline.  
 
 ## 【Package contents】
 
@@ -108,7 +108,7 @@ Unity-dependent projects--see [Unity Companion License](http://www.unity3d.com/l
 
 Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these and other terms and conditions.
 
------
+<!-- -----
 ## 【Download whole project】
 ### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
 
@@ -126,7 +126,7 @@ When over-writing a previous version, there is no problem with the same process,
 
 Be sure to check the [manual](UTS2_Manual_en.md) after installation.  
 The manual explains how to use UTS2 in detail.  
-
+-->
 Please contact us if you have any issues.  
 
 -----
@@ -135,11 +135,11 @@ The release history of UTS2 is [here.](HISTORY_en.md)
 
 -----
 ## 【Information】  
-Latest Version: 2.0.7 Release: Fixed release version 5  
-Update: 2019/05/25  
+Latest Version: 2.1.1 Release  
+Update: 2021/09/09  
 Category: 3D  
 File format: zip/unitypackage  
 
 -----
-**README.md 2019/06/10**  
+**README.md 2021/09/09**  
 
