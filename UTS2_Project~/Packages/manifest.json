@@ -1,13 +1,12 @@
 {
   "dependencies": {
-    "com.unity.ide.rider": "1.1.4",
-    "com.unity.ide.vscode": "1.2.0",
+    "com.unity.ide.rider": "1.2.1",
+    "com.unity.ide.visualstudio": "2.0.11",
+    "com.unity.ide.vscode": "1.2.3",
     "com.unity.package-validation-suite": "0.10.0-preview",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
-    "com.unity.render-pipelines.high-definition": "7.4.3",
-    "com.unity.render-pipelines.universal": "7.4.3",
-    "com.unity.test-framework": "1.1.13",
-    "com.unity.textmeshpro": "2.0.1",
+    "com.unity.test-framework": "1.1.27",
+    "com.unity.textmeshpro": "2.1.4",
     "com.unity.ugui": "1.0.0",
     "com.unity.universaltoonshader": "0.0.2-preview",
     "com.unity.modules.ai": "1.0.0",
@@ -41,11 +40,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "lock": {
-    "com.unity.raytracedhardshadow": {
-      "revision": "HEAD",
-      "hash": "1a2bee4ad3597752862b1dc0a0e99e07087d933b"
-    }
   }
 }
