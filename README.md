@@ -1,8 +1,8 @@
-﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.7】
+﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.8】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/README_ja.md)***  
+***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/README_ja.md)***  
 
 ## 【Overview : What is UTS2?】
 
@@ -54,7 +54,7 @@ Finally, several techniques have been implemented to beautifully display charact
 
 -----
 ## 【Users' Manual】
-**[English manual for v.2.0.7](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) is available now.**  
+**[English manual for v.2.0.8](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md) is available now.**  
 
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using UTS2 actually is the best way to learn the beautiful toon style.  
@@ -79,17 +79,17 @@ Windows, MacOS, iOS, Android, PlayStation4, Xbox One, Nintendo Switch
 ## 【License】
 Unity-Chan Toon Shader 2.0 is provided under the Unity-Chan License 2.0 terms.  
 Please refer to the following link for information regarding the Unity-Chan License.  
-http://unity-chan.com/contents/guideline_en/
+https://unity-chan.com/contents/guideline_en/
 
 -----
 ## 【Download whole project】
-### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
+### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/refs/heads/release/legacy/2.0.zip)  
 
 The project comes with sample scenes where you can learn various setting examples of UTS2.  
 
 -----
 ## 【Shader Installation】
-### [UTS2_ShaderOnly_v2.0.7_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/UTS2_ShaderOnly_v2.0.7_Release.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.8_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/UTS2_ShaderOnly_v2.0.8_Release.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 When over-writing a previous version, there is no problem with the same process, but if you want to pay close attention, so please take the following precautions:  
 1. Back-up all previous projects.  
@@ -97,22 +97,22 @@ When over-writing a previous version, there is no problem with the same process,
 3. Erase the folder containing previous versions of the toon shader (Assets/Toon/Shader) from within Unity.  
 4. Drag and drop this pack into Unity.  
 
-Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/UTS2_Manual_en.md) after installation.  
+Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md) after installation.  
 The manual explains how to use UTS2 in detail.  
 
 Please contact us if you have any issues.  
 
 -----
 ## 【Release History】  
-The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/master/Manual/HISTORY_en.md)  
+The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/HISTORY_en.md)  
 
 -----
 ## 【Information】  
-Latest Version: 2.0.7 Release: Fixed release version 5  
-Update: 2019/05/25  
+Latest Version: 2.0.8 Release  
+Update: 2021/09/08  
 Category: 3D  
 File format: zip/unitypackage  
 
 -----
-**README.md 2019/06/10**  
+**README.md 2021/09/08**  
 

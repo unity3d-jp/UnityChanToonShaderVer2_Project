@@ -132,6 +132,7 @@ Material:
     - _Is_LightColor_Base: 1
     - _Is_LightColor_HighColor: 0
     - _Is_LightColor_MatCap: 0
+    - _Is_LightColor_Outline: 1
     - _Is_LightColor_RimLight: 0
     - _Is_NormalMapForMatCap: 1
     - _Is_NormalMapToBase: 1
@@ -178,7 +179,7 @@ Material:
     - _Use_BaseAs1st: 0
     - _simpleUI: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.075
+    - _utsVersion: 2.08
     m_Colors:
     - _1st_ShadeColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
     - _2nd_ShadeColor: {r: 0, g: 0, b: 0, a: 1}

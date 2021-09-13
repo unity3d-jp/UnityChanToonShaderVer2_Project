@@ -1,12 +1,12 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+//v.2.0.8
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
 Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject" {
     Properties {
         [HideInInspector] _simpleUI ("SimpleUI", Int ) = 0
-        [HideInInspector] _utsVersion ("Version", Float ) = 2.07
+        [HideInInspector] _utsVersion ("Version", Float ) = 2.08
         [HideInInspector] _utsTechnique ("Technique", int ) = 2 //OutlineObj
         _MainTex ("BaseMap", 2D) = "white" {}
         [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
@@ -46,6 +46,7 @@ Shader "UnityChanToonShader/Tessellation/Helper/Toon_OutlineObject" {
         Pass {
             Name "Outline"
             Tags {
+                "LightMode"="ForwardBase"
             }
             Cull Front
 
