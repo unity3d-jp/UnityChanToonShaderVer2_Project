@@ -13,6 +13,10 @@ TagManager:
   - UI
   - 
   - 
+  - MainLight
+  - FaceLight
+  - HairLight
+  - unitychan
   - 
   - 
   - 
@@ -31,11 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - postprocessing
   - 
   m_SortingLayers:
   - name: Default

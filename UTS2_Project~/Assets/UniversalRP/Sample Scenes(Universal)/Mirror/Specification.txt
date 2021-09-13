@@ -1,0 +1,6 @@
+Mirrorオブジェクトに関する仕様について　　　　2020/03/11
+
+Scriptable Render Pipeline版の仕様として、MirrorReflection.csは、ゲームビューもしくはシーンビューのどちらかでしか正しく動作しません。
+
+1. ゲームビュー内のMirrorオブジェクトを動作させたい時には、MirrorReflectionコンポーネントのSet Mirror Forを"Game View"にして、プレイボタンを押してください。
+2. シーンビュー内のMirrorオブジェクトを動作させたい時には、MirrorReflectionコンポーネントのSet Mirror Forを"Scene View"にして、プレイボタンを押してください。

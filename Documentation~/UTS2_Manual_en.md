@@ -1,14 +1,14 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.7 Manual
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+# Unity-Chan Toon Shader 2.0 v.2.1.1 Manual
+### 2021/09/09 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](ja/UTS2_Manual_ja.md)***  
 
 # Index
-- [【Important】 Note on upgrading to version 2.0.7 directly](./UTS2_Manual_en.md#important-note-on-upgrading-to-version-207-directly)
+- [【Important】 Note on upgrading to version 2.1.1 directly](./UTS2_Manual_en.md#important-note-on-upgrading-to-version-211-directly)
 - [Introduction to Unity-Chan Toon Shader 2.](./UTS2_Manual_en.md#introduction-to-unity-chan-toon-shader-2)
-  - [【Development Environment】](./UTS2_Manual_en.md#development-environment)
+  <!-- - [【Development Environment】](./UTS2_Manual_en.md#development-environment) -->
   - [【Target Environment】](./UTS2_Manual_en.md#target-environment)
-  - [【Download the project】](./UTS2_Manual_en.md#download-the-project)
-  - [【Installation】](./UTS2_Manual_en.md#installation)
+  <!-- - [【Download the project】](./UTS2_Manual_en.md#download-the-project)
+  - [【Installation】](./UTS2_Manual_en.md#installation) -->
   - [【Basic UTS2 Settings】](./UTS2_Manual_en.md#basic-uts2-settings)
 - [Using the Different Shaders in UTS2](./UTS2_Manual_en.md#using-the-different-shaders-in-uts2)
   - [The Shaders in the UnityChanToonShader Root Folder](./UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshader-root-folder)
@@ -74,7 +74,7 @@
     - [3-3.Bloome may glow badly on VRChat](./UTS2_Manual_en.md#3-3-bloome-may-glow-badly-on-vrchat)
 - [All properties list](./UTS2_Props_en.md)
 ---
-## [Important] Note on upgrading to version 2.0.7 directly
+## [Important] Note on upgrading to version 2.1.1 directly
 * In v.2.0.5 or later, you can overwrite and update only the shader.  
 * When updating from v.2.0.4.3p1 or earlier, update the materials by selecting each material again from within the project window after overwriting and updating the shader. BaseMap is restored as it was.  
 * When updating from v.2.0.4.3p1 or earlier, the sensitivity of the slider of HiColor_Power may be affected. Please adjust according to the following.  
@@ -132,20 +132,19 @@ See for yourself by coloring your best character model with Unity-Chan Toon Shad
 
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.0.7**.  
+This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.1.1**.  
 
-## 【Development Environment】
+<!-- ## 【Development Environment】
 Unity-Chan Toon Shader Ver. 2.0 is developed based on Unity 5.6.3p1, and verification of compatibility with the latest versions of Unity 2018.x is ongoing.  
-(However, as version 5.6.3p1 is in the legacy pipeline, it is not currently compatible with SRP).  
+(However, as version 5.6.3p1 is in the legacy pipeline, it is not currently compatible with SRP).   -->
 
 ## 【Target Environment】
-Unity 5.6.x or later is required. This shader is confirmed to be compatible with Unity 2017.4 15f1 LTS. Unity 2018.1.0f2 and later versions can also be used.  
-This package is developed in Unity 5.6.3p1.  
+Unity 2019.4.30f1 or later is required.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
 
-
+<!-- 
 ## 【Download the project】
 ### [UnityChanToonShaderVer2_Project (Zip)](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/archive/master.zip)  
 
@@ -175,7 +174,7 @@ This package uses a forward rendering environment. Using a linear color space is
 
 7. Create a new material, and if a section called UnityChanToonShader appears in the Shader drop down menu, installation has completed successfully.  
 
-<img width = "400" src="images/NewShader01.png?raw=true">
+<img width = "400" src="images/NewShader01.png?raw=true"> -->
 
 ## 【Basic UTS2 Settings】
 

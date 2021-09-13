@@ -1,7 +1,6 @@
 yamato_name: uts2
 test_editors:
-  - version: 2019.2
-  - version: 2019.3
+  - version: 2019.4
 test_platforms:
   - name: win
     type: Unity::VM
