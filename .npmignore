@@ -1,12 +1,13 @@
+
 artifacts/**
 build/**
 .build_script/**
 node_modules/**
 Documentation/ApiDocs/**
 Documentation~/ApiDocs/**
-UnityToonshader_Project~/**
-UnityToonshader_ProjectHDRP~/**
-UnityToonshader_ProjectURP~/**
+Toonshader_ProjectLegacy/**
+Toonshader_ProjectHDRP/**
+Toonshader_ProjectURP/**
 .DS_Store
 .npmrc
 .npmignore

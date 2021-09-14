@@ -109,6 +109,7 @@ void Frag(PackedVaryingsToPS packedInput,
             , out float outputDepth : SV_Depth
 #endif
             )
+
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(packedInput);
     FragInputs input = UnpackVaryingsMeshToFragInputs(packedInput.vmesh);
@@ -124,7 +125,11 @@ void Frag(PackedVaryingsToPS packedInput,
         discard;
     }
 #endif // _IS_CLIPPING_MATTE
+#if defined(UTS_DEBUG_SHADOWMAP) && defined(UTS_DEBUG_SHADOWMAP_NO_OUTLINE)
+    discard;
+#endif
 
+    
 
     //v.2.0.5
     if (_ZOverDrawMode > 0.99f)

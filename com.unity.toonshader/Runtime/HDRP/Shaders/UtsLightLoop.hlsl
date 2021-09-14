@@ -157,14 +157,14 @@ int GetUtsMainLightIndex(BuiltinData builtinData)
 
     return mainLightIndex;
 }
-#if defined(_SHADINGGRADEMAP)
+#if defined(_SHADINGGRADEMAP)|| defined(UTS_DEBUG_SHADOWMAP)
 # include "ShadingGrademapOtherLight.hlsl"
 #else //#if defined(_SHADINGGRADEMAP)
 # include "DoubleShadeWithFeatherOtherLight.hlsl"
 #endif //#if defined(_SHADINGGRADEMAP)
 
 
-#if defined(_SHADINGGRADEMAP)
+#if defined(_SHADINGGRADEMAP)|| defined(UTS_DEBUG_SHADOWMAP)
 # include "ShadingGrademapMainLight.hlsl"
 #else
 # include "DoubleShadeWithFeatherMainLight.hlsl"
