@@ -211,7 +211,7 @@ Shader "ToonTessellation (Built-in)" {
         Pass {
             Name "Outline"
             Tags {
-                "LightMode" = "Always"
+                "LightMode"="ForwardBase"
             }
             Cull[_SRPDefaultUnlitColMode]
             ColorMask[_SPRDefaultUnlitColorMask]

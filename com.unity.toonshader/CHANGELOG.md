@@ -1,7 +1,9 @@
 # Changelog
 ## [0.3.0-preview] - 2021-09-27
 * HDRP: Fixed wiered steps when more than 3 point lights are in a scene.
-* Added Toon EV Adjustement per Model.
+* HDRP: Added Toon EV Adjustement per Model.
+* HDRP: Compatible with Raytrace Hardshadow when DX12 is chosen as API.
+* Legacy: Applied a fix for outline flicker in VR chat..
 ## [0.2.2-preview] - 2021-08-24
 * Modefind Toon EV Adjustment Curve inspector.
 * Exclued unnecessary files from release zip.
