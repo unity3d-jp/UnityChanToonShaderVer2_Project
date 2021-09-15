@@ -1,7 +1,7 @@
 # Unity Toon Shader 0.3.0-preview マニュアル
 ***Read this document in [English](../index.md)***  
 
-<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Toon EV Adjustment Curve</span>](#ToonEvAdjustmentCurve)
+<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Scene/Model Toon EV Adjustment</span>](#ToonEvAdjustmentCurve)
 
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 [![](../images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
@@ -1021,9 +1021,13 @@ Unity Toon Shader では、Phong Tessellation にのみ対応しています。
 
 本機能はHDRP専用となります。HDRPでは Exposure Volume Profile などのポストエフェクトと組み合わせることによって、130000 lux もの強烈な明るい環境でも破綻せず、光学的に正しいレンダリングを行うように設計されています。 しかし、Toon Shaderはこう言った光学的な正しさから離れて全く異なるロジックでトゥーン表現を行うため、HDRP組み込みの自動補正を行うだけではアーティストの求める画を得ることができません。本機能は３つの方式でアーティストによる補正をサポートします。
 
-<img width = "380" src="../images/CreateTonEvAdjustmentCurve.png">
+<img width = "380" src="../images/sceneToonEvAdjustment.png">
 
-本機能は Unity Editor のメニューから `GameObject/Toon Shader/Create Toon EV Adjustment Curve` を選択して、コントロールする GameObject を作成して利用します。`Toon EV Adjustment Curve Mono Behavior` はシーン内に一つだけ置くことができます。
+シーン上では、Unity Editorのメニューから `GameObject/Toon Shader/Scene Toon EV Adjustment` を選択して、それを制御するGameObjectを作成することで、この機能を使用することができます。シーン内に配置できる `Scene Toon EV Adjustment Mono Behavior` は1つだけです。
+
+<img width = "380" src="../images/attachModelToonEvAdjustment.png">
+
+または、モデルを選択した状態で `GameObject/Toon Shader/Attatch Model Toon EV Adjustment` を選択することで、特定のモデルに対してこの機能を適用することもできます。
 
 <img width = "380" src="../images/ToonEvAdjustmentCurveScript.png">
 

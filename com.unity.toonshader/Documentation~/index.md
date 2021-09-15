@@ -1,7 +1,7 @@
 # Unity Toon Shader 0.3.0-preview Manual
 ***Read this document in [日本語版](ja/index_ja.md)***  
 
-<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Toon EV Adjustment Curve</span>](#ToonEvAdjustmentCurve)
+<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Scene/Model Toon EV Adjustment</span>](#ToonEvAdjustmentCurve)
 
 [![](images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 [![](images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
@@ -1040,15 +1040,21 @@ When using this function via Visual Compositor, there is no need to do any parti
 | `Color palette for each color area` | Specify the color to be filled in. When outputting a mask image for clipping from Visual Compositor, be sure to set the value of the alpha channel (`A`) to 255. |
 ---
 <a id="ToonEvAdjustmentCurve"></a>
-## 14. <span style="color: red; ">【NEW】</span> "Toon EV Adjustment Curve" Mono behavior 
+## 14. <span style="color: red; ">【NEW】</span> "Scene/Model Toon EV Adjustment" Mono behavior 
 <img width = "800" src="images/TooEvAdjustmenEfficiency2.png">
 
 
 This feature is only available for HDRP, which, when combined with post-effects such as the Exposure Volume Profile, is designed to render optically correct images without collapsing even in bright environments as intense as 130,000 lux. However, because the Toon Shader uses a completely different logic to render toons apart from this optical correctness, the automatic correction built into HDRP is not enough to get the picture the artist wants. This feature supports artists' corrections in three ways.
 
-<img width = "380" src="images/CreateTonEvAdjustmentCurve.png">
+<img width = "380" src="images/sceneToonEvAdjustment.png">
 
-You can use this feature by creating a GameObject to control it by selecting `GameObject/Toon Shader/Create Toon EV Adjustment Curve` from the Unity Editor menu. Only one `Toon EV Adjustment Curve Mono Behavior` can be placed in a scene.
+Over the scene, you can use this feature by creating a GameObject to control it by selecting `GameObject/Toon Shader/Scene Toon EV Adjustment` from the Unity Editor menu. Only one `Scene Toon EV Adjustment Mono Behavior` can be placed in a scene.
+
+<img width = "380" src="images/attachModelToonEvAdjustment.png">
+
+Or, you can apply this feature to a certain model by chosing `GameObject/Toon Shader/Attatch Model Toon EV Adjustment` when the model is selected.
+
+`GameObject/Toon Shader/Scene Toon EV Adjustment`
 
 <img width = "380" src="images/ToonEvAdjustmentCurveScript.png">
 
