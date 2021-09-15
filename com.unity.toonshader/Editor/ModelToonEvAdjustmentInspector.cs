@@ -88,7 +88,7 @@ namespace UnityEditor.Rendering.Toon
                 var curve2 = obj.m_AnimationCurve;
                 if (buttonIsPressed)
                 {
-                    curve2 = ToonEvAdjustmentCurve.DefaultAnimationCurve();
+                    curve2 = SceneToonEvAdjustment.DefaultAnimationCurve();
                 }
                 if (EditorGUI.EndChangeCheck())
                 {
