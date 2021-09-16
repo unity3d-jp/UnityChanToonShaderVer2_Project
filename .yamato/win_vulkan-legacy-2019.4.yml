@@ -16,8 +16,7 @@ unity_versions:
     agent:
         type: Unity::VM::GPU
         image: graphics-foundation/win10-dxr:stable
-        flavor: b1.xlarge
-        model: rtx2080
+        flavor: b1.large
     variables:
         UPM_REGISTRY: https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates
     dependencies:

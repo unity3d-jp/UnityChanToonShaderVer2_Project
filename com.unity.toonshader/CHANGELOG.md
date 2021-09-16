@@ -1,5 +1,7 @@
 # Changelog
-## [0.3.0-preview] - 2021-09-27
+## [0.3.1-preview] - 2021-09-27
+* Nothing yet
+## [0.3.0-preview] - 2021-09-16
 * HDRP: Fixed wiered steps when more than 3 point lights are in a scene.
 * HDRP: Added Toon EV Adjustement per Model.
 * HDRP: Compatible with Raytrace Hardshadow when DX12 is chosen as API.
