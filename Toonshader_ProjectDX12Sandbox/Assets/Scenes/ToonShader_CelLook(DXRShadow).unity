@@ -836,6 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_enableShadowmapDebugging: 1
+  m_enableSelfShadowDebugging: 1
   m_enableBinalization: 0
   m_enableOutlineDebugging: 0
 --- !u!20 &794565945

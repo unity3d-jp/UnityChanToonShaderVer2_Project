@@ -20,13 +20,16 @@ namespace Unity.Rendering.Toon
         [SerializeField]
         internal bool m_enableShadowmapDebugging = false;
         [SerializeField]
+        internal bool m_enableSelfShadowDebugging = false;
+        [SerializeField]
         internal bool m_enableBinalization = false;
         [SerializeField]
         internal bool m_enableOutlineDebugging = false;
 
 
   
-        const string kDebugDefine = "UTS_DEBUG_SHADOWMAP";
+        const string kDebugShadowmapDefine = "UTS_DEBUG_SHADOWMAP";
+        const string kDebugSelfShadowDefine = "UTS_DEBUG_SELFSHADOW";
         const string kDebugDefineNoOutline = "UTS_DEBUG_SHADOWMAP_NO_OUTLINE";
         const string kDebugDefineBinalization = "UTS_DEBUG_SHADOWMAP_BINALIZATION";
         private static DebugShadowmap instance;
@@ -86,13 +89,24 @@ namespace Unity.Rendering.Toon
             ApplyDebuggingFlag();
         }
 
+        void EnableSelfShadowKeyword()
+        {
+            Shader.EnableKeyword(kDebugSelfShadowDefine);
+        }
+
+        void DisableSelfShadowKeyword()
+        {
+            Shader.DisableKeyword(kDebugSelfShadowDefine);
+        }
+
+
         void EnableShadowmapKeyword()
         {
-            Shader.EnableKeyword(kDebugDefine);
+            Shader.EnableKeyword(kDebugShadowmapDefine);
         }
         void DisableShadowmapKeyword()
         {
-            Shader.DisableKeyword(kDebugDefine);
+            Shader.DisableKeyword(kDebugShadowmapDefine);
         }
 
         void EnableOutlineKeyword()
@@ -164,6 +178,16 @@ namespace Unity.Rendering.Toon
             {
                 DisableShadowmapKeyword();
             }
+            if (m_enableSelfShadowDebugging)
+            {
+                EnableSelfShadowKeyword();
+            }
+            else
+            {
+                DisableSelfShadowKeyword();
+            }
+
+            
             if (m_enableOutlineDebugging)
             {
                 EnableOutlineKeyword();

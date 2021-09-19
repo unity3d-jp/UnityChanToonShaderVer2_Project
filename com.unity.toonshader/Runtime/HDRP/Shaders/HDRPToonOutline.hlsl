@@ -125,7 +125,7 @@ void Frag(PackedVaryingsToPS packedInput,
         discard;
     }
 #endif // _IS_CLIPPING_MATTE
-#if defined(UTS_DEBUG_SHADOWMAP) && defined(UTS_DEBUG_SHADOWMAP_NO_OUTLINE)
+#if defined(UTS_DEBUG_SHADOWMAP_NO_OUTLINE)
     discard;
 #endif
 

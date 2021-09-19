@@ -13,6 +13,7 @@ namespace UnityEditor.Rendering.Toon
         public override void OnInspectorGUI()
         {
             const string labelDebugShadowmap = "Show Shadowmap";
+            const string labelDebugSelfShadow = "Show SelfShadow";
             const string labelBinalization = "Binalization";
             const string labelNoOutline = "No Outline";
 
@@ -51,23 +52,35 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUILayout.EndHorizontal();
 
 
-                EditorGUILayout.BeginHorizontal();
-                EditorGUI.BeginChangeCheck();
-                bool showOutline = EditorGUILayout.Toggle(labelNoOutline, obj.m_enableOutlineDebugging);
-
-                if (EditorGUI.EndChangeCheck())
-                {
-                    Undo.RecordObject(target, "Changed Outline flag");
-                    obj.m_enableOutlineDebugging = showOutline;
-                    isChanged = true;
-                }
-                EditorGUILayout.EndHorizontal();
-
 
                 EditorGUI.indentLevel--;
             }
             EditorGUI.EndDisabledGroup();
 
+            EditorGUILayout.BeginHorizontal();
+            EditorGUI.BeginChangeCheck();
+            bool showSlefShadow = EditorGUILayout.Toggle(labelDebugSelfShadow, obj.m_enableSelfShadowDebugging);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed Self shadow debbuging flag");
+                obj.m_enableSelfShadowDebugging = showSlefShadow;
+                isChanged = true;
+            }
+            EditorGUILayout.EndHorizontal();
+
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUI.BeginChangeCheck();
+            bool showOutline = EditorGUILayout.Toggle(labelNoOutline, obj.m_enableOutlineDebugging);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed Outline flag");
+                obj.m_enableOutlineDebugging = showOutline;
+                isChanged = true;
+            }
+            EditorGUILayout.EndHorizontal();
             if (isChanged)
             {
                 // at leaset 2020.3.12f1, not neccessary. but, from which version??

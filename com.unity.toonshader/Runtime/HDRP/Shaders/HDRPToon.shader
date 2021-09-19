@@ -534,8 +534,9 @@ Shader "HDRP/Toon"
     //enable GPU instancing support
     #pragma multi_compile_instancing
     #pragma instancing_options renderinglayer
-    // enable debug shadowmap
-    #pragma multi_compile _ UTS_DEBUG_SHADOWMAP 
+    // enable debug shado
+    #pragma multi_compile _ UTS_DEBUG_SELFSHADOW
+    #pragma multi_compile _ UTS_DEBUG_SHADOWMAP
     #pragma multi_compile _ UTS_DEBUG_SHADOWMAP_NO_OUTLINE
 
     //-------------------------------------------------------------------------------------
