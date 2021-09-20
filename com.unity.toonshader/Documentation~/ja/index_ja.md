@@ -3,6 +3,8 @@
 
 <span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Scene/Model Toon EV Adjustment</span>](#ToonEvAdjustmentCurve)
 
+<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Raytrace Shadow</span>](#RaytraceShadow)
+
 [![](../images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 [![](../images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
 <img width = "800" src="../images/TPK_04.png">
@@ -1037,3 +1039,9 @@ Unity Toon Shader では、Phong Tessellation にのみ対応しています。
 | `Light High Cut  Filter` | Toon Shader マテリアルを持つオブジェクトに当たるライトを 1 lux までにクリップします。| 
 | `Toon EV adjustment curve` | 編集可能なカーブで補正を行います。0 lux から 130000 luxまでをコントロールするカーブをアーティストが描くのは無理があるため、この画面では EV を明るさの単位として用いています。デフォルトでは -10 EVから -1.32 EV までをリニアに補完するカーブが設定されています。| 
 ---
+<a id="RaytraceShadow"></a>
+## 15. <span style="color: red; ">【NEW】</span> Raytrace Shadow 
+<img width = "800" src="../images/ShadowmapVariation.gif">
+
+Unity Toon Shader は HDRP の Raytrace Shadow に対応しました。本機能はHDRP専用でDirectX 12 API を選択した場合にのみ利用可能です。
+Raytrace Shadowの設定方法は[こちら](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@12.0/manual/Ray-Traced-Shadows.html)をご確認ください。

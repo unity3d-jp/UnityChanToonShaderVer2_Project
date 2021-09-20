@@ -3,6 +3,8 @@
 
 <span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Scene/Model Toon EV Adjustment</span>](#ToonEvAdjustmentCurve)
 
+<span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Raytrace Shadow</span>](#RaytraceShadow)
+
 [![](images/SDUnitychan_URP.png)](https://www.youtube.com/watch?v=TfZ8B409uqM)
 [![](images/CRS_VFXJ.png)](https://www.youtube.com/watch?v=p4azFua4rJo)
 <img width = "800" src="images/TPK_04.png">
@@ -1063,3 +1065,10 @@ Or, you can apply this feature to a certain model by chosing `GameObject/Toon Sh
 | `Ignore Volume Exposure` | Ignore the automatic corrections built into HDRP. If this checkbox is On, lights brighter than 1 will result in more blown whites and a much more exaggerated Bloom. However, this method is suitable if you are using Light Culling or similar to shine independent lights of 1lux or less on your character.| 
 | `Light High Cut  Filter` | Clips up to 1 lux of light hitting objects with Toon Shader materials.| 
 | `Toon EV adjustment curve` | The correction is done with an editable curve; since it would be impossible for an artist to draw a curve that controls from 0 lux to 130000 lux, EV is used as the brightness unit in this screen. By default, the curve is set to linearly complement the range from -10 EV to -1.32 EV.| 
+---
+<a id="RaytraceShadow"></a>
+## 15. <span style="color: red; ">【NEW】</span> Raytrace Shadow 
+<img width = "800" src="images/ShadowmapVariation.gif">
+
+Raytrace Shadow of HDRP is now supported in Unity Toon Shader. This feature is only available for HDRP and only when the DirectX 12 API is selected.
+For more information on how to set up Raytrace Shadow, please click [here](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@12.0/manual/Ray-Traced-Shadows.html).
