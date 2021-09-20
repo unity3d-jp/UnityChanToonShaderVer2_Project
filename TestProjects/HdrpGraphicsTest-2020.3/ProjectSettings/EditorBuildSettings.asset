@@ -5,64 +5,58 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Runtime/AngelRing/001_AngelRing(HDRP).unity
-    guid: 7322b3e7d62c46eb9cac67ecf8a3be6d
+    path: Assets/Scenes/AngelRing.unity
+    guid: d263d32e85ba4a7387e169fb2532a7e0
   - enabled: 1
-    path: Assets/Runtime/BoxProjection/002_BoxProjection(HDRP).unity
-    guid: 9f9b9fcf7f6b4224bce5fcd77287f8bf
+    path: Assets/Scenes/BoxProjection.unity
+    guid: 6d974977d8294b019b2b7f1b27ce1be2
   - enabled: 1
-    path: Assets/Runtime/Baked Normal/003_Cube_HardEdge(HDRP).unity
-    guid: 31c96eeedd474ed49c3220791291842e
+    path: Assets/Scenes/Cube_HardEdge.unity
+    guid: c9a40412875e4c0ea065ca46586041d8
   - enabled: 1
-    path: Assets/Runtime/LightAndShadows/005_LightAndShadows(HDRP).unity
-    guid: 1e98bdcfba434564b1ff8e9dced6bd75
+    path: Assets/Scenes/EmissiveAnimation.unity
+    guid: 003a6919efce4f2eb098cd27bad910a8
   - enabled: 1
-    path: Assets/Runtime/LightAndShadows/006_LightAndShadows_BakedLight(HDRP).unity
-    guid: be45b28df7654fcf89d3e5a1426dc78f
+    path: Assets/Scenes/LightAndShadows.unity
+    guid: 73a7f438006c4b7fafd3d5b4743fa8dc
   - enabled: 1
-    path: Assets/Runtime/MatCapMask/007_MatCapMask(HDRP).unity
-    guid: 7a5bb839481a405a862bbbd34c0d56d5
-  - enabled: 0
-    path: Assets/Runtime/Mirror/008_MirrorTest(HDRP).unity
-    guid: 36c6093401fb40fc9f1acdaffd34044d
+    path: Assets/Scenes/LightAndShadows_BakedLight.unity
+    guid: 3c986a5ae923496e987b33960aa63b1e
   - enabled: 1
-    path: Assets/Runtime/NormalMap/009_NormalMap(HDRP).unity
-    guid: 4a4f6bc7b55a4e6fb44b4eb426d1da64
+    path: Assets/Scenes/MatCapMask.unity
+    guid: d453b3ea73cc402790f75c33c8004129
   - enabled: 1
-    path: Assets/Runtime/PointLightTest/010_PointLightTest(HDRP).unity
-    guid: 604b8dd89047460fb0601e8646eee2bf
+    path: Assets/Scenes/MirrorTest.unity
+    guid: 29586b022ed34d3aa198a53130a5e9f0
   - enabled: 1
-    path: Assets/Runtime/Sample/011_Sample(HDRP).unity
-    guid: 8749d2daf48542cd98e2633b5a4898ac
+    path: Assets/Scenes/NormalMap.unity
+    guid: dc41e99f055d47ba8cd6c93a8a61aadc
   - enabled: 1
-    path: Assets/Runtime/PointLightTest/012_SceneLights Hi-Cut_Filter Test(HDRP).unity
-    guid: 5209bbc8588e40e084c18b9e7ecbae5b
+    path: Assets/Scenes/PointLightTest/PointLightTest.unity
+    guid: 64085e65dc2f41dc94a901a1a07cc3ce
   - enabled: 1
-    path: Assets/Runtime/ShaderBall/013_ShaderBall(HDRP).unity
-    guid: b8d77444d8734fa79af5a08744f76e47
+    path: Assets/Scenes/SceneLights Hi-Cut_Filter Test.unity
+    guid: 2c979d8d718845c583e737a9ba5508bc
   - enabled: 1
-    path: Assets/Runtime/014_ToonShader(HDRP).unity
-    guid: 20a3fe0cdad94341867b29dc142f8b2b
-  - enabled: 0
-    path: Assets/Runtime/015_ToonShader_CelLook(HDRP-RTHS).unity
-    guid: 8ce23e87ce5143b297b9f1b1dc4244f6
+    path: Assets/Scenes/ShaderBall.unity
+    guid: 328dd02d399a45c08d53ce3044af83b2
   - enabled: 1
-    path: Assets/Runtime/016_ToonShader_CelLook(HDRP).unity
-    guid: 34e8ebdfd41742e79307b8aaec369c0b
+    path: Assets/Scenes/ToonShader.unity
+    guid: 755a8c5824424c9193dc830b61e064ab
   - enabled: 1
-    path: Assets/Runtime/017_ToonShader_Emissive(HDRP).unity
-    guid: 91b1ab89c7c842fe86842750a8a66498
+    path: Assets/Scenes/ToonShader_CelLook.unity
+    guid: 4053d545db384258abb1e221dadf452e
   - enabled: 1
-    path: Assets/Runtime/018_ToonShader_Firefly(HDRP).unity
-    guid: 5223366761ef4bbb98b3ddc3b0042cdd
+    path: Assets/Scenes/ToonShader_CelLook(Tessellation).unity
+    guid: 75ce7273e30d480fbf891f62eaf37702
   - enabled: 1
-    path: Assets/Runtime/019_ToonShader_LightCulling(HDRP).unity
-    guid: b6902abdf3074ae1bb8a7e52a1750faf
+    path: Assets/Scenes/ToonShader_Emissive.unity
+    guid: e47eab24bc054850b68028ea120f71b3
   - enabled: 1
-    path: Assets/Runtime/031_ToonShader_CelLook(HDRP-Tessellation).unity
-    guid: d2e2991acce641b6be12825d752daf45
+    path: Assets/Scenes/ToonShader_Firefly.unity
+    guid: ae0ac284c8254a06b9672e5f50ac383d
+  - enabled: 1
+    path: Assets/Scenes/ToonShader_LightCulling.unity
+    guid: 996ccb16826445bfb9ead90db4383e5e
   m_configObjects: {}

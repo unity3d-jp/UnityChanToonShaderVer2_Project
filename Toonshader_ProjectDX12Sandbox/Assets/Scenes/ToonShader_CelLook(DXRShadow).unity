@@ -835,8 +835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7bbfa63eb3f4054f9140fb0c238aba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enableShadowmapDebugging: 1
-  m_enableSelfShadowDebugging: 1
+  m_enableShadowmapDebugging: 0
+  m_enableSelfShadowDebugging: 0
   m_enableBinalization: 0
   m_enableOutlineDebugging: 0
 --- !u!20 &794565945

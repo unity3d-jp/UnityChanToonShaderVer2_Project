@@ -66,12 +66,12 @@ float3 UTS_SelfShdowMainLight(LightLoopContext lightLoopContext, FragInputs inpu
 
 
 
-//    float _HalfLambert_var = 0.5 * dot(lerp(i_normalDir, utsData.normalDirection, _Is_NormalMapToBase), lightDirection) + 0.5;
+    float _HalfLambert_var = 0.5 * dot(i_normalDir, lightDirection) + 0.5;
     float lambert = dot(i_normalDir, lightDirection);
-
+    _HalfLambert_var = lambert;
 
     float baseColorStep = 0.00001;
-    float Set_FinalShadowMask = saturate(1.0 + (-lambert) / (baseColorStep));
+    float Set_FinalShadowMask = saturate(1.0 + (-_HalfLambert_var) / (baseColorStep));
 
     float3 Set_FinalBaseColor = 1 - Set_FinalShadowMask;
 

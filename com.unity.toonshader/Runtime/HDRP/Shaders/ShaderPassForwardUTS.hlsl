@@ -101,7 +101,20 @@ float ApplyChannelAlpha( float alpha)
 }
 
 
-
+bool UtsUseScreenSpaceShadow(DirectionalLightData light, float3 normalWS)
+{
+#if defined(RAY_TRACED_SCREEN_SPACE_SHADOW_FLAG)
+    // Two different options are possible here
+    // - We have a ray trace shadow in which case we have no valid signal for a transmission and we need to fallback on the rasterized shadow
+    // - We have a screen space shadow and it already contains the transmission shadow and we can use it straight away
+    bool visibleLight = 0.5 * dot(normalWS, -light.forward) + 0.5 > 0.0;
+    bool validScreenSpaceShadow = (light.screenSpaceShadowIndex & SCREEN_SPACE_SHADOW_INDEX_MASK) != INVALID_SCREEN_SPACE_SHADOW;
+    bool rayTracedShadow = (light.screenSpaceShadowIndex & RAY_TRACED_SCREEN_SPACE_SHADOW_FLAG) != 0;
+    return (validScreenSpaceShadow && ((rayTracedShadow && visibleLight) || !rayTracedShadow));
+#else
+    return ( (light.screenSpaceShadowIndex & SCREEN_SPACE_SHADOW_INDEX_MASK) != INVALID_SCREEN_SPACE_SHADOW);
+#endif    
+}
 
 #ifdef UNITY_VIRTUAL_TEXTURING
 #define VT_BUFFER_TARGET SV_Target1
@@ -203,7 +216,7 @@ void Frag(PackedVaryingsToPS packedInput,
         {
             DirectionalLightData light = _DirectionalLightDatas[_DirectionalShadowIndex];
 #if defined(SCREEN_SPACE_SHADOWS_ON) && !defined(_SURFACE_TYPE_TRANSPARENT) && !defined(UTS_USE_RAYTRACING_SHADOW)
-            if (UseScreenSpaceShadow(light, bsdfData.normalWS))
+            if (UtsUseScreenSpaceShadow(light, bsdfData.normalWS))
             {
                 // HDRP Contact Shadow
                 context.shadowValue = GetScreenSpaceColorShadow(posInput, light.screenSpaceShadowIndex).SHADOW_TYPE_SWIZZLE;
