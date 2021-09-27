@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MatCapMask.unity
     guid: d453b3ea73cc402790f75c33c8004129
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MirrorTest.unity
     guid: 29586b022ed34d3aa198a53130a5e9f0
   - enabled: 1

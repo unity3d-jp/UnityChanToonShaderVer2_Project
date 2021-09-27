@@ -2,11 +2,11 @@
   "dependencies": {
     "com.unity.ide.rider": "3.0.7",
     "com.unity.ide.visualstudio": "2.0.11",
-    "com.unity.ide.vscode": "1.2.3",
+    "com.unity.ide.vscode": "1.2.4",
     "com.unity.package-validation-suite": "0.10.0-preview",
     "com.unity.raytracedhardshadow": "https://github.com/unity3d-jp/RaytracedHardShadow.git#bbba12aaf3e7c6fb1c198746ef9a0fcf408b79b9",
     "com.unity.render-pipelines.high-definition": "12.0.0",
-    "com.unity.test-framework": "1.1.27",
+    "com.unity.test-framework": "1.1.29",
     "com.unity.test-framework.build": "0.0.1-preview.14",
     "com.unity.test-framework.utp-reporter": "1.0.2-preview",
     "com.unity.testframework.graphics": "7.8.14-preview",
