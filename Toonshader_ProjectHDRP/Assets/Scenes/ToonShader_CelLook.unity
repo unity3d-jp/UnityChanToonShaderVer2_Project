@@ -1429,7 +1429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840857225}
   m_LocalRotation: {x: 0.7232562, y: 0.6421113, z: -0.22956148, w: 0.10906517}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.8, z: 3.1}
   m_LocalScale: {x: 1.0000002, y: 1.0000005, z: 1}
   m_Children: []
   m_Father: {fileID: 1521128765}
@@ -1444,7 +1444,7 @@ Light:
   m_GameObject: {fileID: 1840857225}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 1
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -1461,23 +1461,23 @@ Light:
     m_NormalBias: 0.01
     m_NearPlane: 1
     m_CullingMatrixOverride:
-      e00: 1
+      e00: 0.4
       e01: 0
       e02: 0
       e03: 0
       e10: 0
-      e11: 1
+      e11: 0.4
       e12: 0
       e13: 0
       e20: 0
       e21: 0
-      e22: 1
-      e23: 0
+      e22: 0.20202021
+      e23: -1.020202
       e30: 0
       e31: 0
       e32: 0
       e33: 1
-    m_UseCullingMatrixOverride: 0
+    m_UseCullingMatrixOverride: 1
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -1488,12 +1488,12 @@ Light:
   m_RenderingLayerMask: 2
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 1, y: 1}
+  m_AreaSize: {x: 5, y: 5}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 5, w: 6.1237245}
+  m_UseBoundingSphereOverride: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &1840857228
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
   m_PointlightHDType: 0
-  m_SpotLightShape: 0
+  m_SpotLightShape: 2
   m_AreaLightShape: 0
   m_Intensity: 1
   m_EnableSpotReflector: 0
@@ -1540,8 +1540,8 @@ MonoBehaviour:
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
   m_NonLightmappedOnly: 0
-  m_ShapeWidth: 0.5
-  m_ShapeHeight: 0.5
+  m_ShapeWidth: 5
+  m_ShapeHeight: 5
   m_AspectRatio: 1
   m_ShapeRadius: 0.025
   m_SoftnessScale: 1

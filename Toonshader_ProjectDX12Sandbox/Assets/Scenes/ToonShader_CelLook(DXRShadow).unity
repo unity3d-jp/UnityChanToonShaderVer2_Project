@@ -510,7 +510,7 @@ PrefabInstance:
     - target: {fileID: 137665887834554748, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_RenderingLayerMask
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 137691761718692556, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
@@ -530,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 137718976333527010, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_RenderingLayerMask
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 137797591847690792, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
@@ -565,7 +565,7 @@ PrefabInstance:
     - target: {fileID: 137867813737667552, guid: 705cdfbbbed449efa36cdd1e2ab6ef97,
         type: 3}
       propertyPath: m_RenderingLayerMask
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 705cdfbbbed449efa36cdd1e2ab6ef97, type: 3}
@@ -850,7 +850,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
-  m_projectionMatrixMode: 2
+  m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
@@ -890,7 +890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794565941}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.55, z: 1.6}
+  m_LocalPosition: {x: 0, y: 0.44, z: 1.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1318,7 +1318,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 3
+  m_RenderingLayerMask: 2147483649
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0f2abcad49054d09a04ec7df9160c51c, type: 2}
@@ -1501,13 +1501,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840857225}
-  m_LocalRotation: {x: 0.7232562, y: 0.6421113, z: -0.22956148, w: 0.10906517}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.91143924, z: -0.41143477, w: 0}
+  m_LocalPosition: {x: 0, y: 2.96, z: 3.05}
   m_LocalScale: {x: 1.0000002, y: 1.0000005, z: 1}
   m_Children: []
   m_Father: {fileID: 1521128765}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 26.909, y: 192.43399, z: 99.788}
+  m_LocalEulerAnglesHint: {x: 48.59, y: 180, z: 0}
 --- !u!108 &1840857227
 Light:
   m_ObjectHideFlags: 0
@@ -1517,7 +1517,7 @@ Light:
   m_GameObject: {fileID: 1840857225}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 1
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -1526,7 +1526,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
@@ -1534,23 +1534,23 @@ Light:
     m_NormalBias: 0.01
     m_NearPlane: 1
     m_CullingMatrixOverride:
-      e00: 1
+      e00: 0.25
       e01: 0
       e02: 0
       e03: 0
       e10: 0
-      e11: 1
+      e11: 0.25
       e12: 0
       e13: 0
       e20: 0
       e21: 0
-      e22: 1
-      e23: 0
+      e22: 0.20202021
+      e23: -1.020202
       e30: 0
       e31: 0
       e32: 0
       e33: 1
-    m_UseCullingMatrixOverride: 0
+    m_UseCullingMatrixOverride: 1
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -1561,12 +1561,12 @@ Light:
   m_RenderingLayerMask: 2
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 0.5, y: 0.5}
+  m_AreaSize: {x: 8, y: 8}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 5, w: 7.5498343}
+  m_UseBoundingSphereOverride: 1
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
   m_PointlightHDType: 0
-  m_SpotLightShape: 0
+  m_SpotLightShape: 2
   m_AreaLightShape: 0
   m_Intensity: 1
   m_EnableSpotReflector: 0
@@ -1603,8 +1603,8 @@ MonoBehaviour:
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
   m_NonLightmappedOnly: 0
-  m_ShapeWidth: 0.5
-  m_ShapeHeight: 0.5
+  m_ShapeWidth: 8
+  m_ShapeHeight: 8
   m_AspectRatio: 1
   m_ShapeRadius: 0.025
   m_SoftnessScale: 1
@@ -1651,8 +1651,8 @@ MonoBehaviour:
   m_MaxDepthBias: 0.001
   m_ShadowResolution:
     m_Override: 512
-    m_UseOverride: 1
-    m_Level: 0
+    m_UseOverride: 0
+    m_Level: 3
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000

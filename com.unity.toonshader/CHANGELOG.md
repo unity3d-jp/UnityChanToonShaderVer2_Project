@@ -1,7 +1,7 @@
 # Changelog
 ## [0.4.0-preview] - 2021-09-29
 ### Added
-TBD
+* HDRP: Compatible with Box Light, a spot light varietion, as main lights.
 
 ## [0.3.2-preview] - 2021-09-28
 ### Added
