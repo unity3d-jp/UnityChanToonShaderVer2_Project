@@ -8,8 +8,8 @@ Shader "Universal Render Pipeline/Toon" {
         // Versioning of material to help for upgrading
         [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
-        [HideInInspector] _utsVersionY("VersionY", Float) = 3
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 2
+        [HideInInspector] _utsVersionY("VersionY", Float) = 4
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1

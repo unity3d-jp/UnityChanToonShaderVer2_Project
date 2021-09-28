@@ -13,8 +13,8 @@ Shader "HDRP/ToonTessellation"
         // Versioning of material to help for upgrading
         [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
-        [HideInInspector] _utsVersionY("VersionY", Float) = 3
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 2
+        [HideInInspector] _utsVersionY("VersionY", Float) = 4
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
 
         // Reminder. Color here are in linear but the UI (color picker) do the conversion sRGB to linear
