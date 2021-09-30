@@ -446,7 +446,7 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.075
     - _utsVersionX: 0
-    - _utsVersionY: 3
+    - _utsVersionY: 4
     - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
