@@ -14,7 +14,7 @@
 | Use the alpha channel of Basemap as a Clipping mask 	| 2.0 	| OK 	|OK	| OK	|  	|
 | Transparent shader function. Tweak Transparency Level 	| 2.0 	| OK 	| OK 	| OK 	|  	|
 | Switch Current UI type 	| 2.0 	| OK 	| OK	| OK 	|  	|
-| Gme recommendation button 	| 2.0 	| OK 	| OK 	| OK 	|  	|
+| Game recommendation button 	| 2.0 	| OK 	| OK 	| OK 	|  	|
 | Remove Unused Keyword button 	| 2.0 	| OK 	| OK 	| OK 	|  	|
 | ***2. Basic Three Colors and Shadow Control Maps features*** 	|  	|  	|  	|  	|  	|
 | Set Base Map and Color.  Sharing the map with 1st Shade Map 	| 2.0 	| OK 	| OK	| OK 	|  	|
@@ -101,14 +101,14 @@
 | ***2. Rendering per Channels feature*** 	|  	|  	|  	|  	|  	|
 | Set the color and visibility of each channel:<br> i.e., BaseColor, 1st Shade, 2nd Shade, HighColor, AngelRing, RimLight, or Outline 	| 2.2 	| N.A. 	| N.A. 	| OK 	|  	|
 | **UTS Feature Model 3.0** 	|  	|  	|  	|  	|  	|
-| ***1. Intagrate some textures into one automatically (experimental)***	|  	|  	|  	|  	|  	|
+| ***1. Integrate some textures into one automatically (experimental)***	|  	|  	|  	|  	|  	|
 | _MainTexSynthesized, _ShadowControlSynthesized, _HighColor_TexSynthesized<br>and _Outline_SamplerSynthesized 	| 3.0	| deprecated	| deprecated	| deprecated	|  	|
 | **UTS Feature Model 3.1** 	|  	|  	|  	|  	|  	|
-| ***1. More than 16 texures*** 	|  	|  	|  	|  	|  	|
-| Some texutre samplers are shared 	| 3.1	| OK	| OK	| OK	|  	|
+| ***1. More than 16 textures*** 	|  	|  	|  	|  	|  	|
+| Some texture samplers are shared 	| 3.1	| OK	| OK	| OK	|  	|
 | ***2. EV Adjustment*** 	|  	|  	|  	|  	|  	|
 | EV Adjustment in high intensity light scenes	 	| 3.1	| N.A	| N.A.	| OK	|  	|
-| ***3. Render pipeline buit-in raytraced shadows*** 	|  	|  	|  	|  	|  	|
+| ***3. Render pipeline built-in raytraced shadows*** 	|  	|  	|  	|  	|  	|
 | DXR shadow supported in render pipelines 	| 3.1	| N.A.	| N.A.	| OK	|  	|
 | ***4. Box Light*** 	|  	|  	|  	|  	|  	|
 | Substitute for directional light 	| 3.1	| N.A.	| N.A.	| OK	| to avoid the limitation that unable to have multiple directional light casting shadows |
