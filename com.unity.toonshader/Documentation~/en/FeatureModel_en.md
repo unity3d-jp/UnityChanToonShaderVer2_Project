@@ -105,12 +105,12 @@
 | _MainTexSynthesized, _ShadowControlSynthesized, _HighColor_TexSynthesized<br>and _Outline_SamplerSynthesized 	| 3.0	| deprecated	| deprecated	| deprecated	|  	|
 | **UTS Feature Model 3.1** 	|  	|  	|  	|  	|  	|
 | ***1. More than 16 texures*** 	|  	|  	|  	|  	|  	|
-| some samplers are shared 	| 3.1	| OK	| OK	| OK	|  	|
+| Some texutre samplers are shared 	| 3.1	| OK	| OK	| OK	|  	|
 | ***2. EV Adjustment*** 	|  	|  	|  	|  	|  	|
-| EV Adjustment in high intensity light scene	 	| 3.1	| N.A	| N.A.	| OK	|  	|
-| ***3. Render Pipeline Buit-in Raytraced Shadow*** 	|  	|  	|  	|  	|  	|
+| EV Adjustment in high intensity light scenes	 	| 3.1	| N.A	| N.A.	| OK	|  	|
+| ***3. Render pipeline buit-in raytraced shadows*** 	|  	|  	|  	|  	|  	|
 | DXR shadow supported in render pipelines 	| 3.1	| N.A.	| N.A.	| OK	|  	|
 | ***4. Box Light*** 	|  	|  	|  	|  	|  	|
-| Substitute for directional light 	| 3.1	| N.A.	| N.A.	| OK	|  	|
+| Substitute for directional light 	| 3.1	| N.A.	| N.A.	| OK	| to avoid the limitation that unable to have multiple directional light casting shadows |
 
 
