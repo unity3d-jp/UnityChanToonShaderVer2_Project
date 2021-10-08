@@ -2,7 +2,8 @@
     "name": "Unity.Toonshader",
     "references": [
         "GUID:df380645f10b7bc4b97d4f5eb6303d95",
-        "GUID:3eae0364be2026648bf74846acb8a731"
+        "GUID:3eae0364be2026648bf74846acb8a731",
+        "GUID:457756d89b35d2941b3e7b37b4ece6f1"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

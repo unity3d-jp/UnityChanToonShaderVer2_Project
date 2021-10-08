@@ -43,7 +43,7 @@ namespace Unity.Rendering.Toon
         [SerializeField]
         internal float m_Max, m_Min;
 
-        public GameObject[] m_Objs;
+        internal GameObject[] m_Objs;
         [SerializeField]
 //        [HideInInspector]
         Renderer[] m_Renderers;
