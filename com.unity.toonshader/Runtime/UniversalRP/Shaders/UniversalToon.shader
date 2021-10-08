@@ -21,12 +21,13 @@ Shader "Universal Render Pipeline/Toon" {
         _StencilOpFail("Stencil Operation", Float) = 0
         [Enum(OFF,0,ON,1)] _TransparentEnabled("Transparent Mode", int) = 0
 
-        // These two are used in Lit shader.
+        // These three are used in Lit shader.
         // inoorder to make the shaders compatible with SRP Batcher 
         // The following decralation is indespensable as they are used in CBUFFER UnityPerMaterial block.
         // 
         [HideInInspector] _Metallic("_Metallic", Range(0.0, 1.0)) = 0
         [HideInInspector] _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
+        [HideInInspector] _SpecColor("_SpecColor", Color) = (1, 1, 1, 1)
 
 
         // DoubleShadeWithFeather
