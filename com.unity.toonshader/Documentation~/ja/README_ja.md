@@ -80,7 +80,11 @@ Unity Toon Shaderの様々な設定例を学べるサンプルシーンが用意
 * **Unity 2019.4.21f1 もしくはそれ以降が必要です。**
 * Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
-* 対象プラットフォームは**Windows、MacOS、iOS、Android(Vulkan)、PlayStation4、Xbox One、Nintendo Switch**です。テッセレーション版は、DX11/DX12が正常に動作する環境でのみ対応しています。  
+* Unity Toon Sahderは、**Legacy**、**Universal RP**、および **HDRP** に対応しています。サポートされているプラットフォームについては、各レンダリングパイプラインのドキュメントを参照してください。ただし、HDRPではステンシルバッファを内部で使用しているため、UTSステンシルエフェクトは使用できません。
+
+* 現在、パンデミックの影響でコンソールでのテストができませんので、この旨、ご了承いただけますようお願いいたします。
+
+* UTSの各レンダーパイプラインにおける対応状況の違いは [Feature Model ドキュメント](../en/FeatureModel_en.md) をご確認ください。
 
 -----
 ## 【パッケージの内容】

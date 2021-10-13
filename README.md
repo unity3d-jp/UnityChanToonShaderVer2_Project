@@ -79,7 +79,10 @@ see [here](./com.unity.toonshader/Documentation~/index.md#1-basic-shader-setting
 ## 【Target Environment】
 * **Requires Unity 2019.4.21f1 or higher**. 
 * Unity Toon Shader uses **a forward rendering environment**. Using **a linear color space** is recommended. (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html).)
-* Target Platforms are **Windows, MacOS, iOS, Android(Vulkan), PlayStation4, Xbox One, Nintendo Switch**. Tessellation version is only supported for environments where DX11/DX12 works properly.  
+*  Unity Toon Sahder supports **Legacy**, **Universal RP** and **HDRP**. Please refer to the documentation of each rendering pipeline for supported platforms. However, HDRP uses a stencil buffer internally, so UTS stencil effects cannot be used. Please check the [Feature Model documentation](./com.unity.toonshader/Documentation~/en/FeatureModel_en.md)  for the different support status of UTS in each render pipeline.
+
+*  Due to the pandemic, we are currently unable to test on the console, so please bear this in mind.
+
 
 -----
 ## 【Package contents】
