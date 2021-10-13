@@ -2,6 +2,11 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
+// https://forum.unity.com/threads/globally-suppress-pow-f-e-negative-f-warning.963488/
+// https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/hlsl-errors-and-warnings
+#pragma warning (disable : 3571) //  pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them at line XXXX (on d3d11)
+#pragma warning (disable : 3206) // "Implicit Truncation of vector type" warning code to disable
+
 #ifndef UCTS_LWRP_INCLUDED
 #define UCTS_LWRP_INCLUDED
 
