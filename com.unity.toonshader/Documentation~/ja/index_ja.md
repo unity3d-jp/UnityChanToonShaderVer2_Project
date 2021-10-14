@@ -1,4 +1,4 @@
-# Unity Toon Shader 0.4.0-preview マニュアル
+# Unity Toon Shader 0.4.1-preview マニュアル
 ***Read this document in [English](../index.md)***  
 
 <span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Scene/Model Toon EV Adjustment</span>](#ToonEvAdjustmentCurve)
@@ -55,7 +55,7 @@ Unity Toon Shader は、セルルック3DCGアニメーションの制作現場�
 是非、貴方のご自慢のキャラクターモデルをUnity Toon Shaderで彩ってみてください。  
 今まで以上に、キャラクターが美しく表現されるものと思います。  
 
-本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.4.0-preview** 向けに書かれています。  
+本マニュアルは、Unity Toon Shader の最新版 **Unity Toon Shader v.0.4.1-preview** 向けに書かれています。  
 またマニュアル中では、Universal Render Pipeline版のUnity Toon Shaderの画面を例として使用しますが、Legacy(Built-in)およびHDRP版に関しましても、ほぼ同様の画面となっていますので、適宜読み替えてください。  
 
 ## 【Unity Toon Shaderを使い始める】
@@ -229,7 +229,7 @@ Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipel
 
 <img width = "400" src="../images/SelectLinearColorSpace.png">
 
-サンプルプロジェクトを開くと、`Assets\Samples\Unity Toon Shader\0.4.0-preview\Universal render pipeline`フォルダ以下に、次のようなサンプルシーンがあります。  
+サンプルプロジェクトを開くと、`Assets\Samples\Unity Toon Shader\0.4.1-preview\Universal render pipeline`フォルダ以下に、次のようなサンプルシーンがあります。  
 
 * ToonShader.unity			：イラストルックのシェーダー設定  
 * ToonShader_CelLook.unity	：セルルックのシェーダー設定  
@@ -252,8 +252,8 @@ Universal RP 用サンプルは`Project Setting`ダイアログで `UTS2URPPipel
 
 【**NOTE**】 
 その他のレンダーパイプライン向けのサンプルシーンは以下のフォルダに入っています。  
-* Legacy(Built-in)の場合：`Assets\Samples\Unity Toon Shader\0.4.0-preview\Legacy render pipeline`フォルダ  
-* HDRPの場合：`Assets\Samples\Unity Toon Shader\0.4.0-preview\High definition render pipeline`フォルダ　
+* Legacy(Built-in)の場合：`Assets\Samples\Unity Toon Shader\0.4.1-preview\Legacy render pipeline`フォルダ  
+* HDRPの場合：`Assets\Samples\Unity Toon Shader\0.4.1-preview\High definition render pipeline`フォルダ　
 
 # Unity Toon Shader 設定メニュー：Unity Toon Shaderカスタムインスペクター
 

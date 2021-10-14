@@ -1,4 +1,4 @@
-# Unity Toon Shader 0.4.0-preview Manual
+# Unity Toon Shader 0.4.1-preview Manual
 ***Read this document in [日本語版](ja/index_ja.md)***  
 
 <span style="font-size: 150%; color: red; ">【NEW】</span> [<span style="font-size: 150% ">HDRP Scene/Model Toon EV Adjustment</span>](#ToonEvAdjustmentCurve)
@@ -56,7 +56,7 @@ Several techniques have been implemented to beautifully display characters in a 
 See for yourself by coloring your best character model with Unity Toon Shader.  
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the latest version of Unity Toon Shader: **Unity Toon Shader v.0.4.0-preview**.  
+This manual focuses on the latest version of Unity Toon Shader: **Unity Toon Shader v.0.4.1-preview**.  
 In this manual, the screen of Unity Toon Shader for Universal Render Pipeline is used as an example, but the ones for the Legacy (Built-in) and HDRP versions are alomost the same with URP, so please read it accordingly.  
 
 ## 【Start using Unity Toon Shader】
@@ -233,7 +233,7 @@ The Color Space must be set to `Linear`.
 
 <img width = "400" src="images/SelectLinearColorSpace.png">
 
-The following sample scenes can be found by opening the sample project and opening the `Assets\Samples\Unity Toon Shader\0.4.0-preview\Universal render pipeline` folder.  
+The following sample scenes can be found by opening the sample project and opening the `Assets\Samples\Unity Toon Shader\0.4.1-preview\Universal render pipeline` folder.  
 
 * ToonShader.unity            ：Settings for an illustration-style shader.  
 * ToonShader_CelLook.unity    ：Settings for a cel-style shader.  
@@ -256,8 +256,8 @@ They should come in handy as an example when creating your own scenes.
 
 【**NOTE**】 
 Sample scenes for other render pipeline can be found in the following folder.  
-* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.4.0-preview\Legacy render pipeline` folder  
-* for HDRP：`Assets\Samples\Unity Toon Shader\0.4.0-preview\High definition render pipeline` folder 
+* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.4.1-preview\Legacy render pipeline` folder  
+* for HDRP：`Assets\Samples\Unity Toon Shader\0.4.1-preview\High definition render pipeline` folder 
 
 
 # Unity Toon Shader Setting Menu：Unity Toon Shader Custom Inspector
