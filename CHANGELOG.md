@@ -1,9 +1,11 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
 
-## [2.3.0] - 2021/08/02
+## [2.3.0] - 2021/10/18
 ### Fixed
 - The shader is compatible with SRP Batcher.
+- Outline pass is not compatible with VR when  Single Pass Instanced rendering is chosen. Thanks to tangx246.
+- Removed some warnings.
 
 ## [2.2.3] - 2021/05/09
 ### Fixed
