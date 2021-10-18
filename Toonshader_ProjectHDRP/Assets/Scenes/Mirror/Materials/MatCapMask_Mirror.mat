@@ -19,7 +19,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
     RenderType: Opaque
@@ -224,6 +224,7 @@ Material:
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 1
     - _CameraRotation_Stabilizer: 1
+    - _ClippingMatteMode: 0
     - _ClippingMode: 0
     - _Clipping_Level: 0
     - _CoatMask: 0
@@ -393,6 +394,7 @@ Material:
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
+    - _ThicknessMultiplier: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -401,6 +403,7 @@ Material:
     - _TransparentEnabled: 0
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
+    - _TransparentZWrite: 0
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0.266
     - _Tweak_HighColorMaskLevel: 0
@@ -426,13 +429,14 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - _ZWriteMode: 1
+    - _isUnityToonshader: 1
     - _simpleUI: 0
     - _use_ShadowMaskAsMatcapMask: 0
     - _utsTechnique: 0
     - _utsVersion: 2.075
-    - _utsVersionX: 2
-    - _utsVersionY: 9
-    - _utsVersionZ: 9
+    - _utsVersionX: 0
+    - _utsVersionY: 4
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.50735295, g: 0.50735295, b: 0.50735295, a: 1}
     - _2nd_ShadeColor: {r: 0.3455882, g: 0.3455882, b: 0.3455882, a: 1}
@@ -468,3 +472,4 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
+    - emissive: {r: 0, g: 0, b: 0, a: 1}

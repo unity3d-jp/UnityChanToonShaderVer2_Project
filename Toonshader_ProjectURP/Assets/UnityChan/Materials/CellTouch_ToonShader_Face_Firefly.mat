@@ -214,7 +214,7 @@ Material:
     - _StencilNo: 1
     - _StencilOpFail: 0
     - _StencilOpPass: 0
-    - _StepOffset: 0.026
+    - _StepOffset: 0.11
     - _TransparentEnabled: 0
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0
@@ -235,7 +235,7 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersionX: 0
-    - _utsVersionY: 2
+    - _utsVersionY: 4
     - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.8, g: 0.67058825, b: 0.7882353, a: 1}
@@ -250,4 +250,5 @@ Material:
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
     - _RimLightColor: {r: 0.875, g: 0.7859914, b: 0.49540442, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
