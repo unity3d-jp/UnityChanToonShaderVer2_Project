@@ -1,7 +1,11 @@
 # Changelog
 ## [0.4.1-preview] - 2021-10-27
+### Added
+* Something similar to exposure compensation.
 ### Fixed:
 * typo in documants.
+* missing mono behaviors in sample scenes.
+
 ## [0.4.0-preview] - 2021-10-13
 ### Added
 * HDRP: Compatibility with Box Light, a spot light varietion, as main lights.

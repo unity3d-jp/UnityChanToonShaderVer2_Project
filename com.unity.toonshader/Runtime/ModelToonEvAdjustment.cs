@@ -15,7 +15,8 @@ namespace Unity.Rendering.Toon
     [DisallowMultipleComponent]
     public class ModelToonEvAdjustment : MonoBehaviour
     {
-        const string kExposureAdjustmentPorpName = "_ToonEvAdjustmentCurve";
+        const string kCompensationPorpName = "_ToonEvAdjustmentCompensation";
+        const string kExposureAdjustmentPropName = "_ToonEvAdjustmentCurve";
         const string kExposureArrayPropName = "_ToonEvAdjustmentValueArray";
         const string kExposureMinPropName = "_ToonEvAdjustmentValueMin";
         const string kExposureMaxPropName = "_ToonEvAdjustmentValueMax";
@@ -42,6 +43,8 @@ namespace Unity.Rendering.Toon
         internal float[] m_ExposureArray;
         [SerializeField]
         internal float m_Max, m_Min;
+        [SerializeField]
+        internal float m_Compensation;
 
         internal GameObject[] m_Objs;
         [SerializeField]
@@ -142,13 +145,12 @@ namespace Unity.Rendering.Toon
             {
                 m_Renderers[ii].GetPropertyBlock(m_MaterialPropertyBlocks[ii]);
 
-//                materialPropertyBlocks[ii].SetColor("_UnlitColor", col);
                 m_MaterialPropertyBlocks[ii].SetFloatArray(kExposureArrayPropName, m_ExposureArray);
                 m_MaterialPropertyBlocks[ii].SetFloat(kExposureMinPropName, m_Min);
                 m_MaterialPropertyBlocks[ii].SetFloat(kExposureMaxPropName, m_Max);
-                m_MaterialPropertyBlocks[ii].SetInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
+                m_MaterialPropertyBlocks[ii].SetInt(kExposureAdjustmentPropName, m_ExposureAdjustmnt ? 1 : 0);
                 m_MaterialPropertyBlocks[ii].SetInt(kToonLightFilterPropName, m_ToonLightHiCutFilter ? 1 : 0);
-
+                m_MaterialPropertyBlocks[ii].SetFloat(kCompensationPorpName, m_Compensation);
 
                 m_Renderers[ii].SetPropertyBlock(m_MaterialPropertyBlocks[ii]);
             }

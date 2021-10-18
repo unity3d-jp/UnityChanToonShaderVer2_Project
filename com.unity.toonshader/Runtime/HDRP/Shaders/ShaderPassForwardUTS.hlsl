@@ -497,7 +497,9 @@ void Frag(PackedVaryingsToPS packedInput,
     float3 envLightColor = envColor;
     float3 envLightIntensity = GetLightAttenuation(envLightColor)  < 1 ? GetLightAttenuation(envLightColor) : 1;
     float3 finalColorWoEmissive = SATURATE_IF_SDR(finalColor) + (envLightColor * envLightIntensity * _GI_Intensity * smoothstep(1, 0, envLightIntensity / 2));
+
     finalColorWoEmissive = GetExposureAdjustedColor(finalColorWoEmissive );
+    finalColorWoEmissive = ApplyCompensation(finalColorWoEmissive);
     finalColor = finalColorWoEmissive + emissive;
 
 

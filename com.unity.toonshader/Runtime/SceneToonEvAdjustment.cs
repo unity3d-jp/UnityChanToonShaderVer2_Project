@@ -19,8 +19,8 @@ namespace Unity.Rendering.Toon
 
         const int kAdjustmentCurvePrecision = 128;
 
-  
-        const string kExposureAdjustmentPorpName = "_ToonEvAdjustmentCurve";
+        const string kCompensationPorpName = "_ToonEvAdjustmentCompensation";
+        const string kExposureAdjustmentPropName = "_ToonEvAdjustmentCurve";
         const string kExposureArrayPropName = "_ToonEvAdjustmentValueArray";
         const string kExposureMinPropName   = "_ToonEvAdjustmentValueMin";
         const string kExposureMaxPropName   = "_ToonEvAdjustmentValueMax";
@@ -40,7 +40,8 @@ namespace Unity.Rendering.Toon
         [SerializeField]
         internal float m_Max, m_Min;
         [SerializeField]
-        internal bool m_DebugUI;
+        internal float m_Compensation;
+
 
         private static SceneToonEvAdjustment instance;
 #if UNITY_EDITOR
@@ -128,10 +129,10 @@ namespace Unity.Rendering.Toon
             Shader.SetGlobalFloatArray(kExposureArrayPropName, m_ExposureArray);
             Shader.SetGlobalFloat(kExposureMinPropName, m_Min);
             Shader.SetGlobalFloat(kExposureMaxPropName, m_Max);
-            Shader.SetGlobalInt(kExposureAdjustmentPorpName, m_ExposureAdjustmnt ? 1 : 0);
+            Shader.SetGlobalInt(kExposureAdjustmentPropName, m_ExposureAdjustmnt ? 1 : 0);
             Shader.SetGlobalInt(kToonLightFilterPropName, m_ToonLightHiCutFilter ? 1 : 0);
             Shader.SetGlobalInt(kIgonoreVolumeExposurePropName, m_IgnorVolumeExposure ? 1: 0);
-
+            Shader.SetGlobalFloat(kCompensationPorpName, m_Compensation);
         }
 
         void EnableSrpCallbacks()
@@ -192,7 +193,7 @@ namespace Unity.Rendering.Toon
             if (m_initialized)
             {
                 m_ExposureArray = null;
-                Shader.SetGlobalInt(kExposureAdjustmentPorpName, 0);
+                Shader.SetGlobalInt(kExposureAdjustmentPropName, 0);
                 Shader.SetGlobalInt(kToonLightFilterPropName, 0);
             }
 

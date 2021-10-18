@@ -13,11 +13,12 @@ namespace UnityEditor.Rendering.Toon
 
         public override void OnInspectorGUI()
         {
+
             const string labelLightAdjustment = "Toon EV Adjustment";
             const string labelLightAdjustmentCurve = "Curve";
             const string labelLightHighCutFilter = "Light High-Cut Filter";
             const string labeIgnoreVolumeExposure = "Ignore Volume Exposure";
-
+            const string labelCompensation = "Compensation";
 
             bool isChanged = false;
 
@@ -46,6 +47,17 @@ namespace UnityEditor.Rendering.Toon
             }
 
 
+            // Compensation
+            EditorGUILayout.BeginHorizontal();
+            EditorGUI.BeginChangeCheck();
+            float compensation = EditorGUILayout.FloatField(labelCompensation, obj.m_Compensation);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed Compensation");
+                obj.m_Compensation = compensation;
+                isChanged = true;
+            }
+            EditorGUILayout.EndHorizontal();
 
 
             // curve
@@ -57,7 +69,7 @@ namespace UnityEditor.Rendering.Toon
                 obj.m_ExposureAdjustmnt = exposureAdjustment;
                 isChanged = true;
             }
-            // = obj.m_AnimationCurve;            // curve
+
 
 
 

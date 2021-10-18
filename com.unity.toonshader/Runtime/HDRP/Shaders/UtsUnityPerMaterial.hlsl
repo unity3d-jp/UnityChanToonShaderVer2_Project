@@ -182,6 +182,7 @@ int _ToonEvAdjustmentCurve;
 float _ToonEvAdjustmentValueArray[128];
 float _ToonEvAdjustmentValueMin;
 float _ToonEvAdjustmentValueMax;
+float _ToonEvAdjustmentCompensation;
 #endif //#if !defined(_UTS_TOON_EV_PER_MODEL)
 
 
