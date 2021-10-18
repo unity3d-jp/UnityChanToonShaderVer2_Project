@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: hair_noHL
-  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_TRANSCLIPPING_OFF _OUTLINE_NML
     _SHADINGGRADEMAP
   m_LightmapFlags: 1
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: 5d2eafc7ecc44df9bc1c0b8abc26e172, type: 3}
+        m_Texture: {fileID: 2800000, guid: f9c439c02674455880c5ea2e93ef8a38, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
@@ -35,7 +35,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AngelRing_Sampler:
-        m_Texture: {fileID: 2800000, guid: d180c26471724819a6704907314f8969, type: 3}
+        m_Texture: {fileID: 2800000, guid: c59962ec9fc345d78a2a48a223ed1d4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BakedNormal:
@@ -63,7 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 93e8e472bd064b7bbf27a8f4c36e7877, type: 3}
+        m_Texture: {fileID: 2800000, guid: fb26f9a2d9f649398abd03d498857b2d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexSynthesized:
@@ -119,7 +119,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadingGradeMap:
-        m_Texture: {fileID: 2800000, guid: 7c52bc7f116e488e995d2d3c9d6c7d76, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1d7bd65d244d44c6b17f8dae559f8bc4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowControlSynthesized:
@@ -152,6 +152,7 @@ Material:
     - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _CullMode: 2
+    - _Cutoff: 0.5
     - _EMISSIVE: 0
     - _Farthest_Distance: 30
     - _GI_Intensity: 0
@@ -238,7 +239,6 @@ Material:
     - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 1
-    - _utsVersion: 2.075
     - _utsVersionX: 0
     - _utsVersionY: 0
     - _utsVersionZ: 2

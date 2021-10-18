@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NromalMap_UST2
-  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
-  m_ShaderKeywords: _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
-    _OUTLINE_NML
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
+  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_OUTLINE_CLIPPING_NO
+    _IS_TRANSCLIPPING_OFF _OUTLINE_NML _SHADINGGRADEMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -75,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 43acb97a8bcd4d5b89465bfec16d3ec3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 50ac2f3001dc439988efb6ebc6820143, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapForMatCap:
@@ -123,10 +123,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _1st2nd_Shades_Feather: 0.01
-    - _1st_ShadeColor_Feather: 0.01
+    - _1st2nd_Shades_Feather: 0.0001
+    - _1st_ShadeColor_Feather: 0.0001
     - _1st_ShadeColor_Step: 0.8
-    - _2nd_ShadeColor_Feather: 0.01
+    - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0.5
     - _ARSampler_AlphaOn: 0
     - _AR_OffsetU: 0
@@ -137,7 +137,7 @@ Material:
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
     - _BaseColor_Step: 0.8
-    - _BaseShade_Feather: 0.01
+    - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _BlurLevelMatcap: 0
     - _BlurLevelSGM: 0
@@ -148,10 +148,11 @@ Material:
     - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _CullMode: 2
+    - _Cutoff: 0.5
     - _EMISSIVE: 0
     - _Farthest_Distance: 10
     - _GI_Intensity: 0
-    - _HighColor_Power: 0.574
+    - _HighColor_Power: 0.881
     - _Inverse_Clipping: 0
     - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
@@ -221,7 +222,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: 0.1
+    - _Tweak_SystemShadowsLevel: 0
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 1
     - _Use_1stAs2nd: 0
@@ -230,22 +231,21 @@ Material:
     - _ZWriteMode: 1
     - _isUnityToonshader: 1
     - _simpleUI: 0
-    - _utsTechnique: 0
-    - _utsVersion: 2.075
+    - _utsTechnique: 1
     - _utsVersionX: 0
     - _utsVersionY: 0
     - _utsVersionZ: 2
     m_Colors:
     - _1st_ShadeColor: {r: 0.36764705, g: 0.36764705, b: 0.36764705, a: 1}
-    - _2nd_ShadeColor: {r: 0.18382353, g: 0.18382353, b: 0.18382353, a: 1}
+    - _2nd_ShadeColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     - _Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HighColor: {r: 0.58823526, g: 0.5786899, b: 0.5536332, a: 1}
+    - _HighColor: {r: 0.6079566, g: 0.6109654, b: 0.6226415, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _RimLightColor: {r: 0.7794118, g: 0.7794118, b: 0.7794118, a: 1}
+    - _RimLightColor: {r: 0.57992166, g: 0.61403507, b: 0.6792453, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

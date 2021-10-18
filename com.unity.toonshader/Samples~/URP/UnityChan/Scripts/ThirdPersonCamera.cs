@@ -1,27 +1,27 @@
 ﻿//
-// Third-person camera for Unity-Chan
+// Unityちゃん用の三人称カメラ
 // 
 // 2013/06/07 N.Kobyasahi
 //
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Samples
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
 	public class ThirdPersonCamera : MonoBehaviour
 	{
-		public float smooth = 3f;		// Variables for smoothing out camera motion
+		public float smooth = 3f;		// カメラモーションのスムーズ化用変数
 		Transform standardPos;			// the usual position for the camera, specified by a transform in the game
 		Transform frontPos;			// Front Camera locater
 		Transform jumpPos;			// Jump Camera locater
 	
-		// A boolean flag for when there is no smooth connection (quick changeover)
+		// スムーズに繋がない時（クイック切り替え）用のブーリアンフラグ
 		bool bQuickSwitch = false;	//Change Camera Position Quickly
 	
 	
 		void Start ()
 		{
-			// Initialization of each reference
+			// 各参照の初期化
 			standardPos = GameObject.Find ("CamPos").transform;
 		
 			if (GameObject.Find ("FrontPos"))
@@ -30,12 +30,12 @@ namespace UnityEngine.Rendering.Toon.Samples
 			if (GameObject.Find ("JumpPos"))
 				jumpPos = GameObject.Find ("JumpPos").transform;
 
-			//Start the camera
+			//カメラをスタートする
 			transform.position = standardPos.position;	
 			transform.forward = standardPos.forward;	
 		}
 	
-		void FixedUpdate ()	// This camera switching must be in FixedUpdate() to work properly
+		void FixedUpdate ()	// このカメラ切り替えはFixedUpdate()内でないと正常に動かない
 		{
 		
 			if (Input.GetButton ("Fire1")) {	// left Ctlr	

@@ -1,11 +1,11 @@
 //
 // SetShadowResolution.cs
-// This script to set up a custom resolution to the shadow map.
-// Attaching to the main light. 
+// シャドウマップにカスタムレゾリューションを設定するスクリプト.
+// メインライトにアタッチすること. 
 //
 using UnityEngine;
 
-namespace UnityEngine.Rendering.Toon.Samples
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
 	public class SetShadowResolution : MonoBehaviour {
 		public int resolution;

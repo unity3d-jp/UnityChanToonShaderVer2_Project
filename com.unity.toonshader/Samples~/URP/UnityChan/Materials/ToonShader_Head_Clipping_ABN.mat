@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ToonShader_Head_Clipping_ABN
-  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
     _OUTLINE_NML
   m_LightmapFlags: 5
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: 62e193c9b68a41c184348f5b16d028d5, type: 3}
+        m_Texture: {fileID: 2800000, guid: cec083feb1104e9bb3e282339acfe384, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ClippingMask:
-        m_Texture: {fileID: 2800000, guid: 0ad32f49f21e4f18be709bb751f2fb12, type: 3}
+        m_Texture: {fileID: 2800000, guid: 43b9b5ee0d64457da6c77c0706d8ec63, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive_Tex:
@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 260969ba425f4113957805452b42cbee, type: 3}
+        m_Texture: {fileID: 2800000, guid: 682e7dad2cf2429e8441474769ab30a7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexSynthesized:
@@ -75,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 0e2563b29ba4424eba71953999adcb96, type: 3}
+        m_Texture: {fileID: 2800000, guid: b5e42375dca74b929795cf09ed8a6d66, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapForMatCap:
@@ -87,7 +87,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Outline_Sampler:
-        m_Texture: {fileID: 2800000, guid: 3ecdce4c5aa5464ab5ee486e0853ad50, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6d7e50a99f93487aa7444c0f14286af7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Outline_SamplerSynthesized:
@@ -124,10 +124,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
-    - _1st_ShadeColor_Feather: 0.215
-    - _1st_ShadeColor_Step: 0.757
+    - _1st_ShadeColor_Feather: 0.0001
+    - _1st_ShadeColor_Step: 0.565
     - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0.137
+    - _2nd_ShadeColor_Step: 0
     - _ARSampler_AlphaOn: 0
     - _AR_OffsetU: 0
     - _AR_OffsetV: 0.3
@@ -136,8 +136,8 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BaseColor_Step: 0.757
-    - _BaseShade_Feather: 0.215
+    - _BaseColor_Step: 0.565
+    - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _BlurLevelMatcap: 0
     - _BlurLevelSGM: 0
@@ -145,9 +145,9 @@ Material:
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
     - _ClippingMode: 0
-    - _Clipping_Level: 0.269
+    - _Clipping_Level: 0.082
     - _ColorShift_Speed: 0
-    - _CullMode: 2
+    - _CullMode: 0
     - _Cutoff: 0.5
     - _EMISSIVE: 0
     - _Farthest_Distance: 10
@@ -161,12 +161,12 @@ Material:
     - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 1
     - _Is_BlendAddToMatCap: 1
-    - _Is_BlendBaseColor: 0
+    - _Is_BlendBaseColor: 1
     - _Is_ColorShift: 0
     - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 0
-    - _Is_LightColor_1st_Shade: 0
-    - _Is_LightColor_2nd_Shade: 0
+    - _Is_LightColor_1st_Shade: 1
+    - _Is_LightColor_2nd_Shade: 1
     - _Is_LightColor_AR: 1
     - _Is_LightColor_Ap_RimLight: 0
     - _Is_LightColor_Base: 1
@@ -193,7 +193,7 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _Outline_Width: 5
+    - _Outline_Width: 2.29
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.0001
@@ -206,7 +206,7 @@ Material:
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0.137
+    - _ShadeColor_Step: 0
     - _StencilComp: 0
     - _StencilMode: 0
     - _StencilNo: 1
@@ -232,7 +232,6 @@ Material:
     - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.075
     - _utsVersionX: 0
     - _utsVersionY: 0
     - _utsVersionZ: 2
@@ -241,12 +240,12 @@ Material:
     - _2nd_ShadeColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
-    - _Color: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
+    - _BaseColor: {r: 0.5377358, g: 0.53012633, b: 0.53012633, a: 1}
+    - _Color: {r: 0.53773576, g: 0.53012633, b: 0.53012633, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
     - _MatCapColor: {r: 0.30147058, g: 0.30147058, b: 0.30147058, a: 1}
-    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Outline_Color: {r: 0.2264151, g: 0.22107512, b: 0.22107512, a: 1}
     - _RimLightColor: {r: 0.10980392, g: 0.09411765, b: 0.5294118, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

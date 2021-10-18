@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Emerald
-  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
-  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_TRANSCLIPPING_ON _OUTLINE_NML
-    _SHADINGGRADEMAP
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
+  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_OUTLINE_CLIPPING_YES
+    _IS_TRANSCLIPPING_ON _OUTLINE_NML _SHADINGGRADEMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: 51270e3b6c55430facf281405715f475, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0359a95aafd14f3d9310011009dce062, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_SamplerSynthesized:
@@ -107,7 +107,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:
-        m_Texture: {fileID: 2800000, guid: dee8b290dfbf458d92627a5bfeb3e977, type: 3}
+        m_Texture: {fileID: 2800000, guid: 52fd329b36c94d13a5731e1c128fcd4a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:
@@ -135,7 +135,7 @@ Material:
     - _AngelRing: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.695
-    - _AutoRenderQueue: 1
+    - _AutoRenderQueue: 0
     - _BaseColor_Step: 0.5
     - _BaseShade_Feather: 0.065
     - _Base_Speed: 0
@@ -188,12 +188,13 @@ Material:
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 1
     - _MatCap: 1
+    - _Metallic: 0
     - _Nearest_Distance: 0.5
     - _OUTLINE: 0
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _Outline_Width: 0
+    - _Outline_Width: 10
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.093
@@ -207,6 +208,7 @@ Material:
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0.003
+    - _Smoothness: 0.5
     - _StencilComp: 0
     - _StencilMode: 0
     - _StencilNo: 1
@@ -222,7 +224,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0.4
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: -0.23
+    - _Tweak_SystemShadowsLevel: 0.136
     - _Tweak_transparency: -0.459
     - _Unlit_Intensity: 0.001
     - _Use_1stAs2nd: 0
@@ -232,10 +234,9 @@ Material:
     - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 1
-    - _utsVersion: 2.075
     - _utsVersionX: 0
-    - _utsVersionY: 0
-    - _utsVersionZ: 2
+    - _utsVersionY: 4
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.0070285536, g: 0.68104213, b: 0.9558824, a: 1}
     - _2nd_ShadeColor: {r: 0.63170415, g: 0.9338235, b: 0.8963189, a: 1}
@@ -246,7 +247,8 @@ Material:
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0.39549094, g: 0.8574341, b: 0.97794116, a: 1}
-    - _MatCapColor: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
+    - _MatCapColor: {r: 0.7004717, g: 0.9339623, b: 0.897696, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _RimLightColor: {r: 0.9485294, g: 0.98722106, b: 1, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

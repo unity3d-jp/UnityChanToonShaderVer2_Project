@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ToonShader_Hair_Clipping
-  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
-  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
-    _MatCap _OUTLINE_POS
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
+  m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_MODE _IS_OUTLINE_CLIPPING_YES
+    _OUTLINE_POS
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
-    RenderType: Opaque
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ClippingMask:
-        m_Texture: {fileID: 2800000, guid: 0ad32f49f21e4f18be709bb751f2fb12, type: 3}
+        m_Texture: {fileID: 2800000, guid: 43b9b5ee0d64457da6c77c0706d8ec63, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive_Tex:
@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 260969ba425f4113957805452b42cbee, type: 3}
+        m_Texture: {fileID: 2800000, guid: 682e7dad2cf2429e8441474769ab30a7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexSynthesized:
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
-        m_Texture: {fileID: 2800000, guid: 7ff4ade7173442c78ef1007d2175deab, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3b42f7c9d35a4b88a533f72baf2a89ce, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_SamplerSynthesized:
@@ -75,11 +75,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 0e2563b29ba4424eba71953999adcb96, type: 3}
+        m_Texture: {fileID: 2800000, guid: b5e42375dca74b929795cf09ed8a6d66, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapForMatCap:
-        m_Texture: {fileID: 2800000, guid: 13565dfa826d461d8a84ad72a15b834a, type: 3}
+        m_Texture: {fileID: 2800000, guid: cf16f24e4875445784ff0bf05da66288, type: 3}
         m_Scale: {x: 50, y: 0.001}
         m_Offset: {x: 0, y: 0.5}
     - _OutlineTex:
@@ -87,7 +87,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Outline_Sampler:
-        m_Texture: {fileID: 2800000, guid: 3ecdce4c5aa5464ab5ee486e0853ad50, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6d7e50a99f93487aa7444c0f14286af7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Outline_SamplerSynthesized:
@@ -107,7 +107,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_MatcapMask:
-        m_Texture: {fileID: 2800000, guid: a58ab42b0e294e2ab85b2f42853baa25, type: 3}
+        m_Texture: {fileID: 2800000, guid: cb0e0d5b757c49ab9ec1d9aa2843d249, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_RimLightMask:
@@ -144,8 +144,8 @@ Material:
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
     - _CameraRolling_Stabilizer: 0
-    - _ClippingMode: 0
-    - _Clipping_Level: 0.269
+    - _ClippingMode: 1
+    - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _CullMode: 0
     - _Cutoff: 0.5
@@ -232,7 +232,6 @@ Material:
     - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.075
     - _utsVersionX: 0
     - _utsVersionY: 0
     - _utsVersionZ: 2

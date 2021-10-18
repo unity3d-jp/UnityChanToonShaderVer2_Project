@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace UnityEngine.Rendering.Toon.Samples
+
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
 	public class Rotator : MonoBehaviour
 	{
@@ -21,3 +22,4 @@ namespace UnityEngine.Rendering.Toon.Samples
 		}
 	}
 }
+

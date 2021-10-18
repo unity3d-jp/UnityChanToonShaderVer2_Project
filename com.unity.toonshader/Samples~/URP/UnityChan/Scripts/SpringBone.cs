@@ -11,24 +11,24 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Samples
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
 	public class SpringBone : MonoBehaviour
 	{
-		//Next Bone
+		//次のボーン
 		public Transform child;
 
-		//Bones orientation
+		//ボーンの向き
 		public Vector3 boneAxis = new Vector3 (-1.0f, 0.0f, 0.0f);
 		public float radius = 0.05f;
 
-		//Use the stiffnessForce and dragForce set in each SpringBone?
+		//各SpringBoneに設定されているstiffnessForceとdragForceを使用するか？
 		public bool isUseEachBoneForceSettings = false; 
 
-		//The power of the spring return
+		//バネが戻る力
 		public float stiffnessForce = 0.01f;
 
-		//Force Attenuation
+		//力の減衰力
 		public float dragForce = 0.4f;
 		public Vector3 springForce = new Vector3 (0.0f, -0.0001f, 0.0f);
 		public SpringCollider[] colliders;
@@ -79,7 +79,7 @@ namespace UnityEngine.Rendering.Toon.Samples
 		{
 			//Kobayashi
 			org = trs;
-			//Reset Rotation
+			//回転をリセット
 			trs.localRotation = Quaternion.identity * localRotation;
 
 			float sqrDt = Time.deltaTime * Time.deltaTime;
@@ -92,16 +92,16 @@ namespace UnityEngine.Rendering.Toon.Samples
 
 			force += springForce / sqrDt;
 
-			//The value should not be the same as the previous frame
+			//前フレームと値が同じにならないように
 			Vector3 temp = currTipPos;
 
 			//verlet
 			currTipPos = (currTipPos - prevTipPos) + currTipPos + (force * sqrDt);
 
-			//Restore the length
+			//長さを元に戻す
 			currTipPos = ((currTipPos - trs.position).normalized * springLength) + trs.position;
 
-			//Collision Detection
+			//衝突判定
 			for (int i = 0; i < colliders.Length; i++) {
 				if (Vector3.Distance (currTipPos, colliders [i].transform.position) <= (radius + colliders [i].radius)) {
 					Vector3 normal = (currTipPos - colliders [i].transform.position).normalized;
@@ -114,7 +114,7 @@ namespace UnityEngine.Rendering.Toon.Samples
 
 			prevTipPos = temp;
 
-			//Applying rotation
+			//回転を適用；
 			Vector3 aimVector = trs.TransformDirection (boneAxis);
 			Quaternion aimRotation = Quaternion.FromToRotation (aimVector, currTipPos - trs.position);
 			//original

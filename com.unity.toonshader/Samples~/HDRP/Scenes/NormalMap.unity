@@ -1366,6 +1366,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 5a4b646cfd6947988293f03071a45bdd, type: 3}
+      propertyPath: m_AreaSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 5a4b646cfd6947988293f03071a45bdd, type: 3}
+      propertyPath: m_AreaSize.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 5a4b646cfd6947988293f03071a45bdd, type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 5a4b646cfd6947988293f03071a45bdd, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 5a4b646cfd6947988293f03071a45bdd, type: 3}
       propertyPath: m_LightShadowCasterMode
       value: 2
       objectReference: {fileID: 0}

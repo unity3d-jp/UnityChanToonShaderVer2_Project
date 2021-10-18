@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2000000}
   - component: {fileID: 12400000}
   - component: {fileID: 8100000}
-  - component: {fileID: 3731748051925248574}
+  - component: {fileID: 2147996883050791474}
   m_Layer: 0
   m_Name: CameraBeauty
   m_TagString: MainCamera
@@ -93,7 +93,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
---- !u!114 &3731748051925248574
+--- !u!114 &2147996883050791474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 2000002}
   - component: {fileID: 12400002}
   - component: {fileID: 8100002}
-  - component: {fileID: 344909014264963932}
+  - component: {fileID: 8173886907625930905}
   m_Layer: 0
   m_Name: CameraAnalytical
   m_TagString: Untagged
@@ -322,7 +322,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
---- !u!114 &344909014264963932
+--- !u!114 &8173886907625930905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

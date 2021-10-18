@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Yu_Face2
-  m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_TRANSCLIPPING_OFF _OUTLINE_NML
     _SHADINGGRADEMAP
   m_LightmapFlags: 1
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: b60b81f9eeda44d783826dfbcef28a1d, type: 3}
+        m_Texture: {fileID: 2800000, guid: f6d63642fcfd46b8af959af85290b993, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: db92871359c7455fb18cb2e10b2127bb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6749471271cd480d86c2cc2804b61eeb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexSynthesized:
@@ -115,7 +115,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadingGradeMap:
-        m_Texture: {fileID: 2800000, guid: 3858c9d31c4f470992caa95b508f6982, type: 3}
+        m_Texture: {fileID: 2800000, guid: e1ce7bd03b024770bcde99788f61f9f3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowControlSynthesized:
@@ -125,9 +125,9 @@ Material:
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
     - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0.49
+    - _1st_ShadeColor_Step: 0.713
     - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0.003
+    - _2nd_ShadeColor_Step: 0
     - _ARSampler_AlphaOn: 0
     - _AR_OffsetU: 0
     - _AR_OffsetV: 0.3
@@ -136,7 +136,7 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BaseColor_Step: 0.49
+    - _BaseColor_Step: 0.713
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _BlurLevelMatcap: 0
@@ -148,15 +148,16 @@ Material:
     - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _CullMode: 0
+    - _Cutoff: 0.5
     - _EMISSIVE: 0
     - _Farthest_Distance: 30
     - _GI_Intensity: 0
     - _HighColor_Power: 0
     - _Inverse_Clipping: 0
     - _Inverse_MatcapMask: 0
-    - _Inverse_Z_Axis_BLD: 1
+    - _Inverse_Z_Axis_BLD: 0
     - _IsBaseMapAlphaAsClippingMask: 0
-    - _Is_BLD: 0
+    - _Is_BLD: 1
     - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 1
@@ -189,8 +190,8 @@ Material:
     - _MatCap: 0
     - _Nearest_Distance: 0.5
     - _OUTLINE: 0
-    - _Offset_X_Axis_BLD: -0.05
-    - _Offset_Y_Axis_BLD: 0.09
+    - _Offset_X_Axis_BLD: 0.01
+    - _Offset_Y_Axis_BLD: -0.05
     - _Offset_Z: 0
     - _Outline_Width: 0.02
     - _RimLight: 0
@@ -205,7 +206,7 @@ Material:
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0.003
+    - _ShadeColor_Step: 0
     - _StencilComp: 0
     - _StencilMode: 0
     - _StencilNo: 1
@@ -221,7 +222,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: 0.5
+    - _Tweak_SystemShadowsLevel: 0.255
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 1
     - _Use_1stAs2nd: 0
@@ -231,7 +232,6 @@ Material:
     - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 1
-    - _utsVersion: 2.075
     - _utsVersionX: 0
     - _utsVersionY: 0
     - _utsVersionZ: 2

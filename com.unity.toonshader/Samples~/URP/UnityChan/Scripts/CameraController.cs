@@ -16,7 +16,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Samples
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
 	enum MouseButtonDown
 	{

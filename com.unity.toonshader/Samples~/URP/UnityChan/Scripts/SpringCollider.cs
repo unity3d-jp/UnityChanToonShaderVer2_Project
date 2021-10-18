@@ -9,11 +9,11 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Samples
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
 	public class SpringCollider : MonoBehaviour
 	{
-		//Radius
+		//半径
 		public float radius = 0.5f;
 
 		private void OnDrawGizmosSelected ()

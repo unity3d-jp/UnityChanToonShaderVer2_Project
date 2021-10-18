@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace UnityEngine.Rendering.Toon.Samples
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
-	public class RefleshProbe : MonoBehaviour
-	{
+
+	public class RefleshProbe : MonoBehaviour {
 
 		bool isReflesh = false;
 		bool isButtonActive = true;
@@ -14,28 +14,24 @@ namespace UnityEngine.Rendering.Toon.Samples
 
 
 		// Update is called once per frame
-		void Update()
+		void Update ()
 		{
-			if (isReflesh)
-			{
-				renderID = probeComponent.RenderProbe();
-				//isButtonActive = false;
-				isReflesh = false;
+			if (isReflesh){
+					renderID = probeComponent.RenderProbe();
+					//isButtonActive = false;
+					isReflesh = false;
 			}
-			if (probeComponent.IsFinishedRendering(renderID))
-			{
+			if (probeComponent.IsFinishedRendering(renderID)){
 				isButtonActive = true;
 			}
 		}
 
 
-		void OnGUI()
+		void OnGUI ()
 		{
-			GUI.Box(new Rect(Screen.width - 110, Screen.height - 65, 100, 50), "ReflectionProbe");
-			if (isButtonActive)
-			{
-				if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 40, 80, 20), "Reflesh"))
-				{
+			GUI.Box (new Rect (Screen.width - 110, Screen.height - 65, 100, 50), "ReflectionProbe");
+			if(isButtonActive){
+				if (GUI.Button (new Rect (Screen.width - 100, Screen.height - 40, 80, 20), "Reflesh")){
 					isReflesh = true;
 					isButtonActive = false;
 				}

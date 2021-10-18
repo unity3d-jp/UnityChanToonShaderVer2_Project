@@ -1,32 +1,32 @@
 ﻿//
 //AutoBlink.cs
-//Auto Blink Script
+//オート目パチスクリプト
 //2014/06/23 N.Kobayashi
 //
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine.Rendering.Toon.Samples
+namespace UnityEngine.Rendering.Toon.Universal.Samples
 {
 	public class AutoBlink : MonoBehaviour
 	{
 
-		public bool isActive = true;				//Activate Auto Blink
-		public SkinnedMeshRenderer ref_SMR_EYE_DEF;	//Ref for EYE_DEF
-		public SkinnedMeshRenderer ref_SMR_EL_DEF;	//Ref for EL_DEF
-		public float ratio_Close = 85.0f;			//Closed Eye blendshape ratio
-		public float ratio_HalfClose = 20.0f;		//Half-Closed Eye blendshape ratio
+		public bool isActive = true;				//オート目パチ有効
+		public SkinnedMeshRenderer ref_SMR_EYE_DEF;	//EYE_DEFへの参照
+		public SkinnedMeshRenderer ref_SMR_EL_DEF;	//EL_DEFへの参照
+		public float ratio_Close = 85.0f;			//閉じ目ブレンドシェイプ比率
+		public float ratio_HalfClose = 20.0f;		//半閉じ目ブレンドシェイプ比率
 		[HideInInspector]
 		public float
 			ratio_Open = 0.0f;
-		private bool timerStarted = false;			//for Start timer
-		private bool isBlink = false;				//For Blink management
+		private bool timerStarted = false;			//タイマースタート管理用
+		private bool isBlink = false;				//目パチ管理用
 
-		public float timeBlink = 0.4f;				//Time for Blink
-		private float timeRemining = 0.0f;			//Timer Remaining Time
+		public float timeBlink = 0.4f;				//目パチの時間
+		private float timeRemining = 0.0f;			//タイマー残り時間
 
-		public float threshold = 0.3f;				//Random Decision Threshold
-		public float interval = 3.0f;				//Random Decision Interval
+		public float threshold = 0.3f;				// ランダム判定の閾値
+		public float interval = 3.0f;				// ランダム判定のインターバル
 
 
 
@@ -34,11 +34,11 @@ namespace UnityEngine.Rendering.Toon.Samples
 		{
 			Close,
 			HalfClose,
-			Open	//Status of Blink
+			Open	//目パチの状態
 		}
 
 
-		private Status eyeStatus;	//Current Blink status
+		private Status eyeStatus;	//現在の目パチステータス
 
 		void Awake ()
 		{
@@ -52,11 +52,11 @@ namespace UnityEngine.Rendering.Toon.Samples
 		void Start ()
 		{
 			ResetTimer ();
-			// Start a function for random determination
+			// ランダム判定用関数をスタートする
 			StartCoroutine ("RandomChange");
 		}
 
-		//Reset Timer
+		//タイマーリセット
 		void ResetTimer ()
 		{
 			timeRemining = timeBlink;
@@ -120,19 +120,19 @@ namespace UnityEngine.Rendering.Toon.Samples
 			ref_SMR_EL_DEF.SetBlendShapeWeight (6, ratio_Open);
 		}
 		
-		// Function for Random Decision
+		// ランダム判定用関数
 		IEnumerator RandomChange ()
 		{
-			// Start infinite loop
+			// 無限ループ開始
 			while (true) {
-				//Seed generation for random decisions
+				//ランダム判定用シード発生
 				float _seed = Random.Range (0.0f, 1.0f);
 				if (!isBlink) {
 					if (_seed > threshold) {
 						isBlink = true;
 					}
 				}
-				// Put an interval until the next decision
+				// 次の判定までインターバルを置く
 				yield return new WaitForSeconds (interval);
 			}
 		}
