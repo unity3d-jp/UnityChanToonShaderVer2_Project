@@ -108,7 +108,7 @@ namespace Unity.Rendering.HighDefinition.Toon
 
             for (int ii = 0; ii < m_Renderers.Length; ii++)
             {
-                m_Renderers[ii].renderingLayerMask &= 0xff;
+                m_Renderers[ii].renderingLayerMask &= 0xffffff00;
                 m_Renderers[ii].renderingLayerMask |= (uint)m_targetBoxLight.lightlayersMask;
             }
             if ( /* m_targetBoxLight != null && */ m_GameObjects != null && m_GameObjects.Length > 0 && m_GameObjects[0] != null )
@@ -163,17 +163,17 @@ namespace Unity.Rendering.HighDefinition.Toon
 
         }
 
-        internal static GameObject  CreateBoxLight(GameObject go)
+        internal static GameObject  CreateBoxLight(GameObject[] gameObjects)
         {
-            if (go == null)
+            if (gameObjects == null || gameObjects[0] == null )
             {
                 Debug.LogError("Please, select a GameObject you want a Box Light to follow.");
                 return null;
             }
-            var gameObjectName = "Box Light for " + go.name;
+            var gameObjectName = "Box Light for " + gameObjects[0].name;
             GameObject lightGameObject = new GameObject(gameObjectName);
 #if UNITY_EDITOR
-            Undo.RegisterCreatedObjectUndo(lightGameObject, "Created " + go.name);
+            Undo.RegisterCreatedObjectUndo(lightGameObject, "Created Boxlight adjustment");
 #endif
             HDAdditionalLightData hdLightData = lightGameObject.AddHDLight(HDLightTypeAndShape.BoxSpot);
             // light size
@@ -210,8 +210,8 @@ namespace Unity.Rendering.HighDefinition.Toon
             hdLightData.gameObject.transform.rotation = goRot;
 
             // must be put to gameObject model chain.
-            boxLightAdjustment.m_GameObjects = new GameObject[1];
-            boxLightAdjustment.m_GameObjects[0] = go;
+            boxLightAdjustment.m_GameObjects = gameObjects;
+
 
             return lightGameObject;
         }

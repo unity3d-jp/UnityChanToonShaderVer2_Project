@@ -1,7 +1,7 @@
 # Changelog
 ## [0.4.1-preview] - 2021-10-27
 ### Added
-* Something similar to exposure compensation.
+* HDRP:Something similar to exposure compensation.
 ### Fixed:
 * typo in documants.
 * missing mono behaviors in sample scenes.
