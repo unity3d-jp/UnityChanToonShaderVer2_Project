@@ -1,10 +1,11 @@
 # Changelog
 ## [0.4.1-preview] - 2021-10-27
 ### Added
-* HDRP:Something similar to exposure compensation.
+* HDRP:Something similar to HDRP exposure compensation.
 ### Fixed:
 * typo in documants.
 * missing mono behaviors in sample scenes.
+* HDRP:BoxLightAdjustment script. some flags are not updated properly when some checkboxes are clicked.
 
 ## [0.4.0-preview] - 2021-10-13
 ### Added

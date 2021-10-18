@@ -56,7 +56,7 @@ namespace Unity.Rendering.HighDefinition.Toon
 
         }
 
-        void OnValidate()
+        internal void OnValidate()
         {
             Release();
             Initialize();

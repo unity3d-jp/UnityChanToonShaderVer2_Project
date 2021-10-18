@@ -110,6 +110,11 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 
             if (isChanged)
             {
+                if (target != null)
+                {
+                    var boxlightAdjustment = target as BoxLightAdjustment;
+                    boxlightAdjustment.OnValidate();
+                }
                 // at leaset 2020.3.12f1, not neccessary. but, from which version??
                 EditorApplication.QueuePlayerLoopUpdate();
             }
