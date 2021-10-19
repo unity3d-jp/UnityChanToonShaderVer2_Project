@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -2329,7 +2329,7 @@ MonoBehaviour:
   - -1.3199997
   m_Max: -1.32
   m_Min: -10
-  m_DebugUI: 0
+  m_Compensation: 0
 --- !u!4 &1696482324
 Transform:
   m_ObjectHideFlags: 0
