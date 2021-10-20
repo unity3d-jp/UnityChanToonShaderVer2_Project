@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EmissiveAnimation.unity
     guid: 003a6919efce4f2eb098cd27bad910a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LightAndShadows.unity
     guid: 73a7f438006c4b7fafd3d5b4743fa8dc
   - enabled: 1

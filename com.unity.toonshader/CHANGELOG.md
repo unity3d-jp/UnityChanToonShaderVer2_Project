@@ -6,6 +6,7 @@
 * typo in documants.
 * missing mono behaviors in sample scenes.
 * HDRP:BoxLightAdjustment script. some flags are not updated properly when some checkboxes are clicked.
+* HDRP:Shader compile errors when used with HDRP 12.1
 
 ## [0.4.0-preview] - 2021-10-13
 ### Added
