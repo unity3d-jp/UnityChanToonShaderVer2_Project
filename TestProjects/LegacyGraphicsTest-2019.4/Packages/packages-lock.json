@@ -63,11 +63,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.raytracedhardshadow": {
-      "version": "https://github.com/unity3d-jp/RaytracedHardShadow.git",
+      "version": "https://github.com/unity3d-jp/RaytracedHardShadow.git#bbba12aaf3e7c6fb1c198746ef9a0fcf408b79b9",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "1a2bee4ad3597752862b1dc0a0e99e07087d933b"
+      "hash": "bbba12aaf3e7c6fb1c198746ef9a0fcf408b79b9"
     },
     "com.unity.scriptablebuildpipeline": {
       "version": "1.17.0",

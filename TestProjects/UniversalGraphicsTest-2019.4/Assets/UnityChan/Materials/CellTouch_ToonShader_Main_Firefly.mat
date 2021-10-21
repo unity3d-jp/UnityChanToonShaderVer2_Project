@@ -188,6 +188,7 @@ Material:
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 0
     - _MatCap: 0
+    - _Metallic: 0
     - _Nearest_Distance: 0.5
     - _OUTLINE: 0
     - _Offset_X_Axis_BLD: 0
@@ -207,6 +208,7 @@ Material:
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0
+    - _Smoothness: 0.5
     - _StencilComp: 0
     - _StencilMode: 0
     - _StencilNo: 1
@@ -233,8 +235,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersionX: 0
-    - _utsVersionY: 0
-    - _utsVersionZ: 2
+    - _utsVersionY: 4
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.8, g: 0.67058825, b: 0.7892329, a: 1}
     - _2nd_ShadeColor: {r: 0.8, g: 0.67058825, b: 0.7882353, a: 1}
@@ -248,4 +250,5 @@ Material:
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0.1397059, g: 0.13867864, b: 0.13867864, a: 1}
     - _RimLightColor: {r: 0.18401209, g: 0.16608995, b: 0.4705882, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

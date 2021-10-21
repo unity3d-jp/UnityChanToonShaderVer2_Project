@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AngelRing.unity
     guid: d263d32e85ba4a7387e169fb2532a7e0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BoxProjection.unity
     guid: 6d974977d8294b019b2b7f1b27ce1be2
   - enabled: 1
@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MatCapMask.unity
     guid: d453b3ea73cc402790f75c33c8004129
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MirrorTest.unity
     guid: 29586b022ed34d3aa198a53130a5e9f0
   - enabled: 1
@@ -36,18 +36,24 @@ EditorBuildSettings:
     path: Assets/Scenes/PointLightTest/PointLightTest.unity
     guid: 64085e65dc2f41dc94a901a1a07cc3ce
   - enabled: 1
+    path: Assets/Scenes/Sample.unity
+    guid: d09542ee190d40cea3a789f9b3315869
+  - enabled: 1
     path: Assets/Scenes/SceneLights Hi-Cut_Filter Test.unity
     guid: 2c979d8d718845c583e737a9ba5508bc
   - enabled: 1
     path: Assets/Scenes/ShaderBall.unity
     guid: 328dd02d399a45c08d53ce3044af83b2
   - enabled: 1
+    path: Assets/Scenes/ShaderBall_LightCulling.unity
+    guid: c191f97b7ca94f30b931bf6e1bcd304d
+  - enabled: 1
     path: Assets/Scenes/ToonShader.unity
     guid: 755a8c5824424c9193dc830b61e064ab
   - enabled: 1
     path: Assets/Scenes/ToonShader_CelLook.unity
     guid: 4053d545db384258abb1e221dadf452e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ToonShader_CelLook(Tessellation).unity
     guid: 75ce7273e30d480fbf891f62eaf37702
   - enabled: 1

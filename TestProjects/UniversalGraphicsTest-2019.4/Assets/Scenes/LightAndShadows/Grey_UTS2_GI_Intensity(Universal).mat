@@ -238,8 +238,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 1
     - _utsVersionX: 0
-    - _utsVersionY: 2
-    - _utsVersionZ: 1
+    - _utsVersionY: 4
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
     - _2nd_ShadeColor: {r: 0.375, g: 0.375, b: 0.375, a: 1}
@@ -253,4 +253,5 @@ Material:
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

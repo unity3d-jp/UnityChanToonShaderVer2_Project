@@ -18,9 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/EmissiveAnimation.unity
     guid: 78a2ca88832c4e838052ce8e7b6436da
   - enabled: 1
-    path: Assets/Scenes/LightAndShadows.unity
-    guid: 330dfaaf05df42d389985f9ebaecf095
-  - enabled: 1
     path: Assets/Scenes/LightAndShadows_BakedLight.unity
     guid: cb9cd012102546509011eec8aa6f7d26
   - enabled: 1
@@ -59,4 +56,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ToonShader_LightCulling.unity
     guid: c7bca689aba34555bd96d1f82c7defbe
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 64c27f0e2a332ba4e84daabcd2dd9cdc,
+      type: 2}

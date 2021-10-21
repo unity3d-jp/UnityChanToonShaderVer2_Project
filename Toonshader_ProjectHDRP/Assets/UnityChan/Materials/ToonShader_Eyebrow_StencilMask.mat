@@ -386,7 +386,7 @@ Material:
     - _SrcBlend: 1
     - _StencilComp: 8
     - _StencilMode: 2
-    - _StencilNo: 1
+    - _StencilNo: 128
     - _StencilOpFail: 2
     - _StencilOpPass: 2
     - _StencilRef: 2
@@ -447,7 +447,7 @@ Material:
     - _utsVersion: 2.075
     - _utsVersionX: 0
     - _utsVersionY: 4
-    - _utsVersionZ: 0
+    - _utsVersionZ: 1
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

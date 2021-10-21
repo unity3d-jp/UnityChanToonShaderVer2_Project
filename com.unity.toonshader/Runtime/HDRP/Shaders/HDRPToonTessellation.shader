@@ -13,8 +13,8 @@ Shader "HDRP/ToonTessellation"
         // Versioning of material to help for upgrading
         [HideInInspector] [Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
-        [HideInInspector] _utsVersionY("VersionY", Float) = 4
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
+        [HideInInspector] _utsVersionY("VersionY", Float) = 5
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
 
         // Reminder. Color here are in linear but the UI (color picker) do the conversion sRGB to linear
@@ -548,9 +548,9 @@ Shader "HDRP/ToonTessellation"
     #pragma instancing_options renderinglayer
 
     // enable debug shado
-    #pragma multi_compile _ UTS_DEBUG_SELFSHADOW
-    #pragma multi_compile _ UTS_DEBUG_SHADOWMAP
-    #pragma multi_compile _ UTS_DEBUG_SHADOWMAP_NO_OUTLINE
+//    #pragma multi_compile _ UTS_DEBUG_SELFSHADOW
+//    #pragma multi_compile _ UTS_DEBUG_SHADOWMAP
+//    #pragma multi_compile _ UTS_DEBUG_SHADOWMAP_NO_OUTLINE
     //-------------------------------------------------------------------------------------
     // Define
     //-------------------------------------------------------------------------------------
@@ -972,7 +972,7 @@ Shader "HDRP/ToonTessellation"
 
             HLSLPROGRAM
 
-            #pragma multi_compile _ UTS_DEBUG_SHADOWMAP_BINALIZATION
+//            #pragma multi_compile _ UTS_DEBUG_SHADOWMAP_BINALIZATION
             #pragma multi_compile _ DEBUG_DISPLAY
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED

@@ -1,4 +1,6 @@
 # Changelog
+## [0.5.0-preview] - 2021-10-28
+* must be updated.
 ## [0.4.1-preview] - 2021-10-20
 ### Added
 * HDRP:Something similar to HDRP exposure compensation.

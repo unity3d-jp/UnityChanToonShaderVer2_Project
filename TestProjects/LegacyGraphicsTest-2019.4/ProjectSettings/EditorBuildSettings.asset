@@ -59,6 +59,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ToonShader_Firefly.unity
     guid: 62ae8b1fd9ca4be9a2b88a8bbb1ae340
-  m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5a06fe3a85f885047a23cd51828d776b,
-      type: 2}
+  m_configObjects: {}

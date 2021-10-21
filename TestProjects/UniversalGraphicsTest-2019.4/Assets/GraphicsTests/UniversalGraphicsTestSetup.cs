@@ -120,7 +120,6 @@ namespace UnityEditor.Rendering.Toon
             settings.ImageComparisonSettings.PerPixelCorrectnessThreshold = 0.005f;
             settings.CheckMemoryAllocation = false;
             settings.WaitFrames = 480;
-
             foreach (GameObject obj in FindObjectsOfType(typeof(GameObject)))
             {
                 if (! obj.activeInHierarchy )

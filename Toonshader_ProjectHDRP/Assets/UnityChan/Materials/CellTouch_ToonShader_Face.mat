@@ -386,7 +386,7 @@ Material:
     - _SrcBlend: 1
     - _StencilComp: 0
     - _StencilMode: 0
-    - _StencilNo: 1
+    - _StencilNo: 128
     - _StencilOpFail: 0
     - _StencilOpPass: 0
     - _StencilRef: 2
