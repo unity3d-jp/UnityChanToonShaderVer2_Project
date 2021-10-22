@@ -6,6 +6,9 @@ test_projects:
 unity_versions:
   - name: 2019.4
   - name: 2020.3
+  - name: 2021.1
+  - name: 2021.2  
+  - name: 2022.1  
 ---
 {% for test_project in test_projects %}
 {% for unity_version in unity_versions %}
@@ -14,8 +17,7 @@ unity_versions:
     agent:
         type: Unity::VM::GPU
         image: graphics-foundation/win10-dxr:stable
-        flavor: b1.xlarge
-        model: rtx2080
+        flavor: b1.large
     variables:
         UPM_REGISTRY: https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates
     dependencies:

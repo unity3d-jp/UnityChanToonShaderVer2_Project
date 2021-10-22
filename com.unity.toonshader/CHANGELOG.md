@@ -2,7 +2,8 @@
 ## [0.5.0-preview] - 2021-10-28
 ### Fixed:
 * HDRP:reduced shader variants by disabling some debug pragmas.
-
+### Updated
+* More effective and strict internal tests.
 ## [0.4.1-preview] - 2021-10-20
 ### Added
 * HDRP:Something similar to HDRP exposure compensation.

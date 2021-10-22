@@ -1,0 +1,131 @@
+fileFormatVersion: 2
+guid: dd4bfd7407154b61b3f95ea870112741
+timeCreated: 1487305832
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: eyeHighLight
+    100002: eyeline
+    100004: head
+    100006: mayu
+    100008: Ntest_hair010
+    100010: tongue
+    100012: utc_head
+    100014: utc_head 1
+    100016: yuko_head
+    100018: yuko_nose
+    100020: //RootNode
+    100022: group
+    100024: pasted__yuko_head002
+    400000: eyeHighLight
+    400002: eyeline
+    400004: head
+    400006: mayu
+    400008: Ntest_hair010
+    400010: tongue
+    400012: utc_head
+    400014: utc_head 1
+    400016: yuko_head
+    400018: yuko_nose
+    400020: //RootNode
+    400022: group
+    400024: pasted__yuko_head002
+    2300000: eyeHighLight
+    2300002: eyeline
+    2300004: head
+    2300006: mayu
+    2300008: Ntest_hair010
+    2300010: tongue
+    2300012: yuko_nose
+    2300014: pasted__yuko_head002
+    3300000: eyeHighLight
+    3300002: eyeline
+    3300004: head
+    3300006: mayu
+    3300008: Ntest_hair010
+    3300010: tongue
+    3300012: yuko_nose
+    3300014: pasted__yuko_head002
+    4300000: tongue
+    4300002: eyeHighLight
+    4300004: head
+    4300006: mayu
+    4300008: yuko_nose
+    4300010: yuko_head
+    4300012: Ntest_hair010
+    4300014: eyeline
+    4300016: pasted__yuko_head002
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: yuko_head
+  materials:
+    importMaterials: 0
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 5
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
