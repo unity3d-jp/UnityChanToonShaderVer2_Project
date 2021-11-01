@@ -94,12 +94,10 @@
 #endif
 
 
-                real shadowAttenuation = 1.0;
+                float shadowAttenuation = 1.0;
 
-# ifdef _MAIN_LIGHT_SHADOWS
-
+#if defined(_MAIN_LIGHT_SHADOWS) || defined(_MAIN_LIGHT_SHADOWS_CASCADE) || defined(_MAIN_LIGHT_SHADOWS_SCREEN)
                 shadowAttenuation = mainLight.shadowAttenuation;
-
 # endif
 
 

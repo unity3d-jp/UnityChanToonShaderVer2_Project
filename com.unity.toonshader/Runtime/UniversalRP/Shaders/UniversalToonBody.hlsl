@@ -174,30 +174,31 @@
                 float3   direction;
                 float3   color;
                 float    distanceAttenuation;
-                real    shadowAttenuation;
-                int     type;
+                float    shadowAttenuation;
+                int      type;
             };
 
             ///////////////////////////////////////////////////////////////////////////////
             //                      Light Abstraction                                    //
             /////////////////////////////////////////////////////////////////////////////
-            real MainLightRealtimeShadowUTS(float4 shadowCoord, float4 positionCS)
+            half MainLightRealtimeShadowUTS(float4 shadowCoord, float4 positionCS)
             {
 #if !defined(MAIN_LIGHT_CALCULATE_SHADOWS)
-                return 1.0h;
+                return 1.0;
 #endif
                 ShadowSamplingData shadowSamplingData = GetMainLightShadowSamplingData();
                 half4 shadowParams = GetMainLightShadowParams();
 #if defined(UTS_USE_RAYTRACING_SHADOW)
                 float w = (positionCS.w == 0) ? 0.00001 : positionCS.w;
-                float4 screenPos =  ComputeScreenPos(positionCS/ w);
+                float4 screenPos = ComputeScreenPos(positionCS / w);
                 return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
-#endif 
-
+#elif defined(_MAIN_LIGHT_SHADOWS_SCREEN)
+                return SampleScreenSpaceShadowmap(shadowCoord);
+#endif
                 return SampleShadowmap(TEXTURE2D_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, false);
             }
 
-            real AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
+            half AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
             {
 #if  defined(UTS_USE_RAYTRACING_SHADOW)
                 float w = (positionCS.w == 0) ? 0.00001 : positionCS.w;
