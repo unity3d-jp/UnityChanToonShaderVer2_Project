@@ -1,7 +1,9 @@
 # Changelog
-## [0.5.0-preview] - 2021-10-28
+## [0.5.0-preview] - 2021-11-02
 ### Fixed:
 * HDRP:reduced shader variants by disabling some debug pragmas.
+* URP:UTS materials don't reduce shadows.
+
 ### Updated
 * More effective and strict internal tests.
 ## [0.4.1-preview] - 2021-10-20
