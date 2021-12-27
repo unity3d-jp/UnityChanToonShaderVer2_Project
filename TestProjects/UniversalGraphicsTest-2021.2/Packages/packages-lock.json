@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "com.unity.addressables": {
-      "version": "1.19.6",
+      "version": "1.19.11",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.19.2",
+        "com.unity.scriptablebuildpipeline": "1.19.3",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -102,7 +102,7 @@
       "hash": "bbba12aaf3e7c6fb1c198746ef9a0fcf408b79b9"
     },
     "com.unity.render-pipelines.core": {
-      "version": "12.1.0",
+      "version": "12.1.1",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
@@ -112,37 +112,37 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "12.1.0",
+      "version": "12.1.1",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
         "com.unity.burst": "1.5.0",
-        "com.unity.render-pipelines.core": "12.1.0",
-        "com.unity.shadergraph": "12.1.0"
+        "com.unity.render-pipelines.core": "12.1.1",
+        "com.unity.shadergraph": "12.1.1"
       }
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.19.2",
+      "version": "1.19.3",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.searcher": {
-      "version": "4.9.0",
+      "version": "4.9.1",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "12.1.0",
+      "version": "12.1.1",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "12.1.0",
-        "com.unity.searcher": "4.8.0"
+        "com.unity.render-pipelines.core": "12.1.1",
+        "com.unity.searcher": "4.9.1"
       }
     },
     "com.unity.subsystemregistration": {

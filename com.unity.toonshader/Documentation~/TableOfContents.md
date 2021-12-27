@@ -1,11 +1,10 @@
-* Unity Toon Shader
+* [Unity Toon Shader](index.md)
+* [Requirements](System-Requirements.md)
+* [Installation](installation.md)
+* [What's new](whats-new.md)
+  * [0.4.0-preview](whats-new-0.4.0.md)
+  * [0.3.0-preview](whats-new-0.3.0.md)
 * Features
-    * [introduction](en/README.md)
-    * [Old Version History](en/UTS2_HISTORY_en.md)
-    * [Usage](index.md)
-    * [Feature Model](en/FeatureModel_en.md)
-* 日本語
-    * [イントロ](ja/README_ja.md)
-    * [旧バージョン履歴](ja/UTS2_HISTORY_ja.md)
-    * [使用方法](ja/index_ja.md)
-    * [Feature Model](en/FeatureModel_en.md)   
+  * [Instruction](instruction.md)
+  * [Samples](sample-instlation.md)
+  * [Feature Model](FeatureModel_en.md)
