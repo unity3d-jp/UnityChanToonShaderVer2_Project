@@ -1,7 +1,8 @@
 # Changelog
-## [0.5.0-preview] - 2021-11-16
+## [0.5.0-preview] - 2021-01-17
 ### Updated
 * Updated documentation and folder structure in order to make the package structure friendly to Unity official package.
+* Tentatively deleted Japanese documentation before making the package ready for Unity standard translation system.
 ### Fixed:
 * HDRP:reduced shader variants by disabling some debug pragmas.
 * URP:UTS materials don't recieve shadows when using newer than Unity 2021.1.
