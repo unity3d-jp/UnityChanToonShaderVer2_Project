@@ -392,6 +392,8 @@ Shader "ToonTessellation (Built-in)" {
 
             //v.2.0.4
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE
+            // Unity Toon Shader 0.5.0
+            #pragma multi_compile _ _DISABLE_OUTLINE
             #include "UCTS_ShadowCaster_tess.cginc"
             ENDCG
         }

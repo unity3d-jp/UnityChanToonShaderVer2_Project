@@ -82,6 +82,9 @@ struct VertexOutput {
 #endif // UNITY_CAN_COMPILE_TESSELLATION
 #endif // TESSELLATION_ON
             float4 frag(VertexOutput i) : SV_Target{
+#if _DISABLE_OUTLINE
+                discard;
+#endif
                 //v.2.0.5
                 _Color = _BaseColor;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );

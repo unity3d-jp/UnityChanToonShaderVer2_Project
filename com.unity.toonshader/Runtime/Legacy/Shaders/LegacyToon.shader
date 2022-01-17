@@ -235,6 +235,8 @@ Shader "Toon (Built-in)" {
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO 
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
+            // Unity Toon Shader 0.5.0
+            #pragma multi_compile _ _DISABLE_OUTLINE
             //The outline process goes to UTS_Outline.cginc.
             #include "UCTS_Outline.cginc"
             ENDCG

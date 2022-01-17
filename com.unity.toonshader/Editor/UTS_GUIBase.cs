@@ -2775,6 +2775,8 @@ namespace UnityEditor.Rendering.Toon
         }
         void GUI_Outline(Material material)
         {
+            const string kDisableOutlineKeyword = "_DISABLE_OUTLINE";
+            bool isLegacy = (srpDefaultLightModeName == "Always");
 
             var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
             bool isOutlineEnabled = true;
@@ -2786,14 +2788,26 @@ namespace UnityEditor.Rendering.Toon
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
+                        if ( isLegacy)
+                        {
+                            material.EnableKeyword(kDisableOutlineKeyword);
+                        }
+
                         material.SetShaderPassEnabled(srpDefaultLightModeName, false);
+
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
+                        if (isLegacy)
+                        {
+                            material.DisableKeyword(kDisableOutlineKeyword);
+                        }
+
                         material.SetShaderPassEnabled(srpDefaultLightModeName, true);
+
                     }
                 }
                 EditorGUILayout.EndHorizontal();
