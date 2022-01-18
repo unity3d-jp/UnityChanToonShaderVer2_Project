@@ -884,7 +884,7 @@ namespace UnityEditor.Rendering.Toon
 
             UpdateVersionInMaterial(material);
 
-
+            _autoRenderQueue = (int)material.GetInt(ShaderPropAutoRenderQueue);
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
 
@@ -1445,108 +1445,11 @@ namespace UnityEditor.Rendering.Toon
             {
                 EditorGUILayout.HelpBox("UTS : Applying Game Recommended Settings.", MessageType.Info);
             }
-#if false
-            //v.2.0.7
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Remove Unused Keywords/Properties from Material");
-            //GUILayout.Space(60);
-            if (GUILayout.Button("Execute",middleButtonStyle))
-            {
-                RemoveUnusedKeywordsUtility(material);
-                _RemovedUnusedKeywordsMessage = true;
-            }
-            EditorGUILayout.EndHorizontal();
-            if(_RemovedUnusedKeywordsMessage){
-                EditorGUILayout.HelpBox("UTS2 : Unused Material Properties and ShaderKeywords are removed.",MessageType.Info);
-            }
-#endif
-            //
+
+
         }
 
-        //v.2.0.7
-        void RemoveUnusedKeywordsUtility(Material material)
-        {
-            RemoveUnusedMaterialProperties(material);
-            RemoveShaderKeywords(material);
-        }
-
-        void RemoveShaderKeywords(Material material)
-        {
-            string shaderKeywords = "";
-
-            if (material.HasProperty("_EMISSIVE"))
-            {
-                float outlineMode = material.GetFloat("_EMISSIVE");
-                if (outlineMode == 0)
-                {
-                    shaderKeywords = shaderKeywords + "_EMISSIVE_SIMPLE";
-                }
-                else
-                {
-                    shaderKeywords = shaderKeywords + "_EMISSIVE_ANIMATION";
-                }
-            }
-            if (material.HasProperty(ShaderPropOutline))
-            {
-                float outlineMode = material.GetFloat(ShaderPropOutline);
-                if (outlineMode == 0)
-                {
-                    shaderKeywords = shaderKeywords + " _OUTLINE_NML";
-                }
-                else
-                {
-                    shaderKeywords = shaderKeywords + " _OUTLINE_POS";
-                }
-            }
-
-            var so = new SerializedObject(material);
-            so.Update();
-            so.FindProperty("m_ShaderKeywords").stringValue = shaderKeywords;
-            so.ApplyModifiedProperties();
-        }
-
-        // http://light11.hatenadiary.com/entry/2018/12/04/224253
-        void RemoveUnusedMaterialProperties(Material material)
-        {
-            var sourceProps = new SerializedObject(material);
-            sourceProps.Update();
-
-            var savedProp = sourceProps.FindProperty("m_SavedProperties");
-
-            // Tex Envs
-            var texProp = savedProp.FindPropertyRelative("m_TexEnvs");
-            for (int i = texProp.arraySize - 1; i >= 0; i--)
-            {
-                var propertyName = texProp.GetArrayElementAtIndex(i).FindPropertyRelative("first").stringValue;
-                if (!material.HasProperty(propertyName))
-                {
-                    texProp.DeleteArrayElementAtIndex(i);
-                }
-            }
-
-            // Floats
-            var floatProp = savedProp.FindPropertyRelative("m_Floats");
-            for (int i = floatProp.arraySize - 1; i >= 0; i--)
-            {
-                var propertyName = floatProp.GetArrayElementAtIndex(i).FindPropertyRelative("first").stringValue;
-                if (!material.HasProperty(propertyName))
-                {
-                    floatProp.DeleteArrayElementAtIndex(i);
-                }
-            }
-
-            // Colors
-            var colorProp = savedProp.FindPropertyRelative("m_Colors");
-            for (int i = colorProp.arraySize - 1; i >= 0; i--)
-            {
-                var propertyName = colorProp.GetArrayElementAtIndex(i).FindPropertyRelative("first").stringValue;
-                if (!material.HasProperty(propertyName))
-                {
-                    colorProp.DeleteArrayElementAtIndex(i);
-                }
-            }
-            sourceProps.ApplyModifiedProperties();
-        }
+ 
         //
         void OpenOptimizationForGameWindow(Material material)
         {

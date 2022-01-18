@@ -7,6 +7,7 @@
 * HDRP:reduced shader variants by disabling some debug pragmas.
 * URP:UTS materials don't recieve shadows when using newer than Unity 2021.1.
 * Legacy:Unable to disable Outline.
+* AutoRenderQueue is disabled when material inspector is unfocused.
 ### Updated
 * More effective and strict internal tests.
 ## [0.4.1-preview] - 2021-10-20
