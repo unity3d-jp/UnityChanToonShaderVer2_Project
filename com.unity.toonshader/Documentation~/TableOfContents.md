@@ -2,6 +2,7 @@
 * [Requirements](System-Requirements.md)
 * [Installation](installation.md)
 * [What's new](whats-new.md)
+  * [0.5.0-preview](whats-new-0.5.0.md)
   * [0.4.0-preview](whats-new-0.4.0.md)
   * [0.3.0-preview](whats-new-0.3.0.md)
 * Features

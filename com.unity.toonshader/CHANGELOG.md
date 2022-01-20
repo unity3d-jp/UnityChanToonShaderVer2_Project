@@ -1,15 +1,20 @@
 # Changelog
-## [0.5.0-preview] - 2021-01-17
+## [0.5.0-preview] - 2021-01-20
 ### Updated
 * Updated documentation and folder structure in order to make the package structure friendly to Unity official package.
 * Tentatively deleted Japanese documentation before making the package ready for Unity standard translation system.
+* HDRP: made UTS compatible with HDRP AOV. Capable of outputting Albedo, Normal and so on using AOV Image Sequence Recorder newer than 3.0.
+* More effective and strict internal tests.
 ### Fixed:
 * HDRP:reduced shader variants by disabling some debug pragmas.
 * URP:UTS materials don't recieve shadows when using newer than Unity 2021.1.
 * Legacy:Unable to disable Outline.
 * AutoRenderQueue is disabled when material inspector is unfocused.
-### Updated
-* More effective and strict internal tests.
+
+
+### Known Issues:
+* HDRP: When Outputing AOV images, UTS Outline is also put into them images. In such cases,  please disable OUTLINE in Metrial Inspecotrs. 
+
 ## [0.4.1-preview] - 2021-10-20
 ### Added
 * HDRP:Something similar to HDRP exposure compensation.
@@ -18,6 +23,7 @@
 * missing mono behaviors in sample scenes.
 * HDRP:BoxLightAdjustment script. some flags are not updated properly when some checkboxes are clicked.
 * HDRP:Shader compile errors when used with HDRP 12.1
+
 
 ## [0.4.0-preview] - 2021-10-13
 ### Added

@@ -1009,7 +1009,11 @@ Shader "HDRP/ToonTessellation"
 
 
         #ifdef DEBUG_DISPLAY
-            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Debug/DebugDisplay.hlsl"
+        # if (SHADER_LIBRARY_VERSION_MAJOR >= 10)
+            #include "DebugDisplay.hlsl"
+        # else
+            #include "DebugDisplayHDRP7.hlsl"
+        # endif
         #endif
 
             // The light loop (or lighting architecture) is in charge to:
@@ -1027,12 +1031,17 @@ Shader "HDRP/ToonTessellation"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoop.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/ShaderPass/LitSharePass.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/LitData.hlsl"
-#ifdef DEBUG_DISPLAY
-            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPassForward.hlsl"
-#else
+        #ifdef DEBUG_DISPLAY
+        # if (SHADER_LIBRARY_VERSION_MAJOR >= 10)
+            #include "ShaderPassForward.hlsl"
+        # else
+            #include "ShaderPassForwardHDRP7.hlsl"
+        # endif
+        #else
             #include "UtsLightLoop.hlsl"
             #include "ShaderPassForwardUTS.hlsl"
-#endif
+        #endif
+
             #pragma vertex Vert
             #pragma fragment Frag
             #pragma hull Hull
