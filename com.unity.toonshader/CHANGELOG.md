@@ -13,7 +13,7 @@
 
 
 ### Known Issues:
-* HDRP: When Outputing AOV images, UTS Outline is also put into them images. In such cases,  please disable OUTLINE in Metrial Inspecotrs. 
+* HDRP: When Outputing AOV images, UTS Outline is also put into the images. In such cases,  please disable OUTLINE in Metrial Inspecotrs. 
 
 ## [0.4.1-preview] - 2021-10-20
 ### Added
