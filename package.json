@@ -1,7 +1,7 @@
 {
   "name": "com.unity.universaltoonshader.urp",
   "displayName": "Universal Toon Shader for URP",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "unity": "2019.3",
   "description": "Universal Toon Shader(a.k.a Unity-Chan Toon Shader) is a toon shader for images and video that is designed to meet the needs of creators working on cel-shaded 3DCG animations.\nUnlike other pre-render toon shaders, all features can be adjusted in real time on Unity, which is the greatest feature of UTS2.\n\nUTS2 has great power and makes a wide variety of character designs possible, from cel-shaded to light novel illustration styles.\n\nUTS2 has the 3 basic layers of Base Color, 1st Shade Color, and 2nd Shade Color, colors and textures can also accept a wide variety of customization options, such as High Color, Rim Light, MatCap (sphere mapping), and Emissive (light emission).The level of gradation (feather) between colors can also be adjusted in Unity in real-time.",
   "repository": {

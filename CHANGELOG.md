@@ -1,5 +1,8 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
+## [2.4.0] - 2022/01/20
+* URP:UTS materials don't receive shadows when using newer than Unity 2021.1.
+* AutoRenderQueue is canceled when material inspector is unfocused.
 
 ## [2.3.0] - 2021/10/18
 ### Fixed

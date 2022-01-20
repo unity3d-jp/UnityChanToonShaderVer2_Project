@@ -6,7 +6,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
     public class UniversalToonGUI : UnityEditor.ShaderGUI
     {
         protected const float kVersionX = 2.0f;
-        protected const float kVersionY = 3.0f;
+        protected const float kVersionY = 4.0f;
         protected const float kVersionZ = 0.0f;
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
@@ -561,6 +561,8 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
             Material material = materialEditor.target as Material;
 
             UpdateVersionInMaterial(material);
+
+            _autoRenderQueue = (int)material.GetInt(ShaderPropAutoRenderQueue);
             _Transparent_Setting = (_UTS_Transparent)material.GetInt(ShaderPropTransparentEnabled);
             _StencilNo_Setting = material.GetInt(ShaderPropStencilNo);
 
