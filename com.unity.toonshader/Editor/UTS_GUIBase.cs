@@ -28,7 +28,7 @@ namespace UnityEditor.Rendering.Toon
     public class UTS_GUIBase : UnityEditor.ShaderGUI
     {
         protected const float kVersionX = 0.0f;
-        protected const float kVersionY = 5.0f;
+        protected const float kVersionY = 6.0f;
         protected const float kVersionZ = 0.0f;
 
         internal virtual string srpDefaultLightModeName { get; }

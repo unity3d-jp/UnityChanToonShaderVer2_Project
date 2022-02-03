@@ -50,7 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ToonShader_CelLook(DXRShadow).unity
     guid: 4053d545db384258abb1e221dadf452e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ToonShader_CelLook(RTHS).unity
     guid: 312159c087004511a200e8eb1b747843
   - enabled: 1

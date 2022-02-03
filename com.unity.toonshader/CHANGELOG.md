@@ -1,4 +1,8 @@
 # Changelog
+## [0.6.0-preview] - 2022-01-21
+### Updated:
+* replaced test VM to use gtx1080
+
 ## [0.5.0-preview] - 2022-01-20
 ### Updated:
 * Updated documentation and folder structure in order to make the package structure friendly to Unity official package.
