@@ -9,7 +9,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
 {
 
 
-    public class UniversalToonGUI : UTS_GUIBase
+    internal class UniversalToonGUI : UTS_GUIBase
     {
         internal override string srpDefaultLightModeName { get { return "SRPDefaultUnlit"; } }
 

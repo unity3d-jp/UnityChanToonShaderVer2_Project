@@ -13,7 +13,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 {
     [CustomEditor(typeof(BoxLightAdjustment))]
 
-    public class BoxLightAdjustmentInspector : Editor
+    internal class BoxLightAdjustmentInspector : Editor
     {
         private SerializedProperty m_GameObjectsProperties;
 

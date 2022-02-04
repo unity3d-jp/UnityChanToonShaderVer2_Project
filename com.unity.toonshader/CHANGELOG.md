@@ -1,9 +1,12 @@
 # Changelog
-## [0.6.0-preview] - 2022-02-03
+## [0.6.0-preview] - 2022-02-04
 ### Updated:
 * Replaced test VM to use gtx1080
 * Updated readme.md
 * Added LICENSE.md under the project folder.
+
+### Fixed:
+* Some unnecessary classes were public.
 
 ## [0.5.0-preview] - 2022-01-20
 ### Updated:

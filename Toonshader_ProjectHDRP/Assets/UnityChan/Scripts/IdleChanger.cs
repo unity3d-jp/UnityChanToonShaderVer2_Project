@@ -13,7 +13,7 @@ namespace UnityEngine.Rendering.Toon.HDRP.Samples
 
 
 
-	public class IdleChanger : MonoBehaviour
+	internal class IdleChanger : MonoBehaviour
 	{
 	
 		private Animator anim;						// Animatorへの参照

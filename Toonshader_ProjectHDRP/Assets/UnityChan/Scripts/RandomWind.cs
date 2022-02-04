@@ -15,7 +15,7 @@ using System.Collections;
 
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
-	public class RandomWind : MonoBehaviour
+	internal class RandomWind : MonoBehaviour
 	{
 		private SpringBone[] springBones;
 		public bool isWindActive = false;

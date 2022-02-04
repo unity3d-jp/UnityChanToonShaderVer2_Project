@@ -7,7 +7,7 @@ namespace UnityEditor.Rendering.Toon
 {
     [CustomEditor(typeof(SceneToonEvAdjustment))]
 
-    public class ToonEvAdjustmentCurveCurveInspector : Editor
+    internal class ToonEvAdjustmentCurveCurveInspector : Editor
     {
         SerializedObject m_SerializedObject;
 #if ADJUSTMENT_CURVE_DEBUG_UI

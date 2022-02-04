@@ -17,7 +17,7 @@ namespace Unity.Rendering.HighDefinition.Toon
     [ExecuteAlways]
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Light))]
-    public class BoxLightAdjustment : MonoBehaviour
+    internal class BoxLightAdjustment : MonoBehaviour
     {
 
 

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
     [ExecuteInEditMode] // Make mirror live-update even when not in play mode
-    public class MirrorReflection : MonoBehaviour
+    internal class MirrorReflection : MonoBehaviour
     {
         public enum Mode
         {

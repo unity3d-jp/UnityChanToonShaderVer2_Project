@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [InitializeOnLoad]
-public class RenderingPipelineDefines
+internal class RenderingPipelineDefines
 {
     enum PipelineType
     {

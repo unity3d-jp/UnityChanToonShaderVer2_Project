@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
-	public class SetShadowResolution : MonoBehaviour {
+	internal class SetShadowResolution : MonoBehaviour {
 		public int resolution;
 		
 		void Update () {

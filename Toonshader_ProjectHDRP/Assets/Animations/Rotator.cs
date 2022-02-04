@@ -2,7 +2,7 @@
 using System.Collections;
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
-	public class Rotator : MonoBehaviour
+	internal class Rotator : MonoBehaviour
 	{
 
 		private Vector3 pivot = Vector3.zero;

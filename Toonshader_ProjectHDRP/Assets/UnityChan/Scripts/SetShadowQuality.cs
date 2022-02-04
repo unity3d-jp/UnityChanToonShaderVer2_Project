@@ -9,7 +9,7 @@ using UnityEngine;
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
 	[ExecuteInEditMode]
-	public class SetShadowQuality : MonoBehaviour {
+	internal class SetShadowQuality : MonoBehaviour {
 
 			public enum CascadeMode {
 				Zero = 0,

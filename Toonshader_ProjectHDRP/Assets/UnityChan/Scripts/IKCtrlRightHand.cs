@@ -11,7 +11,7 @@ using System.Collections;
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
 	[RequireComponent(typeof(Animator))]
-	public class IKCtrlRightHand : MonoBehaviour
+	internal class IKCtrlRightHand : MonoBehaviour
 	{
 
 		private Animator anim;

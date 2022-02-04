@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
-	public class AutoBlink : MonoBehaviour
+	internal class AutoBlink : MonoBehaviour
 	{
 
 		public bool isActive = true;				//オート目パチ有効

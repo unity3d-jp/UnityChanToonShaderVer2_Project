@@ -11,7 +11,7 @@ namespace Unity.Rendering.Toon
 {
     [ExecuteAlways]
     [DisallowMultipleComponent]
-    public class SceneToonEvAdjustment : MonoBehaviour
+    internal class SceneToonEvAdjustment : MonoBehaviour
     {
         // flags
         bool m_initialized = false;

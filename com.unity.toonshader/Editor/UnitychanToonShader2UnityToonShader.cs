@@ -5,7 +5,7 @@ using UnityEditor;
 using System.IO;
 namespace UnityEditor.Rendering.Toon
 {
-    public class UnitychanToonShader2UnityToonShader : EditorWindow
+    internal class UnitychanToonShader2UnityToonShader : EditorWindow
     {
         public enum _UTS_Technique
         {

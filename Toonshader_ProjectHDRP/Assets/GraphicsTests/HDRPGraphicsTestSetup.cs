@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace UnityEditor.Rendering.Toon
 {
-    public class HDRPGraphicsTestSetup : EditorWindow
+    internal class HDRPGraphicsTestSetup : EditorWindow
     {
         // https://docs.unity3d.com/ScriptReference/EditorBuildSettings-scenes.html
         Vector2 m_scrollPos;

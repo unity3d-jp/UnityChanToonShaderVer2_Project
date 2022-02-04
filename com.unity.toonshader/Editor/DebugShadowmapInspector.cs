@@ -7,7 +7,7 @@ namespace UnityEditor.Rendering.Toon
 {
     [CustomEditor(typeof(DebugShadowmap))]
 
-    public class DebugShadowmapInspector : Editor
+    internal class DebugShadowmapInspector : Editor
     {
 
         public override void OnInspectorGUI()

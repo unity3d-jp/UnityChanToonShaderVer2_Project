@@ -2,7 +2,7 @@
 using System.Collections;
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
-	public class RefleshProbe : MonoBehaviour
+	internal class RefleshProbe : MonoBehaviour
 	{
 
 		bool isReflesh = false;

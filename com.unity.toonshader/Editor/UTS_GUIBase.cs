@@ -25,7 +25,7 @@ namespace UnityEditor.Rendering.Toon
         public float ShaderPropIs_Filter_LightColor;
     };
 
-    public class UTS_GUIBase : UnityEditor.ShaderGUI
+    internal class UTS_GUIBase : UnityEditor.ShaderGUI
     {
         protected const float kVersionX = 0.0f;
         protected const float kVersionY = 6.0f;

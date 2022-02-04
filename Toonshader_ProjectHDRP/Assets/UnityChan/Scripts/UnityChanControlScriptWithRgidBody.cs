@@ -13,7 +13,7 @@ namespace UnityEngine.Rendering.Toon.HDRP.Samples
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Rigidbody))]
 
-	public class UnityChanControlScriptWithRgidBody : MonoBehaviour
+	internal class UnityChanControlScriptWithRgidBody : MonoBehaviour
 	{
 
 		public float animSpeed = 1.5f;				// アニメーション再生速度設定

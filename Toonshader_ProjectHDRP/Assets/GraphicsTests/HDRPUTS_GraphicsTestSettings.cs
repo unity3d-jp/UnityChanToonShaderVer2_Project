@@ -2,7 +2,7 @@
 
 namespace Tests
 {
-    public class HDRPUTS_GraphicsTestSettings : GraphicsTestSettings
+    internal class HDRPUTS_GraphicsTestSettings : GraphicsTestSettings
     {
         public int WaitFrames = 0;
         public bool XRCompatible = true;

@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 using UnityEditor.Rendering.Toon;
 namespace UnityEditor.Rendering.HighDefinition.Toon
 {
-    public partial class HDRPToonGUI : UTS_GUIBase
+    internal partial class HDRPToonGUI : UTS_GUIBase
     {
         enum TessellationMode
         {
@@ -17,7 +17,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
             Phong
         }
 
-        public class TessellationStyles
+        internal class TessellationStyles
         {
             public const string header = "Tessellation Options";
 

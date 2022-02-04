@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
-	public class FaceUpdate : MonoBehaviour
+	internal class FaceUpdate : MonoBehaviour
 	{
 		public AnimationClip[] animations;
 		Animator anim;

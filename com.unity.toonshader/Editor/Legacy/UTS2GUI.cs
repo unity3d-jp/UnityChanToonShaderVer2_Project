@@ -9,7 +9,7 @@ namespace UnityEditor.Rendering.Builtin.Toon
 {
 
 
-    public partial class UTS2GUI : UTS_GUIBase
+    internal partial class UTS2GUI : UTS_GUIBase
     {
         internal override string srpDefaultLightModeName { get { return "Always"; } }
         internal override void TessellationSetting(Material materal) { }

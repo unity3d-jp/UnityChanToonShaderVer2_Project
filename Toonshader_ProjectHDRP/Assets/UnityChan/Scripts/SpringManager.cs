@@ -14,7 +14,7 @@ using System.Collections;
 
 namespace UnityEngine.Rendering.Toon.HDRP.Samples
 {
-	public class SpringManager : MonoBehaviour
+	internal class SpringManager : MonoBehaviour
 	{
 		//Kobayashi
 		// DynamicRatio is paramater for activated level of dynamic animation 

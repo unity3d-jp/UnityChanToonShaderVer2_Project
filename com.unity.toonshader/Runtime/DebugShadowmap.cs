@@ -12,7 +12,7 @@ namespace Unity.Rendering.Toon
     [ExecuteAlways]
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Camera))]
-    public class DebugShadowmap : MonoBehaviour
+    internal class DebugShadowmap : MonoBehaviour
     {
         // flags
         bool m_initialized = false;

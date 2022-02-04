@@ -25,7 +25,7 @@ namespace UnityEngine.Rendering.Toon.HDRP.Samples
 		MBD_MIDDLE,
 	};
 
-	public class CameraController : MonoBehaviour
+	internal class CameraController : MonoBehaviour
 	{
 		[SerializeField]
 		private Vector3 focus = Vector3.zero;

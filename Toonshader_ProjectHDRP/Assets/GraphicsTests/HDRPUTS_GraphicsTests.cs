@@ -12,7 +12,7 @@ using System.IO;
 
 namespace Tests
 {
-    public class HDRPUTS_GraphicsTests
+    internal class HDRPUTS_GraphicsTests
     {
         public const string ReferenceImagePath = "Assets/ReferenceImages";
         [UnityTest, Category("HDRP")]

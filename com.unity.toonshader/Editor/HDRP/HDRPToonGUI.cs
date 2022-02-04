@@ -8,7 +8,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 {
 
 
-    public partial class HDRPToonGUI : UTS_GUIBase
+    internal partial class HDRPToonGUI : UTS_GUIBase
     {
         internal override string srpDefaultLightModeName { get { return "SRPDefaultUnlit"; } }
 

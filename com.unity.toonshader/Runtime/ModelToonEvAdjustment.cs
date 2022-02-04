@@ -13,7 +13,7 @@ namespace Unity.Rendering.Toon
 {
     [ExecuteAlways]
     [DisallowMultipleComponent]
-    public class ModelToonEvAdjustment : MonoBehaviour
+    internal class ModelToonEvAdjustment : MonoBehaviour
     {
         const string kCompensationPorpName = "_ToonEvAdjustmentCompensation";
         const string kExposureAdjustmentPropName = "_ToonEvAdjustmentCurve";
