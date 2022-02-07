@@ -213,6 +213,7 @@ Shader "Universal Render Pipeline/Toon" {
     SubShader {
         Tags {
             "RenderType"="Opaque"
+            "RenderPipeline" = "UniversalPipeline"
         }
         Pass {
             Name "Outline"

@@ -597,7 +597,7 @@ Shader "HDRP/ToonTessellation"
     SubShader
     {
         // This tags allow to use the shader replacement features
-        Tags{ "RenderPipeline"="HDRenderPipeline" "RenderType" = "HDLitShader" }
+        Tags{ "RenderPipeline"="HDRenderPipeline"  }
 
         Pass
         {
