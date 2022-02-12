@@ -4,7 +4,7 @@
 * Replaced test VM to use gtx1080
 * Updated readme.md
 * Added LICENSE.md under the project folder.
-
+* Shader version properties in all the render pipeline shaders.
 ### Fixed:
 * Some unnecessary classes were public.
 
