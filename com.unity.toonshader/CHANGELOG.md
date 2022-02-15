@@ -1,5 +1,5 @@
 # Changelog
-## [0.6.0-preview] - 2022-02-04
+## [0.6.0-preview] - 2022-02-16
 ### Updated:
 * Replaced test VM to use gtx1080
 * Updated readme.md
@@ -7,6 +7,7 @@
 * Shader version properties in all the render pipeline shaders.
 ### Fixed:
 * Some unnecessary classes were public.
+* URP: Depth output later then 10.0.x.
 
 ## [0.5.0-preview] - 2022-01-20
 ### Updated:

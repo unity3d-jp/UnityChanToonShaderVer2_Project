@@ -413,7 +413,7 @@ Shader "Universal Render Pipeline/Toon" {
 
             HLSLPROGRAM
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Version.hlsl"
-#if ((UNITY_VERSION >= 202110) || VERSION_GREATER_EQUAL(10, 1))
+#if (VERSION_GREATER_EQUAL(10, 0))
             // Required to compile gles 2.0 with standard srp library
             #pragma prefer_hlslcc gles
             #pragma exclude_renderers d3d11_9x
