@@ -1,5 +1,5 @@
 ﻿﻿//UTS2/UniversalToon
-//v.2.3.0
+//v.2.5.0
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
@@ -10,7 +10,7 @@ Shader "Universal Render Pipeline/Toon" {
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
         // Versioning of material to help for upgrading
         [HideInInspector] _utsVersionX("VersionX", Float) = 2
-        [HideInInspector] _utsVersionY("VersionY", Float) = 4
+        [HideInInspector] _utsVersionY("VersionY", Float) = 5
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
@@ -215,6 +215,7 @@ Shader "Universal Render Pipeline/Toon" {
     SubShader {
         Tags {
             "RenderType"="Opaque"
+            "RenderPipeline" = "UniversalPipeline"
         }
         Pass {
             Name "Outline"
@@ -401,6 +402,42 @@ Shader "Universal Render Pipeline/Toon" {
 
             #include "UniversalToonInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
+            ENDHLSL
+        }
+        // This pass is used when drawing to a _CameraNormalsTexture texture
+        Pass
+        {
+            Name "DepthNormals"
+            Tags{"LightMode" = "DepthNormals"}
+
+            ZWrite On
+            Cull[_Cull]
+
+            HLSLPROGRAM
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Version.hlsl"
+#if (VERSION_GREATER_EQUAL(10, 0))
+            // Required to compile gles 2.0 with standard srp library
+            #pragma prefer_hlslcc gles
+            #pragma exclude_renderers d3d11_9x
+            #pragma target 2.0
+
+            #pragma vertex DepthNormalsVertex
+            #pragma fragment DepthNormalsFragment
+
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature_local _NORMALMAP
+            #pragma shader_feature_local _PARALLAXMAP
+            #pragma shader_feature _ALPHATEST_ON
+            #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+
+            //--------------------------------------
+            // GPU Instancing
+            #pragma multi_compile_instancing
+
+            #include "UniversalToonInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthNormalsPass.hlsl"
+#endif
             ENDHLSL
         }
 

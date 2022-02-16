@@ -6,7 +6,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
     public class UniversalToonGUI : UnityEditor.ShaderGUI
     {
         protected const float kVersionX = 2.0f;
-        protected const float kVersionY = 4.0f;
+        protected const float kVersionY = 5.0f;
         protected const float kVersionZ = 0.0f;
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
