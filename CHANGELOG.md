@@ -2,7 +2,7 @@
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
 ## [2.5.0] - 2022/02/17
 ### Added.
-- Versions later than URP 10.0.x require the DepthNormals pass.
+- Versions later than URP 10.0.x require the DepthNormals pass. (Thanks to riina)
 
 ## [2.4.0] - 2022/01/20
 - URP:UTS materials don't receive shadows when using newer than Unity 2021.1.
