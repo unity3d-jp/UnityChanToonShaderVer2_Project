@@ -474,7 +474,8 @@ Shader "HDRP/ToonTessellation"
     HLSLINCLUDE
 
     #pragma target 5.0
-    #pragma only_renderers d3d11 ps4 xboxone vulkan metal switch
+    #pragma only_renderers d3d11 playstation xboxone xboxseries vulkan metal switch
+
 
     //-------------------------------------------------------------------------------------
     // Variant
@@ -488,14 +489,17 @@ Shader "HDRP/ToonTessellation"
     #pragma shader_feature_local _DISPLACEMENT_LOCK_TILING_SCALE
     #pragma shader_feature_local _PIXEL_DISPLACEMENT_LOCK_OBJECT_SCALE
     #pragma shader_feature_local _TESSELLATION_PHONG
+#if 0
     #pragma shader_feature_local _ _REFRACTION_PLANE _REFRACTION_SPHERE _REFRACTION_THIN
 
     #pragma shader_feature_local _ _EMISSIVE_MAPPING_PLANAR _EMISSIVE_MAPPING_TRIPLANAR
     #pragma shader_feature_local _ _MAPPING_PLANAR _MAPPING_TRIPLANAR
+#endif
     #pragma shader_feature_local _NORMALMAP_TANGENT_SPACE
     #pragma shader_feature_local _ _REQUIRE_UV2 _REQUIRE_UV3
 
     #pragma shader_feature_local _NORMALMAP
+#if 0
     #pragma shader_feature_local _MASKMAP
     #pragma shader_feature_local _BENTNORMALMAP
     #pragma shader_feature_local _EMISSIVE_COLOR_MAP
@@ -518,9 +522,10 @@ Shader "HDRP/ToonTessellation"
     #pragma shader_feature_local _IRIDESCENCE_THICKNESSMAP
     #pragma shader_feature_local _SPECULARCOLORMAP
     #pragma shader_feature_local _TRANSMITTANCECOLORMAP
-
+#endif
     #pragma shader_feature_local _DISABLE_DECALS
     #pragma shader_feature_local _DISABLE_SSR
+#if 0    
     #pragma shader_feature_local _ADD_PRECOMPUTED_VELOCITY
     #pragma shader_feature_local _ENABLE_GEOMETRIC_SPECULAR_AA
 
@@ -538,7 +543,7 @@ Shader "HDRP/ToonTessellation"
     #pragma shader_feature_local _MATERIAL_FEATURE_CLEAR_COAT
     #pragma shader_feature_local _MATERIAL_FEATURE_IRIDESCENCE
     #pragma shader_feature_local _MATERIAL_FEATURE_SPECULAR_COLOR
-
+#endif
 
     // enable dithering LOD crossfade
     #pragma multi_compile _ LOD_FADE_CROSSFADE
@@ -546,7 +551,6 @@ Shader "HDRP/ToonTessellation"
     //enable GPU instancing support
     #pragma multi_compile_instancing
     #pragma instancing_options renderinglayer
-
     // enable debug shado
 //    #pragma multi_compile _ UTS_DEBUG_SELFSHADOW
 //    #pragma multi_compile _ UTS_DEBUG_SHADOWMAP
