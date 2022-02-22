@@ -1,0 +1,5 @@
+{
+        "displayName": "Legacy render pipeline",
+        "description": "Sample scenes for the legacy (built-in) pipe-lines.",
+	"createSeparatePackage": false
+}

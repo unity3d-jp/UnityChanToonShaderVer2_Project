@@ -1,0 +1,5 @@
+{
+        "displayName": "Universal render pipeline",
+        "description": "Sample scenes for Universal render pipeline.",
+	"createSeparatePackage": false
+}

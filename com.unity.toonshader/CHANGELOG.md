@@ -1,5 +1,5 @@
 # Changelog
-## [0.6.0-preview] - 2022-02-16
+## [0.6.0-preview] - 2022-02-22
 ### Updated:
 * Replaced test VM to use gtx1080
 * Updated README.md
@@ -7,7 +7,10 @@
 * Shader version properties in all the render pipeline shaders.
 ### Fixed:
 * Some unnecessary classes were public.
-* URP: Depth output later then 10.0.x.
+* URP: a depth output issue later then 10.0.x. (Thanks to riina)
+* Typos in README.md
+* promotion test issues.
+* no .sample.json files under each render-pileline sample folder.
 
 ## [0.5.0-preview] - 2022-01-20
 ### Updated:
@@ -23,7 +26,7 @@
 
 
 ### Known Issues:
-* HDRP: When outputting AOV images, UTS Outline is also put into the images. In such cases, please disable OUTLINE in Material Inspectors. 
+* HDRP: When outputting AOV images, UTS Outline is also put into the images. In such cases, please disable OUTLINE in Material Inspectors.
 
 ## [0.4.1-preview] - 2021-10-20
 ### Added
