@@ -54,30 +54,6 @@ test_{{ platform.name }}_{{ editor.version }}:
 {% endfor %}
 {% endfor %}
 
-promote_test:
-{% for editor in test_editors %}
-{% for platform in promotion_test_platforms %}
-promotion_test_{{ platform.name }}_{{ editor.version }}:
-  name : {{ yamato_name }} Promotion Test {{ editor.version }} on {{ platform.name }}
-  agent:
-    type: {{ platform.type }}
-    image: {{ platform.image }}
-    flavor: {{ platform.flavor}}
-  variables:
-    UPMCI_PROMOTION: 1
-  commands:
-    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-    - upm-ci package test --unity-version {{ editor.version }}
-  artifacts:
-    {{ yamato_name }}_promotion_test_results:
-      paths:
-        - "upm-ci~/test-results/**/*"
-  dependencies:
-    - .yamato/upm-ci-{{ yamato_name }}.yml#pack
-{% endfor %}
-{% endfor %}
-
-
 publish:
   name: Publish {{ yamato_name }} to Internal Registry
   agent:
