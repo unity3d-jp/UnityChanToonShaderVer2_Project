@@ -1,4 +1,10 @@
 # Changelog
+## [0.6.1-preview] - 2022-02-24
+### Fixed:
+* typo in inspector.
+* removed .sample.json under Samples~ folder
+* Some unnecessary classes were public.
+
 ## [0.6.0-preview] - 2022-02-22
 ### Updated:
 * Replaced test VM to use gtx1080

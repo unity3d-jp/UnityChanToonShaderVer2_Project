@@ -7,7 +7,7 @@ namespace UnityEditor.Rendering.Toon
 {
     [CustomEditor(typeof(ModelToonEvAdjustment))]
 
-    public class ModelToonEvAdjustmentInspector : Editor
+    internal class ModelToonEvAdjustmentInspector : Editor
     {
         SerializedObject m_SerializedObject;
 

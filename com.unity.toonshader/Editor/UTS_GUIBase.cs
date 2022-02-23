@@ -29,7 +29,7 @@ namespace UnityEditor.Rendering.Toon
     {
         protected const float kVersionX = 0.0f;
         protected const float kVersionY = 6.0f;
-        protected const float kVersionZ = 0.0f;
+        protected const float kVersionZ = 1.0f;
 
         internal virtual string srpDefaultLightModeName { get; }
         internal virtual void TessellationSetting(Material materal) { }
@@ -901,7 +901,7 @@ namespace UnityEditor.Rendering.Toon
                 }
                 else if (selectedUI == 1)
                 {
-                    _SimpleUI = true;   //UTS2 Biginner GUI
+                    _SimpleUI = true;   //UTS2 Beginner GUI
                 }
                 //Original/Custom GUI toggle button.
                 if (_OriginalInspector)
@@ -1405,7 +1405,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (material.GetInt(ShaderPropSimpleUI) == 1)
                 {
-                    _SimpleUI = true; //UTS2 Custom GUI Biginner
+                    _SimpleUI = true; //UTS2 Custom GUI Beginner
                 }
                 else
                 {
@@ -1420,12 +1420,12 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (GUILayout.Button("Pro / Full Control", middleButtonStyle))
                 {
-                    material.SetInt(ShaderPropSimpleUI, 1); //UTS2 Custom GUI Biginner
+                    material.SetInt(ShaderPropSimpleUI, 1); //UTS2 Custom GUI Beginner
                 }
             }
             else
             {
-                if (GUILayout.Button("Biginner", middleButtonStyle))
+                if (GUILayout.Button("Beginner", middleButtonStyle))
                 {
                     material.SetInt(ShaderPropSimpleUI, 0); //UTS2 Custom GUI Pro
                 }
