@@ -587,7 +587,7 @@ Shader "HDRP/ToonTessellation"
     //-------------------------------------------------------------------------------------
     // variable declaration
     //-------------------------------------------------------------------------------------
-    #include "UtsProperties.hlsl"
+    #include "UtsHdrpProperties.hlsl"
 
     // TODO:
     // Currently, Lit.hlsl and LitData.hlsl are included for every pass. Split Lit.hlsl in two:

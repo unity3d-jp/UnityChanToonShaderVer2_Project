@@ -183,6 +183,8 @@ half _Metallic;
 half _BumpScale;
 half _OcclusionStrength;
 half _Surface;
+
+
 CBUFFER_END
 
 //sampler2D _MainTex;
