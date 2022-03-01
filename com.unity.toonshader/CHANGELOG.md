@@ -1,8 +1,13 @@
 # Changelog
-## [0.7.0-preview] - 2022-03-01
+## [0.7.0-preview] - 2022-03-02
 ### Updated:
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
+
+### Removed:
+* Removed Game Recommendation window and changed the default values of shader variables.
+* Removed Simple UI.
+* Removed Japanese and English manual link buttons.
 
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿//#define USE_GAME_RECOMMENDATION 
+//#define USE_SIMPLE_UI
+//#define USE_MANUAL_LINK_BUTTONS
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-
 namespace UnityEditor.Rendering.Toon
 {
+#if USE_GAME_RECOMMENDATION
     internal struct GameRecommendation
     {
         public float ShaderPropIsLightColor_Base;
@@ -24,7 +27,7 @@ namespace UnityEditor.Rendering.Toon
         public float ShaderPropUnlit_Intensity;
         public float ShaderPropIs_Filter_LightColor;
     };
-
+#endif //USE_GAME_RECOMMENDATION
     internal class UTS_GUIBase : UnityEditor.ShaderGUI
     {
         protected const float kVersionX = 0.0f;
@@ -276,10 +279,12 @@ namespace UnityEditor.Rendering.Toon
         protected static int _StencilNo_Setting;
         protected static bool _OriginalInspector = false;
         protected static bool _SimpleUI = false;
+#if USE_GAME_RECOMMENDATION
         //For display messages
         protected bool _Use_GameRecommend = false;
 
         internal GameRecommendation _GameRecommendationStore;
+#endif //#if USE_GAME_RECOMMENDATION
         //Initial values of Foldout.
         protected static bool _BasicShaderSettings_Foldout = false;
         protected static bool _BasicThreeColors_Foldout = true;
@@ -890,7 +895,7 @@ namespace UnityEditor.Rendering.Toon
 
             //Line 1 horizontal 3 buttons.
             EditorGUILayout.BeginHorizontal();
-#if true   // disabled SimpleUI
+#if USE_SIMPLE_UI   // disabled SimpleUI
             //Original Inspector Selection Check.
             if (material.HasProperty(ShaderPropSimpleUI))
             {
@@ -925,8 +930,10 @@ namespace UnityEditor.Rendering.Toon
                 }
             }
 #endif
+#if USE_MANUAL_LINK_BUTTONS
             //Open the manual link.
             OpenManualLink();
+#endif
             EditorGUILayout.EndHorizontal();
 
             EditorGUI.BeginChangeCheck();
@@ -1194,7 +1201,7 @@ namespace UnityEditor.Rendering.Toon
 
             }
         }
-
+#if USE_MANUAL_LINK_BUTTONS
         void OpenManualLink()
         {
             if (GUILayout.Button("日本語マニュアル", middleButtonStyle))
@@ -1206,7 +1213,7 @@ namespace UnityEditor.Rendering.Toon
                 Application.OpenURL("https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/urp/master/Manual/UTS2_Manual_en.md");
             }
         }
-
+#endif
         void GUI_SetRTHS(Material material)
         {
 
@@ -1400,6 +1407,7 @@ namespace UnityEditor.Rendering.Toon
 
         void GUI_OptionMenu(Material material)
         {
+#if USE_SIMPLE_UI // we remove SIMPLE UI feature.
             GUILayout.Label("Option Menu", EditorStyles.boldLabel);
             if (material.HasProperty(ShaderPropSimpleUI))
             {
@@ -1431,7 +1439,8 @@ namespace UnityEditor.Rendering.Toon
                 }
             }
             EditorGUILayout.EndHorizontal();
-
+#endif
+#if USE_GAME_RECOMMENDATION // we remove Game Recommendation window feature.
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Game Recommendation");
             //GUILayout.Space(60);
@@ -1445,11 +1454,11 @@ namespace UnityEditor.Rendering.Toon
             {
                 EditorGUILayout.HelpBox("UTS : Applying Game Recommended Settings.", MessageType.Info);
             }
-
+#endif
 
         }
 
- 
+#if USE_GAME_RECOMMENDATION
         //
         void OpenOptimizationForGameWindow(Material material)
         {
@@ -1527,7 +1536,7 @@ namespace UnityEditor.Rendering.Toon
             material.SetFloat(ShaderPropUnlit_Intensity, 1);
             material.SetFloat(ShaderPropIs_Filter_LightColor, 1);
         }
-
+#endif //#if USE_GAME_RECOMMENDATION
         void GUI_BasicThreeColors(Material material)
         {
             GUILayout.Label("3 Basic Colors Settings : Textures × Colors", EditorStyles.boldLabel);
@@ -2854,9 +2863,10 @@ namespace UnityEditor.Rendering.Toon
         {
             GUI.color = Color.white;
         }
+
         internal void GUI_GameRecommendation(Material material, EditorWindow window)
         {
-
+#if USE_GAME_RECOMMENDATION
 
             var labelWidthStore = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = 200;
@@ -3201,6 +3211,7 @@ namespace UnityEditor.Rendering.Toon
             }
             EditorGUILayout.EndHorizontal();
             EditorGUIUtility.labelWidth = labelWidthStore;
+#endif //USE_GAME_RECOMMENDATION
         }
         void GUI_LightColorContribution(Material material)
         {
