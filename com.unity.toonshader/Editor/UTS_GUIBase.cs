@@ -307,7 +307,7 @@ namespace UnityEditor.Rendering.Toon
 
         // -----------------------------------------------------
         //Specify only those that use the m_MaterialEditor method as their UI.
-        // UTS2 materal properties -------------------------
+        // UTS3 materal properties -------------------------
         protected MaterialProperty utsTechnique = null;
         protected MaterialProperty transparentMode = null;
         protected MaterialProperty clippingMode = null;
@@ -1167,6 +1167,22 @@ namespace UnityEditor.Rendering.Toon
 
 
 
+        int  MaterialGetInt(Material material, string prop )
+        {
+#if UNITY_2021_1_OR_NEWER
+            return material.GetInteger(prop);
+#else
+            return material.GetInt(prop);
+#endif
+        }
+        void MaterialSetint(Material material, string prop, int value)
+        {
+#if UNITY_2021_1_OR_NEWER
+            material.SetInteger(prop, value);
+#else
+            material.SetInt(prop, value);
+#endif
+        }
 
         bool GUI_Toggle(Material material, string label, string prop, bool value)
         {
@@ -1175,7 +1191,7 @@ namespace UnityEditor.Rendering.Toon
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.RegisterPropertyChangeUndo(label);
-                material.SetInt(prop, ret ? 1 : 0);
+                MaterialSetint(material, prop, ret ? 1 : 0);
             }
             return ret;
         }
@@ -1618,6 +1634,7 @@ namespace UnityEditor.Rendering.Toon
                 //EditorGUI.indentLevel++;
 
                 GUILayout.Label("NormalMap Effectiveness", EditorStyles.boldLabel);
+#if USE_TOGGLE_BUTTONS
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("3 Basic Colors");
                 //GUILayout.Space(60);
@@ -1625,14 +1642,14 @@ namespace UnityEditor.Rendering.Toon
                 {
                     if (GUILayout.Button(STR_OFFSTATE, shortButtonStyle))
                     {
-                        material.SetFloat(ShaderPropIs_NormalMapToBase, 1);
+                        material.SetInt(ShaderPropIs_NormalMapToBase, 1);
                     }
                 }
                 else
                 {
                     if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                     {
-                        material.SetFloat(ShaderPropIs_NormalMapToBase, 0);
+                        material.SetInt(ShaderPropIs_NormalMapToBase, 0);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
@@ -1674,7 +1691,12 @@ namespace UnityEditor.Rendering.Toon
                     }
                 }
                 EditorGUILayout.EndHorizontal();
+#else
+                GUI_Toggle(material, "3 Basic Colors", ShaderPropIs_NormalMapToBase, MaterialGetInt(material, ShaderPropIs_NormalMapToBase) != 0);
+                GUI_Toggle(material, "HighColor", ShaderPropNormalMapToHighColor, MaterialGetInt(material, ShaderPropNormalMapToHighColor) != 0);
+                GUI_Toggle(material, "RimLight", ShaderPropIsNormalMapToRimLight, MaterialGetInt(material, ShaderPropIsNormalMapToRimLight) != 0);
 
+#endif
                 //EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
             }
