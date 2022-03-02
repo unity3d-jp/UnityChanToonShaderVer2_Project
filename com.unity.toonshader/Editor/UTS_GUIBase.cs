@@ -1183,7 +1183,26 @@ namespace UnityEditor.Rendering.Toon
             material.SetInt(prop, value);
 #endif
         }
+        bool GUI_ToggleShaderKeyword(Material material, string label, string keyword)
+        {
+            var isEnabled = material.IsKeywordEnabled(keyword);
 
+            EditorGUI.BeginChangeCheck();
+            var ret = EditorGUILayout.Toggle(label, isEnabled);
+            if (EditorGUI.EndChangeCheck())
+            {
+                m_MaterialEditor.RegisterPropertyChangeUndo(label);
+                if ( ret == false )
+                {
+                    material.DisableKeyword(keyword);
+                }
+                else
+                {
+                    material.EnableKeyword(keyword);
+                }
+            }
+            return ret;
+        }
         bool GUI_Toggle(Material material, string label, string prop, bool value)
         {
             EditorGUI.BeginChangeCheck();
@@ -1245,9 +1264,10 @@ namespace UnityEditor.Rendering.Toon
         {
 
             EditorGUILayout.BeginHorizontal();
+
+#if USE_TOGGLE_BUTTONS
             EditorGUILayout.PrefixLabel("Raytraced Hard Shadow");
             var isRTHSenabled = material.IsKeywordEnabled(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
-
             if (isRTHSenabled)
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
@@ -1262,7 +1282,9 @@ namespace UnityEditor.Rendering.Toon
                     material.EnableKeyword(ShaderDefineUTS_USE_RAYTRACING_SHADOW);
                 }
             }
-
+#else
+            var isRTHSenabled = GUI_ToggleShaderKeyword(material, "Raytraced Hard Shadow", ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+#endif
             EditorGUILayout.EndHorizontal();
             if (isRTHSenabled)
             {
@@ -1912,8 +1934,9 @@ namespace UnityEditor.Rendering.Toon
                     }
                 }
                 EditorGUILayout.EndHorizontal();
-
+#if USE_TOGGLE_BUTTONS
                 EditorGUILayout.BeginHorizontal();
+
                 EditorGUILayout.PrefixLabel("ShadowMask on HihgColor");
                 //GUILayout.Space(60);
                 if (material.GetFloat(ShaderPropIs_UseTweakHighColorOnShadow) == 0)
@@ -1931,13 +1954,25 @@ namespace UnityEditor.Rendering.Toon
                     }
                 }
                 EditorGUILayout.EndHorizontal();
-
                 if (material.GetFloat(ShaderPropIs_UseTweakHighColorOnShadow) == 1)
                 {
                     EditorGUI.indentLevel++;
                     m_MaterialEditor.RangeProperty(tweakHighColorOnShadow, "HighColor Power on Shadow");
                     EditorGUI.indentLevel--;
                 }
+#else
+                var ret = GUI_Toggle(material, "ShadowMask on HihgColor", ShaderPropIs_UseTweakHighColorOnShadow, MaterialGetInt(material, ShaderPropIs_UseTweakHighColorOnShadow) != 0);
+                EditorGUI.BeginDisabledGroup(!ret);
+                {
+                    EditorGUI.indentLevel++;
+                    m_MaterialEditor.RangeProperty(tweakHighColorOnShadow, "HighColor Power on Shadow");
+                    EditorGUI.indentLevel--;
+                }
+                EditorGUI.EndDisabledGroup();
+#endif
+
+
+
             }
 
             EditorGUILayout.Space();
