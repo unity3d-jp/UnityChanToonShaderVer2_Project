@@ -1753,8 +1753,8 @@ namespace UnityEditor.Rendering.Toon
         void GUI_SystemShadows(Material material)
         {
 
-            GUILayout.Label("System Shadows : Self Shadows Receiving", EditorStyles.boldLabel);
-
+            GUILayout.Label("System Shadows:", EditorStyles.boldLabel);
+#if USE_TOGGLE_BUTTONS
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Receive System Shadows");
             //GUILayout.Space(60);
@@ -1773,8 +1773,11 @@ namespace UnityEditor.Rendering.Toon
                 }
             }
             EditorGUILayout.EndHorizontal();
-
-            if (material.GetFloat(ShaderPropSetSystemShadowsToBase) == 1)
+#else
+            bool isEnabled = GUI_Toggle(material, "Receive System Shadows", ShaderPropSetSystemShadowsToBase, MaterialGetInt(material,ShaderPropSetSystemShadowsToBase) != 0);
+#endif
+            //           if (material.GetFloat(ShaderPropSetSystemShadowsToBase) == 1)
+            EditorGUI.BeginDisabledGroup(!isEnabled);
             {
                 EditorGUI.indentLevel++;
                 m_MaterialEditor.RangeProperty(tweak_SystemShadowsLevel, "System Shadows Level");
@@ -1782,6 +1785,7 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
             }
+            EditorGUI.EndDisabledGroup();
             EditorGUILayout.Space();
         }
 
