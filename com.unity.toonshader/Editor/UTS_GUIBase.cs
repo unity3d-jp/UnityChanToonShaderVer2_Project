@@ -1,6 +1,7 @@
 ﻿//#define USE_GAME_RECOMMENDATION 
 //#define USE_SIMPLE_UI
 //#define USE_MANUAL_LINK_BUTTONS
+//#define USE_TOGGLE_BUTTONS
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -1167,7 +1168,17 @@ namespace UnityEditor.Rendering.Toon
 
 
 
-
+        bool GUI_Toggle(Material material, string label, string prop, bool value)
+        {
+            EditorGUI.BeginChangeCheck();
+            var ret = EditorGUILayout.Toggle(label, value);
+            if (EditorGUI.EndChangeCheck())
+            {
+                m_MaterialEditor.RegisterPropertyChangeUndo(label);
+                material.SetInt(prop, ret ? 1 : 0);
+            }
+            return ret;
+        }
 
         // --------------------------------
 
@@ -1247,6 +1258,7 @@ namespace UnityEditor.Rendering.Toon
         {
 
             EditorGUILayout.BeginHorizontal();
+#if USE_TOGGLE_BUTTONS
             EditorGUILayout.PrefixLabel("Auto Queue");
 
             if (_autoRenderQueue == 0)
@@ -1263,11 +1275,18 @@ namespace UnityEditor.Rendering.Toon
                     material.SetInt(ShaderPropAutoRenderQueue, _autoRenderQueue = 0);
                 }
             }
+#else
+            _autoRenderQueue = GUI_Toggle(material, "Auto Render Queue", ShaderPropAutoRenderQueue, _autoRenderQueue == 1) ? 1 : 0;
+#endif
             EditorGUILayout.EndHorizontal();
+            EditorGUI.indentLevel++;
             EditorGUI.BeginDisabledGroup(_autoRenderQueue == 1);
             _renderQueue = (int)EditorGUILayout.IntField("Render Queue", material.renderQueue);
             EditorGUI.EndDisabledGroup();
+            EditorGUI.indentLevel--;
         }
+
+
         void GUI_SetCullingMode(Material material)
         {
             const string _CullMode = "_CullMode";
