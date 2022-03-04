@@ -217,9 +217,7 @@ In addition to selecting the two basic workflow modes, you can add a variety of 
 
 | `Item` | Function | Property |
 |:-------------------|:-------------------|:-------------------|
-| `日本語マニュアル` | Using the browser jumps to the Unity Toon Shader  Japanese official manual. |  |
-| `English Manual` | Using the browser jumps to the Unity Toon Shader  English official manual. |  |
-| `Workflow Mode` | Choose your prefer workflow mode from either `DoubleShadeWithFeather` or `ShadingGradeMap`. |  |
+| `Mode` | Choose your prefer workflow mode from either `DoubleShadeWithFeather` or `ShadingGradeMap`. |  |
 | `Culling Mode` | Designates which side of a polygon will not be drawn (culling). Available options are: `Culling Off` (both sides drawn) / `Culling Front` (front side culling) / `Culling Back` (back side culling). `Back` is selected by default. In some cases, selecting `Culling Off` can cause the normal map and lighting to display strangely. | _CullMode |
 | `Auto Queue` | When `Active`, the render queue is set appropriately according to the function of the shader. When `Off`, you can set a custom render queue by entering a value in the `Render Queue` box below. |  |
 | `Render Queue` | Set the value of the custom render queue. |  |
@@ -233,9 +231,7 @@ In addition to selecting the two basic workflow modes, you can add a variety of 
 | `Clipping Level` | Designates the strength of the clipping mask. | _Clipping_Level |
 | `Transparency Level` | Used by `TransClipping` shaders. Adjusts the transparency level by treating the clipping mask grayscale level as an α value. | _Tweak_transparency |
 | `Use BaseMap αas Clipping Mask` | A property only found in `TransClipping` shaders. Checking this property will use the A channel, including the `BaseMap`, as a clipping mask. Designating a `ClippingMask` is not required. | _IsBaseMapAlphaAsClippingMask |
-| Option Menu | The list of Optional features is below. |  |
-| `Current UI Type` | The current selection of user interface is displayed on the button. By pressing the button, you can switch UTS's GUI to `Beginner` mode. In `Beginner` mode, you can control basic UTS functions only. Toggle back to `Pro / Full Controll` mode. |  |
-| `Game Recommendation` | Set up convenient settings for enjoying Game/VRChat, where various lighting environments are mixed together, all at once. When setting up for Game/VRChat, recommend you to start from this button first. |  |
+
 
 ---
 ### Note: Game Remommendation feature : Useful functions for VRChat/Game users
@@ -490,7 +486,7 @@ It is used to reflect the main directional light. When the light moves the refle
 |:-------------------|:-------------------|:-------------------|
 | `HighColor` | Specifies the high color. If you are not using it, set it to Black (0,0,0). High color moves according to the direction of light. You can specify texture as well as color specification. By using texture, you can use complex colors. It will be multiplied to the (right) color palette, so if you only want the texture’s color, set the color pallet to white (1,1,1). If you do not need it, you do not have to touch the settings. | _HighColor, _HighColor_Tex |
 | `HighColor Power` | Adjust the high color’s range (In specular lighting terms, this will be the “power”) | _HighColor_Power |
-| `Specular Mode` | In case of `Active`, render the high color range as speculum lighting (gloss). If turned off it the boundaries of the high color range will be drawn as circles. | _Is_SpecularToHighColor |
+| `Specular Mode` | `Circle` A single specular light is rendered as a circle with a single color. <br/>`Natural` A single specular light is rendered as a specular light as in normal CG. | _Is_SpecularToHighColor |
 | `Color Blend Mode` | In case of `Additive`, add the High Color to the base color(It becomes brighter). Specular can only be used with the Add mode. In case of `Multiply`, multiply the High color with the base color(It becomes darker). | _Is_BlendAddToHiColor |
 | `ShadowMask on HighColor` | In case of `Active`, mask the high color area on the shadow area. | _Is_UseTweakHighColorOnShadow |
 | `HighColor Power on Shadow` | Adjusts the power of the high color range in shadows. | _TweakHighColorOnShadow |

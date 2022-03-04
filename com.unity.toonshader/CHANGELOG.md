@@ -3,7 +3,7 @@
 ### Updated:
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
-
+* Updated UIs and documentation of them.
 ### Removed:
 * Removed Game Recommendation window and changed the default values of shader variables.
 * Removed Simple UI.
