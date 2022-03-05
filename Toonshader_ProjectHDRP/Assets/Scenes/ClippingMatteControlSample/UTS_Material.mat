@@ -423,6 +423,7 @@ Material:
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
+    - _ThicknessMultiplier: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -461,8 +462,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersionX: 0
-    - _utsVersionY: 0
-    - _utsVersionZ: 2
+    - _utsVersionY: 7
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.46226418, g: 0.065414734, b: 0.107349426, a: 1}
     - _2nd_ShadeColor: {r: 0.3490566, g: 0.118547514, b: 0.118547514, a: 1}
@@ -498,3 +499,4 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
+    - emissive: {r: 0, g: 0, b: 0, a: 1}

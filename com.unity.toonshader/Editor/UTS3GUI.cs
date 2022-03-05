@@ -6,6 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering;
+
+
 namespace UnityEditor.Rendering.Toon
 {
 #if USE_GAME_RECOMMENDATION
@@ -29,19 +32,99 @@ namespace UnityEditor.Rendering.Toon
         public float ShaderPropIs_Filter_LightColor;
     };
 #endif //USE_GAME_RECOMMENDATION
-    internal class UTS_GUIBase : UnityEditor.ShaderGUI
+    internal partial class UTS3GUI : UnityEditor.ShaderGUI
     {
+
+
         protected const float kVersionX = 0.0f;
         protected const float kVersionY = 7.0f;
         protected const float kVersionZ = 0.0f;
 
-        internal virtual string srpDefaultLightModeName { get; }
-        internal virtual void TessellationSetting(Material materal) { }
-        internal virtual void RenderingPerChennelsSetting(Material materal) { }
-        internal virtual void ApplyTessellation(Material materal) { }
-        internal virtual void ApplyRenderingPerChennelsSetting(Material materal) { }
-        internal virtual void FindTessellationProperties(MaterialProperty[] props) { }
-        internal virtual bool handleTessellation { get; }
+        // Render Pipelines UTS supports are the followings 
+        enum RenderPipeline
+        {
+            Unknown,
+            Legacy,
+            Universal,
+            HDRP,
+        }
+
+        RenderPipeline currentRenderPipeline
+        {
+            get
+            {
+                const string kHdrpShaderPrefix = "HDRP/";
+                const string kUrpShaderPrefix = "Universal Render Pipeline/";
+                var currentRenderPipeline = GraphicsSettings.currentRenderPipeline;
+                if (currentRenderPipeline == null)
+                {
+                    return RenderPipeline.Legacy; 
+                }
+                if (currentRenderPipeline.defaultMaterial.shader.name.StartsWith(kHdrpShaderPrefix))
+                {
+                    return RenderPipeline.HDRP;
+                }
+                if (currentRenderPipeline.defaultMaterial.shader.name.StartsWith(kUrpShaderPrefix))
+                {
+                    return RenderPipeline.Universal;
+                }
+                return RenderPipeline.Unknown;
+            }
+        }
+        internal string srpDefaultLightModeName 
+        {
+             get
+             {
+                const string legacyDefaultLightModeName = "Always";
+                const string srpDefaultLightModeName = "SRPDefaultUnlit";
+
+                if (currentRenderPipeline == RenderPipeline.Legacy)
+                {
+                    return legacyDefaultLightModeName; // default.
+                }
+
+                return srpDefaultLightModeName;
+             }
+        }
+
+
+        internal  void TessellationSetting(Material material) 
+        {
+            if (currentRenderPipeline == RenderPipeline.HDRP)
+            {
+
+                TessellationSettingHDRP(material);
+            }
+
+        }
+        internal  void RenderingPerChennelsSetting(Material material) 
+        {
+            if (currentRenderPipeline == RenderPipeline.HDRP)
+            {
+
+                RenderingPerChennelsSettingHDRP(material);
+            }
+        }
+        internal  void ApplyTessellation(Material materal) 
+        {
+            if (currentRenderPipeline == RenderPipeline.HDRP)
+            {
+                ApplyTessellationHDRP(materal);
+            }
+        }
+        internal  void ApplyRenderingPerChennelsSetting(Material material) 
+        {
+
+        }
+        internal  void FindTessellationProperties(MaterialProperty[] props) 
+        {
+            if (currentRenderPipeline == RenderPipeline.HDRP)
+            {
+
+                FindTessellationPropertiesHDRP(props);
+            }
+        }
+
         protected const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         protected const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
         protected const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
@@ -152,9 +235,10 @@ namespace UnityEditor.Rendering.Toon
         protected const string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
 
         protected const string ShaderDefineIS_CLIPPING_MATTE = "_IS_CLIPPING_MATTE";
+#if  USE_TOGGLE_BUTTONS
         protected const string STR_ONSTATE = "Active";
         protected const string STR_OFFSTATE = "Off";
-
+#endif
         protected readonly string[] MainTexHash128 = { "_MainTexHash128_0", "_MainTexHash128_1", "_MainTexHash128_2", "_MainTexHash128_3" };
         protected readonly string[] MainTexGUID =  { "_MainTexGUID_0", "_MainTexGUID_1", "_MainTexGUID_2", "_MainTexGUID_3" };
        //
@@ -895,7 +979,7 @@ namespace UnityEditor.Rendering.Toon
         }
         // --------------------------------
 
-        public UTS_GUIBase()
+        public UTS3GUI()
         {
 
         }
@@ -1443,7 +1527,7 @@ namespace UnityEditor.Rendering.Toon
         {
             GUILayout.Label("Options for Clipping or TransClipping features", EditorStyles.boldLabel);
             m_MaterialEditor.TexturePropertySingleLine(Styles.clippingMaskText, clippingMask);
-
+#if USE_TOGGLE_BUTTONS
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Inverse Clipping Mask");
             //GUILayout.Space(60);
@@ -1462,6 +1546,9 @@ namespace UnityEditor.Rendering.Toon
                 }
             }
             EditorGUILayout.EndHorizontal();
+#else
+            GUI_Toggle(material, "Inverse Clipping Mask", ShaderPropInverseClipping,MaterialGetInt(material, ShaderPropInverseClipping)!= 0 );
+#endif
 
             m_MaterialEditor.RangeProperty(clipping_Level, "Clipping Level");
         }
@@ -1471,7 +1558,7 @@ namespace UnityEditor.Rendering.Toon
 
             GUILayout.Label("Options for TransClipping or Transparent features", EditorStyles.boldLabel);
             m_MaterialEditor.RangeProperty(tweak_transparency, "Transparency Level");
-
+#if USE_TOGGLE_BUTTONS
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Use BaseMap α as Clipping Mask");
             //GUILayout.Space(60);
@@ -1490,6 +1577,9 @@ namespace UnityEditor.Rendering.Toon
                 }
             }
             EditorGUILayout.EndHorizontal();
+#else
+            GUI_Toggle(material, "Use BaseMap Alpha as Clipping Mask", ShaderPropIsBaseMapAlphaAsClippingMask, MaterialGetInt(material, ShaderPropIsBaseMapAlphaAsClippingMask) != 0);
+#endif
         }
 
         void GUI_OptionMenu(Material material)
@@ -1903,6 +1993,7 @@ namespace UnityEditor.Rendering.Toon
             GUILayout.Label("    Settings for PointLights in ForwardAdd Pass");
             EditorGUI.indentLevel++;
             m_MaterialEditor.RangeProperty(stepOffset, "Step Offset for PointLights");
+#if USE_TOGGLE_BUTTONS
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("PointLights Hi-Cut Filter");
@@ -1918,11 +2009,13 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Is_Filter_HiCutPointLightColor", 0);
+                    material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, 0);
                 }
             }
             EditorGUILayout.EndHorizontal();
-
+#else
+            GUI_Toggle(material, "PointLights Hi-Cut Filter", ShaderPropIsFilterHiCutPointLightColor, MaterialGetInt(material, ShaderPropIsFilterHiCutPointLightColor) != 0);
+#endif
             EditorGUI.indentLevel--;
             EditorGUILayout.Space();
         }
@@ -3657,7 +3750,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (GUILayout.Button(STR_ONSTATE, shortButtonStyle))
                 {
-                    material.SetFloat("_Is_Filter_HiCutPointLightColor", 0);
+                    material.SetFloat(ShaderPropIsFilterHiCutPointLightColor, 0);
                 }
             }
             RestoreGUIColor();

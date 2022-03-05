@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using UnityEngine.Rendering;
-using UnityEditor.Rendering.Toon;
-namespace UnityEditor.Rendering.HighDefinition.Toon
+
+namespace UnityEditor.Rendering.Toon
 {
-    internal partial class HDRPToonGUI : UTS_GUIBase
+    internal partial class UTS3GUI
     {
         enum TessellationMode
         {
@@ -57,7 +57,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
 
 
 
-        internal override  void FindTessellationProperties(MaterialProperty[] props)
+        internal   void FindTessellationPropertiesHDRP(MaterialProperty[] props)
         {
             tessellationMode = FindProperty(kTessellationMode, props, false);
             tessellationFactor = FindProperty(kTessellationFactor, props, false);
@@ -78,7 +78,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
                 material.DisableKeyword(keyword);
         }
 
-        internal override void ApplyTessellation(Material material)
+        internal  void ApplyTessellationHDRP(Material material)
         {
             if (material.HasProperty(kTessellationMode))
             {
@@ -113,7 +113,7 @@ namespace UnityEditor.Rendering.HighDefinition.Toon
         }
 
         static bool _TessellationSettings_Foldout = false;
-        internal override void TessellationSetting(Material material)
+        internal  void TessellationSettingHDRP(Material material)
         {
             if (tessellationMode == null)
             {

@@ -3,7 +3,12 @@
 ### Updated:
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
-* Updated UIs and documentation of them.
+* Replaced toggle buttons Off/Active UI to Unity standard toggle.
+* Replaced some toggle buttons, such as Emissive UV Coord, Specular Mode, to dropdown menus
+* Made everything in the inspector hidden when disabled to be shown but grayed out.
+* Renamed Shader GUI class and mede them itegrated before integrate all the render pipeline shaders. All the render pipeline shaders use the same UI class.
+
+
 ### Removed:
 * Removed Game Recommendation window and changed the default values of shader variables.
 * Removed Simple UI.

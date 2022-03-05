@@ -11,8 +11,8 @@ namespace UnityEditor.Rendering.Toon
         private const float WINDOWSIZE_W = 340.0f; 
         private const float WINDOWSIZE_H = 420.0f; 
         Material m_material;
-        UTS_GUIBase m_gui;
-        internal static void OpenWindow(UTS_GUIBase gui, Material material)
+        UTS3GUI m_gui;
+        internal static void OpenWindow(UTS3GUI gui, Material material)
         {
             var window = GetWindow<GameRecommendationWindow>("Game Recommendation");
             window.m_material = material;

@@ -1150,5 +1150,5 @@ Shader "HDRP/ToonTessellation"
 
     }
 
-    CustomEditor "UnityEditor.Rendering.HighDefinition.Toon.HDRPToonGUI"
+    CustomEditor "UnityEditor.Rendering.Toon.UTS3GUI"
 }

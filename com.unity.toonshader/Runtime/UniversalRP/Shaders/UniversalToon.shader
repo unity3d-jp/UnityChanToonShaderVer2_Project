@@ -441,5 +441,5 @@ Shader "Universal Render Pipeline/Toon" {
 
 //ToonCoreEnd
     }
-    CustomEditor "UnityEditor.Rendering.Universal.Toon.ShaderGUI.UniversalToonGUI"
+    CustomEditor "UnityEditor.Rendering.Toon.UTS3GUI"
 }
