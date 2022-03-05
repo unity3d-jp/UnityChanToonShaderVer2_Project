@@ -11,6 +11,8 @@ Assets/AssetStoreTools*
 # Mac
 .DS_Store
 
+# packages
+packages-lock.json
 # Visual Studio cache directory
 .vs/
 .vscode/
