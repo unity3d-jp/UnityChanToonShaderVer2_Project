@@ -896,6 +896,7 @@ namespace UnityEditor.Rendering.Toon
 
         protected static bool Foldout(bool display, string title)
         {
+#if USE_TOGGLE_BUTTONS
             var style = new GUIStyle("ShurikenModuleTitle");
             style.font = new GUIStyle(EditorStyles.boldLabel).font;
             style.border = new RectOffset(15, 7, 4, 4);
@@ -920,10 +921,14 @@ namespace UnityEditor.Rendering.Toon
             }
 
             return display;
+#else
+            return EditorGUILayout.Foldout(display, title, true );
+#endif
         }
 
         static bool FoldoutSubMenu(bool display, string title)
         {
+#if USE_TOGGLE_BUTTONS
             var style = new GUIStyle("ShurikenModuleTitle");
             style.font = new GUIStyle(EditorStyles.boldLabel).font;
             style.border = new RectOffset(15, 7, 4, 4);
@@ -949,6 +954,9 @@ namespace UnityEditor.Rendering.Toon
             }
 
             return display;
+#else
+            return EditorGUILayout.Foldout(display, title, true);
+#endif
         }
 
 
@@ -958,9 +966,9 @@ namespace UnityEditor.Rendering.Toon
         //Specify only those that use the m_MaterialEditor method as their UI. For specifying textures and colors on a single line.
         private static class Styles
         {
-            public static GUIContent baseColorText = new GUIContent("BaseMap", "Base Color : Texture(sRGB) × Color(RGB) Default:White");
-            public static GUIContent firstShadeColorText = new GUIContent("1st ShadeMap", "1st ShadeColor : Texture(sRGB) × Color(RGB) Default:White");
-            public static GUIContent secondShadeColorText = new GUIContent("2nd ShadeMap", "2nd ShadeColor : Texture(sRGB) × Color(RGB) Default:White");
+            public static GUIContent baseColorText = new GUIContent("Base Map", "Base Color : Texture(sRGB) × Color(RGB) Default:White");
+            public static GUIContent firstShadeColorText = new GUIContent("1st Shading Map", "1st ShadeColor : Texture(sRGB) × Color(RGB) Default:White");
+            public static GUIContent secondShadeColorText = new GUIContent("2nd Shading Map", "2nd ShadeColor : Texture(sRGB) × Color(RGB) Default:White");
             public static GUIContent normalMapText = new GUIContent("NormalMap", "NormalMap : Texture(bump)");
             public static GUIContent highColorText = new GUIContent("HighColor", "High Color : Texture(sRGB) × Color(RGB) Default:Black");
             public static GUIContent highColorMaskText = new GUIContent("HighColor Mask", "HighColor Mask : Texture(linear)");
@@ -1074,7 +1082,7 @@ namespace UnityEditor.Rendering.Toon
 
 
 
-            _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Basic Shader Settings");
+            _BasicShaderSettings_Foldout = Foldout(_BasicShaderSettings_Foldout, "Shader Settings");
             if (_BasicShaderSettings_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -1117,7 +1125,7 @@ namespace UnityEditor.Rendering.Toon
 
             EditorGUILayout.Space();
 
-            _BasicThreeColors_Foldout = Foldout(_BasicThreeColors_Foldout, "【Basic Three Colors and Control Maps Setups】");
+            _BasicThreeColors_Foldout = Foldout(_BasicThreeColors_Foldout, "3 Basic Color and Control Map Settings");
             if (_BasicThreeColors_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -1128,7 +1136,7 @@ namespace UnityEditor.Rendering.Toon
 
             EditorGUILayout.Space();
 
-            _StepAndFeather_Foldout = Foldout(_StepAndFeather_Foldout, "【Basic Lookdevs : Shading Step and Feather Settings】");
+            _StepAndFeather_Foldout = Foldout(_StepAndFeather_Foldout, "Basic Lookdevs : Shading Step and Feather Settings");
             if (_StepAndFeather_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -1139,7 +1147,7 @@ namespace UnityEditor.Rendering.Toon
 
             EditorGUILayout.Space();
 
-            _HighColor_Foldout = Foldout(_HighColor_Foldout, "【HighColor Settings】");
+            _HighColor_Foldout = Foldout(_HighColor_Foldout, "High Color Settings");
             if (_HighColor_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -1154,7 +1162,7 @@ namespace UnityEditor.Rendering.Toon
 
             EditorGUILayout.Space();
 
-            _RimLight_Foldout = Foldout(_RimLight_Foldout, "【RimLight Settings】");
+            _RimLight_Foldout = Foldout(_RimLight_Foldout, "Rim Light Settings");
             if (_RimLight_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -1165,7 +1173,7 @@ namespace UnityEditor.Rendering.Toon
 
             EditorGUILayout.Space();
 
-            _MatCap_Foldout = Foldout(_MatCap_Foldout, "【MatCap : Texture Projection Settings】");
+            _MatCap_Foldout = Foldout(_MatCap_Foldout, "MatCap Settings");
             if (_MatCap_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -1190,7 +1198,7 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUILayout.Space();
             }
 
-            _Emissive_Foldout = Foldout(_Emissive_Foldout, "【Emissive : Self-luminescence Settings】");
+            _Emissive_Foldout = Foldout(_Emissive_Foldout, "Emission Settings");
             if (_Emissive_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -1205,7 +1213,7 @@ namespace UnityEditor.Rendering.Toon
             if (material.HasProperty(ShaderPropOutline) && _Transparent_Setting != _UTS_Transparent.On)
             {
                 SetuOutline(material);
-                _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
+                _Outline_Foldout = Foldout(_Outline_Foldout, "Outline Settings");
                 if (_Outline_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -1219,9 +1227,9 @@ namespace UnityEditor.Rendering.Toon
             {
                 SetupOverDrawTransparentObject(material);
             }
-            if (material.HasProperty("_TessEdgeLength"))
+            if (material.HasProperty("_TessEdgeLength") && currentRenderPipeline == RenderPipeline.Legacy)
             {
-                _Tessellation_Foldout = Foldout(_Tessellation_Foldout, "【DX11 Phong Tessellation Settings】");
+                _Tessellation_Foldout = Foldout(_Tessellation_Foldout, "Legacy Pipeline: Phong Tessellation Settings");
                 if (_Tessellation_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -1235,7 +1243,7 @@ namespace UnityEditor.Rendering.Toon
 
             if (!_SimpleUI)
             {
-                _LightColorContribution_Foldout = Foldout(_LightColorContribution_Foldout, "【LightColor Contribution to Materials】");
+                _LightColorContribution_Foldout = Foldout(_LightColorContribution_Foldout, "Light Color Contribution to Material Settings");
                 if (_LightColorContribution_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -1246,7 +1254,7 @@ namespace UnityEditor.Rendering.Toon
 
                 EditorGUILayout.Space();
 
-                _AdditionalLightingSettings_Foldout = Foldout(_AdditionalLightingSettings_Foldout, "【Environmental Lighting Contributions Setups】");
+                _AdditionalLightingSettings_Foldout = Foldout(_AdditionalLightingSettings_Foldout, "Environmental Lighting Contribution Settings");
                 if (_AdditionalLightingSettings_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -1790,7 +1798,7 @@ namespace UnityEditor.Rendering.Toon
                 m_MaterialEditor.TexturePropertySingleLine(Styles.normalMapText, normalMap, bumpScale);
                 m_MaterialEditor.TextureScaleOffsetProperty(normalMap);
 
-                //EditorGUI.indentLevel++;
+                EditorGUI.indentLevel++;
 
                 GUILayout.Label("NormalMap Effectiveness", EditorStyles.boldLabel);
 #if USE_TOGGLE_BUTTONS
@@ -1852,11 +1860,11 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUILayout.EndHorizontal();
 #else
                 GUI_Toggle(material, "3 Basic Colors", ShaderPropIs_NormalMapToBase, MaterialGetInt(material, ShaderPropIs_NormalMapToBase) != 0);
-                GUI_Toggle(material, "HighColor", ShaderPropNormalMapToHighColor, MaterialGetInt(material, ShaderPropNormalMapToHighColor) != 0);
-                GUI_Toggle(material, "RimLight", ShaderPropIsNormalMapToRimLight, MaterialGetInt(material, ShaderPropIsNormalMapToRimLight) != 0);
+                GUI_Toggle(material, "High Color", ShaderPropNormalMapToHighColor, MaterialGetInt(material, ShaderPropNormalMapToHighColor) != 0);
+                GUI_Toggle(material, "Rim Light", ShaderPropIsNormalMapToRimLight, MaterialGetInt(material, ShaderPropIsNormalMapToRimLight) != 0);
 
 #endif
-                //EditorGUI.indentLevel--;
+                EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
             }
 
@@ -3846,7 +3854,7 @@ namespace UnityEditor.Rendering.Toon
         }
         void GUI_LightColorContribution(Material material)
         {
-            GUILayout.Label("Realtime LightColor Contribution to each color", EditorStyles.boldLabel);
+            GUILayout.Label("Realtime Light Color Contribution to each color", EditorStyles.boldLabel);
 #if USE_TOGGLE_BUTTONS
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Base Color");
@@ -4026,8 +4034,8 @@ namespace UnityEditor.Rendering.Toon
             }
 #else
             GUI_Toggle(material, "Base Color", ShaderPropIsLightColor_Base, MaterialGetInt(material, ShaderPropIsLightColor_Base)!= 0);
-            GUI_Toggle(material, "1st Shade Color", ShaderPropIs_LightColor_1st_Shade, MaterialGetInt(material, ShaderPropIs_LightColor_1st_Shade) != 0);
-            GUI_Toggle(material, "2nd Shade Color", ShaderPropIs_LightColor_2nd_Shade, MaterialGetInt(material, ShaderPropIs_LightColor_2nd_Shade) != 0);
+            GUI_Toggle(material, "1st Shading Color", ShaderPropIs_LightColor_1st_Shade, MaterialGetInt(material, ShaderPropIs_LightColor_1st_Shade) != 0);
+            GUI_Toggle(material, "2nd Shading Color", ShaderPropIs_LightColor_2nd_Shade, MaterialGetInt(material, ShaderPropIs_LightColor_2nd_Shade) != 0);
             GUI_Toggle(material, "High Color", ShaderPropIs_LightColor_HighColor, MaterialGetInt(material, ShaderPropIs_LightColor_HighColor) != 0);
             GUI_Toggle(material, "Rim Light", ShaderPropIs_LightColor_RimLight, MaterialGetInt(material, ShaderPropIs_LightColor_RimLight) != 0);
             GUI_Toggle(material, "Ap_RimLight", ShaderPropIs_LightColor_Ap_RimLight, MaterialGetInt(material, ShaderPropIs_LightColor_Ap_RimLight) != 0);
