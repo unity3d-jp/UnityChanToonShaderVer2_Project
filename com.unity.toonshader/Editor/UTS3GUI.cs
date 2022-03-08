@@ -1186,7 +1186,7 @@ namespace UnityEditor.Rendering.Toon
 
             if (IsShadingGrademap)
             {
-                _AngelRing_Foldout = Foldout(_AngelRing_Foldout, "【AngelRing Projection Settings】");
+                _AngelRing_Foldout = Foldout(_AngelRing_Foldout, "Angel Ring Projection Settings");
                 if (_AngelRing_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -1243,7 +1243,7 @@ namespace UnityEditor.Rendering.Toon
 
             if (!_SimpleUI)
             {
-                _LightColorContribution_Foldout = Foldout(_LightColorContribution_Foldout, "Light Color Contribution to Material Settings");
+                _LightColorContribution_Foldout = Foldout(_LightColorContribution_Foldout, "Light Color Effectiveness to Material Settings");
                 if (_LightColorContribution_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -1254,7 +1254,7 @@ namespace UnityEditor.Rendering.Toon
 
                 EditorGUILayout.Space();
 
-                _AdditionalLightingSettings_Foldout = Foldout(_AdditionalLightingSettings_Foldout, "Environmental Lighting Contribution Settings");
+                _AdditionalLightingSettings_Foldout = Foldout(_AdditionalLightingSettings_Foldout, "Environmental Lighting Effectiveness Settings");
                 if (_AdditionalLightingSettings_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -1724,8 +1724,9 @@ namespace UnityEditor.Rendering.Toon
 #endif //#if USE_GAME_RECOMMENDATION
         void GUI_BasicThreeColors(Material material)
         {
+#if USE_TOGGLE_BUTTONS
             GUILayout.Label("3 Basic Colors Settings : Textures × Colors", EditorStyles.boldLabel);
-
+#endif
             EditorGUILayout.BeginHorizontal();
             m_MaterialEditor.TexturePropertySingleLine(Styles.baseColorText, mainTex, baseColor);
             //v.2.0.7 Synchronize _Color to _BaseColor.
@@ -1800,7 +1801,7 @@ namespace UnityEditor.Rendering.Toon
 
                 EditorGUI.indentLevel++;
 
-                GUILayout.Label("NormalMap Effectiveness", EditorStyles.boldLabel);
+                GUILayout.Label("  NormalMap Effectiveness", EditorStyles.boldLabel);
 #if USE_TOGGLE_BUTTONS
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("3 Basic Colors");
@@ -1871,7 +1872,9 @@ namespace UnityEditor.Rendering.Toon
             _ShadowControlMaps_Foldout = FoldoutSubMenu(_ShadowControlMaps_Foldout, "● Shadow Control Maps");
             if (_ShadowControlMaps_Foldout)
             {
+                EditorGUI.indentLevel++;
                 GUI_ShadowControlMaps(material);
+                EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
             }
         }
@@ -1882,13 +1885,13 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                 {
-                    GUILayout.Label("Technique : Double Shade With Feather", EditorStyles.boldLabel);
+                    GUILayout.Label("  Mode: Double Shade With Feather", EditorStyles.boldLabel);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.firstPositionMapText, set_1st_ShadePosition);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.secondPositionMapText, set_2nd_ShadePosition);
                 }
                 else if (material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.ShadingGradeMap)
                 {    //SGM
-                    GUILayout.Label("Technique : Shading Grade Map", EditorStyles.boldLabel);
+                    GUILayout.Label("  Mode: Shading Grade Map", EditorStyles.boldLabel);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.shadingGradeMapText, shadingGradeMap);
                     m_MaterialEditor.RangeProperty(tweak_ShadingGradeMapLevel, "ShadingGradeMap Level");
                     m_MaterialEditor.RangeProperty(blurLevelSGM, "Blur Level of ShadingGradeMap");
@@ -1962,7 +1965,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.DoubleShadeWithFeather)   //DWF
                 {
-                    GUILayout.Label("Technique : Double Shade With Feather", EditorStyles.boldLabel);
+                    GUILayout.Label("Mode: Double Shade With Feather", EditorStyles.boldLabel);
                     m_MaterialEditor.RangeProperty(baseColor_Step, "BaseColor Step");
                     m_MaterialEditor.RangeProperty(baseShade_Feather, "Base/Shade Feather");
                     m_MaterialEditor.RangeProperty(shadeColor_Step, "ShadeColor Step");
@@ -1976,7 +1979,7 @@ namespace UnityEditor.Rendering.Toon
                 }
                 else if (material.GetInt(ShaderPropUtsTechniqe) == (int)_UTS_Technique.ShadingGradeMap)
                 {    //SGM
-                    GUILayout.Label("Technique : Shading Grade Map", EditorStyles.boldLabel);
+                    GUILayout.Label("Mode: Shading Grade Map", EditorStyles.boldLabel);
                     m_MaterialEditor.RangeProperty(first_ShadeColor_Step, "1st ShaderColor Step");
                     m_MaterialEditor.RangeProperty(first_ShadeColor_Feather, "1st ShadeColor Feather");
                     m_MaterialEditor.RangeProperty(second_ShadeColor_Step, "2nd ShadeColor Step");
@@ -2711,7 +2714,7 @@ namespace UnityEditor.Rendering.Toon
             }
 
 #else
-            var angelRingEnabled = GUI_Toggle(material, "AngelRing Projection", ShaderPropAngelRing, MaterialGetInt(material, ShaderPropAngelRing) != 0);
+            var angelRingEnabled = GUI_Toggle(material, "Angel Ring Projection", ShaderPropAngelRing, MaterialGetInt(material, ShaderPropAngelRing) != 0);
             EditorGUI.BeginDisabledGroup(!angelRingEnabled);
             {
                 m_MaterialEditor.TexturePropertySingleLine(Styles.angelRingText, angelRing_Sampler, angelRing_Color);
@@ -3485,7 +3488,7 @@ namespace UnityEditor.Rendering.Toon
 
         void GUI_Tessellation(Material material)
         {
-            GUILayout.Label("Technique : DX11 Phong Tessellation", EditorStyles.boldLabel);
+//            GUILayout.Label("Technique : DX11 Phong Tessellation", EditorStyles.boldLabel);
             m_MaterialEditor.RangeProperty(tessEdgeLength, "Edge Length");
             m_MaterialEditor.RangeProperty(tessPhongStrength, "Phong Strength");
             m_MaterialEditor.RangeProperty(tessExtrusionAmount, "Extrusion Amount");
@@ -3854,7 +3857,7 @@ namespace UnityEditor.Rendering.Toon
         }
         void GUI_LightColorContribution(Material material)
         {
-            GUILayout.Label("Realtime Light Color Contribution to each color", EditorStyles.boldLabel);
+//            GUILayout.Label("Realtime Light Color Effectiveness to each color", EditorStyles.boldLabel);
 #if USE_TOGGLE_BUTTONS
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Base Color");

@@ -8,7 +8,9 @@
 * Replaced some toggle buttons, such as Emissive UV Coord, Specular Mode, to dropdown menus
 * Made everything in the inspector hidden when disabled to be shown but grayed out.
 * Replaced folder header to use Unity standard style in the inspector window.
-* Replaced '【DX11 Phong Tessellation Settings】' to 'Legacy Pipeline: Phong Tessellation Settings' as it works on Mac.
+* Replaced `【DX11 Phong Tessellation Settings】` to `Legacy Pipeline: Phong Tessellation Settings` as it works on Mac.
+* Replaced term, `Technique` to `Mode`.
+* Replaced term, `Contribution` to `Effectiveness`.
 * The titles of the items in the Inspector window, which were not always consistent, such as "Setup" and "Settings," are now consistent with "Settings.* Renamed Shader GUI class and mede them integrated before integrate all the render pipeline shaders. All the render pipeline shaders use one Custom Editor class.
 * Removed 【】in the Inspector window.
 ### Added:
