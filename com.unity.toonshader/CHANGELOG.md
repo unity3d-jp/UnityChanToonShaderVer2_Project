@@ -1,5 +1,5 @@
 # Changelog
-## [0.7.0-preview] - 2022-03-07
+## [0.7.0-preview] - 2022-03-08
 ### Updated:
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
@@ -11,14 +11,16 @@
 * Replaced `【DX11 Phong Tessellation Settings】` to `Legacy Pipeline: Phong Tessellation Settings` as it works on Mac.
 * Replaced term, `Technique` to `Mode`.
 * Replaced term, `Contribution` to `Effectiveness`.
-* The titles of the items in the Inspector window, which were not always consistent, such as "Setup" and "Settings," are now consistent with "Settings.* Renamed Shader GUI class and mede them integrated before integrate all the render pipeline shaders. All the render pipeline shaders use one Custom Editor class.
+* Replaced term, `High Color` to `High Light`.
+* Replaced "Settings for PointLights in ForwardAdd Pass" to "Point Light Settings".
+* Removed Game Recommendation window and changed the default values of shader variables.* The titles of the items in the Inspector window, which were not always consistent, such as "Setup" and "Settings," are now consistent with "Settings.* Renamed Shader GUI class and mede them integrated before integrate all the render pipeline shaders. All the render pipeline shaders use one Custom Editor class.
 * Removed 【】in the Inspector window.
 ### Added:
 * Legacy: Graphics Test 2022.2.
 * Uninversal RP: Graphics Test 2022.2.
 * HDRP: Graphics Test 2022.2.
 ### Removed:
-* Removed Game Recommendation window and changed the default values of shader variables.
+* removed   "● Additional Settings" in the Inspector.
 * Removed Simple UI.
 * Removed Japanese and English manual link buttons.
 ### Fixed:
