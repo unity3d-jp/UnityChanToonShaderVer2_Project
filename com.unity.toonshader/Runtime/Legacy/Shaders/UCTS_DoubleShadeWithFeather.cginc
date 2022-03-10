@@ -288,7 +288,7 @@ struct VertexOutput {
                 //v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
                 float _LightIntensity = lerp(0,(0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b)*attenuation,_WorldSpaceLightPos0.w) ;
                 //v.2.0.5: Filtering the high intensity zone of PointLights
-                float3 Set_LightColor = lerp(lightColor,lerp(lightColor,min(lightColor,_LightColor0.rgb*attenuation*_BaseColor_Step),_WorldSpaceLightPos0.w),_Is_Filter_HiCutPointLightColor);
+                float3 Set_LightColor = lightColor;
                 //
                 float3 Set_BaseColor = lerp( (_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base );
                 //v.2.0.5

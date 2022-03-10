@@ -972,7 +972,7 @@ namespace UnityEditor.Rendering.Toon
             public static GUIContent normalMapText = new GUIContent("Normal Map", "Normal Map : Texture(bump)");
             public static GUIContent highColorText = new GUIContent("High Light", "High Light : Texture(sRGB) × Color(RGB) Default:Black");
             public static GUIContent highColorMaskText = new GUIContent("High Light Mask", "High Light Mask : Texture(linear)");
-            public static GUIContent rimLightMaskText = new GUIContent("Rim Light Mask", "RimLight Mask : Texture(linear)");
+            public static GUIContent rimLightMaskText = new GUIContent("Rim Light Mask", "Rim Light Mask : Texture(linear)");
             public static GUIContent matCapSamplerText = new GUIContent("MatCap Sampler", "MatCap Sampler : Texture(sRGB) × Color(RGB) Default:White");
             public static GUIContent matCapMaskText = new GUIContent("MatCap Mask", "MatCap Mask : Texture(linear)");
             public static GUIContent angelRingText = new GUIContent("Angel Ring", "AngelRing : Texture(sRGB) × Color(RGB) Default:Black");
@@ -1523,7 +1523,7 @@ namespace UnityEditor.Rendering.Toon
 
 
             int _Current_StencilNo = _StencilNo_Setting;
-            _Current_StencilNo = (int)EditorGUILayout.IntField("Stencil No.", _Current_StencilNo);
+            _Current_StencilNo = (int)EditorGUILayout.IntField("Stencil Number", _Current_StencilNo);
             if (_StencilNo_Setting != _Current_StencilNo)
             {
                 material.SetInt(ShaderPropStencilNo, _Current_StencilNo);
@@ -2033,7 +2033,7 @@ namespace UnityEditor.Rendering.Toon
             }
             EditorGUILayout.EndHorizontal();
 #else
-            GUI_Toggle(material, "Point Light Hi-Cut Filter", ShaderPropIsFilterHiCutPointLightColor, MaterialGetInt(material, ShaderPropIsFilterHiCutPointLightColor) != 0);
+            GUI_Toggle(material, "Point Light High Light Filter", ShaderPropIsFilterHiCutPointLightColor, MaterialGetInt(material, ShaderPropIsFilterHiCutPointLightColor) != 0);
 #endif
             EditorGUI.indentLevel--;
             EditorGUILayout.Space();
@@ -2397,7 +2397,7 @@ namespace UnityEditor.Rendering.Toon
 
             GUILayout.Label("    RimLight Mask", EditorStyles.boldLabel);
             m_MaterialEditor.TexturePropertySingleLine(Styles.rimLightMaskText, set_RimLightMask);
-            m_MaterialEditor.RangeProperty(tweak_RimLightMaskLevel, "RimLight Mask Level");
+            m_MaterialEditor.RangeProperty(tweak_RimLightMaskLevel, "Rim Light Mask Level");
 
             //EditorGUI.indentLevel--;
 

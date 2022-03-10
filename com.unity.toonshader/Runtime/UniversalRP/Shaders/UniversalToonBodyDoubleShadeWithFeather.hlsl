@@ -287,7 +287,7 @@
                         //v.2.0.5: If Added lights is directional, set 0 as _LightIntensity
                         float _LightIntensity = lerp(0, (0.299*additionalLightColor.r + 0.587*additionalLightColor.g + 0.114*additionalLightColor.b), notDirectional);
                         //v.2.0.5: Filtering the high intensity zone of PointLights
-                        float3 Set_LightColor = lerp(lightColor, lerp(lightColor, min(lightColor, additionalLightColor.rgb*_BaseColor_Step), notDirectional), _Is_Filter_HiCutPointLightColor);
+                        float3 Set_LightColor = lightColor;
                         //
                         float3 Set_BaseColor = lerp((_BaseColor.rgb*_MainTex_var.rgb*_LightIntensity), ((_BaseColor.rgb*_MainTex_var.rgb)*Set_LightColor), _Is_LightColor_Base);
                         //v.2.0.5
