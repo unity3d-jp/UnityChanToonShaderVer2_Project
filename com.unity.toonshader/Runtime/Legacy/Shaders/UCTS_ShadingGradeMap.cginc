@@ -21,6 +21,7 @@ struct VertexInput {
 #elif _IS_ANGELRING_ON
     float2 texcoord1 : TEXCOORD1;
 #endif
+    UNITY_VERTEX_INPUT_INSTANCE_ID //
 };
 #endif
 struct VertexOutput {
@@ -49,6 +50,8 @@ struct VertexOutput {
     UNITY_FOG_COORDS(9)
     //
 #endif
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+    UNITY_VERTEX_OUTPUT_STEREO
 };
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -72,6 +75,9 @@ struct VertexOutput {
             //
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.uv0 = v.texcoord0;
 //v.2.0.4
 #ifdef _IS_ANGELRING_OFF

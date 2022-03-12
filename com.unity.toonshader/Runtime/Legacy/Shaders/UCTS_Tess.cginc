@@ -26,6 +26,7 @@ struct VertexInput
 	float3 normal : NORMAL;
 	float4 texcoord0 : TEXCOORD0;
 	float4 texcoord1 : TEXCOORD1;
+	UNITY_VERTEX_INPUT_INSTANCE_ID //
 };
 
 struct InternalTessInterp_VertexInput

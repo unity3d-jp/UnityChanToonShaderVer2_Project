@@ -230,6 +230,7 @@ Shader "Toon (Built-in)" {
             //#pragma fragmentoption ARB_precision_hint_fastest
             //#pragma multi_compile_shadowcaster
             //#pragma multi_compile_fog
+            #pragma multi_compile_instancing
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
             //V.2.0.4
@@ -268,6 +269,7 @@ Shader "Toon (Built-in)" {
             #include "Lighting.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
+            #pragma multi_compile_instancing
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
@@ -316,6 +318,7 @@ Shader "Toon (Built-in)" {
             //for Unity2018.x
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
+            #pragma multi_compile_instancing
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
             #pragma target 3.0
             // DoubleShadeWithFeather and ShadingGradeMap use different fragment shader.  
@@ -363,7 +366,6 @@ Shader "Toon (Built-in)" {
             #pragma multi_compile_shadowcaster
             #pragma multi_compile_fog
             #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal vulkan xboxone ps4 switch
-            #pragma shader_feature _ _SYNTHESIZED_TEXTURE
             #pragma target 3.0
             //v.2.0.4
             #pragma shader_feature _IS_CLIPPING_OFF _IS_CLIPPING_MODE _IS_CLIPPING_TRANSMODE

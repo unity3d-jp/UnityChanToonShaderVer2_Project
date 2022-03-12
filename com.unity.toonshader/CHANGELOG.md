@@ -1,5 +1,5 @@
 # Changelog
-## [0.7.0-preview] - 2022-03-08
+## [0.7.0-preview] - 2022-03-12
 ### Updated:
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
@@ -18,6 +18,7 @@
 * Removed Game Recommendation window and changed the default values of shader variables.* The titles of the items in the Inspector window, which were not always consistent, such as "Setup" and "Settings," are now consistent with "Settings.* Renamed Shader GUI class and mede them integrated before integrate all the render pipeline shaders. All the render pipeline shaders use one Custom Editor class.
 * Removed 【】in the Inspector window.
 ### Added:
+* Legacy: Compatibilty with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.
 * Uninversal RP: Graphics Test 2022.2.
 * HDRP: Graphics Test 2022.2.

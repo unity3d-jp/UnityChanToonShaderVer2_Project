@@ -11,6 +11,8 @@ struct VertexInput {
     float3 normal : NORMAL;
     float4 tangent : TANGENT;
     float2 texcoord0 : TEXCOORD0;
+
+    UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 #endif
 struct VertexOutput {
@@ -25,6 +27,8 @@ struct VertexOutput {
     LIGHTING_COORDS(6,7)
     UNITY_FOG_COORDS(8)
     //
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+    UNITY_VERTEX_OUTPUT_STEREO
 };
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -49,6 +53,10 @@ struct VertexOutput {
 
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
                 o.uv0 = v.texcoord0;
                 o.normalDir = UnityObjectToWorldNormal(v.normal);
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
