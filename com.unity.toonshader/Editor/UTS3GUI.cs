@@ -1792,7 +1792,7 @@ namespace UnityEditor.Rendering.Toon
             EditorGUI.EndDisabledGroup();
             EditorGUILayout.Space();
 
-            _NormalMap_Foldout = FoldoutSubMenu(_NormalMap_Foldout, "● NormalMap Settings");
+            _NormalMap_Foldout = FoldoutSubMenu(_NormalMap_Foldout, "NormalMap Settings");
             if (_NormalMap_Foldout)
             {
                 //GUILayout.Label("NormalMap Settings", EditorStyles.boldLabel);
@@ -1869,7 +1869,7 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUILayout.Space();
             }
 
-            _ShadowControlMaps_Foldout = FoldoutSubMenu(_ShadowControlMaps_Foldout, "● Shadow Control Maps");
+            _ShadowControlMaps_Foldout = FoldoutSubMenu(_ShadowControlMaps_Foldout, "Shadow Control Maps");
             if (_ShadowControlMaps_Foldout)
             {
                 EditorGUI.indentLevel++;
@@ -3466,7 +3466,7 @@ namespace UnityEditor.Rendering.Toon
             if (!_SimpleUI)
             {
 
-                _AdvancedOutline_Foldout = FoldoutSubMenu(_AdvancedOutline_Foldout, "● Advanced Outline Settings");
+                _AdvancedOutline_Foldout = FoldoutSubMenu(_AdvancedOutline_Foldout, "Advanced Outline Settings");
                 if (_AdvancedOutline_Foldout)
                 {
                     EditorGUI.indentLevel++;
@@ -4059,7 +4059,6 @@ namespace UnityEditor.Rendering.Toon
         void GUI_AdditionalLightingSettings(Material material)
         {
             m_MaterialEditor.RangeProperty(gi_Intensity, "GI Intensity");
-            m_MaterialEditor.RangeProperty(unlit_Intensity, "Unlit Intensity");
 #if USE_TOGGLE_BUTTONS
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("SceneLights Hi-Cut Filter");
@@ -4134,6 +4133,7 @@ namespace UnityEditor.Rendering.Toon
             }
 
 #else
+
             EditorGUI.BeginChangeCheck();
             var prop = ShaderPropIs_Filter_LightColor;
             var label = "Scene Light Hi-Cut Filter";
@@ -4156,14 +4156,15 @@ namespace UnityEditor.Rendering.Toon
                     }
                 }
             }
+            m_MaterialEditor.RangeProperty(unlit_Intensity, "Built-in Light Intensity");
             var isBold = GUI_Toggle(material, "Built-in Light Direction", ShaderPropIs_BLD, MaterialGetInt(material, ShaderPropIs_BLD) != 0);
             EditorGUI.BeginDisabledGroup(!isBold);
 
             EditorGUI.indentLevel++;
-            m_MaterialEditor.RangeProperty(offset_X_Axis_BLD, "● Offset X-Axis Direction");
-            m_MaterialEditor.RangeProperty(offset_Y_Axis_BLD, "● Offset Y-Axis Direction");
+            m_MaterialEditor.RangeProperty(offset_X_Axis_BLD, "Offset X-Axis Direction");
+            m_MaterialEditor.RangeProperty(offset_Y_Axis_BLD, "Offset Y-Axis Direction");
 
-            GUI_Toggle(material, "● Inverse Z - Axis Direction", ShaderPropInverse_Z_Axis_BLD, MaterialGetInt(material,ShaderPropInverse_Z_Axis_BLD) != 0);
+            GUI_Toggle(material, "Invert Z - Axis Direction", ShaderPropInverse_Z_Axis_BLD, MaterialGetInt(material,ShaderPropInverse_Z_Axis_BLD) != 0);
 
             EditorGUI.indentLevel--;
             EditorGUI.EndDisabledGroup();

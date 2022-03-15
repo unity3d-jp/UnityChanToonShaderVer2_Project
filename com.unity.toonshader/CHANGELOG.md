@@ -6,6 +6,7 @@
 * Replaced toggle buttons Off/Active UI to Unity standard toggle.
 * Renamed `Basic Shader Settings` to `Shader Setting`.
 * Renamed `Point Light High Cut Filter` to `Point Light Hight Light Filter`.
+* Renamed `Unlit Intensity` to `Buit-in Light Intensity.
 * Replaced some toggle buttons, such as `Emissive UV Coord`, `Specular Mode`, to dropdown menus
 * Made everything in the inspector hidden when disabled to be shown but grayed out.
 * Replaced folder header to use Unity standard style in the inspector window.
@@ -17,13 +18,14 @@
 * Replaced `Stencil No.` to `Stencil Number`.
 * Removed Game Recommendation window and changed the default values of shader variables.* The titles of the items in the Inspector window, which were not always consistent, such as "Setup" and "Settings," are now consistent with "Settings.* Renamed Shader GUI class and mede them integrated before integrate all the render pipeline shaders. All the render pipeline shaders use one Custom Editor class.
 * Removed 【】in the Inspector window.
+* Removed  ● in the Inspector window.
 ### Added:
 * Legacy: Compatibilty with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.
 * Uninversal RP: Graphics Test 2022.2.
 * HDRP: Graphics Test 2022.2.
 ### Removed:
-* removed   "● Additional Settings" in the Inspector.
+* removed   `● Additional Settings` in the Inspector.
 * Removed Simple UI.
 * Removed Japanese and English manual link buttons.
 ### Fixed:
