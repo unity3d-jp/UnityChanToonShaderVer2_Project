@@ -112,25 +112,9 @@ namespace UnityEditor.Rendering.Toon
             EditorGUI.showMixedValue = false;
         }
 
-        static bool _TessellationSettings_Foldout = false;
-        internal  void TessellationSettingHDRP(Material material)
-        {
-            if (tessellationMode == null)
-            {
-                return;
-            }
-
-            _TessellationSettings_Foldout = Foldout(_TessellationSettings_Foldout, "【Tessellation Settings】");
-            if (!_TessellationSettings_Foldout)
-            {
-                return;
-            }
 
 
-            DrawTesselationGUI();
-        }
-
-        void DrawTesselationGUI()
+        void GUI_TessellationHDRP(Material material)
         {
             TessellationModePopup();
             m_MaterialEditor.ShaderProperty(tessellationFactor, TessellationStyles.tessellationFactorText);

@@ -1,7 +1,10 @@
 {
     "name": "Unity.Toonshader.Editor",
+    "rootNamespace": "",
     "references": [
         "Unity.Toonshader",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.Core.Editor",
         "Unity.RenderPipelines.HighDefinition.Runtime"
     ],
     "includePlatforms": [
@@ -28,6 +31,11 @@
             "name": "com.unity.render-pipelines.universal",
             "expression": "",
             "define": "URP_IS_INSTALLED_FOR_UTS"
+        },
+        {
+            "name": "com.unity.render-pipelines.core",
+            "expression": "12.0.0",
+            "define": "SRPCORE_NEWERTHAN12_IS_INSTALLED_FOR_UTS"
         }
     ],
     "noEngineReferences": false

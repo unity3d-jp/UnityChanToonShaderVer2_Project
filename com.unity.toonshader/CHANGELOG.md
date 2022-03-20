@@ -1,36 +1,46 @@
 # Changelog
-## [0.7.0-preview] - 2022-03-12
+## [0.7.0-preview] - 2022-03-20
 ### Updated:
+* Renamed `Double Shade with Feather` to `Three Color Toon`.
+* Renamed `Shading Grade map` to `Three Color Toon with Special Maps`.
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
 * Replaced toggle buttons Off/Active UI to Unity standard toggle.
 * Renamed `Basic Shader Settings` to `Shader Setting`.
 * Renamed `Point Light High Cut Filter` to `Point Light Hight Light Filter`.
-* Renamed `Unlit Intensity` to `Buit-in Light Intensity.
 * Replaced some toggle buttons, such as `Emissive UV Coord`, `Specular Mode`, to dropdown menus
 * Made everything in the inspector hidden when disabled to be shown but grayed out.
-* Replaced folder header to use Unity standard style in the inspector window.
-* Replaced `【DX11 Phong Tessellation Settings】` to `Legacy Pipeline: Phong Tessellation Settings` as it works on Mac.
-* Replaced term, `Technique` to `Mode`.
-* Replaced term, `Contribution` to `Effectiveness`.
-* Replaced term, `High Color` to `High Light`.
-* Replaced `Settings for PointLights in ForwardAdd Pass` to `Point Light Settings`.
-* Replaced `Stencil No.` to `Stencil Number`.
-* Removed Game Recommendation window and changed the default values of shader variables.* The titles of the items in the Inspector window, which were not always consistent, such as "Setup" and "Settings," are now consistent with "Settings.* Renamed Shader GUI class and mede them integrated before integrate all the render pipeline shaders. All the render pipeline shaders use one Custom Editor class.
-* Removed 【】in the Inspector window.
-* Removed  ● in the Inspector window.
+* Folder headers use Unity standard style in the inspector window when SRP core newer than 12 is not installed.
+* Folder headers use SRP style in the inspector window when SRP core newer than 12 is installed.
+* Renamed `【DX11 Phong Tessellation Settings】` to `Legacy Pipeline: Phong Tessellation Settings` as it works on Mac too.
+* Renamed term, `Technique` to `Mode`.
+* Renamed term, `Contribution` to `Effectiveness`.
+* Renamed foldout name `Light Color Contribution` to `Scene Light Effectiveness Settings`
+* Moved `Gi Intensity` and `Scene Light hi cut filter` to under it.
+* Renamed `Scene  Hi-cut filter` to  `Light Intensity Limitter` .
+* Renamed term, `High Color` to `Highlight`.
+* Renamed `Settings for PointLights in ForwardAdd Pass` to `Point Light Settings`.
+* Renamed `Stencil No.` to `Stencil Number`.
+* Renamed `Unlit Intensity` to `Metaverse Light Intensity and `Buiilt-in light` settings are moved into `Metaverse Settings` folder in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat scenes.
+* Renamed 'Basic Look Dev' to 'Shading Step and Feather Settings'
+* `Advanced settings` in Outline folder are always shown.
 ### Added:
-* Legacy: Compatibilty with Single Pass Stereo Rendering.
+* Legacy: Compatibility with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.
-* Uninversal RP: Graphics Test 2022.2.
+* Universal RP: Graphics Test 2022.2.
 * HDRP: Graphics Test 2022.2.
 ### Removed:
 * removed   `● Additional Settings` in the Inspector.
 * Removed Simple UI.
 * Removed Japanese and English manual link buttons.
+* Removed Game Recommendation window and changed the default values of shader variables.
+* Removed 【】in the Inspector window.
+* Removed  ● in the Inspector window.
+* Removed unnecessary labes in the inspector such as `System Shadows:`
+
 ### Fixed:
-* Undo/Redo was not working on some itemes in the inspector window.
-* `Point Light High Cut Filter` Side Effects.
+* Undo/Redo was not working on some items in the inspector window.
+* `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
 
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:

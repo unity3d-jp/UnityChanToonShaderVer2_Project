@@ -45,8 +45,7 @@ namespace UnityEditor.Rendering.Toon
 
         internal  void RenderingPerChennelsSettingHDRP(Material material)
         {
-
-            _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, "Mask Rendering Settings");
+            _PerChanelShaderSettings_Foldout = Foldout(_PerChanelShaderSettings_Foldout, Styles.MaskRenderingFoldout);
             if (!_PerChanelShaderSettings_Foldout)
             {
                 return;
