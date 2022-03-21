@@ -37,11 +37,10 @@
 * Removed 【】in the Inspector window.
 * Removed  ● in the Inspector window.
 * Removed unnecessary labes in the inspector such as `System Shadows:`
-
 ### Fixed:
 * Undo/Redo was not working on some items in the inspector window.
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
-
+* UTS2 to Unity Toon Shader Converter urges to remove UTS2 shader files when Unity Toon Shader is installed via package manager.
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:
 * typo in inspector.

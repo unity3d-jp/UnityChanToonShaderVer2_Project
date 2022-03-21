@@ -20,15 +20,16 @@ namespace UnityEditor.Rendering.Toon
         protected const float kVersionZ = 0.0f;
 
         // Render Pipelines UTS supports are the followings 
-        enum RenderPipeline
+        internal enum RenderPipeline
         {
-            Unknown,
+
             Legacy,
             Universal,
             HDRP,
+            Unknown,
         }
 
-        RenderPipeline currentRenderPipeline
+        internal static RenderPipeline currentRenderPipeline
         {
             get
             {
@@ -50,7 +51,7 @@ namespace UnityEditor.Rendering.Toon
                 return RenderPipeline.Unknown;
             }
         }
-        internal string srpDefaultLightModeName 
+        internal static string srpDefaultLightModeName 
         {
              get
              {
@@ -96,116 +97,116 @@ namespace UnityEditor.Rendering.Toon
             }
         }
 
-        protected const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
-        protected const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
-        protected const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
-        protected const string ShaderDefineUTS_USE_RAYTRACING_SHADOW = "UTS_USE_RAYTRACING_SHADOW";
-        protected const string ShaderPropAngelRing = "_AngelRing";
-        protected const string ShaderPropRTHS = "_RTHS";
-        protected const string ShaderPropMatCap = "_MatCap";
-        protected const string ShaderPropMainTex = "_MainTex";
-        protected const string ShaderPropClippingMode = "_ClippingMode";
-        protected const string ShaderPropClippingMask = "_ClippingMask";
-        protected const string ShaderProp_Set_1st_ShadePosition = "_Set_1st_ShadePosition";
-        protected const string ShaderProp_Set_2nd_ShadePosition = "_Set_2nd_ShadePosition";
-        protected const string ShaderProp_ShadingGradeMap = "_ShadingGradeMap";
-        protected const string ShaderProp_Set_RimLightMask = "_Set_RimLightMask";
-        protected const string ShaderProp_HighColor_Tex = "_HighColor_Tex";
-        protected const string ShaderProp_Set_HighColorMask = "_Set_HighColorMask";
-        protected const string ShaderProp_MatCap_Sampler = "_MatCap_Sampler";
-        protected const string ShaderProp_Set_MatcapMask = "_Set_MatcapMask";
-        protected const string ShaderProp_OutlineTex = "_OutlineTex";
-        protected const string ShaderProp_Outline_Sampler = "_Outline_Sampler";
+        internal const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
+        internal const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";
+        internal const string ShaderDefineANGELRING_OFF = "_IS_ANGELRING_OFF";
+        internal const string ShaderDefineUTS_USE_RAYTRACING_SHADOW = "UTS_USE_RAYTRACING_SHADOW";
+        internal const string ShaderPropAngelRing = "_AngelRing";
+        internal const string ShaderPropRTHS = "_RTHS";
+        internal const string ShaderPropMatCap = "_MatCap";
+        internal const string ShaderPropMainTex = "_MainTex";
+        internal const string ShaderPropClippingMode = "_ClippingMode";
+        internal const string ShaderPropClippingMask = "_ClippingMask";
+        internal const string ShaderProp_Set_1st_ShadePosition = "_Set_1st_ShadePosition";
+        internal const string ShaderProp_Set_2nd_ShadePosition = "_Set_2nd_ShadePosition";
+        internal const string ShaderProp_ShadingGradeMap = "_ShadingGradeMap";
+        internal const string ShaderProp_Set_RimLightMask = "_Set_RimLightMask";
+        internal const string ShaderProp_HighColor_Tex = "_HighColor_Tex";
+        internal const string ShaderProp_Set_HighColorMask = "_Set_HighColorMask";
+        internal const string ShaderProp_MatCap_Sampler = "_MatCap_Sampler";
+        internal const string ShaderProp_Set_MatcapMask = "_Set_MatcapMask";
+        internal const string ShaderProp_OutlineTex = "_OutlineTex";
+        internal const string ShaderProp_Outline_Sampler = "_Outline_Sampler";
 
-        protected const string ShaderPropSimpleUI = "_simpleUI";
-        protected const string ShaderPropUtsTechniqe = "_utsTechnique";
-        protected const string ShaderPropAutoRenderQueue = "_AutoRenderQueue";
-        protected const string ShaderPropStencilMode = "_StencilMode";
-        protected const string ShaderPropStencilNo = "_StencilNo";
-        protected const string ShaderPropTransparentEnabled = "_TransparentEnabled";
-        protected const string ShaderPropStencilComp = "_StencilComp";
-        protected const string ShaderPropStencilOpPass = "_StencilOpPass";
-        protected const string ShaderPropStencilOpFail = "_StencilOpFail";
-        protected const string ShaderPropStencilWriteMask = "_StencilWriteMask";
-        protected const string ShaderPropStencilReadMask = "_StencilReadMask";
-        protected const string ShaderPropUtsVersionX = "_utsVersionX";
-        protected const string ShaderPropUtsVersionY = "_utsVersionY";
-        protected const string ShaderPropUtsVersionZ = "_utsVersionZ";
-        protected const string ShaderPropIsUnityToonShader = "_isUnityToonshader";
-        protected const string ShaderPropOutline = "_OUTLINE";
-        protected const string ShaderPropNormalMapToHighColor = "_Is_NormalMapToHighColor";
-        protected const string ShaderPropIsNormalMapToRimLight = "_Is_NormalMapToRimLight";
-        protected const string ShaderPropSetSystemShadowsToBase = "_Set_SystemShadowsToBase";
-        protected const string ShaderPropIsFilterHiCutPointLightColor = "_Is_Filter_HiCutPointLightColor";
-        protected const string ShaderPropInverseClipping = "_Inverse_Clipping";
-        protected const string ShaderPropIsBaseMapAlphaAsClippingMask = "_IsBaseMapAlphaAsClippingMask";
-        protected const string ShaderPropIsLightColor_Base = "_Is_LightColor_Base";
-        protected const string ShaderPropCameraRolling_Stabilizer = "_CameraRolling_Stabilizer";
-        protected const string ShaderPropIs_Ortho = "_Is_Ortho";
-        protected const string ShaderPropGI_Intensity = "_GI_Intensity";
-        protected const string ShaderPropUnlit_Intensity = "_Unlit_Intensity";
-        protected const string ShaderPropIs_Filter_LightColor = "_Is_Filter_LightColor";
-        protected const string ShaderPropIs_LightColor_1st_Shade = "_Is_LightColor_1st_Shade";
-        protected const string ShaderPropIs_LightColor_2nd_Shade = "_Is_LightColor_2nd_Shade";
-        protected const string ShaderPropIs_LightColor_HighColor = "_Is_LightColor_HighColor";
-        protected const string ShaderPropIs_LightColor_RimLight = "_Is_LightColor_RimLight";
-        protected const string ShaderPropIs_LightColor_Ap_RimLight = "_Is_LightColor_Ap_RimLight";
-        protected const string ShaderPropIs_LightColor_MatCap = "_Is_LightColor_MatCap";
-        protected const string ShaderPropIs_LightColor_AR = "_Is_LightColor_AR";
-        protected const string ShaderPropIs_LightColor_Outline = "_Is_LightColor_Outline";
-        protected const string ShaderPropInverse_MatcapMask = "_Inverse_MatcapMask";
-        protected const string ShaderPropUse_BaseAs1st = "_Use_BaseAs1st";
-        protected const string ShaderPropUse_1stAs2nd = "_Use_1stAs2nd";
-        protected const string ShaderPropIs_NormalMapToBase = "_Is_NormalMapToBase";
-        protected const string ShaderPropIs_ColorShift = "_Is_ColorShift";
-        protected const string ShaderPropRimLight = "_RimLight";
-        protected const string ShaderPropRimLight_FeatherOff = "_RimLight_FeatherOff";
-        protected const string ShaderPropAp_RimLight_FeatherOff = "_Ap_RimLight_FeatherOff";
-        protected const string ShaderPropIs_BlendAddToMatCap = "_Is_BlendAddToMatCap";
-        protected const string ShaderPropARSampler_AlphaOn = "_ARSampler_AlphaOn";
-        protected const string ShaderPropIs_UseTweakHighColorOnShadow = "_Is_UseTweakHighColorOnShadow";
+        internal const string ShaderPropSimpleUI = "_simpleUI";
+        internal const string ShaderPropUtsTechniqe = "_utsTechnique";
+        internal const string ShaderPropAutoRenderQueue = "_AutoRenderQueue";
+        internal const string ShaderPropStencilMode = "_StencilMode";
+        internal const string ShaderPropStencilNo = "_StencilNo";
+        internal const string ShaderPropTransparentEnabled = "_TransparentEnabled";
+        internal const string ShaderPropStencilComp = "_StencilComp";
+        internal const string ShaderPropStencilOpPass = "_StencilOpPass";
+        internal const string ShaderPropStencilOpFail = "_StencilOpFail";
+        internal const string ShaderPropStencilWriteMask = "_StencilWriteMask";
+        internal const string ShaderPropStencilReadMask = "_StencilReadMask";
+        internal const string ShaderPropUtsVersionX = "_utsVersionX";
+        internal const string ShaderPropUtsVersionY = "_utsVersionY";
+        internal const string ShaderPropUtsVersionZ = "_utsVersionZ";
+        internal const string ShaderPropIsUnityToonShader = "_isUnityToonshader";
+        internal const string ShaderPropOutline = "_OUTLINE";
+        internal const string ShaderPropNormalMapToHighColor = "_Is_NormalMapToHighColor";
+        internal const string ShaderPropIsNormalMapToRimLight = "_Is_NormalMapToRimLight";
+        internal const string ShaderPropSetSystemShadowsToBase = "_Set_SystemShadowsToBase";
+        internal const string ShaderPropIsFilterHiCutPointLightColor = "_Is_Filter_HiCutPointLightColor";
+        internal const string ShaderPropInverseClipping = "_Inverse_Clipping";
+        internal const string ShaderPropIsBaseMapAlphaAsClippingMask = "_IsBaseMapAlphaAsClippingMask";
+        internal const string ShaderPropIsLightColor_Base = "_Is_LightColor_Base";
+        internal const string ShaderPropCameraRolling_Stabilizer = "_CameraRolling_Stabilizer";
+        internal const string ShaderPropIs_Ortho = "_Is_Ortho";
+        internal const string ShaderPropGI_Intensity = "_GI_Intensity";
+        internal const string ShaderPropUnlit_Intensity = "_Unlit_Intensity";
+        internal const string ShaderPropIs_Filter_LightColor = "_Is_Filter_LightColor";
+        internal const string ShaderPropIs_LightColor_1st_Shade = "_Is_LightColor_1st_Shade";
+        internal const string ShaderPropIs_LightColor_2nd_Shade = "_Is_LightColor_2nd_Shade";
+        internal const string ShaderPropIs_LightColor_HighColor = "_Is_LightColor_HighColor";
+        internal const string ShaderPropIs_LightColor_RimLight = "_Is_LightColor_RimLight";
+        internal const string ShaderPropIs_LightColor_Ap_RimLight = "_Is_LightColor_Ap_RimLight";
+        internal const string ShaderPropIs_LightColor_MatCap = "_Is_LightColor_MatCap";
+        internal const string ShaderPropIs_LightColor_AR = "_Is_LightColor_AR";
+        internal const string ShaderPropIs_LightColor_Outline = "_Is_LightColor_Outline";
+        internal const string ShaderPropInverse_MatcapMask = "_Inverse_MatcapMask";
+        internal const string ShaderPropUse_BaseAs1st = "_Use_BaseAs1st";
+        internal const string ShaderPropUse_1stAs2nd = "_Use_1stAs2nd";
+        internal const string ShaderPropIs_NormalMapToBase = "_Is_NormalMapToBase";
+        internal const string ShaderPropIs_ColorShift = "_Is_ColorShift";
+        internal const string ShaderPropRimLight = "_RimLight";
+        internal const string ShaderPropRimLight_FeatherOff = "_RimLight_FeatherOff";
+        internal const string ShaderPropAp_RimLight_FeatherOff = "_Ap_RimLight_FeatherOff";
+        internal const string ShaderPropIs_BlendAddToMatCap = "_Is_BlendAddToMatCap";
+        internal const string ShaderPropARSampler_AlphaOn = "_ARSampler_AlphaOn";
+        internal const string ShaderPropIs_UseTweakHighColorOnShadow = "_Is_UseTweakHighColorOnShadow";
 
-        protected const string ShaderPropIs_SpecularToHighColor = "_Is_SpecularToHighColor";
-        protected const string ShaderPropIs_BlendAddToHiColor = "_Is_BlendAddToHiColor";
+        internal const string ShaderPropIs_SpecularToHighColor = "_Is_SpecularToHighColor";
+        internal const string ShaderPropIs_BlendAddToHiColor = "_Is_BlendAddToHiColor";
 
-        protected const string ShaderPropAdd_Antipodean_RimLight = "_Add_Antipodean_RimLight";
-        protected const string ShaderPropLightDirection_MaskOn = "_LightDirection_MaskOn";
+        internal const string ShaderPropAdd_Antipodean_RimLight = "_Add_Antipodean_RimLight";
+        internal const string ShaderPropLightDirection_MaskOn = "_LightDirection_MaskOn";
 
-        protected const string ShaderProp1st_ShadeColor_Step = "_1st_ShadeColor_Step";
-        protected const string ShaderPropBaseColor_Step = "_BaseColor_Step";
-        protected const string ShaderProp1st_ShadeColor_Feather = "_1st_ShadeColor_Feather";
-        protected const string ShaderPropBaseShade_Feather = "_BaseShade_Feather";
-        protected const string ShaderProp2nd_ShadeColor_Step = "_2nd_ShadeColor_Step";
-        protected const string ShaderPropShadeColor_Step = "_ShadeColor_Step";
-        protected const string ShaderProp2nd_ShadeColor_Feather = "_2nd_ShadeColor_Feather";
-        protected const string ShaderProp1st2nd_Shades_Feather = "_1st2nd_Shades_Feather";
-        protected const string ShaderPropIs_NormalMapForMatCap = "_Is_NormalMapForMatCap";
-        protected const string ShaderPropIs_UseTweakMatCapOnShadow = "_Is_UseTweakMatCapOnShadow";
-        protected const string ShaderPropIs_ViewCoord_Scroll = "_Is_ViewCoord_Scroll";
-        protected const string ShaderPropIs_PingPong_Base = "_Is_PingPong_Base";
+        internal const string ShaderProp1st_ShadeColor_Step = "_1st_ShadeColor_Step";
+        internal const string ShaderPropBaseColor_Step = "_BaseColor_Step";
+        internal const string ShaderProp1st_ShadeColor_Feather = "_1st_ShadeColor_Feather";
+        internal const string ShaderPropBaseShade_Feather = "_BaseShade_Feather";
+        internal const string ShaderProp2nd_ShadeColor_Step = "_2nd_ShadeColor_Step";
+        internal const string ShaderPropShadeColor_Step = "_ShadeColor_Step";
+        internal const string ShaderProp2nd_ShadeColor_Feather = "_2nd_ShadeColor_Feather";
+        internal const string ShaderProp1st2nd_Shades_Feather = "_1st2nd_Shades_Feather";
+        internal const string ShaderPropIs_NormalMapForMatCap = "_Is_NormalMapForMatCap";
+        internal const string ShaderPropIs_UseTweakMatCapOnShadow = "_Is_UseTweakMatCapOnShadow";
+        internal const string ShaderPropIs_ViewCoord_Scroll = "_Is_ViewCoord_Scroll";
+        internal const string ShaderPropIs_PingPong_Base = "_Is_PingPong_Base";
 
-        protected const string ShaderPropIs_ViewShift = "_Is_ViewShift";
-        protected const string ShaderPropIs_BlendBaseColor = "_Is_BlendBaseColor";
-        protected const string ShaderPropIs_OutlineTex = "_Is_OutlineTex";
-        protected const string ShaderPropIs_BakedNormal = "_Is_BakedNormal";
-        protected const string ShaderPropIs_BLD = "_Is_BLD";
-        protected const string ShaderPropInverse_Z_Axis_BLD = "_Inverse_Z_Axis_BLD";
+        internal const string ShaderPropIs_ViewShift = "_Is_ViewShift";
+        internal const string ShaderPropIs_BlendBaseColor = "_Is_BlendBaseColor";
+        internal const string ShaderPropIs_OutlineTex = "_Is_OutlineTex";
+        internal const string ShaderPropIs_BakedNormal = "_Is_BakedNormal";
+        internal const string ShaderPropIs_BLD = "_Is_BLD";
+        internal const string ShaderPropInverse_Z_Axis_BLD = "_Inverse_Z_Axis_BLD";
 
 
 
         
 
-        protected const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
-        protected const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
+        internal const string ShaderDefineIS_OUTLINE_CLIPPING_NO = "_IS_OUTLINE_CLIPPING_NO";
+        internal const string ShaderDefineIS_OUTLINE_CLIPPING_YES = "_IS_OUTLINE_CLIPPING_YES";
 
-        protected const string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
-        protected const string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
-        protected const string ShaderDefineIS_CLIPPING_TRANSMODE = "_IS_CLIPPING_TRANSMODE";
+        internal const string ShaderDefineIS_CLIPPING_OFF = "_IS_CLIPPING_OFF";
+        internal const string ShaderDefineIS_CLIPPING_MODE = "_IS_CLIPPING_MODE";
+        internal const string ShaderDefineIS_CLIPPING_TRANSMODE = "_IS_CLIPPING_TRANSMODE";
 
-        protected const string ShaderDefineIS_TRANSCLIPPING_OFF = "_IS_TRANSCLIPPING_OFF";
-        protected const string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
+        internal const string ShaderDefineIS_TRANSCLIPPING_OFF = "_IS_TRANSCLIPPING_OFF";
+        internal const string ShaderDefineIS_TRANSCLIPPING_ON = "_IS_TRANSCLIPPING_ON";
 
-        protected const string ShaderDefineIS_CLIPPING_MATTE = "_IS_CLIPPING_MATTE";
+        internal const string ShaderDefineIS_CLIPPING_MATTE = "_IS_CLIPPING_MATTE";
 
 
         protected readonly string[] UtsModeNames = { "Three Color Toon", "Three Color Toon with Spetial Maps" };
@@ -895,7 +896,7 @@ namespace UnityEditor.Rendering.Toon
 
 
 
-        int  MaterialGetInt(Material material, string prop )
+        internal static int  MaterialGetInt(Material material, string prop )
         {
 #if UNITY_2021_1_OR_NEWER
             return (int)material.GetFloat(prop);
@@ -903,7 +904,7 @@ namespace UnityEditor.Rendering.Toon
             return material.GetInt(prop);
 #endif
         }
-        void MaterialSetInt(Material material, string prop, int value)
+        internal static void MaterialSetInt(Material material, string prop, int value)
         {
 #if UNITY_2021_1_OR_NEWER
             material.SetFloat(prop, value);
@@ -1869,7 +1870,7 @@ namespace UnityEditor.Rendering.Toon
         const string srpDefaultColorMask = "_SPRDefaultUnlitColorMask";
         const string srpDefaultCullMode = "_SRPDefaultUnlitColMode";
 
-        void SetupOverDrawTransparentObject(Material material)
+        internal static void SetupOverDrawTransparentObject(Material material)
         {
             var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
             if (srpDefaultLightModeTag == srpDefaultLightModeName)
@@ -1879,7 +1880,7 @@ namespace UnityEditor.Rendering.Toon
                 MaterialSetInt(material, srpDefaultCullMode, (int)CullingMode.BackCulling);
             }
         }
-        void SetupOutline(Material material)
+        internal static void SetupOutline(Material material)
         {
             var srpDefaultLightModeTag = material.GetTag("LightMode", false, srpDefaultLightModeName);
             if (srpDefaultLightModeTag == srpDefaultLightModeName)
