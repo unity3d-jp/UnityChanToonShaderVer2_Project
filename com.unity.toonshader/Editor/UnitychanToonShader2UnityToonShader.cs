@@ -214,6 +214,7 @@ namespace UnityEditor.Rendering.Toon
         }
         void OnEnable()
         {
+            m_selectedRenderPipeline = UTS3GUI.currentRenderPipeline;
             packageFullPath = GetPackageFullPath();
 
             bool isUtsInstalled = CheckUTS2isInstalled();
@@ -222,7 +223,7 @@ namespace UnityEditor.Rendering.Toon
         [MenuItem("Window/Rendering/Unity Toon Shader/Material Converter", false, 9999)]
         static private UnitychanToonShader2UnityToonShader OpenWindow()
         {
-            var window = GetWindow<UnitychanToonShader2UnityToonShader>(true, "Unitychan Toon Shader Material Converter");
+            var window = GetWindow<UnitychanToonShader2UnityToonShader>(true, "Unity-Chan Toon Shader 2 Material Converter");
             window.ShowUtility();
             return window;
         }
@@ -351,32 +352,39 @@ namespace UnityEditor.Rendering.Toon
             m_Material2GUID_Dictionary.Clear();
             m_GuidToUTSID_Dictionary.Clear();
 
-            int labelHeight = 40;
+            int labelHeight = 80;
             int buttonHeight = 20;
             Rect rect = new Rect(0, labelHeight, position.width, position.height - buttonHeight ); // GUILayoutUtility.GetRect(position.width, position.height - buttonHeight);
             Rect rect2 = new Rect(2, labelHeight, position.width - 4, position.height - 4 - buttonHeight );
             // scroll view background
             EditorGUI.DrawRect(rect, Color.gray);
             EditorGUI.DrawRect(rect2, new Color(0.3f, 0.3f, 0.3f));
+            var colorStore = GUI.color;
+            GUI.color = Color.yellow;
+            EditorGUILayout.LabelField("Unity-Chan Toon Shader 2 to Unity Toon Shader.");
+            EditorGUILayout.LabelField("Please make sure that the project is backed up.");
+            GUI.color = colorStore;
+
             if (m_uts2isInstalled)
             {
-                var colorStore = GUI.color;
+                colorStore = GUI.color;
                 GUI.color = Color.red;
-                EditorGUILayout.LabelField("Error: Unitychan Toon Shader is installed.");
+
+                EditorGUILayout.LabelField("Error: Unity-Chan Toon Shader 2 files are installed.");
                 EditorGUILayout.LabelField("Please remove them before using Unity Toon Shader and run this converter.");
                 GUI.color = colorStore;
             }
             else if (s_versionErrorCount > 0)
             {
-                var colorStore = GUI.color;
+                colorStore = GUI.color;
                 GUI.color = Color.red;
-                EditorGUILayout.LabelField("Error: UTS2 version in the project is too old.");
-                EditorGUILayout.LabelField("This conver is compatible with UTS2 newer than 2.0.7.");
+                EditorGUILayout.LabelField("Error: Unity-Chan Toon Shader 2 version in the project is too old.");
+                EditorGUILayout.LabelField("This conver is compatible with ones newer than 2.0.7.");
                 GUI.color = colorStore;
             }
             else if (s_materialCount != 0)
             {
-                EditorGUILayout.LabelField("No UTS2 materials are found in the project.");
+                EditorGUILayout.LabelField("No Unity-Chan Toon Shader 2 materials are found in the project.");
                 EditorGUILayout.LabelField("Nothing to be done for this converter.");
             }
             else
@@ -483,7 +491,7 @@ namespace UnityEditor.Rendering.Toon
                 GUILayout.Space(16);
                 if (s_versionErrorCount > 0 )
                 {
-                    EditorGUILayout.LabelField("   Error: Unitychan Toon Shader version must be newer than 2.0.7");
+                    EditorGUILayout.LabelField("   Error: Unity-Chan Toon Shader 2 version must be newer than 2.0.7");
                 }
 
             }

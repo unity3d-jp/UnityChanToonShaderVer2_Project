@@ -1,5 +1,5 @@
 # Changelog
-## [0.7.0-preview] - 2022-03-20
+## [0.7.0-preview] - 2022-03-23
 ### Updated:
 * Renamed `Double Shade with Feather` to `Three Color Toon`.
 * Renamed `Shading Grade map` to `Three Color Toon with Special Maps`.
@@ -24,11 +24,13 @@
 * Renamed `Unlit Intensity` to `Metaverse Light Intensity and `Buiilt-in light` settings are moved into `Metaverse Settings` folder in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat scenes.
 * Renamed 'Basic Look Dev' to 'Shading Step and Feather Settings'
 * `Advanced settings` in Outline folder are always shown.
+* Unity-Chan Toon Shader 2 Converter window opens when old shaders are in projects on start up or right after the package is installed.
 ### Added:
 * Legacy: Compatibility with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.
 * Universal RP: Graphics Test 2022.2.
 * HDRP: Graphics Test 2022.2.
+* Project Settings, but quite simple yet.
 ### Removed:
 * removed   `● Additional Settings` in the Inspector.
 * Removed Simple UI.
@@ -40,7 +42,7 @@
 ### Fixed:
 * Undo/Redo was not working on some items in the inspector window.
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
-* UTS2 to Unity Toon Shader Converter urges to remove UTS2 shader files when Unity Toon Shader is installed via package manager.
+* Unify the notation in the converter with Unity-Chan Toon Shader 2
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:
 * typo in inspector.
