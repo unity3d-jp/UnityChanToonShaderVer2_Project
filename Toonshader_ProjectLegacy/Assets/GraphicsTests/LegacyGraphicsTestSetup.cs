@@ -32,7 +32,7 @@ namespace UnityEditor.Rendering.Toon
             "Animator"
         };
 
-        [MenuItem("Window/Toon Shader/Legacy(Built-in)/Graphics Test Setup", false, 9999)]
+        [MenuItem("Window/Rendering/Unity Toon Shader/Legacy(Built-in)/Graphics Test Setup", false, 9999)]
         static private void OpenWindow()
         {
             var window = GetWindow<LegacyGraphicsTestSetup>(true, "Graphics Test Setup");
