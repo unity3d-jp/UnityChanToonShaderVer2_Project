@@ -18,7 +18,7 @@ namespace UnityEditor.Rendering.Toon
 
             const string labelLightAdjustment = "Toon EV Adjustment";
             const string labelLightAdjustmentCurve = "Curve";
-            const string labelLightHighCutFilter = "Light High-Cut Filter";
+            const string labelHighlightLimitter = "Light Light Intensity Limitter";
             const string labeIgnoreVolumeExposure = "Ignore Volume Exposure";
             const string labelCompensation = "Compensation";
 #if ADJUSTMENT_CURVE_DEBUG_UI
@@ -43,10 +43,10 @@ namespace UnityEditor.Rendering.Toon
             // hi cut filter
             EditorGUI.BeginChangeCheck();
 
-            bool lightFilterr = EditorGUILayout.Toggle(labelLightHighCutFilter, obj.m_ToonLightHiCutFilter);
+            bool lightFilterr = EditorGUILayout.Toggle(labelHighlightLimitter, obj.m_ToonLightHiCutFilter);
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(target, "Changed Light Hi Cut Filter");
+                Undo.RecordObject(target, "Changed Hilight Limitter");
                 obj.m_ToonLightHiCutFilter = lightFilterr;
                 isChanged = true;
             }

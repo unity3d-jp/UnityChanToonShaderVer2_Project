@@ -43,6 +43,7 @@
 * Undo/Redo was not working on some items in the inspector window.
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
 * Unify the notation in the converter with Unity-Chan Toon Shader 2
+* Fixed some popups in the inspector window not to use connected names without spaces. Each name is separated by a space.
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:
 * typo in inspector.

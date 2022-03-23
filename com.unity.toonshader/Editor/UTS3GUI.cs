@@ -211,7 +211,8 @@ namespace UnityEditor.Rendering.Toon
 
         protected readonly string[] UtsModeNames = { "Three Color Toon", "Three Color Toon with Spetial Maps" };
         protected readonly string[] EmissiveScrollMode = { "UV Coordinate Scroll", "View Coordinate Scroll" };
-
+        protected readonly string[] ClippingModeNames = { "Off", "On", "Trans Clipping Mode" };
+        protected readonly string[] StencilModeNames = { "Off", "Stencil Out", "Stencil Mask" };
         public enum UTS_Mode : uint
         {
             ThreeColorToon, ShadingGradeMap
@@ -509,14 +510,14 @@ namespace UnityEditor.Rendering.Toon
         public static GUIContent transparentModeText = new GUIContent("Transparent Mode",
             "Transparent  mode that fits you. ");
         public static GUIContent workflowModeText = new GUIContent("Mode",
-            "Select a workflow that fits your textures. Choose between DoubleShadeWithFeather or ShadingGradeMap.");
+            "Select a workflow that fits your textures. Choose between Three Color Toon or Three Color Toon with Special Maps.");
         // -----------------------------------------------------
         public static GUIContent clippingmodeModeText0 = new GUIContent("Clipping Mode",
             "Select clipping mode that fits you. ");
         public static GUIContent clippingmodeModeText1 = new GUIContent("Trans Clipping",
             "Select clipping mode that fits you. ");
         public static GUIContent stencilmodeModeText = new GUIContent("Stencil Mode",
-    "Select stencil mode that fits you. ");
+            "Select stencil mode that fits you. ");
         //Specify only those that use the m_MaterialEditor method as their UI.
         public void FindProperties(MaterialProperty[] props)
         {
@@ -669,8 +670,8 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent angelRingText = new GUIContent("Angel Ring", "AngelRing : Texture(sRGB) × Color(RGB) Default:Black");
             public static readonly GUIContent emissiveTexText = new GUIContent("Emissive Map", "Emission : Texture(sRGB)× EmissiveMask(alpha) × Color(HDR) Default:Black");
             public static readonly GUIContent shadingGradeMapText = new GUIContent("Shading Grade Map", "Specify shadow-prone areas in UV coordinates. Shading Grade Map : Texture(linear)");
-            public static readonly GUIContent firstPositionMapText = new GUIContent("1st Shade Position Map", "Specify the position of fixed shadows that fall in 1st shade color areas in UV coordinates. 1st Position Map : Texture(linear)");
-            public static readonly GUIContent secondPositionMapText = new GUIContent("2nd Shade Position Map", "Specify the position of fixed shadows that fall in 2nd shade color areas in UV coordinates. 2nd Position Map : Texture(linear)");
+            public static readonly GUIContent firstPositionMapText = new GUIContent("1st Shading Position Map", "Specify the position of fixed shadows that fall in 1st shade color areas in UV coordinates. 1st Position Map : Texture(linear)");
+            public static readonly GUIContent secondPositionMapText = new GUIContent("2nd Shading Position Map", "Specify the position of fixed shadows that fall in 2nd shade color areas in UV coordinates. 2nd Position Map : Texture(linear)");
             public static readonly GUIContent outlineSamplerText = new GUIContent("Outline Sampler", "Outline Sampler : Texture(linear)");
             public static readonly GUIContent outlineTexText = new GUIContent("Outline tex", "Outline Tex : Texture(sRGB) Default:White");
             public static readonly GUIContent bakedNormalOutlineText = new GUIContent("Baked NormalMap for Outline", "Unpacked Normal Map : Texture(linear) Note that this is not a standard NORMAL MAP.");
@@ -769,7 +770,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 case UTS_Mode.ThreeColorToon:
                     GUILayout.Label("Clipping Shader", EditorStyles.boldLabel);
-                    DoPopup(clippingmodeModeText0, clippingMode, System.Enum.GetNames(typeof(UTS_ClippingMode)));
+                    DoPopup(clippingmodeModeText0, clippingMode, ClippingModeNames);
                     break;
                 case UTS_Mode.ShadingGradeMap:
                     GUILayout.Label("TransClipping Shader", EditorStyles.boldLabel);
@@ -1051,7 +1052,7 @@ namespace UnityEditor.Rendering.Toon
         void GUI_StencilMode(Material material)
         {
             GUILayout.Label("StencilMask or StencilOut Shader", EditorStyles.boldLabel);
-            DoPopup(stencilmodeModeText, stencilMode, System.Enum.GetNames(typeof(UTS_StencilMode)));
+            DoPopup(stencilmodeModeText, stencilMode, StencilModeNames );
 
 
             int _Current_StencilNo = stencilNumberSetting;
