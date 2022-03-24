@@ -44,6 +44,7 @@
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
 * Unify the notation in the converter with Unity-Chan Toon Shader 2
 * Fixed some popups in the inspector window not to use connected names without spaces. Each name is separated by a space.
+
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:
 * typo in inspector.
@@ -88,7 +89,6 @@
 * HDRP:BoxLightAdjustment script. some flags are not updated properly when some checkboxes are clicked.
 * HDRP:Shader compile errors when used with HDRP 12.1
 
-
 ## [0.4.0-preview] - 2021-10-13
 ### Added
 * HDRP: Compatibility with Box Light, a spot light variation, as main lights.
@@ -114,12 +114,14 @@
 * HDRP: Fixed weird steps when more than 3 point lights are in a scene.
 * HDRP: Added Toon EV Adjustment per Model.
 * HDRP: Compatible with Raytraced Hardshadow when DX12 is chosen as API.
-* Legacy: Applied a fix for outline flicker in VR chat..
+* Legacy: Applied a fix for outline flicker in VR chat.
+
 ## [0.2.2-preview] - 2021-08-24
 * Modified Toon EV Adjustment Curve inspector.
 * Excluded unnecessary files from release zip.
 * Improved folder structure in order not to cause long file name errors when included in other packages.
 * Added documentation for Toon EV Adjustment Curve.
+
 ## [0.2.1-preview] - 2021-08-18
 * HDRP: Fixed: Multiple instances of Toon EV adjustment curve can exist in one scene.
 
