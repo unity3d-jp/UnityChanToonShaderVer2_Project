@@ -955,7 +955,7 @@ namespace UnityEditor.Rendering.Toon
             EditorGUILayout.BeginHorizontal();
 
 
-            var isRTHSenabled = GUI_ToggleShaderKeyword(material, "Raytraced Hard Shadow", ShaderDefineUTS_USE_RAYTRACING_SHADOW);
+            var isRTHSenabled = GUI_ToggleShaderKeyword(material, "Raytraced Hard Shadow (deprecated)", ShaderDefineUTS_USE_RAYTRACING_SHADOW);
 
             EditorGUILayout.EndHorizontal();
             if (isRTHSenabled)

@@ -39,6 +39,7 @@
 * Removed 【】in the Inspector window.
 * Removed  ● in the Inspector window.
 * Removed unnecessary labes in the inspector such as `System Shadows:`
+* `RTHS` is deprecated now as it will not be Unity official package.
 ### Fixed:
 * Undo/Redo was not working on some items in the inspector window.
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.

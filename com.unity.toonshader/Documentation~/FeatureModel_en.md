@@ -87,7 +87,7 @@
 | Built-in Light Direction function. <br>Activate the virtual light for each material and Tweak the offset value of each axis of the light's direction 	| 2.0 	| OK 	| OK 	| OK 	|  	|
 | **UTS Feature Model 2.1** 	|  	|  	|  	|  	|  	|
 | 1. Support RTHS (Realtime Raytraced Hard Shadow) as the shadow map, getting precise cel-shaded images (requires a working environment for DXR) 	|  	|  	|  	|  	|  	|
-| Activate Raytraced Hard Shadow function (requiring ShadowRaytracer component on the camera) 	| 2.1 	| OK 	| OK 	| OK 	|  	|
+| Activate Raytraced Hard Shadow function (requiring ShadowRaytracer component on the camera) 	| 2.1 	| deprecated 	| deprecated 	| deprecated 	|  	|
 | **UTS Feature Model 2.2** 	|  	|  	|  	|  	|  	|
 | ***1. Integrate two workflows and shader variations as an Uber Shader*** 	|  	|  	|  	|  	|  	|
 | UniversalToon / Uber shader custom user interface 	| 2.2 	| OK	| OK 	| OK 	|  	|
