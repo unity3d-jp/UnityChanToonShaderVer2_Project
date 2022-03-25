@@ -22,6 +22,7 @@
 * Renamed `Settings for PointLights in ForwardAdd Pass` to `Point Light Settings`.
 * Renamed `Stencil No.` to `Stencil Number`.
 * Renamed `Unlit Intensity` to `Metaverse Light Intensity and `Buiilt-in light` settings are moved into `Metaverse Settings` folder in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat scenes.
+* Changed built-in light default brightness from 1 to 0.
 * Renamed 'Basic Look Dev' to 'Shading Step and Feather Settings'
 * `Advanced settings` in Outline folder are always shown.
 * Unity-Chan Toon Shader 2 Converter window opens when old shaders are in projects on start up or right after the package is installed.
