@@ -209,7 +209,7 @@ namespace UnityEditor.Rendering.Toon
         internal const string ShaderDefineIS_CLIPPING_MATTE = "_IS_CLIPPING_MATTE";
 
 
-        protected readonly string[] UtsModeNames = { "Three Color Toon", "Three Color Toon with Spetial Maps" };
+        protected readonly string[] UtsModeNames = { "Three Color Toon", "Three Color Toon with Special Maps" };
         protected readonly string[] EmissiveScrollMode = { "UV Coordinate Scroll", "View Coordinate Scroll" };
         protected readonly string[] ClippingModeNames = { "Off", "On", "Trans Clipping Mode" };
         protected readonly string[] StencilModeNames = { "Off", "Stencil Out", "Stencil Mask" };
