@@ -1,27 +1,35 @@
 # Changelog
-## [0.7.0-preview] - 2022-03-23
+## [0.7.0-preview] - 2022-03-31
 ### Updated:
-* Renamed `Double Shade with Feather` to `Three Color Toon`.
-* Renamed `Shading Grade map` to `Three Color Toon with Special Maps`.
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
-* Replaced toggle buttons Off/Active UI to Unity standard toggle.
+* The inspector window is significantly reorganized.
+* Renamed `Double Shade with Feather` to `Standard`.
+* Renamed `Shading Grade map` to `With Additional Control Maps`.
+* Replaced toggle buttons Off/Active UI to Unity standard toggles.
 * Renamed `Basic Shader Settings` to `Shader Setting`.
-* Renamed `Point Light High Cut Filter` to `Point Light Hight Light Filter`.
 * Replaced some toggle buttons, such as `Emissive UV Coord`, `Specular Mode`, to dropdown menus
 * Made everything in the inspector hidden when disabled to be shown but grayed out.
 * Folder headers use Unity standard style in the inspector window when SRP core newer than 12 is not installed.
 * Folder headers use SRP style in the inspector window when SRP core newer than 12 is installed.
 * Renamed `【DX11 Phong Tessellation Settings】` to `Legacy Pipeline: Phong Tessellation Settings` as it works on Mac too.
-* Renamed term, `Technique` to `Mode`.
-* Renamed term, `Contribution` to `Effectiveness`.
+* Renamed term, `Technique`, to `Mode`.
+* Renamed term, `Contribution`, to `Effectiveness`.
 * Renamed foldout name `Light Color Contribution` to `Scene Light Effectiveness Settings`
-* Moved `Gi Intensity` and `Scene Light hi cut filter` to under it.
-* Renamed `Scene  Hi-cut filter` to  `Light Intensity Limitter` .
-* Renamed term, `High Color` to `Highlight`.
+* Moved `Gi Intensity` and `Scene Light hi cut filter` to bellow it.
+* Renamed `Scene  Hi-cut filter` to  `Limit Light Intensity` .
+* Renamed term, `High Color`, to `Highlight`.
 * Renamed `Settings for PointLights in ForwardAdd Pass` to `Point Light Settings`.
-* Renamed `Stencil No.` to `Stencil Number`.
-* Renamed `Unlit Intensity` to `Metaverse Light Intensity` and `Buiilt-in light settings` are moved into `Metaverse Settings` folder in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat scenes.
+* Renamed `Point Light High Cut Filter` to `Filter Point Light Hight Light`.
+* Renamed `Antipodean(Ap)_RimLight` to `Inversed Rim Light`
+* Re-organized Stencil and Clipping settings in the inspector window.
+* Renamed `Stencil Out` to `Draw If Not Equal to`.
+* Renamed `Stencil Mask` to `Replace Stencil Buffer with`.
+* Renamed `Stencil No.` to `Stencil Value`.
+* That used to be a number field. Now it is editable with IntSlider.
+* Renamed `Trans Clipping Mode` to `Clip Transparency`.
+* Renamed `Unlit Intensity` to `Metaverse Light Intensity` and `Buiilt-in light settings` are moved into `Metaverse Settings` folder in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat ones.
+* _Unlit_Intensity ranges defined in all the shaders are from 0 to 4. originally they were from 0.001 to 4.
 * Changed built-in light default brightness from 1 to 0.
 * Renamed 'Basic Look Dev' to 'Shading Step and Feather Settings'
 * `Advanced settings` in Outline folder are always shown.
@@ -33,18 +41,19 @@
 * HDRP: Graphics Test 2022.2.
 * Project Settings, but quite simple yet.
 ### Removed:
-* removed   `● Additional Settings` in the Inspector.
+* Removed   `● Additional Settings` in the Inspector.
 * Removed Simple UI.
 * Removed Japanese and English manual link buttons.
 * Removed Game Recommendation window and changed the default values of shader variables.
 * Removed 【】in the Inspector window.
 * Removed  ● in the Inspector window.
-* Removed unnecessary labes in the inspector such as `System Shadows:`
-* `RTHS` is deprecated now as it will not be Unity official package.
+* Removed unnecessary labels in the inspector such as `System Shadows:`
+* `RTHS(Realtime Hard Shadow` is deprecated now as it will not be Unity official package.
+* RTHS is not shown unless `Show deprecated features in the inspector` is checked in the `Project Settings Window`.
 ### Fixed:
 * Undo/Redo was not working on some items in the inspector window.
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
-* Unify the notation in the converter with Unity-Chan Toon Shader 2
+* Unify the notation in the converter with Unity-Chan Toon Shader 2.
 * Fixed some popups in the inspector window not to use connected names without spaces. Each name is separated by a space.
 
 ## [0.6.1-preview] - 2022-02-24

@@ -15,7 +15,7 @@ Shader "Toon (Built-in)" {
         [Enum(OFF, 0, StencilOut, 1, StencilMask, 2)] _StencilMode("StencilMode", int) = 0
         // these are set in UniversalToonGUI.cs in accordance with _StencilMode
         _StencilComp("Stencil Comparison", Float) = 8
-        _StencilNo("Stencil No", Float) = 1
+        _StencilNo("Stencil No", Range(0, 255)) = 1
         _StencilOpPass("Stencil Operation", Float) = 0
         _StencilOpFail("Stencil Operation", Float) = 0
         [Enum(OFF, 0, ON, 1,] _TransparentEnabled("Transparent Mode", int) = 0
@@ -194,7 +194,7 @@ Shader "Toon (Built-in)" {
         //GI Intensity
         _GI_Intensity ("GI_Intensity", Range(0, 1)) = 0
         //For VR Chat under No effective light objects
-        _Unlit_Intensity ("Unlit_Intensity", Range(0.001, 4)) = 0
+        _Unlit_Intensity ("Unlit_Intensity", Range(0, 4)) = 0
         //v.2.0.5 
         [Toggle(_)] _Is_Filter_LightColor ("VRChat : SceneLights HiCut_Filter", Float ) = 1
         //Built-in Light Direction

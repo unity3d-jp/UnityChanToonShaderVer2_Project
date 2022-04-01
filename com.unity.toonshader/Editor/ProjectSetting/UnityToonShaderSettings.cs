@@ -15,7 +15,8 @@ namespace UnityEditor.Rendering.Toon
 
         [SerializeField]
         internal bool m_ShowConverter = true;
-
+        [SerializeField]
+        internal bool m_ShowDepracated = false;
         UnityToonShaderSettings()
         {
             s_Instance = this;

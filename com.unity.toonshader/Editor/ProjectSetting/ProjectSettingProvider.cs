@@ -15,7 +15,8 @@ namespace UnityEditor.Rendering.Toon
 
 
 
-        GUIContent guiContentShowConverterStartup = new GUIContent("Show converter on start up");
+        GUIContent guiContentShowConverterStartup = new GUIContent("Show UTS2 converter on start up");
+        GUIContent guiContentShowDepracted = new GUIContent("Show deprecated features in the inspector");
         #endregion
 
         [SettingsProvider]
@@ -61,17 +62,19 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUILayout.BeginVertical();
 
 
-                UnityToonShaderSettings.instance.m_ShowConverter = EditorGUILayout.Toggle(guiContentShowConverterStartup, UnityToonShaderSettings.instance.m_ShowConverter);
+                UnityToonShaderSettings.instance.m_ShowConverter = GUI_Toggle(guiContentShowConverterStartup, UnityToonShaderSettings.instance.m_ShowConverter);
+                UnityToonShaderSettings.instance.m_ShowDepracated = GUI_Toggle(guiContentShowDepracted, UnityToonShaderSettings.instance.m_ShowDepracated);
 
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.Space();
 
 
-
+#if false
                 if (GUILayout.Button("Apply"))
                 {
                     AssetDatabase.SaveAssets();
                 }
+#endif
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.EndVertical();
 
@@ -91,8 +94,22 @@ namespace UnityEditor.Rendering.Toon
             EditorGUILayout.LabelField("Settings become effective after pressing Apply button.");
         }
 
-
+        bool GUI_Toggle(GUIContent label,  bool val)
+        {
+            var target = UnityToonShaderSettings.instance;
+            EditorGUI.BeginChangeCheck();
+            var ret = EditorGUILayout.Toggle(label, val);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed " + label);
+                UnityToonShaderSettings.Save();
+            }
+            return ret;
+        }
     }
+
+
+
     internal class GUIScope : GUI.Scope
     {
         float m_LabelWidth;
