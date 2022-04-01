@@ -28,7 +28,7 @@ namespace UnityEditor.Rendering.Toon
         /// </summary>
         /// <param name="pageName"></param>
         /// <param name="packageName"></param>
-        public UTS3HelpURLAttribute(string pageName, string packageName = "com.unity.render-pipelines.core")
+        public UTS3HelpURLAttribute(string pageName, string packageName = "com.unity.toonshader")
             : base(UTS3DocumentationInfo.GetPageLink(packageName, pageName))
         {
         }
@@ -40,7 +40,7 @@ namespace UnityEditor.Rendering.Toon
     /// </summary>
     public class UTS3DocumentationInfo
     {
-        const string fallbackVersion = "0.6.1-preview";
+        const string fallbackVersion = "0.6";
         const string url = "https://docs.unity3d.com/Packages/{0}@{1}/manual/{2}.html";
 
         /// <summary>
@@ -77,6 +77,10 @@ namespace UnityEditor.Rendering.Toon
         public static string GetHelpURL<TEnum>(TEnum mask = default)
             where TEnum : struct, IConvertible
         {
+            var type = mask.GetType();
+            var attribute = type.GetCustomAttributes(typeof(HelpURLAttribute), false);
+
+
             var helpURLAttribute = (HelpURLAttribute)mask
                 .GetType()
                 .GetCustomAttributes(typeof(HelpURLAttribute), false)

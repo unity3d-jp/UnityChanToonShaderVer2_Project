@@ -106,7 +106,7 @@ namespace UnityEditor.Rendering.Toon
             bool saveChangeState = GUI.changed;
             expanded = subHeader
                 ? DrawSubHeaderFoldout(title, beforeExpanded, isBoxed: false)
-                : DrawHeaderFoldout(title, beforeExpanded);
+                : DrawHeaderFoldout(title, beforeExpanded, documentationURL: documentationURL);
             if (expanded ^ beforeExpanded)
             {
                 materialEditor.SetIsAreaExpanded((uint)bitExpanded, expanded);

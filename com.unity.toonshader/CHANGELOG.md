@@ -1,5 +1,5 @@
 # Changelog
-## [0.7.0-preview] - 2022-03-31
+## [0.7.0-preview] - 2022-04-02
 ### Updated:
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
@@ -33,13 +33,14 @@
 * Changed built-in light default brightness from 1 to 0.
 * Renamed 'Basic Look Dev' to 'Shading Step and Feather Settings'
 * `Advanced settings` in Outline folder are always shown.
-* Unity-Chan Toon Shader 2 Converter window opens when old shaders are in projects on start up or right after the package is installed.
 ### Added:
 * Legacy: Compatibility with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.
 * Universal RP: Graphics Test 2022.2.
 * HDRP: Graphics Test 2022.2.
 * Project Settings, but quite simple yet.
+* Help buttons to foldout headers in the inspector window, which work newer than Unity 2021.1.
+* Unity-Chan Toon Shader 2 Converter window opens when old shaders are in projects on start up or right after the package is installed.
 ### Removed:
 * Removed   `● Additional Settings` in the Inspector.
 * Removed Simple UI.
