@@ -154,7 +154,7 @@ namespace UnityEditor.Rendering.Toon
         internal const string ShaderPropIs_LightColor_MatCap = "_Is_LightColor_MatCap";
         internal const string ShaderPropIs_LightColor_AR = "_Is_LightColor_AR";
         internal const string ShaderPropIs_LightColor_Outline = "_Is_LightColor_Outline";
-        internal const string ShaderPropInverse_MatcapMask = "_Inverse_MatcapMask";
+        internal const string ShaderPropInvert_MatcapMask = "_Inverse_MatcapMask";
         internal const string ShaderPropUse_BaseAs1st = "_Use_BaseAs1st";
         internal const string ShaderPropUse_1stAs2nd = "_Use_1stAs2nd";
         internal const string ShaderPropIs_NormalMapToBase = "_Is_NormalMapToBase";
@@ -678,7 +678,7 @@ namespace UnityEditor.Rendering.Toon
             m_MaterialScopeList.RegisterHeaderScope(Styles.ShaderFoldout, Expandable.Shader, DrawShaderOptions, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
             m_MaterialScopeList.RegisterHeaderScope(Styles.BasicColorFoldout, Expandable.BasicColor, GUI_BasicThreeColors, (uint)UTS_Mode.ThreeColorToon,(uint)UTS_TransparentMode.Off);
             m_MaterialScopeList.RegisterHeaderScope(Styles.BasicLookDevsFoldout, Expandable.BasicLookDevs, GUI_StepAndFeather, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.HighLightFoldout, Expandable.HighLight, GUI_HighColor, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.HighLightFoldout, Expandable.HighLight, GUI_HighlightSettings, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
             m_MaterialScopeList.RegisterHeaderScope(Styles.RimLightFoldout, Expandable.RimLight, GUI_RimLight, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
             m_MaterialScopeList.RegisterHeaderScope(Styles.MatCapFoldout, Expandable.MatCap, GUI_MatCap, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
             m_MaterialScopeList.RegisterHeaderScope(Styles.AngelRingFoldout, Expandable.AngelRing, GUI_AngelRing, (uint)UTS_Mode.ShadingGradeMap, (uint)UTS_TransparentMode.Off);
@@ -1127,13 +1127,12 @@ namespace UnityEditor.Rendering.Toon
             _NormalMap_Foldout = FoldoutSubMenu(_NormalMap_Foldout, Styles.NormalMapFoldout);
             if (_NormalMap_Foldout)
             {
-                //GUILayout.Label("NormalMap Settings", EditorStyles.boldLabel);
+
                 m_MaterialEditor.TexturePropertySingleLine(Styles.normalMapText, normalMap, bumpScale);
                 m_MaterialEditor.TextureScaleOffsetProperty(normalMap);
 
+                EditorGUILayout.LabelField("NormalMap Effectiveness", EditorStyles.boldLabel);
                 EditorGUI.indentLevel++;
-
-                GUILayout.Label("  NormalMap Effectiveness", EditorStyles.boldLabel);
 
                 GUI_Toggle(material, "3 Basic Colors", ShaderPropIs_NormalMapToBase, MaterialGetInt(material, ShaderPropIs_NormalMapToBase) != 0);
                 GUI_Toggle(material, "Highlight", ShaderPropNormalMapToHighColor, MaterialGetInt(material, ShaderPropNormalMapToHighColor) != 0);
@@ -1159,13 +1158,13 @@ namespace UnityEditor.Rendering.Toon
             {
                 if (MaterialGetInt(material,ShaderPropUtsTechniqe) == (int)UTS_Mode.ThreeColorToon)   //DWF
                 {
-                    GUILayout.Label("  Mode: Standard", EditorStyles.boldLabel);
+                    EditorGUILayout.LabelField("Mode: Standard", EditorStyles.boldLabel);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.firstPositionMapText, set_1st_ShadePosition);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.secondPositionMapText, set_2nd_ShadePosition);
                 }
                 else if (MaterialGetInt(material,ShaderPropUtsTechniqe) == (int)UTS_Mode.ShadingGradeMap)
-                {    //SGM
-                    GUILayout.Label("  Mode: With Additional Control Maps", EditorStyles.boldLabel);
+                {    
+                    EditorGUILayout.LabelField("Mode: With Additional Control Maps", EditorStyles.boldLabel);
                     m_MaterialEditor.TexturePropertySingleLine(Styles.shadingGradeMapText, shadingGradeMap);
                     m_MaterialEditor.RangeProperty(tweak_ShadingGradeMapLevel, "ShadingGradeMap Level");
                     m_MaterialEditor.RangeProperty(blurLevelSGM, "Blur Level of ShadingGradeMap");
@@ -1175,7 +1174,7 @@ namespace UnityEditor.Rendering.Toon
 
         void GUI_StepAndFeather(Material material)
         {
-            GUI_BasicLookdevs(material);
+            GUI_ShadingStepAndFeatherSettings(material);
 
             if (!_SimpleUI)
             {
@@ -1216,14 +1215,14 @@ namespace UnityEditor.Rendering.Toon
             EditorGUILayout.Space();
         }
 
-        void GUI_BasicLookdevs(Material material)
+        void GUI_ShadingStepAndFeatherSettings(Material material)
         {
-            if (material.HasProperty(ShaderPropUtsTechniqe))//DoubleWithFeather or ShadingGradeMap
+            if (material.HasProperty(ShaderPropUtsTechniqe))
             {
                 var mode = MaterialGetInt(material, ShaderPropUtsTechniqe);
-                if (mode == (int)UTS_Mode.ThreeColorToon)   //DWF
+                if (mode == (int)UTS_Mode.ThreeColorToon)   
                 {
-                    GUILayout.Label("Mode: Standard", EditorStyles.boldLabel);
+                    EditorGUILayout.LabelField("Mode: Standard", EditorStyles.boldLabel);
                     m_MaterialEditor.RangeProperty(baseColor_Step, "Base Color Step");
                     m_MaterialEditor.RangeProperty(baseShade_Feather, "Base Shading Feather");
                     m_MaterialEditor.RangeProperty(shadeColor_Step, "Shading Color Step");
@@ -1237,7 +1236,7 @@ namespace UnityEditor.Rendering.Toon
                 }
                 else if (mode == (int)UTS_Mode.ShadingGradeMap)
                 {    //SGM
-                    GUILayout.Label("Mode: With Additional Control Maps", EditorStyles.boldLabel);
+                    EditorGUILayout.LabelField("Mode: With Additional Control Maps", EditorStyles.boldLabel);
                     m_MaterialEditor.RangeProperty(first_ShadeColor_Step, "1st Shade Color Step");
                     m_MaterialEditor.RangeProperty(first_ShadeColor_Feather, "1st Shade Color Feather");
                     m_MaterialEditor.RangeProperty(second_ShadeColor_Step, "2nd Shade Color Step");
@@ -1259,7 +1258,7 @@ namespace UnityEditor.Rendering.Toon
 
         void GUI_AdditionalLookdevs(Material material)
         {
-//            GUILayout.Label("    Point Light Settings");
+
             EditorGUI.indentLevel++;
             m_MaterialEditor.RangeProperty(stepOffset, "Step Offset");
 
@@ -1270,7 +1269,7 @@ namespace UnityEditor.Rendering.Toon
         }
 
 
-        void GUI_HighColor(Material material)
+        void GUI_HighlightSettings(Material material)
         {
             m_MaterialEditor.TexturePropertySingleLine(Styles.highColorText, highColor_Tex, highColor);
             m_MaterialEditor.RangeProperty(highColor_Power, "Highlight Power");
@@ -1336,7 +1335,7 @@ namespace UnityEditor.Rendering.Toon
             //Line();
             //EditorGUILayout.Space();
 
-            GUILayout.Label("    Highlight Mask", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Highlight Mask", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
             m_MaterialEditor.TexturePropertySingleLine(Styles.highColorMaskText, set_HighColorMask);
             m_MaterialEditor.RangeProperty(tweak_HighColorMaskLevel, "Highlight Mask Level");
@@ -1482,12 +1481,12 @@ namespace UnityEditor.Rendering.Toon
             //Line();
             //EditorGUILayout.Space();
 
-            GUILayout.Label("    MatCap Mask", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("MatCap Mask", EditorStyles.boldLabel);
             m_MaterialEditor.TexturePropertySingleLine(Styles.matCapMaskText, set_MatcapMask);
             m_MaterialEditor.TextureScaleOffsetProperty(set_MatcapMask);
             m_MaterialEditor.RangeProperty(tweak_MatcapMaskLevel, "MatCap Mask Level");
 
-            GUI_Toggle(material, "Inverse MatCap Mask", ShaderPropInverse_MatcapMask, MaterialGetInt(material, ShaderPropInverse_MatcapMask) != 0);
+            GUI_Toggle(material, "Invert MatCap Mask", ShaderPropInvert_MatcapMask, MaterialGetInt(material, ShaderPropInvert_MatcapMask) != 0);
 
 
             EditorGUI.indentLevel--;
@@ -1868,6 +1867,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 const string kOutline = "Outline";
                 isOutlineEnabled = material.GetShaderPassEnabled(srpDefaultLightModeName);
+
                 EditorGUI.BeginChangeCheck();
                 isOutlineEnabled = EditorGUILayout.Toggle(kOutline, isOutlineEnabled);
                 if (EditorGUI.EndChangeCheck())
@@ -1892,6 +1892,7 @@ namespace UnityEditor.Rendering.Toon
                     }
                 }
             }
+            EditorGUI.indentLevel++;
             EditorGUI.BeginDisabledGroup(!isOutlineEnabled);
             //
             //Express Shader property [KeywordEnum(NML,POS)] by EumPopup.
@@ -1938,8 +1939,9 @@ namespace UnityEditor.Rendering.Toon
                 //                _AdvancedOutline_Foldout = FoldoutSubMenu(_AdvancedOutline_Foldout, Styles.AdvancedOutlineFoldout);
                 //                if (_AdvancedOutline_Foldout)
                 {
+
+                    EditorGUILayout .LabelField("Camera Distance for Outline Width");
                     EditorGUI.indentLevel++;
-                    GUILayout.Label("    Camera Distance for Outline Width");
                     m_MaterialEditor.FloatProperty(farthest_Distance, "Farthest Distance to vanish");
                     m_MaterialEditor.FloatProperty(nearest_Distance, "Nearest Distance to draw with Outline Width");
                     EditorGUI.indentLevel--;
@@ -1959,12 +1961,14 @@ namespace UnityEditor.Rendering.Toon
                 }
                 EditorGUI.EndDisabledGroup(); //!isOutlineEnabled
             }
+            EditorGUI.indentLevel--;
+
             EditorGUILayout.Space();
         }
 
         void GUI_Tessellation(Material material)
         {
-//            GUILayout.Label("Technique : DX11 Phong Tessellation", EditorStyles.boldLabel);
+
             m_MaterialEditor.RangeProperty(tessEdgeLength, "Edge Length");
             m_MaterialEditor.RangeProperty(tessPhongStrength, "Phong Strength");
             m_MaterialEditor.RangeProperty(tessExtrusionAmount, "Extrusion Amount");

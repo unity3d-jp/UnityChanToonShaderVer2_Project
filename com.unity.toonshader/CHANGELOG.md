@@ -26,7 +26,8 @@
 * Renamed `Stencil Out` to `Draw If Not Equal to`.
 * Renamed `Stencil Mask` to `Replace Stencil Buffer with`.
 * Renamed `Stencil No.` to `Stencil Value`.
-* That used to be a number field. Now it is editable with IntSlider.
+* The above used to be a number field. Now it is editable with IntSlider.
+* Renamed `Inverse MatCap Mask` to `Invert MatCap Mask`.
 * Renamed `Trans Clipping Mode` to `Clip Transparency`.
 * Renamed `Unlit Intensity` to `Metaverse Light Intensity` and `Buiilt-in light settings` are moved into `Metaverse Settings` folder in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat ones.
 * _Unlit_Intensity ranges defined in all the shaders are from 0 to 4. originally they were from 0.001 to 4.
@@ -56,7 +57,7 @@
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
 * Unify the notation in the converter with Unity-Chan Toon Shader 2.
 * Fixed some popups in the inspector window not to use connected names without spaces. Each name is separated by a space.
-
+* Fixed Indent in NoramMap Settings in the inspector window.
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:
 * typo in inspector.
