@@ -42,6 +42,7 @@
 * Project Settings, but quite simple yet.
 * Help buttons to foldout headers in the inspector window, which work newer than Unity 2021.1.
 * Unity-Chan Toon Shader 2 Converter window opens when old shaders are in projects on start up or right after the package is installed.
+* Dependency to srp core take advantege of its help system.
 ### Removed:
 * Removed   `● Additional Settings` in the Inspector.
 * Removed Simple UI.
@@ -54,10 +55,10 @@
 * RTHS is not shown unless `Show deprecated features in the inspector` is checked in the `Project Settings Window`.
 ### Fixed:
 * Undo/Redo was not working on some items in the inspector window.
+* Fixed Indent in NoramMap Settings in the inspector window.
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
 * Unify the notation in the converter with Unity-Chan Toon Shader 2.
 * Fixed some popups in the inspector window not to use connected names without spaces. Each name is separated by a space.
-* Fixed Indent in NoramMap Settings in the inspector window.
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:
 * typo in inspector.
