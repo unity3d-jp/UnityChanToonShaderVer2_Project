@@ -9,6 +9,7 @@
 * Replaced toggle buttons Off/Active UI to Unity standard toggles.
 * Renamed `Basic Shader Settings` to `Shader Setting`.
 * Replaced some toggle buttons, such as `Emissive UV Coord`, `Specular Mode`, to dropdown menus
+* Specular mode name are not just Off/On but Soft/Hard.
 * Made everything in the inspector hidden when disabled to be shown but grayed out.
 * Folder headers use Unity standard style in the inspector window when SRP core newer than 12 is not installed.
 * Folder headers use SRP style in the inspector window when SRP core newer than 12 is installed.

@@ -486,7 +486,7 @@ It is used to reflect the main directional light. When the light moves the refle
 |:-------------------|:-------------------|:-------------------|
 | `HighColor` | Specifies the high color. If you are not using it, set it to Black (0,0,0). High color moves according to the direction of light. You can specify texture as well as color specification. By using texture, you can use complex colors. It will be multiplied to the (right) color palette, so if you only want the texture’s color, set the color pallet to white (1,1,1). If you do not need it, you do not have to touch the settings. | _HighColor, _HighColor_Tex |
 | `HighColor Power` | Adjust the high color’s range (In specular lighting terms, this will be the “power”) | _HighColor_Power |
-| `Specular Mode` | `Circle` A single specular light is rendered as a circle with a single color. <br/>`Natural` A single specular light is rendered as a specular light as in normal CG. | _Is_SpecularToHighColor |
+| `Specular Mode` | `Hard` A single specular light is rendered as a circle with a single color. <br/>`Soft` A single specular light is rendered as a specular light as in normal CG. | _Is_SpecularToHighColor |
 | `Color Blend Mode` | In case of `Additive`, add the High Color to the base color(It becomes brighter). Specular can only be used with the Add mode. In case of `Multiply`, multiply the High color with the base color(It becomes darker). | _Is_BlendAddToHiColor |
 | `ShadowMask on HighColor` | In case of `Active`, mask the high color area on the shadow area. | _Is_UseTweakHighColorOnShadow |
 | `HighColor Power on Shadow` | Adjusts the power of the high color range in shadows. | _TweakHighColorOnShadow |

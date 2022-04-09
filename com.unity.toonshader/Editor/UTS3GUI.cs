@@ -237,7 +237,7 @@ namespace UnityEditor.Rendering.Toon
         }
         public enum UTS_SpeculerMode
         {
-            Solid, Natural
+            Hard, Soft
         }
         public enum UTS_SpeculerColorBlendMode
         {
@@ -484,7 +484,7 @@ namespace UnityEditor.Rendering.Toon
             }
         }
 
-        public static GUIContent specularModeText = new GUIContent("Specular Mode", "Specular light mode. Solid Color or Natural.");
+       public static GUIContent specularModeText = new GUIContent("Specular Mode", "Specular light mode. Hard  or Soft.");
         public static GUIContent specularBlendModeText = new GUIContent("Color Blend Mode", "Specular color blending mode. Multiply or Additive.");
         public static GUIContent matcapBlendModeText = new GUIContent("Color Blend Mode", "MatCap color blending mode. Multiply or Additive.");
         public static GUIContent matcapOrthoText = new GUIContent("MatCap Camera Mode", "MatCap camera mode. Perspective or Orthographic.");
@@ -1287,9 +1287,9 @@ namespace UnityEditor.Rendering.Toon
                     m_MaterialEditor.RegisterPropertyChangeUndo(specularModeText.text);
                     switch ((UTS_SpeculerMode)mode)
                     {
-                    case UTS_SpeculerMode.Solid:
+                    case UTS_SpeculerMode.Hard:
                         break;
-                    case UTS_SpeculerMode.Natural:
+                    case UTS_SpeculerMode.Soft:
                         specularBlendMode.floatValue = 1.0f;
                         break;
                     }
