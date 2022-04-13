@@ -9,7 +9,7 @@
 * Replaced toggle buttons Off/Active UI to Unity standard toggles.
 * Renamed `Basic Shader Settings` to `Shader Setting`.
 * Replaced some toggle buttons, such as `Emissive UV Coord`, `Specular Mode`, to dropdown menus
-* Specular mode name are not just Off/On but Soft/Hard.
+* Specular mode name are not just `Off`/`On` but `Soft`/`Hard`.
 * Made everything in the inspector hidden when disabled to be shown but grayed out.
 * Folder headers use Unity standard style in the inspector window when SRP core newer than 12 is not installed.
 * Folder headers use SRP style in the inspector window when SRP core newer than 12 is installed.
@@ -30,11 +30,22 @@
 * The above used to be a number field. Now it is editable with IntSlider.
 * Renamed `Inverse MatCap Mask` to `Invert MatCap Mask`.
 * Renamed `Trans Clipping Mode` to `Clip Transparency`.
-* Renamed `Unlit Intensity` to `Metaverse Light Intensity` and `Buiilt-in light settings` are moved into `Metaverse Settings` folder in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat ones.
+* Renamed `Unlit Intensity` to `Metaverse Light Intensity` and `Buiilt-in light settings` are moved into `Metaverse Settings` foldout header in the inspector so that users can understand  setting them is not necessary for usual uses.The setting works only when no directional lights are on the scenes like some VRChat ones.
 * _Unlit_Intensity ranges defined in all the shaders are from 0 to 4. originally they were from 0.001 to 4.
 * Changed built-in light default brightness from 1 to 0.
-* Renamed 'Basic Look Dev' to 'Shading Step and Feather Settings'
-* `Advanced settings` in Outline folder are always shown.
+* Renamed `Basic Look Dev` to `Shading Step and Feather Settings`.
+* `Advanced settings` in Outline foldout header are always shown.
+* Renamed `Outline Sampler` in Ontline foldout header to `Outline Width Map`.
+* Renamed `Outline-tex` in Ontline foldout header to `Outline Color Map`.
+* Renamed Culling mode itemes from `CullingOff`, `FrontCulling` and `BackCulling` to `Off`, `Frontface` and `Backface`.
+* Renamed `Receive System Shadows` to `Receive Shadows`.
+* Renamed `Shadow Mask on Highlights` to `Dim Highlights in Shadow Area`.
+* Renamed `Highlight Power on Shadows` to `Highlight Power in Shadow area`.
+* Renamed `Camera Rolling Stabilizer` to `Stabilize Camera Rolling`.
+* Renamed `ViewShift of Color` to `Color Shifting with View Angle`.
+* Renamed `ViewShift` to `Shifting Target Color`.
+* Renamed `Use Outline Texture` to `Outline Color Map`.
+* Renamed `Use Baked Normal for Outline` to `Baked Normalmap`.
 ### Added:
 * Legacy: Compatibility with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.
@@ -44,8 +55,11 @@
 * Help buttons to foldout headers in the inspector window, which work newer than Unity 2021.1.
 * Unity-Chan Toon Shader 2 Converter window opens when old shaders are in projects on start up or right after the package is installed.
 * Dependency to srp core take advantege of its help system.
+* Added Tips to Culling Mode popup menu in the inspector window.
+* Added Tips to GUI Toggles in the inspector window.
+* Added Tips to Range Properties in the inspector window.
 ### Removed:
-* Removed   `● Additional Settings` in the Inspector.
+* Removed   `● Additional Settings` in the Inspector window.
 * Removed Simple UI.
 * Removed Japanese and English manual link buttons.
 * Removed Game Recommendation window and changed the default values of shader variables.
