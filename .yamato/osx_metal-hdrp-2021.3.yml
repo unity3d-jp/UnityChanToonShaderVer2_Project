@@ -2,9 +2,9 @@
 #
 #
 test_projects:
-  - name: HdrpGraphicsTest-2021.2
+  - name: HdrpGraphicsTest-2021.3
 unity_versions:
-  - name: 2021.2
+  - name: 2021.3
   - name: 2022.1
   - name: 2022.2      
 ---
