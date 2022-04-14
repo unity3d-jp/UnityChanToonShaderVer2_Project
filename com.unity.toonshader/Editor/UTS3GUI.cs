@@ -386,22 +386,15 @@ namespace UnityEditor.Rendering.Toon
 
         protected MaterialProperty set_HighColorMask = null;
         protected MaterialProperty tweak_HighColorMaskLevel = null;
-        protected MaterialProperty rimLightColor = null;
+
         protected MaterialProperty rimLight_Power = null;
-
-
-        protected MaterialProperty ap_RimLightColor = null;
         protected MaterialProperty ap_RimLight_Power = null;
         protected MaterialProperty set_RimLightMask = null;
 
         protected MaterialProperty matCap_Sampler = null;
         protected MaterialProperty matCapColor = null;
-
-
         protected MaterialProperty normalMapForMatCap = null;
         protected MaterialProperty bumpScaleMatcap = null;
-
-
         protected MaterialProperty set_MatcapMask = null;
 
         protected MaterialProperty angelRing_Sampler = null;
@@ -409,23 +402,14 @@ namespace UnityEditor.Rendering.Toon
 
         protected MaterialProperty emissive_Tex = null;
         protected MaterialProperty emissive_Color = null;
-
-
         protected MaterialProperty rotate_EmissiveUV = null;
-        protected MaterialProperty colorShift = null;
 
-        protected MaterialProperty viewShift = null;
-
-        protected MaterialProperty outline_Color = null;
         protected MaterialProperty outline_Sampler = null;
         protected MaterialProperty offset_Z = null;
-
         protected MaterialProperty outlineTex = null;
         protected MaterialProperty bakedNormal = null;
 
-
         //------------------------------------------------------
-
         protected MaterialEditor m_MaterialEditor;
 
  
@@ -495,10 +479,8 @@ namespace UnityEditor.Rendering.Toon
 
             set_HighColorMask = FindProperty(ShaderProp_Set_HighColorMask, props);
             tweak_HighColorMaskLevel = FindProperty("_Tweak_HighColorMaskLevel", props);
-            rimLightColor = FindProperty("_RimLightColor", props);
 
 
-            ap_RimLightColor = FindProperty("_Ap_RimLightColor", props);
             set_RimLightMask = FindProperty(ShaderProp_Set_RimLightMask, props);
 
             matCap_Sampler = FindProperty(ShaderProp_MatCap_Sampler, props);
@@ -515,9 +497,8 @@ namespace UnityEditor.Rendering.Toon
 
             emissive_Tex = FindProperty("_Emissive_Tex", props);
             emissive_Color = FindProperty("_Emissive_Color", props);
-            colorShift = FindProperty("_ColorShift", props);
-            viewShift = FindProperty("_ViewShift", props);
-            outline_Color = FindProperty("_Outline_Color", props, false);
+
+
             outline_Sampler = FindProperty(ShaderProp_Outline_Sampler, props, false);
             outlineTex = FindProperty(ShaderProp_OutlineTex, props, false);
             bakedNormal = FindProperty("_BakedNormal", props, false);
@@ -575,6 +556,19 @@ namespace UnityEditor.Rendering.Toon
             }
         }
 
+        class ColorProperty
+        {
+            internal GUIContent m_GuiContent;
+            internal readonly string m_propertyName;
+            internal bool m_isHDR;
+
+            internal ColorProperty(string label, string tooltip, string propName, bool isHDR)
+            {
+                m_GuiContent = new GUIContent(label, tooltip );
+                m_propertyName = propName;
+                m_isHDR = isHDR;
+            }
+        }
 
 
 
@@ -847,6 +841,27 @@ namespace UnityEditor.Rendering.Toon
             public static readonly FloatProperty colorShiftSpeedText = new FloatProperty(label: "Color Shifting Speed (Time)",
                 tooltip: "Sets the reference speed for color shift. When the value is 1, one cycle should take approximately 6 seconds.",
                 propName: "_ColorShift_Speed", defaultValue: 0);
+
+            // Color prperties
+            public static readonly ColorProperty viewShiftText = new ColorProperty(label: "Shifting Target Color",
+                tooltip: "Target color above, must be specified in HDR.",
+                propName: "_ViewShift", isHDR: true );
+
+            public static readonly ColorProperty colorShiftText = new ColorProperty(label: "Destination Color",
+                tooltip: "Destination color above, must be specified in HDR.",
+                propName: "_ColorShift", isHDR: true);
+
+            public static readonly ColorProperty rimLightColorText = new ColorProperty(label: "Rim Light Color",
+                tooltip: "Specifies the color of rim light.",
+                propName: "_RimLightColor", isHDR: false);
+
+            public static readonly ColorProperty apRimLightColorText = new ColorProperty(label: "Inversed Rim Light Color",
+                tooltip: "Specifies the color of inversed/antipodean rim light.",
+                propName: "_Ap_RimLightColor", isHDR: false);
+
+            public static readonly ColorProperty outlineColorText = new ColorProperty(label: "Outline Color",
+                tooltip: "Specifies the color of outline.",
+                propName: "_Outline_Color", isHDR: false);
         }
         // --------------------------------
 
@@ -1129,7 +1144,20 @@ namespace UnityEditor.Rendering.Toon
             return ret;
         }
 
+        Color GUI_ColorProperty(Material material, ColorProperty colorProp)
+        {
+            Color ret = material.GetColor(colorProp.m_propertyName);
+            EditorGUI.BeginChangeCheck();
 
+            ret = EditorGUILayout.ColorField(colorProp.m_GuiContent, ret, showEyedropper: true, showAlpha: true, hdr: colorProp.m_isHDR);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                m_MaterialEditor.RegisterPropertyChangeUndo(colorProp.m_GuiContent.text);
+                material.SetColor(colorProp.m_propertyName, ret);
+            }
+            return ret;
+        }
         float GUI_RangeProperty(Material material, RangeProperty rangeProp)
         {
             return GUI_RangeProperty(material, rangeProp.m_GuiContent, rangeProp.m_propertyName, rangeProp.m_Min, rangeProp.m_Max);
@@ -1565,7 +1593,7 @@ namespace UnityEditor.Rendering.Toon
             EditorGUI.BeginDisabledGroup(!rimLightEnabled);
             EditorGUI.indentLevel++;
 
-            m_MaterialEditor.ColorProperty(rimLightColor, "Rim Light Color");
+            GUI_ColorProperty(material, Styles.rimLightColorText);
             GUI_RangeProperty(material, Styles.rimLightPowerText);
 
             if (!_SimpleUI)
@@ -1593,8 +1621,7 @@ namespace UnityEditor.Rendering.Toon
                     EditorGUI.BeginDisabledGroup(!antipodean_RimLight);
                     {
                         EditorGUI.indentLevel++;
-
-                        m_MaterialEditor.ColorProperty(ap_RimLightColor, "Inversed Rim Light Color");
+                        GUI_ColorProperty(material, Styles.apRimLightColorText);
                         GUI_RangeProperty(material, Styles.inversedRimLightPowerText);
 
                         EditorGUILayout.BeginHorizontal();
@@ -2018,7 +2045,7 @@ namespace UnityEditor.Rendering.Toon
                     EditorGUI.indentLevel++;
                     EditorGUI.BeginDisabledGroup(!isColorShiftEnabled);
                     {
-                        m_MaterialEditor.ColorProperty(colorShift, "Destination Color");
+                        GUI_ColorProperty(material, Styles.colorShiftText);
                         GUI_FloatProperty(material, Styles.colorShiftSpeedText);
                     }
                     EditorGUI.EndDisabledGroup();
@@ -2032,7 +2059,7 @@ namespace UnityEditor.Rendering.Toon
 
                     EditorGUI.indentLevel++;
                     EditorGUI.BeginDisabledGroup(!isViewShiftEnabled);
-                    m_MaterialEditor.ColorProperty(viewShift, "Shifting Target Color");
+                    GUI_ColorProperty(material, Styles.viewShiftText);
                     EditorGUI.EndDisabledGroup();
                     EditorGUI.indentLevel--;
                 }//!_SimpleUI
@@ -2136,7 +2163,7 @@ namespace UnityEditor.Rendering.Toon
             }
 
             GUI_FloatProperty(material, Styles.outlineWidthText);
-            m_MaterialEditor.ColorProperty(outline_Color, "Outline Color");
+            GUI_ColorProperty(material, Styles.outlineColorText);
 
             GUI_Toggle(material, Styles.colorShiftWithViewAngle, ShaderPropIs_BlendBaseColor, MaterialGetInt(material, ShaderPropIs_BlendBaseColor) != 0);
 
