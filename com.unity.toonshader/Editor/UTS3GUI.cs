@@ -409,18 +409,17 @@ namespace UnityEditor.Rendering.Toon
 
         protected MaterialProperty emissive_Tex = null;
         protected MaterialProperty emissive_Color = null;
-        protected MaterialProperty base_Speed = null;
+
 
         protected MaterialProperty rotate_EmissiveUV = null;
         protected MaterialProperty colorShift = null;
-        protected MaterialProperty colorShift_Speed = null;
+
         protected MaterialProperty viewShift = null;
-        protected MaterialProperty outline_Width = null;
+
         protected MaterialProperty outline_Color = null;
         protected MaterialProperty outline_Sampler = null;
         protected MaterialProperty offset_Z = null;
-        protected MaterialProperty farthest_Distance = null;
-        protected MaterialProperty nearest_Distance = null;
+
         protected MaterialProperty outlineTex = null;
         protected MaterialProperty bakedNormal = null;
 
@@ -516,18 +515,10 @@ namespace UnityEditor.Rendering.Toon
 
             emissive_Tex = FindProperty("_Emissive_Tex", props);
             emissive_Color = FindProperty("_Emissive_Color", props);
-            base_Speed = FindProperty("_Base_Speed", props);
-
-            rotate_EmissiveUV = FindProperty("_Rotate_EmissiveUV", props);
             colorShift = FindProperty("_ColorShift", props);
-            colorShift_Speed = FindProperty("_ColorShift_Speed", props);
             viewShift = FindProperty("_ViewShift", props);
-            outline_Width = FindProperty("_Outline_Width", props, false);
             outline_Color = FindProperty("_Outline_Color", props, false);
             outline_Sampler = FindProperty(ShaderProp_Outline_Sampler, props, false);
-            offset_Z = FindProperty("_Offset_Z", props, false);
-            farthest_Distance = FindProperty("_Farthest_Distance", props, false);
-            nearest_Distance = FindProperty("_Nearest_Distance", props, false);
             outlineTex = FindProperty(ShaderProp_OutlineTex, props, false);
             bakedNormal = FindProperty("_BakedNormal", props, false);
 
@@ -570,6 +561,20 @@ namespace UnityEditor.Rendering.Toon
                 m_Max = max;
             }
         };
+
+        class FloatProperty
+        {
+            internal GUIContent m_GuiContent;
+            internal readonly string m_propertyName;
+            internal float m_defaultValue;
+            internal FloatProperty(string label, string tooltip, string propName, float defaultValue)
+            {
+                m_GuiContent = new GUIContent(label, tooltip + " The default value is " + defaultValue + ".");
+                m_propertyName = propName;
+                m_defaultValue = defaultValue;
+            }
+        }
+
 
 
 
@@ -672,7 +677,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent metaverseLightDirectionText = new GUIContent("Metaverse Light Direction", "Drection of above.");
             public static readonly GUIContent invertZaxisDirection = new GUIContent("Invert Z-Axis Direction", "Invert Metaverse light Z-Axis Direction.");
 
-            // range property
+            // Range properties
             public static readonly RangeProperty metaverseRangePropText = new RangeProperty(
                 "Metaverse Light Intensity", 
                 "Light intensity when no directional lights in the scene.",
@@ -704,7 +709,6 @@ namespace UnityEditor.Rendering.Toon
             public static readonly RangeProperty tweakSystemShadowLevelText = new RangeProperty(
                 "System Shadow Level", "TBD.",
                 "_Tweak_SystemShadowsLevel",-0.5f, 0.5f);
-
 
             public static readonly RangeProperty shaderPropBaseColorText = new RangeProperty(
                 "Base Color Step", "TBD.",
@@ -814,6 +818,35 @@ namespace UnityEditor.Rendering.Toon
             public static readonly RangeProperty rimLight_InsideMaskText = new RangeProperty(
                 "Adjust Rim Light Area.", "Increasing this value narrows the area of influence of Rim Light.",
                 "_RimLight_InsideMask", 0.0001f, 1);
+
+            // Float properties
+            public static readonly FloatProperty baseSpeedText = new FloatProperty(label: "Base Speed (Time)", 
+                tooltip: "Specifies the base update speed of scroll animation. If the value is 1, it will be updated in 1 second. Specifying a value of 2 results in twice the speed of a value of 1, so it will be updated in 0.5 seconds.", 
+                propName: "_Base_Speed", defaultValue: 0);
+
+            public static readonly FloatProperty outlineWidthText = new FloatProperty(label: "Outline Width",
+                tooltip: "Specifies the width of the outline. NOTICE: This value relies on the scale when the model was imported to Unity which means that you have to be careful if the scale is not 1.",
+                propName: "_Outline_Width", defaultValue: 0);
+
+            public static readonly FloatProperty farthestDistanceText = new FloatProperty(label: "Farthest Distance to vanish",
+                tooltip: "Specify the furthest distance, where the outline width changes with the distance between the camera and the object. The outline will be zero at this distance.",
+                propName: "_Farthest_Distance", defaultValue: 100);
+
+            public static readonly FloatProperty nearestDistanceText = new FloatProperty(label: "Nearest Distance to draw with Outline Width",
+                tooltip: "Specify the closest distance, where the outline width changes with the distance between the camera and the object. At this distance, the outline will be the maximum width set by Outline_Width.",
+                propName: "_Nearest_Distance", defaultValue: 0.5f);
+
+            public static readonly FloatProperty rotateEmissiveUVText = new FloatProperty(label: "Rotate around UV center",
+                tooltip: "When Base Speed=1, the Emissive texture will rotate clockwise by 1. When combined with scrolling, rotation will occur after scrolling.",
+                propName: "_Rotate_EmissiveUV", defaultValue: 0);
+
+            public static readonly FloatProperty offsetZText = new FloatProperty(label: "Offset Outline with Camera Z-axis",
+                tooltip: "Offsets the outline in the depth (Z) direction of the camera. In the case of a spike-shaped hairdo, etc., adding a positive value makes the outline less likely to be applied to the spike area. Normally, leave the value at 0.",
+                propName: "_Offset_Z", defaultValue: 0);
+
+            public static readonly FloatProperty colorShiftSpeedText = new FloatProperty(label: "Color Shifting Speed (Time)",
+                tooltip: "Sets the reference speed for color shift. When the value is 1, one cycle should take approximately 6 seconds.",
+                propName: "_ColorShift_Speed", defaultValue: 0);
         }
         // --------------------------------
 
@@ -1080,6 +1113,22 @@ namespace UnityEditor.Rendering.Toon
             }
             return ret;
         }
+
+
+        float GUI_FloatProperty(Material material, FloatProperty floatProp)
+        {
+            float ret = material.GetFloat(floatProp.m_propertyName);
+            EditorGUI.BeginChangeCheck();
+            ret = EditorGUILayout.FloatField(floatProp.m_GuiContent, ret );
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                m_MaterialEditor.RegisterPropertyChangeUndo(floatProp.m_GuiContent.text);
+                material.SetFloat(floatProp.m_propertyName, ret);
+            }
+            return ret;
+        }
+
 
         float GUI_RangeProperty(Material material, RangeProperty rangeProp)
         {
@@ -1937,8 +1986,7 @@ namespace UnityEditor.Rendering.Toon
                 EditorGUI.indentLevel++;
 
 
-                m_MaterialEditor.FloatProperty(base_Speed, "Base Speed (Time)");
-
+                GUI_FloatProperty(material, Styles.baseSpeedText);
                 if (!_SimpleUI)
                 {
                     int mode = MaterialGetInt(material, ShaderPropIs_ViewCoord_Scroll);
@@ -1954,7 +2002,7 @@ namespace UnityEditor.Rendering.Toon
                 
                 GUI_RangeProperty(material, Styles.scrollEmissiveUText);
                 GUI_RangeProperty(material, Styles.scrollEmissiveVText);
-                m_MaterialEditor.FloatProperty(rotate_EmissiveUV, "Rotate around UV center");
+                GUI_FloatProperty(material, Styles.rotateEmissiveUVText);
 
                 GUI_Toggle(material, Styles.pingpongMoveText, ShaderPropIs_PingPong_Base, MaterialGetInt(material, ShaderPropIs_PingPong_Base) != 0);
 
@@ -1971,7 +2019,7 @@ namespace UnityEditor.Rendering.Toon
                     EditorGUI.BeginDisabledGroup(!isColorShiftEnabled);
                     {
                         m_MaterialEditor.ColorProperty(colorShift, "Destination Color");
-                        m_MaterialEditor.FloatProperty(colorShift_Speed, "Color Shifting Speed (Time)");
+                        GUI_FloatProperty(material, Styles.colorShiftSpeedText);
                     }
                     EditorGUI.EndDisabledGroup();
 
@@ -2087,13 +2135,13 @@ namespace UnityEditor.Rendering.Toon
                 material.DisableKeyword("_OUTLINE_NML");
             }
 
-            m_MaterialEditor.FloatProperty(outline_Width, "Outline Width");
+            GUI_FloatProperty(material, Styles.outlineWidthText);
             m_MaterialEditor.ColorProperty(outline_Color, "Outline Color");
 
             GUI_Toggle(material, Styles.colorShiftWithViewAngle, ShaderPropIs_BlendBaseColor, MaterialGetInt(material, ShaderPropIs_BlendBaseColor) != 0);
 
             m_MaterialEditor.TexturePropertySingleLine(Styles.outlineSamplerText, outline_Sampler);
-            m_MaterialEditor.FloatProperty(offset_Z, "Offset Outline with Camera Z-axis");
+            GUI_FloatProperty(material, Styles.offsetZText);
 
             if (!_SimpleUI)
             {
@@ -2104,8 +2152,8 @@ namespace UnityEditor.Rendering.Toon
 
                     EditorGUILayout .LabelField("Camera Distance for Outline Width");
                     EditorGUI.indentLevel++;
-                    m_MaterialEditor.FloatProperty(farthest_Distance, "Farthest Distance to vanish");
-                    m_MaterialEditor.FloatProperty(nearest_Distance, "Nearest Distance to draw with Outline Width");
+                    GUI_FloatProperty(material, Styles.farthestDistanceText);
+                    GUI_FloatProperty(material, Styles.nearestDistanceText);
                     EditorGUI.indentLevel--;
 
                     var useOutlineTexture =  GUI_Toggle(material, Styles.outlineColorMapText, ShaderPropIs_OutlineTex, MaterialGetInt(material, ShaderPropIs_OutlineTex)!=0); ;
