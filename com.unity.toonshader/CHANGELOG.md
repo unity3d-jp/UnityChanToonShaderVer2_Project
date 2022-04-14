@@ -39,13 +39,20 @@
 * Renamed `Outline-tex` in Ontline foldout header to `Outline Color Map`.
 * Renamed Culling mode itemes from `CullingOff`, `FrontCulling` and `BackCulling` to `Off`, `Frontface` and `Backface`.
 * Renamed `Receive System Shadows` to `Receive Shadows`.
-* Renamed `Shadow Mask on Highlights` to `Dim Highlights in Shadow Area`.
-* Renamed `Highlight Power on Shadows` to `Highlight Power in Shadow area`.
+* Renamed `Shadow Mask on High Color` to `Highlight Blending on Shadows`.
+* Renamed `Highlight Power on Shadows` to `Blend Rate`.
 * Renamed `Camera Rolling Stabilizer` to `Stabilize Camera Rolling`.
 * Renamed `ViewShift of Color` to `Color Shifting with View Angle`.
 * Renamed `ViewShift` to `Shifting Target Color`.
 * Renamed `Use Outline Texture` to `Outline Color Map`.
 * Renamed `Use Baked Normal for Outline` to `Baked Normalmap`.
+* Renamed `HighColor Power on Shadow` to `Brightness on Shadows`.
+* Renamed `MatCap Power on Shadow` to `MatCap Blending on Shadows`.
+* Renamed `Color Shift Speed` to `Color Shifting Speed`.
+* Renamed `Blur Level of ShadingGradeMap` to `ShadingGradeMap Blur Level`.
+* Renamed `MatCap Sampler` to `MatCap Map`.
+* Renamed `Blur Level of MatCap Sampler` to `MatCap Blur Level`.
+* Renamed `RimLight Inside Mask` to `Adjust Rim Light Area`.
 ### Added:
 * Legacy: Compatibility with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.
