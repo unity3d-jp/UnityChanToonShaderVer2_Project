@@ -21,7 +21,7 @@ namespace UnityEditor.Rendering.Toon
         {
             public const string header = "Tessellation Options";
 
-            public static string tessellationModeStr = "Tessellation Mode";
+            public static GUIContent tessellationModeText = new GUIContent("Tessellation Mode","Tessellation Mode. None/Phong");
 
             public static readonly string[] tessellationModeNames = System.Enum.GetNames(typeof(
             TessellationMode));
@@ -102,7 +102,7 @@ namespace UnityEditor.Rendering.Toon
             var mode = (TessellationMode)tessellationMode.floatValue;
 
             EditorGUI.BeginChangeCheck();
-            mode = (TessellationMode)EditorGUILayout.Popup(TessellationStyles.tessellationModeStr, (int)mode, TessellationStyles.tessellationModeNames);
+            mode = (TessellationMode)EditorGUILayout.Popup(TessellationStyles.tessellationModeText, (int)mode, TessellationStyles.tessellationModeNames);
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.RegisterPropertyChangeUndo("Tessellation Mode");

@@ -603,36 +603,38 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent rimLightMaskText = new GUIContent("Rim Light Mask", "Rim Light Mask : Texture(linear)");
             public static readonly GUIContent matCapSamplerText = new GUIContent("MatCap Map", "MatCap Color : Texture(sRGB) × Color(RGB) Default:White");
             public static readonly GUIContent matCapMaskText = new GUIContent("MatCap Mask", "MatCap Mask : Texture(linear)");
-            public static readonly GUIContent angelRingText = new GUIContent("Angel Ring", "Angel Ring : Texture(sRGB) × Color(RGB) Default:Black");
+            public static readonly GUIContent angelRingText = new GUIContent("Angel Ring", "Angel Ring : Texture(sRGB) × Color(RGB) Default:Black.");
             public static readonly GUIContent emissiveTexText = new GUIContent("Emission Map", "Emission : Texture(sRGB)× Emission mask(alpha) × Color(HDR) Default:Black");
             public static readonly GUIContent shadingGradeMapText = new GUIContent("Shading Grade Map", "Specify shadow-prone areas in UV coordinates. Shading Grade Map : Texture(linear)");
             public static readonly GUIContent firstPositionMapText = new GUIContent("1st Shading Position Map", "Specify the position of fixed shadows that falls in 1st shade color areas in UV coordinates. 1st Position Map : Texture(linear)");
             public static readonly GUIContent secondPositionMapText = new GUIContent("2nd Shading Position Map", "Specify the position of fixed shadows that falls in 2nd shade color areas in UV coordinates. 2nd Position Map : Texture(linear)");
-            public static readonly GUIContent outlineSamplerText = new GUIContent("Outline Width Map", "Outline Width Map as Grayscale Texture : Texture(linear)");
+            public static readonly GUIContent outlineSamplerText = new GUIContent("Outline Width Map", "Outline Width Map as a Grayscale Texture : Texture(linear).");
             public static readonly GUIContent outlineTexText = new GUIContent("Outline Color Map", "Outline texture : Texture(sRGB) Default:White");
             public static readonly GUIContent bakedNormalOutlineText = new GUIContent("Baked NormalMap for Outline", "Unpacked Normal Map : Texture(linear) .Note that this is not a standard NORMAL MAP.");
             public static readonly GUIContent clippingMaskText = new GUIContent("Clipping Mask", "Clipping Mask : Texture(linear)");
 
             public static readonly GUIContent specularModeText = new GUIContent("Specular Mode", "Specular light mode. Hard or Soft.");
-            public static readonly GUIContent specularBlendModeText = new GUIContent("Color Blend Mode", "Specular color blending mode. Multiply or Additive.");
-            public static readonly GUIContent matcapBlendModeText = new GUIContent("Color Blend Mode", "MatCap color blending mode. Multiply or Additive.");
+            public static readonly GUIContent specularBlendModeText = new GUIContent("Color Blending Mode", "Specular color blending mode. Multiply or Additive.");
+            public static readonly GUIContent matcapBlendModeText = new GUIContent("Color Blending Mode", "MatCap color blending mode. Multiply or Additive.");
             public static readonly GUIContent matcapOrthoText = new GUIContent("MatCap Camera Mode", "MatCap camera mode. Perspective or Orthographic.");
             public static readonly GUIContent transparentModeText = new GUIContent("Transparency",   "Transparency  mode that fits you. ");
+            public static readonly GUIContent stencilVauleText = new GUIContent("Stencil Value","Stencil value that should be written to the stencil buffer.");
             public static readonly GUIContent workflowModeText = new GUIContent("Mode", "Select the mode that fits your purpose. Choose between Standard or With Additional Control Maps.");
 
             // -----------------------------------------------------
-            public static readonly GUIContent clippingmodeModeText0 = new GUIContent("Clipping", "Select clipping mode that fits your purpose. ");
+            public static readonly GUIContent clippingmodeModeText0 = new GUIContent("Clipping", "Select clipping mode that fits your purpose.");
             public static readonly GUIContent clippingmodeModeText1 = new GUIContent("Trans Clipping", "Select trans clipping mode that fits your purpose. ");
             public static readonly GUIContent stencilmodeModeText = new GUIContent("Stencil", "Select stencil mode that fits your purpose. ");
             public static readonly GUIContent cullingModeText = new GUIContent("Culling Mode", "Culling mode that fits your purpose. ");
 
             // ----------------------------------------------------- for GUI Toggles
             public static readonly GUIContent autoRenderQueueText = new GUIContent("Auto Render Queue", "When enabled, reqndering order is determined by system automatically.");
+            public static readonly GUIContent renderQueueText = new GUIContent("Render Queue", "Rendering order in the scene.");
             public static readonly GUIContent invertClippingMaskText = new GUIContent("Invert Clipping Mask", "Invert clipping mask results.");
             public static readonly GUIContent baseMapAlphaAsClippingMask = new GUIContent("Use Base Map Alpha as Clipping Mask", "Use Base Map Alpha as Clipping Mask instead of Clipping mask texture.");
             public static readonly GUIContent applyTo1stShademapText = new GUIContent("Apply to 1st shading map", "Apply Base map to the 1st shading map.");
             public static readonly GUIContent applyTo2ndShademapText = new GUIContent("Apply to 2nd shading map", "Apply Base map or the 1st shading map to the 2st shading map.");
-            public static readonly GUIContent threeBasicColorToNormalmapText = new GUIContent("3 Basic Colors", "Normal map effectiveness to 3 Basic color areas, lit, the 1st shading and the 2nd");
+            public static readonly GUIContent threeBasicColorToNormalmapText = new GUIContent("3 Basic Colors", "Normal map effectiveness to 3 Basic color areas, lit, the 1st shading and the 2nd.");
             public static readonly GUIContent highLightToNormalmapText = new GUIContent("Highlight", "Normal map effectiveness to high lit areas.");
             public static readonly GUIContent rimlightToNormalmapText = new GUIContent("Rim Light", "Normal map effectiveness to rim lit areas.");
             public static readonly GUIContent receiveShadowText = new GUIContent("Receive Shadows", "Receive shadows on the material.");
@@ -644,94 +646,96 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent lightColorEffectivinessTo2ndShadingText = new GUIContent("2nd Shading Color", "Light color effectiveness to the 2nd shading color areas.");
             public static readonly GUIContent lightColorEffectivinessToHighlitText    = new GUIContent("Highlight", "Light color effectiveness to high lit areas.");
             public static readonly GUIContent lightColorEffectivinessToRimlitText     = new GUIContent("Rim Light", "Light color effectiveness to rim lit areas.");
-            public static readonly GUIContent lightColorEffectivinessToInvRimlitText  = new GUIContent("Inversed Rim Light", "Light color effectiveness to inverted rim lit areas.");
+            public static readonly GUIContent lightColorEffectivinessToInvRimlitText  = new GUIContent("Inversed Light Direciton Rim Light", "Light color effectiveness to inverted direction rim lit areas.");
             public static readonly GUIContent lightColorEffectivinessToMatCapText = new GUIContent("MatCap", "Light color effectiveness to MatCap areas.");
             public static readonly GUIContent lightColorEffectivinessToOutlineText = new GUIContent("Outline", "Light color effectiveness to outlines.");
             public static readonly GUIContent rimlightText = new GUIContent("Rim Light", "Enable/Disable Rim Light.");
             public static readonly GUIContent rimlightFeatherText = new GUIContent("Rim Light Feather Off", "Disable Rim light feather.");
-            public static readonly GUIContent rimlightDirectionMaskText = new GUIContent("Light Direction Mask", "TBD");
-            public static readonly GUIContent inversedRimlightText = new GUIContent("Inversed Rim Light", "Rim light from inversed/antipodean direction.");
+            public static readonly GUIContent rimlightDirectionMaskText = new GUIContent("Light Direction", "When Enabled, rim light is generated only in the direction of the light source.");
+            public static readonly GUIContent inversedRimlightText = new GUIContent("Inversed Direciton Rim Light", "Rim light from inversed/antipodean direction.");
             public static readonly GUIContent camearRollingStabilizerText = new GUIContent("Stabilize Camera rolling", "Stablize Camera rolling when capturing materials with camera.");
             public static readonly GUIContent inversedRimlightFeatherText = new GUIContent("Inversed Rim Light Feather Off", "Disable Inversed Rim light feather.");
             public static readonly GUIContent matCapText = new GUIContent("MatCap", "Enable/Disable MatCap (Material Capture)");
-            public static readonly GUIContent matCapNormalmapSpecularaMask = new GUIContent("NormalMap Specular Mask for MatCap","TBD");
-            public static readonly GUIContent matCapOnShadow = new GUIContent("MatCap Blending on Shadows", "TBD");
+            public static readonly GUIContent matCapNormalmapSpecularaMask = new GUIContent("NormalMap Specular Mask for MatCap", "If Enabled, gives a normal map specifically for MatCap.If you are using MatCap as speculum lighting, you can use this to mask it.");
+            public static readonly GUIContent matCapOnShadow = new GUIContent("MatCap Blending on Shadows", "Adjusts the blending rate of the MatCap range in shadows.");
             public static readonly GUIContent invertMatCapMaskText = new GUIContent("Invert MatCap Mask","When enabled, MatCap Mask Texture is inversed.");
 
             public static readonly GUIContent angelRingProjectionText = new GUIContent("Angel Ring Projection", "Enable/Disable Angel Ring Projection.");
             public static readonly GUIContent angelRingAlphaAdClippingMaskText = new GUIContent("Alpha Channel as Clipping Mask", "Texture alpha channel is used for clipping mask. If disabled, alpha does not affect at all.");
-            public static readonly GUIContent pingpongMoveText = new GUIContent("Ping-pong moves for base","TBD");
+            public static readonly GUIContent pingpongMoveText = new GUIContent("Ping-pong moves for base", "When enabled, you can set PingPong (back and forth) in the direction of the animation.");
             public static readonly GUIContent colorShitWithTimeText = new GUIContent("Color Shifting with Time", "The color that is multiplied by the Emissive texture is changed by linear interpolation (Lerp) toward the Destination Color.");
             public static readonly GUIContent colorShiftWithViewAngle = new GUIContent("Color Shifting with View Angle", "Emissive color shifts in accordance with view angle.");
 
             public static readonly GUIContent baseColorToOtulineText = new GUIContent("Blend Base Color to Outline","Base Color is blended into outline color.");
-            public static readonly GUIContent outlineColorMapText = new GUIContent("Outline Color Map", "Apply a texture as outline color map");
-            public static readonly GUIContent bakedNormalForOutlineText = new GUIContent("Baked Normalmap", "Apply a Normalmap texture for Outline");
+            public static readonly GUIContent outlineColorMapText = new GUIContent("Outline Color Map", "Apply a texture as outline color map.");
+            public static readonly GUIContent bakedNormalForOutlineText = new GUIContent("Baked Normalmap", "Apply a Normalmap texture for Outline.");
             public static readonly GUIContent metaverseLightText = new GUIContent("Metaverse Light","UTS requires at least one directional light, Some Metaverse scenes,however does not. In such case this feature is helpful.");
             public static readonly GUIContent metaverseLightDirectionText = new GUIContent("Metaverse Light Direction", "Drection of above.");
             public static readonly GUIContent invertZaxisDirection = new GUIContent("Invert Z-Axis Direction", "Invert Metaverse light Z-Axis Direction.");
+            public static readonly GUIContent emissiveScrollAnimationModeText = new GUIContent("Animation Mode", "Emissive Animation Mode.");
 
+            public static readonly GUIContent outlineModeText = new GUIContent("Outline Mode", "Specifies how the inverted-outline object will be spawned. You can choose between Normal Direction（normal inverted method） / Position Scalling（position scaling method). In most cases, Normal Direction is used but if it is a mesh that is only made of hard edges (such as cubes), Position Scalling will prevent the outline from being disconnected.");
             // Range properties
             public static readonly RangeProperty metaverseRangePropText = new RangeProperty(
                 "Metaverse Light Intensity", 
                 "Light intensity when no directional lights in the scene.",
                 ShaderPropUnlit_Intensity,  0.0f, 4.0f);
             public static readonly RangeProperty metaverseOffsettXaxisText = new RangeProperty(
-                "Offset X-Axis Direction", "TBD.",
+                "Offset X-Axis Direction", "Moves  Metaverse light direction horizontally.",
                 "_Offset_X_Axis_BLD", -1.0f,1.0f);
             public static readonly RangeProperty metaverseOffsettYaxisText = new RangeProperty(
-                "Offset Y-Axis Direction", "TBD.",
+                "Offset Y-Axis Direction", "Moves  Metaverse light direction vertically.",
                 "_Offset_Y_Axis_BLD", -1.0f, 1.0f);
             public static readonly RangeProperty tweakTransParencyText = new RangeProperty(
-                "Transparency Level", "TBD.",
+                "Transparency Level", "Adjusts the transparency by considering the grayscale level of the clipping mask as an alpha value.",
                 "_Tweak_transparency", -1.0f, 1.0f);
             public static readonly RangeProperty clippingLevelText = new RangeProperty(
-                "Clipping Level", "TBD.",
+                "Clipping Level", "Specifies the strength of the clipping mask.",
                 "_Clipping_Level", 0.0f, 1.0f);
             public static readonly RangeProperty scrollEmissiveUText = new RangeProperty(
-                "Scroll U/X direction", "TBD.",
+                "Scroll U/X direction", "Specifies how much the Emissive texture should scroll in the u-direction (x-axis direction) when updating the animation. The range is -1 to 1, defaulting to 0. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.",
                 "_Scroll_EmissiveU", -1.0f, 1.0f);
             public static readonly RangeProperty scrollEmissiveVText = new RangeProperty(
-                "Scroll V/Y direction", "TBD.",
+                "Scroll V/Y direction", "Specifies how much the Emissive texture should scroll in the u-direction (y-axis direction) when updating the animation. The range is -1 to 1, defaulting to 0. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.",
                 "_Scroll_EmissiveV", -1.0f, 1.0f);
             public static readonly RangeProperty tweakHighColorOnShadowText = new RangeProperty(
-                "Blend Rate", "TBD.",
+                "Blending Level", "Adjusts the intensity of highlight applied to shadow areas.",
                 "_TweakHighColorOnShadow", 0, 1);
             public static readonly RangeProperty tweakMatCapOnShadowText = new RangeProperty(
-                "Blend Rate", "TBD.",
+                "Blending Level", "Adjusts the intensity of MatCap applied to shadow areas.",
                 "_TweakMatCapOnShadow", 0, 1);
             public static readonly RangeProperty tweakSystemShadowLevelText = new RangeProperty(
-                "System Shadow Level", "TBD.",
+                "System Shadow Level", "Adjsuts System Shadows.",
                 "_Tweak_SystemShadowsLevel",-0.5f, 0.5f);
 
             public static readonly RangeProperty shaderPropBaseColorText = new RangeProperty(
-                "Base Color Step", "TBD.",
+                "Base Color Step", "Sets the boundary between the Base Color and the Shade Colors.",
                 ShaderPropBaseColor_Step, 0, 1 );
             public static readonly RangeProperty shaderPropBaseFeatherText = new RangeProperty(
-                "Base Shading Feather", "TBD.",
+                "Base Shading Feather", "Feathers the boundary between the Base Color and the Shade Colors..",
                 ShaderPropBaseShade_Feather, 0.0001f, 1);
             public static readonly RangeProperty shaderPropShadeColorStepText = new RangeProperty(
-                "Shading Color Step", "TBD.",
+                "Shading Color Step", "Sets the boundary between the 1st and 2nd Shade Colors. Set this to 0 if no 2nd Shade Color is used.",
                 ShaderPropShadeColor_Step, 0, 1);
             public static readonly RangeProperty shaderProp1st2nd_Shades_FeatherText = new RangeProperty(
-                "1st/2nd Shading Feather", "TBD.",
+                "1st/2nd Shading Feather", "Feathers the boundary between the 1st and 2nd Shade Colors.",
                 ShaderProp1st2nd_Shades_Feather, 0.0001f, 1);
 
             public static readonly RangeProperty shaderProp1st_ShadeColor_StepText = new RangeProperty(
-                "1st Shade Color Step", "TBD.",
+                "1st Shade Color Step", "Sets the step between the Base color and 1st Shade Color, the same as the BaseColor_Step property..",
                 ShaderProp1st_ShadeColor_Step, 0, 1);
             public static readonly RangeProperty shaderProp1st_ShadeColor_FeatherText = new RangeProperty(
-                "1st Shade Color Feather", "TBD.",
+                "1st Shade Color Feather", "Feathers the boundary between the Base Color and the 1st Shade Color, the same as the Base/Shade_Feather property.",
                 ShaderProp1st_ShadeColor_Feather, 0.0001f, 1);
             public static readonly RangeProperty shaderProp2nd_ShadeColor_StepText = new RangeProperty(
-                "2nd Shade Color Step", "TBD.",
+                "2nd Shade Color Step", "Sets the step between the 1st and 2nd Shade Colors, the same as the ShadeColor_Step property.",
                 ShaderProp2nd_ShadeColor_Step, 0, 1);
             public static readonly RangeProperty shaderProp2nd_ShadeColor_FeatherText = new RangeProperty(
-                "2nd Shade Color Feather", "TBD.",
+                "2nd Shade Color Feather", "Feathers the boundary between the 1st and 2nd Shade Colors, the same as the 1st/2nd_Shades_Feather properties.",
                 ShaderProp2nd_ShadeColor_Feather, 0.0001f, 1);
 
             public static readonly RangeProperty shaderPropStepOffsetText = new RangeProperty(
-                "Step Offset", "TBD.",
+                "Step Offset", "Fine tunes light steps (boundaries) added in the ForwardAdd pass, such as real-time point lights.",
                 "_StepOffset", -0.5f, 0.5f);
             public static readonly RangeProperty shaderPropHilightPowerText = new RangeProperty(
                 "Highlight Power", "Highlight power factor, pow(x,5) is used inside the shader.",
@@ -754,15 +758,15 @@ namespace UnityEditor.Rendering.Toon
                 "_Tweak_RimLightMaskLevel", -1, 1);
 
             public static readonly RangeProperty lightDirectionMaskLevelText = new RangeProperty(
-                "Light Direction Mask Level", "The Level of above.",
+                "Light Direction Rim Light Level", "The Level of Rim Light toward a light direction.",
                 "_Tweak_LightDirection_MaskLevel", 0f, 0.5f);
 
             public static readonly RangeProperty tweakMatCapUVText = new RangeProperty(
-                "Scale MatCap UV", "Scaling UV of MatCap Color Map",
+                "Scale MatCap UV", "Scaling UV of MatCap Map.",
                 "_Tweak_MatCapUV", -0.5f, 0.5f);
 
             public static readonly RangeProperty rotateMatCapUVText = new RangeProperty(
-                "Rotate MatCap UV", "Rotating UV of MatCap Color Map.",
+                "Rotate MatCap UV", "Rotating UV of MatCap Map.",
                 "_Rotate_MatCapUV", -1, 1);
 
             public static readonly RangeProperty matcapBlurLevelText = new RangeProperty(
@@ -778,7 +782,7 @@ namespace UnityEditor.Rendering.Toon
                 "_AR_OffsetV", 0, 1);
 
             public static readonly RangeProperty legacyTessEdgeLengthText = new RangeProperty(
-                "Edge Length", "Divides the tessellation according to the camera’s distance. The smaller the value, the smaller the tiles become. ",
+                "Edge Length", "Divides the tessellation according to the camera’s distance. The smaller the value, the smaller the tiles become.",
                 "_TessEdgeLength", 2, 50);
 
             public static readonly RangeProperty legacyTessPhongStrengthText = new RangeProperty(
@@ -786,15 +790,15 @@ namespace UnityEditor.Rendering.Toon
                 "_TessPhongStrength", 0, 1);
 
             public static readonly RangeProperty legacyTessExtrusionAmountText = new RangeProperty(
-                "Extrusion Amount", "Scale the expanded parts due to tessellation. .",
+                "Extrusion Amount", "Scale the expanded parts due to tessellation.",
                 "_TessExtrusionAmount", -0.005f, 0.005f);
 
             public static readonly RangeProperty rimLightPowerText = new RangeProperty(
-                "Rim Light Power", "Specifies Rim Light power.",
+                "Rim Light Level", "Specifies Rim Light level.",
                 "_RimLight_Power", 0, 1);
 
             public static readonly RangeProperty inversedRimLightPowerText = new RangeProperty(
-                "Inversed Rim Light Power", "Specifies Inversed/Antipodean Rim Light power.",
+                "Inversed Rim Light Level", "Specifies Inversed/Antipodean Rim Light Level.",
                 "_Ap_RimLight_Power", 0, 1);
 
             public static readonly RangeProperty giIntensityText = new RangeProperty(
@@ -802,7 +806,7 @@ namespace UnityEditor.Rendering.Toon
                 ShaderPropGI_Intensity, 0, 1);
 
             public static readonly RangeProperty tweakMatCapMaskLevelText = new RangeProperty(
-                "MatCap Mask Level", "Adjusts the power of the MatcapMask. When the value is 1, MatCap is displayed 100% irrespective of whether or not there is a mask. When the value is -1, MatCap will not be displayed at all and MatCap will be the same as in the off state.",
+                "MatCap Mask Level", "Adjusts the level of the MatcapMask. When the value is 1, MatCap is displayed 100% irrespective of whether or not there is a mask. When the value is -1, MatCap will not be displayed at all and MatCap will be the same as in the off state.",
                 "_Tweak_MatcapMaskLevel", -1, 1);
 
             public static readonly RangeProperty rotate_NormalMapForMatCapUVText = new RangeProperty(
@@ -810,7 +814,7 @@ namespace UnityEditor.Rendering.Toon
                 "_Rotate_NormalMapForMatCapUV", -1, 1);
 
             public static readonly RangeProperty rimLight_InsideMaskText = new RangeProperty(
-                "Adjust Rim Light Area.", "Increasing this value narrows the area of influence of Rim Light.",
+                "Adjust Rim Light Area", "Increasing this value narrows the area of influence of Rim Light.",
                 "_RimLight_InsideMask", 0.0001f, 1);
 
             // Float properties
@@ -1217,7 +1221,7 @@ namespace UnityEditor.Rendering.Toon
             EditorGUILayout.EndHorizontal();
             EditorGUI.indentLevel++;
             EditorGUI.BeginDisabledGroup(m_autoRenderQueue == 1);
-            m_renderQueue = (int)EditorGUILayout.IntField("Render Queue", material.renderQueue);
+            m_renderQueue = (int)EditorGUILayout.IntField(Styles.renderQueueText, material.renderQueue);
             EditorGUI.EndDisabledGroup();
             EditorGUI.indentLevel--;
         }
@@ -1303,7 +1307,7 @@ namespace UnityEditor.Rendering.Toon
             int currentStencilValue = stencilNumberSetting;
             EditorGUI.BeginDisabledGroup((UTS_StencilMode)MaterialGetInt(material, ShaderPropStencilMode) == UTS_StencilMode.Off);
             EditorGUI.BeginChangeCheck();
-            currentStencilValue = EditorGUILayout.IntSlider(kStencilValue, stencilNumberSetting, 0, 255);
+            currentStencilValue = EditorGUILayout.IntSlider(Styles.stencilVauleText, stencilNumberSetting, 0, 255);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(material, "Changed " + kStencilValue);
@@ -2018,7 +2022,7 @@ namespace UnityEditor.Rendering.Toon
                 {
                     int mode = MaterialGetInt(material, ShaderPropIs_ViewCoord_Scroll);
                     EditorGUI.BeginChangeCheck();
-                    mode = EditorGUILayout.Popup("Animation Mode", (int)mode, EmissiveScrollMode);
+                    mode = EditorGUILayout.Popup(Styles.emissiveScrollAnimationModeText, (int)mode, EmissiveScrollMode);
                     if (EditorGUI.EndChangeCheck())
                     {
                         m_MaterialEditor.RegisterPropertyChangeUndo("Emissive Scroll Mode");
@@ -2146,7 +2150,7 @@ namespace UnityEditor.Rendering.Toon
                 m_outlineMode = OutlineMode.PositionScaling;
             }
             //GUI description with EnumPopup.
-            m_outlineMode = (OutlineMode)EditorGUILayout.EnumPopup("Outline Mode", m_outlineMode);
+            m_outlineMode = (OutlineMode)EditorGUILayout.EnumPopup(Styles.outlineModeText, m_outlineMode);
             //If the value changes, write to the material.
             if (m_outlineMode == OutlineMode.NormalDirection)
             {
