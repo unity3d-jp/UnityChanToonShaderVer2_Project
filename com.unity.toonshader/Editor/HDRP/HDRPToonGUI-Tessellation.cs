@@ -21,12 +21,12 @@ namespace UnityEditor.Rendering.Toon
         {
             public const string header = "Tessellation Options";
 
-            public static GUIContent tessellationModeText = new GUIContent("Tessellation Mode","Tessellation Mode. None/Phong");
+            public static GUIContent tessellationModeText = new GUIContent("Tessellation Mode","Tessellation Mode. None/Phong.");
 
             public static readonly string[] tessellationModeNames = System.Enum.GetNames(typeof(
             TessellationMode));
             public static GUIContent tessellationText = new GUIContent("Tessellation Options", "Tessellation options");
-            public static GUIContent tessellationFactorText = new GUIContent("Tessellation Factor", "Controls the strength of the tessellation effect. Higher values result in more tessellation. Maximum tessellation factor is 15 on the Xbox One and PS4");
+            public static GUIContent tessellationFactorText = new GUIContent("Tessellation Factor", "Controls the strength of the tessellation effect. Higher values result in more tessellation. Maximum tessellation factor is 15 on the Xbox One and PS4.");
             public static GUIContent tessellationFactorMinDistanceText = new GUIContent("Start Fade Distance", "Sets the distance (in meters) at which tessellation begins to fade out.");
             public static GUIContent tessellationFactorMaxDistanceText = new GUIContent("End Fade Distance", "Sets the maximum distance (in meters) to the Camera where HDRP tessellates triangle.");
             public static GUIContent tessellationFactorTriangleSizeText = new GUIContent("Triangle Size", "Sets the desired screen space size of triangles (in pixels). Smaller values result in smaller triangle.");
