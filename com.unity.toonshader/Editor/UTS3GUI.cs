@@ -600,7 +600,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent normalMapText = new GUIContent("Normal Map", "Normal Map : Texture(bump)");
             public static readonly GUIContent highColorText = new GUIContent("Highlight", "Highlight : Texture(sRGB) × Color(RGB) Default:White");
             public static readonly GUIContent highColorMaskText = new GUIContent("Highlight Mask", "Highlight Mask : Texture(linear)");
-            public static readonly GUIContent rimLightMaskText = new GUIContent("Rim Light Mask", "Rim Light Mask : Texture(linear)");
+            public static readonly GUIContent rimLightMaskText = new GUIContent("Rim Light Mask", "Rim Light Mask : Texture(linear). The white part of the texture is displayed as Rim Light, and the black part is masked and not displayed.");
             public static readonly GUIContent matCapSamplerText = new GUIContent("MatCap Map", "MatCap Color : Texture(sRGB) × Color(RGB) Default:White");
             public static readonly GUIContent matCapMaskText = new GUIContent("MatCap Mask", "MatCap Mask : Texture(linear)");
             public static readonly GUIContent angelRingText = new GUIContent("Angel Ring", "Angel Ring : Texture(sRGB) × Color(RGB) Default:Black.");
@@ -754,7 +754,7 @@ namespace UnityEditor.Rendering.Toon
                 "_BlurLevelSGM", 0, 10);
 
             public static readonly RangeProperty rimLightMaskLevelText = new RangeProperty(
-                "Rim Light Mask Level", "TBD.",
+                "Rim Light Mask Level", "-1 gives 0% for the Rim Light effect, 0 gives 100% for the Rim Ligh and Mask effect, 1 gives 100% for the Rim Light and 0% for the Mask effect. Default is 0.",
                 "_Tweak_RimLightMaskLevel", -1, 1);
 
             public static readonly RangeProperty lightDirectionMaskLevelText = new RangeProperty(

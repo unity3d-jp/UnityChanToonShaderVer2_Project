@@ -51,6 +51,7 @@
 * Renamed `Blur Level of ShadingGradeMap` to `ShadingGradeMap Blur Level`.
 * Renamed `MatCap Sampler` to `MatCap Map`.
 * Renamed `Blur Level of MatCap Sampler` to `MatCap Blur Level`.
+* Renamed `Rim Light Power` to `Rim Light Level`.
 * Renamed `RimLight Inside Mask` to `Adjust Rim Light Area`.
 * Renamed `Light Direction Mask` under Rim Light Settings to `Light Dreiction Mode`.
 * Renamed `Light Direction Mask Level` to `Light Direction Rim Light Level`.
@@ -85,6 +86,7 @@
 * `Point Light High Cut Filter` Side Effects. It just shows or hides the point lights' highlight.
 * Unify the notation in the converter with Unity-Chan Toon Shader 2.
 * Fixed some popups in the inspector window not to use connected names without spaces. Each name is separated by a space.
+* `Rimlight Mask` on URP and HDRP version were not working well.
 ## [0.6.1-preview] - 2022-02-24
 ### Fixed:
 * typo in inspector.
