@@ -308,10 +308,11 @@ namespace UnityEditor.Rendering.Toon
             AngelRing = 1 << 6,
             Emission = 1 << 7,
             Outline = 1 << 8,
-            Tessellation = 1 << 9,
-            LightColorEffectiveness = 1 << 10,
-            EnvironmentalLightEffectiveness = 1 << 11,
-            MetaverseSettings = 1 << 12,
+            TessellationLegacy = 1 << 9,
+            TessellationHDRP = 1 << 10,
+            LightColorEffectiveness = 1 << 11,
+            EnvironmentalLightEffectiveness = 1 << 12,
+            MetaverseSettings = 1 << 13,
         }
 
         // variables which must be gotten from shader at the beggning of GUI
@@ -592,7 +593,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent lightColorEffectivenessFoldout = EditorGUIUtility.TrTextContent("Scene Light Effectiveness Settings", "Scene light effectiveness to each parameter.");
 
             public static readonly GUIContent metaverseSettingsFoldout = EditorGUIUtility.TrTextContent("Metaverse Settings (Experimental)", "Default directional light when no directional lights are in the scene.");
-            public static readonly GUIContent normalMapFoldout = EditorGUIUtility.TrTextContent("NormalMap Settings", "NormalMap settings.");
+            public static readonly GUIContent normalMapFoldout = EditorGUIUtility.TrTextContent("Normal Map Settings", "Normal Map settings. Normal Map itself and its effectiveness to some areas.");
             public static readonly GUIContent shadowControlMapFoldout = EditorGUIUtility.TrTextContent("Shadow Control Maps", "Shadow control map settings. Such as positions and highlight filtering.");
             public static readonly GUIContent pointLightFoldout = EditorGUIUtility.TrTextContent("Point Light Settings", "Point light settings. Such as filtering and step offset.");
 
@@ -885,31 +886,27 @@ namespace UnityEditor.Rendering.Toon
         
         void OnOpenGUI(Material material, MaterialEditor materialEditor, MaterialProperty[] props)
         {
-            m_MaterialScopeList.RegisterHeaderScope(Styles.shaderFoldout, Expandable.Shader, DrawShaderOptions, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.basicColorFoldout, Expandable.BasicColor, GUI_BasicThreeColors, (uint)UTS_Mode.ThreeColorToon,(uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.shadingStepAndFeatherFoldout, Expandable.BasicLookDevs, GUI_StepAndFeather, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.highlightFoldout, Expandable.HighLight, GUI_HighlightSettings, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.rimLightFoldout, Expandable.RimLight, GUI_RimLight, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.matCapFoldout, Expandable.MatCap, GUI_MatCap, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.angelRingFoldout, Expandable.AngelRing, GUI_AngelRing, (uint)UTS_Mode.ShadingGradeMap, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.emissionFoldout, Expandable.Emission, GUI_Emissive, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.outlineFoldout, Expandable.Outline, GUI_Outline, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.On);
-            if (material.HasProperty("_TessEdgeLength") && currentRenderPipeline == RenderPipeline.Legacy)
-            { 
-                m_MaterialScopeList.RegisterHeaderScope(Styles.tessellationFoldout, Expandable.Tessellation, GUI_Tessellation, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            }
-            else if (tessellationMode != null && currentRenderPipeline == RenderPipeline.HDRP)
-            {
-                m_MaterialScopeList.RegisterHeaderScope(Styles.tessellationFoldout, Expandable.Tessellation, GUI_TessellationHDRP, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.shaderFoldout, Expandable.Shader, DrawShaderOptions, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation:0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.basicColorFoldout, Expandable.BasicColor, GUI_BasicThreeColors, (uint)UTS_Mode.ThreeColorToon,(uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.shadingStepAndFeatherFoldout, Expandable.BasicLookDevs, GUI_StepAndFeather, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.highlightFoldout, Expandable.HighLight, GUI_HighlightSettings, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.rimLightFoldout, Expandable.RimLight, GUI_RimLight, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.matCapFoldout, Expandable.MatCap, GUI_MatCap, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.angelRingFoldout, Expandable.AngelRing, GUI_AngelRing, (uint)UTS_Mode.ShadingGradeMap, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.emissionFoldout, Expandable.Emission, GUI_Emissive, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.outlineFoldout, Expandable.Outline, GUI_Outline, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.On, isTessellation: 0);
 
-            }
+            m_MaterialScopeList.RegisterHeaderScope(Styles.tessellationFoldout, Expandable.TessellationLegacy, GUI_Tessellation, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 1);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.tessellationFoldout, Expandable.TessellationHDRP, GUI_TessellationHDRP, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 1);
+
             // originally these were in simple UI
-            m_MaterialScopeList.RegisterHeaderScope(Styles.lightColorEffectivenessFoldout, Expandable.LightColorEffectiveness, GUI_LightColorEffectiveness, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
-            m_MaterialScopeList.RegisterHeaderScope(Styles.metaverseSettingsFoldout, Expandable.MetaverseSettings, GUI_MetaverseSettings, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.lightColorEffectivenessFoldout, Expandable.LightColorEffectiveness, GUI_LightColorEffectiveness, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.metaverseSettingsFoldout, Expandable.MetaverseSettings, GUI_MetaverseSettings, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
         }
 
         void UTS3DrawHeaders(MaterialEditor materialEditor, Material material)
         {
+            const string kTessellation = "Tessellation";
             if (material == null)
                 throw new ArgumentNullException(nameof(material));
 
@@ -925,6 +922,30 @@ namespace UnityEditor.Rendering.Toon
                 if ( transparencyEnabled == UTS_TransparentMode.On && item.transparentEnabled == (uint)UTS_TransparentMode.On)
                 {
                     continue;
+                }
+                if (currentRenderPipeline == RenderPipeline.HDRP && item.tessellationEnabled == 1)
+                {
+                    if (item.expandable == (uint)Expandable.TessellationHDRP)
+                    {
+                        if (!material.shader.name.Contains(kTessellation))
+                            continue;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                if (currentRenderPipeline == RenderPipeline.Legacy && item.tessellationEnabled == 1)
+                {
+                    if (item.expandable == (uint)Expandable.TessellationLegacy)
+                    {
+                        if (!material.shader.name.Contains(kTessellation))
+                            continue;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 using (var header = new UTS3MaterialHeaderScope(
                     item.headerTitle,

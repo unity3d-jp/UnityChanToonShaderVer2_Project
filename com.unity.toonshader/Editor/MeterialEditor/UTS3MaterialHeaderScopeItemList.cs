@@ -35,8 +35,8 @@ namespace UnityEditor.Rendering.Toon
         /// <param name="action">The action that will be drawn if the scope is expanded</param>
         /// <param name="workflowMode">UTS workflow mode </param>        /// 
         /// <param name="isTransparent">Flag transparent material header should be drawn</param>        /// 
-
-        public void RegisterHeaderScope<TEnum>(GUIContent title, TEnum expandable, Action<Material> action, uint workflowMode, uint isTransparent)
+        /// <param name="isTessellation">Flag Tessellation material header should be drawn</param>        /// 
+        public void RegisterHeaderScope<TEnum>(GUIContent title, TEnum expandable, Action<Material> action, uint workflowMode, uint isTransparent, uint isTessellation )
             where TEnum : struct, IConvertible
         {
             m_Items.Add(new UTS3MaterialHeaderScopeItem()
@@ -50,7 +50,8 @@ namespace UnityEditor.Rendering.Toon
                 url = string.Empty,
 #endif
                 workflowMode = workflowMode,
-                transparentEnabled = isTransparent
+                transparentEnabled = isTransparent,
+                tessellationEnabled = isTessellation
             }); 
         }
 

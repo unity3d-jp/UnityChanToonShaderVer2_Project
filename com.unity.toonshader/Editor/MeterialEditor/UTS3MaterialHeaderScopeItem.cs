@@ -21,7 +21,8 @@ namespace UnityEditor.Rendering.Toon
         public uint workflowMode { get; set; }
         /// <summary>The flag wheter UTS material is in transparent mode</summary>
         public uint transparentEnabled { get; set; }
-        /// <summary>The action that will draw the controls for this scope</summary>
+        /// <summary>The flag wheter UTS material is in tessellation mode</summary>
+        public uint tessellationEnabled { get; set; }
     }
 
 
