@@ -619,7 +619,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent specularModeText = new GUIContent("Specular Mode", "Specular light mode. Hard or Soft.");
             public static readonly GUIContent specularBlendModeText = new GUIContent("Color Blending Mode", "Specular color blending mode. Multiply or Additive.");
             public static readonly GUIContent matcapBlendModeText = new GUIContent("Color Blending Mode", "MatCap color blending mode. Multiply or Additive.");
-            public static readonly GUIContent matcapOrthoText = new GUIContent("MatCap Camera Mode", "MatCap camera mode. Perspective or Orthographic.The default value is Perspective.");
+            public static readonly GUIContent matcapOrthoText = new GUIContent("MatCap Camera Mode", "MatCap camera mode. Perspective or Orthographic. The default value is Perspective.");
             public static readonly GUIContent transparentModeText = new GUIContent("Transparency",   "Transparency  mode that fits you. ");
             public static readonly GUIContent stencilVauleText = new GUIContent("Stencil Value","Stencil value that should be written to the stencil buffer.");
             public static readonly GUIContent workflowModeText = new GUIContent("Mode", "Select the mode that fits your purpose. Choose between Standard or With Additional Control Maps.");
@@ -644,15 +644,15 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent filterPointLightText = new GUIContent("Filter Point Light Highlights", "Show or hide highlight of point lights.");
             public static readonly GUIContent highlightOnShadowText = new GUIContent("Highlight Blending on Shadows", "Highlights in shadow areas are blend by bellow.");
 
-            public static readonly GUIContent lightColorEffectivinessToBaseColorText  = new GUIContent("Base Color", "Light color effectiveness to the base color areas.");
-            public static readonly GUIContent lightColorEffectivinessTo1stShadingText = new GUIContent("1st Shading Color", "Light color effectiveness to the 1st shading color areas.");
-            public static readonly GUIContent lightColorEffectivinessTo2ndShadingText = new GUIContent("2nd Shading Color", "Light color effectiveness to the 2nd shading color areas.");
-            public static readonly GUIContent lightColorEffectivinessToHighlitText    = new GUIContent("Highlight", "Light color effectiveness to high lit areas.");
-            public static readonly GUIContent lightColorEffectivinessToRimlitText     = new GUIContent("Rim Light", "Light color effectiveness to rim lit areas.");
-            public static readonly GUIContent lightColorEffectivinessToInvRimlitText  = new GUIContent("Inversed Light Direciton Rim Light", "Light color effectiveness to inverted direction rim lit areas.");
-            public static readonly GUIContent lightColorEffectivinessToMatCapText = new GUIContent("MatCap", "Light color effectiveness to MatCap areas.");
-            public static readonly GUIContent lightColorEffectivenessToAngelRingText = new GUIContent("Angel Ring","Light Color effectiveness to Angel Ring areas.");
-            public static readonly GUIContent lightColorEffectivinessToOutlineText = new GUIContent("Outline", "Light color effectiveness to outlines.");
+            public static readonly GUIContent lightColorEffectivinessToBaseColorText  = new GUIContent("Base Color", "Light color effect the base color areas.");
+            public static readonly GUIContent lightColorEffectivinessTo1stShadingText = new GUIContent("1st Shading Color", "Light color effect in the 1st shading color areas.");
+            public static readonly GUIContent lightColorEffectivinessTo2ndShadingText = new GUIContent("2nd Shading Color", "Light color effect in the 2nd shading color areas.");
+            public static readonly GUIContent lightColorEffectivinessToHighlitText    = new GUIContent("Highlight", "Light color effect in high lit areas.");
+            public static readonly GUIContent lightColorEffectivinessToRimlitText     = new GUIContent("Rim Light", "Light color effect in rim lit areas.");
+            public static readonly GUIContent lightColorEffectivinessToInvRimlitText  = new GUIContent("Inversed Light Direciton Rim Light", "Light color effect in inverted direction rim lit areas.");
+            public static readonly GUIContent lightColorEffectivinessToMatCapText = new GUIContent("MatCap", "Light color effect in MatCap areas.");
+            public static readonly GUIContent lightColorEffectivenessToAngelRingText = new GUIContent("Angel Ring", "Light color effect in angel ring area. Angel Ring is only available in With Additional Control Maps mode.");
+            public static readonly GUIContent lightColorEffectivinessToOutlineText = new GUIContent("Outline", "Light color effect in outlines.");
             public static readonly GUIContent rimlightText = new GUIContent("Rim Light", "Enable/Disable Rim Light.");
             public static readonly GUIContent rimlightFeatherText = new GUIContent("Rim Light Feather Off", "Disable Rim light feather.");
             public static readonly GUIContent rimlightDirectionMaskText = new GUIContent("Light Direction", "When Enabled, rim light is generated only in the direction of the light source.");
@@ -697,10 +697,10 @@ namespace UnityEditor.Rendering.Toon
                 label: "Clipping Level", tooltip: "Specifies the strength of the clipping mask.",
                 propName: "_Clipping_Level", defaultValue: 0.0f,min: 0.0f, max: 1.0f);
             public static readonly RangeProperty scrollEmissiveUText = new RangeProperty(
-                label: "Scroll U/X direction", tooltip: "Specifies how much the Emissive texture should scroll in the u-direction (x-axis direction) when updating the animation. The range is -1 to 1, defaulting to 0. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.",
+                label: "Scroll U/X direction", tooltip: "Specifies how much the Emissive texture should scroll in the u-direction (x-axis direction) when updating the animation. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.",
                 propName: "_Scroll_EmissiveU", defaultValue: 0.0f, min: -1.0f, max: 1.0f);
             public static readonly RangeProperty scrollEmissiveVText = new RangeProperty(
-                label: "Scroll V/Y direction", tooltip: "Specifies how much the Emissive texture should scroll in the u-direction (y-axis direction) when updating the animation. The range is -1 to 1, defaulting to 0. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.",
+                label: "Scroll V/Y direction", tooltip: "Specifies how much the Emissive texture should scroll in the u-direction (y-axis direction) when updating the animation. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.",
                 propName: "_Scroll_EmissiveV", defaultValue: 0.0f, min: -1.0f, max: 1.0f);
             public static readonly RangeProperty tweakHighColorOnShadowText = new RangeProperty(
                 label: "Blending Level", tooltip: "Adjusts the intensity of highlight applied to shadow areas.",
@@ -923,26 +923,33 @@ namespace UnityEditor.Rendering.Toon
                 {
                     continue;
                 }
-                if (currentRenderPipeline == RenderPipeline.HDRP && item.tessellationEnabled == 1)
+                if (item.tessellationEnabled == 1)
                 {
-                    if (item.expandable == (uint)Expandable.TessellationHDRP)
+                    if (currentRenderPipeline == RenderPipeline.HDRP)
                     {
-                        if (!material.shader.name.Contains(kTessellation))
+                        if (item.expandable == (uint)Expandable.TessellationHDRP)
+                        {
+                            if (!material.shader.name.Contains(kTessellation))
+                                continue;
+                        }
+                        else
+                        {
                             continue;
+                        }
                     }
-                    else
+                    else if (currentRenderPipeline == RenderPipeline.Legacy)
                     {
-                        continue;
-                    }
-                }
-                if (currentRenderPipeline == RenderPipeline.Legacy && item.tessellationEnabled == 1)
-                {
-                    if (item.expandable == (uint)Expandable.TessellationLegacy)
-                    {
-                        if (!material.shader.name.Contains(kTessellation))
+                        if (item.expandable == (uint)Expandable.TessellationLegacy)
+                        {
+                            if (!material.shader.name.Contains(kTessellation))
+                                continue;
+                        }
+                        else
+                        {
                             continue;
+                        }
                     }
-                    else
+                    else if (currentRenderPipeline == RenderPipeline.Universal)
                     {
                         continue;
                     }
