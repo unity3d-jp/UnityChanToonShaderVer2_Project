@@ -97,12 +97,12 @@
 
 
 #ifdef _IS_ANGELRING_OFF
-				float2 lightmapUV   : TEXCOORD1;
+            float2 lightmapUV   : TEXCOORD1;
 #elif _IS_ANGELRING_ON
                 float2 texcoord1 : TEXCOORD1;
-				float2 lightmapUV   : TEXCOORD2;
+            float2 lightmapUV   : TEXCOORD2;
 #endif
-				UNITY_VERTEX_INPUT_INSTANCE_ID
+            UNITY_VERTEX_INPUT_INSTANCE_ID
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
@@ -116,23 +116,23 @@
                 //v.2.0.7
                 float mirrorFlag : TEXCOORD5;
 
-				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
+            DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
 #if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
-				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
+            half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
 #else
-				half  fogFactor					: TEXCOORD7; 
+            half  fogFactor            	: TEXCOORD7; 
 #endif 
 
 # ifndef _MAIN_LIGHT_SHADOWS
-				float4 positionCS               : TEXCOORD8;
+            float4 positionCS               : TEXCOORD8;
                 int   mainLightID              : TEXCOORD9;
 # else
-				float4 shadowCoord              : TEXCOORD8;
-				float4 positionCS               : TEXCOORD9;
+            float4 shadowCoord              : TEXCOORD8;
+            float4 positionCS               : TEXCOORD9;
                 int   mainLightID              : TEXCOORD10;
 # endif
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-				UNITY_VERTEX_OUTPUT_STEREO
+            UNITY_VERTEX_INPUT_INSTANCE_ID
+            UNITY_VERTEX_OUTPUT_STEREO
 
                 //
 #elif _IS_ANGELRING_ON
@@ -148,7 +148,7 @@
 #if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
                 half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
 #else
-				half  fogFactor					: TEXCOORD8; // x: fogFactor, yzw: vertex light
+            half  fogFactor            	: TEXCOORD8; // x: fogFactor, yzw: vertex light
 #endif 
 # ifndef _MAIN_LIGHT_SHADOWS
                 float4 positionCS               : TEXCOORD9;
@@ -403,23 +403,23 @@
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
                 OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
-#  if defined(_ADDITIONAL_LIGHTS_VERTEX) ||  (VERSION_LOWER(12, 0))  
-				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+#if defined(_ADDITIONAL_LIGHTS_VERTEX) ||  (VERSION_LOWER(12, 0))  
+            o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
 #else
-				o.fogFactor = fogFactor;
+            o.fogFactor = fogFactor;
 #endif 
                 
                 o.positionCS = positionCS;
-  #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
+#if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
     #if SHADOWS_SCREEN
                 o.shadowCoord = ComputeScreenPos(positionCS);
     #else
                 o.shadowCoord = TransformWorldToShadowCoord(o.posWorld.xyz);
     #endif
                 o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, o.shadowCoord, positionCS);
-  #else
+#else
                 o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, 0, positionCS);
-  #endif
+#endif
 
 		
                 return o;

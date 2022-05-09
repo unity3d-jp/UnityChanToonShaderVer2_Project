@@ -378,18 +378,18 @@ struct VertexOutput {
 
 //v.2.0.4
 #ifdef _IS_TRANSCLIPPING_OFF
-	#ifdef _IS_PASS_FWDBASE
-	                fixed4 finalRGBA = fixed4(finalColor,1);
-	#elif _IS_PASS_FWDDELTA
-	                fixed4 finalRGBA = fixed4(finalColor,0);
-	#endif
+#  ifdef _IS_PASS_FWDBASE
+                fixed4 finalRGBA = fixed4(finalColor,1);
+#  elif _IS_PASS_FWDDELTA
+                fixed4 finalRGBA = fixed4(finalColor,0);
+#  endif
 #elif _IS_TRANSCLIPPING_ON
 	                float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
-	#ifdef _IS_PASS_FWDBASE
-	                fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
-	#elif _IS_PASS_FWDDELTA
-	                fixed4 finalRGBA = fixed4(finalColor * Set_Opacity,0);
-	#endif
+#  ifdef _IS_PASS_FWDBASE
+                fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
+#  elif _IS_PASS_FWDDELTA
+                fixed4 finalRGBA = fixed4(finalColor * Set_Opacity,0);
+#  endif
 #endif
 
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);

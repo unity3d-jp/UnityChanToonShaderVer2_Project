@@ -145,9 +145,9 @@ void Frag(PackedVaryingsToPS packedInput,
         return;
     }
     _Color = _BaseColor;
-	float4 objPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
-		//v.2.0.7.5
-	float4 unity_AmbientSky = float4(0.1, 0.1, 0.1, 1.0f); //Todo.
+    float4 objPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
+        //v.2.0.7.5
+    float4 unity_AmbientSky = float4(0.1, 0.1, 0.1, 1.0f); //Todo.
     half3 ambientSkyColor = unity_AmbientSky.rgb>0.05 ? unity_AmbientSky.rgb*_Unlit_Intensity : half3(0.05,0.05,0.05)*_Unlit_Intensity;
     float3 lightColor = _LightColor0.rgb >0.05 ? _LightColor0.rgb : ambientSkyColor.rgb;
     float lightColorIntensity = (0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b);
