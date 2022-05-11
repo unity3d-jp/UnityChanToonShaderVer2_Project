@@ -1,6 +1,6 @@
 README.txt
 
-# 【ユニティちゃんトゥーンシェーダー Ver.2.0.8】
+# 【ユニティちゃんトゥーンシェーダー Ver.2.0.9】
 「ユニティちゃんトゥーンシェーダー」は、セル風3DCGアニメーションの制作現場での要望に応えるような形で設計された、映像志向のトゥーンシェーダーです。  
 
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
@@ -39,16 +39,12 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 
 -----
 ## 【ターゲット環境】
-Unity5.6.x もしくはそれ以降が必要です。  
-Unity 2018.2.21f1からUnity 2019.2.0a9までの動作確認が終了しています。  
-Unity 2017.4.15f1 LTSを含む、Unity 2017.4.x LTSでの動作確認済み。  
-本パッケージは、Unity5.6.7f1で作成されています。  
+Unity 2019.4.31f1 もしくはそれ以降が必要です。   
+本パッケージは、Unity 2019.4.31f1で作成されています。  
 
 ### 【Target Environment】
-Requires Unity 5.6.x or higher.  
-The operation check from Unity 2018.2.21f1 to Unity 2019.2.0a9 has been completed.  
-It has been tested on Unity 2017.4.x LTS, including Unity 2017.4.15f1 LTS.  
-This pack was created in Unity 5.6.7f1.  
+Requires Unity 2019.4.31f1 or higher.  
+This pack was created in Unity 2019.4.31f1.  
 
 
 -----
@@ -64,12 +60,12 @@ https://unity-chan.com/contents/guideline_en/
 
 
 -----
-最新バージョン：2.0.8 Release  
-最終リリース日：2021/09/08  
+最新バージョン：2.0.9 Release  
+最終リリース日：2022/05/11  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.8 Release  
-Update: 2021/09/08  
+Latest Version: 2.0.9 Release  
+Update: 2022/05/11  
 Category: 3D  
 File format: zip/unitypackage  
