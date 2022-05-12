@@ -1386,18 +1386,36 @@ namespace UnityEditor.Rendering.Toon
 
 
 
-            EditorGUI.BeginDisabledGroup(applyTo1st);
-            m_MaterialEditor.TexturePropertySingleLine(Styles.firstShadeColorText, firstShadeMap, firstShadeColor);
-            EditorGUI.EndDisabledGroup();
+
+            if (applyTo1st)
+            {
+
+                EditorGUI.indentLevel += 2;
+                m_MaterialEditor.ColorProperty( firstShadeColor, Styles.firstShadeColorText.text);
+                EditorGUI.indentLevel -= 2;
+
+            }
+            else
+            {
+                m_MaterialEditor.TexturePropertySingleLine(Styles.firstShadeColorText, firstShadeMap, firstShadeColor);
+            }
+            //            EditorGUI.EndDisabledGroup();
 
             EditorGUI.indentLevel+=2;
             var applyTo2nd =  GUI_Toggle(material, Styles.applyTo2ndShademapText, ShaderPropUse_1stAs2nd, MaterialGetInt(material, ShaderPropUse_1stAs2nd) != 0);
             EditorGUI.indentLevel-=2;
 
 
-            EditorGUI.BeginDisabledGroup(applyTo2nd);
-            m_MaterialEditor.TexturePropertySingleLine(Styles.secondShadeColorText, secondShadeMap, secondShadeColor);
-            EditorGUI.EndDisabledGroup();
+            if (applyTo2nd)
+            {
+                EditorGUI.indentLevel += 2;
+                m_MaterialEditor.ColorProperty(secondShadeColor, Styles.secondShadeColorText.text);
+                EditorGUI.indentLevel -= 2;
+            }
+            else
+            {
+                m_MaterialEditor.TexturePropertySingleLine(Styles.secondShadeColorText, secondShadeMap, secondShadeColor);
+            }
             EditorGUILayout.Space();
 
             _NormalMap_Foldout = FoldoutSubMenu(_NormalMap_Foldout, Styles.normalMapFoldout);
