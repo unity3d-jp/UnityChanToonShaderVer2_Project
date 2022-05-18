@@ -17,6 +17,7 @@
 #elif _IS_CLIPPING_OFF
 //Default
 #endif
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
             struct VertexOutput {
                 V2F_SHADOW_CASTER;
@@ -29,9 +30,15 @@
 #elif _IS_CLIPPING_OFF
 //Default
 #endif
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+                UNITY_VERTEX_OUTPUT_STEREO
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+		
 #ifdef _IS_CLIPPING_MODE
 //_Clipping
                 o.uv0 = v.texcoord0;
@@ -46,6 +53,7 @@
                 return o;
             }
             float4 frag(VertexOutput i) : SV_TARGET {
+                UNITY_SETUP_INSTANCE_ID(i);
 #ifdef _IS_CLIPPING_MODE
 //_Clipping
                 float2 Set_UV0 = i.uv0;

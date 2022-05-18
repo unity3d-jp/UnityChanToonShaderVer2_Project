@@ -209,8 +209,11 @@
 #if !defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
                 return 1.0h;
 #endif
-
+# if (SHADER_LIBRARY_VERSION_MAJOR >= 13 && UNITY_VERSION >= 202220 )
+                ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData(lightIndex);
+# else
                 ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData();
+# endif
 
 #if USE_STRUCTURED_BUFFER_FOR_LIGHT_DATA
                 lightIndex = _AdditionalShadowsIndices[lightIndex];
