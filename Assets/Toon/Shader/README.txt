@@ -60,12 +60,12 @@ https://unity-chan.com/contents/guideline_en/
 
 
 -----
-最新バージョン：2.0.9 Release  
-最終リリース日：2022/05/11  
+最新バージョン：2.0.9 Preview
+最終リリース日：2022/05/17  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
-Latest Version: 2.0.9 Release  
-Update: 2022/05/11  
+Latest Version: 2.0.9 Preview
+Update: 2022/05/17  
 Category: 3D  
 File format: zip/unitypackage  
