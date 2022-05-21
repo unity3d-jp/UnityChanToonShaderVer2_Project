@@ -171,13 +171,14 @@ namespace UnityEditor.Rendering.Toon
         Dictionary<Material, string> m_Material2GUID_Dictionary = new Dictionary<Material, string>();
         Dictionary<string, UTS2GUID> m_GuidToUTSID_Dictionary = new Dictionary<string, UTS2GUID>();
         static int frameToWait;
+#if false
         static   UnitychanToonShader2UnityToonShader()
         {
 
             ConverterBehaviour();
 
         }
-
+#endif
         static void ConvertorBehaviourDelayed()
         {
             if (frameToWait > 0)

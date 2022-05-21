@@ -236,11 +236,11 @@ namespace UnityEditor.Rendering.Toon
         }
         public enum UTS_SpeculerColorBlendMode
         {
-            Multiply, Additive
+            Multiply, Add
         }
         public enum UTS_MatcapColorBlendMode
         {
-            Multiply, Additive
+            Multiply, Add
         }
 
         public enum StencilOperation
@@ -579,8 +579,8 @@ namespace UnityEditor.Rendering.Toon
         //Specify only those that use the m_MaterialEditor method as their UI. For specifying textures and colors on a single line.
         private static class Styles
         {
-            public static readonly GUIContent shaderFoldout = EditorGUIUtility.TrTextContent("Shader Settings", "Basic shader settings");
-            public static readonly GUIContent basicColorFoldout = EditorGUIUtility.TrTextContent("Three Color and Control Map Settings", "Basic 3 color and controlling map Settings");
+            public static readonly GUIContent shaderFoldout = EditorGUIUtility.TrTextContent("Shader Settings", "Shader Settings provides basic settings that are not specific to  cel-shading but are needed for general CG.");
+            public static readonly GUIContent basicColorFoldout = EditorGUIUtility.TrTextContent("Three Color and Control Map Settings", "Three Color Map and Control Map Settings provide very basic settings for cel-shading in Unity Toon Shader.");
             public static readonly GUIContent shadingStepAndFeatherFoldout = EditorGUIUtility.TrTextContent("Shading Step and Feather Settings", "Basic 3 color step and feather settings.");
             public static readonly GUIContent highlightFoldout = EditorGUIUtility.TrTextContent("Highlight Settings", "Highlight  settings. Such as power, show or hide, light shape and so on.");
             public static readonly GUIContent rimLightFoldout = EditorGUIUtility.TrTextContent("Rim Light Settings", "Rim Light Settings. Such as color, direction, inversed rim light and so on.");
@@ -602,7 +602,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent secondShadeColorText = new GUIContent("2nd Shading Map", "The map used for the darker portions of the shadow.");
             public static readonly GUIContent normalMapText = new GUIContent("Normal Map", "A texture that dictates the bumpiness of the material.");
             public static readonly GUIContent highColorText = new GUIContent("Highlight", "Highlight : Texture(sRGB) × Color(RGB) Default:White");
-            public static readonly GUIContent highColorMaskText = new GUIContent("Highlight Mask", "A grayscale texture which utilises its brightness to control transparency.");
+            public static readonly GUIContent highColorMaskText = new GUIContent("Highlight Mask", "A grayscale texture which utilises its brightness to control intensity.");
             public static readonly GUIContent rimLightMaskText = new GUIContent("Rim Light Mask", "Rim Light Mask : Texture(linear). The white part of the texture is displayed as Rim Light, and the black part is masked and not displayed.");
             public static readonly GUIContent matCapSamplerText = new GUIContent("MatCap Map", "MatCap Color : Texture(sRGB) × Color(RGB) Default:White");
             public static readonly GUIContent matCapMaskText = new GUIContent("MatCap Mask", "The MatCap mask is positioned with respect to the UV coordinates of the mesh onto which the MatCap is projected, and the pixels on black areas are hidden.");
@@ -617,8 +617,8 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent clippingMaskText = new GUIContent("Clipping Mask", "A grayscale texture which utilises its brightness to control transparency.");
 
             public static readonly GUIContent specularModeText = new GUIContent("Specular Mode", "Specular light mode. Hard or Soft.");
-            public static readonly GUIContent specularBlendModeText = new GUIContent("Color Blending Mode", "Specular color blending mode. Multiply or Additive.");
-            public static readonly GUIContent matcapBlendModeText = new GUIContent("Color Blending Mode", "MatCap color blending mode. Multiply or Additive.");
+            public static readonly GUIContent specularBlendModeText = new GUIContent("Color Blending Mode", "Specular color blending mode. Multiply or Add.");
+            public static readonly GUIContent matcapBlendModeText = new GUIContent("Color Blending Mode", "MatCap color blending mode. Multiply or Add.");
             public static readonly GUIContent matcapOrthoText = new GUIContent("MatCap Camera Mode", "Control how the MatCap Map is rendered based on the type of camera.");
             public static readonly GUIContent transparentModeText = new GUIContent("Transparency", "Enable different modes that allow the simulation of a variety of transparent objects. ");
             public static readonly GUIContent stencilVauleText = new GUIContent("Stencil Value", "Stencil value that is submitted to the stencil buffer for controlling the per-pixel drawing.");
@@ -640,7 +640,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent threeBasicColorToNormalmapText = new GUIContent("3 Basic Colors", "Normal map effectiveness to 3 Basic color areas, lit, the 1st shading and the 2nd.");
             public static readonly GUIContent highLightToNormalmapText = new GUIContent("Highlight", "Normal map effectiveness to high lit areas.");
             public static readonly GUIContent rimlightToNormalmapText = new GUIContent("Rim Light", "Normal map effectiveness to rim lit areas.");
-            public static readonly GUIContent receiveShadowText = new GUIContent("Receive Shadows", "Receive shadows on the material.");
+            public static readonly GUIContent receiveShadowText = new GUIContent("Receive Shadows", "Determine if the material reflects shadows.");
             public static readonly GUIContent filterPointLightText = new GUIContent("Filter Point Light Highlights", "Show or hide highlight of point lights.");
             public static readonly GUIContent highlightOnShadowText = new GUIContent("Highlight Blending on Shadows", "Control the blending for the highlights in shadows.");
 
@@ -661,7 +661,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent inversedRimlightFeatherText = new GUIContent("Inversed Rim Light Feather Off", "Disable Inversed Rim light feather.");
             public static readonly GUIContent matCapText = new GUIContent("MatCap", "Enable/Disable MatCap (Material Capture)");
             public static readonly GUIContent matCapNormalmapSpecularaMask = new GUIContent("Normal Map Specular Mask for MatCap", "If Enabled, gives a normal map specifically for MatCap.If you are using MatCap as speculum lighting, you can use this to mask it.");
-            public static readonly GUIContent matCapOnShadow = new GUIContent("MatCap Blending on Shadows", "Adjusts the blending rate of the MatCap range in shadows.");
+            public static readonly GUIContent matCapOnShadow = new GUIContent("MatCap Blending on Shadows", "Enables the blending rate of the MatCap range in shadows.");
             public static readonly GUIContent invertMatCapMaskText = new GUIContent("Invert MatCap Mask","When enabled, MatCap Mask Texture is inversed.");
 
             public static readonly GUIContent angelRingProjectionText = new GUIContent("Angel Ring Projection", "Enable the Angel Ring effect for UTS, which is used to express shine or luster in hair.");
@@ -677,7 +677,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent metaverseLightDirectionText = new GUIContent("Metaverse Light Direction", "Control the direction of the supplementary lighting for UTS in the scene.");
             public static readonly GUIContent invertZaxisDirection = new GUIContent("Invert Z-Axis Direction", "Invert Metaverse light Z-Axis Direction.");
             public static readonly GUIContent emissiveScrollAnimationModeText = new GUIContent("Animation Mode", "Controls the animated scrolling of the emissive texture.");
-
+            public static readonly GUIContent emissionAnimationText = new GUIContent("Emission Map Animation", "When Enabled, the UV and Color of the Emission Map are animated.");
             public static readonly GUIContent outlineModeText = new GUIContent("Outline Mode", "Specifies how the inverted-outline object is spawned.");
             // Range properties
             public static readonly RangeProperty metaverseRangePropText = new RangeProperty(
@@ -762,7 +762,7 @@ namespace UnityEditor.Rendering.Toon
                 propName: "_Tweak_RimLightMaskLevel", defaultValue: 0, min: -1, max: 1);
 
             public static readonly RangeProperty lightDirectionMaskLevelText = new RangeProperty(
-                label: "Light Direction Rim Light Level", tooltip: "The Level of Rim Light toward a light direction.",
+                label: "Light Direction Rim Light Level", tooltip: "Specifies intensity of Rim Light in the light source direction,",
                 propName: "_Tweak_LightDirection_MaskLevel", defaultValue: 0, min: 0f, max: 0.5f);
 
             public static readonly RangeProperty tweakMatCapUVText = new RangeProperty(
@@ -2040,11 +2040,11 @@ namespace UnityEditor.Rendering.Toon
             EditorGUILayout.Space();
 
             EditorGUI.BeginChangeCheck();
-            var label = "Emissive Animation";
-            var ret = EditorGUILayout.Toggle("Emissive Animation", m_emissionMode != EmissionMode.SimpleEmissive);
+
+            var ret = EditorGUILayout.Toggle(Styles.emissionAnimationText, m_emissionMode != EmissionMode.SimpleEmissive);
             if (EditorGUI.EndChangeCheck())
             {
-                m_MaterialEditor.RegisterPropertyChangeUndo(label);
+                m_MaterialEditor.RegisterPropertyChangeUndo(Styles.emissionAnimationText.text);
                 if (ret )
                 {
                     material.SetFloat("_EMISSIVE", 1);
@@ -2065,7 +2065,6 @@ namespace UnityEditor.Rendering.Toon
             {
                 EditorGUI.indentLevel++;
 
-
                 GUI_FloatProperty(material, Styles.baseSpeedText);
                 if (!_SimpleUI)
                 {
@@ -2074,7 +2073,7 @@ namespace UnityEditor.Rendering.Toon
                     mode = EditorGUILayout.Popup(Styles.emissiveScrollAnimationModeText, (int)mode, EmissiveScrollMode);
                     if (EditorGUI.EndChangeCheck())
                     {
-                        m_MaterialEditor.RegisterPropertyChangeUndo("Emissive Scroll Mode");
+                        m_MaterialEditor.RegisterPropertyChangeUndo(Styles.emissiveScrollAnimationModeText.text);
                         MaterialSetInt(material, ShaderPropIs_ViewCoord_Scroll, mode);
                     }
                 }

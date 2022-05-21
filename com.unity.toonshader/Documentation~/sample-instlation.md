@@ -1,6 +1,6 @@
 # Samples
 Sample scenes are installable from the package manager.
-Please, make shure that HDRP or URP is installed and set up before installing the samples for each.
+Please, make sure that HDRP or URP is installed and set up before installing the samples for each.
 
 <img width = "400" src="images/InstallingSamples.png">
 

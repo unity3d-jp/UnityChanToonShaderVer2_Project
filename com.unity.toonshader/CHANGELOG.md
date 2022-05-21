@@ -95,6 +95,7 @@
 * typo in inspector.
 * removed .sample.json under Samples~ folder
 * Some unnecessary classes were public.
+* Unnatural expression `Multiply or Additive` to `Multiply or Add`.
 
 ## [0.6.0-preview] - 2022-02-22
 ### Updated:
