@@ -114,7 +114,7 @@
 | Substitute for directional light 	| 3.1	| N.A.	| N.A.	| OK	| to avoid the limitation that unable to have multiple directional light casting shadows |
 | **UTS Feature Model 3.2** 	|  	|  	|  	|  	|  	|
 | ***1. Instanced stereo rendering***	|  	|  	|  	|  	|  	|
-| instanced Stereo Rendering 	| 3.2	| 3.2	| 3.2	| 3.2	| Stereo instance rendering is available for DX11. Due to pendemic, PS4 and some other consoles are not yet checked.  |
+| instanced Stereo Rendering 	| 3.2	| 3.2	| 3.2	| 3.2 ( Tested with HDRP newer than 10.6 )	| Stereo instance rendering is available for DX11. Due to the pendemic, PS4 and some other consoles are not yet checked.  |
 
 
 
