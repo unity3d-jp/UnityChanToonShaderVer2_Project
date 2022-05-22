@@ -1,4 +1,9 @@
 # Emission Settings
+
+Emission controls the color and intensity of light emitted from the surface. When you use an emissive Material in your Scene
+, it appears as a visible source of light. The meshes
+ appear to be self-illuminated.
+
 <img src="images/EmissiveAnimation.png" height="256">
 
 

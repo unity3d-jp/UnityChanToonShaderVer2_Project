@@ -1,5 +1,7 @@
 # Material Capture(MatCap) Settings
 
+MatCap is a method of light expression using pre-rendered images. This technique uses a picture of a sphere that represents the material and light to simulate lighting.
+
 <img src="images/MatCap.gif" height="256">
 
 * [MatCap Map](#matcap-map)

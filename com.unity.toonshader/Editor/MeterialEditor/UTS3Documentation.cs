@@ -43,8 +43,8 @@ namespace UnityEditor.Rendering.Toon
     {
 #if USE_GITHUB_DOC_LINK
         const string fallbackVersion = "";
-        //        const string url = "https://github.com/Unity-Technologies/{0}/blob/development/v1/{0}/Documentation~/";
-        const string url = "https://github.com/Unity-Technologies/{0}/blob/task/1283-2-doc/{0}/Documentation~/";
+        const string url = "https://github.com/Unity-Technologies/{0}/blob/development/v1/{0}/Documentation~/";
+        //        const string url = "https://github.com/Unity-Technologies/{0}/blob/task/1283-2-doc/{0}/Documentation~/";
 #else
         const string fallbackVersion = "0.7";
         const string url = "https://docs.unity3d.com/Packages/{0}@{1}/manual/{2}.html";

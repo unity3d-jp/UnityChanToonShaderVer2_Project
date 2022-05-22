@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// #define SHOW_CONVERTER_ON_STARTUP
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -171,7 +172,7 @@ namespace UnityEditor.Rendering.Toon
         Dictionary<Material, string> m_Material2GUID_Dictionary = new Dictionary<Material, string>();
         Dictionary<string, UTS2GUID> m_GuidToUTSID_Dictionary = new Dictionary<string, UTS2GUID>();
         static int frameToWait;
-#if false
+#if SHOW_CONVERTER_ON_STARTUP
         static   UnitychanToonShader2UnityToonShader()
         {
 
@@ -199,9 +200,9 @@ namespace UnityEditor.Rendering.Toon
 
             }
         }
-
+#if SHOW_CONVERTER_ON_STARTUP
         [Callbacks.DidReloadScripts]
-
+#endif
         static void ConverterBehaviour()
         {
             //We need to wait at least one frame or the popup will not show up

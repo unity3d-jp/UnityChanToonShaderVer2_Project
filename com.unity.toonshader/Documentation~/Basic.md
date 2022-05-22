@@ -1,6 +1,7 @@
 # Three Color Map and Control Map Settings
 
 **Three Color Map and Control Map Settings** provide very basic  cel-shading settings in Unity Toon Shader.
+
 * [3 Basic Color Maps](#3-basic-color-maps)
   * [Base Map](#base-map)
     * [Apply to 1st Shading Map](#apply-to-1st-shading-map)

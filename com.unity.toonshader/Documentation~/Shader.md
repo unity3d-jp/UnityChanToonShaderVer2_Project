@@ -1,19 +1,21 @@
 # Shader Settings
 
-The Shader Settings provides basic settings that are not specific to  cel-shading but are needed for general CG.
+The Shader Settings provide basic settings that are not specific to  cel-shading but are needed for general CG.
 
-- [Culling Mode](#culling-Mode)
-- [Auto Render Queue](#auto-render-queue)
-- [Render Queue](#render-queue)
-- [Transparency](#transparency)
-- [Stencil](#stencil)
-- [Stencil Value](#stencil-value)
-- [Clipping](#clipping)
-- [Clipping Mask](#clipping-mask)
-- [Invert Clipping Mask](#invert-clipping-mask)
-- [Clipping Level](#clipping-level)
-- [Transparency Level](#transparency-level)
-- [Use Base Map Alpha as Clipping Mask](#use-base-map-alpha-as-clipping-mask)
+* [Culling Mode](#culling-Mode)
+* [Auto Render Queue](#auto-render-queue)
+  * [Render Queue](#render-queue)
+* [Transparency](#transparency)
+* [Stencil](#stencil)
+  * [Stencil Value](#stencil-value)
+* [Clipping](#clipping)
+  * [Clipping Mask](#clipping-mask)
+  * [Invert Clipping Mask](#invert-clipping-mask)
+  * [Clipping Level](#clipping-level)
+  * [Transparency Level](#transparency-level)
+  * [Use Base Map Alpha as Clipping Mask](#use-base-map-alpha-as-clipping-mask)
+
+## Culling Mode
 
 |  Value   |  Description  | 
 | ---- | ---- | 
@@ -21,16 +23,16 @@ The Shader Settings provides basic settings that are not specific to  cel-shadin
 |  Front  | Don't render polygons that are facing towards the viewer. Used for turning objects inside-out. |
 |  Off  |  Disables culling - all faces are drawn. Used for special effects. |
 
-### Auto Render Queue
+## Auto Render Queue
 When enabled, rendering order is determined by system automatically.
 
 ### Render Queue
 Rendering order in the scene.
 
-### Transparency
+## Transparency
 Enables different modes that allow the simulation of a variety of transparent objects.
 
-### Stencil
+## Stencil
 Control the stencil buffer which manipulates pixel drawing.
 
 |  Value   |  Description  | 
@@ -42,7 +44,7 @@ Control the stencil buffer which manipulates pixel drawing.
 ### Stencil Value
 Stencil value that is submitted to the stencil buffer for controlling the per-pixel drawing. Min is 0. Max is 255. The dafualt is 0.
 
-### Clipping
+## Clipping
 Allow for the use of a texture to control the transparency of the shader.
 
 |  Value   |  Description  | 
@@ -51,7 +53,7 @@ Allow for the use of a texture to control the transparency of the shader.
 |  On  | Enable clipping. |
 |  Clip Transparency  | Enable clipping with Transparency Level](#transparency-level). |
 
-#### Clipping Mask
+### Clipping Mask
 A grayscale texture which utilises its brightness to control transparency.
 
 ### Invert Clipping Mask

@@ -1,5 +1,7 @@
 # Outline Settings
 
+The Outline is a simple outline effect to meshes. 
+
 * [Outline](#outline)
   * [Outline Mode](#outline-mode)
   * [Outline Width](#outline-width)
