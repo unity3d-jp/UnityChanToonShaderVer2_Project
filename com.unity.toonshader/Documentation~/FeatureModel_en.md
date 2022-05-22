@@ -112,5 +112,9 @@
 | DXR shadow supported in render pipelines 	| 3.1	| N.A.	| N.A.	| OK	|  	|
 | ***4. Box Light*** 	|  	|  	|  	|  	|  	|
 | Substitute for directional light 	| 3.1	| N.A.	| N.A.	| OK	| to avoid the limitation that unable to have multiple directional light casting shadows |
+| **UTS Feature Model 3.2** 	|  	|  	|  	|  	|  	|
+| ***1. Instanced stereo rendering***	|  	|  	|  	|  	|  	|
+| instanced Stereo Rendering 	| 3.2	| 3.2	| 3.2	| 3.2	| Stereo instance rendering is available for DX11. Due to pendemic, PS4 and some other consoles are not yet checked.  |
+
 
 
