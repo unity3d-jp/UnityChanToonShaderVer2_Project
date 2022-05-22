@@ -33,7 +33,7 @@ When Enabled, the UV and Color of the Emission Map are animated.
 
 
 
-## Base Speed (Time)
+### Base Speed (Time)
 Specifies the base update speed of scroll animation. If the value is 1, it will be updated in 1 second. Specifying a value of 2 results in twice the speed of a value of 1, so it will be updated in 0.5 seconds.
 
 | Base Speed = 0.5 | Base Speed = 1.5 |
@@ -41,7 +41,7 @@ Specifies the base update speed of scroll animation. If the value is 1, it will 
 | <img src="images/EmissionMapBaseSpeedHalf.gif" height="256">| <img src="images/EmissionMapBaseSpeedOneAndHalf.gif" height="256"> |
 
 
-## Animation Mode
+### Animation Mode
 Controls the animated scrolling of the emissive texture.
 
 | UV Coordinate Scroll | View Coordinate Scroll |

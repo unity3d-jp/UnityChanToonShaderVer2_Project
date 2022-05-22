@@ -1,6 +1,6 @@
 | Feature Description 	| Feature Model 	| Legacy 	| URP 	| HDRP 	| Note 	|
 |-	|-	|-	|-	|-	|-	|
-| **UTS Feature Model 3.1** 	|  	|  	|  	|  	| as of 0.5.0-preview	|
+| **UTS Feature Model 3.1** 	|  	|  	|  	|  	| as of 0.7.0-preview	|
 | ***1. Basic shader features*** 	|  	|  	|  	|  	|  	|
 | Double Shade With Feather Workflow 	| 2.0 	| OK 	| OK 	| OK 	|  	|
 | Shading Grade Map Workflow 	| 2.0 	| OK 	| OK	| OK 	|  	|

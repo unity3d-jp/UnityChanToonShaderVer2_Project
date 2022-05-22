@@ -1,3 +1,4 @@
+#define USE_GITHUB_DOC_LINK
 using System;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
@@ -40,9 +41,14 @@ namespace UnityEditor.Rendering.Toon
     /// </summary>
     public class UTS3DocumentationInfo
     {
-        const string fallbackVersion = "0.6";
+#if USE_GITHUB_DOC_LINK
+        const string fallbackVersion = "";
+        //        const string url = "https://github.com/Unity-Technologies/{0}/blob/development/v1/{0}/Documentation~/";
+        const string url = "https://github.com/Unity-Technologies/{0}/blob/task/1283-2-doc/{0}/Documentation~/";
+#else
+        const string fallbackVersion = "0.7";
         const string url = "https://docs.unity3d.com/Packages/{0}@{1}/manual/{2}.html";
-
+#endif
         /// <summary>
         /// Current version of the documentation.
         /// </summary>
@@ -85,9 +91,12 @@ namespace UnityEditor.Rendering.Toon
                 .GetType()
                 .GetCustomAttributes(typeof(HelpURLAttribute), false)
                 .FirstOrDefault();
-
+#if USE_GITHUB_DOC_LINK
+            return helpURLAttribute == null ? string.Empty : $"{helpURLAttribute.URL}{mask}.md";
+#else
             return helpURLAttribute == null ? string.Empty : $"{helpURLAttribute.URL}#{mask}";
+#endif
         }
     }
 #endif // #if UNITY_2021_1_OR_NEWER
-}
+        }

@@ -122,6 +122,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
     - _1st_ShadeColor_Feather: 0.006
@@ -233,8 +234,8 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.075
     - _utsVersionX: 0
-    - _utsVersionY: 0
-    - _utsVersionZ: 2
+    - _utsVersionY: 7
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _2nd_ShadeColor: {r: 0.74740475, g: 0.69420415, b: 0.88235295, a: 1}
@@ -249,3 +250,4 @@ Material:
     - _Outline_Color: {r: 0.1397059, g: 0.13867864, b: 0.13867864, a: 1}
     - _RimLightColor: {r: 0.18401209, g: 0.16608995, b: 0.4705882, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
