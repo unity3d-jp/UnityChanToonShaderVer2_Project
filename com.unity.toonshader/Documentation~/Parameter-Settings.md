@@ -1,6 +1,6 @@
-# Shader Settings
+# Shader Settings in the inspector window.
 
-This is a high level overview of all the settings you can use in Unity Toon Shader. This document presents the settings in the following categories:
+The followings are all the Unity Toon Shader settings.  
 
   * [Modes](Modes.md)
   * [Shader Settings](Shader.md)
