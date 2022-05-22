@@ -105,9 +105,8 @@ SAMPLER(sampler_LayerInfluenceMaskMap);
 
 CBUFFER_START(UnityPerMaterial)
 
-//#if (SHADER_LIBRARY_VERSION_MAJOR >= 10 )
+
 #include "UtsUnityPerMaterial.hlsl"
-//#endif //
 
 // shared constant between lit and layered lit
 float _AlphaCutoff;
@@ -173,6 +172,8 @@ float _Metallic;
 float _Smoothness;
 float _SmoothnessRemapMin;
 float _SmoothnessRemapMax;
+float _AlphaRemapMin;
+float _AlphaRemapMax;
 float _AORemapMin;
 float _AORemapMax;
 
@@ -210,7 +211,7 @@ float _InvTilingScale;
 float4 _UVMappingMask;
 float4 _UVDetailsMappingMask;
 float _LinkDetailsWithBase;
-
+float _ObjectSpaceUVMapping;
 #else // LAYERED_LIT_SHADER
 
 // Set of users variables
@@ -279,9 +280,7 @@ PROP_DECL(float, _LinkDetailsWithBase);
 
 #endif // LAYERED_LIT_SHADER
 
-//#if (SHADER_LIBRARY_VERSION_MAJOR < 10 )
-//#include "UtsUnityPerMaterial.hlsl"
-//#endif //
+
 
 // Tessellation specific
 
