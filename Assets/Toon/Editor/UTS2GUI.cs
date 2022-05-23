@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//UTS2GUI.cs for UTS2 v.2.0.8
+//UTS2GUI.cs for UTS2 v.2.0.9
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -36,7 +36,7 @@ namespace UnityChan
 
         //各種設定保持用.
         //UTS2のバージョン.
-        static float _UTS2VersionNumber = 2.08f; 
+        static float _UTS2VersionNumber = 2.09f; 
         //
         static int _StencilNo_Setting;
         static bool _OriginalInspector = false;
@@ -337,7 +337,7 @@ namespace UnityChan
 
             //v.2.0.7.2 / v.2.0.7.4
             //v.2.0.4.3p1以前のBaseMap名との互換性対策、および_utsVersionの更新をおこなう.
-            //shader側で新規設定されるのは、_utsVersion = 2.08fなので、CustomGUI側でサブバージョンを付ける.
+            //shader側で新規設定されるのは、_utsVersion = 2.09fなので、CustomGUI側でサブバージョンを付ける.
             if(material.GetFloat("_utsVersion") < _UTS2VersionNumber)
             {
                 //_MainTexを使っている世代は、_BaseMapにはテクスチャ情報はない.

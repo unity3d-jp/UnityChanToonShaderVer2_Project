@@ -1,9 +1,14 @@
-# Unity-Chan Toon Shader 2.0 v.2.0.8 Manual
-### 2019/06/10 Nobuyuki Kobayashi (Unity Technologies Japan)
+# Unity-Chan Toon Shader 2.0 v.2.0.9 Manual
+### 2022/05/23 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_ja.md)***  
 
+## 2022/05/23: 2.0.9 Release: new features added.    
+* Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
+* Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
+* Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
+
 # Index
-- [【Important】 Note on upgrading to version 2.0.8 directly](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#important-note-on-upgrading-to-version-207-directly)
+- [【Important】 Note on upgrading to version 2.0.9 directly](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#important-note-on-upgrading-to-version-207-directly)
 - [Introduction to Unity-Chan Toon Shader 2.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#introduction-to-unity-chan-toon-shader-2)
   - [【Development Environment】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#development-environment)
   - [【Target Environment】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#target-environment)
@@ -49,7 +54,7 @@
   - [9.“Outline Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#9-outline-settings-menu)
     - [“Advanced Outline Settings” Submenu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#advanced-outline-settings-submenu)
     - [Adjusting the strength of outlines：Outline Sampler](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#adjusting-the-strength-of-outlinesoutline-sampler)
-    - [Supplementing the inverted outlines of objects：UTS_EdgeDetection](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#supplementing-the-inverted-outlines-of-objectsuts_edgedetection)
+    <!-- - [Supplementing the inverted outlines of objects：UTS_EdgeDetection](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#supplementing-the-inverted-outlines-of-objectsuts_edgedetection) -->
     - [Tracing baked vertices normals ：Baked Normal for Outline](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline)
     - [Moving the outline away from the camera：Offset Outline with Camera Z-axis](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#moving-the-outline-away-from-the-cameraoffset-outline-with-camera-z-axis)
   - [10.“DX11 Phong Tessellation Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#10-dx11-phong-tessellation-settings-menu)
@@ -74,7 +79,7 @@
     - [3-3.Bloome may glow badly on VRChat](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#3-3-bloome-may-glow-badly-on-vrchat)
 - [All properties list](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Props_en.md)
 ---
-## [Important] Note on upgrading to version 2.0.8 directly
+## [Important] Note on upgrading to version 2.0.9 directly
 * In v.2.0.5 or later, you can overwrite and update only the shader.  
 * When updating from v.2.0.4.3p1 or earlier, update the materials by selecting each material again from within the project window after overwriting and updating the shader. BaseMap is restored as it was.  
 * When updating from v.2.0.4.3p1 or earlier, the sensitivity of the slider of HiColor_Power may be affected. Please adjust according to the following.  
@@ -132,15 +137,12 @@ See for yourself by coloring your best character model with Unity-Chan Toon Shad
 
 You may be surprised to see your character looking better than ever before.  
 
-This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.0.8**.  
-
-## 【Development Environment】
-Unity-Chan Toon Shader Ver. 2.0 is developed based on Unity 5.6.3p1, and verification of compatibility with the latest versions of Unity 2018.x is ongoing.  
-(However, as version 5.6.3p1 is in the legacy pipeline, it is not currently compatible with SRP).  
+This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.0.9**.  
 
 ## 【Target Environment】
-Unity 5.6.x or later is required. This shader is confirmed to be compatible with Unity 2017.4 15f1 LTS. Unity 2018.1.0f2 and later versions can also be used.  
-This package is developed in Unity 5.6.3p1.  
+Requires Unity 2019.4.31f1 or higher.  
+The operation check from Unity 2019.4.31f1 to Unity 2020.3.34f1 has been completed.  
+This pack was created in Unity 2019.4.31f1.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
@@ -960,7 +962,7 @@ Black means “no lines” and white means that the width is at 100%.
 
 **Tips：Tips: When you are using Outline Sampler for multiple characters, by unifying the UV position of each character’s parts, you can adjust the the start and end of outlines easier. **
 
----
+<!-- ---
 ### ●Supplementing the inverted outlines of objects：**UTS_EdgeDetection**
 
 The inverted object outline that is used in UTS2 is a technique that has been used for a long time but it is still used in games that is real-time sensitive.  
@@ -984,7 +986,7 @@ You can install this package by drag and dropping it to Unity.
 This is a post-effect edge extraction filter.  
 In addition to the three filters that were made by modifying Unity’s [standard assets](https://docs.unity3d.com/ja/540/Manual/script-EdgeDetectEffectNormals.html), **Sobel Color Filter** has been added.  
 By using Sobel Color Filter, you can emphasize toon line edges effectively and reproduce the effects of color tresses of cel drawings.  
-
+ -->
 ---
 ### ●Tracing baked vertices normals ：**Baked Normal for Outline**
 

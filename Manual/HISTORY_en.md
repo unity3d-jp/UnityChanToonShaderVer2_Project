@@ -1,5 +1,10 @@
 ﻿# Release History of UTS2
 ## Version
+### 2022/05/23: 2.0.9 Release: new features added.    
+* Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
+* Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
+* Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
+
 ### 2021/09/08: 2.0.8 Release: Bug fix for outlines.    
 * Fixed a bug that caused the brightness of the outline to change unexpectedly in some VRChat worlds (Issue#82).  
 
