@@ -12,7 +12,7 @@
   * [Outline](#outline)
 
 
- * [GI Intensity](#gi-intensity)
+ * [Light Probe Intensity](#light-probe-intensity)
  * [Limit Light Intensity](#limit-light-intensity)
 
 ## Light Color Effectiveness
@@ -47,7 +47,7 @@ Light color effect in  MatCap areas.
 ### Outline
 Light color effect in outlines.
 
-Example of Light Color Effectiveness with a red light on the face. Unchecked areas on the face material are not affected by the light color.
+Example: A red light on the face. Unchecked areas on the face material are not affected by the light color.
 |Light Color Effectiveness Off | Light Color Effectiveness On |
 | - | - |
 | <img src="images/SceneLightColorEffectivenessOn.png" height="256"> | <img src="images/SceneLightColorEffectivenessOff.png" height="256"> |
@@ -55,13 +55,16 @@ Example of Light Color Effectiveness with a red light on the face. Unchecked are
 
 
 
-## GI Intensity
-The light probe color is added to the material color according to the GI Intensity value.
+## Light Probe Intensity
+The light probe color is added to the material color according to the **Light Probe Intensity** value.
+
+<img src="images/LightProbeIntensity.gif" height="256">
+<br><br>
 
 ## Limit Light Intensity
 Limit the brightness of the light to 1 to avoid white-out.
 
-Example of intense light on the character: 
+Example: A intensive light on the character.
 
 | Limit Light Intensity Off | Limit Light Intensity On |
 | - | - |

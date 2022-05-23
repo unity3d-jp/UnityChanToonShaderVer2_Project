@@ -39,6 +39,11 @@ Specifies the color of outline.
 ### Blend Base Color to Outline
 Base Color is blended into outline color.
 
+
+| Blend Base Color to Outline Off | Blend Base Color to Outline  On |
+| -- | -- | 
+| <img src="images/BlendBaseColorToOutlineOff.png" height="200"> | <img src="images/BlendBaseColorToOutlineOn.png" height="200"> |
+
 ### Outline Width Map
 Outline Width Map as Grayscale Texture : Texture(linear).
 

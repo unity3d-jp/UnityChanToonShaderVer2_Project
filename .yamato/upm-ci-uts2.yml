@@ -79,5 +79,77 @@ publish:
     {% endfor %}
     {% endfor %}
 
+prerelease:
+  name: Create a prerelease {{ yamato_name }}  
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  commands:
+    - |
+       echo off
+       packageFilePath=`find upm-ci~/packages -name "*.tgz" -print`
+       if [[ $packageFilePath =~ ^upm-ci~\/packages\/.*-([0-9]+)\.([0-9]+)\.([0-9]+)(-[0-9a-zA-Z.]*)?\.tgz$ ]]; then
+         fullMatch="${BASH_REMATCH[0]}"
+         majorVer="${BASH_REMATCH[1]}"
+         minorVer="${BASH_REMATCH[2]}"
+         patchVer="${BASH_REMATCH[3]}"
+         tagVer="${BASH_REMATCH[4]}"
+         packageVer="${majorVer}.${minorVer}.${patchVer}${tagVer}"
+         
+         echo "Installing gh"         
+         curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+         sudo apt update
+         sudo apt install gh
+
+         hostName=`dirname $GIT_REPOSITORY_URL | cut -f1 -d":" | cut -f2 -d"@"`       
+         ownerName=`dirname $GIT_REPOSITORY_URL | cut -f2 -d":"`       
+         repoName=`basename $GIT_REPOSITORY_URL | sed "s/.git//"`
+         ownerRepo="$ownerName/$repoName"
+         echo "Git repository URL: $GIT_REPOSITORY_URL"
+         echo "Host: $hostName"
+         echo "Owner: $ownerName"
+         echo "Repo: $repoName"
+
+         unset GITHUB_TOKEN
+         echo "Creating release $packageVer"
+         echo "$GH_YAMATO_DEPLOYMENT" > token.txt
+                  
+         gh auth login --hostname $hostName --with-token < token.txt 
+         gh release create $packageVer $packageFilePath --title $packageVer --notes "$packageVer Release"  --prerelease --target $GIT_BRANCH --repo $ownerRepo
+       fi
+       echo "End"
+    
+  dependencies:
+    - .yamato/{{ yamato_name }}-publish.yml#publish
+    
+publish_dry_run:
+  name: Publish Dry Run {{ yamato_name }} to Internal Registry
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+    - upm-ci package publish --dry-run --package-path com.unity.toonshader
+  triggers:
+    tags:
+      only:
+        - /^(r|R)(c|C)-\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
+  artifacts:
+    {{ yamato_name }}_publish_dry_run_artifacts:
+      paths:
+        - "upm-ci~/packages/*.tgz"
+  dependencies:
+    - .yamato/{{ yamato_name }}-pack.yml#pack
+    {% for test_config in test_configs %}
+    {% for test_platform in test_config.test_platforms %}
+    {% for step in test_platform.test_type.steps %}
+    - .yamato/{{ yamato_name }}-test.yml#test_{{ test_platform.platform_type.name }}_{{ test_config.editor_version }}_{{step.name}}
+    {% endfor %}
+    {% endfor %}
+    {% endfor %}
+
 
 

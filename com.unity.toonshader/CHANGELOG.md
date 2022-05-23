@@ -1,5 +1,5 @@
 # Changelog
-## [0.7.0-preview] - 2022-05-18
+## [0.7.0-preview] - 2022-05-23
 ### Updated:
 * Shader version properties in all the render pipeline shaders.
 * Updated installation.md.
@@ -58,6 +58,8 @@
 * Renamed `Antipodean(Ap)_RimLight` to `Inversed Direciton Rim Light`.
 * Renamed `AP_RimLgiht Power` to `Inversed Rim Light Level`.
 * Renamed `Color Blend Mode` to `Color Bleinding Mode`.
+* Renamed `GI Intesity` to `Light Probe Intensity`
+.
 ### Added:
 * Legacy: Compatibility with Single Pass Stereo Rendering.
 * Legacy: Graphics Test 2022.2.

@@ -808,7 +808,7 @@ namespace UnityEditor.Rendering.Toon
                 propName: "_Ap_RimLight_Power", defaultValue: 0.1f, min: 0, max: 1);
 
             public static readonly RangeProperty giIntensityText = new RangeProperty(
-                label: "GI Intensity", tooltip: "The light probe color is added to the material color according to the GI Intensity value.",
+                label: "Light Probe Intensity", tooltip: "The light probe color is added to the material color according to the GI Intensity value.",
                 propName: ShaderPropGI_Intensity, defaultValue: 0.0f, min: 0, max: 1);
 
             public static readonly RangeProperty tweakMatCapMaskLevelText = new RangeProperty(
