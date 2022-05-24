@@ -2,7 +2,7 @@
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/README_ja.md)***  
+***Read this document in other languages: [日本語版](./README_ja.md)***  
 
 ## 2022/05/23: 2.0.9 Release: new features added.    
 * Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
@@ -59,7 +59,7 @@ Finally, several techniques have been implemented to beautifully display charact
 
 -----
 ## 【Users' Manual】
-**[English manual for v.2.0.9](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md) is available now.**  
+**[English manual for v.2.0.9](Manual/UTS2_Manual_en.md) is available now.**  
 
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using UTS2 actually is the best way to learn the beautiful toon style.  
@@ -93,7 +93,7 @@ The project comes with sample scenes where you can learn various setting example
 
 -----
 ## 【Shader Installation】
-### [UTS2_ShaderOnly_v2.0.9_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/UTS2_ShaderOnly_v2.0.9_Release.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.9_Release.unitypackage](./UTS2_ShaderOnly_v2.0.9_Release.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 When over-writing a previous version, there is no problem with the same process, but if you want to pay close attention, so please take the following precautions:  
 1. Back-up all previous projects.  
@@ -101,14 +101,14 @@ When over-writing a previous version, there is no problem with the same process,
 3. Erase the folder containing previous versions of the toon shader (Assets/Toon/Shader) from within Unity.  
 4. Drag and drop this pack into Unity.  
 
-Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md) after installation.  
+Be sure to check the [manual](Manual/UTS2_Manual_en.md) after installation.  
 The manual explains how to use UTS2 in detail.  
 
 Please contact us if you have any issues.  
 
 -----
 ## 【Release History】  
-The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/HISTORY_en.md)  
+The release history of UTS2 is [here.](Manual/HISTORY_en.md)  
 
 -----
 ## 【Information】  

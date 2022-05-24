@@ -1,6 +1,6 @@
 # Unity-Chan Toon Shader 2.0 v.2.0.9 Manual
 ### 2022/05/23 Nobuyuki Kobayashi (Unity Technologies Japan)
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_ja.md)***  
+***Read this document in other languages: [日本語版](./UTS2_Manual_ja.md)***  
 
 ## 2022/05/23: 2.0.9 Release: new features added.    
 * Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
@@ -8,76 +8,76 @@
 * Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
 
 # Index
-- [【Important】 Note on upgrading to version 2.0.9 directly](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#important-note-on-upgrading-to-version-207-directly)
-- [Introduction to Unity-Chan Toon Shader 2.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#introduction-to-unity-chan-toon-shader-2)
-  - [【Development Environment】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#development-environment)
-  - [【Target Environment】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#target-environment)
-  - [【Download the project】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#download-the-project)
-  - [【Installation】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#installation)
-  - [【Basic UTS2 Settings】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#basic-uts2-settings)
-- [Using the Different Shaders in UTS2](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#using-the-different-shaders-in-uts2)
-  - [The Shaders in the UnityChanToonShader Root Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshader-root-folder)
-  - [The Shaders in the UnityChanToonShader/NoOutline Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadernooutline-folder)
-    - [Transparent shaders for transparency materials](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#transparent-shaders-for-transparency-materials)
-  - [The Shaders in the UnityChanToonShader/AngelRing Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshaderangelring-folder)
-  - [The Shaders in the UnityChanToonShader/Mobile Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadermobile-folder)
-  - [The Shaders in the UnityChanToonShader/Tessellation Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadertessellation-folder)
-  - [The shaders in the UnityChanToonShader/Helper Folder](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshaderhelper-folder)
-- [Sample Scenes](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#sample-scenes)
-- [Initial Project Settings](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#initial-project-settings)
-- [UTS2 Setting Menu：UTS2 Custom Inspector](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#uts2-setting-menuuts2-custom-inspector)
-  - [1.“Basic Shader Settings” Menu for UTS2](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#1-basic-shader-settings-menu-for-uts2)
-    - [Useful functions for VRChat users](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#useful-functions-for-vrchat-users)
-      - [“When setting up materials on UTS2”](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#when-setting-up-materials-on-uts2)
-        - [If you want to brighten the appearance of characters in dark worlds](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#-if-you-want-to-brighten-the-appearance-of-characters-in-dark-worlds)
-      - [“When publishing avatars set in UTS2”](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#when-publishing-avatars-set-in-uts2)
-  - [2.“Basic Three Colors and Control Maps Setups” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#2-basic-three-colors-and-control-maps-setups-menu)
-    - [ “NormalMap Settings” Submenu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#normalmap-settings-submenu)
-    - [“Shadow Control Maps” Submenu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#shadow-control-maps-submenu)
-      - [Position Maps for DoubleShadeWithFeather Shaders](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#doubleshadewithfeather-shaders)
-      - [Shading Grade Map for ShadingGradeMap Shaders](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#shadinggrademap-shaders)
-  - [3.“Basic Lookdevs : Shading Step and Feather Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#3-basic-lookdevs--shading-step-and-feather-settings-menu)
-    - [【The Basics of Using the Step/Feather Sliders】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#the-basics-of-using-the-stepfeather-sliders)
-      - [DoubleShadeWithFeather Shaders](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#doubleshadewithfeather-shaders-1)
-      - [ShadingGradeMap Shaders](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#shadinggrademap-shaders-1)
-    - [“System Shadows : Self Shadows Receiving” Items](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#system-shadows--self-shadows-receiving-items)
-    - [“Additional Settings” Submenu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#additional-settings-submenu)
-    - [【Adjusting the different colors of point lights ：Step Offset、PointLights Hi-Cut Filter】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#adjusting-the-different-colors-of-point-lights-step-offsetpointlights-hi-cut-filter)
-  - [4.“HighColor Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#4-highcolor-settings-menu)
-  - [5.“RimLight Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#5-rimlight-settings-menu)
-  - [6.“MatCap : Texture Projection Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#6-matcap--texture-projection-settings-menu)
-  - [7.“AngelRing Projection Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#7-angelring-projection-settings-menu)
-    - [Making materials for Angel Ring.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#making-materials-for-angel-ring)
-  - [8.“Emissive : Self-luminescene Setings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#8-emissive--self-luminescene-setings-menu)
-    - [How to create a texture with alpha channel](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#how-to-create-a-texture-with-alpha-channel)
-    - [Tips for setting Destination Color](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#tips-for-setting-destination-color)
-  - [9.“Outline Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#9-outline-settings-menu)
-    - [“Advanced Outline Settings” Submenu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#advanced-outline-settings-submenu)
-    - [Adjusting the strength of outlines：Outline Sampler](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#adjusting-the-strength-of-outlinesoutline-sampler)
-    <!-- - [Supplementing the inverted outlines of objects：UTS_EdgeDetection](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#supplementing-the-inverted-outlines-of-objectsuts_edgedetection) -->
-    - [Tracing baked vertices normals ：Baked Normal for Outline](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline)
-    - [Moving the outline away from the camera：Offset Outline with Camera Z-axis](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#moving-the-outline-away-from-the-cameraoffset-outline-with-camera-z-axis)
-  - [10.“DX11 Phong Tessellation Settings” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#10-dx11-phong-tessellation-settings-menu)
-  - [11.“LightColor Contribution to Materials” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#11-lightcolor-contribution-to-materials-menu)
-  - [12.“Environmental Lighting Contributions Setups” Menu](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#12-environmental-lighting-contributions-setups-menu)
-    - [Decide the light probe’s brightness ：GI Intensity](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#decide-the-light-probes-brightness-gi-intensity)
-    - [Adjusting the ambient blending：Unlit Intensity](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#adjusting-the-ambient-blendingunlit-intensity)
-    - [Preventing overexposure when there are multiple bright lights in a scene ：SceneLights Hi-Cut Filter](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#preventing-overexposure-when-there-are-multiple-bright-lights-in-a-scene-scenelights-hi-cut-filter)
-    - [Adding Built-in Light Direction as an advanced feature](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#adding-built-in-light-direction-as-an-advanced-feature)
-- [Using it for visuals（pre-render）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#using-it-for-visualspre-render)
-- [About Licensing](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#about-licensing)
-- [Additional Note](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#additional-note)
-  - [１．Tips: Minimizing the artifacts that appear at the edge of each color when using system shadow.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%91tips-minimizing-the-artifacts-that-appear-at-the-edge-of-each-color-when-using-system-shadow)
-    - [【１：Changing the linear color space】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%91changing-the-linear-color-space)
-    - [【２：Increase mesh density】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%92increase-mesh-density)
-    - [【３：Make artifacts disappear by adjusting BaseColor_Step/System Shadows Level 】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%93make-artifacts-disappear-by-adjusting-basecolor_stepsystem-shadows-level-)
-    - [【４：Increasing the bias of the directional light】](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%94increasing-the-bias-of-the-directional-light)
-  - [２．Tips: Minimizing light slips when using multiple real-time point lights](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%92tips-minimizing-light-slips-when-using-multiple-real-time-point-lights)
-  - [３．Solution to trouble cases sent to user support](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%93solution-to-trouble-cases-sent-to-user-support)
-    - [3-1.Shadows appear in unexpected places](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#3-1-shadows-appear-in-unexpected-places)
-    - [3-2.I uploaded the avatar to the VRChat server, and when I saw it on the HMD, the parallax between the left and right is off.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#3-2-i-uploaded-the-avatar-to-the-vrchat-server-and-when-i-saw-it-on-the-hmd-the-parallax-between-the-left-and-right-is-off)
-    - [3-3.Bloome may glow badly on VRChat](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#3-3-bloome-may-glow-badly-on-vrchat)
-- [All properties list](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Props_en.md)
+<!-- - [【Important】 Note on upgrading to version 2.0.9 directly](./UTS2_Manual_en.md#important-note-on-upgrading-to-version-209-directly) -->
+- [Introduction to Unity-Chan Toon Shader 2.](./UTS2_Manual_en.md#introduction-to-unity-chan-toon-shader-2)
+  - [【Development Environment】](./UTS2_Manual_en.md#development-environment)
+  - [【Target Environment】](./UTS2_Manual_en.md#target-environment)
+  - [【Download the project】](./UTS2_Manual_en.md#download-the-project)
+  - [【Installation】](./UTS2_Manual_en.md#installation)
+  - [【Basic UTS2 Settings】](./UTS2_Manual_en.md#basic-uts2-settings)
+- [Using the Different Shaders in UTS2](./UTS2_Manual_en.md#using-the-different-shaders-in-uts2)
+  - [The Shaders in the UnityChanToonShader Root Folder](./UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshader-root-folder)
+  - [The Shaders in the UnityChanToonShader/NoOutline Folder](./UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadernooutline-folder)
+    - [Transparent shaders for transparency materials](./UTS2_Manual_en.md#transparent-shaders-for-transparency-materials)
+  - [The Shaders in the UnityChanToonShader/AngelRing Folder](./UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshaderangelring-folder)
+  - [The Shaders in the UnityChanToonShader/Mobile Folder](./UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadermobile-folder)
+  - [The Shaders in the UnityChanToonShader/Tessellation Folder](./UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshadertessellation-folder)
+  - [The shaders in the UnityChanToonShader/Helper Folder](./UTS2_Manual_en.md#the-shaders-in-the-unitychantoonshaderhelper-folder)
+- [Sample Scenes](./UTS2_Manual_en.md#sample-scenes)
+- [Initial Project Settings](./UTS2_Manual_en.md#initial-project-settings)
+- [UTS2 Setting Menu：UTS2 Custom Inspector](./UTS2_Manual_en.md#uts2-setting-menuuts2-custom-inspector)
+  - [1.“Basic Shader Settings” Menu for UTS2](./UTS2_Manual_en.md#1-basic-shader-settings-menu-for-uts2)
+    - [Useful functions for VRChat users](./UTS2_Manual_en.md#useful-functions-for-vrchat-users)
+      - [“When setting up materials on UTS2”](./UTS2_Manual_en.md#when-setting-up-materials-on-uts2)
+        - [If you want to brighten the appearance of characters in dark worlds](./UTS2_Manual_en.md#-if-you-want-to-brighten-the-appearance-of-characters-in-dark-worlds)
+      - [“When publishing avatars set in UTS2”](./UTS2_Manual_en.md#when-publishing-avatars-set-in-uts2)
+  - [2.“Basic Three Colors and Control Maps Setups” Menu](./UTS2_Manual_en.md#2-basic-three-colors-and-control-maps-setups-menu)
+    - [ “NormalMap Settings” Submenu](./UTS2_Manual_en.md#normalmap-settings-submenu)
+    - [“Shadow Control Maps” Submenu](./UTS2_Manual_en.md#shadow-control-maps-submenu)
+      - [Position Maps for DoubleShadeWithFeather Shaders](./UTS2_Manual_en.md#doubleshadewithfeather-shaders)
+      - [Shading Grade Map for ShadingGradeMap Shaders](./UTS2_Manual_en.md#shadinggrademap-shaders)
+  - [3.“Basic Lookdevs : Shading Step and Feather Settings” Menu](./UTS2_Manual_en.md#3-basic-lookdevs--shading-step-and-feather-settings-menu)
+    - [【The Basics of Using the Step/Feather Sliders】](./UTS2_Manual_en.md#the-basics-of-using-the-stepfeather-sliders)
+      - [DoubleShadeWithFeather Shaders](./UTS2_Manual_en.md#doubleshadewithfeather-shaders-1)
+      - [ShadingGradeMap Shaders](./UTS2_Manual_en.md#shadinggrademap-shaders-1)
+    - [“System Shadows : Self Shadows Receiving” Items](./UTS2_Manual_en.md#system-shadows--self-shadows-receiving-items)
+    - [“Additional Settings” Submenu](./UTS2_Manual_en.md#additional-settings-submenu)
+    - [【Adjusting the different colors of point lights ：Step Offset、PointLights Hi-Cut Filter】](./UTS2_Manual_en.md#adjusting-the-different-colors-of-point-lights-step-offsetpointlights-hi-cut-filter)
+  - [4.“HighColor Settings” Menu](./UTS2_Manual_en.md#4-highcolor-settings-menu)
+  - [5.“RimLight Settings” Menu](./UTS2_Manual_en.md#5-rimlight-settings-menu)
+  - [6.“MatCap : Texture Projection Settings” Menu](./UTS2_Manual_en.md#6-matcap--texture-projection-settings-menu)
+  - [7.“AngelRing Projection Settings” Menu](./UTS2_Manual_en.md#7-angelring-projection-settings-menu)
+    - [Making materials for Angel Ring.](./UTS2_Manual_en.md#making-materials-for-angel-ring)
+  - [8.“Emissive : Self-luminescene Setings” Menu](./UTS2_Manual_en.md#8-emissive--self-luminescene-setings-menu)
+    - [How to create a texture with alpha channel](./UTS2_Manual_en.md#how-to-create-a-texture-with-alpha-channel)
+    - [Tips for setting Destination Color](./UTS2_Manual_en.md#tips-for-setting-destination-color)
+  - [9.“Outline Settings” Menu](./UTS2_Manual_en.md#9-outline-settings-menu)
+    - [“Advanced Outline Settings” Submenu](./UTS2_Manual_en.md#advanced-outline-settings-submenu)
+    - [Adjusting the strength of outlines：Outline Sampler](./UTS2_Manual_en.md#adjusting-the-strength-of-outlinesoutline-sampler)
+    <!-- - [Supplementing the inverted outlines of objects：UTS_EdgeDetection](./UTS2_Manual_en.md#supplementing-the-inverted-outlines-of-objectsuts_edgedetection) -->
+    - [Tracing baked vertices normals ：Baked Normal for Outline](./UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline)
+    - [Moving the outline away from the camera：Offset Outline with Camera Z-axis](./UTS2_Manual_en.md#moving-the-outline-away-from-the-cameraoffset-outline-with-camera-z-axis)
+  - [10.“DX11 Phong Tessellation Settings” Menu](./UTS2_Manual_en.md#10-dx11-phong-tessellation-settings-menu)
+  - [11.“LightColor Contribution to Materials” Menu](./UTS2_Manual_en.md#11-lightcolor-contribution-to-materials-menu)
+  - [12.“Environmental Lighting Contributions Setups” Menu](./UTS2_Manual_en.md#12-environmental-lighting-contributions-setups-menu)
+    - [Decide the light probe’s brightness ：GI Intensity](./UTS2_Manual_en.md#decide-the-light-probes-brightness-gi-intensity)
+    - [Adjusting the ambient blending：Unlit Intensity](./UTS2_Manual_en.md#adjusting-the-ambient-blendingunlit-intensity)
+    - [Preventing overexposure when there are multiple bright lights in a scene ：SceneLights Hi-Cut Filter](./UTS2_Manual_en.md#preventing-overexposure-when-there-are-multiple-bright-lights-in-a-scene-scenelights-hi-cut-filter)
+    - [Adding Built-in Light Direction as an advanced feature](./UTS2_Manual_en.md#adding-built-in-light-direction-as-an-advanced-feature)
+<!-- - [Using it for visuals（pre-render）](./UTS2_Manual_en.md#using-it-for-visualspre-render) -->
+- [About Licensing](./UTS2_Manual_en.md#about-licensing)
+- [Additional Note](./UTS2_Manual_en.md#additional-note)
+  - [１．Tips: Minimizing the artifacts that appear at the edge of each color when using system shadow.](./UTS2_Manual_en.md#%EF%BC%91tips-minimizing-the-artifacts-that-appear-at-the-edge-of-each-color-when-using-system-shadow)
+    - [【１：Changing the linear color space】](./UTS2_Manual_en.md#%EF%BC%91changing-the-linear-color-space)
+    - [【２：Increase mesh density】](./UTS2_Manual_en.md#%EF%BC%92increase-mesh-density)
+    - [【３：Make artifacts disappear by adjusting BaseColor_Step/System Shadows Level 】](./UTS2_Manual_en.md#%EF%BC%93make-artifacts-disappear-by-adjusting-basecolor_stepsystem-shadows-level-)
+    - [【４：Increasing the bias of the directional light】](./UTS2_Manual_en.md#%EF%BC%94increasing-the-bias-of-the-directional-light)
+  - [２．Tips: Minimizing light slips when using multiple real-time point lights](./UTS2_Manual_en.md#%EF%BC%92tips-minimizing-light-slips-when-using-multiple-real-time-point-lights)
+  - [３．Solution to trouble cases sent to user support](./UTS2_Manual_en.md#%EF%BC%93solution-to-trouble-cases-sent-to-user-support)
+    - [3-1.Shadows appear in unexpected places](./UTS2_Manual_en.md#3-1-shadows-appear-in-unexpected-places)
+    - [3-2.I uploaded the avatar to the VRChat server, and when I saw it on the HMD, the parallax between the left and right is off.](./UTS2_Manual_en.md#3-2-i-uploaded-the-avatar-to-the-vrchat-server-and-when-i-saw-it-on-the-hmd-the-parallax-between-the-left-and-right-is-off)
+    - [3-3.Bloome may glow badly on VRChat](./UTS2_Manual_en.md#3-3-bloome-may-glow-badly-on-vrchat)
+- [All properties list](./UTS2_Props_en.md)
 ---
 ## [Important] Note on upgrading to version 2.0.9 directly
 * In v.2.0.5 or later, you can overwrite and update only the shader.  
@@ -85,7 +85,7 @@
 * When updating from v.2.0.4.3p1 or earlier, the sensitivity of the slider of HiColor_Power may be affected. Please adjust according to the following.  
 1. If Is_SpecularToHighColor = OFF / Is_BlendAddToHiColor = 0FF, adjust the HiColor_Power value lower than before.  
 2. If you use Is_SpecularToHighColor = ON, there is no need to modify it.  
-* Latest updates and version history can be found here **[README.md](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/README.md)**.  
+* Latest updates and version history can be found here **[README.md](../README.md)**.  
 ---
 
 <img width = "400" src="Images_jpg/CellLook.jpg">
@@ -358,7 +358,7 @@ UTS2 Custom Inspector can switch to the conventional property list type inspecto
 
 <img width = "400" src="Images_jpg/UTS2UI_AllProperties.jpg">
 
-Function description of the property list type is [here](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Props_en.md).  
+Function description of the property list type is [here](./UTS2_Props_en.md).  
 You can restore the UI style of Inspector with the `Change CustomUI` button.  
 
 
@@ -614,7 +614,7 @@ Use this when you want to make further fine adjustments after deciding the color
 
 **↑ When using the system shadow with Unity and adjusting the Step slider, noise may appear in the area with shadow color. These noises are troublesome in Cel-look style, so I show you how to improve them using the `System Shadows Level` slider and` Tessellation`.**  
 
-There are other ways to eliminate noise, so please also refer to [Additionl Notes](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#%EF%BC%91tips-minimizing-the-artifacts-that-appear-at-the-edge-of-each-color-when-using-system-shadow) in this manual.  
+There are other ways to eliminate noise, so please also refer to [Additionl Notes](./UTS2_Manual_en.md#%EF%BC%91tips-minimizing-the-artifacts-that-appear-at-the-edge-of-each-color-when-using-system-shadow) in this manual.  
 
 
 ---
@@ -952,7 +952,7 @@ Items in this submenu can further enhance the outline function.
 | `Use Outline Texture` | Turn `Active` this, when you want to paste texture to the inverted-outline object. | _Is_OutlineTex |
 | `Outline Texture` | Use this when you want the outline to have special textures. By changing the textures, you can give the outlines patterns, or make the outline unique by changing the texture of the inverted object which will be front-face culled. | _OutlineTex |
 | `Use Baked Normal for Outline` | By turning `Active` this, you can turn on `Baked Normal for Outline`. | _Is_BakedNormal |
-| `Baked NormalMap for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline). | _BakedNormal |
+| `Baked NormalMap for Outline` | Reads normal maps that have the vertices normal from other models baked into it as “added” when setting the inverted outlines. For more, look [below](./UTS2_Manual_en.md#tracing-baked-vertices-normals-baked-normal-for-outline). | _BakedNormal |
 
 ---
 ### ●Adjusting the strength of outlines：**Outline Sampler**
@@ -1147,7 +1147,7 @@ Please watch this video about how to use Built-in Light Direction.
 
 [![](https://img.youtube.com/vi/IFAPrbAGfmw/0.jpg)](https://www.youtube.com/watch?v=IFAPrbAGfmw)
 
----
+<!-- ---
 
 
 # Using it for visuals（pre-render）
@@ -1161,7 +1161,7 @@ https://github.com/unity3d-jp/FrameCapture.
 You can use what you have output from frame capture in NUKE and AfterEffects.  
 You can also use **Alembic Importer/Exporter**  for videos.  
 
-https://github.com/unity3d-jp/AlembicImporter.  
+https://github.com/unity3d-jp/AlembicImporter.   -->
 
 # About Licensing  
 

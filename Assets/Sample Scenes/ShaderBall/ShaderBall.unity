@@ -132,10 +132,8 @@ GameObject:
   m_Component:
   - component: {fileID: 327574815}
   - component: {fileID: 327574814}
-  - component: {fileID: 327574812}
   - component: {fileID: 327574811}
   - component: {fileID: 327574810}
-  - component: {fileID: 327574816}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -160,14 +158,6 @@ MonoBehaviour:
   showInstWindow: 0
 --- !u!81 &327574811
 AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327574809}
-  m_Enabled: 1
---- !u!124 &327574812
-Behaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -231,28 +221,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 36.771, y: 0, z: 0}
---- !u!114 &327574816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327574809}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a6f0b0773f6fbe4ebaaa0eff2d31199, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 3
-  sensitivityDepth: 1
-  sensitivityNormals: 1
-  edgeExp: 1
-  sampleDist: 1
-  edgesColor: {r: 0.5735294, g: 0.5735294, b: 0.5735294, a: 1}
-  filterPower: 0.3
-  threshold: 0.4
-  edgesOnly: 0
-  edgeDetectShader: {fileID: 4800000, guid: 25f3ae0d0271490419a188afd866a647, type: 3}
 --- !u!1001 &919203902
 PrefabInstance:
   m_ObjectHideFlags: 0
