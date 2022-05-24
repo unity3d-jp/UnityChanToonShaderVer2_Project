@@ -4,6 +4,11 @@
 
 ***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/README_ja.md)***  
 
+## 2022/05/23: 2.0.9 Release: new features added.    
+* Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
+* Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
+* Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
+
 ## 【Overview : What is UTS2?】
 
 <img width = "800" src="Manual/Images_jpg/TPK_04.jpg">

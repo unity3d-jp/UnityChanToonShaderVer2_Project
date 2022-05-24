@@ -4,6 +4,11 @@
 
 ***Read this document in other languages: [English](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/README.md)***  
 
+## 2022/05/23：2.0.9 Release：新規機能追加    
+* リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTSでの動作確認。  
+* シングルパスインスタンシング レンダリング(ステレオインスタンシングとも呼ばれます)に対応。サポートするプラットフォームは、[Unity マニュアル](https://docs.unity3d.com/ja/2019.4/Manual/SinglePassInstancing.html)を参照してください。  
+* 本リリースより、おまけのUTS2イメージエフェクトUnityPackageはサポート外として削除しました。  
+
 ## 【UTS2の概要】
 
 <img width = "800" src="Manual/Images_jpg/TPK_04.jpg">
