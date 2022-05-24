@@ -1,4 +1,5 @@
-#define USE_GITHUB_DOC_LINK
+//#define USE_GITHUB_DOC_LINK
+#define USE_UTS_DOC_LINK
 using System;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
@@ -41,12 +42,14 @@ namespace UnityEditor.Rendering.Toon
     /// </summary>
     public class UTS3DocumentationInfo
     {
+        const string fallbackVersion = "0.7";
 #if USE_GITHUB_DOC_LINK
         const string fallbackVersion = "";
         const string url = "https://github.com/Unity-Technologies/{0}/blob/development/v1/{0}/Documentation~/";
-        //        const string url = "https://github.com/Unity-Technologies/{0}/blob/task/1283-2-doc/{0}/Documentation~/";
+#elif USE_UTS_DOC_LINK
+        const string url = "https://docs.unity3d.com/Packages/{0}@{1}/manual/";
 #else
-        const string fallbackVersion = "0.7";
+        
         const string url = "https://docs.unity3d.com/Packages/{0}@{1}/manual/{2}.html";
 #endif
         /// <summary>
@@ -93,7 +96,11 @@ namespace UnityEditor.Rendering.Toon
                 .FirstOrDefault();
 #if USE_GITHUB_DOC_LINK
             return helpURLAttribute == null ? string.Empty : $"{helpURLAttribute.URL}{mask}.md";
+
+#elif USE_UTS_DOC_LINK
+            return helpURLAttribute == null ? string.Empty : $"{helpURLAttribute.URL}{mask}.html";
 #else
+
             return helpURLAttribute == null ? string.Empty : $"{helpURLAttribute.URL}#{mask}";
 #endif
         }
