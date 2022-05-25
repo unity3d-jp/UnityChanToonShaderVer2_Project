@@ -117,7 +117,7 @@ prerelease:
        echo "End"
     
   dependencies:
-    - .yamato/{{ yamato_name }}-publish.yml#publish
+    - .yamato/upm-ci-uts2.yml#publish
     
 publish_dry_run:
   name: Publish Dry Run {{ yamato_name }} to Internal Registry
