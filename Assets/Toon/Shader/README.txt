@@ -47,13 +47,16 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 
 -----
 ## 【ターゲット環境】
-Unity 2019.4.31f1 もしくはそれ以降が必要です。   
-本パッケージは、Unity 2019.4.31f1で作成されています。  
+* UTS2シェーダー本体およびUTS2マテリアルは、Unity 5.6.7f1以降対応。（Unity 2019.4.31f1以降の使用を推奨します）  
+* サンプルシーンを正常に再生するには、Unity 2019.4.31f1 もしくはそれ以降が必要です。  
+* Unity 2019.4.31f1からUnity 2020.3.34f1、Unity 2021.3.3f1、Unity2022.1.1f1までの動作確認が終了しています。  
+* 本パッケージは、Unity 2019.4.31f1で作成されています。  
 
 ### 【Target Environment】
-Requires Unity 2019.4.31f1 or higher.  
-This pack was created in Unity 2019.4.31f1.  
-
+* UTS2 shader itself and UTS2 materials are compatible with Unity 5.6.7f1 or later. (Unity 2019.4.31f1 or later is recommended)  
+* Unity 2019.4.31f1 or later is required to properly play the sample scenes.  
+* Unity 2019.4.31f1 through Unity 2020.3.34f1, Unity 2021.3.3f1, and Unity 2022.1.1f1 have been tested.  
+* This package was created with Unity 2019.4.31f1.  
 
 -----
 ## 【提供ライセンス】

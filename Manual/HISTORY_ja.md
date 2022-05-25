@@ -1,7 +1,7 @@
 ﻿# UTS2リリース履歴
 ## Version
 ### 2022/05/23：2.0.9 Release：新規機能追加    
-* リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTSでの動作確認。  
+* リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTS、Unity 2021.3.x LTS、Unity 2022.1.1f1での動作確認。  
 * シングルパスインスタンシング レンダリング(ステレオインスタンシングとも呼ばれます)に対応。サポートするプラットフォームは、[Unity マニュアル](https://docs.unity3d.com/ja/2019.4/Manual/SinglePassInstancing.html)を参照してください。  
 * 本リリースより、おまけのUTS2イメージエフェクトUnityPackageはサポート外として削除しました。  
 

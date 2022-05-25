@@ -3,7 +3,7 @@
 ***Read this document in other languages: [日本語版](./UTS2_Manual_ja.md)***  
 
 ## 2022/05/23: 2.0.9 Release: new features added.    
-* Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
+* Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS, 2021.3.x LTS, and Unity 2022.1.1f1.  
 * Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
 * Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
 
@@ -140,9 +140,10 @@ You may be surprised to see your character looking better than ever before.
 This manual focuses on the newest version of Unity-Chan Toon Shader Ver. 2.0: **UTS2 v.2.0.9**.  
 
 ## 【Target Environment】
-Requires Unity 2019.4.31f1 or higher.  
-The operation check from Unity 2019.4.31f1 to Unity 2020.3.34f1 has been completed.  
-This pack was created in Unity 2019.4.31f1.  
+* UTS2 shader itself and UTS2 materials are compatible with Unity 5.6.7f1 or later. (Unity 2019.4.31f1 or later is recommended)  
+* Unity 2019.4.31f1 or later is required to properly play the sample scenes.  
+* Unity 2019.4.31f1 through Unity 2020.3.34f1, Unity 2021.3.3f1, and Unity 2022.1.1f1 have been tested.  
+* This package was created with Unity 2019.4.31f1.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  

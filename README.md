@@ -66,9 +66,10 @@ The iteration cycle between reading the manual and using UTS2 actually is the be
 
 -----
 ## 【Target Environment】
-Requires Unity 2019.4.31f1 or higher.  
-The operation check from Unity 2019.4.31f1 to Unity 2020.3.34f1 has been completed.  
-This pack was created in Unity 2019.4.31f1.  
+* UTS2 shader itself and UTS2 materials are compatible with Unity 5.6.7f1 or later. (Unity 2019.4.31f1 or later is recommended)  
+* Unity 2019.4.31f1 or later is required to properly play the sample scenes.  
+* Unity 2019.4.31f1 through Unity 2020.3.34f1, Unity 2021.3.3f1, and Unity 2022.1.1f1 have been tested.  
+* This package was created with Unity 2019.4.31f1.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  

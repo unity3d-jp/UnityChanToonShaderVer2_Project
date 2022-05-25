@@ -3,7 +3,7 @@
 ***Read this document in other languages: [English](./UTS2_Manual_en.md)***  
 
 ## 2022/05/23：2.0.9 Release：新規機能追加    
-* リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTSでの動作確認。  
+* リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTS、Unity 2021.3.x LTS、Unity 2022.1.1f1での動作確認。  
 * シングルパスインスタンシング レンダリング(ステレオインスタンシングとも呼ばれます)に対応。サポートするプラットフォームは、[Unity マニュアル](https://docs.unity3d.com/ja/2019.4/Manual/SinglePassInstancing.html)を参照してください。  
 * 本リリースより、おまけのUTS2イメージエフェクトUnityPackageはサポート外として削除しました。  
 
@@ -142,9 +142,10 @@ Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルッ�
 
 
 ## 【ターゲット環境】
-Unity 2019.4.31f1 もしくはそれ以降が必要です。  
-Unity 2019.4.31f1からUnity 2020.3.34f1までの動作確認が終了しています。  
-本パッケージは、Unity 2019.4.31f1で作成されています。  
+* UTS2シェーダー本体およびUTS2マテリアルは、Unity 5.6.7f1以降対応。（Unity 2019.4.31f1以降の使用を推奨します）  
+* サンプルシーンを正常に再生するには、Unity 2019.4.31f1 もしくはそれ以降が必要です。  
+* Unity 2019.4.31f1からUnity 2020.3.34f1、Unity 2021.3.3f1、Unity2022.1.1f1までの動作確認が終了しています。  
+* 本パッケージは、Unity 2019.4.31f1で作成されています。  
 
 Forwardレンダリング環境。リニアカラースペースでの使用を推奨します。  
 （ガンマカラースペースでも使用できますが、ガンマカラーの特性上、陰影の階調変化が強めに出る傾向があります。詳しくは、[リニアのワークフローとガンマのワークフロー](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html) を参照してください。）  
