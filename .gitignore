@@ -5,7 +5,6 @@
 [Bb]uilds/
 [Uu]nityPackageManager/
 Assets/AssetStoreTools*
-[Pp]ackages/
 [Ll]ogs/
 [Uu]serSettings/
 
@@ -37,3 +36,7 @@ sysinfo.txt
 
 # Builds
 *.apk
+
+# Unity 2019.4.x or later
+Packages/package-lock.json
+Packages/
