@@ -18,7 +18,7 @@ namespace UnityEditor.Rendering.Toon
 
             const string labelLightAdjustment = "Toon EV Adjustment";
             const string labelLightAdjustmentCurve = "Curve";
-            const string labelHighlightLimitter = "Light Light Intensity Limitter";
+            const string labelHighlightLimitter = "Light Intensity Limitter";
             const string labeIgnoreVolumeExposure = "Ignore Volume Exposure";
             const string labelCompensation = "Compensation";
 #if ADJUSTMENT_CURVE_DEBUG_UI

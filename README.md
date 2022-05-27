@@ -25,6 +25,7 @@
   * [Outline Settings](com.unity.toonshader/Documentation~/Outline.md)
   * [Tessellation Settings(Legacy)](com.unity.toonshader/Documentation~/TessellationLegacy.md)
   * [Tessellation Settings(HDRP)](com.unity.toonshader/Documentation~/TessellationHDRP.md)
+* [Toon Ev Adjustment(HDRP)](com.unity.toonshader/Documentation~/ToonEVAdjustment.md)  
 * [Samples](com.unity.toonshader/Documentation~/sample-instlation.md)
 * [Feature Model](com.unity.toonshader/Documentation~/FeatureModel_en.md)
 

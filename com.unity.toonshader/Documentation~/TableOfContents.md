@@ -22,6 +22,7 @@
   * [Outline Settings](Outline.md)
   * [Tessellation Settings(Legacy)](TessellationLegacy.md)
   * [Tessellation Settings(HDRP)](TessellationHDRP.md)
+* [Toon Ev Adjustment(HDRP)](ToonEVAdjustment.md)
 * [Samples](sample-instlation.md)
 * [Feature Model](FeatureModel_en.md)
 

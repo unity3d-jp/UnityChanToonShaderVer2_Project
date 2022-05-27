@@ -10,6 +10,7 @@
   * [Step Offset](#step-offset)
   * [Filter Point Light Highlights](#filter-point-light-highlights)
 <br><br>
+
 ### Base Color Step
 Sets the boundary between the Base Color and the Shade Colors.
 

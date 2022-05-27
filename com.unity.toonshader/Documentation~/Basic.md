@@ -56,7 +56,7 @@ The map used for the darker portions of the shadow. Texture(sRGB) × Color(RGB).
 | <img src="images/yuko_face3_C.png" height="256">   | <img src="images/yuko_hairC.png" height="256"> |<img src="images/YukoFace2ndShadingMap.png" height="256">  |
 
 ## Example of 3 Color Map Operation
-<img src="images/ApplyTo1st2ndMap-3.gif" height="320"> 
+<img src="images/ApplyTo1st2ndMap-3.gif" height="394"> 
 
 <br><br>
 
