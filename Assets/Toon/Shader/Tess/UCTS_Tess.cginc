@@ -1,6 +1,6 @@
 ﻿//UCTS_Tess.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.8
+//v.2.0.9
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -26,6 +26,8 @@ struct VertexInput
 	float3 normal : NORMAL;
 	float4 texcoord0 : TEXCOORD0;
 	float4 texcoord1 : TEXCOORD1;
+	// v.2.0.9
+	UNITY_VERTEX_INPUT_INSTANCE_ID 
 };
 
 struct InternalTessInterp_VertexInput
@@ -35,6 +37,8 @@ struct InternalTessInterp_VertexInput
 	float3 normal : NORMAL;
 	float4 texcoord0 : TEXCOORD0;
 	float4 texcoord1 : TEXCOORD1;
+	// v.2.0.9
+	UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 InternalTessInterp_VertexInput tess_VertexInput(VertexInput v)
@@ -45,6 +49,7 @@ InternalTessInterp_VertexInput tess_VertexInput(VertexInput v)
 	o.normal = v.normal;
 	o.texcoord0 = v.texcoord0;
 	o.texcoord1 = v.texcoord1;
+	UNITY_TRANSFER_INSTANCE_ID(v,o);
 	return o;
 }
 
@@ -74,6 +79,7 @@ InternalTessInterp_VertexInput hs_VertexInput(InputPatch<InternalTessInterp_Vert
 inline VertexInput _ds_VertexInput(UnityTessellationFactors tessFactors, const OutputPatch<InternalTessInterp_VertexInput, 3> vi, float3 bary : SV_DomainLocation)
 {
 	VertexInput v;
+
 	v.vertex = vi[0].vertex*bary.x + vi[1].vertex*bary.y + vi[2].vertex*bary.z;
 	float3 pp[3];
 	for (int i = 0; i < 3; ++i)
@@ -84,6 +90,7 @@ inline VertexInput _ds_VertexInput(UnityTessellationFactors tessFactors, const O
 	v.vertex.xyz += v.normal.xyz * _TessExtrusionAmount;
 	v.texcoord0 = vi[0].texcoord0*bary.x + vi[1].texcoord0*bary.y + vi[2].texcoord0*bary.z;
 	v.texcoord1 = vi[0].texcoord1*bary.x + vi[1].texcoord1*bary.y + vi[2].texcoord1*bary.z;
+	UNITY_TRANSFER_INSTANCE_ID(vi[0], v);
 	return v;
 }
 

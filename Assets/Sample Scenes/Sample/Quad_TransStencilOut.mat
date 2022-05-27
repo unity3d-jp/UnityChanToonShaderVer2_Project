@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Quad_TransStencilOut
   m_Shader: {fileID: 4800000, guid: 43d0eeb4c46f52841b0941e99ac9b16b, type: 3}
   m_ShaderKeywords: _EMISSIVE_SIMPLE
@@ -160,7 +161,7 @@ Material:
     - _Use_BaseAs1st: 0
     - _simpleUI: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.075
+    - _utsVersion: 2.09
     m_Colors:
     - _1st_ShadeColor: {r: 0.41900954, g: 0.8363411, b: 0.9191176, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}

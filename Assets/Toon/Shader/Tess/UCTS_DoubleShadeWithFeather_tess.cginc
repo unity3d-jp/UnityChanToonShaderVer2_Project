@@ -1,6 +1,6 @@
 ﻿//UCTS_DoubleShadeWithFeather_Tess.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.8
+//v.2.0.9
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -151,6 +151,8 @@
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
+                // v.2.0.9
+                UNITY_VERTEX_INPUT_INSTANCE_ID 
             };
 #endif
             struct VertexOutput {
@@ -164,10 +166,15 @@
                 float mirrorFlag : TEXCOORD5;
                 LIGHTING_COORDS(6,7)
                 UNITY_FOG_COORDS(8)
-                //
+                // v.2.0.9
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+                UNITY_VERTEX_OUTPUT_STEREO
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.uv0 = v.texcoord0;
                 o.normalDir = UnityObjectToWorldNormal(v.normal);
                 o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
@@ -198,6 +205,9 @@
 #endif // TESSELLATION_ON
 
             float4 frag(VertexOutput i, fixed facing : VFACE) : SV_TARGET {
+                UNITY_SETUP_INSTANCE_ID(i);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
                 i.normalDir = normalize(i.normalDir);
                 float3x3 tangentTransform = float3x3( i.tangentDir, i.bitangentDir, i.normalDir);
                 float3 viewDirection = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);

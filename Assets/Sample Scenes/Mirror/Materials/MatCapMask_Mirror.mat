@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: MatCapMask_Mirror
   m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
   m_ShaderKeywords: _ADD_ANTIPODEAN_RIMLIGHT_ON _CAMERAROLLING_STABILIZER_ON _CAMERAROTATION_STABILIZER_ON
@@ -136,6 +137,7 @@ Material:
     - _Is_LightColor_Base: 1
     - _Is_LightColor_HighColor: 1
     - _Is_LightColor_MatCap: 0
+    - _Is_LightColor_Outline: 1
     - _Is_LightColor_RimLight: 1
     - _Is_NormalMapForMatCap: 0
     - _Is_NormalMapToBase: 0
@@ -186,7 +188,7 @@ Material:
     - _simpleUI: 0
     - _use_ShadowMaskAsMatcapMask: 0
     - _utsTechnique: 0
-    - _utsVersion: 2.075
+    - _utsVersion: 2.09
     m_Colors:
     - _1st_ShadeColor: {r: 0.50735295, g: 0.50735295, b: 0.50735295, a: 1}
     - _2nd_ShadeColor: {r: 0.3455882, g: 0.3455882, b: 0.3455882, a: 1}

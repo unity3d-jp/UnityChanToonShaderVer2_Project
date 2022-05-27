@@ -5,6 +5,8 @@
 [Bb]uilds/
 [Uu]nityPackageManager/
 Assets/AssetStoreTools*
+[Ll]ogs/
+[Uu]serSettings/
 
 # Visual Studio cache directory
 /.vs/
@@ -34,3 +36,6 @@ sysinfo.txt
 
 # Builds
 *.apk
+
+# Unity 2019.4.x or later
+Packages/package-lock.json

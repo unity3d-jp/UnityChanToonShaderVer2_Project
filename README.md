@@ -1,8 +1,13 @@
-﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.8】
+﻿# 【Unity-Chan Toon Shader 2.0 (UTS2) Ver.2.0.9】
 ---
 <img width = "800" src="Manual/Images_jpg/UTS2_TopImage00.jpg">
 
-***Read this document in other languages: [日本語版](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/README_ja.md)***  
+***Read this document in other languages: [日本語版](./README_ja.md)***  
+
+## 2022/05/23: 2.0.9 Release: new features added.    
+* Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
+* Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
+* Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
 
 ## 【Overview : What is UTS2?】
 
@@ -54,17 +59,17 @@ Finally, several techniques have been implemented to beautifully display charact
 
 -----
 ## 【Users' Manual】
-**[English manual for v.2.0.8](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md) is available now.**  
+**[English manual for v.2.0.9](Manual/UTS2_Manual_en.md) is available now.**  
 
 Users' manual is a document with plentiful knowledge of toon style.  
 The iteration cycle between reading the manual and using UTS2 actually is the best way to learn the beautiful toon style.  
 
 -----
 ## 【Target Environment】
-Requires Unity 5.6.x or higher.  
-The operation check from Unity 2018.2.21f1 to Unity 2019.2.0a9 has been completed.  
-It has been tested on Unity 2017.4.x LTS, including Unity 2017.4.15f1 LTS.  
-This pack was created in Unity 5.6.7f1.  
+* UTS2 shader itself and UTS2 materials are compatible with Unity 5.6.7f1 or later. (Unity 2019.4.31f1 or later is recommended)  
+* Unity 2019.4.31f1 or later is required to properly play the sample scenes.  
+* Unity 2019.4.31f1 through Unity 2020.3.34f1, Unity 2021.3.3f1, and Unity 2022.1.1f1 have been tested.  
+* This package was created with Unity 2019.4.31f1.  
 
 This package uses a forward rendering environment. Using a linear color space is recommended.  
 (A gamma color space can also be used, but this tends to strengthen shadow gradiation. For more details, see [Linear or Gamma Workflow](https://docs.unity3d.com/ja/current/Manual/LinearRendering-LinearOrGammaWorkflow.html). )  
@@ -89,7 +94,7 @@ The project comes with sample scenes where you can learn various setting example
 
 -----
 ## 【Shader Installation】
-### [UTS2_ShaderOnly_v2.0.8_Release.unitypackage](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/UTS2_ShaderOnly_v2.0.8_Release.unitypackage)  
+### [UTS2_ShaderOnly_v2.0.9_Release.unitypackage](./UTS2_ShaderOnly_v2.0.9_Release.unitypackage)  
 When installing for the first time, simply drag and drop this package into Unity to begin the installation process.  
 When over-writing a previous version, there is no problem with the same process, but if you want to pay close attention, so please take the following precautions:  
 1. Back-up all previous projects.  
@@ -97,22 +102,22 @@ When over-writing a previous version, there is no problem with the same process,
 3. Erase the folder containing previous versions of the toon shader (Assets/Toon/Shader) from within Unity.  
 4. Drag and drop this pack into Unity.  
 
-Be sure to check the [manual](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md) after installation.  
+Be sure to check the [manual](Manual/UTS2_Manual_en.md) after installation.  
 The manual explains how to use UTS2 in detail.  
 
 Please contact us if you have any issues.  
 
 -----
 ## 【Release History】  
-The release history of UTS2 is [here.](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/release/legacy/2.0/Manual/HISTORY_en.md)  
+The release history of UTS2 is [here.](Manual/HISTORY_en.md)  
 
 -----
 ## 【Information】  
-Latest Version: 2.0.8 Release  
-Update: 2021/09/08  
+Latest Version: 2.0.9 Release  
+Update: 2022/05/23  
 Category: 3D  
 File format: zip/unitypackage  
 
 -----
-**README.md 2021/09/08**  
+**README.md 2022/05/23**  
 
