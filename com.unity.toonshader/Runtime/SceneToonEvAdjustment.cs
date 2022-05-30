@@ -9,8 +9,11 @@ using UnityEngine.Experimental.Rendering;
 using UnityObject = UnityEngine.Object;
 namespace Unity.Rendering.Toon
 {
+
+     
     [ExecuteAlways]
     [DisallowMultipleComponent]
+    [HelpURL("https://docs.unity3d.com/Packages/com.unity.toonshader@0.7/manual/ToonEVAdjustment.html")]
     internal class SceneToonEvAdjustment : MonoBehaviour
     {
         // flags
