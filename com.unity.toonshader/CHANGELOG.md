@@ -1,4 +1,8 @@
 # Changelog
+## [0.7.3-preview] - 2022-05-31
+### Updated:
+* The next version is 0.7.3-preview
+
 ## [0.7.2-preview] - 2022-05-30
 ### Fixed:
 * Dead links for Toon EV adjustment HELP URL Buttons.
