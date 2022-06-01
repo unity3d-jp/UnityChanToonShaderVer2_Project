@@ -23,14 +23,14 @@ namespace UnityEditor.Rendering.Toon
     /// </example>
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum, AllowMultiple = false)]
-    internal class UTS3HelpURLAttribute : HelpURLAttribute
+    internal class UTS3InspectorHelpURLAttribute : HelpURLAttribute
     {
         /// <summary>
         /// The constructor of the attribute
         /// </summary>
         /// <param name="pageName"></param>
         /// <param name="packageName"></param>
-        internal UTS3HelpURLAttribute(string pageName, string packageName = "com.unity.toonshader")
+        internal UTS3InspectorHelpURLAttribute(string pageName, string packageName = "com.unity.toonshader")
             : base(UTS3DocumentationInfo.GetPageLink(packageName, pageName))
         {
         }

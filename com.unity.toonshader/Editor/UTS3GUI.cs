@@ -295,7 +295,7 @@ namespace UnityEditor.Rendering.Toon
 
         [Flags]
 #if UNITY_2021_1_OR_NEWER
-        [UTS3HelpURL("instruction")]
+        [UTS3InspectorHelpURL("instruction")]
 #endif // UNITY_2021_1_OR_NEWER
         protected enum Expandable
         {
