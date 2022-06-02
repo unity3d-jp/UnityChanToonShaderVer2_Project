@@ -31,5 +31,12 @@ namespace Unity.Rendering.Toon
         internal static string GetPageLink(string packageName, string pageName) => string.Format(url, packageName, version, pageName);
 
     }
+#else
+    internal class UTSHelpURLAttribute : System.Attribute 
+    {
+        internal UTSHelpURLAttribute(string name)  
+        {
+        }
+    }
 #endif
 }

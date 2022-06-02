@@ -13,9 +13,8 @@ namespace Unity.Rendering.Toon
 {
     [ExecuteAlways]
     [DisallowMultipleComponent]
-#if UNITY_2021_1_OR_NEWER
     [UTSHelpURL("ToonEVAdjustment")]
-#endif
+
 
     internal class ModelToonEvAdjustment : MonoBehaviour
     {
