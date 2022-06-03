@@ -27,11 +27,11 @@ Angel Ring : Texture(sRGB) × Color(RGB). Default:Black
 |<img src="images/para_height2.png" height="256">|
 
 ### Offset U
-Adjusts the Angel Ring’s shape in the horizontal direction. The ranage is from 0.0 to 0.5. The defalut is 0.
+Adjusts the Angel Ring’s shape in the horizontal direction. The range is from 0.0 to 0.5. The defalut is 0.
 please refer to the image in [Offset V](#offset-v).
 
 ### Offset V
-Adjusts the Angel Ring’s shape in the vertical direction. The ranage is from 0.0 to 1.0. The defalut is 0.3.
+Adjusts the Angel Ring’s shape in the vertical direction. The range is from 0.0 to 1.0. The defalut is 0.3.
 
 <img src="images/AngelRingOffsetUV_1.gif" height="256" >
 

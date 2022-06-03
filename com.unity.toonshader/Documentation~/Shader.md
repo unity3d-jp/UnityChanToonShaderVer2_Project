@@ -51,7 +51,7 @@ Allow for the use of a texture to control the transparency of the shader.
 | ---- | ---- | 
 |  Off | Disable clipping. |
 |  On  | Enable clipping. |
-|  Clip Transparency  | Enable clipping with Transparency Level](#transparency-level). |
+|  Clip Transparency  | [Enable clipping with Transparency Level](#transparency-level). |
 
 ### Clipping Mask
 A grayscale texture which utilises its brightness to control transparency.

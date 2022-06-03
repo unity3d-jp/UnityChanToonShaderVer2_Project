@@ -55,7 +55,7 @@ Controls the animated scrolling of the emissive texture.
 
 
 ### Scroll U/X direction
-Specifies how much the Emissive texture should scroll in the u-direction (x-axis direction) when updating the animation. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.
+Specifies how much the Emissive texture should scroll in the U-direction (x-axis direction) when updating the animation. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.
 
 ### Scroll V/Y direction
 Specifies how much the Emissive texture should scroll in the V-direction (y-axis direction) when updating the animation. The scrolling animation is ultimately determined by Base Speed (Time) x Scroll U Direction x Scroll V Direction.

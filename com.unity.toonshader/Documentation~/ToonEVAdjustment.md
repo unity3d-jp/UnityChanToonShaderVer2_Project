@@ -9,7 +9,7 @@
 
 Over the scene, **Scene Toon EV Adjustment** can control exposure level by applying EV curve for **Unity Toon Shader**. 
 
-### he way to enable **Scene Toon EV Adjustment**
+### The way to enable **Scene Toon EV Adjustment**
 1. `GameObject/Toon Shader/Scene Toon EV Adjustment` from the Unity Editor menu to create  **Scene Toon EV Adjustment Component** component.
 2. Put models you want to contorl exposure to its inspector.
 

@@ -92,7 +92,7 @@ Disable Inversed Rim light feather.
 | <img src="images/InversedRimLightFeathterOn.png" height="256"> | <img src="images/InversedRimLightFeathterOff.png" height="256"> |
 
 ### Rim Light Mask
-Rim Light Mask : a gray scale texture(sRGB). The white part of the texture is displayed as Rim Light, and the black part is masked and not displayed.
+Rim Light Mask : a gray scale texture(linear). The white part of the texture is displayed as Rim Light, and the black part is masked and not displayed.
  Gray Scale Texture Example | 
 | ---- |
 |<img src="images/UVCheckGrid.png" height="256">|
