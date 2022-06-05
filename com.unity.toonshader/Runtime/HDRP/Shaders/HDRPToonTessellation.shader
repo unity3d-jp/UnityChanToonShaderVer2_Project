@@ -71,6 +71,7 @@ Shader "HDRP/ToonTessellation"
         [HideInInspector] _DiffusionProfileHash("Diffusion Profile Hash", Float) = 0
         _SubsurfaceMask("Subsurface Radius", Range(0.0, 1.0)) = 1.0
         _SubsurfaceMaskMap("Subsurface Radius Map", 2D) = "white" {}
+        _TransmissionMask("Transmission Mask", Range(0.0, 1.0)) = 1.0
         _Thickness("Thickness", Range(0.0, 1.0)) = 1.0
         _ThicknessMap("Thickness Map", 2D) = "white" {}
         _ThicknessRemap("Thickness Remap", Vector) = (0, 1, 0, 0)
@@ -924,7 +925,7 @@ Shader "HDRP/ToonTessellation"
             #pragma multi_compile SHADOW_LOW SHADOW_MEDIUM SHADOW_HIGH
 
             #define USE_CLUSTERED_LIGHTLIST // There is not FPTL lighting when using transparent
-
+            #define AREA_SHADOW_LOW
             #define SHADERPASS SHADERPASS_FORWARD
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
 
@@ -990,7 +991,7 @@ Shader "HDRP/ToonTessellation"
             #pragma multi_compile SHADOW_LOW SHADOW_MEDIUM SHADOW_HIGH
             #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
 //            #pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
-
+            #define AREA_SHADOW_LOW
             #define SHADERPASS SHADERPASS_FORWARD
             // In case of opaque we don't want to perform the alpha test, it is done in depth prepass and we use depth equal for ztest (setup from UI)
             // Don't do it with debug display mode as it is possible there is no depth prepass in this case
@@ -1105,7 +1106,7 @@ Shader "HDRP/ToonTessellation"
 
             #define TESSELLATION_ON
             #pragma multi_compile USE_FPTL_LIGHTLIST USE_CLUSTERED_LIGHTLIST
-
+            #define AREA_SHADOW_LOW
             #define SHADERPASS SHADERPASS_FORWARD
             #define SHADOW_LOW
             #define LIGHTLOOP_DISABLE_TILE_AND_CLUSTER
