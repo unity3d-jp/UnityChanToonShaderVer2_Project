@@ -193,6 +193,7 @@ float _Anisotropy;
 
 float _DiffusionProfileHash;
 float _SubsurfaceMask;
+float _TransmissionMask;
 float _Thickness;
 float4 _ThicknessRemap;
 
