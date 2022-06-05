@@ -13,6 +13,6 @@ The **Unity Toon Shader** is compatible with all the render pipelines, **Legacy(
 
 The **Unity Toon Shader** allows  users to specify the colors of light and shadow. These features are essential for cel-shaded character designs. 
 
-Three basic colors, **base color**, **1st shading color**, and **2nd shading color**, play a key role in character design in Unity Toon Shader. Three basic colors are described in　[Three Color Map and Control Map Settings](Basic.md).
+Three basic colors, **base color**, **1st shading color**, and **2nd shading color**, play a key role in character design in the **Unity Toon Shader**. Three basic colors are described in　[Three Color Map and Control Map Settings](Basic.md).
 
-In addition to the three basic colors, The Unity Toon Shader provides wide variety of features such as [Highlight](Highlight.md), [Rim Light](Rimlight.md), [Emission](Emission.md), [Angel Ring](AngelRing.md), [Material Capture(MatCap)](MatCap.md) and some special maps.
+In addition to the three basic colors, the **Unity Toon Shader** provides wide variety of features such as [Highlight](Highlight.md), [Rim Light](Rimlight.md), [Emission](Emission.md), [Angel Ring](AngelRing.md), [Material Capture(MatCap)](MatCap.md) and some special maps.
