@@ -31,7 +31,8 @@ Specular light mode. Hard or Soft.
 
 
 <br><br>
-#### Color Blending Mode
+
+### Color Blending Mode
 Specular color blending mode. Multiply or Add. **Color Blending Mode** is disabled when **Specular Mode** is **Soft**.
 
 | Multiply | Add |
