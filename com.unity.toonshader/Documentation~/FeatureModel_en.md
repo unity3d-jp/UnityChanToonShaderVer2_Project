@@ -1,4 +1,6 @@
-| Feature Description 	|  Legacy 	| URP 	| HDRP 	| Note 	|
+## Functional Differences in Each Render Pipeline
+
+| Function	|  Legacy 	| URP 	| HDRP 	| Note 	|
 |-	|-	|-	|-	|-	|
 | 	|  	|  	|  	| as of 0.7.3-preview	|
 | ***1. Modes*** 	|  	|  	|  	|  	|

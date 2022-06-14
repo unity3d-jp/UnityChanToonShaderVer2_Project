@@ -8,7 +8,7 @@ All terms have been reviewed and reclassified in the **Unity toon shader** 0.7.0
 
 The **Unity Toon Shader** 0.7.x-preview has added tips to elements in the Inspector.
 
-## New documentations
+## New documentation
 
 In the **Unity Toon Shader** 0.7.x-preview, the manuals have been rewritten according to Unity's official documentation format.
 

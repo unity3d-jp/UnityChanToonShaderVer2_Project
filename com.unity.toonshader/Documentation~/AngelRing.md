@@ -1,6 +1,6 @@
 # Angel Ring Projection Settings
 
-Angel Ring is an effect for the **Unity Toon Shader**, used to express shine or luster in hair and always appears in a fixed position as seen from the camera. This feature requires the use of a 2nd UV in the meshes.
+The Angel Ring effect for UTS expresses shine or luster in hair. This effect always appears in a fixed position as seen from the Camera. Angel Ring requires the 2nd UV in the meshes.
 
 <img src="images/AR_Image.png" height="256">
 <br/><br/>

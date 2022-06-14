@@ -5,18 +5,18 @@
 <img src="images/InspectorThreeColorAndControlMapSettings.png" width="573">
 <br/><br/>
 
-* [3 Basic Color Maps](#3-basic-color-maps)
+* [Three Basic Color Maps](#Three-basic-color-maps)
   * [Base Map](#base-map)
     * [Apply to 1st Shading Map](#apply-to-1st-shading-map)
   * [1st Shading map](#1st-shading-map)
     * [Apply to 2nd Shading Map](#apply-to-2nd-shading-map)
   * [2nd Shading Map](#2nd-shading-map)
-  * [Example of 3 Color Map Operation](#example-of-3-color-map-operation) 
+  * [Example of Three Color Map Operation](#example-of-Three-color-map-operation) 
 <br><br>
 
 * [Normal Map](#normal-map)
   * [Normal Map Effectiveness](#normal-map-effectiveness)
-    * [3 Basic Colors](#3-basic-colors)
+    * [Three Basic Colors](#Three-basic-colors)
     * [Highlight](#highlight)
     * [Rim Light](#rim-light)
   * [Example of Normal Map Operation](#example-of-normal-map-operation)
@@ -28,10 +28,10 @@
   * [Example of Shadow Control Map Application](#example-of-shadow-control-map-application)
 <br><br>
 
-## 3 Basic Color Maps
+## Three Basic Color Maps
 
 ## Base Map
-Base Color : Texture(sRGB) × Color(RGB). The default color is White. The **base color** represents the color of the unshaded area of object or character. 
+Base Color : Texture(sRGB) × Color(RGB). The default color is White. The base color represents the color of the unshaded area of object or character. 
 
 |  Base Color Map (Face) | (Hair) | Result  |
 | ---- | ---- |---- |
@@ -59,7 +59,7 @@ The map used for the darker portions of the shadow. Texture(sRGB) × Color(RGB).
 | ---- | ---- | ---- |
 | <img src="images/yuko_face3_C.png" height="256">   | <img src="images/yuko_hairC.png" height="256"> |<img src="images/YukoFace2ndShadingMap.png" height="256">  |
 
-## Example of 3 Color Map Operation
+## Example of Three Color Map Operation
 <img src="images/ApplyTo1st2ndMap-3.gif" height="394"> 
 
 <br><br>
@@ -73,7 +73,7 @@ A texture that dictates the bumpiness of the material. The slider is for control
 
 ## Normal Map Effectiveness
 
-### 3 Basic Colors
+### Three Basic Colors
 The effectiveness of the Normal Map on 3 Basic color areas, lit, the 1st shading and the 2nd.
 
 ### Highlight

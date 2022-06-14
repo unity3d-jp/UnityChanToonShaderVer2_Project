@@ -14,7 +14,7 @@
 
 
 ## Highlight
-Highlight : Texture(sRGB) × Color(RGB) Default:White.
+Highlight : Texture(sRGB) × Color(RGB) Default:White. Pattern and color of specularly illuminated area.
 
 <img src="images/Highlight.gif"  height="256">
 <br><br>
