@@ -36,7 +36,7 @@ Base Color : Texture(sRGB) × Color(RGB). The default color is White.
 
 
 ### Apply to 1st Shading Map
-Apply Base Map to the **1st Shading Map**. When **Apply to 1st Shading Map** is checked, texture map in **1st Shading Map** is not used fore redering and its texture UI is disabled.
+Apply **Base Map** to the **1st Shading Map**. When **Apply to 1st Shading Map** is checked, texture map in **1st Shading Map** is not used for rendering and its texture UI is disabled.
 
 
 ## 1st Shading Map
@@ -47,7 +47,7 @@ The map used for the brighter portions of the shadow. Texture(sRGB) × Color(RGB
 
 
 ### Apply to 2nd Shading Map
-Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When **Apply to 2nd Shading Map** is checked, texture map in **2nd Shading Map** is not used fore redering and its texture UI is disabled.
+Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When **Apply to 2nd Shading Map** is checked, texture map in **2nd Shading Map** is not used for rendering and its texture UI is disabled.
 
 
 ### 2nd Shading Map
@@ -71,7 +71,7 @@ A texture that dictates the bumpiness of the material. The slider is for control
 ## Normal Map Effectiveness
 
 ### 3 Basic Colors
-Normal map effectiveness to 3 Basic color areas, lit, the 1st shading and the 2nd.
+The effectiveness of the Normal Map on 3 Basic color areas, lit, the 1st shading and the 2nd.
 
 ### Highlight
 Normal map effectiveness to high lit areas.

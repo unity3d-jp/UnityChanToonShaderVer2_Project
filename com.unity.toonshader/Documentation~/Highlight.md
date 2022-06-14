@@ -17,13 +17,15 @@ Highlight : Texture(sRGB) × Color(RGB) Default:White.
 <br><br>
 
 ## Highlight Power
-Highlight power factor, pow(x,5) is used inside the shader.
+
+The size of the Highlight can be controlled through the High light power slider. The size increase roughly with the formula: pow(x,5).
 
 <img src="images/SpecularPower.gif"  height="256">
 <br><br>
 
 ## Specular Mode
-Specular light mode. Hard or Soft.
+
+UTS provides two modes for the highlight for different occasions and effect. The hard mode provides a crisp and solid edge to the highlight while the soft mode provides a blended blurred effect.
 
 | Hard | Soft |
 | - | - |
@@ -33,7 +35,7 @@ Specular light mode. Hard or Soft.
 <br><br>
 
 ### Color Blending Mode
-Specular color blending mode. Multiply or Add. **Color Blending Mode** is disabled when **Specular Mode** is **Soft**.
+Specular color blending mode allows the user to control the hardness of the colour applied to the highlight. Users have two options: Multiply or Add. Note that **Color Blending Mode** is disabled when **Specular** Mode is set to **Soft**.
 
 | Multiply | Add |
 | - | - |
