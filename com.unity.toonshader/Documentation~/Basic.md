@@ -31,7 +31,7 @@
 ## 3 Basic Color Maps
 
 ## Base Map
-Base Color : Texture(sRGB) × Color(RGB). The default color is White.
+Base Color : Texture(sRGB) × Color(RGB). The default color is White. The **base color** represents the color of the unshaded area of object or character. 
 
 |  Base Color Map (Face) | (Hair) | Result  |
 | ---- | ---- |---- |
