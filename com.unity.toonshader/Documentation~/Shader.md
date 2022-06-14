@@ -2,6 +2,9 @@
 
 The Shader Settings provide basic settings that are not specific to  cel-shading but are needed for general CG.
 
+<img src="images/InspectorShaderSettings.png" width="573">
+<br/><br/>
+
 * [Culling Mode](#culling-Mode)
 * [Auto Render Queue](#auto-render-queue)
   * [Render Queue](#render-queue)

@@ -1,5 +1,8 @@
 # Scene Light Effectiveness Settings
 
+<img src="images/InspectorSceneLightEffectivenessSettings.png" width="573">
+<br/><br/>
+
 * [Light Color Effectiveness Settings](#light-color-effectiveness)
   * [Base Color](#base-color)
   * [1st Shading Color](#1st-shading-color)

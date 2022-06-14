@@ -2,6 +2,9 @@
 
 The Rim Light  highlight the edges of meshes. Rim Light is based on the angle between surface normal and view direction. The Unity Toon Shader provides variety of options for Rim Light.
 
+<img src="images/InspectorRimLightSettings.png" width="573">
+<br/><br/>
+
 * [Rim Light](#rim-light)
   * [Rim Light Color](#rim-light-color)
   * [Rim Light Level](#rim-light-level)

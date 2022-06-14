@@ -1,5 +1,8 @@
 # Shading Steps and Feather Settings
 
+<img src="images/InspecotrShadingStepsAndFeatherSettings.png" width="573">
+<br/><br/>
+
 * [Base Color Step](#base-color-step)
 * [Base Shading Feather](#base-shading-feather)
 * [Shading Color Step](#shading-color-step)

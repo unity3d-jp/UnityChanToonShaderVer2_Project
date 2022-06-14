@@ -3,6 +3,10 @@
 MatCap is a method of light expression using pre-rendered images. This technique uses a picture of a sphere that represents the material and light to simulate lighting.
 
 <img src="images/MatCap.gif" height="256">
+<br/><br/>
+
+<img src="images/InspectorMatcapSettings.png" width="573">
+<br/><br/>
 
 * [MatCap Map](#matcap-map)
 * [MatCap Blur Level](#matcap-blur-level)

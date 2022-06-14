@@ -2,6 +2,9 @@
 
 The Outline is a simple outline effect to meshes. 
 
+<img src="images/InspectorOutlineSettings.png" width="573">
+<br/><br/>
+
 * [Outline](#outline)
   * [Outline Mode](#outline-mode)
   * [Outline Width](#outline-width)

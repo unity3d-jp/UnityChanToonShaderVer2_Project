@@ -1,5 +1,8 @@
 # Highlight Settings
 
+<img src="images/InspectorHighlightSettings.png" width="573">
+<br/><br/>
+
 * [Highlight](#highlight)
 * [Highlight Power](#highlight-power)
 * [Specular Mode](#specular-mode)

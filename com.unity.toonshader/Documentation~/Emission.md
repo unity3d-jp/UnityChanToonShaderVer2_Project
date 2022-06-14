@@ -1,11 +1,12 @@
 # Emission Settings
 
-Emission controls the color and intensity of light emitted from the surface. When you use an emissive Material in your Scene
-, it appears as a visible source of light. The meshes
- appear to be self-illuminated.
+Emission controls the color and intensity of light emitted from the surface. When you use an emissive Material in your Scene, it appears as a visible source of light. The meshes appear to be self-illuminated.
 
 <img src="images/EmissiveAnimation.png" height="256">
+<br/><br/>
 
+<img src="images/InspectorEmissionSettings.png" width="573">
+<br/><br/>
 
 * [Emission Map](#emission-map)
 * [Emission Map Animation](#emission-map-animation)
@@ -31,7 +32,7 @@ Primarily used with the Bloom Post Effect, Luminous objects can be represented.
 | <img src="images/EmissionMapSample.png" height="256"> | 
 
 ## Emission Map Animation
-When Enabled, the UV and Color of the Emission Map are animated.
+When Enabled, the UV and Color of the **Emission Map** are animated.
 
  <img src="images/EmissionAnimation.gif" height="256"> 
 

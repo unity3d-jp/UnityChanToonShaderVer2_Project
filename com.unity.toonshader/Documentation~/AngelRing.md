@@ -3,6 +3,12 @@
 Angel Ring is an effect for UTS, used to express shine or luster in hair and always appears in a fixed position as seen from the camera. This feature requires the use of a 2nd UV in the meshes.
 
 <img src="images/AR_Image.png" height="256">
+<br/><br/>
+
+
+<img src="images/InspectorAngelRingSettings.png" width="573">
+<br/><br/>
+
 
 - [Angel Ring Projection](#angel-ring-projection) 
   - [Angel Ring](#angel-ring)
