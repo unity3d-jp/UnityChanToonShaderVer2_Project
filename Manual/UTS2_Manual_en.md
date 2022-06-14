@@ -2,10 +2,11 @@
 ### 2022/05/23 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [日本語版](./UTS2_Manual_ja.md)***  
 
-## 2022/05/23: 2.0.9 Release: new features added.    
+## 2022/06/14: 2.0.9 Release: new features added.    
 * Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS, 2021.3.x LTS, and Unity 2022.1.1f1.  
 * Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
 * Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
+* Improved blending of extended outline objects with environmental lighting in environments without real-time directional lighting.  
 
 # Index
 <!-- - [【Important】 Note on upgrading to version 2.0.9 directly](./UTS2_Manual_en.md#important-note-on-upgrading-to-version-209-directly) -->

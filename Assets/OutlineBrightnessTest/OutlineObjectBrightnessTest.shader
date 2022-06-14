@@ -1,6 +1,6 @@
-﻿//OughtlineObjectBlightnessTest
+﻿//OutlineObjectBrightnessTest
 //nobuyuki@unity3d.com
-Shader "Test/OughtlineObjectBlightnessTest" {
+Shader "Test/OutlineObjectBrightnessTest" {
     Properties {
         _Outline_Width ("Outline_Width", Float ) = 0
         _Outline_Color ("Outline_Color", Color) = (0.5,0.5,0.5,1)
@@ -33,8 +33,8 @@ Shader "Test/OughtlineObjectBlightnessTest" {
             //ifによる分岐処理対応
             uniform float3 ambientSkyColor;
             uniform float3 envLightSource_GradientEquator;
-            uniform float3 envLightSource_SkyboxIntensityMultiplier;
-            
+            uniform float3 envLightSource_SkyboxIntensity;
+            //
 
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -70,7 +70,7 @@ Shader "Test/OughtlineObjectBlightnessTest" {
                 //グラデーションの明るさを赤道領域から取得する方式
                 envLightSource_GradientEquator = unity_AmbientEquator.rgb >0.05 ? unity_AmbientEquator.rgb : half3(0.05,0.05,0.05);
                 //コミュニティより提案された、UTS2トゥーンマテリアル側でのUnlit_Intensityでの明るさの取得方式
-                envLightSource_SkyboxIntensityMultiplier = max(ShadeSH9(half4(0.0,0.0,0.0,1.0)),ShadeSH9(half4(0.0,-1.0,0.0,1.0))).rgb;
+                envLightSource_SkyboxIntensity = max(ShadeSH9(half4(0.0,0.0,0.0,1.0)),ShadeSH9(half4(0.0,-1.0,0.0,1.0))).rgb;
         
                if(_TestMode == 1){
                     //v.2.0.7.5　元々の方式
@@ -78,11 +78,11 @@ Shader "Test/OughtlineObjectBlightnessTest" {
                 }
                  else if(_TestMode == 2){
                     //コミュニティより提案された、UTS2トゥーンマテリアル側での明るさの取得方式（環境ライトソースがColorの黒だと反応しない）
-                    ambientSkyColor =  envLightSource_SkyboxIntensityMultiplier;
+                    ambientSkyColor =  envLightSource_SkyboxIntensity;
                 }
                 else{
                     //ShadeSH9から明るさがとれる時には優先的に取得する方式（例外条件が少ない）
-                    ambientSkyColor = envLightSource_SkyboxIntensityMultiplier.rgb>0.0 ? envLightSource_SkyboxIntensityMultiplier*_Unlit_Intensity : envLightSource_GradientEquator*_Unlit_Intensity;
+                    ambientSkyColor = envLightSource_SkyboxIntensity.rgb>0.0 ? envLightSource_SkyboxIntensity*_Unlit_Intensity : envLightSource_GradientEquator*_Unlit_Intensity;
                 }
 //
                 float3 lightColor = _LightColor0.rgb >0.05 ? _LightColor0.rgb : ambientSkyColor.rgb;

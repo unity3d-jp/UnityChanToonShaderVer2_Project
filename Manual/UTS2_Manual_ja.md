@@ -2,10 +2,11 @@
 ### 2022/05/23 Nobuyuki Kobayashi (Unity Technologies Japan)
 ***Read this document in other languages: [English](./UTS2_Manual_en.md)***  
 
-## 2022/05/23：2.0.9 Release：新規機能追加    
+## 2022/06/14：2.0.9 Release：新規機能追加    
 * リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTS、Unity 2021.3.x LTS、Unity 2022.1.1f1での動作確認。  
 * シングルパスインスタンシング レンダリング(ステレオインスタンシングとも呼ばれます)に対応。サポートするプラットフォームは、[Unity マニュアル](https://docs.unity3d.com/ja/2019.4/Manual/SinglePassInstancing.html)を参照してください。  
 * 本リリースより、おまけのUTS2イメージエフェクトUnityPackageはサポート外として削除しました。  
+* リアルタイムディレクショナルライトがない環境での、拡張アウトラインオブジェクトの環境ライティングへの馴染ませ具合を向上しました。  
 
 # もくじ
 <!-- - [【重要】旧バージョンから、直接v.2.0.9へバージョンアップをする場合の注意](./UTS2_Manual_ja.md#%E9%87%8D%E8%A6%81%E6%97%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89%E7%9B%B4%E6%8E%A5v207%E3%81%B8%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E3%82%92%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E6%B3%A8%E6%84%8F) -->

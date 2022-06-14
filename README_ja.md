@@ -4,10 +4,11 @@
 
 ***Read this document in other languages: [English](./README.md)***  
 
-## 2022/05/23：2.0.9 Release：新規機能追加    
+## 2022/06/14：2.0.9 Release：新規機能追加    
 * リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTSでの動作確認。  
 * シングルパスインスタンシング レンダリング(ステレオインスタンシングとも呼ばれます)に対応。サポートするプラットフォームは、[Unity マニュアル](https://docs.unity3d.com/ja/2019.4/Manual/SinglePassInstancing.html)を参照してください。  
 * 本リリースより、おまけのUTS2イメージエフェクトUnityPackageはサポート外として削除しました。  
+* リアルタイムディレクショナルライトがない環境での、拡張アウトラインオブジェクトの環境ライティングへの馴染ませ具合を向上しました。  
 
 ## 【UTS2の概要】
 
@@ -117,9 +118,9 @@ UTS2のリリース履歴は、[こちら](Manual/HISTORY_ja.md)。
 -----
 ## 【インフォメーション】  
 最新バージョン：2.0.9 Release  
-最終リリース日：2022/05/23  
+最終リリース日：2022/06/14  
 カテゴリー：3D  
 形式：zip/unitypackage  
 
 -----
-**README_ja.md 2022/05/23**  
+**README_ja.md 2022/06/14**  

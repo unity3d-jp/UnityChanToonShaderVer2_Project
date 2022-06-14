@@ -4,10 +4,11 @@
 
 ***Read this document in other languages: [日本語版](./README_ja.md)***  
 
-## 2022/05/23: 2.0.9 Release: new features added.    
+## 2022/06/14: 2.0.9 Release: new features added.    
 * Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
 * Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
 * Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
+* Improved blending of extended outline objects with environmental lighting in environments without real-time directional lighting.  
 
 ## 【Overview : What is UTS2?】
 
@@ -114,10 +115,10 @@ The release history of UTS2 is [here.](Manual/HISTORY_en.md)
 -----
 ## 【Information】  
 Latest Version: 2.0.9 Release  
-Update: 2022/05/23  
+Update: 2022/06/14  
 Category: 3D  
 File format: zip/unitypackage  
 
 -----
-**README.md 2022/05/23**  
+**README.md 2022/06/14**  
 
