@@ -1,6 +1,6 @@
 # Normal Map Settings
 
-A texture that dictates the bumpiness of the material. The slider is for controlling strength. The UTS allows control over the level  and which areas it is applied to.The slider is for controlling the strength. 
+A texture that dictates the bumpiness of the material. The **Unity Toon Shader** allows control over the strength and which areas it is applied to. 
 
 * [Normal Map](#normal-map)
 * [Normal Map Effectiveness](#normal-map-effectiveness)
@@ -8,7 +8,7 @@ A texture that dictates the bumpiness of the material. The slider is for control
 <br><br>
 
 <img src="images/InspectorNormalMapSettings.png" width="573">
-<br/><br/>
+<br/><br/><br/>
 
 
 
@@ -35,6 +35,7 @@ A Normal Map texture and its strength.
 | Rim Light | Normal map effectiveness to rim lit areas. |
 
 <br/><br/>
+
 ## Example of Normal Map Effectiveness Operation
 
 <img src="images/NormalmapEffectiveness.gif" height="256">  
