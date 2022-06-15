@@ -9,6 +9,7 @@ The followings are all the Unity Toon Shader settings in the inspector window.
   * [Shader Settings](Shader.md)
   * [Three Color Map and Control Map Settings](Basic.md)
   * [Shading Step and Feather Settings](ShadingStepAndFeather.md)
+  * [Normalmap Settings](NormalMap.md)
   * [Highlight Settings](Highlight.md)
   * [Rim Light Settings](Rimlight.md)
   * [Material Capture (MatCap) Setting](MatCap.md)

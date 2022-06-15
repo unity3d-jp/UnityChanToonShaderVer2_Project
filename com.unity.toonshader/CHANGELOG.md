@@ -1,11 +1,13 @@
 # Changelog
-## [0.7.3-preview] - 2022-06-05
+## [0.7.3-preview] - 2022-06-15
 ### Updated:
-* Made Mac Graphics Tests to utilize rsync instead of scp.
-* Set retry count to several commands in Mac graphics tests.
-* Added Help Attribute class for Mono-behaviors for UTS3.
-* Made HDRP shader compatible with 2022.2.0 a16.
-
+* HDRP shader is compatible with 2022.2.0 a16.
+* Attribute class for Mono-behaviors for UTS3.
+* Mac Graphics Tests use rsync instead of scp.
+* New retry count to several commands in Mac graphics tests.
+* 3 basic color is now Three basic colors.
+* `NormalMap Settings` is now an independent block.
+* Updated docs.
 
 ## [0.7.2-preview] - 2022-05-30
 ### Fixed:

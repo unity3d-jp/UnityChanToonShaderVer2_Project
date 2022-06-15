@@ -15,6 +15,7 @@
   * [Shader Settings](com.unity.toonshader/Documentation~/Shader.md)
   * [Three Color Map and Control Map Settings](com.unity.toonshader/Documentation~/Basic.md)
   * [Shading Step and Feather Settings](com.unity.toonshader/Documentation~/ShadingStepAndFeather.md)
+  * [Normalmap Settings](com.unity.toonshader/Documentation~/NormalMap.md)
   * [Highlight Settings](com.unity.toonshader/Documentation~/Highlight.md)
   * [Rim Light Settings](com.unity.toonshader/Documentation~/Rimlight.md)
   * [Material Capture (MatCap) Setting](com.unity.toonshader/Documentation~/MatCap.md)

@@ -1,5 +1,7 @@
 # Shading Steps and Feather Settings
 
+The **Unity Toon Shader** allows you to control the position of the boundaries of the area, to clearly demarcate the boundaries, or to blur or blend them.
+
 <img src="images/InspecotrShadingStepsAndFeatherSettings.png" width="573">
 <br/><br/>
 

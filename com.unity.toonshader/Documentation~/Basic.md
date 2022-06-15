@@ -1,6 +1,6 @@
 # Three Color Map and Control Map Settings
 
-**Three Color Map and Control Map Settings** provide very basic  cel-shading settings in Unity Toon Shader.
+**Three colormap and control map settings** provide very basic cell shading settings in the **Unity Toon Shader**. Independent from the actual light color, these settings allow you to control how light and shadow areas are rendered. 
 
 <img src="images/InspectorThreeColorAndControlMapSettings.png" width="573">
 <br/><br/>
@@ -39,7 +39,7 @@ Base Color : Texture(sRGB) × Color(RGB). The default color is White. The base c
 
 
 ### Apply to 1st Shading Map
-Apply **Base Map** to the **1st Shading Map**. When **Apply to 1st Shading Map** is checked, texture map in **1st Shading Map** is not used for rendering and its texture UI is disabled.
+Apply **Base Map** to the **1st Shading Map**. When you check the **Apply to 1st Shading Map**, texture map in **1st Shading Map** is not used for rendering and its texture UI is disabled.
 
 
 ## 1st Shading Map
@@ -50,7 +50,7 @@ The map used for the brighter portions of the shadow. Texture(sRGB) × Color(RGB
 
 
 ### Apply to 2nd Shading Map
-Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When **Apply to 2nd Shading Map** is checked, texture map in **2nd Shading Map** is not used for rendering and its texture UI is disabled.
+Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When you check the **Apply to 2nd Shading Map**, texture map in **2nd Shading Map** is not used for rendering and its texture UI is disabled.
 
 
 ### 2nd Shading Map
@@ -64,28 +64,6 @@ The map used for the darker portions of the shadow. Texture(sRGB) × Color(RGB).
 
 <br><br>
 
-## Normal Map
-
-A texture that dictates the bumpiness of the material. The slider is for controlling strength.
-| Normal Map | 
-| ---- | 
-| <img src="images/DecoPlane_Nromal.png" height="256"> | 
-
-## Normal Map Effectiveness
-
-### Three Basic Colors
-The effectiveness of the Normal Map on 3 Basic color areas, lit, the 1st shading and the 2nd.
-
-### Highlight
-Normal map effectiveness to high lit areas.
-
-### Rim Light
-Normal map effectiveness to rim lit areas.
-
-## Example of Normal Map Operation
-<img src="images/UTSNrormalMap-2.gif" height="256">   |
-
-<br><br>
 
 ## Shadow Control Maps
 Textures that dictates the fixed shadows of the material. 

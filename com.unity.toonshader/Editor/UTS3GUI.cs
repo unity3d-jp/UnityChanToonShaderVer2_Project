@@ -302,17 +302,18 @@ namespace UnityEditor.Rendering.Toon
             Shader = 1 << 0,
             Basic = 1 << 1,
             ShadingStepAndFeather = 1 << 2,
-            Highlight = 1 << 3,
-            Rimlight = 1 << 4,
-            MatCap = 1 << 5,
-            AngelRing = 1 << 6,
-            Emission = 1 << 7,
-            Outline = 1 << 8,
-            TessellationLegacy = 1 << 9,
-            TessellationHDRP = 1 << 10,
-            SceneLight = 1 << 11,
-            EnvironmentalLightEffectiveness = 1 << 12,
-            MetaverseSettings = 1 << 13,
+            NormalMap = 1 << 3,
+            Highlight = 1 << 4,
+            Rimlight = 1 << 5,
+            MatCap = 1 << 6,
+            AngelRing = 1 << 7,
+            Emission = 1 << 8,
+            Outline = 1 << 9,
+            TessellationLegacy = 1 << 10,
+            TessellationHDRP = 1 << 11,
+            SceneLight = 1 << 12,
+            EnvironmentalLightEffectiveness = 1 << 13,
+            MetaverseSettings = 1 << 14,
         }
 
         // variables which must be gotten from shader at the beggning of GUI
@@ -582,6 +583,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent shaderFoldout = EditorGUIUtility.TrTextContent("Shader Settings", "Shader Settings provides basic settings that are not specific to  cel-shading but are needed for general CG.");
             public static readonly GUIContent basicColorFoldout = EditorGUIUtility.TrTextContent("Three Color and Control Map Settings", "Three Color Map and Control Map Settings provide very basic settings for cel-shading in Unity Toon Shader.");
             public static readonly GUIContent shadingStepAndFeatherFoldout = EditorGUIUtility.TrTextContent("Shading Step and Feather Settings", "Basic 3 color step and feather settings.");
+            public static readonly GUIContent normalMapFoldout = EditorGUIUtility.TrTextContent("Normal Map Settings", "Normal Map settings. Normal Map itself and its effectiveness to some areas.");
             public static readonly GUIContent highlightFoldout = EditorGUIUtility.TrTextContent("Highlight Settings", "Highlight  settings. Such as power, show or hide, light shape and so on.");
             public static readonly GUIContent rimLightFoldout = EditorGUIUtility.TrTextContent("Rim Light Settings", "Rim Light Settings. Such as color, direction, inversed rim light and so on.");
             public static readonly GUIContent matCapFoldout = EditorGUIUtility.TrTextContent("Material Capture (MatCap) Settings", "MatCap settings. Sphere maps for metallic or unusual expressions.");
@@ -593,7 +595,6 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent lightEffectivenessFoldout = EditorGUIUtility.TrTextContent("Scene Light Effectiveness Settings", "Scene light effectiveness to each parameter.");
 
             public static readonly GUIContent metaverseSettingsFoldout = EditorGUIUtility.TrTextContent("Metaverse Settings (Experimental)", "Default directional light when no directional lights are in the scene.");
-            public static readonly GUIContent normalMapFoldout = EditorGUIUtility.TrTextContent("Normal Map Settings", "Normal Map settings. Normal Map itself and its effectiveness to some areas.");
             public static readonly GUIContent shadowControlMapFoldout = EditorGUIUtility.TrTextContent("Shadow Control Maps", "Shadow control map settings. Such as positions and highlight filtering.");
             public static readonly GUIContent pointLightFoldout = EditorGUIUtility.TrTextContent("Point Light Settings", "Point light settings. Such as filtering and step offset.");
 
@@ -637,7 +638,7 @@ namespace UnityEditor.Rendering.Toon
             public static readonly GUIContent baseMapAlphaAsClippingMask = new GUIContent("Use Base Map Alpha as Clipping Mask", "Use Base Map Alpha as Clipping Mask instead of Clipping mask texture.");
             public static readonly GUIContent applyTo1stShademapText = new GUIContent("Apply to 1st shading map", "Apply Base map to the 1st shading map.");
             public static readonly GUIContent applyTo2ndShademapText = new GUIContent("Apply to 2nd shading map", "Apply Base map or the 1st shading map to the 2st shading map.");
-            public static readonly GUIContent threeBasicColorToNormalmapText = new GUIContent("3 Basic Colors", "Normal map effectiveness to 3 Basic color areas, lit, the 1st shading and the 2nd.");
+            public static readonly GUIContent threeBasicColorToNormalmapText = new GUIContent("Three Basic Colors", "Normal map effectiveness to Three Basic color areas, lit, the 1st shading and the 2nd.");
             public static readonly GUIContent highLightToNormalmapText = new GUIContent("Highlight", "Normal map effectiveness to high lit areas.");
             public static readonly GUIContent rimlightToNormalmapText = new GUIContent("Rim Light", "Normal map effectiveness to rim lit areas.");
             public static readonly GUIContent receiveShadowText = new GUIContent("Receive Shadows", "Determine if the material reflects shadows.");
@@ -891,6 +892,7 @@ namespace UnityEditor.Rendering.Toon
             m_MaterialScopeList.RegisterHeaderScope(Styles.shaderFoldout, Expandable.Shader, DrawShaderOptions, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation:0);
             m_MaterialScopeList.RegisterHeaderScope(Styles.basicColorFoldout, Expandable.Basic, GUI_BasicThreeColors, (uint)UTS_Mode.ThreeColorToon,(uint)UTS_TransparentMode.Off, isTessellation: 0);
             m_MaterialScopeList.RegisterHeaderScope(Styles.shadingStepAndFeatherFoldout, Expandable.ShadingStepAndFeather, GUI_StepAndFeather, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
+            m_MaterialScopeList.RegisterHeaderScope(Styles.normalMapFoldout, Expandable.NormalMap, GUI_NormalmapSettings, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
             m_MaterialScopeList.RegisterHeaderScope(Styles.highlightFoldout, Expandable.Highlight, GUI_HighlightSettings, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
             m_MaterialScopeList.RegisterHeaderScope(Styles.rimLightFoldout, Expandable.Rimlight, GUI_RimLight, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
             m_MaterialScopeList.RegisterHeaderScope(Styles.matCapFoldout, Expandable.MatCap, GUI_MatCap, (uint)UTS_Mode.ThreeColorToon, (uint)UTS_TransparentMode.Off, isTessellation: 0);
@@ -1420,24 +1422,12 @@ namespace UnityEditor.Rendering.Toon
             }
             EditorGUILayout.Space();
 
+            /*
             _NormalMap_Foldout = FoldoutSubMenu(_NormalMap_Foldout, Styles.normalMapFoldout);
             if (_NormalMap_Foldout)
             {
-
-                m_MaterialEditor.TexturePropertySingleLine(Styles.normalMapText, normalMap, bumpScale);
-                m_MaterialEditor.TextureScaleOffsetProperty(normalMap);
-
-                EditorGUILayout.LabelField("Normal Map Effectiveness", EditorStyles.boldLabel);
-                EditorGUI.indentLevel++;
-
-                GUI_Toggle(material, Styles.threeBasicColorToNormalmapText, ShaderPropIs_NormalMapToBase, MaterialGetInt(material, ShaderPropIs_NormalMapToBase) != 0);
-                GUI_Toggle(material, Styles.highLightToNormalmapText, ShaderPropNormalMapToHighColor, MaterialGetInt(material, ShaderPropNormalMapToHighColor) != 0);
-                GUI_Toggle(material, Styles.rimlightToNormalmapText, ShaderPropIsNormalMapToRimLight, MaterialGetInt(material, ShaderPropIsNormalMapToRimLight) != 0);
-
-                EditorGUI.indentLevel--;
-                EditorGUILayout.Space();
             }
-
+            */
             _ShadowControlMaps_Foldout = FoldoutSubMenu(_ShadowControlMaps_Foldout, Styles.shadowControlMapFoldout);
             if (_ShadowControlMaps_Foldout)
             {
@@ -1562,7 +1552,23 @@ namespace UnityEditor.Rendering.Toon
             EditorGUILayout.Space();
         }
 
+        void GUI_NormalmapSettings(Material material)
+        {
 
+            m_MaterialEditor.TexturePropertySingleLine(Styles.normalMapText, normalMap, bumpScale);
+            m_MaterialEditor.TextureScaleOffsetProperty(normalMap);
+
+            EditorGUILayout.LabelField("Normal Map Effectiveness", EditorStyles.boldLabel);
+            EditorGUI.indentLevel++;
+
+            GUI_Toggle(material, Styles.threeBasicColorToNormalmapText, ShaderPropIs_NormalMapToBase, MaterialGetInt(material, ShaderPropIs_NormalMapToBase) != 0);
+            GUI_Toggle(material, Styles.highLightToNormalmapText, ShaderPropNormalMapToHighColor, MaterialGetInt(material, ShaderPropNormalMapToHighColor) != 0);
+            GUI_Toggle(material, Styles.rimlightToNormalmapText, ShaderPropIsNormalMapToRimLight, MaterialGetInt(material, ShaderPropIsNormalMapToRimLight) != 0);
+
+            EditorGUI.indentLevel--;
+            EditorGUILayout.Space();
+
+        }
         void GUI_HighlightSettings(Material material)
         {
             m_MaterialEditor.TexturePropertySingleLine(Styles.highColorText, highColor_Tex, highColor);
