@@ -14,13 +14,6 @@
   * [Example of Three Color Map Operation](#example-of-Three-color-map-operation) 
 <br><br>
 
-* [Normal Map](#normal-map)
-  * [Normal Map Effectiveness](#normal-map-effectiveness)
-    * [Three Basic Colors](#Three-basic-colors)
-    * [Highlight](#highlight)
-    * [Rim Light](#rim-light)
-  * [Example of Normal Map Operation](#example-of-normal-map-operation)
-<br><br>
 
 * [Shadow Control Maps](#shadow-control-maps)
   * [1st Shading Position Map](#1st-shading-map)
