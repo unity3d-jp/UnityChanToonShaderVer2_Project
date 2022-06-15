@@ -1,5 +1,7 @@
 # Highlight Settings
 
+Highlighting specular light areas is an important element of animation production and toon shaders. The **Unity Toon Shader** provides a wide variety of expressions to control lit area independently of light color and intensity for impressive cel-shading.
+
 <img src="images/InspectorHighlightSettings.png" width="573">
 <br/><br/>
 
@@ -16,8 +18,10 @@
 ## Highlight
 Highlight : Texture(sRGB) × Color(RGB) Default:White. Pattern and color of specularly illuminated area.
 
-<img src="images/Highlight.gif"  height="256">
 <br><br>
+| Default | Applied different light color |
+| - | - |
+| <img src="images/Highlight0.png"  height="256"> | <img src="images/Highlight1.png"  height="256"> | 
 
 ## Highlight Power
 
@@ -30,7 +34,7 @@ The size of the Highlight can be controlled through the High light power slider.
 
 UTS provides two modes for the highlight for different occasions and effect. The hard mode provides a crisp and solid edge to the highlight while the soft mode provides a blended blurred effect.
 
-| Hard | Soft |
+| default color | applied different color |
 | - | - |
 | <img src="images/SpecularHard.png" > | <img src="images/SpecularSoft.png" > |
 
