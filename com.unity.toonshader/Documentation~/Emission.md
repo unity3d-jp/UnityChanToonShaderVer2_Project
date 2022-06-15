@@ -75,7 +75,7 @@ When enabled, you can set PingPong (back and forth) in the direction of the anim
 The color that is multiplied by the Emissive texture is changed by linear interpolation (Lerp) toward the Destination Color.
 
 #### Destination Color
-Destination color above, must be specified in HDR.
+Target color for [Color Shifting with Time](#color-shifting-with-time), must be specified in HDR.
 
 #### Color Shifting Speed (Time)
 Sets the reference speed for color shift. When the value is 1, one cycle should take approximately 6 seconds.
@@ -84,10 +84,10 @@ Sets the reference speed for color shift. When the value is 1, one cycle should 
 
 
 ### Color Shifting with View Angle
-Emissive color shifts in accordance with view angle.
+Emissive color shifts in accordance with view angle. The further out from the front of the camera, the more it changes to [Shifting Target Color](#shifting-target-color).
 
 #### Shifting Target Color
-Target color for Color Shifting with View Angle which must be specified in HDR.
+Target color for [Color Shifting with View Angle](#color-shifting-with-view-angle) which must be specified in HDR. 
 
 <img src="images/ColorShiftingWithView.gif" height="256">
 
