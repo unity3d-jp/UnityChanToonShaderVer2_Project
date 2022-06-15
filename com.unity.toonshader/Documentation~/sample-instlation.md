@@ -16,7 +16,7 @@ The Color Space must be set to `Linear`.
 
 <img width = "400" src="images/SelectLinearColorSpace.png">
 
-The following sample scenes can be found by opening the sample project and opening the `Assets\Samples\Unity Toon Shader\0.7.0-preview\Universal render pipeline` folder.  
+The following sample scenes can be found by opening the sample project and opening the `Assets\Samples\Unity Toon Shader\0.7.3-preview\Universal render pipeline` folder.  
 
 * ToonShader.unity            ：Settings for an illustration-style shader.  
 * ToonShader_CelLook.unity    ：Settings for a cel-style shader.  
@@ -39,5 +39,5 @@ They should come in handy as an example when creating your own scenes.
 
 【**NOTE**】 
 Sample scenes for other render pipelines can be found in the following folder.  
-* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.7.0-preview\Legacy render pipeline` folder  
-* for HDRP：`Assets\Samples\Unity Toon Shader\0.7.0-preview\High definition render pipeline` folder 
+* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.7.3-preview\Legacy render pipeline` folder  
+* for HDRP：`Assets\Samples\Unity Toon Shader\0.7.3-preview\High definition render pipeline` folder 
