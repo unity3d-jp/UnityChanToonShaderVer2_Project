@@ -1,4 +1,8 @@
 # Changelog
+## [0.7.4-preview] - 2022-06-17
+### Updated:
+* Next version is 0.7.4-preview.
+
 ## [0.7.3-preview] - 2022-06-15
 ### Updated:
 * HDRP shader is compatible with 2022.2.0 a16.
