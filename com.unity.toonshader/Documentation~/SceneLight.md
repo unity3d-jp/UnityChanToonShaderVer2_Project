@@ -9,7 +9,7 @@
   * [2nd Shading Color](#2nd-shading-color)
   * [Highlight](#highlight)
   * [Rim Light](#rim-light)
-  * [Inversed Light Direction Rim Light](#inversed-light-direction-rim-light)
+  * [Inverted Light Direction Rim Light](#inverted-light-direction-rim-light)
   * [Angel Ring](#angel-ring)
   * [MatCap](#matcap)
   * [Outline](#outline)
@@ -38,7 +38,7 @@ Light color effect in  high lit areas.
 ### Rim Light
 Light color effect in  rim lit areas.
 
-### Inversed Light Direction Rim Light
+### Inverted Light Direction Rim Light
 Light color effect in inverted direction rim lit areas.
 
 ### Angel Ring
@@ -50,7 +50,7 @@ Light color effect in  MatCap areas.
 ### Outline
 Light color effect in outlines.
 
-Example: A red light on the face. Unchecked areas on the face material are not affected by the light color.
+Example: A red light on the face. Unchecked areas on the face material aren't affected by the light color.
 |Light Color Effectiveness Off | Light Color Effectiveness On |
 | - | - |
 | <img src="images/SceneLightColorEffectivenessOn.png" height="256"> | <img src="images/SceneLightColorEffectivenessOff.png" height="256"> |
@@ -59,7 +59,7 @@ Example: A red light on the face. Unchecked areas on the face material are not a
 
 
 ## Light Probe Intensity
-The light probe color is added to the material color according to the **Light Probe Intensity** value.
+Adds the light probe color to the material color according to the **Light Probe Intensity** value.
 
 <img src="images/LightProbeIntensity.gif" height="256">
 <br><br>

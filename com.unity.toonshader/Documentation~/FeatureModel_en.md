@@ -26,7 +26,7 @@
 | Shading Color Step 	| OK 	| OK 	| OK 	|  	|
 | Point Light Step Offset	| OK 	| OK 	| OK 	|  	|
 | Filter Point Light Highlights 	| OK 	| OK 	| OK 	|  	|
-| ***5. Highlight Settingss*** 	|  	|  	|  	|  	|
+| ***5. Highlight Settings*** 	|  	|  	|  	|  	|
 | Highlight Power | OK 	| OK 	| OK 	|  	|
 | Specular Mode 	| OK 	| OK 	| OK 	|  	|
 | Color Blending Mode 	| OK 	| OK 	| OK 	|  	|
@@ -42,7 +42,7 @@
 | ***7. Material Capture(MatCap) Settings*** 	|  	|  	|  	|  	|
 | MatCap Map 	| OK 	| OK 	| OK 	|  	|
 | MatCap Blur Level	| OK 	| OK 	| OK 	|  	|
-| Color Blending Modee 	| OK 	| OK 	| OK 	|  	|
+| Color Blending Mode 	| OK 	| OK 	| OK 	|  	|
 | Scale MatCap UV	| OK 	| OK 	| OK 	|  	|
 | Rotate MatCap UV	| OK 	| OK 	| OK 	|  	|
 | Stabilize Camera Rolling	| OK 	| OK 	| OK 	|  	|
@@ -68,9 +68,9 @@
 | ***9. Angel Ring Projection Settings*** 	|  	|  	|  	|  	|
 | Angel Ring	| OK 	| OK 	| OK 	|  	|
 | Offset U/V	| OK 	| OK 	| OK 	|  	|
-| Alpha Chennel as Clipping Mask	| OK 	| OK 	| OK 	|  	|
+| Alpha Channel as Clipping Mask	| OK 	| OK 	| OK 	|  	|
 | ***10. Scene Light Effectiveness Settings*** 	|  	|  	|  	|  	|
-| Turn on/off Realtime LightColor Effectivenes to each color:<br> Base Color,1st Shading Color, 2nd Shading Color, Highlight, Rim Light, Inversed Light Direction Rim Light, MatCap, Angel Ring, or Outline 	| OK 	| OK 	| OK 	|  	|
+Activate/Deactive LightColor Effectiveness to each color:<br> Base Color,1st Shading Color, 2nd Shading Color, Highlight, Rim Light, Inversed Light Direction Rim Light, MatCap, Angel Ring, or Outline 	| OK 	| OK 	| OK 	|  	|
 | ***11. Metaverse Settings*** 	|  	|  	|  	|  	|
 | Metaverse Light 	| OK 	| OK 	| N.A. 	|  	|
 | Metaverse Light Intensity	| OK 	| OK 	| N.A. 	|  	|
@@ -87,17 +87,15 @@
 | Ping-pong moves for base 	| OK 	| OK 	| OK 	|  	|
 | Color Shifting with Time 	| OK 	| OK 	| OK 	|  	|
 | Color Shifting with View Angle	| OK 	| OK 	| OK 	|  	|
-| ***11. LightColor Contribution feature*** 	|  	|  	|  	|  	|
-| Turn on/off Realtime LightColor Contribution to each color:<br> i.e., BaseColor, 1st Shade Color, 2nd Shade Color, HighColor, RimLight, Ap_RimLight, MatCap, AngelRing, or Outline 	| OK 	| OK 	| OK 	|  	|
-| ***12.Tessellation Settings*** 	|  	|  	|  	|  	|
+| ***13.Tessellation Settings*** 	|  	|  	|  	|  	|
 | Tessellation Settings (Legacy) 	| DX11/Vulkan/Metal 	| N.A. 	| N.A. 	|  	|
 | Tessellation Settings (HDRP) 	|N.A.  	|N.A.  	| DX11/Vulkan/Metal 	|  	|
-| ***13. EV Adjustment*** 	|  	|  	|  	|  	|
+| ***14. EV Adjustment*** 	|  	|  	|  	|  	|
 | EV Adjustment in high intensity light scenes	 	| N.A	| N.A.	| OK	|  	|
-| ***14. Render pipeline built-in raytraced shadows*** 	|  	|  	|  	|  	|
+| ***15. Render pipeline built-in ray-traced shadows*** 	|  	|  	|  	|  	|
 | DXR shadow supported in render pipelines 	| N.A.	| N.A.	| OK	|  	|
-| ***15. Box Light*** 	|  	|  	|  	|  	|
-| Substitute for directional light 	| N.A.	| N.A.	| OK	| In order to get around the limitation that multiple directional lights cannot cast shadows at the same time. |
+| ***16. Box Light*** 	|  	|  	|  	|  	|
+| Substitute for directional light 	| N.A.	| N.A.	| OK	| To get around the limitation that multiple directional lights can't cast shadows at the same time. |
 
 
 

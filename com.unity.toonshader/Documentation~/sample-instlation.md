@@ -38,6 +38,6 @@ Each scene is intended as a reference for the relevant shader and lighting setti
 They should come in handy as an example when creating your own scenes.  
 
 【**NOTE**】 
-Sample scenes for other render pipelines can be found in the following folder.  
+Sample scenes for other render pipelines are  in the following folder.  
 * for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.7.4-preview\Legacy render pipeline` folder  
 * for HDRP：`Assets\Samples\Unity Toon Shader\0.7.4-preview\High definition render pipeline` folder 

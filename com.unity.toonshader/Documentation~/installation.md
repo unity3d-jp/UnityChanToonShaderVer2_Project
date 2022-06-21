@@ -1,7 +1,7 @@
 # Installation
 
-Unity Toon Shader is currently a preview/experimental package and 
-the following steps are required to install it.
+The **Unity Toon Shader** is a preview/experimental package and 
+Installing the package requires the following steps.
 
 <img align="right" src="images/package-manager-add-from-git.png">
 

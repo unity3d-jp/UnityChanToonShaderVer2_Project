@@ -1,6 +1,6 @@
 # Three Color Map and Control Map Settings
 
-**Three colormap and control map settings** provide very basic cell shading settings in the **Unity Toon Shader**. Independent from the actual light color, these settings allow you to control how light and shadow areas are rendered. 
+**Three Color Map and Control Map Settings** provide basic cell shading settings in the **Unity Toon Shader**. Independent from the actual light color, these settings allow you to control how light and shadow areas are rendered. 
 
 <img src="images/InspectorThreeColorAndControlMapSettings.png" width="573">
 <br/><br/>
@@ -32,7 +32,7 @@ Base Color : Texture(sRGB) × Color(RGB). The default color is White. The base c
 
 
 ### Apply to 1st Shading Map
-Apply **Base Map** to the **1st Shading Map**. When you check the **Apply to 1st Shading Map**, texture map in **1st Shading Map** is not used for rendering and its texture UI is disabled.
+Apply **Base Map** to the **1st Shading Map**. When you check the **Apply to 1st Shading Map**, texture map in **1st Shading Map** isn't used for rendering and its texture UI is disabled.
 
 
 ## 1st Shading Map
@@ -43,11 +43,11 @@ The map used for the brighter portions of the shadow. Texture(sRGB) × Color(RGB
 
 
 ### Apply to 2nd Shading Map
-Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When you check the **Apply to 2nd Shading Map**, texture map in **2nd Shading Map** is not used for rendering and its texture UI is disabled.
+Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When you check the **Apply to 2nd Shading Map**, texture map in **2nd Shading Map** isn't used for rendering and its texture UI is disabled.
 
 
 ### 2nd Shading Map
-The map used for the darker portions of the shadow. Texture(sRGB) × Color(RGB). The defaula color is White.
+The map used for the darker portions of the shadow. Texture(sRGB) × Color(RGB). The default color is White.
 |  **2nd Shading Map** (Face)  | (Hair) | Result  |
 | ---- | ---- | ---- |
 | <img src="images/yuko_face3_C.png" height="256">   | <img src="images/yuko_hairC.png" height="256"> |<img src="images/YukoFace2ndShadingMap.png" height="256">  |

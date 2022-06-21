@@ -8,13 +8,13 @@
 * [Triangle Culling Epsilon]
 
 ### Tessellation Mode
-Control the Phong tessellation. It can be used to smooth the result of displacement.
+Control the Phong tessellation. It smooths the result of displacement.
 ### Tessellation Factor
-Controls the strength of the tessellation effect. Higher values result in more tessellation. Maximum tessellation factor is 15 on the Xbox One and PS4.
+Controls the strength of the tessellation effect. Higher values result in more tessellation. Max tessellation factor is 15 on the Xbox One and PS4.
 ### Start Fade Distance
-Sets the distance (in meters) at which tessellation begins to fade out.
+Sets the distance (in meter) at which tessellation begins to fade out.
 ### End Fade Distance
-Sets the maximum distance (in meters) to the Camera where HDRP tessellates triangle.
+Sets the maximum distance (in meter) to the Camera where HDRP tessellates triangle.
 
 ### Triangle Size
 Sets the desired screen space size of triangles (in pixels). Smaller values result in smaller triangle.

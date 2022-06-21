@@ -26,10 +26,10 @@ The Outline is a simple outline effect to meshes.
 | <img src="images/OutlineOff.png" height="256"> | <img src="images/OutlineOn.png" height="256"> |
 
 ### Outline Mode
-Specifies how the inverted-outline object is spawned.
+Specifies how the inverted-outline objects spawn.
 
 ### Outline Width
-Specifies the width of the outline. This value relies on the scale when the model was imported to Unity
+Specifies the width of the outline. This value relies on the scale when importing the model to Unity
 
 <img src="images/OutlineWidth.gif" height="256">
 
@@ -40,7 +40,7 @@ Specifies the color of outline.
 
 
 ### Blend Base Color to Outline
-Base Color is blended into outline color.
+Blends **Base Color** into outline color.
 
 
 | Blend Base Color to Outline Off | Blend Base Color to Outline  On |
@@ -48,7 +48,7 @@ Base Color is blended into outline color.
 | <img src="images/BlendBaseColorToOutlineOff.png" height="200"> | <img src="images/BlendBaseColorToOutlineOn.png" height="200"> |
 
 ### Outline Width Map
-Outline Width Map as Grayscale Texture : Texture(linear).
+Outline Width Map as gray scale Texture : Texture(linear).
 
 | Outline Width Map Example |
 | -- |
@@ -69,10 +69,10 @@ Offsets the outline in the depth (Z) direction of the camera.
 Specify the furthest distance, where the outline width changes with the distance between the camera and the object. The outline will be zero at this distance.
 
 #### Nearest Distance to draw with Outline Width
-Specify the closest distance, where the outline width changes with the distance between the camera and the object. At this distance, the outline will be the maximum width set by Outline_Width.
+Specify the closest distance, where the outline width changes with the distance between the camera and the object. At this distance, the outline will be the max width set by Outline_Width.
 
 ### Outline Color Map
 Apply a texture as outline color map.
 
 ### Baked Normal Map
-Normal maps with vertex normals previously baked in from other models can be loaded as an addition when setting up normal inversion outlines. 
+Normal maps with vertex normals  baked in from other models can be loaded as an addition when setting up normal inversion outlines. 

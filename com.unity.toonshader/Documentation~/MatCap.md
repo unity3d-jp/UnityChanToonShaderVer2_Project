@@ -38,7 +38,7 @@ MatCap Color : Texture(sRGB) × Color(RGB) Default:White
 | <img src="images/WithOutMatCap.gif" height="256">| <img src="images/WithMatCap.gif" height="256"> 
 
 ## MatCap Blur Level
-Blur MatCap Map using the Mip Map feature; to enable Mip Map, turn on Advanced > Generate Mip Maps in the [Texture Import Settings](https://docs.unity3d.com/Manual/class-TextureImporter.html). Default is 0 (no blur)
+Blur MatCap Map using the Mip Map feature; to enable Mip Map, activate Advanced > Generate Mip Maps in the [Texture Import Settings](https://docs.unity3d.com/Manual/class-TextureImporter.html). Default is 0 (no blur)
 
 <img src="images/MatCapBlurLebel.gif" height="256">
 
@@ -67,9 +67,9 @@ Stabilize Camera rolling when capturing materials with camera.
 
 
 ## Normal Map Specular Mask for MatCap
-If enabled, gives a normal map specifically for MatCap.If you are using MatCap as speculum lighting, you can use this to mask it.
+If enabled, gives a normal map specifically for MatCap. If you are using MatCap as speculum lighting, you can use this to mask it.
 
-| Normal Map Specular Maskg Off  | Normal Map Specular Mask On |
+| Normal Map Specular Mask Off  | Normal Map Specular Mask On |
 | -- | --|
 | <img src="images/MatCapNormalMapOff.png" height="256">| <img src="images/MatCapNormalMapOn.png" height="256"> |
 
@@ -98,21 +98,21 @@ Adjusts the intensity of MatCap applied to shadow areas.
 <img src="images/MatCapOnShadowLevel.gif" height="256">
 
 ## MatCap Camera Mode
-Control how the MatCap Map is rendered based on the type of camera.
+Control how render the MatCap Map based on the camera type.
 ## MatCap Mask
-The MatCap mask is positioned with respect to the UV coordinates of the mesh onto which the MatCap is projected, and the pixels on black areas are hidden.
+The MatCap mask is positioned correspond with the UV coordinates of the mesh onto which the MatCap is projected, and the pixels on black areas are hidden.
 
 <img src="images/MatCapMaskSample.png" height="256">
 
 ## MatCap Mask Level
-Adjusts the level of the MatCap Mask. When the value is 1, MatCap is displayed 100% irrespective of whether or not there is a mask. When the value is -1, MatCap will not be displayed at all and MatCap will be the same as in the off state.
+Adjusts the level of the MatCap Mask. When the value is 1, MatCap represents 100% irrespective of mask. When the value is -1, MatCap won't be displayed at all and MatCap will be the same as in the off state.
 
 <img src="images/MatCapMaskLevel.gif" height="256">
 
 
 
 ## Invert MatCap Mask
-When enabled, **MatCap Mask** Texture is inversed.
+When enabled, inverts **MatCap Mask** Texture colors.
 
 <img src="images/InvertMatCapMask.png" height="256">
 

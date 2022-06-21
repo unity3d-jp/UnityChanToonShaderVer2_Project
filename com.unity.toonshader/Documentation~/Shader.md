@@ -1,6 +1,6 @@
 # Shader Settings
 
-The Shader Settings provide basic settings that are not specific to  cel-shading but are needed for general CG.
+The Shader Settings provide basic settings that aren't specific to  cel-shading but are necessary for general CG.
 
 <img src="images/InspectorShaderSettings.png" width="573">
 <br/><br/>
@@ -27,7 +27,7 @@ The Shader Settings provide basic settings that are not specific to  cel-shading
 |  Off  |  Disables culling - all faces are drawn. Used for special effects. |
 
 ## Auto Render Queue
-When enabled, rendering order is determined by system automatically.
+When enabled, system automatically determines rendering order. 
 
 ### Render Queue
 Rendering order in the scene.
@@ -41,11 +41,11 @@ Control the stencil buffer which manipulates pixel drawing.
 |  Value   |  Description  | 
 | ---- | ---- | 
 |  Replace Stencil Buffer with  | Replaces a pixel value in stencil buffer with [Stencil Value](#stencil-value) when drawing.|
-|  Draw If Not Equal to  | Draw a pixel when the vaule in stencil buffer is not equal to [Stencil Value](#stencil-value).|
+|  Draw If Not Equal to  | Draw a pixel when the number in stencil buffer isn't equal to [Stencil Value](#stencil-value).|
 |  Off  |  Nothing is written to stencil buffer and [Stencil Value](#stencil-value) doesn't affect at all when drawing.|
 
 ### Stencil Value
-Stencil value that is submitted to the stencil buffer for controlling the per-pixel drawing. Min is 0. Max is 255. The dafualt is 0.
+Stencil value that's submitted to the stencil buffer for controlling the per-pixel drawing. Min is 0. Max is 255. The default is 0.
 
 ## Clipping
 Allow for the use of a texture to control the transparency of the shader.
@@ -57,7 +57,7 @@ Allow for the use of a texture to control the transparency of the shader.
 |  Clip Transparency  | [Enable clipping with Transparency Level](#transparency-level). |
 
 ### Clipping Mask
-A grayscale texture which utilises its brightness to control transparency.
+A gray scale texture which utilises its brightness to control transparency.
 
 ### Invert Clipping Mask
 Invert clipping mask results.
@@ -66,7 +66,7 @@ Invert clipping mask results.
 Specifies the strength of the clipping mask.
 
 ### Transparency Level
-Adjusts the transparency by considering the grayscale level of the clipping mask as an alpha value.
+Adjusts the transparency by considering the gray scale level of the clipping mask as an alpha value.
 
 ### Use Base Map Alpha as Clipping Mask
 Use Base Map Alpha as Clipping Mask instead of Clipping mask texture.
