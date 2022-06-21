@@ -1,6 +1,6 @@
 # Three Color Map and Control Map Settings
 
-**Three Color Map and Control Map Settings** provide basic cell shading settings in the **Unity Toon Shader**. Independent from the actual light color, these settings allow you to control how light and shadow areas are rendered. 
+**Three Color Map and Control Map Settings** provide basic cell shading settings in the **Unity Toon Shader**. These settings allow you to control the rendering of light and shadow areas independent from the actual light color.
 
 <img src="images/InspectorThreeColorAndControlMapSettings.png" width="573">
 <br/><br/>
@@ -32,7 +32,7 @@ Base Color : Texture(sRGB) × Color(RGB). The default color is White. The base c
 
 
 ### Apply to 1st Shading Map
-Apply **Base Map** to the **1st Shading Map**. When you check the **Apply to 1st Shading Map**, texture map in **1st Shading Map** isn't used for rendering and its texture UI is disabled.
+Apply **Base Map** to the **1st Shading Map**. When you check **Apply to 1st Shading Map**, the texture map in **1st Shading Map** isn't applied for rendering and the Inspector Window disables its texture UI.
 
 
 ## 1st Shading Map
@@ -43,7 +43,7 @@ The map used for the brighter portions of the shadow. Texture(sRGB) × Color(RGB
 
 
 ### Apply to 2nd Shading Map
-Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When you check the **Apply to 2nd Shading Map**, texture map in **2nd Shading Map** isn't used for rendering and its texture UI is disabled.
+Apply **Base Map** or the **1st Shading Map** to the **2nd Shading Map**. When you check the **Apply to 2nd Shading Map**, texture map in **2nd Shading Map** isn't applied for rendering and the Inspector Window disables its texture UI.
 
 
 ### 2nd Shading Map

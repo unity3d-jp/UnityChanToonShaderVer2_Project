@@ -1,6 +1,6 @@
 # Mode
 
-The Unity Toon Shader mode that controls what settings are exposed in the shader.
+The **Unity Toon Shader** mode that controls which work flow to apply in the shader.
 
 <img src="images/InspectorMode.png" >
 <br/><br/>

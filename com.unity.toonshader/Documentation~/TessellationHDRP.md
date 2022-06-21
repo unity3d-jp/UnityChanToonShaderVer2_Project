@@ -1,11 +1,11 @@
 # Tessellation Settings (HDRP)
-* [Tessellation Mode]
-* [Tessellation Factor]
-* [Start Fade Distance]
-* [End Fade Distance]
-* [Triangle Size]
-* [Shape Factor]
-* [Triangle Culling Epsilon]
+* [Tessellation Mode](#tessellation-mode)
+* [Tessellation Factor](#tessellation-factor)
+* [Start Fade Distance](#start-fade-distance)
+* [End Fade Distance](#end-fade-distance)
+* [Triangle Size](#triangle-size)
+* [Shape Factor](#shape-factor)
+* [Triangle Culling Epsilon](#triangle-culling-epsilon)
 
 ### Tessellation Mode
 Control the Phong tessellation. It smooths the result of displacement.

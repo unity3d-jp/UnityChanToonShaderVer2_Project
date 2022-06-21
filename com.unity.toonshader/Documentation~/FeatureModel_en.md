@@ -70,7 +70,7 @@
 | Offset U/V	| OK 	| OK 	| OK 	|  	|
 | Alpha Channel as Clipping Mask	| OK 	| OK 	| OK 	|  	|
 | ***10. Scene Light Effectiveness Settings*** 	|  	|  	|  	|  	|
-Activate/Deactive LightColor Effectiveness to each color:<br> Base Color,1st Shading Color, 2nd Shading Color, Highlight, Rim Light, Inversed Light Direction Rim Light, MatCap, Angel Ring, or Outline 	| OK 	| OK 	| OK 	|  	|
+Activate/Deactive LightColor Effectiveness to each color:<br> Base Color,1st Shading Color, 2nd Shading Color, Highlight, Rim Light, Inverted Light Direction Rim Light, MatCap, Angel Ring, or Outline 	| OK 	| OK 	| OK 	|  	|
 | ***11. Metaverse Settings*** 	|  	|  	|  	|  	|
 | Metaverse Light 	| OK 	| OK 	| N.A. 	|  	|
 | Metaverse Light Intensity	| OK 	| OK 	| N.A. 	|  	|

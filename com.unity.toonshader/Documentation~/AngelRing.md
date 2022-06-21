@@ -14,10 +14,10 @@ The Angel Ring effect for UTS expresses shine or luster in hair. This effect alw
   - [Angel Ring](#angel-ring)
   - [Offset U](#offset-u)
   - [Offset V](#offset-v)
-  - [Alpha Channel as Clipping Mask](#alpha-chennel-as-clipping-mask)
+  - [Alpha Channel as Clipping Mask](#alpha-channel-as-clipping-mask)
 
 ## Angel Ring Projection
-Enable the Angel Ring effect for UTS, which is used to express shine or luster in hair.
+Enable the Angel Ring effect for UTS, which expresses shine or luster in hair.
 
 | Angel Ring Projection Off | Angel Ring Projection On |
 | - | - |
@@ -46,7 +46,7 @@ Adjusts the Angel Ring’s shape in the vertical direction. The range is from 0.
 
 ### Alpha Channel as Clipping Mask
 
-Texture alpha channel is a clipping mask. If disabled, the alpha doesn't affect at all. The color of the **Angel Ring** can be specified directly instead of using the additive method.
+Texture alpha channel is a clipping mask. If disabled, the alpha doesn't affect at all. The color of the **Angel Ring** can directly affects instead of using the additive method.
 
 | Example Texture | Applied the texture with **Alpha Channel as Clipping Mask** |
 | - | - |
