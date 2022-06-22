@@ -308,22 +308,26 @@ void Frag(PackedVaryingsToPS packedInput,
 	// https://unity.slack.com/archives/C06V7HDDW/p1580959470180800
 	// int mainLightIndex = _DirectionalShadowIndex;
         mainLightIndex = GetUtsMainLightIndex(builtinData);
-        if ( mainLightIndex >= 0)
+        DirectionalLightData lightData;
+        ZERO_INITIALIZE(DirectionalLightData, lightData);
+        if (mainLightIndex >= 0)
         {
-            DirectionalLightData lightData = _DirectionalLightDatas[mainLightIndex];
-            float3 lightColor = ApplyCurrentExposureMultiplier(lightData.color);
-            float3 lightDirection = -lightData.forward;
+            lightData = _DirectionalLightDatas[mainLightIndex];
+        }
+
+        float3 lightColor = ApplyCurrentExposureMultiplier(lightData.color);
+        float3 lightDirection = -lightData.forward;
 
                 
 #if defined(UTS_DEBUG_SELFSHADOW)
-            if (_DirectionalShadowIndex >= 0)
-                finalColor = UTS_SelfShdowMainLight(context, input, _DirectionalShadowIndex);
+        if (_DirectionalShadowIndex >= 0)
+            finalColor = UTS_SelfShdowMainLight(context, input, _DirectionalShadowIndex);
 #elif defined(_SHADINGGRADEMAP)|| defined(UTS_DEBUG_SHADOWMAP) 
-			finalColor = UTS_MainLightShadingGrademap(context, input, lightDirection, lightColor, inverseClipping, channelAlpha, utsData);
+        finalColor = UTS_MainLightShadingGrademap(context, input, lightDirection, lightColor, inverseClipping, channelAlpha, utsData);
 #else
-			finalColor = UTS_MainLight(context, input, lightDirection, lightColor, inverseClipping, channelAlpha, utsData);
+        finalColor = UTS_MainLight(context, input, lightDirection, lightColor, inverseClipping, channelAlpha, utsData);
 #endif
-        }
+
 
 
 

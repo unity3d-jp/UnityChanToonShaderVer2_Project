@@ -447,4 +447,5 @@
 #else
                     return fragDoubleShadeFeather(i, facing);
 #endif
+
             }
