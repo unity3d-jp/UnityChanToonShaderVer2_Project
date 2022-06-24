@@ -38,4 +38,4 @@ sysinfo.txt
 *.apk
 
 # Unity 2019.4.x or later
-Packages/package-lock.json
+Packages/packages-lock.json

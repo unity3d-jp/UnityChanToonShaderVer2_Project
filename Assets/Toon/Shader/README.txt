@@ -6,10 +6,11 @@ README.txt
 ユニティちゃんトゥーンシェーダーVer.2.0では、従来の機能に加えて大幅な機能強化を行いました。  
 Ver.1.0でできる絵づくりをカバーしつつ、さらに高度なルックが実現できるようになっています。  
 
-### 2022/05/23：2.0.9 Release：新規機能追加    
+### 2022/06/14：2.0.9 Release：新規機能追加    
 * リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTSでの動作確認。  
 * シングルパスインスタンシング レンダリング(ステレオインスタンシングとも呼ばれます)に対応。サポートするプラットフォームは、[Unity マニュアル](https://docs.unity3d.com/ja/2019.4/Manual/SinglePassInstancing.html)を参照してください。  
-* 本リリースより、おまけのUTS2イメージエフェクトUnityPackageはサポート外として削除しました。  
+* 本リリースより、おまけのUTS2イメージエフェクトUnityPackageはサポート外として削除しました。 
+* リアルタイムディレクショナルライトがない環境での、拡張アウトラインオブジェクトの環境ライティングへの馴染ませ具合を向上しました。  
 
 ● **[日本語マニュアル（v.2.0.9版）](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/blob/release/legacy/2.0/Manual/UTS2_Manual_ja.md)が提供されています。合わせてご利用ください。**  
 
@@ -24,6 +25,7 @@ It still has the same rendering capabilities as Ver. 1.0, but now you can give y
 * Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
 * Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
 * Note that the UnityPackages for UTS2 extra image effects has been removed as unsupported from this release.  
+* Improved blending of extended outline objects with environmental lighting in environments without real-time directional lighting.  
 
 ● **[English manual for v.2.0.9](https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project/blob/blob/release/legacy/2.0/Manual/UTS2_Manual_en.md) is available now.**  
 
@@ -72,6 +74,6 @@ https://unity-chan.com/contents/guideline_en/
 
 -----
 Latest Version: 2.0.9 Release
-Update: 2022/05/23  
+Update: 2022/06/14  
 Category: 3D  
 File format: zip/unitypackage  
