@@ -1,5 +1,5 @@
 # Samples
-Sample scenes are installable from the package manager.
+Sample scenes are installable from the [Package Manager](https://docs.unity3d.com/2022.2/Documentation/Manual/Packages.html).
 Please, make sure that render pipeline you want use installed and set up before installing the samples for each.
 
 <img width = "400" src="images/InstallingSamples.png">

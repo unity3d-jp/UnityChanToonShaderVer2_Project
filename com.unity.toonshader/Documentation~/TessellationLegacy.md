@@ -1,4 +1,4 @@
-# Tessellation Settings (Legacy)
+# Tessellation Settings (the Built-in Render Pipeline)
 
 * [Edge Length](#edge-length)
 * [Phong Strength](#phong-strength)

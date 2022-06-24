@@ -5,4 +5,4 @@ When you want to use lighting that differs from the scene main light to make cha
 
 <img width = "400" src="images/BoxLight0.png"><img width = "400" src="images/BoxLight1.png">
 
-<small>Box Light applied to a character's face. Note that editing the angle of the box changes the shadows falling on the face, but not on the body and the ground.</small>
+<small>Box light applied to a character's face. Note that editing the angle of the box changes the shadows falling on the face, but not on the body and the ground.</small>
