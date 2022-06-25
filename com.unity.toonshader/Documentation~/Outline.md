@@ -1,6 +1,6 @@
 # Outline Settings
 
-The Outline is a simple outline effect to meshes. 
+Outlines are one of the most important elements that  affect the impression of a cell-animated image. You can specify the thickness of the outline not just numerically, but can also change the thickness in detail using a special map. You can also specify  the color not just numerically but blend outline colors with the character body colors. UTS offers two methods to generate outlines: one is to stretch polygons in the normal direction, and the other is to apply a scale value to the mesh.
 
 <img src="images/InspectorOutlineSettings.png" width="573">
 <br/><br/>
@@ -20,13 +20,19 @@ The Outline is a simple outline effect to meshes.
   * [Baked Normal Map](#baked-normal-map)
 
 ## Outline 
-
+A checkbox to enable outline.
 | Outline Off | Outline On |
 | -- | -- | 
 | <img src="images/OutlineOff.png" height="256"> | <img src="images/OutlineOn.png" height="256"> |
 
 ### Outline Mode
 Specifies how the inverted-outline objects spawn.
+| Outline Mode | Description |
+| -- | -- | 
+| Normal Direction | Stretches polygons in the normal direction. |
+| Position Scaling | Applies a scale value to the mesh. |
+
+
 
 ### Outline Width
 Specifies the width of the outline. This value relies on the scale when importing the model to Unity
@@ -48,15 +54,19 @@ Blends **Base Color** into outline color.
 | <img src="images/BlendBaseColorToOutlineOff.png" height="200"> | <img src="images/BlendBaseColorToOutlineOn.png" height="200"> |
 
 ### Outline Width Map
-Outline Width Map as gray scale Texture : Texture(linear).
-
-| Outline Width Map Example |
-| -- |
-| <img src="images/utc_all2_outlinesmpler.png" height="256"> |
+Outline Width Map as gray scale Texture : Texture(linear). UTS provides  meticulous control solution for outline thickness as a texture map. Look at the difference of the outlines around the character's eyes and face.
 
 | Outline Width Map Off | Outline Width Map On |
 | -- | -- | 
-| <img src="images/OutlineWidthMapOff.png" height="256"> | <img src="images/OutlineWidthMapOn.png" height="256"> |
+| <img src="images/OutlineWidthMapOff.png" width="320"> | <img src="images/OutlineWidthMapOn.png" width="320"> |
+
+You will notice that the outlines of the white areas appear thicker in the texture map.
+
+| Outline Width Map Example | (Base Map) |
+| -- | -- |
+| <img src="images/utc_all2_outlinesmpler.png" height="256"> | <img src="images/utc_all2_light.png" height="256"> |
+
+
 
 ### Offset Outline with Camera Z-axis
 Offsets the outline in the depth (Z) direction of the camera.

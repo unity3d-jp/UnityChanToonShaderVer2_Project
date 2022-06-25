@@ -1,9 +1,15 @@
 # Changelog
-## [0.7.4-preview] - 2022-06-23
+## [0.7.4-preview] - 2022-06-25
 ### Fixed:
 * HDRP:Metaverse light was not working properly.
 ### Updated:
 * Added `Getting Started` to the documentation.
+* Added more description to Outline doc.
+* Added more description to RimLight doc.
+* Mended Meteverse doc to use property, insted of indented menus.
+* Mended SceneLightSetting doc to use property instead of indented menus.
+* Re-wrote the doc to install samples.
+* Updated some images in docs.
 * Improved some wording in documentation.
 
 ## [0.7.3-preview] - 2022-06-15

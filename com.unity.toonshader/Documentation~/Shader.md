@@ -20,7 +20,7 @@ The Shader Settings provide basic settings that aren't specific to  cel-shading 
 
 ## Culling Mode
 
-|  Value   |  Description  | 
+|  Culling Mode   |  Description  | 
 | ---- | ---- | 
 |  Back   |  Don't render polygons that are facing away from the viewer (default) i.e. back-facing polygons are culled.  |
 |  Front  | Don't render polygons that are facing towards the viewer. Used for turning objects inside-out. |
@@ -38,7 +38,7 @@ Enables different modes that allow the simulation of a variety of transparent ob
 ## Stencil
 Control the stencil buffer which manipulates pixel drawing.
 
-|  Value   |  Description  | 
+|  Stencil   |  Description  | 
 | ---- | ---- | 
 |  Replace Stencil Buffer with  | Replaces a pixel value in stencil buffer with [Stencil Value](#stencil-value) when drawing.|
 |  Draw If Not Equal to  | Draw a pixel when the number in stencil buffer isn't equal to [Stencil Value](#stencil-value).|
@@ -50,7 +50,7 @@ Stencil value that's submitted to the stencil buffer for controlling the per-pix
 ## Clipping
 Allow for the use of a texture to control the transparency of the shader.
 
-|  Value   |  Description  | 
+|  Clipping    |  Description  | 
 | ---- | ---- | 
 |  Off | Disable clipping. |
 |  On  | Enable clipping. |

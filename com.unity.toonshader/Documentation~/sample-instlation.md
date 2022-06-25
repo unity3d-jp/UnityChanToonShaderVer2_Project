@@ -1,42 +1,37 @@
-# Samples
-Sample scenes are installable from the [Package Manager](https://docs.unity3d.com/2022.2/Documentation/Manual/Packages.html).
-Please, make sure that render pipeline you want use installed and set up before installing the samples for each.
+# How to install samples
 
-<img width = "400" src="images/InstallingSamples.png">
+Unity provides  the **Unity Toon Shader** sample scenes for the three render pipelines. Please install a set of samples fits the render pipeline you use.
 
-Samples for Universal RP require `UTS2URPPipelineAsset` set in `Project Setting` dialog.
+1. Make sure that [Render pipeline](https://docs.unity3d.com/2022.2/Documentation/Manual/render-pipelines.html) you want to use installed and set up before installing the UTS samples for each. 
+1. Open the [Package Manager window](https://docs.unity3d.com/2022.2/Documentation/Manual/Packages.html).
+1. Click **Unity Toon Shader** in the left side of the window.
+1. Press **Import** in the right side of the window.
+1. Set Graphics Pipeline Asset in the [Project Setting window](#https://docs.unity3d.com/2022.2/Documentation/Manual/comp-ManagerGroup.html).  URP samples require `UTS2URPPipelineAsset`. Whereas HDRP samples require  `HDRenderPipelineAsset_UTS`.
+<br/><br/>
 
-<img width = "400" src="images/URP-Asset.png">
-
-Ones for HDRP require `HDRenderPipelineAsset_UTS` asset as well.
-
-<img width = "400" src="images/HDRP-Asset.png">
-
-The **Color Space** in OtherSettig -> Rendering  must be `Linear`.
-
-<img width = "400" src="images/SelectLinearColorSpace.png">
-
- `Assets\Samples\Unity Toon Shader\0.7.4-preview\Universal render pipeline` folder contains the following scenes.
-
-* ToonShader.unity            ：Settings for an illustration-style shader.  
-* ToonShader_CelLook.unity    ：Settings for a cel-style shader.  
-* ToonShader_Emissive.unity    ：Settings for a shader with an emissive .  
-* ToonShader_Firefly.unity    ：Multiple real-time point lights.  
-* AngelRing\AngelRing.unity：`AngelRing` and `ShadingGradeMap` sample.  
-* Baked Normal\Cube_HardEdge.unity：Baked Normal reference.  
-* BoxProjection\BoxProjection.unity        ：Lighting a dark room using Box Projection.  
-* EmissiveAnimation\EmisssiveAnimation.unity：EmissiveAnimation sample.  
-* LightAndShadows\LightAndShadows.unity：Comparison between the PBR shader and Unity Toon Shader.  
-* MatCapMask\MatCapMask.unity：MatcapMask sample.  
-* Mirror\MirrorTest.unity: Sample scene checking for a mirror object  
-* NormalMap\NormalMap.unity    ：Tricks for using the normal map with Unity Toon Shader.  
-* PointLightTest\PointLightTest.unity：Sample of  cel-style content with point lights.  
-* Sample\Sample.unity        ：Introduction to the basic Unity Toon Shader.  
-* ShaderBall\ShaderBall.unity：Unity Toon Shader settings on an example shader ball.  
+| Where you should set `UTS2URPPipelineAsset` or `HDRenderPipelineAsset_UTS` |
+| -- |
+| <img src="images/UtsProjectSettingsWindow.png">|
 
 
+ `Assets/Samples/Unity Toon Shader/0.7.4-preview/Universal render pipeline` folder contains the following scenes.
+
+* Sample/Sample.unity        ：An scene to introduce the basic.  
+* ToonShader.unity            ：A illustration-style shading sample scene.  
+* ToonShader_CelLook.unity    ：A cel-style shading sample scene.  
+* ToonShader_Emissive.unity    ：A sample scene for [Emission](Emission.md).  
+* ToonShader_Firefly.unity    ： A sample scene for multiple point lights.  
+* AngelRing/AngelRing.unity：A sample scene for [Angel Ring](AngelRing.md).
+* Baked Normal/Cube_HardEdge.unity：Baked Normal reference.  
+* BoxProjection/BoxProjection.unity        ：A sample scene lighting a dark room using Box Projection.  
+* EmissiveAnimation/EmisssiveAnimation.unity： [Emission](Emission.md) Animation sample.  
+* LightAndShadows/LightAndShadows.unity：Comparison between the PBR shader and the **Unity Toon Shader**.  
+* MatCapMask/MatCapMask.unity： A [MatCap](MatCap.md) Mask sample scene.  
+* Mirror/MirrorTest.unity: A sample scene checking for a mirror object.  
+* NormalMap/NormalMap.unity    ：Tricks for using the normal map with the **Unity Toon Shader**.  
+* PointLightTest/PointLightTest.unity： A sample for cel-shding contents with point lights.  
 
  
-Sample scenes for other render pipelines are  in the following folder.  
-* for Legacy (Built-in)：`Assets\Samples\Unity Toon Shader\0.7.4-preview\Legacy render pipeline` folder. 
-* for HDRP：`Assets\Samples\Unity Toon Shader\0.7.4-preview\High definition render pipeline` folder.
+Sample scenes for other render pipelines are in the following folders.  
+* for the **Built-in Render Pipeline**：`Assets/Samples/Unity Toon Shader/0.7.4-preview/Legacy render pipeline` folder. 
+* for the **High definition render pipelineP**：`Assets/Samples/Unity Toon Shader/0.7.4-preview/High definition render pipeline` folder.

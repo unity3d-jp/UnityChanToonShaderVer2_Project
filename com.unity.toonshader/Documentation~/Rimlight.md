@@ -21,7 +21,7 @@ The Rim Light  highlight the edges of meshes. Rim Light is based on the angle be
   * [Rim Light Mask Level](#rim-light-mask-level)
 
 ## Rim Light
-A light that hits the 3D model from behind and emphasizes the contours of the model from the front.
+A Check box to enable **Rim Light** that hits the 3D model from behind and emphasizes the contours of the model from the front.
 |  Rim Light Off | Rim Light On | 
 | ---- | ---- |
 | <img src="images/RimLightOff.png" height="256"> | <img src="images/RimLightOn.png" height="256"> |
@@ -29,25 +29,25 @@ A light that hits the 3D model from behind and emphasizes the contours of the mo
 <br>
 
 ### Rim Light Color
-Specifies the color of rim light.
+Specifies the color of **Rim Light**.
 
 <img src="images/RimLightColor.gif" height="256">
 <br>
 
 ### Rim Light Level
-Specifies Rim Light Intensity.
+Specifies **Rim Light** intensity.
 
 <img src="images/RimLightLevel.gif" height="256">
 <br>
 
 ### Adjust Rim Light Area
-Increasing this value narrows the area of influence of Rim Light.
+Increasing this value narrows the area of influence of **Rim Light**.
 
 <img src="images/AdjustRimLightArea.gif" height="256">
 <br>
 
 ### Rim Light Feather Off
-Disable Rim light feather.
+A check box to disable **Rim Light** feather.
 
 |  Rim Light with feather | Rim light feather disabled | 
 | ---- | ---- |
@@ -55,14 +55,14 @@ Disable Rim light feather.
 <br>
 
 ### Light Direction
-When Enabled, generates rim light in the direction of the light source.
+A Checkbox to enable light direction. When Enabled, generates **Rim Light** in the direction of the light source.
 |  Rim Light Direction Off | Rim Light Direction On | 
 | ---- | ---- |
 | <img src="images/RimLightDirectionOff.png" height="256"> | <img src="images/RimLightDirectionOn.png" height="256"> |
 <br>
 
 ### Light Direction Rim Light Level
-Specifies intensity of Rim Light in the light source direction.
+Specifies intensity of **Rim Light** in the light source direction.
 
  <img src="images/LightDirectionRimLightLevel.gif" height="256">
 <br>
@@ -75,27 +75,27 @@ Light color effectiveness to inverted direction rim lit areas.
 <br>
 
 #### Inverted Rim Light Color
-Specifies the color of inversed/antipodean rim light.
+Specifies the color of inversed/antipodean **Rim Light**.
 
  <img src="images/InversedRimLightColor.gif" height="256">
 <br>
 
 
 #### Inverted Rim Light Level
-Specifies Inversed/Antipodean Rim Light Level.
+Specifies Inversed/Antipodean **Rim Light** Level.
 
  <img src="images/InversedRimLightLevel.gif" height="256">
 <br>
 
 #### Inverted Rim Light Feather Off
-Disable Inverted Rim light feather.
+Disable Inverted **Rim Light** feather.
 
 |  Inverted Rim Light Feather On | Inverted Rim Light Feather Off | 
 | ---- | ---- |
 | <img src="images/InversedRimLightFeathterOn.png" height="256"> | <img src="images/InversedRimLightFeathterOff.png" height="256"> |
 
 ### Rim Light Mask
-Rim Light Mask : a gray scale texture(linear). The white part of the texture represents Rim Light, and the black part masks.
+Rim Light Mask : a gray scale texture(linear). The white part of the texture represents **Rim Light**, and the black part masks.
  Gray Scale Texture Example | 
 | ---- |
 |<img src="images/UVCheckGrid.png" height="256">|

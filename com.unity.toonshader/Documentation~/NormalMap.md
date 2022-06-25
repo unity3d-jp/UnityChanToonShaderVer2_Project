@@ -1,6 +1,6 @@
 # Normal Map Settings
 
-A texture that dictates the bumpiness of the material. The **Unity Toon Shader** allows control over **Normal Map** strength and which areas it applies to.
+Normal Map is a texture that dictates the bumpiness of the material. The **Unity Toon Shader** allows control over **Normal Map** strength and which areas it applies to.
 
 * [Normal Map](#normal-map)
 * [Normal Map Effectiveness](#normal-map-effectiveness)

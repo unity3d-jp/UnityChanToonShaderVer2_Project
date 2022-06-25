@@ -1,6 +1,6 @@
-# Shader Settings in the inspector window.
+# Shader Settings in the inspector window
 
-The followings are all the Unity Toon Shader settings in the inspector window.  
+The followings are all the **Unity Toon Shader** settings in the inspector window.  
 
 <img src="images/InspectorUTS.png" >
 <br/><br/>
