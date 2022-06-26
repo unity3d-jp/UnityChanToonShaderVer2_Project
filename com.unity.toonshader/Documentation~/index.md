@@ -9,11 +9,19 @@ The **Unity Toon Shader** is compatible with all the render pipelines, the **Bui
 
 **Unity Toon Shader** is  the successor of **Unity-chan Toon Shader ver 2.0 (UTS2)**, which was popular for years in games and animations. but, UTS2 was solely for the **Built-in Render Pipeline**.
 
-<img width = "800" src="images/UT2018_UTS2_SuperTips_10.png">
+## Feature of Unity Toon Shader
 
-The **Unity Toon Shader** allows  users to specify the colors of light and shadow. These features are essential for cel-shaded character designs. 
+In animation production, color specialists specify detailed color designs for every scene. UTS can apply these color specification written in the instructions. UTS allows  users to specify the colors of light and shadow regardless of actual light colors in the scene. This feature is essential for cel-shaded character designs. 
 
-Three basic colors, **base color**, **1st shading color**, and **2nd shading color**, play a key role in character design in the **Unity Toon Shader**. Please, refer to [Three Color Map and Control Map Settings](Basic.md).
+| Typical color design instruction example |
+|--|
+|<img src="images/UTS4Color2.png" width=400> |
+| A: Highlight Color|
+| B: Base Color |
+| C: 1st Shading Color|
+| D: 2nd Shading Color |
+
+Three basic colors, **base color**, **1st shading color**, and **2nd shading color**, play  key roles in character design in the **Unity Toon Shader**. Please, refer to [Three Color Map and Control Map Settings](Basic.md).
 
 Besides the three basic colors, the **Unity Toon Shader** provides wide variety of features such as [Highlight](Highlight.md), [Rim Light](Rimlight.md), [Emission](Emission.md), [Angel Ring](AngelRing.md), [Material Capture(MatCap)](MatCap.md) and some special maps.
 

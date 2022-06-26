@@ -1,6 +1,6 @@
 # Highlight Settings
 
-Highlighting specular light area is an important element of animation production and toon shaders. The **Unity Toon Shader** provides a wide variety of expressions with controllability to illuminate the area independently of light color and intensity for impressive cel-shading.
+The ability to display specular highlights in a cel-animation-like manner is essential for Toon Shaders. The **Unity Toon Shader** provides a wide variety of expressions with controllability to illuminate the area independently of light color and intensity for impressive cel-shading.
 
 <img src="images/InspectorHighlightSettings.png" width="573">
 <br/><br/>

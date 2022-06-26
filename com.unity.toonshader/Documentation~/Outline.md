@@ -46,7 +46,7 @@ Specifies the color of outline.
 
 
 ### Blend Base Color to Outline
-Blends **Base Color** into outline color.
+Blends **Base Color** into outline color. 
 
 
 | Blend Base Color to Outline Off | Blend Base Color to Outline  On |
@@ -62,16 +62,18 @@ Outline Width Map as gray scale Texture : Texture(linear). UTS provides  meticul
 
 You will notice that the outlines of the white areas appear thicker in the texture map.
 
-| Outline Width Map Example | (Base Map) |
+| Outline Width Map applied above | Base Map |
 | -- | -- |
 | <img src="images/utc_all2_outlinesmpler.png" height="256"> | <img src="images/utc_all2_light.png" height="256"> |
 
 
 
 ### Offset Outline with Camera Z-axis
-Offsets the outline in the depth (Z) direction of the camera.
+Offsets the outline in the depth (Z) direction of the camera. UTS outline is an implementation of either extending polygons in the normal direction or applying a scale value. Sometimes, offsetting the position of the generated polygons in the Z (depth) direction can improve their appearance. 
 
-<img src="images/OffsetZ01.png" height="256">
+| With Z-axis Offset | Without Z-axis Offset |
+| -- | -- |
+| <img src="images/OffsetZ02.png" height="256"> | <img src="images/OffsetZ03.png" height="256"> |
 
 ### Camera Distance for Outline Width
 
