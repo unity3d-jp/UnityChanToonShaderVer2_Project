@@ -1,4 +1,7 @@
 # Changelog
+## [0.7.5-preview] - 2022-06-27
+### Next version is 0.7.5-preview
+
 ## [0.7.4-preview] - 2022-06-25
 ### Fixed:
 * HDRP:Metaverse light was not working properly.

@@ -13,7 +13,7 @@ namespace UnityEditor.Rendering.Toon
 
         protected const float kVersionX = 0.0f;
         protected const float kVersionY = 7.0f;
-        protected const float kVersionZ = 4.0f;
+        protected const float kVersionZ = 5.0f;
 
         // Render Pipelines UTS supports are the followings 
         internal enum RenderPipeline

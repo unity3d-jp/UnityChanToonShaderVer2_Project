@@ -10,4 +10,4 @@ Installing the package requires the following steps.
 1. Click the **+** button, and choose **Add package from git URL** 
 1. Type in `com.unity.toonshader` and click the **Add** button. 
  
-We can also specify a particular version, for example: `com.unity.toonshader@0.7.4-preview`
+We can also specify a particular version, for example: `com.unity.toonshader@0.7.5-preview`
