@@ -41,7 +41,7 @@ Because the **Unity Toon Shader**(UTS) includes shaders for all the render pipel
 | --- | 
 | <img src="images/AppliedUTS.png"> | 
 
-You see all the  lights aren't affecting like usual lighting. This is because UTS controls the response of the lighting according to the artist's intentions.
+You see the directional light isn't affecting like usual shading. This is because UTS controls the response of the lighting according to the artist's intentions. UTS allows detailed control whether the directional light color effects on materials. Please refer to [Scene Light Effectiveness Settings](SceneLight.md). But, while learning this section, setting the light color to **white** is recommendable. 
 
 ## Setting up three basic colors
 
