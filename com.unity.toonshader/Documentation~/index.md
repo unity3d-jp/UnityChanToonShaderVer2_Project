@@ -5,13 +5,13 @@
 
 The **Unity Toon Shader** (UTS3) is a set of toon shaders designed to meet the needs of creators working on cel-shaded 3D-CG animations. 
 
-The **Unity Toon Shader** is compatible with all the render pipelines, the **Built-in Render Pipeline**, the **Universal Render Pipeline (URP)** and the **High Definition Render Pipeline (HDRP)**, though, there are some differences in the features supported by different render pipelines. Please refer to the Feature difference for each render pipeline for details in [Feature Difference](FeatureModel_en.md).
+The **Unity Toon Shader** is compatible with all the render pipelines, the **Built-in Render Pipeline**, the **Universal Render Pipeline (URP)** and the **High Definition Render Pipeline (HDRP)**, though, there are some differences in the features supported by different render pipelines. Please refer to see the difference for each render pipeline for details in [Feature Difference](FeatureModel_en.md).
 
-**Unity Toon Shader** is  the successor of **Unity-chan Toon Shader ver 2.0 (UTS2)**, which was popular for years in games and animations. but, UTS2 was solely for the **Built-in Render Pipeline**.
+**Unity Toon Shader** is  the successor of **Unity-chan Toon Shader ver 2.0 (UTS2)**, which was popular for years in games and animations. But, UTS2 was solely for the **Built-in Render Pipeline**, consisted with tons of different shaders, unable to install through the [Package Manager window](https://docs.unity3d.com/Manual/upm-ui.html), and its license was different from other software Unity provides. 
 
 ## Feature of Unity Toon Shader
 
-In animation production, color specialists specify detailed color designs for every scene. UTS can apply these color specification written in the instructions. UTS allows  users to specify the colors of light and shadow regardless of actual light colors in the scene. This feature is essential for cel-shaded character designs. 
+In animation production, color specialists specify detailed color designs for every scene. UTS can apply these color specifications written in the instructions. UTS allows  users to apply the colors of light and shadow regardless of actual light colors in the scene. This feature is essential for cel-shaded character designs. UTS allows detailed control whether the directional light color effects on materials or not.
 
 | Typical color design instruction example |
 |--|

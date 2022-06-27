@@ -1,6 +1,6 @@
 # Three Color Map and Control Map Settings
 
-**Three Color Map and Control Map Settings** provide basic cell shading settings in the **Unity Toon Shader**. These settings allow you to control the rendering of light and shadow areas independent from the actual light color.
+**Three Color Map and Control Map Settings** provide basic cell shading settings in the **Unity Toon Shader**. These settings allow you to control the rendering of light and shadow areas independent from the actual light color. UTS allows detailed control whether the directional light color effects on materials. Please refer to [Scene Light Effectiveness Settings](SceneLight.md).
 
 <img src="images/InspectorThreeColorAndControlMapSettings.png" width="573">
 <br/><br/>

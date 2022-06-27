@@ -4,7 +4,7 @@ The **Unity Toon Shader**(UTS) provides tons of properties for professional cel-
 
 What you have to do for simple cel-shading are:
 * [Make sure at least one directional light is in the scene](#put-a-directional-light-in-the-scene).
-* [Create materials for cel-shading and set appropriate shader path](#creating-a-new-material-and-applying-it-unity-toon-shader).
+* [Create materials for cel-shading and set appropriate shader path](#creating-a-new-material-and-applying-unity-toon-shader).
 * [Set up three basic colors](#setting-up-three-basic-colors).
 * [Determine touch of the character](#adjusting-edge-of-three-basic-color-region).
 * [Set Outline](#set-outline).
@@ -19,7 +19,7 @@ After mastering above you might want to check:
 ## Put a directional light in the scene
 To make cel-shading work. You need to place at least one [directional light](https://docs.unity3d.com/2022.2/Documentation/Manual/Lighting.html) in the scene.
 
-## Creating a new material and applying it Unity Toon Shader
+## Creating a new material and applying Unity Toon Shader
 
 Start from [creating a material](https://docs.unity3d.com/2022.2/Documentation/Manual/materials-introduction.html).
 
