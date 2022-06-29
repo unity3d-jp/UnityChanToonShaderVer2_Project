@@ -1,11 +1,11 @@
 # What's new for Unity Toon Shader 0.7.x-preview
 
-## Review of all terms
+## Reviewed of all terms
 
-Reviewed and re-classified all the terms in the **Unity toon shader** 0.7.0-preview. 
+Reviewed and re-classified all the terms in the **Unity Toon Shader** 0.7.0-preview. 
 Reorganized the inspector window.
 
-## Added tips to the inspector window
+## Added tips to the Inspector window
 
 The **Unity Toon Shader** 0.7.x-preview has added tips to elements in the Inspector.
 
