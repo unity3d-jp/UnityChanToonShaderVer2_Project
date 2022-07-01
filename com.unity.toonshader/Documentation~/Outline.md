@@ -1,6 +1,6 @@
 # Outline Settings
 
-Outlines are one of the most important elements that  affect the impression of a cell-animated image. You can specify the thickness of the outline not just numerically, but can also change the thickness in detail using a special map. You can also specify  the color not just numerically but blend outline colors with the character body colors. UTS offers two methods to generate outlines: one is to stretch polygons in the normal direction, and the other is to apply a scale value to the mesh.
+Outlines are one of the most important elements that  affect the impression of a cell-animated images. You can specify the thickness of the outline not just numerically, but can also change the thickness in detail using a special map. You can also specify  the color not just numerically but blend outline colors with the character body colors. UTS offers two methods to generate outlines: one is to stretch polygons in the normal direction, and the other is to apply a scale value to the mesh.
 
 <img src="images/InspectorOutlineSettings.png" width="573">
 <br/><br/>
