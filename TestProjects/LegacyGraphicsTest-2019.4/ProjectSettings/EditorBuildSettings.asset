@@ -59,6 +59,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ToonShader_Firefly.unity
     guid: 62ae8b1fd9ca4be9a2b88a8bbb1ae340
+  - enabled: 0
+    path: Assets/MetaverseOutlineLighting/OutlineLighting01_Skybox.unity
+    guid: 0964b84bc833cdc489778d79a29db029
+  - enabled: 1
+    path: Assets/MetaverseOutlineLighting/OutlineLighting02_Gradient.unity
+    guid: aeac473983060434abd2b5cc71b14ea3
+  - enabled: 1
+    path: Assets/MetaverseOutlineLighting/OutlineLighting03_Color.unity
+    guid: 62191d05ba8b1d245a8cf459652462e3
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 130499d3ed8f42c4e89f54b60cef895c,
       type: 2}

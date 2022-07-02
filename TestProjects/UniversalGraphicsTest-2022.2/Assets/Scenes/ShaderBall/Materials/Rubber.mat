@@ -91,12 +91,15 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaTestRef: 0.5
+    - _AlphaToMask: 0
     - _Blend: 0
+    - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _EmissionScaleUI: 0
     - _GlossMapScale: 0.2
     - _Glossiness: 0.4
@@ -116,6 +119,7 @@ Material:
     - _SpecSource: 0
     - _SpecularHighlights: 0
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _Surface: 0
     - _UVSec: 0
     - _ZWrite: 1
@@ -140,4 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 6
+  version: 7
