@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 6
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -178,6 +178,7 @@ Material:
     - _AR_OffsetV: 0.3
     - _Add_Antipodean_RimLight: 0
     - _AlphaClip: 0
+    - _AlphaToMask: 0
     - _AngelRing: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
@@ -185,6 +186,7 @@ Material:
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _Blend: 0
+    - _BlendModePreserveSpecular: 1
     - _BlurLevelMatcap: 0
     - _BlurLevelSGM: 0
     - _BumpScale: 1
@@ -201,6 +203,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _EMISSIVE: 0
     - _EnvironmentReflections: 1
     - _Farthest_Distance: 100
@@ -275,6 +278,7 @@ Material:
     - _SpecSource: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _StencilComp: 0
     - _StencilMode: 0
     - _StencilNo: 1
