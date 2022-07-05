@@ -207,7 +207,9 @@
       "version": "file:../../com.unity.toonshader",
       "depth": 0,
       "source": "local",
-      "dependencies": {}
+      "dependencies": {
+        "com.unity.render-pipelines.core": "7.0.0"
+      }
     },
     "com.unity.ugui": {
       "version": "1.0.0",

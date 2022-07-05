@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EmissiveAnimation.unity
     guid: 003a6919efce4f2eb098cd27bad910a8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LightAndShadows.unity
     guid: 73a7f438006c4b7fafd3d5b4743fa8dc
   - enabled: 1
@@ -65,4 +65,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ToonShader_LightCulling.unity
     guid: 996ccb16826445bfb9ead90db4383e5e
+  - enabled: 1
+    path: Assets/Scenes/MetaverseOutlineLighting/OutlineLighting01_HDRISky.unity
+    guid: 8db0336defcb48f429a2547daeb90493
+  - enabled: 1
+    path: Assets/Scenes/MetaverseOutlineLighting/OutlineLighting02_GradientSky.unity
+    guid: f8ee6806625245d498d2a9217ae571ef
   m_configObjects: {}
