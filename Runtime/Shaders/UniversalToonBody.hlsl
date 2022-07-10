@@ -209,7 +209,11 @@
                 return 1.0h;
 #endif
 
+#if UNITY_VERSION >= 202220
+                ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData(lightIndex);
+#else
                 ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData();
+#endif
 
 #if USE_STRUCTURED_BUFFER_FOR_LIGHT_DATA
                 lightIndex = _AdditionalShadowsIndices[lightIndex];
