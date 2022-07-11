@@ -1,4 +1,4 @@
-# 【UTS/UniversalToon Ver.2.5.0】
+# 【UTS/UniversalToon Ver.2.5.1】
 ---
 <img width = "800" src="Documentation~/Images_jpg/UTS2_TopImage00.jpg">
 
