@@ -7,7 +7,7 @@ namespace UnityEditor.Rendering.Universal.Toon.ShaderGUI
     {
         protected const float kVersionX = 2.0f;
         protected const float kVersionY = 5.0f;
-        protected const float kVersionZ = 0.0f;
+        protected const float kVersionZ = 1.0f;
 
         const string ShaderDefineSHADINGGRADEMAP = "_SHADINGGRADEMAP";
         const string ShaderDefineANGELRING_ON = "_IS_ANGELRING_ON";

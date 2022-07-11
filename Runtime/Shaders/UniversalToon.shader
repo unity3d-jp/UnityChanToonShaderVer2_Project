@@ -11,7 +11,7 @@ Shader "Universal Render Pipeline/Toon" {
         // Versioning of material to help for upgrading
         [HideInInspector] _utsVersionX("VersionX", Float) = 2
         [HideInInspector] _utsVersionY("VersionY", Float) = 5
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1

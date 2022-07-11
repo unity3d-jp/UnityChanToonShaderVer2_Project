@@ -97,12 +97,12 @@
 
 
 #ifdef _IS_ANGELRING_OFF
-				float2 lightmapUV   : TEXCOORD1;
+            float2 lightmapUV   : TEXCOORD1;
 #elif _IS_ANGELRING_ON
                 float2 texcoord1 : TEXCOORD1;
-				float2 lightmapUV   : TEXCOORD2;
+            float2 lightmapUV   : TEXCOORD2;
 #endif
-				UNITY_VERTEX_INPUT_INSTANCE_ID
+            UNITY_VERTEX_INPUT_INSTANCE_ID
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
@@ -116,23 +116,23 @@
                 //v.2.0.7
                 float mirrorFlag : TEXCOORD5;
 
-				DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
+            DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 6);
 #if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
-				half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
+            half4 fogFactorAndVertexLight   : TEXCOORD7; // x: fogFactor, yzw: vertex light
 #else
-				half  fogFactor					: TEXCOORD7; 
+            half  fogFactor            	: TEXCOORD7; 
 #endif 
 
 # ifndef _MAIN_LIGHT_SHADOWS
-				float4 positionCS               : TEXCOORD8;
+            float4 positionCS               : TEXCOORD8;
                 int   mainLightID              : TEXCOORD9;
 # else
-				float4 shadowCoord              : TEXCOORD8;
-				float4 positionCS               : TEXCOORD9;
+            float4 shadowCoord              : TEXCOORD8;
+            float4 positionCS               : TEXCOORD9;
                 int   mainLightID              : TEXCOORD10;
 # endif
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-				UNITY_VERTEX_OUTPUT_STEREO
+            UNITY_VERTEX_INPUT_INSTANCE_ID
+            UNITY_VERTEX_OUTPUT_STEREO
 
                 //
 #elif _IS_ANGELRING_ON
@@ -148,7 +148,7 @@
 #if defined(_ADDITIONAL_LIGHTS_VERTEX) || (VERSION_LOWER(12, 0))
                 half4 fogFactorAndVertexLight   : TEXCOORD8; // x: fogFactor, yzw: vertex light
 #else
-				half  fogFactor					: TEXCOORD8; // x: fogFactor, yzw: vertex light
+            half  fogFactor            	: TEXCOORD8; // x: fogFactor, yzw: vertex light
 #endif 
 # ifndef _MAIN_LIGHT_SHADOWS
                 float4 positionCS               : TEXCOORD9;
@@ -174,30 +174,31 @@
                 float3   direction;
                 float3   color;
                 float    distanceAttenuation;
-                real    shadowAttenuation;
-                int     type;
+                float    shadowAttenuation;
+                int      type;
             };
 
             ///////////////////////////////////////////////////////////////////////////////
             //                      Light Abstraction                                    //
             /////////////////////////////////////////////////////////////////////////////
-            real MainLightRealtimeShadowUTS(float4 shadowCoord, float4 positionCS)
+            half MainLightRealtimeShadowUTS(float4 shadowCoord, float4 positionCS)
             {
 #if !defined(MAIN_LIGHT_CALCULATE_SHADOWS)
-                return 1.0h;
+                return 1.0;
 #endif
                 ShadowSamplingData shadowSamplingData = GetMainLightShadowSamplingData();
                 half4 shadowParams = GetMainLightShadowParams();
 #if defined(UTS_USE_RAYTRACING_SHADOW)
                 float w = (positionCS.w == 0) ? 0.00001 : positionCS.w;
-                float4 screenPos =  ComputeScreenPos(positionCS/ w);
+                float4 screenPos = ComputeScreenPos(positionCS / w);
                 return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
-#endif 
-
+#elif defined(_MAIN_LIGHT_SHADOWS_SCREEN)
+                return SampleScreenSpaceShadowmap(shadowCoord);
+#endif
                 return SampleShadowmap(TEXTURE2D_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, false);
             }
 
-            real AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
+            half AdditionalLightRealtimeShadowUTS(int lightIndex, float3 positionWS, float4 positionCS)
             {
 #if  defined(UTS_USE_RAYTRACING_SHADOW)
                 float w = (positionCS.w == 0) ? 0.00001 : positionCS.w;
@@ -208,8 +209,11 @@
 #if !defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
                 return 1.0h;
 #endif
-
+# if (SHADER_LIBRARY_VERSION_MAJOR >= 13 && UNITY_VERSION >= 202220 )
+                ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData(lightIndex);
+# else
                 ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData();
+# endif
 
 #if USE_STRUCTURED_BUFFER_FOR_LIGHT_DATA
                 lightIndex = _AdditionalShadowsIndices[lightIndex];
@@ -402,23 +406,23 @@
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
                 OUTPUT_SH(o.normalDir.xyz, o.vertexSH);
 
-#  if defined(_ADDITIONAL_LIGHTS_VERTEX) ||  (VERSION_LOWER(12, 0))  
-				o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
+#if defined(_ADDITIONAL_LIGHTS_VERTEX) ||  (VERSION_LOWER(12, 0))  
+            o.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
 #else
-				o.fogFactor = fogFactor;
+            o.fogFactor = fogFactor;
 #endif 
                 
                 o.positionCS = positionCS;
-  #if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
+#if defined(_MAIN_LIGHT_SHADOWS) && !defined(_RECEIVE_SHADOWS_OFF)
     #if SHADOWS_SCREEN
                 o.shadowCoord = ComputeScreenPos(positionCS);
     #else
                 o.shadowCoord = TransformWorldToShadowCoord(o.posWorld.xyz);
     #endif
                 o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, o.shadowCoord, positionCS);
-  #else
+#else
                 o.mainLightID = DetermineUTS_MainLightIndex(o.posWorld.xyz, 0, positionCS);
-  #endif
+#endif
 
 		
                 return o;
@@ -443,4 +447,5 @@
 #else
                     return fragDoubleShadeFeather(i, facing);
 #endif
+
             }

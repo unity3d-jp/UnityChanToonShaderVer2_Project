@@ -1,5 +1,9 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
+## [2.5.1] - 2022/07/11
+### Fixed.
+- Made the shader compatible with Unity 2022.2.
+- Applied Outline Blending fix in Unity-Chan Toon Shader 2.0.9.
 ## [2.5.0] - 2022/02/17
 ### Added.
 - Versions later than URP 10.0.x require the DepthNormals pass. (Thanks to riina)
