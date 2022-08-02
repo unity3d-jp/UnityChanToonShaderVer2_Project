@@ -11,9 +11,11 @@ namespace UnityEditor.Rendering.Toon
     {
 
 
-        protected const float kVersionX = 0.0f;
-        protected const float kVersionY = 7.0f;
-        protected const float kVersionZ = 6.0f;
+        internal const float kVersionX = 0.0f;
+        internal const float kVersionY = 8.0f;
+        internal const float kVersionZ = 0.0f;
+
+        internal static string versionString => "0.8.0-preview";
 
         // Render Pipelines UTS supports are the followings 
         internal enum RenderPipeline
@@ -419,7 +421,7 @@ namespace UnityEditor.Rendering.Toon
 
 
         const int HDRPGeometryMin = 2650; // UnityEngine.Rendering.RenderQueue.Geometry;
-        private void UpdateVersionInMaterial(Material material)
+        internal static void UpdateVersionInMaterial(Material material)
         {
             MaterialSetInt(material,ShaderPropIsUnityToonShader, 1);
             material.SetFloat(ShaderPropUtsVersionX,  kVersionX);

@@ -5,7 +5,6 @@ test_projects:
   - name: LegacyStereoGraphicsTest-2020.3
 unity_versions:
   - name: 2020.3
-  - name: 2021.1
   - name: 2021.3  
   - name: 2022.1  
   - name: 2022.2  
@@ -18,6 +17,7 @@ unity_versions:
         type: Unity::VM::GPU
         image: graphics-foundation/win10-dxr:stable
         flavor: b1.large
+        model: gtx1080
     variables:
         UPM_REGISTRY: https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates
     dependencies:

@@ -1,6 +1,8 @@
 # Changelog
-## [0.7.6-preview] - 2022-07-05
-# Next version is 0.7.6-preview
+## [0.8.0-preview] - 2022-08-02
+### Updated:
+* All the render pipeline shaders are integrated.
+* Added material converter to above which is capable of Unity-Chan Toon Shader V2, Universal Toon and UTS3 older than 0.7.x.
 
 ## [0.7.5-preview] - 2022-06-27
 * Improved the logic for blending outlines into a scene when there are no directional lights in the scene.

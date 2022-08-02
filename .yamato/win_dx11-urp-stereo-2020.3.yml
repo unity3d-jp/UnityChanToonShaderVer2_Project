@@ -5,7 +5,6 @@ test_projects:
   - name: UniversalStereoGraphicsTest-2020.3
 unity_versions:
   - name: 2020.3
-  - name: 2021.1
   - name: 2021.3
   - name: 2022.1
   - name: 2022.2

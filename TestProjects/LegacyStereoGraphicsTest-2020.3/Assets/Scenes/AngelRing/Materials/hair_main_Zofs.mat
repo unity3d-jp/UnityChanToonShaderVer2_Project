@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: hair_main_Zofs
-  m_Shader: {fileID: 4800000, guid: 31dfbecc7cb879847aa8626f0d30ec43, type: 3}
+  m_Shader: {fileID: 4800000, guid: e4468eb8a8320f7488ddbb0e591f9fbc, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_ON _IS_OUTLINE_CLIPPING_NO _IS_TRANSCLIPPING_OFF
     _OUTLINE_NML _SHADINGGRADEMAP
   m_LightmapFlags: 1

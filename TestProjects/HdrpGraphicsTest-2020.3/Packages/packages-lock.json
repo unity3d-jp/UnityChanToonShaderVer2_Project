@@ -223,7 +223,7 @@
       "depth": 0,
       "source": "local",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.0.0"
+        "com.unity.render-pipelines.core": "10.0.0"
       }
     },
     "com.unity.ugui": {

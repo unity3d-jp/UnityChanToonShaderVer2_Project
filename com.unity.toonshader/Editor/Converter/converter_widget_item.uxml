@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:BindableElement style="flex-grow: 1; flex-direction: row; align-items: center; flex-shrink: 0; padding-right: 20px;">
+        <ui:Toggle value="true" name="converterItemActive" binding-path="isActive" />
+        <ui:Label name="converterItemName" text="name" style="flex-grow: 0; width: 200px; overflow: hidden; padding-left: 4px;" />
+        <ui:Label name="converterItemInfo" style="visibility: hidden;" />
+        <ui:Label name="converterItemPath" text="path..." style="flex-grow: 0; flex-wrap: nowrap; white-space: nowrap; width: auto; overflow: hidden; padding-left: 21px; flex-shrink: 1;" />
+        <ui:Label display-tooltip-when-elided="true" style="flex-grow: 1;" />
+        <ui:Image name="converterItemStatusIcon" style="max-width: 16px; max-height: 16px; min-width: 16px; min-height: 16px; justify-content: center; flex-grow: 0; width: 16px; height: 16px;" />
+        <ui:Image name="converterItemHelpIcon" style="max-width: 16px; max-height: 16px; min-width: 16px; min-height: 16px; justify-content: center; flex-grow: 0; width: 16px; height: 16px;" />
+    </ui:BindableElement>
+</ui:UXML>

@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:uts="UnityEditor.Rendering.Toon" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.unity.toonshader/Editor/Converter/converter_editor.uss" />
+    <ui:VisualElement name="singleConverterVE" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); display: none;  max-height: 120px; min-height: 90px; padding-left: 19px; padding-right: 19px; padding-top: 20px; padding-bottom: 20px;">
+        <ui:VisualElement name="backButtonVE" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: 0; flex-shrink: 1; max-height: 22px; display: flex; min-height: 22px; margin-bottom: 10px;">
+            <ui:Button tabindex="-1" text="&lt; Back" display-tooltip-when-elided="true" name="backButton" style="width: 110px; margin-left: 3px; display: flex;" />
+        </ui:VisualElement>
+        <ui:HelpBox message-type="Error" text="The following materials are too old. Please load them using Unity-Chan Toon Shader Ver 2.0.7 or newer." style="flex-grow: 0; padding-top: 2px; padding-bottom: 2px; margin-top: 1px; margin-bottom: 1px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="converterEditorMainVE" style="max-width: 100%; min-width: 620px; flex-grow: 1; padding-left: 19px; padding-right: 19px; padding-top: 15px; width: auto; padding-bottom: 20px;">
+        <ui:VisualElement name="topInformationVE" style="flex-grow: initial; background-color: rgba(0, 0, 0, 0); height: 146px; flex-shrink: initial; width: auto; min-height: 130px; max-height: 130px;">
+            <ui:VisualElement style="flex-direction: row; padding-left: 2px;">
+                <uts:PopupVE index="-1" name="conversionsDropDown" style="height: 27px; width: 208px; display: flex; margin-left: 0;" />
+                <ui:VisualElement style="flex-grow: 1;" />
+                <ui:Button name="containerHelpButton" class="iconButton unity-icon-button" style="width: 16px; height: 16px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0;">
+                    <ui:Image name="containerHelpImage" class="unity-icon-button" style="background-image: none; flex-grow: 1;" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:TextElement text="The Render Pipeline Converter converts project elements from the Built-in Render Pipeline to URP." name="conversionInfo" style="height: 46px; width: 540px; flex-shrink: 0; margin-top: 3px; padding-left: 4px; padding-top: 9px;" />
+            <ui:HelpBox message-type="Error" text="This process makes irreversible changes to the project. Back up your project before proceeding." style="flex-grow: 0; padding-top: 2px; padding-bottom: 2px; margin-top: 1px; margin-bottom: 1px;" />
+                <ui:VisualElement name="bottomTopVE" style="flex-direction: row-reverse; flex-shrink: 0; padding-left: 0; padding-right: 0; margin-top: 6px; width: auto; align-items: stretch; flex-grow: 0;">
+                    <ui:Button text="Scan the project" name="scanButton" tooltip="Click to initialize all the selected converters." style="flex-direction: column; margin-bottom: 1px; min-width: auto; width: 130px; display: none;" />
+                </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="convertersScrollView" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="flex-grow: 1; flex-shrink: 1; max-width: none; width: auto; padding-right: 0; padding-left: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); padding-top: 10px;" />
+        <ui:VisualElement name="bottomButtonVE" style="flex-direction: row-reverse; flex-shrink: 0; padding-left: 0; padding-right: 0; margin-top: 6px; width: auto; align-items: stretch; flex-grow: 0;">
+            <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); min-width: auto; min-height: auto; flex-shrink: 0; width: auto; height: auto;">
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-shrink: 0;">
+                    <ui:Label tabindex="-1" display-tooltip-when-elided="true" style="flex-grow: 1;" />
+                    <ui:Button text=" Convert Assets" name="convertButton" style="flex-direction: column; margin-bottom: 1px; width: 130px; min-width: auto; display: none;" />
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+            <ui:Label style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

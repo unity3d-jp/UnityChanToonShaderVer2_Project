@@ -1,0 +1,11 @@
+.selected {
+    color: white;
+}
+
+.not_selected {
+    color: rgb(102, 102, 102);
+}
+
+.unity-list-view__empty-label {
+    display: none;
+}

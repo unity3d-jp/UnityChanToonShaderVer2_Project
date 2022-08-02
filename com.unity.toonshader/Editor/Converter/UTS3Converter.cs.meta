@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: b4d3d8f851234f346ba828041fc2d097
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - converterEditorAsset: {fileID: 9197481963319205126, guid: aa3c5f92dd380f54e9fe27e4da1648bd,
+      type: 3}
+  - converterItem: {fileID: 9197481963319205126, guid: 3ae32bee832b0a0499b14ad8646ba6af,
+      type: 3}
+  - converterWidgetMainAsset: {fileID: 9197481963319205126, guid: 7142661a783b06f42a6130280bed87a3,
+      type: 3}
+  - converterItemMaterial: {fileID: 9197481963319205126, guid: 136a2f7bdc5291a47b8c54e9e3ef0d37,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

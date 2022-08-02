@@ -105,6 +105,7 @@ Material:
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &7349535491131023997
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -117,4 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 2
+  version: 4

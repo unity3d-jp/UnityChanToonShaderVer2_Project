@@ -12,7 +12,7 @@ Assets/AssetStoreTools*
 .DS_Store
 
 # packages
-packages-lock.json
+[Pp]ackages-lock.json
 # Visual Studio cache directory
 .vs/
 .vscode/
