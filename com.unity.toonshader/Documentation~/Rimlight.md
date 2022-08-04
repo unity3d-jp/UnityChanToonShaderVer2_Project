@@ -75,14 +75,14 @@ Light color effectiveness to inverted direction rim lit areas.
 <br>
 
 #### Inverted Rim Light Color
-Specifies the color of inversed/antipodean **Rim Light**.
+Specifies the color of inverted/antipodean **Rim Light**.
 
  <img src="images/InversedRimLightColor.gif" height="256">
 <br>
 
 
 #### Inverted Rim Light Level
-Specifies Inversed/Antipodean **Rim Light** Level.
+Specifies Inverted/Antipodean **Rim Light** Level.
 
  <img src="images/InversedRimLightLevel.gif" height="256">
 <br>

@@ -807,7 +807,7 @@ namespace UnityEditor.Rendering.Toon
                 propName: "_RimLight_Power", defaultValue:0.1f, min: 0, max: 1);
 
             public static readonly RangeProperty invertedRimLightPowerText = new RangeProperty(
-                label: "Inversed Rim Light Level", tooltip: "Specifies Inverted/Antipodean Rim Light Level.",
+                label: "Inverted Rim Light Level", tooltip: "Specifies Inverted/Antipodean Rim Light Level.",
                 propName: "_Ap_RimLight_Power", defaultValue: 0.1f, min: 0, max: 1);
 
             public static readonly RangeProperty giIntensityText = new RangeProperty(

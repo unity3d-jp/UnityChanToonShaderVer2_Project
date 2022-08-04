@@ -2,7 +2,7 @@
 
 | Function	|  Legacy 	| URP 	| HDRP 	| Note 	|
 |-	|-	|-	|-	|-	|
-| 	|  	|  	|  	| as of 0.7.3-preview	|
+| 	|  	|  	|  	| as of 0.8.0-preview	|
 | ***1. Modes*** 	|  	|  	|  	|  	|
 | Standard	| OK 	| OK 	| OK 	|  	|
 | With Advanced Control Map 	| OK 	| OK	| OK 	|  	|
@@ -37,7 +37,7 @@
 | Rim Light Color	| OK 	| OK 	| OK 	|  	|
 | Rim Light Level	| OK 	| OK 	| OK 	|  	|
 | Adjust Rim Light Area 	| OK 	| OK 	| OK 	|  	|
-| Inversed Light Direction Rim Light 	| OK 	| OK 	| OK 	|  	|
+| Inverted Light Direction Rim Light 	| OK 	| OK 	| OK 	|  	|
 | Rim Light Mask	| OK 	| OK 	| OK 	|  	|
 | ***7. Material Capture(MatCap) Settings*** 	|  	|  	|  	|  	|
 | MatCap Map 	| OK 	| OK 	| OK 	|  	|
@@ -88,7 +88,7 @@ Activate/Deactive LightColor Effectiveness to each color:<br> Base Color,1st Sha
 | Color Shifting with Time 	| OK 	| OK 	| OK 	|  	|
 | Color Shifting with View Angle	| OK 	| OK 	| OK 	|  	|
 | ***13.Tessellation Settings*** 	|  	|  	|  	|  	|
-| Tessellation Settings (Legacy) 	| DX11/Vulkan/Metal 	| N.A. 	| N.A. 	|  	|
+| Tessellation Settings (Built-in) 	| DX11/Vulkan/Metal 	| N.A. 	| N.A. 	|  	|
 | Tessellation Settings (HDRP) 	|N.A.  	|N.A.  	| DX11/Vulkan/Metal 	|  	|
 | ***14. EV Adjustment*** 	|  	|  	|  	|  	|
 | EV Adjustment in high intensity light scenes	 	| N.A	| N.A.	| OK	|  	|

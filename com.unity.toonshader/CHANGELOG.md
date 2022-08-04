@@ -3,6 +3,8 @@
 ### Updated:
 * All the render pipeline shaders are integrated.
 * Added material converter to above which is capable of Unity-Chan Toon Shader V2, Universal Toon and UTS3 older than 0.7.x.
+* The package is conpatible with 2020.3, 2021.3, 2022.1 and 2022.2. 2019.4 is no longer supported.
+
 
 ## [0.7.5-preview] - 2022-06-27
 * Improved the logic for blending outlines into a scene when there are no directional lights in the scene.
