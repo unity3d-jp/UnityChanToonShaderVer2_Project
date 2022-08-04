@@ -80,12 +80,7 @@ namespace UnityEditor.Rendering.Toon
         /// <summary> Pending icon </summary>
         public static Texture2D iconPending;
 
-        Tuple<string, Texture2D> converterStateInfoDisabled;
-        Tuple<string, Texture2D> converterStateInfoPendingInitialization;
-        Tuple<string, Texture2D> converterStateInfoPendingConversion;
-        Tuple<string, Texture2D> converterStateInfoPendingConversionWarning;
-        Tuple<string, Texture2D> converterStateInfoCompleteErrors;
-        Tuple<string, Texture2D> converterStateInfoComplete;
+
 
         public VisualTreeAsset converterEditorAsset;
         public VisualTreeAsset converterItem;
@@ -149,12 +144,6 @@ namespace UnityEditor.Rendering.Toon
             iconComplete = CoreEditorUtils.LoadIcon("icons", "GreenCheckmark", ".png");
             iconPending = EditorGUIUtility.FindTexture("Toolbar Minus");
 
-            converterStateInfoDisabled = new Tuple<string, Texture2D>("Converter Disabled", null);
-            converterStateInfoPendingInitialization = new Tuple<string, Texture2D>("Pending Initialization", iconPending);
-            converterStateInfoPendingConversion = new Tuple<string, Texture2D>("Pending Conversion", iconPending);
-            converterStateInfoPendingConversionWarning = new Tuple<string, Texture2D>("Pending Conversion with Warnings", iconWarn);
-            converterStateInfoCompleteErrors = new Tuple<string, Texture2D>("Conversion Complete with Errors", iconFail);
-            converterStateInfoComplete = new Tuple<string, Texture2D>("Conversion Complete", iconComplete);
 
             string theme = EditorGUIUtility.isProSkin ? "dark" : "light";
             InitIfNeeded();
@@ -291,6 +280,7 @@ namespace UnityEditor.Rendering.Toon
             {
                 m_Status = Status.MaterialScanSuccess;
                 currentContainer.SetupConverter();
+                ApplyConverterStatus();
             }
             else
             {
