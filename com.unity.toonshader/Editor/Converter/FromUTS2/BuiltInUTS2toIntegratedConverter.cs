@@ -35,6 +35,10 @@ namespace UnityEditor.Rendering.Toon
 
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+                if ( material == null )
+                {
+                    continue; // the material is deleted.
+                }
                 var shaderName = material.shader.ToString();
 #if false
                 if (!shaderName.StartsWith("Hidden/InternalErrorShader"))
@@ -232,7 +236,15 @@ namespace UnityEditor.Rendering.Toon
                 var guid = m_materialGuids[ii];
 
                 string path = AssetDatabase.GUIDToAssetPath(guid);
+                if ( path == null )
+                {
+                    continue; // the material is deleted.
+                }
                 Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+                if ( material == null )
+                {
+                    continue;
+                }
                 var shaderName = material.shader.ToString();
 #if false
                 if (!shaderName.StartsWith("Hidden/InternalErrorShader"))
