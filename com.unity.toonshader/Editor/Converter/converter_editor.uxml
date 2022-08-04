@@ -18,7 +18,7 @@
             <ui:TextElement text="The Render Pipeline Converter converts project elements from the Built-in Render Pipeline to URP." name="conversionInfo" style="height: 46px; width: 540px; flex-shrink: 0; margin-top: 3px; padding-left: 4px; padding-top: 9px;" />
             <ui:HelpBox message-type="Error" text="This process makes irreversible changes to the project. Back up your project before proceeding." style="flex-grow: 0; padding-top: 2px; padding-bottom: 2px; margin-top: 1px; margin-bottom: 1px;" />
                 <ui:VisualElement name="bottomTopVE" style="flex-direction: row-reverse; flex-shrink: 0; padding-left: 0; padding-right: 0; margin-top: 6px; width: auto; align-items: stretch; flex-grow: 0;">
-                    <ui:Button text="Scan the project" name="scanButton" tooltip="Click to initialize all the selected converters." style="flex-direction: column; margin-bottom: 1px; min-width: auto; width: 130px; display: none;" />
+                    <ui:Button text="Scan the project" name="scanButton" tooltip="Click to scan meterials in the project." style="flex-direction: column; margin-bottom: 1px; min-width: auto; width: 130px; display: none;" />
                 </ui:VisualElement>
         </ui:VisualElement>
 
@@ -27,7 +27,7 @@
             <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); min-width: auto; min-height: auto; flex-shrink: 0; width: auto; height: auto;">
                 <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-shrink: 0;">
                     <ui:Label tabindex="-1" display-tooltip-when-elided="true" style="flex-grow: 1;" />
-                    <ui:Button text=" Convert Assets" name="convertButton" style="flex-direction: column; margin-bottom: 1px; width: 130px; min-width: auto; display: none;" />
+                    <ui:Button text=" Convert Materials" name="convertButton" style="flex-direction: column; margin-bottom: 1px; width: 130px; min-width: auto; display: none;" />
                 </ui:VisualElement>
 
             </ui:VisualElement>
