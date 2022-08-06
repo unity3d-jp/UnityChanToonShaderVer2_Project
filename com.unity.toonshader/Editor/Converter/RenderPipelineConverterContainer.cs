@@ -23,7 +23,8 @@ namespace UnityEditor.Rendering.Toon
         protected readonly string[] targetSepeartors = new[] { ":", "," };
         protected readonly string[] targetSepeartors2 = new[] { ":" };
 
-        protected List<Material> m_ConvertingMaterials = new List<Material>();
+
+        protected List<string> m_ConvertingMaterialGuids = new List<string>();
         protected Dictionary<Material, string> m_Material2GUID_Dictionary = new Dictionary<Material, string>();
         protected Dictionary<string, UTSGUID> m_GuidToUTSID_Dictionary = new Dictionary<string, UTSGUID>();
 
@@ -66,10 +67,10 @@ namespace UnityEditor.Rendering.Toon
         public void Reset()
         {
             m_materialCount = 0;
-            m_ConvertingMaterials.Clear();
 
+            m_ConvertingMaterialGuids.Clear();
             m_versionErrorCount = 0;
-            m_ConvertingMaterials.Clear();
+
             m_Material2GUID_Dictionary.Clear();
             m_GuidToUTSID_Dictionary.Clear();
             UTS3Converter.scrollView.Clear();
@@ -124,7 +125,7 @@ namespace UnityEditor.Rendering.Toon
                     continue;
                 }
 
-                m_ConvertingMaterials.Add(material);
+                m_ConvertingMaterialGuids.Add(guid);
                 if (!m_Material2GUID_Dictionary.ContainsKey(material))
                 {
                     m_Material2GUID_Dictionary.Add(material, shaderGUID);
@@ -140,13 +141,70 @@ namespace UnityEditor.Rendering.Toon
         }
         protected void CommonConvert()
         {
-            foreach (var material in m_ConvertingMaterials)
+            foreach (var guid in m_ConvertingMaterialGuids)
             {
+                int renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+                string content = File.ReadAllText(path);
+                string[] lines = content.Split(lineSeparators, StringSplitOptions.None);
+                // deal with m_CustomRenderQueue
+                renderQueue = GetRenderQueue(path, lines);
+                // deal with RenderType
+                var renderType = GetRenderType(path, lines);
                 material.shader = Shader.Find(kIntegratedUTS3Name);
+                material.renderQueue = renderQueue;
+                if (renderType != null)
+                {
+                    material.SetOverrideTag("RenderType", renderType);
+                }
                 UTS3GUI.UpdateVersionInMaterial(material);
             }
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        int GetRenderQueue( string path, string[] lines)
+        {
+            int renderQueue = -1;
+            var targetLine = Array.Find<string>(lines, line => line.StartsWith("  m_CustomRenderQueue:"));
+            if (targetLine == null)
+            {
+                return renderQueue; // todo. prefab?
+            }
+            var customRenderQueue = targetLine.Split(targetSepeartors, StringSplitOptions.None);
+            if (customRenderQueue.Length < 2)
+            {
+                Error(path);
+                return renderQueue; 
+            }
+            var queueNumber = customRenderQueue[1];
+            while (queueNumber.StartsWith(" "))
+            {
+                queueNumber = queueNumber.TrimStart(' ');
+            }
+            renderQueue = int.Parse(queueNumber);
+            return renderQueue; 
+        }
+        string GetRenderType(string path, string[] lines)
+        {
+            var targetLine = Array.Find<string>(lines, line => line.StartsWith("    RenderType:"));
+            if (targetLine == null)
+            {
+                return null; ; // todo. prefab?
+            }
+            var renderType = targetLine.Split(targetSepeartors, StringSplitOptions.None);
+            if (renderType.Length < 2)
+            {
+                Error(path);
+                return null;
+            }
+            var targetRenderType = renderType[1];
+            while (targetRenderType.StartsWith(" "))
+            {
+                targetRenderType = targetRenderType.TrimStart(' ');
+            }
+            return targetRenderType;
         }
         protected UTSGUID FindSrcShader2GUID(string strShaderGUID, UTSGUID srcShaderGUID, UTSGUID srcTessShaderGUID)
         {

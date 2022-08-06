@@ -10,7 +10,7 @@ namespace UnityEditor.Rendering.Toon
     {
         internal UTS3GUI.CullingMode m_cullingMode;
         internal int _autoRenderQueue = 1;
-        internal int _renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+
         internal UTS3GUI.UTS_TransparentMode _Transparent_Setting;
         internal int _StencilNo_Setting;
 
@@ -95,7 +95,8 @@ namespace UnityEditor.Rendering.Toon
                     m_versionErrorCount++;
                     continue;
                 }
-                m_ConvertingMaterials.Add(material);
+                m_ConvertingMaterialGuids.Add(guid);
+
                 if (!m_Material2GUID_Dictionary.ContainsKey(material))
                 {
                     m_Material2GUID_Dictionary.Add(material, shaderGUID);
@@ -366,13 +367,15 @@ namespace UnityEditor.Rendering.Toon
 #endif
         void ConvertBuiltInUTS2Materials( string[] guids)
         {
-            foreach (var material in m_ConvertingMaterials)
+            foreach (var guid in m_ConvertingMaterialGuids)
             {
-
+                int renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
                 material.shader = Shader.Find(kIntegratedUTS3Name);
                 var shaderGUID = m_Material2GUID_Dictionary[material];
                 var UTS2GUID = m_GuidToUTSID_Dictionary[shaderGUID];
-
+                renderQueue = material.renderQueue;
                 //                _Transparent_Setting = (UTS3GUI.UTS_TransparentMode)UTS3GUI.MaterialGetInt( material, UTS3GUI.ShaderPropTransparentEnabled);
                 _Transparent_Setting = UTS3GUI.UTS_TransparentMode.Off;
                 if (UTS2GUID.m_ShaderName.Contains("Trans") || UTS2GUID.m_ShaderName.Contains("trans"))
@@ -381,7 +384,7 @@ namespace UnityEditor.Rendering.Toon
                 }
                 _StencilNo_Setting = UTS3GUI.MaterialGetInt(material, UTS3GUI.ShaderPropStencilNo);
                 _autoRenderQueue = UTS3GUI.MaterialGetInt(material, UTS3GUI.ShaderPropAutoRenderQueue);
-                _renderQueue = material.renderQueue;
+
                 UTS3GUI.UTS_Mode technique = (UTS3GUI.UTS_Mode)UTS3GUI.MaterialGetInt(material, UTS3GUI.ShaderPropUtsTechniqe);
 
                 switch (technique)
@@ -406,7 +409,7 @@ namespace UnityEditor.Rendering.Toon
                     UTS3GUI.SetupOverDrawTransparentObject(material);
                 }
                 SetCullingMode(material);
-                SetRenderQueue(material);
+                SetAutoRenderQueue(material);
                 SetTranparent(material);
 
                 BasicLookdevs(material);
@@ -415,7 +418,7 @@ namespace UnityEditor.Rendering.Toon
                 ApplyStencilMode(material);
                 ApplyAngelRing(material);
                 ApplyMatCapMode(material);
-                ApplyQueueAndRenderType(technique, material);
+                ApplyQueueAndRenderType(technique, renderQueue, material );
 
 
             }
@@ -459,7 +462,7 @@ namespace UnityEditor.Rendering.Toon
 
             }
         }
-        void SetRenderQueue(Material material)
+        void SetAutoRenderQueue(Material material)
         {
             UTS3GUI.MaterialSetInt(material, UTS3GUI.ShaderPropAutoRenderQueue, _autoRenderQueue);
             // material.renderQueue
@@ -529,7 +532,7 @@ namespace UnityEditor.Rendering.Toon
             return UTS3GUI.MaterialGetInt(material, UTS3GUI.ShaderPropUtsTechniqe) == (int)UTS3GUI.UTS_Mode.ShadingGradeMap;
         }
 
-        void ApplyQueueAndRenderType(UTS3GUI.UTS_Mode technique, Material material)
+        void ApplyQueueAndRenderType(UTS3GUI.UTS_Mode technique, int renderQueue, Material material)
         {
             var stencilMode = (UTS3GUI.UTS_StencilMode)UTS3GUI.MaterialGetInt(material, UTS3GUI.ShaderPropStencilMode);
             if (_autoRenderQueue == 1)
@@ -605,7 +608,7 @@ namespace UnityEditor.Rendering.Toon
             }
             else
             {
-                material.renderQueue = _renderQueue;
+                material.renderQueue = renderQueue;
             }
 
             material.SetOverrideTag(RENDERTYPE, renderType);
