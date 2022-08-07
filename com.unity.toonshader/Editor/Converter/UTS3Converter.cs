@@ -399,6 +399,7 @@ namespace UnityEditor.Rendering.Toon
         void Convert(ClickEvent evt)
         {
             currentContainer.Convert();
+            scrollView.Clear();
         }
 
     }
