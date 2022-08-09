@@ -84,7 +84,7 @@ The Outline is another important factor that determines the animation touch. The
 | <img src="images/BoldOutline2.png" >  | 
 
 ## Advanced techniques
-Now, you  learned basic cel-sheding. But, professional cel-shading often requires more treatments. You will lean a couple of techniques in this section.
+Now, you  learned basic cel-sheding. But, professional cel-shading often requires more treatments. You will learn a couple of techniques in this section.
 
 ### Eliminating outlines around eyes
 Look at the character's face above again. You will notice outlines around characters' eyes spoiling the images. UTS provides  [Outline Width Map](Outline.md#outline-width-map) to solve this. By applying that map, you can control the thickness of outlines around every part of the meshes to your satisfaction.
