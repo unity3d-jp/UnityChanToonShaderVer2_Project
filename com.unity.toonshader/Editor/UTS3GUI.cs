@@ -1309,7 +1309,7 @@ namespace UnityEditor.Rendering.Toon
             const string _ZWriteMode = "_ZWriteMode";
             const string _ZOverDrawMode = "_ZOverDrawMode";
             DoPopup(Styles.transparentModeText, transparentMode, System.Enum.GetNames(typeof(UTS_TransparentMode)));
-
+            transparencyEnabled = (UTS_TransparentMode)MaterialGetInt(material, ShaderPropTransparentEnabled);
 
             if (transparencyEnabled == UTS_TransparentMode.On)
             {

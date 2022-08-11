@@ -352,7 +352,7 @@ struct VertexOutput {
 	#endif
 #elif _IS_CLIPPING_TRANSMODE
 //DoubleShadeWithFeather_TransClipping
-    				float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
+    	float Set_Opacity = saturate((_Inverse_Clipping_var+_Tweak_transparency));
 	#ifdef _IS_PASS_FWDBASE
                 	fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
 	#elif _IS_PASS_FWDDELTA
