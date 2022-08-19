@@ -43,7 +43,7 @@ namespace UnityEditor.Rendering.Toon
                 string content = File.ReadAllText(path);
                 string[] lines = content.Split(lineSeparators, StringSplitOptions.None);
                 // always two spaces before m_Shader?
-                var targetLine = Array.Find<string>(lines, line => line.StartsWith("  m_Shader:"));
+                var targetLine = Array.Find<string>(lines, line => line.StartsWith(kShaderKeywordInMatrial));
                 if (targetLine == null)
                 {
                     continue; // todo. prefab?
@@ -200,7 +200,8 @@ namespace UnityEditor.Rendering.Toon
         }
         UTSGUID FindUTS2GUID(string guid)
         {
-            var ret = Array.Find<UTSGUID>(UTS2ShaderInfo.stdShaders, element => element.m_Guid == guid);
+            //            var ret = Array.Find<UTSGUID>(UTS2ShaderInfo.stdShaders, element => element.m_Guid == guid);
+#if false
             foreach (var utsGuid in UTS2ShaderInfo.stdShaders)
             {
                 if (utsGuid.m_Guid == guid)
@@ -215,6 +216,16 @@ namespace UnityEditor.Rendering.Toon
                     return utsGuid;
                 }
             }
+#else
+            foreach (var utsGuid in UTS2Table.tables)
+            {
+                if (utsGuid.m_Guid == guid)
+                {
+                    return utsGuid;
+                }
+            }
+            
+#endif
             return null;
         }
 
@@ -250,7 +261,7 @@ namespace UnityEditor.Rendering.Toon
                 string content = File.ReadAllText(path);
                 string[] lines = content.Split(lineSeparators, StringSplitOptions.None);
                 // always two spaces before m_Shader?
-                var targetLine = Array.Find<string>(lines, line => line.StartsWith("  m_Shader:"));
+                var targetLine = Array.Find<string>(lines, line => line.StartsWith(kShaderKeywordInMatrial));
                 if (targetLine == null)
                 {
                     continue; // todo. prefab?
@@ -366,17 +377,12 @@ namespace UnityEditor.Rendering.Toon
 
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
-
-                if (material.name == "ShadingGradeMap")
-                {
-                    Debug.Log("ShadingGradeMap");
-                }
-
-                material.shader = Shader.Find(kIntegratedUTS3Name);
+                var shaderID = GetShaderIDinMaterial(path);
+                material.shader = Shader.Find(IsTesselationShader(path) ? kIntegratedTessllationUTS3Name :  kIntegratedUTS3Name);
                 var shaderGUID = m_Material2GUID_Dictionary[material];
                 var UTS2Info = m_GuidToUTSID_Dictionary[shaderGUID] as UTS2INFO;
 
-                UTS3GUI.UTS_TransparentMode transparencyEnabled = (UTS2Info.m_renderQueue == RenderQueue.Transparent) ? UTS3GUI.UTS_TransparentMode.On : UTS3GUI.UTS_TransparentMode.Off;
+                UTS3GUI.UTS_TransparentMode transparencyEnabled = (UTS2Info.m_renderQueue == UTS2RenderQueue.Transparent) ? UTS3GUI.UTS_TransparentMode.On : UTS3GUI.UTS_TransparentMode.Off;
 
 
 
@@ -539,18 +545,18 @@ namespace UnityEditor.Rendering.Toon
             return UTS3GUI.MaterialGetInt(material, UTS3GUI.ShaderPropUtsTechniqe) == (int)UTS3GUI.UTS_Mode.ShadingGradeMap;
         }
 
-        void ApplyQueueAndRenderType(Material material, UTS3GUI.UTS_Mode technique, RenderQueue renderQueue,UTS3GUI.UTS_TransparentMode transperentSetting )
+        void ApplyQueueAndRenderType(Material material, UTS3GUI.UTS_Mode technique, UTS2RenderQueue renderQueue,UTS3GUI.UTS_TransparentMode transperentSetting )
         {
  
 
 
 
-            var ignoreProjection = UTS2INFO.DONT_IGNOREPROJECTION;
+            // var ignoreProjection = UTS2INFO.DONT_IGNOREPROJECTION;
 
             if (transperentSetting == UTS3GUI.UTS_TransparentMode.On)
             {
 
-                ignoreProjection = UTS2INFO.DO_IGNOREPROJECTION;
+               // ignoreProjection = UTS2INFO.DO_IGNOREPROJECTION;
             }
             else
             {
@@ -559,16 +565,16 @@ namespace UnityEditor.Rendering.Toon
             //            material.SetOverrideTag(UTS2INFO.IGNOREPROJECTION, ignoreProjection);
             switch (renderQueue)
             {
-                case RenderQueue.None:
+                case UTS2RenderQueue.None:
                     material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
                     break;
-                case RenderQueue.AlphaTest:
+                case UTS2RenderQueue.AlphaTest:
                     material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
                     break;
-                case RenderQueue.AlphaTestMinus1:
+                case UTS2RenderQueue.AlphaTestMinus1:
                     material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
                     break;
-                case RenderQueue.Transparent:
+                case UTS2RenderQueue.Transparent:
                     material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
                     break;
             }

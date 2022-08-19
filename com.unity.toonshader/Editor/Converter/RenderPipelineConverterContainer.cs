@@ -19,17 +19,20 @@ namespace UnityEditor.Rendering.Toon
         protected string[] m_materialGuids;
         internal int m_versionErrorCount = 0;
 
-        protected readonly string[] lineSeparators = new[] { "\r\n", "\r", "\n" };
-        protected readonly string[] targetSepeartors = new[] { ":", "," };
-        protected readonly string[] targetSepeartors2 = new[] { ":" };
-
-
+        internal static readonly string[] lineSeparators = new[] { "\r\n", "\r", "\n" };
+        internal static readonly string[] targetSepeartors = new[] { ":", "," };
+        internal static readonly string[] targetSepeartors2 = new[] { ":" };
+        internal static readonly char[] wordSepeators = new[] { ' ', ',', ':', '\t' };
         protected List<string> m_ConvertingMaterialGuids = new List<string>();
         protected Dictionary<Material, string> m_Material2GUID_Dictionary = new Dictionary<Material, string>();
         protected Dictionary<string, UTSGUID> m_GuidToUTSID_Dictionary = new Dictionary<string, UTSGUID>();
-
-        protected const string kIntegratedUTS3GUID = "be891319084e9d147b09d89e80ce60e0";
         protected const string kIntegratedUTS3Name = "Toon";
+        protected const string kIntegratedUTS3GUID = "be891319084e9d147b09d89e80ce60e0";
+
+        protected const string kIntegratedTessllationUTS3Name = "Toon(Tessellation)";
+        protected const string kIntegratedTessllationUTS3GUID = "e4468eb8a8320f7488ddbb0e591f9fbc";
+        protected const string kShaderKeywordInMatrial = "  m_Shader:";
+
         protected static string packageFullPath
         {
             get; set;
@@ -40,6 +43,26 @@ namespace UnityEditor.Rendering.Toon
             Debug.LogErrorFormat("File: {0} is corrupted.", path);
         }
 
+        protected bool IsTesselationShader(string materialPath)
+        {
+            var shaderID = GetShaderIDinMaterial(materialPath);
+            foreach (var tessShaderGUID in UTS2ShaderInfo.tessShaders)
+            {
+                if (tessShaderGUID.m_Guid == shaderID)
+                {
+                    return true;
+                }
+            }
+            if (shaderID == HdrpUTS3toIntegratedUTS3Converter.kOrgTessShaderGUID.m_Guid)
+            {
+                return true;
+            }
+            if (shaderID == BuiltinUTS3toIntegratedUTS3Converter.kOrgTessShaderGUID.m_Guid)
+            {
+                return true;
+            }
+            return false;
+        }
         /// <summary>
         /// The name of the container. This name shows up in the UI.
         /// </summary>
@@ -86,6 +109,35 @@ namespace UnityEditor.Rendering.Toon
             }
             // CheckSourceShaderInstalled(); // Not necessary? 
         }
+
+        protected string GetShaderIDinMaterial(string path)
+        {
+            string content = File.ReadAllText(path);
+            string[] lines = content.Split(lineSeparators, StringSplitOptions.None);
+            // always two spaces before m_Shader?
+            var targetLine = Array.Find<string>(lines, line => line.StartsWith(kShaderKeywordInMatrial));
+            if (targetLine == null)
+            {
+                return null;  // todo. prefab?
+            }
+            var shaderMetadata = targetLine.Split(targetSepeartors, StringSplitOptions.None);
+            if (shaderMetadata == null)
+            {
+                return null;
+            }
+            if (shaderMetadata.Length < 4)
+            {
+                m_versionErrorCount++;
+                Error(path);
+                return null;
+            }
+            var shaderGUID = shaderMetadata[4];
+            while (shaderGUID.StartsWith(" "))
+            {
+                shaderGUID = shaderGUID.TrimStart(' ');
+            }
+            return shaderGUID;
+        }
         protected void SetupConverterCommon(UTSGUID srcShaderGUID, UTSGUID srcTessShaderGUID)
         {
 
@@ -100,25 +152,7 @@ namespace UnityEditor.Rendering.Toon
                 Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
                 var shaderName = material.shader.ToString();
 
-                string content = File.ReadAllText(path);
-                string[] lines = content.Split(lineSeparators, StringSplitOptions.None);
-                // always two spaces before m_Shader?
-                var targetLine = Array.Find<string>(lines, line => line.StartsWith("  m_Shader:"));
-                if (targetLine == null)
-                {
-                    continue; // todo. prefab?
-                }
-                var shaderMetadata = targetLine.Split(targetSepeartors, StringSplitOptions.None);
-                if (shaderMetadata.Length < 4)
-                {
-                    Error(path);
-                    continue;
-                }
-                var shaderGUID = shaderMetadata[4];
-                while (shaderGUID.StartsWith(" "))
-                {
-                    shaderGUID = shaderGUID.TrimStart(' ');
-                }
+                var shaderGUID = GetShaderIDinMaterial(path);
                 var foundOldUTSGUID = FindSrcShader2GUID(shaderGUID, srcShaderGUID, srcTessShaderGUID);
                 if (foundOldUTSGUID == null)
                 {
@@ -148,11 +182,14 @@ namespace UnityEditor.Rendering.Toon
                 Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
                 string content = File.ReadAllText(path);
                 string[] lines = content.Split(lineSeparators, StringSplitOptions.None);
+                var shderGUID = GetShaderIDinMaterial(path);
+
                 // deal with m_CustomRenderQueue
                 renderQueue = GetRenderQueue(path, lines);
                 // deal with RenderType
                 var renderType = GetRenderType(path, lines);
-                material.shader = Shader.Find(kIntegratedUTS3Name);
+                material.shader = Shader.Find(IsTesselationShader(path) ? kIntegratedTessllationUTS3Name : kIntegratedUTS3Name);
+
                 material.renderQueue = renderQueue;
                 if (renderType != null)
                 {

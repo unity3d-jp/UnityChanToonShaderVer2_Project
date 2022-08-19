@@ -6,7 +6,7 @@ namespace UnityEditor.Rendering.Toon
 {
     internal sealed class UniversalUTS2toIntegratedUTS3Converter : RenderPipelineConverterContainer
     {
-        readonly UTSGUID kOrgShaderGUID = new UTSGUID("766736548846cdf459a9766614dcccab", "Universal Render Pipeline/Toon");
+        readonly UTSGUID kOrgShaderGUID = new UTSGUID("766736548846cdf459a9766614dcccab", "Universal Render Pipeline/Toon", false);
         readonly UTSGUID kOrgTessShaderGUID = null;
 
         public override string name => "Universal Toon Shader";
