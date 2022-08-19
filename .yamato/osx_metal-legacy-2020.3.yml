@@ -14,8 +14,9 @@ unity_versions:
     name: {{ test_project.name }} on OSX_Metal_playmode_mono_Linear on version {{ unity_version.name }}
     agent:
         type: Unity::metal::macmini
-        image: slough-ops/macos-10.14-xcode:stable
-        flavor: m1.mac
+        model: M1
+        image: package-ci/macos-12:v0.0.1-1084810
+        flavor: b1.large    
     variables:
         UPM_REGISTRY: https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates
     commands:
