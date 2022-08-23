@@ -1,4 +1,8 @@
 # Changelog
+## [0.8.1-preview] - 2022-08-23
+### Updated:
+* The next version is 0.8.1-preview.
+
 ## [0.8.0-preview] - 2022-08-02
 ### Updated:
 * All the render pipeline shaders are integrated.
