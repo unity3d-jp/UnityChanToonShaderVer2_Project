@@ -9,6 +9,7 @@
   * [0.4.0-preview](whats-new-0.4.x.md)
   * [0.3.0-preview](whats-new-0.3.x.md)
 * [Getting started](GettingStarted.md)
+* [Material Converter](MaterialConverter.md)
 * [Inspector Window Settings](Parameter-Settings.md)
   * [Modes](Modes.md)
   * [Shader Settings](Shader.md)

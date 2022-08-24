@@ -15,7 +15,7 @@ In animation production, color specialists specify detailed color designs for ev
 
 | Typical color design instruction example |
 |--|
-| <img src="images/UTS4Color2.png" width=400> |
+| ![](images/UTS4Color2.png)|
 | A: Highlight Color|
 | B: Base Color |
 | C: 1st Shading Color|
