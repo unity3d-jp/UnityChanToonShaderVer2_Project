@@ -1,4 +1,8 @@
 # Changelog
+## [0.8.2-preview] - 2022-08-26
+### Updated:
+* Next version is 0.8.2-preview.
+
 ## [0.8.1-preview] - 2022-08-24
 ### Updated:
 * Updated some docs.
