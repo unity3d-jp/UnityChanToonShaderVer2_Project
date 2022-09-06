@@ -6,6 +6,7 @@
 ## [0.8.1-preview] - 2022-08-24
 ### Updated:
 * Updated some docs.
+
 ### Fixed:
 * TOC didn't include the link to Material Converter page.
 * A image in index.md wasn't displayed in doc web site.
@@ -14,7 +15,7 @@
 ### Updated:
 * All the render pipeline shaders are integrated.
 * Added material converter to above which is capable of Unity-Chan Toon Shader V2, Universal Toon and UTS3 older than 0.7.x.
-* The package is conpatible with 2020.3, 2021.3, 2022.1 and 2022.2. 2019.4 is no longer supported.
+* The package is compatible with 2020.3, 2021.3, 2022.1 and 2022.2. 2019.4 is no longer supported.
 
 
 ## [0.7.5-preview] - 2022-06-27
@@ -23,6 +24,7 @@
 ## [0.7.4-preview] - 2022-06-25
 ### Fixed:
 * HDRP:Metaverse light was not working properly.
+
 ### Updated:
 * Added `Getting Started` to the documentation.
 * Added more description to Outline doc.
@@ -125,6 +127,7 @@
 * Added Tips to Culling Mode popup menu in the inspector window.
 * Added Tips to GUI Toggles in the inspector window.
 * Added Tips to Range Properties in the inspector window.
+
 ### Removed:
 * Removed   `● Additional Settings` in the Inspector window.
 * Removed Simple UI.
@@ -135,6 +138,7 @@
 * Removed unnecessary labels in the inspector such as `System Shadows:`
 * `RTHS(Realtime Hard Shadow` is deprecated now as it will not be Unity official package.
 * RTHS is not shown unless `Show deprecated features in the inspector` is checked in the `Project Settings Window`.
+
 ### Fixed:
 * Undo/Redo was not working on some items in the inspector window.
 * Fixed Indent in NoramMap Settings in the inspector window.
@@ -158,6 +162,7 @@
 * Updated README.md
 * Added LICENSE.md under the project folder.
 * Shader version properties in all the render pipeline shaders.
+
 ### Fixed:
 * Some unnecessary classes were public.
 * URP: a depth output issue later then 10.0.x. (Thanks to riina)
@@ -171,6 +176,7 @@
 * Tentatively deleted Japanese documentation before making the package ready for Unity standard translation system.
 * HDRP: made UTS compatible with HDRP AOV. Capable of outputting Albedo, Normal and so on using AOV Image Sequence Recorder newer than 3.0.
 * More effective and strict internal tests.
+
 ### Fixed:
 * HDRP:reduced shader variants by disabling some debug pragmas.
 * URP:UTS materials don't receive shadows when using newer than Unity 2021.1.
@@ -184,6 +190,7 @@
 ## [0.4.1-preview] - 2021-10-20
 ### Added
 * HDRP:Something similar to HDRP exposure compensation.
+
 ### Fixed:
 * typo in documents.
 * missing mono behaviors in sample scenes.
@@ -194,10 +201,12 @@
 ### Added
 * HDRP: Compatibility with Box Light, a spot light variation, as main lights.
 * HDRP: BoxLightAdjustment mono-behavior
+
 ### Fixed:
 * URP: Unstable SRP Compatibility. Thanks to tangx246.
 * URP: Outline pass is not compatible with VR when  Single Pass Instanced rendering is chosen. Thanks to tangx246 again.
 * URP: Some warnings.
+
 ### Updated:
 * Documentation~/en/FeatureModel_en.md. Thanks to riina.
 * Platforms in documentation.
@@ -205,6 +214,7 @@
 ## [0.3.2-preview] - 2021-09-28
 ### Added
 * doc: HDRP: description for ray-trace shadow.
+
 ### Fixed
 * HDRP: fix Gaps between self-shadow and ray-trace shadow.
 
