@@ -1,11 +1,12 @@
 # Changelog
-## [0.8.2-preview] - 2022-09-07
+## [0.8.2-preview] - 2022-09-08
 ### Updated:
 * Updated some documents.
 
 ### Fixed:
-* Some warinings.
-* URP shader was not working for WebGL.
+* Deleted some warinings.
+* The converter sometimes misidentified materials older than 0.7.x in Built-in UTS3 as older materials in Unitychan Toon Shader Ver 2.0.7.
+* URP shader was not working for WebGL/GLES 3.0.
 
 
 ## [0.8.1-preview] - 2022-08-24

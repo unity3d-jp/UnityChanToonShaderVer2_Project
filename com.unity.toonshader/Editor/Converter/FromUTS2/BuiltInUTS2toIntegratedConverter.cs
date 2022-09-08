@@ -287,7 +287,11 @@ namespace UnityEditor.Rendering.Toon
                 {
                     continue;       // Not Unity-chan Toon Shader Ver 2.
                 }
-
+                var targetLine1 = Array.Find<string>(lines, line => line.StartsWith("    - _isUnityToonshader"));
+                if (targetLine1 != null)
+                {
+                    continue;      // Not Unity-chan Toon Shader Ver 2.
+                }
                 var targetLine2 = Array.Find<string>(lines, line => line.StartsWith("    - _utsVersion"));
                 if (targetLine2 == null)
                 {
