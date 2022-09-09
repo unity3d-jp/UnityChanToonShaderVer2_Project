@@ -1,10 +1,11 @@
 # Changelog
-## [0.8.2-preview] - 2022-09-08
+## [0.8.2-preview] - 2022-09-09
 ### Updated:
 * Updated some documents.
 
 ### Fixed:
 * Deleted some warinings.
+* The converter ignores custom render queue in Unitychan Toon Shader ver 2 materials.
 * The converter sometimes misidentified materials older than 0.7.x in Built-in UTS3 as older materials in Unitychan Toon Shader Ver 2.0.7.
 * URP shader was not working for WebGL/GLES 3.0.
 

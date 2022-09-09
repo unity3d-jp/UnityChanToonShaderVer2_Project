@@ -201,7 +201,7 @@ namespace UnityEditor.Rendering.Toon
             AssetDatabase.Refresh();
         }
 
-        int GetRenderQueue( string path, string[] lines)
+        protected int GetRenderQueue( string path, string[] lines)
         {
             int renderQueue = -1;
             var targetLine = Array.Find<string>(lines, line => line.StartsWith("  m_CustomRenderQueue:"));
