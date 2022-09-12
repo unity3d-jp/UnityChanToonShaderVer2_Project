@@ -14,7 +14,7 @@ Unity provides  the **Unity Toon Shader** sample scenes for the three render pip
 | <img src="images/UtsProjectSettingsWindow.png">|
 
 
- `Assets/Samples/Unity Toon Shader/0.8.1-preview/Universal render pipeline` folder contains the following scenes.
+ `Assets/Samples/Unity Toon Shader/0.8.3-preview/Universal render pipeline` folder contains the following scenes.
 
 * Sample/Sample.unity        ：An scene to introduce the basic.  
 * ToonShader.unity            ：A illustration-style shading sample scene.  
@@ -33,5 +33,5 @@ Unity provides  the **Unity Toon Shader** sample scenes for the three render pip
 
  
 Sample scenes for other render pipelines are in the following folders.  
-* for the **Built-in Render Pipeline**：`Assets/Samples/Unity Toon Shader/0.8.1-preview/Legacy render pipeline` folder. 
-* for the **High definition render pipeline**：`Assets/Samples/Unity Toon Shader/0.8.1-preview/High definition render pipeline` folder.
+* for the **Built-in Render Pipeline**：`Assets/Samples/Unity Toon Shader/0.8.3-preview/Legacy render pipeline` folder. 
+* for the **High definition render pipeline**：`Assets/Samples/Unity Toon Shader/0.8.3-preview/High definition render pipeline` folder.
