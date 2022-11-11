@@ -24,12 +24,5 @@
          "description": "Sample scenes for High definition render pipeline.",
          "path": "Samples~/HDRP"
         }
-    ],
-    "contributors": [      
-      "Nobuyuki Kobayashi<nobuyuki@unity3d.com> (https://github.com/Nobuyuki-Kobayashi)",
-      "Toshiyuki Mori <toshiyuki@unity3d.com> (https://github.com/h3idi-X)",
-      "Sindharta Tanuwijaya <sindharta.tanuwijaya@unity3d.com> (https://github.com/sindharta)",
-      "Hiroki Omae <hiroki@unity3d.com> (https://github.com/hiroki-o)"
-    ]        
-    
+        ]
 }
