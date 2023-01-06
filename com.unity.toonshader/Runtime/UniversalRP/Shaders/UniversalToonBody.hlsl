@@ -206,9 +206,9 @@
                 return SAMPLE_TEXTURE2D(_RaytracedHardShadow, sampler_RaytracedHardShadow, screenPos);
 #endif // UTS_USE_RAYTRACING_SHADOW
 
-#if !defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
-                return 1.0h;
-#endif
+#if defined(ADDITIONAL_LIGHT_CALCULATE_SHADOWS)
+
+
 # if (SHADER_LIBRARY_VERSION_MAJOR >= 13 && UNITY_VERSION >= 202220 )
                 ShadowSamplingData shadowSamplingData = GetAdditionalLightShadowSamplingData(lightIndex);
 # else
@@ -231,6 +231,9 @@
 
                 half4 shadowParams = GetAdditionalLightShadowParams(lightIndex);
                 return SampleShadowmap(TEXTURE2D_ARGS(_AdditionalLightsShadowmapTexture, sampler_AdditionalLightsShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, true);
+#else
+                return 1.0h;
+#endif
             }
 
 

@@ -12,7 +12,7 @@
   * [0.4.x-preview](com.unity.toonshader/Documentation~/whats-new-0.4.x.md)
   * [0.3.x-preview](com.unity.toonshader/Documentation~/whats-new-0.3.x.md)
 * [Getting Started](com.unity.toonshader/Documentation~/GettingStarted.md)
-* [Materal Converter](com.unity.toonshader/Documentation~/MaterialConverter.md)
+* [Material Converter](com.unity.toonshader/Documentation~/MaterialConverter.md)
 * [Shader Parameter Settings](com.unity.toonshader/Documentation~/Parameter-Settings.md)
   * [Modes](com.unity.toonshader/Documentation~/Modes.md)
   * [Shader Settings](com.unity.toonshader/Documentation~/Shader.md)

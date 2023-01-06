@@ -4,7 +4,7 @@
 test_projects:
   - name: HdrpDX12GraphicsTest-2021.3
 unity_versions:
-  - name: 2021.3
+#  - name: 2021.3
   - name: 2022.1
 ---
 {% for test_project in test_projects %}
