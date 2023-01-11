@@ -2,7 +2,7 @@
 ## [0.8.4-preview] - 2023-01-05
 ### Fixed:
 * URP Shader doesn't work with Unity 2022.2.2f1.
-
+* Warrnings in HDRP shaders.
 
 ## [0.8.3-preview] - 2022-09-12
 ### Updated:

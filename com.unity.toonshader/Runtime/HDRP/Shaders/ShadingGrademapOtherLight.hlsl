@@ -59,7 +59,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     float Set_BaseColorAlpha = _BaseColorVisible;
     float4 overridingColor = lerp(_BaseColorMaskColor, float4(_BaseColorMaskColor.w, _BaseColorMaskColor.w, _BaseColorMaskColor.w, 1.0f), _ComposerMaskMode);
     float  maskEnabled = max(_BaseColorOverridden, _ComposerMaskMode);
-    Set_BaseColor = lerp(Set_BaseColor, overridingColor, maskEnabled);
+    Set_BaseColor = lerp(Set_BaseColor, overridingColor.rgb, maskEnabled);
     Set_BaseColor *= _BaseColorVisible;
 
 #endif //#ifdef UTS_LAYER_VISIBILITY
@@ -70,7 +70,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     {
         float4 overridingColor = lerp(_FirstShadeMaskColor, float4(_FirstShadeMaskColor.w, _FirstShadeMaskColor.w, _FirstShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_FirstShadeOverridden, _ComposerMaskMode);
-        Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor, maskEnabled);
+        Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, overridingColor.rgb, maskEnabled);
         Set_1st_ShadeColor = lerp(Set_1st_ShadeColor, Set_BaseColor, 1.0f - _FirstShadeVisible);
     }
     float Set_1st_ShadeAlpha = _FirstShadeVisible;
@@ -82,7 +82,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
     {
         float4 overridingColor = lerp(_SecondShadeMaskColor, float4(_SecondShadeMaskColor.w, _SecondShadeMaskColor.w, _SecondShadeMaskColor.w, 1.0f), _ComposerMaskMode);
         float  maskEnabled = max(_SecondShadeOverridden, _ComposerMaskMode);
-        Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor, maskEnabled);
+        Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, overridingColor.rgb, maskEnabled);
         Set_2nd_ShadeColor = lerp(Set_2nd_ShadeColor, Set_BaseColor, 1.0f - _SecondShadeVisible);
 
     }
@@ -138,7 +138,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
 
     float4 _Set_HighColorMask_var = tex2D(_Set_HighColorMask, TRANSFORM_TEX(Set_UV0, _Set_HighColorMask));
     float _Specular_var = 0.5 * dot(halfDirection, lerp(i_normalDir, normalDirection, _Is_NormalMapToHighColor)) + 0.5; //  Specular                
-    float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel)) * lerp((1.0 - step(_Specular_var, (1.0 - pow(_HighColor_Power, 5)))), pow(_Specular_var, exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
+    float _TweakHighColorMask_var = (saturate((_Set_HighColorMask_var.g + _Tweak_HighColorMaskLevel)) * lerp((1.0 - step(_Specular_var, (1.0 - pow(abs(_HighColor_Power), 5)))), pow(abs(_Specular_var), exp2(lerp(11, 1, _HighColor_Power))), _Is_SpecularToHighColor));
     float4 _HighColor_Tex_var = tex2D(_HighColor_Tex, TRANSFORM_TEX(Set_UV0, _HighColor_Tex));
     float3 _HighColor_var = lerp((_HighColor_Tex_var.rgb * _HighColor.rgb), ((_HighColor_Tex_var.rgb * _HighColor.rgb) * Set_LightColor), _Is_LightColor_HighColor);
 #ifdef UTS_LAYER_VISIBILITY
@@ -157,7 +157,7 @@ float3 UTS_OtherLightsShadingGrademap(FragInputs input, float3 i_normalDir,
         finalColor += addColor;
         if (any(addColor))
         {
-            finalColor = lerp(finalColor, overridingColor, maskEnabled);
+            finalColor = lerp(finalColor, overridingColor.rgb, maskEnabled);
             channelOutAlpha = _HighlightVisible;
         }
     }
