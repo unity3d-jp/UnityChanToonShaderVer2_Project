@@ -93,7 +93,7 @@ struct VertexOutput {
                 o.pos = UnityObjectToClipPos( v.vertex );
                 //v.2.0.7 Detection of the inside the mirror (right or left-handed) o.mirrorFlag = -1 then "inside the mirror".
                 float3 crossFwd = cross(UNITY_MATRIX_V[0], UNITY_MATRIX_V[1]);
-                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2]) < 0 ? 1 : -1;
+                o.mirrorFlag = dot(crossFwd, UNITY_MATRIX_V[2].xyz) < 0 ? 1 : -1;
                 //
                 UNITY_TRANSFER_FOG(o,o.pos);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
@@ -158,7 +158,7 @@ struct VertexOutput {
                 //v.2.0.5: 
                 float3 addPassLightColor = (0.5*dot(lerp( i.normalDir, normalDirection, _Is_NormalMapToBase ), lightDirection)+0.5) * _LightColor0.rgb * attenuation;
                 float pureIntencity = max(0.001,(0.299*_LightColor0.r + 0.587*_LightColor0.g + 0.114*_LightColor0.b));
-                float3 lightColor = max(0, lerp(addPassLightColor, lerp(0,min(addPassLightColor,addPassLightColor/pureIntencity),_WorldSpaceLightPos0.w),_Is_Filter_LightColor));
+                float3 lightColor = max(float3(0,0,0), lerp(addPassLightColor, lerp(float3(0,0,0),min(addPassLightColor,addPassLightColor/pureIntencity),_WorldSpaceLightPos0.w),_Is_Filter_LightColor));
 #endif
 ////// Lighting:
                 float3 halfDirection = normalize(viewDirection+lightDirection);
