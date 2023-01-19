@@ -1,10 +1,9 @@
 # Changelog
 
-## [0.8.4-preview] - 2023-01-11
-next version is 0.8.4-preview
+## [0.8.4-preview] - 2023-01-19
+### Updated:
+* Shaders are compatible with some console platforms.
 
-* URP Shader doesn't work with Unity 2022.2.2f1.
-* Warrnings in HDRP shaders.
 ## [0.8.3-preview] - 2023-01-11
 ### Fixed:
 * URP Shader doesn't work with Unity 2022.2.2f1.

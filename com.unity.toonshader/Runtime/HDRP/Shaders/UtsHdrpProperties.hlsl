@@ -3,11 +3,12 @@
 // On PS4, texture/sampler declarations need to be outside of CBuffers
 // Otherwise those parameters are not bound correctly at runtime.
 // ===========================================================================
-
+#ifndef fixed
 #define fixed  half
+#endif
 
 // Unity Toon Shader
-#include "UtsTextures.hlsl"
+//#include "UtsTextures.hlsl"
 
 // Lit
 TEXTURE2D(_DistortionVectorMap);
