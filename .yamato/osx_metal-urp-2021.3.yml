@@ -6,7 +6,7 @@ test_projects:
 unity_versions:
   - name: 2021.3
 #  - name: 2022.1
-o#  - name: trunk
+#  - name: trunk
 ---
 {% for test_project in test_projects %}
 {% for unity_version in unity_versions %}

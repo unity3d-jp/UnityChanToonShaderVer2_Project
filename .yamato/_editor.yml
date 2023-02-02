@@ -6,6 +6,7 @@ unity_versions:
   - name: 2021.3
   - name: 2022.1
   - name: 2022.2
+  - name: 2023.1  
 ---
 {% for unity_version in unity_versions %}
 editor:priming:{{ unity_version.name }}:macos:
