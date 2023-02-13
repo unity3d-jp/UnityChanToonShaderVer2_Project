@@ -34,7 +34,7 @@ The size of the Highlight controlled through the High light power slider. The si
 
 UTS provides two modes for the highlight for different occasions and effect. The hard mode provides a crisp and solid edge to the highlight while the soft mode provides a blended blurred effect.
 
-| default color | applied different color |
+| Hard | Soft |
 | - | - |
 | <img src="images/SpecularHard.png" > | <img src="images/SpecularSoft.png" > |
 

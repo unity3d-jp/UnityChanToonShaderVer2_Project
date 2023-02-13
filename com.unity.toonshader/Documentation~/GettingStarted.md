@@ -54,7 +54,7 @@ The most basic function of the UTS is to render the mesh in three regions. **Bas
 The difference between the two texture is the color tone. In this sample, applied two different textures. But, applying one texture and differ colors to apply is also possible.
 | A: Base Map | B: 1st Shading Map | 
 | --- |  --- |
-| <img src="images/utc_all2_light.png" width=256> |  <img src="images/utc_all2_dark.png" width=256> | 
+| <img src="images/utc_all2_light.png" width="256"> |  <img src="images/utc_all2_dark.png" width="256"> | 
 
 
 

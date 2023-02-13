@@ -71,7 +71,7 @@ You will notice that the outlines of the white areas appear thicker in the textu
 ### Offset Outline with Camera Z-axis
 Offsets the outline in the depth (Z) direction of the camera. UTS outline is an implementation of either extending polygons in the normal direction or applying a scale value. Sometimes, offsetting the position of the generated polygons in the Z (depth) direction can improve their appearance. 
 
-| With Z-axis Offset | Without Z-axis Offset |
+| Without Z-axis Offset | With Z-axis Offset |
 | -- | -- |
 | <img src="images/OffsetZ02.png" height="256"> | <img src="images/OffsetZ03.png" height="256"> |
 

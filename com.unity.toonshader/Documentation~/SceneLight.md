@@ -20,11 +20,11 @@ If the setting for each color is Off, the color is always illuminated with a lig
 
 | Property | Description |
 | --|  --|
-| Base Color |  Light color effect in  the base color areas. |
-| 1st Shading Color |  Light color effect in  high lit areas. |
-| 2nd Shading Color |  Light color effect in  the 2nd shading color areas. |
-| Highlight |  Light color effect in  the base color areas. |
-| Rim Light |  Light color effect in  rim lit areas. |
+| Base Color |  Light color effect in the base color areas. |
+| 1st Shading Color |  Light color effect in the 1st shading color areas. |
+| 2nd Shading Color |  Light color effect in the 2nd shading color areas. |
+| Highlight |  Light color effect in high lit areas. |
+| Rim Light |  Light color effect in rim lit areas. |
 | Inverted Light Direction Rim Light | Light color effect in inverted direction rim lit areas. |
 | Angel Ring |  Light color effect in angel ring area. Angel Ring is exclusive for  **With Additional Control Maps** mode.|
 | MatCap |  Light color effect in  MatCap areas. |
