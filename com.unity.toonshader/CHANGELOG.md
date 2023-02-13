@@ -1,4 +1,8 @@
 # Changelog
+## [0.8.5-preview] - 2023-02-13
+### Fixed:
+* Some wrong information in docs.
+
 
 ## [0.8.4-preview] - 2023-01-19
 ### Updated:
