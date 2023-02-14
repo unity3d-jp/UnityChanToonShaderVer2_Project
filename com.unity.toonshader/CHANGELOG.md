@@ -1,4 +1,7 @@
 # Changelog
+## [0.8.6-preview] - 2023-02-15
+Next version is 0.8.6-preview
+
 ## [0.8.5-preview] - 2023-02-13
 ### Fixed:
 * Some wrong information in docs.
