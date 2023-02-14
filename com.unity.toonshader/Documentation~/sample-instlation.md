@@ -16,7 +16,7 @@ Unity provides  the **Unity Toon Shader** sample scenes for the three render pip
 
  `Assets/Samples/Unity Toon Shader/0.8.5-preview/Universal render pipeline` folder contains the following scenes.
 
-* Sample/Sample.unity        ：An scene to introduce the basic.  
+* Sample/Sample.unity        ：A scene to introduce the basic.  
 * ToonShader.unity            ：A illustration-style shading sample scene.  
 * ToonShader_CelLook.unity    ：A cel-style shading sample scene.  
 * ToonShader_Emissive.unity    ：A sample scene for [Emission](Emission.md).  
