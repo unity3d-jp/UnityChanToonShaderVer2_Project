@@ -108,6 +108,7 @@ namespace UnityEditor.Rendering.Toon
         public override void Convert() 
         {
             ConvertBuiltInUTS2Materials(m_materialGuids);
+            SendAnalyticsEvent();
         }
         public override void PostConverting() { }
 

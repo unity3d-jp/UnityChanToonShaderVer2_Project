@@ -20,6 +20,7 @@ namespace UnityEditor.Rendering.Toon
         public override void Convert() 
         { 
             CommonConvert(); 
+            SendAnalyticsEvent();
         }
         public override void PostConverting() { }
 
