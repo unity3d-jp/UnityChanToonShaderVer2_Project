@@ -9,8 +9,8 @@ namespace UnityEditor.Rendering.Toon
     {
         private const string k_VendorKey = "unity.anime-toolbox";
 
-        private static HashSet<string> m_registeredEvents = new();
-        private static Dictionary<string, DateTime> m_lastSentDateTime = new();
+        private static HashSet<string> m_registeredEvents = new HashSet<string>();
+        private static Dictionary<string, DateTime> m_lastSentDateTime = new Dictionary<string, DateTime>();
 
         private static bool IsEventRegistered<T>(Event<T> analyticsEvent)
         {
