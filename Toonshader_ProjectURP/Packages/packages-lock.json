@@ -31,16 +31,16 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "2.0.7",
+      "version": "3.0.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.1"
+        "com.unity.ext.nunit": "1.0.6"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.15",
+      "version": "2.0.17",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -86,7 +86,7 @@
       "hash": "bbba12aaf3e7c6fb1c198746ef9a0fcf408b79b9"
     },
     "com.unity.render-pipelines.core": {
-      "version": "10.9.0",
+      "version": "10.10.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -97,13 +97,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.universal": {
-      "version": "10.9.0",
+      "version": "10.10.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.1.0",
-        "com.unity.render-pipelines.core": "10.9.0",
-        "com.unity.shadergraph": "10.9.0"
+        "com.unity.render-pipelines.core": "10.10.1",
+        "com.unity.shadergraph": "10.10.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -122,11 +122,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "10.9.0",
+      "version": "10.10.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "10.9.0",
+        "com.unity.render-pipelines.core": "10.10.1",
         "com.unity.searcher": "4.3.2"
       },
       "url": "https://packages.unity.com"
@@ -139,7 +139,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.31",
+      "version": "1.1.33",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -212,7 +212,7 @@
       }
     },
     "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.9",
+      "version": "2.1.10",
       "depth": 1,
       "source": "registry",
       "dependencies": {
