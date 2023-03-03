@@ -30,6 +30,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.film-internal-utilities": {
+      "version": "0.18.1-preview",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.timeline": "1.2.18"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ide.rider": {
       "version": "3.0.18",
       "depth": 0,
@@ -159,11 +169,24 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.timeline": {
+      "version": "1.4.8",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.director": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.toonshader": {
       "version": "file:../../com.unity.toonshader",
       "depth": 0,
       "source": "local",
       "dependencies": {
+        "com.unity.film-internal-utilities": "0.18.1-preview",
         "com.unity.render-pipelines.core": "10.0.0"
       }
     },
