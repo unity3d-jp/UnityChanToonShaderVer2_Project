@@ -26,6 +26,26 @@
 #endif
 
 
+#if USE_FORWARD_PLUS && defined(LIGHTMAP_ON) && defined(LIGHTMAP_SHADOW_MIXING)
+#define FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK if (_AdditionalLightsColor[lightIndex].a > 0.0h) continue;
+#else
+#define FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK
+#endif
+
+#if USE_FORWARD_PLUS
+    #define UTS_LIGHT_LOOP_BEGIN(lightCount) { \
+    uint lightIndex; \
+    ClusterIterator _urp_internal_clusterIterator = ClusterInit(inputData.normalizedScreenSpaceUV, i.posWorld.xyz, 0); \
+    [loop] while (ClusterNext(_urp_internal_clusterIterator, lightIndex)) { \
+        lightIndex += URP_FP_DIRECTIONAL_LIGHTS_COUNT; \
+        FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK
+    #define UTS_LIGHT_LOOP_END } }
+#else
+    #define UTS_LIGHT_LOOP_BEGIN(lightCount) \
+    for (uint loopCounter = 0u; loopCounter < lightCount; ++loopCounter) {
+
+    #define UTS_LIGHT_LOOP_END }
+#endif
 
              
 
@@ -78,7 +98,7 @@
                 outSurfaceData.occlusion = SampleOcclusion(uv);
                 outSurfaceData.emission = SampleEmission(uv, _EmissionColor.rgb, TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
             }
-            half3 GlobalIlluminationUTS(BRDFData brdfData, half3 bakedGI, half occlusion, half3 normalWS, half3 viewDirectionWS)
+            half3 GlobalIlluminationUTS_Deprecated_Deprecated(BRDFData brdfData, half3 bakedGI, half occlusion, half3 normalWS, half3 viewDirectionWS)
             {
                 half3 reflectVector = reflect(-viewDirectionWS, normalWS);
                 half fresnelTerm = Pow4(1.0 - saturate(dot(normalWS, viewDirectionWS)));
@@ -87,6 +107,20 @@
                 half3 indirectSpecular = GlossyEnvironmentReflection(reflectVector, brdfData.perceptualRoughness, occlusion);
 
                 return EnvironmentBRDF(brdfData, indirectDiffuse, indirectSpecular, fresnelTerm);
+            }
+            half3 GlobalIlluminationUTS(BRDFData brdfData, half3 bakedGI, half occlusion, half3 normalWS, half3 viewDirectionWS, float3 positionWS, float2 normalizedScreenSpaceUV)
+            {
+                half3 reflectVector = reflect(-viewDirectionWS, normalWS);
+                half fresnelTerm = Pow4(1.0 - saturate(dot(normalWS, viewDirectionWS)));
+
+                half3 indirectDiffuse = bakedGI * occlusion;
+#if USE_FORWARD_PLUS
+                half3 irradiance = CalculateIrradianceFromReflectionProbes(reflectVector, positionWS, brdfData.perceptualRoughness, normalizedScreenSpaceUV);
+                half3 indirectSpecular = irradiance * occlusion;
+#else
+                half3 indirectSpecular = GlossyEnvironmentReflection(reflectVector, brdfData.perceptualRoughness, occlusion);
+#endif
+                return EnvironmentBRDF(brdfData, indirectDiffuse, indirectSpecular, fresnelTerm);     
             }
 
             struct VertexInput {
@@ -242,8 +276,16 @@
             {
                 UtsLight light;
                 light.direction = _MainLightPosition.xyz;
+#if USE_FORWARD_PLUS
+                #if defined(LIGHTMAP_ON)
+                    light.distanceAttenuation = _MainLightColor.a;
+                #else
+                    light.distanceAttenuation = 1.0;
+                #endif
+#else
                 // unity_LightData.z is 1 when not culled by the culling mask, otherwise 0.
                 light.distanceAttenuation = unity_LightData.z;
+#endif
 #if defined(LIGHTMAP_ON) || defined(_MIXED_LIGHTING_SUBTRACTIVE)
                 // unity_ProbesOcclusion.x is the mixed light probe occlusion data
                 light.distanceAttenuation *= unity_ProbesOcclusion.x;
@@ -317,7 +359,11 @@
 // index to a perObjectLightIndex
             UtsLight GetAdditionalUtsLight(uint i, float3 positionWS,float4 positionCS)
             {
+#if USE_FORWARD_PLUS
+                int perObjectLightIndex = i;
+#else
                 int perObjectLightIndex = GetPerObjectLightIndex(i);
+#endif
                 return GetAdditionalPerObjectUtsLight(perObjectLightIndex, positionWS, positionCS);
             }
 
