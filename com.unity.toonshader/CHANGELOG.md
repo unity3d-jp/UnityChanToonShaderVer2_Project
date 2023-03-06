@@ -1,6 +1,7 @@
 # Changelog
-## [0.8.6-preview] - 2023-02-15
-Next version is 0.8.6-preview
+## [0.9.0-preview] - 2023-03-03
+### Updated
+* Minimum Unity version is 2020.3.45f1.
 
 ## [0.8.5-preview] - 2023-02-13
 ### Fixed:
