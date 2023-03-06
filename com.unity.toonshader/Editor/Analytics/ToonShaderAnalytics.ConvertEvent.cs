@@ -1,8 +1,10 @@
-﻿namespace UnityEditor.Rendering.Toon
+﻿using Unity.FilmInternalUtilities;
+
+namespace UnityEditor.Rendering.Toon
 {
     internal partial class ToonShaderAnalytics
     {
-        internal class ConvertEvent : AnimeToolboxAnalytics.Event<ConvertEvent.EventData>
+        internal class ConvertEvent : AnalyticsEvent<ConvertEvent.EventData>
         {
             internal override string eventName => k_EventNamePrefix + "convert";
             internal override int maxItems => 1;

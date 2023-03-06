@@ -5,7 +5,8 @@
         "Unity.Toonshader",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.Core.Editor",
-        "Unity.RenderPipelines.HighDefinition.Runtime"
+        "Unity.RenderPipelines.HighDefinition.Runtime",
+        "Unity.FilmInternalUtilities"
     ],
     "includePlatforms": [
         "Editor"

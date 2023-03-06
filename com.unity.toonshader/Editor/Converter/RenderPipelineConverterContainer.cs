@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.FilmInternalUtilities;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -264,7 +265,7 @@ namespace UnityEditor.Rendering.Toon
 
         protected void SendAnalyticsEvent()
         {
-            AnimeToolboxAnalytics.SendEvent(new ToonShaderAnalytics.ConvertEvent(GetType().Name));
+            AnalyticsSender.SendEventInEditor(new ToonShaderAnalytics.ConvertEvent(GetType().Name));
         }
     }
 }

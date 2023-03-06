@@ -1,10 +1,11 @@
 ﻿using System;
+using Unity.FilmInternalUtilities;
 
 namespace UnityEditor.Rendering.Toon
 {
     internal partial class ToonShaderAnalytics
     {
-        internal class LoadEvent : AnimeToolboxAnalytics.Event<LoadEvent.EventData>
+        internal class LoadEvent : AnalyticsEvent<LoadEvent.EventData>
         {
             internal override string eventName => k_EventNamePrefix + "load";
             internal override int maxEventPerHour => 1;

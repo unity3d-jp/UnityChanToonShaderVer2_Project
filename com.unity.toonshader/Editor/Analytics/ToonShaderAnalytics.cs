@@ -1,4 +1,6 @@
-﻿namespace UnityEditor.Rendering.Toon
+﻿using Unity.FilmInternalUtilities;
+
+namespace UnityEditor.Rendering.Toon
 {
     internal partial class ToonShaderAnalytics
     {
@@ -7,7 +9,7 @@
         [InitializeOnLoadMethod]
         private static void OnLoad()
         {
-            AnimeToolboxAnalytics.SendEvent(new LoadEvent(
+            AnalyticsSender.SendEventInEditor(new LoadEvent(
 #if HDRP_IS_INSTALLED_FOR_UTS
                 "high-definition"
 #elif URP_IS_INSTALLED_FOR_UTS
