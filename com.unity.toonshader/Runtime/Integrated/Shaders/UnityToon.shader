@@ -10,7 +10,7 @@ Shader "Toon" {
         [HideInInspector] _utsVersionY("VersionY", Float) = 9
         [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
-        [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
+        _AutoRenderQueue("Automatic Render Queue ", int) = 1
 
         [Enum(OFF, 0, StencilOut, 1, StencilMask, 2)] _StencilMode("StencilMode", int) = 0
         // these are set in UniversalToonGUI.cs in accordance with _StencilMode
@@ -35,7 +35,7 @@ Shader "Toon" {
         // ClippingMask paramaters from Here.
         _ClippingMask("ClippingMask", 2D) = "white" {}
 
-        [HideInInspector] _IsBaseMapAlphaAsClippingMask("IsBaseMapAlphaAsClippingMask", Float) = 0
+        _IsBaseMapAlphaAsClippingMask("IsBaseMapAlphaAsClippingMask", Float) = 0
         //
         [Toggle(_)] _Inverse_Clipping("Inverse_Clipping", Float) = 0
         _Clipping_Level("Clipping_Level", Range(0, 1)) = 0
@@ -51,11 +51,11 @@ Shader "Toon" {
 
 
         _MainTex ("BaseMap", 2D) = "white" {}
-        [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
+        _BaseMap ("BaseMap", 2D) = "white" {}
         _BaseColor ("BaseColor", Color) = (1,1,1,1)
         //v.2.0.5 : Clipping/TransClipping for SSAO Problems in PostProcessing Stack.
         //If you want to go back the former SSAO results, comment out the below line.
-        [HideInInspector] _Color ("Color", Color) = (1,1,1,1)
+        _Color ("Color", Color) = (1,1,1,1)
         //
         [Toggle(_)] _Is_LightColor_Base ("Is_LightColor_Base", Float ) = 1
         _1st_ShadeMap ("1st_ShadeMap", 2D) = "white" {}
@@ -79,10 +79,10 @@ Shader "Toon" {
         _BaseShade_Feather ("Base/Shade_Feather", Range(0.0001, 1)) = 0.0001
         _ShadeColor_Step ("ShadeColor_Step", Range(0, 1)) = 0
         _1st2nd_Shades_Feather ("1st/2nd_Shades_Feather", Range(0.0001, 1)) = 0.0001
-        [HideInInspector] _1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
-        [HideInInspector] _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
-        [HideInInspector] _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0
-        [HideInInspector] _2nd_ShadeColor_Feather ("2nd_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
+        _1st_ShadeColor_Step ("1st_ShadeColor_Step", Range(0, 1)) = 0.5
+        _1st_ShadeColor_Feather ("1st_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
+        _2nd_ShadeColor_Step ("2nd_ShadeColor_Step", Range(0, 1)) = 0
+        _2nd_ShadeColor_Feather ("2nd_ShadeColor_Feather", Range(0.0001, 1)) = 0.0001
         //v.2.0.5
         _StepOffset ("Step_Offset (ForwardAdd Only)", Range(-0.5, 0.5)) = 0
         [Toggle(_)] _Is_Filter_HiCutPointLightColor ("PointLights HiCut_Filter (ForwardAdd Only)", Float ) = 1
