@@ -5,6 +5,7 @@
 * [Requirements](com.unity.toonshader/Documentation~/System-Requirements.md)
 * [Installation](com.unity.toonshader/Documentation~/installation.md)
 * [What's new](com.unity.toonshader/Documentation~/whats-new.md)
+  * [0.9.x-preview](com.unity.toonshader/Documentation~/whats-new-0.9.x.md)
   * [0.8.x-preview](com.unity.toonshader/Documentation~/whats-new-0.8.x.md)
   * [0.7.x-preview](com.unity.toonshader/Documentation~/whats-new-0.7.x.md)
   * [0.6.x-preview](com.unity.toonshader/Documentation~/whats-new-0.6.x.md)
