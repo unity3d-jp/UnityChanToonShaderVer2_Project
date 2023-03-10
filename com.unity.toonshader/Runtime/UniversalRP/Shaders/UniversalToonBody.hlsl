@@ -25,6 +25,10 @@
 # endif
 #endif
 
+#if (UNITY_VERSION >= 202229) && (UNITY_VERSION < 202310)
+ #define sampler_MainLightShadowmapTexture sampler_LinearClampCompare
+ #define sampler_AdditionalLightsShadowmapTexture sampler_LinearClampCompare
+#endif
 
 #if USE_FORWARD_PLUS && defined(LIGHTMAP_ON) && defined(LIGHTMAP_SHADOW_MIXING)
 #define FORWARD_PLUS_SUBTRACTIVE_LIGHT_CHECK if (_AdditionalLightsColor[lightIndex].a > 0.0h) continue;
@@ -229,6 +233,8 @@
 #elif defined(_MAIN_LIGHT_SHADOWS_SCREEN)
                 return SampleScreenSpaceShadowmap(shadowCoord);
 #endif
+
+
                 return SampleShadowmap(TEXTURE2D_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord, shadowSamplingData, shadowParams, false);
             }
 
