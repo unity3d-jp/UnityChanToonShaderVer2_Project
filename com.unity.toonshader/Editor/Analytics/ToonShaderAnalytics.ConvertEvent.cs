@@ -4,12 +4,12 @@ namespace UnityEditor.Rendering.Toon
 {
     internal partial class ToonShaderAnalytics
     {
-        internal class ConvertEvent : AnalyticsEvent<ConvertEvent.EventData>
+        internal class ConvertEvent : AnalyticsEvent
         {
             internal override string eventName => k_EventNamePrefix + "convert";
-            internal override int maxItems => 1;
+            internal override int maxItems => 2;
 
-            internal struct EventData
+            internal class EventData : AnalyticsEventData
             {
                 public string converter;
             }

@@ -5,13 +5,13 @@ namespace UnityEditor.Rendering.Toon
 {
     internal partial class ToonShaderAnalytics
     {
-        internal class LoadEvent : AnalyticsEvent<LoadEvent.EventData>
+        internal class LoadEvent : AnalyticsEvent
         {
             internal override string eventName => k_EventNamePrefix + "load";
             internal override int maxEventPerHour => 1;
-            internal override int maxItems => 1;
+            internal override int maxItems => 2;
 
-            internal struct EventData
+            internal class EventData : AnalyticsEventData
             {
                 public string renderPipeline;
             }
