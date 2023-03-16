@@ -1,7 +1,9 @@
 # Changelog
-## [0.9.0-preview] - 2023-03-03
+
+## [0.9.0-preview] - 2023-03-16
 ### Updated
-* Minimum Unity version is 2020.3.45f1.
+* Minimum Unity version is 2020.3.45, 2021.3.19,2022.2.11.
+* Compatiblity with Universal RP Forward+.
 
 ## [0.8.5-preview] - 2023-02-13
 ### Fixed:
