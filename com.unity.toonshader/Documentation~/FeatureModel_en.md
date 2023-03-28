@@ -88,8 +88,7 @@ Activate/Deactive LightColor Effectiveness to each color:<br> Base Color,1st Sha
 | Color Shifting with Time 	| OK 	| OK 	| OK 	|  	|
 | Color Shifting with View Angle	| OK 	| OK 	| OK 	|  	|
 | ***13.Tessellation Settings*** 	|  	|  	|  	|  	|
-| Tessellation Settings (Built-in) 	| DX11/Vulkan/Metal 	| N.A. 	| N.A. 	|  	|
-| Tessellation Settings (HDRP) 	|N.A.  	|N.A.  	| DX11/Vulkan/Metal 	|  	|
+| Tessellation Settings 	| DX11/Vulkan/Metal 	| N.A. 	|  DX11/Vulkan/Metal 	|  	|
 | ***14. EV Adjustment*** 	|  	|  	|  	|  	|
 | EV Adjustment in high intensity light scenes	 	| N.A	| N.A.	| OK	|  	|
 | ***15. Render pipeline built-in ray-traced shadows*** 	|  	|  	|  	|  	|

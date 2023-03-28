@@ -29,15 +29,11 @@ Start from [creating a material](https://docs.unity3d.com/2022.2/Documentation/M
 
 Selecting appropriate shader for the material. 
 
-Because the **Unity Toon Shader**(UTS) includes shaders for all the render pipelines, the Built-in Render Pipeline, URP, and HDRP, you need to choose appropriate shader for the render pipeline set to your project.
+Because the **Unity Toon Shader**(UTS) is capable of all the render pipelines, the Built-in Render Pipeline, URP, and HDRP, The shaders you need to choose are just Toon or Toon(Tessellation). They are not under Universal Render Pipeline nor HDRP in menus.
 
-| Render pipeline | Shader path | Tesselation Shader path |
-|----|----|----|
-|The Built-in Render Pipeline | Toon (Built-in) | ToonTessellation (Built-in) |
-|URP | Universal Render Pipeline/Toon | N.A. |
-|HDRP | HDRP/Toon | HDRP/ToonTessellation
 
-| Applied Universal Render Pipeline/Toon | 
+
+| Applied Toon | 
 | --- | 
 | <img src="images/AppliedUTS.png"> | 
 
