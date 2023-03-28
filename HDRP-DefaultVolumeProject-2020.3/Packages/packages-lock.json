@@ -22,7 +22,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.film-internal-utilities": {
-      "version": "0.18.2-preview",
+      "version": "0.18.4-preview",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -167,7 +167,7 @@
       "depth": 0,
       "source": "local",
       "dependencies": {
-        "com.unity.film-internal-utilities": "0.18.2-preview",
+        "com.unity.film-internal-utilities": "0.18.4-preview",
         "com.unity.render-pipelines.core": "10.0.0"
       }
     },
