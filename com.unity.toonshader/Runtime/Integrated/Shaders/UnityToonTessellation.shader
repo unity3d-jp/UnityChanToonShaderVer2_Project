@@ -8,7 +8,7 @@ Shader "Toon(Tessellation)" {
         [HideInInspector][Enum(OFF, 0, ON, 1)] _isUnityToonshader("Material is touched by Unity Toon Shader", Int) = 1
         [HideInInspector] _utsVersionX("VersionX", Float) = 0
         [HideInInspector] _utsVersionY("VersionY", Float) = 9
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 1
         [HideInInspector] _utsTechnique ("Technique", int ) = 0 //DWF
         _AutoRenderQueue("Automatic Render Queue ", int) = 1
 
