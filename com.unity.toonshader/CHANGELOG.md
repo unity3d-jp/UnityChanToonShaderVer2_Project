@@ -1,4 +1,8 @@
 # Changelog
+## [0.9.2-preview] - 2023-04-07
+### Updated
+* Next version is 0.9.2-preview
+
 ## [0.9.1-preview] - 2023-03-30
 ### Fixed
 * Some wrong information for shader path in docs.
