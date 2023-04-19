@@ -1,4 +1,9 @@
 # Changelog
+## [0.9.3-preview] - 2023-04-18
+### TBD
+Next version is 0.9.3-preview
+
+* URP shader doesn't recieve shadows in player builds.
 ## [0.9.2-preview] - 2023-04-12
 ### Fixed
 * URP shader doesn't recieve shadows in player builds.
