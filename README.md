@@ -1,4 +1,7 @@
-﻿
+﻿# Latest official docs
+- [English](https://docs.unity3d.com/Packages/com.unity.toonshader@latest)
+- [日本語](https://docs.unity3d.com/ja/Packages/com.unity.toonshader@latest)
+
 # Unity Toon Shader
 ---
 * [Unity Toon Shader](com.unity.toonshader/Documentation~/index.md)
@@ -35,4 +38,3 @@
 * [Feature Difference](com.unity.toonshader/Documentation~/FeatureModel_en.md)
 * [Known Issues](com.unity.toonshader/Documentation~/Known-issue.md)
 
-- [日本語] -- in progress now.
