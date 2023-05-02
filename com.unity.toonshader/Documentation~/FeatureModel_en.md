@@ -2,7 +2,7 @@
 
 | Function	|  Legacy 	| URP 	| HDRP 	| Note 	|
 |-	|-	|-	|-	|-	|
-| 	|  	|  	|  	| as of 0.9.3-preview	|
+| 	|  	|  	|  	| as of 0.9.4-preview	|
 | ***1. Modes*** 	|  	|  	|  	|  	|
 | Standard	| OK 	| OK 	| OK 	|  	|
 | With Advanced Control Map 	| OK 	| OK	| OK 	|  	|
