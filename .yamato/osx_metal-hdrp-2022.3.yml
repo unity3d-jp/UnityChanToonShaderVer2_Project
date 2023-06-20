@@ -2,9 +2,9 @@
 #
 #
 test_projects:
-  - name: HdrpGraphicsTest-2022.2
+  - name: HdrpGraphicsTest-2022.3
 unity_versions:
-  - name: 2022.2
+  - name: 2022.3
 ---
 {% for test_project in test_projects %}
 {% for unity_version in unity_versions %}
