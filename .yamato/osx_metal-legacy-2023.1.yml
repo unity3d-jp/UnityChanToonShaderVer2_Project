@@ -1,0 +1,46 @@
+#
+#
+#
+test_projects:
+  - name: LegacyGraphicsTest-2023.1
+unity_versions:
+  - name: 2023.1
+---
+{% for test_project in test_projects %}
+{% for unity_version in unity_versions %}
+{{ test_project.name }}_OSX_Metal_playmode_mono_Linear_{{ unity_version.name }}:
+    name: {{ test_project.name }} on OSX_Metal_playmode_mono_Linear on version {{ unity_version.name }}
+    agent:
+        type: Unity::metal::macmini
+        image: package-ci/macos-12:v0.0.1-1084810
+        flavor: b1.large    
+    variables:
+        UPM_REGISTRY: https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates
+    commands:
+      -  curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr --output TestProjects/{{ test_project.name }}/utr
+      -  chmod +x TestProjects/{{ test_project.name }}/utr
+      -  ssh -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" bokken@$BOKKEN_DEVICE_IP "bash -lc 'pip3 install unity-downloader-cli --user --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple --upgrade'"
+      -  scp -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" -r $YAMATO_SOURCE_DIR bokken@$BOKKEN_DEVICE_IP:~/com.unity.toonshader
+      -  scp -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" ~/.ssh/id_rsa_macmini bokken@$BOKKEN_DEVICE_IP:~/.ssh/id_rsa_macmini
+      -  ssh -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" bokken@$BOKKEN_DEVICE_IP '$(python3 -m site --user-base)/bin/unity-downloader-cli --source-file ~/com.unity.toonshader/unity_revision_{{ unity_version.name }}.txt -c editor -c il2cpp  --wait --published-only'
+      -  |5-
+
+                 ssh -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" bokken@$BOKKEN_DEVICE_IP "export UPM_REGISTRY=https://artifactory-slo.bf.unity3d.com/artifactory/api/npm/upm-candidates; echo \$UPM_REGISTRY; cd ~/com.unity.toonshader/TestProjects/{{ test_project.name }} && ~/com.unity.toonshader/TestProjects/{{ test_project.name }}/utr --artifacts_path=/Users/bokken/com.unity.toonshader/TestProjects/{{ test_project.name }}/test-results --editor-location=/Users/bokken/.Editor --extra-editor-arg="-colorspace=Linear" --reruncount=2 --scripting-backend=Mono2x --suite=playmode --testproject=/Users/bokken/com.unity.toonshader/TestProjects/{{ test_project.name }}"
+                 UTR_RESULT=$? 
+                 mkdir -p TestProjects/{{ test_project.name }}/test-results/
+                 scp -i ~/.ssh/id_rsa_macmini -o "StrictHostKeyChecking=no" -r bokken@$BOKKEN_DEVICE_IP:/Users/bokken/com.unity.toonshader/TestProjects/{{ test_project.name }}/test-results/ TestProjects/{{ test_project.name }}/test-results/
+                 exit $UTR_RESULT
+    triggers:
+        branches:
+          only:
+          - "/.*/"
+    artifacts:
+        logs:
+            paths:
+              -  "**/test-results/**"
+              -  "TestProjects/{{ test_project.name }}/Logs/*.log"
+    dependencies:
+      -  path: .yamato/_editor.yml#editor:priming:{{ unity_version.name }}:macos
+         rerun: on-new-revision
+{% endfor %}
+{% endfor %}
