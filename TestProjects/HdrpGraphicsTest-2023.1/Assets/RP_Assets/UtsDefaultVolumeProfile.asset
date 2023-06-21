@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: UtsDefaultVolumeProfile
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 8041768803243260969}
+--- !u!114 &8041768803243260969
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileList
+  m_EditorClassIdentifier: 
+  active: 1
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value:
+    - {fileID: 11400000, guid: f35d1ac29f01482291c276feff307837, type: 2}
+    - {fileID: 11400000, guid: ce53e96619ea4c1ca6bc391d0792f801, type: 2}
