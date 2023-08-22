@@ -459,7 +459,7 @@
                 half fogFactor = ComputeFogFactor(positionCS.z);
 
                 OUTPUT_LIGHTMAP_UV(v.lightmapUV, unity_LightmapST, o.lightmapUV);
-#if UNITY_VERSION >= 202312
+#if UNITY_VERSION >= 202317
                 OUTPUT_SH4(positionWS, o.normalDir.xyz, GetWorldSpaceNormalizeViewDir(positionWS), o.vertexSH);
 #elif UNITY_VERSION >= 202310
                 OUTPUT_SH(positionWS, o.normalDir.xyz, GetWorldSpaceNormalizeViewDir(positionWS), o.vertexSH);
