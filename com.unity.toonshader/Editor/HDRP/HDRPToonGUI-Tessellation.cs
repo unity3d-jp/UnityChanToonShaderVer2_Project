@@ -98,7 +98,7 @@ namespace UnityEditor.Rendering.Toon
         }
         void TessellationModePopup()
         {
-            EditorGUI.showMixedValue = tessellationMode.hasMixedValue;
+            EditorGUI.showMixedValue = tessellationMode == null ? false: tessellationMode.hasMixedValue;
             TessellationMode mode = TessellationMode.None;
             mode = (TessellationMode)tessellationMode?.floatValue;
 
