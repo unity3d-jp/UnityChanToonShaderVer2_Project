@@ -1,4 +1,7 @@
 # Changelog
+## [0.9.6-preview] - 2023-09-24
+### TBD
+
 ## [0.9.5-preview] - 2023-08-25
 ### Fixed
 * A URP Shader error when using newer than 2023.1.3.

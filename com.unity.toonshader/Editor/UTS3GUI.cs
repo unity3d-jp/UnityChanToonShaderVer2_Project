@@ -13,7 +13,7 @@ namespace UnityEditor.Rendering.Toon
 
         internal const float kVersionX = 0.0f;
         internal const float kVersionY = 9.0f;
-        internal const float kVersionZ = 5.0f;
+        internal const float kVersionZ = 6.0f;
 
         internal static string versionString => "0.9.5-preview";
 
