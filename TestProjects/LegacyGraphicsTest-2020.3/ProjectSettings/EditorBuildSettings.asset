@@ -56,7 +56,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ToonShader_Emissive.unity
     guid: 330d3ccc69184f39a6ca4306f2926636
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ToonShader_Firefly.unity
     guid: 62ae8b1fd9ca4be9a2b88a8bbb1ae340
   - enabled: 0

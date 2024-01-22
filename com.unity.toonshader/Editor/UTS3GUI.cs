@@ -1890,32 +1890,51 @@ namespace UnityEditor.Rendering.Toon
 
         void SetReqnderQueueAuto(Material material)
         {
-            var stencilMode = (UTS_StencilMode)MaterialGetInt(material,ShaderPropStencilMode);
+            const int transparent = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+            const int alphaTest = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+            const int alphaTestMinusOne = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+
             if (transparencyEnabled == UTS_TransparentMode.On)
             {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+                material.renderQueue = transparent;
+                return;
             }
-            else if (stencilMode == UTS_StencilMode.StencilMask)
+
+            var stencilMode = (UTS_StencilMode)MaterialGetInt(material, ShaderPropStencilMode);
+
+            switch (stencilMode)
             {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
+                case UTS_StencilMode.StencilMask:
+                    material.renderQueue = alphaTestMinusOne;
+                    return;
+                case UTS_StencilMode.StencilOut:
+                    material.renderQueue = alphaTest;
+                    return;
+                case UTS_StencilMode.Off:
+                    ClippingMode();
+                    return;
+                default:
+                    throw new NotImplementedException();
             }
-            else if (stencilMode == UTS_StencilMode.StencilOut)
+
+            void ClippingMode()
             {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
-            }
-            if (transparencyEnabled == UTS_TransparentMode.On)
-            {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-            }
-            else if (stencilMode == UTS_StencilMode.StencilMask)
-            {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest - 1;
-            }
-            else if (stencilMode == UTS_StencilMode.StencilOut)
-            {
-                material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
+                var clippingMode = (UTS_ClippingMode)MaterialGetInt(material, ShaderPropClippingMode);
+
+                switch(clippingMode)
+                {
+                    case UTS_ClippingMode.On:
+                    case UTS_ClippingMode.TransClippingMode:
+                        material.renderQueue = alphaTest;
+                        return;
+                    case UTS_ClippingMode.Off:
+                        return;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
+
         void ApplyMatCapMode(Material material)
         {
             if (MaterialGetInt(material,ShaderPropClippingMode) == 0)
