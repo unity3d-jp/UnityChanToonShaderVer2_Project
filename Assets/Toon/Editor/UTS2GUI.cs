@@ -351,6 +351,9 @@ namespace UnityChan
                     //処理が不要な場合も、_utsVersionを更新して設定.
                     material.SetFloat("_utsVersion", _UTS2VersionNumber);
                 }
+
+		// Important value, need to be saved immediately ?
+		AssetDatabase.SaveAssets();
             }
             //ここまで.
 
