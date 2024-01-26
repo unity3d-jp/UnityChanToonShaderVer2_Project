@@ -4,6 +4,15 @@
 
 ***Read this document in other languages: [English](./README.md)***  
 
+## 2024/01/26: おしらせ
+Unity-Chan Toon Shader 2.0 にご関心をお寄せいただき、ありがとうございます。
+なお、本パッケージは[Unity Toon Shader](https://docs.unity3d.com/ja/Packages/com.unity.toonshader@0.9/manual/index.html)に継承されており、メンテナンスもリリース計画もなく、そのまま提供されています。
+そのため、このパッケージに関するバグレポートの監視、機能リクエストの受付、プルリクエストの確認はできません。
+
+ただし、Unity Toon Shader へのアップグレードではなく、Unity-Chan Toon Shader 2.0 の継続利用や改良を希望される場合もあるかと思います。
+その場合、リポジトリをフォークすることをお勧めします。そうすることで、適切と思われる変更や拡張を行うことができます。
+
+
 ## 2022/06/14：2.0.9 Release：新規機能追加    
 * リリース環境を、Unity 2019.4.31f1に変更。Unity 2020.3.x LTSでの動作確認。  
 * シングルパスインスタンシング レンダリング(ステレオインスタンシングとも呼ばれます)に対応。サポートするプラットフォームは、[Unity マニュアル](https://docs.unity3d.com/ja/2019.4/Manual/SinglePassInstancing.html)を参照してください。  

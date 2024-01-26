@@ -4,6 +4,17 @@
 
 ***Read this document in other languages: [日本語版](./README_ja.md)***  
 
+
+## 2024/01/26: Information
+We appreciate your interest in Unity-Chan Toon Shader 2.0.
+It's important to note that this package has been succeeded by [Unity Toon Shader](https://docs.unity3d.com/Packages/com.unity.toonshader@0.9/manual/index.html) and is provided as is, without any maintenance or release plan.
+Therefore, we are unable to monitor bug reports, accept feature requests, or review pull requests for this package.
+
+However, we understand that users may want to continue using and improving Unity-Chan Toon Shader 2.0, instead of upgrading to Unity Toon Shader.
+In that case, we recommend that you fork the repository. This will allow you to make changes and enhancements as you see fit.
+
+
+
 ## 2022/06/14: 2.0.9 Release: new features added.    
 * Changed release environment to Unity 2019.4.31f1, tested with Unity 2020.3.x LTS.  
 * Single Pass Instanced rendering (also known as Stereo Instancing), support. See [Unity Manual](https://docs.unity3d.com/2019.4/Documentation/Manual/SinglePassInstancing.html) for supported platforms.  
