@@ -81,6 +81,10 @@
 
                 float4 _MainTex_var = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
 
+#ifdef _DBUFFER
+                ApplyDecalToSurfaceDataUTS(input.positionCS, _MainTex_var.rgb, surfaceData, normalDirection);
+#endif
+
 //v.2.0.4
 #ifdef _IS_TRANSCLIPPING_OFF
 //
