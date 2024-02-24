@@ -6,7 +6,14 @@
 
 
 
-        float4 fragDoubleShadeFeather(VertexOutput i, fixed facing : VFACE) : SV_TARGET 
+        void fragDoubleShadeFeather(
+            VertexOutput i
+            , fixed facing : VFACE
+            , out float4 finalRGBA : SV_Target0
+        #ifdef _WRITE_RENDERING_LAYERS
+            , out float4 outRenderingLayers : SV_Target1
+        #endif
+        )
         {
 
 
@@ -81,7 +88,17 @@
 
                 UtsLight mainLight = GetMainUtsLightByID(i.mainLightID, i.posWorld.xyz, inputData.shadowCoord, i.positionCS);
 
-                half3 mainLightColor = GetLightColor(mainLight);
+#if defined(_LIGHT_LAYERS)
+                uint meshRenderingLayers = GetMeshRenderingLayer();
+#endif
+
+                half3 mainLightColor = GetLightColor(
+                    mainLight
+                #ifdef _LIGHT_LAYERS
+                    , meshRenderingLayers
+                #endif
+                );
+
                 float4 _MainTex_var = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
 
 #ifdef _DBUFFER
@@ -268,8 +285,13 @@
 
                         UtsLight additionalLight = GetUrpMainUtsLight(0,0);
                         additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS,i.positionCS);
-                        half3 additionalLightColor = GetLightColor(additionalLight);
-                        //					attenuation = light.distanceAttenuation; 
+                        half3 additionalLightColor = GetLightColor(
+                            additionalLight
+                        #ifdef _LIGHT_LAYERS
+                            , meshRenderingLayers
+                        #endif
+                        );
+                        //					attenuation = light.distanceAttenuation;
 
 
                         float3 lightDirection = additionalLight.direction;
@@ -347,8 +369,13 @@
                         {
                             additionalLight = GetAdditionalUtsLight(iLight, inputData.positionWS,i.positionCS);
                         }
-                        half3 additionalLightColor = GetLightColor(additionalLight);
-                        //					attenuation = light.distanceAttenuation; 
+                        half3 additionalLightColor = GetLightColor(
+                            additionalLight
+                        #ifdef _LIGHT_LAYERS
+                            , meshRenderingLayers
+                        #endif
+                        );
+                        //					attenuation = light.distanceAttenuation;
 
 
                         float3 lightDirection = additionalLight.direction;
@@ -459,18 +486,22 @@
 #ifdef _IS_CLIPPING_OFF
 //DoubleShadeWithFeather
 
-                fixed4 finalRGBA = fixed4(finalColor,1);
+                finalRGBA = fixed4(finalColor,1);
 
 #elif _IS_CLIPPING_MODE
 //DoubleShadeWithFeather_Clipping
 
-                fixed4 finalRGBA = fixed4(finalColor,1);
+                finalRGBA = fixed4(finalColor,1);
 
 #elif _IS_CLIPPING_TRANSMODE
 //DoubleShadeWithFeather_TransClipping
                 float Set_Opacity = SATURATE_IF_SDR((_Inverse_Clipping_var+_Tweak_transparency));
-                fixed4 finalRGBA = fixed4(finalColor,Set_Opacity);
+                finalRGBA = fixed4(finalColor,Set_Opacity);
 
 #endif
-                return finalRGBA;
+
+#ifdef _WRITE_RENDERING_LAYERS
+                uint renderingLayers = GetMeshRenderingLayer();
+                outRenderingLayers = float4(EncodeMeshRenderingLayer(renderingLayers), 0, 0, 0);
+#endif
             }
