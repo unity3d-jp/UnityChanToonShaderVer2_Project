@@ -1,4 +1,8 @@
 # Changelog
+## [0.9.7-preview] - 2024-02-24
+### Updated
+* URP Shader is comaptible with Light Layer.   (Thanks to Hum9183Hum9183)
+
 ## [0.9.6-preview] - 2023-09-24
 ### Updated
 * URP Shader is comaptible with DECAL.	(Thanks to Hum9183Hum9183)
