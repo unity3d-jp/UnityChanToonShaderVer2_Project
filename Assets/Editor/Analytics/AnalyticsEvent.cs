@@ -1,6 +1,6 @@
 using System;
 
-namespace Unity.SharpZipLib.Editor {
+namespace UnityEditor.Rendering.UTS2 {
 internal class AnalyticsEventData {
     public string actualPackageVersion;
 }

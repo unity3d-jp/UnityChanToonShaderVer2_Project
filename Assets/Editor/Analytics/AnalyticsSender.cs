@@ -1,15 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
 using UnityEngine.Analytics;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-
-namespace Unity.SharpZipLib.Editor {
+namespace UnityEditor.Rendering.UTS2 {
 
 internal static class AnalyticsSender {
 
@@ -96,7 +90,6 @@ internal static class AnalyticsSender {
 #else
 
     internal static void SendEventInEditor(AnalyticsEvent analyticsEvent) { }
-
 
 #endif //UNITY_EDITOR
     
