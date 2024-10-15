@@ -4,11 +4,13 @@ namespace UnityEditor.Rendering.UTS2 {
 internal class AnalyticsEventData {
     public string actualPackageVersion;
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 internal class EventData : AnalyticsEventData {
     public string renderPipeline;
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
 internal abstract class AnalyticsEvent {
     
     internal abstract string eventName       { get; }
