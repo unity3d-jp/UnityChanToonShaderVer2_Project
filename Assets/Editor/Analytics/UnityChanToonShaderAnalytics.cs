@@ -18,7 +18,7 @@ namespace UnityEditor.Rendering.UTS2 {
 
         [InitializeOnLoadMethod]
         private static void OnLoad() {
-            AnalyticsSender.SendEventInEditor(new LoadEvent("built-in_UTSv2"));
+            AnalyticsSender.SendEventInEditor(new LoadEvent("built-in_UTS2"));
         }
     }
 } //end namespace
