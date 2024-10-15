@@ -345,15 +345,10 @@ namespace UnityChan
                 {
                     //v.2.0.4.3p1以前は_BaseMapにテクスチャ情報があるので、_MainTexにコピー.
                     material.SetTexture("_MainTex",material.GetTexture("_BaseMap"));
-                    //処理が終わったので、_utsVersionを更新して設定.
-                    material.SetFloat("_utsVersion", _UTS2VersionNumber);
-                }else{
-                    //処理が不要な場合も、_utsVersionを更新して設定.
-                    material.SetFloat("_utsVersion", _UTS2VersionNumber);
                 }
-
-		// Important value, need to be saved immediately ?
-		AssetDatabase.SaveAssets();
+                
+                material.SetFloat("_utsVersion", _UTS2VersionNumber);
+                AssetDatabase.SaveAssets();
             }
             //ここまで.
 
