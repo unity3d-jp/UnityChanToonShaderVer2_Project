@@ -60,6 +60,14 @@
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
+            // Computes the depth value based on the platform's graphics API
+            float compute_depth(float4 clip_pos) {
+#if defined(SHADER_API_D3D11) || defined(SHADER_API_METAL)
+                return clip_pos.z;
+#else
+                return (clip_pos.w - clip_pos.z) * 0.5;
+#endif
+            }
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 UNITY_SETUP_INSTANCE_ID(v);
@@ -99,7 +107,7 @@
                 o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + signVar*normalize(v.vertex)*Set_Outline_Width, 1));
 #endif
                 //v.2.0.7.5
-                o.pos.z = o.pos.z + _Offset_Z * _ClipCameraPos.z;
+                o.pos.z = o.pos.z + _Offset_Z * compute_depth(_ClipCameraPos);
                 return o;
             }
             float4 frag(VertexOutput i) : SV_Target{
